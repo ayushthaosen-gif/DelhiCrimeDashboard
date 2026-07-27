@@ -90,6 +90,55 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 .datanote li { margin-bottom: 3px; }
 
 .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 16px; }
+
+.search-container { width: 100%; position: relative; margin-bottom: 6px; }
+.search-input-wrap {
+  display: flex; align-items: center; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; gap: 10px;
+  box-shadow: var(--shadow); transition: border-color .15s;
+}
+.search-input-wrap:focus-within { border-color: var(--amber); }
+.search-icon { font-size: 14px; opacity: .6; }
+.search-input { border: none; background: transparent; color: var(--text); font: inherit; font-size: 13px; width: 100%; outline: none; }
+.search-input::placeholder { color: var(--text-dim); }
+.search-clear { border: none; background: transparent; color: var(--text-dim); font-size: 14px; cursor: pointer; padding: 0 4px; display: none; }
+.search-clear:hover { color: var(--text); }
+
+.search-dropdown {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+  background: var(--night); border: 1px solid var(--border); border-radius: 8px;
+  max-height: 260px; overflow-y: auto; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  display: none;
+}
+.search-dropdown.on { display: block; }
+.search-item {
+  padding: 10px 14px; font-size: 12.5px; color: var(--bone); cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.search-item:last-child { border-bottom: none; }
+.search-item:hover { background: rgba(255,255,255,0.12); }
+.search-item .type { font-size: 11px; color: var(--text-dim); background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; }
+
+.compare-btn {
+  font: inherit; font-size: 12px; font-weight: 700; padding: 7px 12px;
+  border: 1px solid var(--border); border-radius: 6px; background: var(--surface);
+  color: var(--text); cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  transition: background .12s, color .12s;
+}
+.compare-btn:hover { background: var(--night); color: var(--bone); }
+.compare-btn.active { background: var(--amber); color: var(--night); border-color: var(--amber); }
+
+.compare-card { margin-top: 18px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); }
+.compare-card h2 { font-family: 'Big Shoulders', sans-serif; font-size: 22px; font-weight: 800; margin: 0 0 12px; display: flex; justify-content: space-between; align-items: center; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
+@media (max-width: 680px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-col { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+.compare-col h3 { font-family: 'Big Shoulders', sans-serif; font-size: 24px; margin: 0 0 10px; color: var(--text); }
+
+.sparkline-wrap { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; vertical-align: middle; }
+.sparkline-svg { width: 70px; height: 22px; overflow: visible; }
+
 .metric-tabs { display: inline-flex; background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 3px; gap: 2px; flex-wrap: wrap; }
 .metric-tab { font: inherit; font-size: 12px; font-weight: 600; padding: 7px 12px; border: none; background: transparent; color: var(--text-dim); border-radius: 5px; cursor: pointer; white-space: nowrap; transition: background .12s, color .12s; }
 .metric-tab:hover { color: var(--text); }
@@ -259,8 +308,17 @@ footer a { color: inherit; }
   </div>
 
   <div class="controls">
+    <div class="search-container">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="districtSearch" class="search-input" placeholder="Search district or police station (e.g. Rohini, Kashmere Gate, Majnu ka Tila, Vasant Kunj)..." autocomplete="off" />
+        <button id="searchClear" class="search-clear">✕</button>
+      </div>
+      <div id="searchDropdown" class="search-dropdown"></div>
+    </div>
     <div class="metric-tabs" id="metricTabs"></div>
     <div class="metric-tabs" id="yearToggle"></div>
+    <button class="compare-btn" id="compareToggleBtn">⚔️ Compare Districts</button>
     <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap">
       <span class="switch"></span>
       Show streetlight survey heatmap
@@ -274,6 +332,7 @@ footer a { color: inherit; }
       Show accident-prone zones
     </div>
   </div>
+  <div id="compareCard" class="compare-card" style="display:none;"></div>
 
   <div class="grid">
     <div class="panel map-panel">
@@ -802,6 +861,34 @@ function yoyBadge(cur, prev, label) {
   return '<span class="yoy-badge" style="color:' + color + '">' + arrow + ' ' + (pct >= 0 ? '+' : '') + pct.toFixed(1) + '% ' + label + '</span>';
 }
 
+function renderSparkline(d, baseKey) {
+  const m = METRICS.find(x => x.key === baseKey);
+  if (!m || !m.prevKey) return '';
+  const y22 = d[m.prevKey], y23 = d[m.key], y24 = d[m.key2024];
+  if (y22 == null || y23 == null || y24 == null) return '';
+
+  const min = Math.min(y22, y23, y24);
+  const max = Math.max(y22, y23, y24);
+  const range = (max - min) || 1;
+
+  const py = v => 18 - ((v - min) / range) * 14;
+  const p1 = '4,' + py(y22).toFixed(1);
+  const p2 = '30,' + py(y23).toFixed(1);
+  const p3 = '56,' + py(y24).toFixed(1);
+
+  const pct3Y = ((y24 - y22) / y22) * 100;
+  const strokeColor = pct3Y >= 0 ? 'var(--rust)' : 'var(--good)';
+
+  return '<span class="sparkline-wrap" data-tt-title="' + esc(m.label + ' 3-Year Trajectory (2022-2024)') + '" data-tt-body="' + esc('2022: ' + fmtNum(y22) + ' · 2023: ' + fmtNum(y23) + ' · 2024: ' + fmtNum(y24) + ' (' + (pct3Y >= 0 ? '+' : '') + pct3Y.toFixed(1) + '% 3Y change)') + '">' +
+    '<svg class="sparkline-svg" viewBox="0 0 60 22">' +
+      '<polyline points="' + p1 + ' ' + p2 + ' ' + p3 + '" fill="none" stroke="' + strokeColor + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<circle cx="4" cy="' + py(y22) + '" r="2.5" fill="' + strokeColor + '"/>' +
+      '<circle cx="30" cy="' + py(y23) + '" r="2.5" fill="' + strokeColor + '"/>' +
+      '<circle cx="56" cy="' + py(y24) + '" r="2.5" fill="' + strokeColor + '"/>' +
+    '</svg>' +
+  '</span>';
+}
+
 // Maps a crime metric's canonical (unsuffixed, 2023) key to whichever year's field is
 // actually being displayed right now, so the detail panel and its narrative can follow
 // the same 2022/2023/2024 toggle as the map and ranked list.
@@ -894,7 +981,8 @@ function renderDetail() {
       const badge = yoyBadge(val, prevVal, 'vs ' + prevYear);
       sub = '<span class="stat-sub">' + badge + '</span>';
     }
-    return '<div class="stat"><span class="stat-label">' + label + ' (' + detailYear + ')</span><span class="stat-val">' + fmtNum(val) + '</span>' + sub + '</div>';
+    const spark = renderSparkline(d, baseKey);
+    return '<div class="stat"><span class="stat-label">' + label + ' (' + detailYear + ')' + spark + '</span><span class="stat-val">' + fmtNum(val) + '</span>' + sub + '</div>';
   }
 
   const infraTiles = INFRA.map(inf => {
@@ -1251,6 +1339,7 @@ function render() {
   renderTrends();
   renderVictimsByMode();
   renderZones();
+  if (compareMode) renderCompareCard();
 }
 
 function heatColor(t) {
@@ -1414,6 +1503,169 @@ window.addEventListener('resize', debounce(() => {
   renderTrends();
   renderVictimsByMode();
 }, 200));
+
+let compareMode = false;
+let compareDist1 = 'South-East';
+let compareDist2 = 'North-West';
+
+function setupCompareMode() {
+  const btn = document.getElementById('compareToggleBtn');
+  const card = document.getElementById('compareCard');
+  if (!btn || !card) return;
+
+  btn.addEventListener('click', () => {
+    compareMode = !compareMode;
+    btn.classList.toggle('active', compareMode);
+    card.style.display = compareMode ? 'block' : 'none';
+    if (compareMode) renderCompareCard();
+  });
+}
+
+function renderCompareCard() {
+  const card = document.getElementById('compareCard');
+  if (!card || !compareMode) return;
+
+  const d1 = DATA.find(x => x.name === compareDist1) || DATA[0];
+  const d2 = DATA.find(x => x.name === compareDist2) || DATA[1];
+
+  const year = activeYear;
+
+  function compRow(label, val1, val2, unit) {
+    const isNum = typeof val1 === 'number' && typeof val2 === 'number';
+    const highlight1 = isNum && val1 > val2 ? ' font-weight:700;color:var(--amber);' : '';
+    const highlight2 = isNum && val2 > val1 ? ' font-weight:700;color:var(--amber);' : '';
+    return '<div class="tt-row" style="padding:6px 0;border-bottom:1px solid var(--border);">' +
+      '<span style="flex:1;">' + label + '</span>' +
+      '<span style="width:100px;text-align:right;' + highlight1 + '">' + fmtNum(val1) + (unit ? ' ' + unit : '') + '</span>' +
+      '<span style="width:100px;text-align:right;' + highlight2 + '">' + fmtNum(val2) + (unit ? ' ' + unit : '') + '</span>' +
+    '</div>';
+  }
+
+  card.innerHTML =
+    '<h2>⚔️ Side-by-Side District Comparison ' +
+      '<div style="font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;">' +
+        '<select id="compSel1" style="font:inherit;font-size:13px;padding:4px 8px;border-radius:6px;background:var(--bg);color:var(--text);border:1px solid var(--border);">' +
+          DATA.map(x => '<option value="' + x.name + '"' + (x.name===d1.name?' selected':'') + '>' + x.name + '</option>').join('') +
+        '</select>' +
+        ' vs ' +
+        '<select id="compSel2" style="font:inherit;font-size:13px;padding:4px 8px;border-radius:6px;background:var(--bg);color:var(--text);border:1px solid var(--border);">' +
+          DATA.map(x => '<option value="' + x.name + '"' + (x.name===d2.name?' selected':'') + '>' + x.name + '</option>').join('') +
+        '</select>' +
+      '</div>' +
+    '</h2>' +
+    '<div class="compare-grid">' +
+      '<div class="compare-col">' +
+        '<h3>' + d1.name + ' District</h3>' +
+        compRow('District Area', d1.areaSqKm, d2.areaSqKm, 'km²') +
+        compRow('Total IPC Crime (' + year + ')', yearFieldVal(d1,'totalIPC'), yearFieldVal(d2,'totalIPC')) +
+        compRow('Theft Offences (' + year + ')', yearFieldVal(d1,'theft'), yearFieldVal(d2,'theft')) +
+        compRow('Robbery (' + year + ')', yearFieldVal(d1,'robbery'), yearFieldVal(d2,'robbery')) +
+        compRow('Burglary (' + year + ')', yearFieldVal(d1,'burglary'), yearFieldVal(d2,'burglary')) +
+        compRow('Crime Against Women (' + year + ')', yearFieldVal(d1,'crimeAgainstWomen'), yearFieldVal(d2,'crimeAgainstWomen')) +
+        compRow('Streetlight Density', d1.lightDensityPerKm2, d2.lightDensityPerKm2, '/km²') +
+        compRow('Police Stations & Chowkis', d1.policeInfraCount, d2.policeInfraCount) +
+        compRow('Fatal Crashes (2023)', d1.fatalCrashes2023, d2.fatalCrashes2023) +
+      '</div>' +
+      '<div class="compare-col">' +
+        '<h3>' + d2.name + ' District</h3>' +
+        compRow('District Area', d2.areaSqKm, d1.areaSqKm, 'km²') +
+        compRow('Total IPC Crime (' + year + ')', yearFieldVal(d2,'totalIPC'), yearFieldVal(d1,'totalIPC')) +
+        compRow('Theft Offences (' + year + ')', yearFieldVal(d2,'theft'), yearFieldVal(d1,'theft')) +
+        compRow('Robbery (' + year + ')', yearFieldVal(d2,'robbery'), yearFieldVal(d1,'robbery')) +
+        compRow('Burglary (' + year + ')', yearFieldVal(d2,'burglary'), yearFieldVal(d1,'burglary')) +
+        compRow('Crime Against Women (' + year + ')', yearFieldVal(d2,'crimeAgainstWomen'), yearFieldVal(d1,'crimeAgainstWomen')) +
+        compRow('Streetlight Density', d2.lightDensityPerKm2, d1.lightDensityPerKm2, '/km²') +
+        compRow('Police Stations & Chowkis', d2.policeInfraCount, d1.policeInfraCount) +
+        compRow('Fatal Crashes (2023)', d2.fatalCrashes2023, d1.fatalCrashes2023) +
+      '</div>' +
+    '</div>';
+
+  document.getElementById('compSel1').addEventListener('change', (e) => { compareDist1 = e.target.value; renderCompareCard(); });
+  document.getElementById('compSel2').addEventListener('change', (e) => { compareDist2 = e.target.value; renderCompareCard(); });
+}
+
+function setupSearch() {
+  const input = document.getElementById('districtSearch');
+  const clearBtn = document.getElementById('searchClear');
+  const dropdown = document.getElementById('searchDropdown');
+  if (!input || !dropdown) return;
+
+  function doSearch() {
+    const q = input.value.trim().toLowerCase();
+    if (!q) {
+      dropdown.innerHTML = '';
+      dropdown.classList.remove('on');
+      clearBtn.style.display = 'none';
+      return;
+    }
+    clearBtn.style.display = 'block';
+
+    const distMatches = DATA.filter(d => d.name.toLowerCase().includes(q)).map(d => ({
+      title: d.name + ' District',
+      type: 'District',
+      action: () => { selected = d.name; render(); }
+    }));
+
+    const policeMatches = [];
+    POLICE_MARKERS.stations.forEach(([x, y, name]) => {
+      if (name.toLowerCase().includes(q)) {
+        const distName = findDistrictName(x, y);
+        policeMatches.push({
+          title: name,
+          type: 'Police Station · ' + distName,
+          action: () => { selected = distName; showPolice = true; document.getElementById('policeToggle').classList.add('on'); render(); }
+        });
+      }
+    });
+    POLICE_MARKERS.posts.forEach(([x, y, name]) => {
+      if (name.toLowerCase().includes(q)) {
+        const distName = findDistrictName(x, y);
+        policeMatches.push({
+          title: name,
+          type: 'Chowki / Outpost · ' + distName,
+          action: () => { selected = distName; showPolice = true; document.getElementById('policeToggle').classList.add('on'); render(); }
+        });
+      }
+    });
+
+    const allMatches = [...distMatches, ...policeMatches].slice(0, 10);
+    if (!allMatches.length) {
+      dropdown.innerHTML = '<div class="search-item" style="color:var(--text-dim);">No matching district or police station found</div>';
+      dropdown.classList.add('on');
+      return;
+    }
+
+    dropdown.innerHTML = allMatches.map((m, i) =>
+      '<div class="search-item" data-idx="' + i + '"><span>' + esc(m.title) + '</span><span class="type">' + esc(m.type) + '</span></div>'
+    ).join('');
+    dropdown.classList.add('on');
+
+    dropdown.querySelectorAll('.search-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const idx = parseInt(item.dataset.idx, 10);
+        if (allMatches[idx]) {
+          allMatches[idx].action();
+          dropdown.classList.remove('on');
+          input.value = '';
+          clearBtn.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  input.addEventListener('input', debounce(doSearch, 150));
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    dropdown.classList.remove('on');
+    clearBtn.style.display = 'none';
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-container')) dropdown.classList.remove('on');
+  });
+}
+
+setupSearch();
+setupCompareMode();
 
 // ── DOWNLOAD DATA ──
 // derive fields are computed (not a raw DATA property) — mainly the coverage-flag columns,

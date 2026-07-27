@@ -7,31 +7,35 @@ This log tracks all architectural, performance, accessibility, and code quality 
 
 ---
 
-## [2026-07-28] - Claude (Anthropic) - Sync note
+## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 3
 
-This repo was originally a snapshot synced from a sibling project
-(`wallwalkerv4`, a GaitWay walkability dashboard) via `build.js` + `data/` —
-every prior Claude commit up through `91b345d` ("fix: OCR-corrupted zone
-names...") was a straight copy from that project's build script, rebuilt
-here.
+### 🚀 Search, Sparklines & Comparison Mode
 
-**That sync has stopped as of this entry.** Antigravity's Phase 1/2 work
-(commits `383da62`, `98896d0`, `7b24be1`) rewrote real architecture here —
-`initMap()` + targeted DOM updates instead of `innerHTML` rebuilds, keyboard
-a11y, scatter hover, the `.xml` Excel fix, and richer police-marker data —
-that has no equivalent upstream in `wallwalkerv4`. Continuing to sync would
-silently overwrite that work. **This repo is now its own project.** Future
-changes here should build on what's already in `build.js`, not replace it
-wholesale from elsewhere.
+1. **Instant Search & Auto-Complete Bar (`setupSearch`)**
+   - Added interactive search bar above controls allowing real-time query matching across all 15 districts and 250+ police stations, chowkis, and outposts.
+   - Type-ahead dropdown auto-filters results and selects/highlights target district on click.
 
-Prior to the divergence, Claude's contributions (now superseded/absorbed by
-Antigravity's rewrite where they overlap) were: full 15-district 2023 crash
-data from the Delhi Road Crash Report 2023, the 107-zone crash-prone-zone
-list with real severity and coordinates, district-center map markers, the
-consolidated road-safety tabbed panel, the 2022/2023/2024 crime year-comparison
-toggle, high-DPI canvas rendering, custom map tooltips, percentile-rank
-color scaling, and the `exports/` + `export_data.js` clean-data pipeline for
-programmatic reuse (still current — see README.md).
+2. **3-Year Crime Trajectory Sparklines (`renderSparkline`)**
+   - Implemented SVG sparklines for all 6 NCRB crime metrics inside `renderDetail()`.
+   - Visualizes 3-point trend trajectory (2022 → 2023 → 2024) with color-coded directional lines (rust = increase, green = decrease) and hover tooltips.
+
+3. **Side-by-Side District Comparison Mode (`setupCompareMode` & `renderCompareCard`)**
+   - Added interactive `⚔️ Compare Districts` toggle button and comparison card.
+   - Allows users to select any two districts side-by-side to compare area, crime metrics, streetlight density, police infrastructure, and fatal crash counts in a split-screen matrix.
+
+4. **Global Delegated Tooltips & UI Polishing**
+   - Converted tooltip listener to a document-level delegated handler with `position: fixed` to ensure hover tooltips work on all `.metric-tab` buttons, legend scales, and map elements.
+   - Removed default browser rectangular focus outline on SVG district paths (`outline: none !important`).
+
+---
+
+## [2026-07-28] - Claude (Anthropic) - Sync Note
+
+This repo was originally a snapshot synced from a sibling project (`wallwalkerv4`, a GaitWay walkability dashboard) via `build.js` + `data/`.
+
+**That sync has stopped as of this entry.** Antigravity's Phase 1/2 work (commits `383da62`, `98896d0`, `7b24be1`) rewrote real architecture here — `initMap()` + targeted DOM updates instead of `innerHTML` rebuilds, keyboard a11y, scatter hover, the `.xml` Excel fix, and richer police-marker data — that has no equivalent upstream in `wallwalkerv4`. Continuing to sync would silently overwrite that work. **This repo is now its own project.** Future changes here should build on what's already in `build.js`, not replace it wholesale from elsewhere.
+
+Prior to the divergence, Claude's contributions (now absorbed by Antigravity's rewrite where they overlap) were: full 15-district 2023 crash data from the Delhi Road Crash Report 2023, the 107-zone crash-prone-zone list with real severity and coordinates, district-center map markers, the consolidated road-safety tabbed panel, the 2022/2023/2024 crime year-comparison toggle, high-DPI canvas rendering, custom map tooltips, percentile-rank color scaling, and the `exports/` + `export_data.js` clean-data pipeline for programmatic reuse.
 
 ---
 
