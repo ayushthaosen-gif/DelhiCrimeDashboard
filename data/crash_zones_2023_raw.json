@@ -1,0 +1,858 @@
+[
+  {
+    "rank": 1,
+    "name": "ISBT Kashmiri Gate",
+    "simple": 12,
+    "fatal": 7,
+    "total": 19,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 2,
+    "name": "Mukarba Chowk",
+    "simple": 11,
+    "fatal": 7,
+    "total": 18,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 3,
+    "name": "Libaspur Bus Stand",
+    "simple": 11,
+    "fatal": 7,
+    "total": 18,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 4,
+    "name": "",
+    "simple": 12,
+    "fatal": 6,
+    "total": 18,
+    "road": "Boulevard Road"
+  },
+  {
+    "rank": 5,
+    "name": "Britannia Chowk",
+    "simple": 9,
+    "fatal": 6,
+    "total": 15,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 6,
+    "name": "Burari Chowk",
+    "simple": 8,
+    "fatal": 6,
+    "total": 14,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 7,
+    "name": "Bhalswa Chowk",
+    "simple": 5,
+    "fatal": 6,
+    "total": 11,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 8,
+    "name": "Wazir Pur Depot",
+    "simple": 4,
+    "fatal": 6,
+    "total": 10,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 9,
+    "name": "Round About Mori Gate",
+    "simple": 2,
+    "fatal": 6,
+    "total": 8,
+    "road": "Hamilton Road"
+  },
+  {
+    "rank": 10,
+    "name": "Gandhi Vihar Bus Stand",
+    "simple": 11,
+    "fatal": 5,
+    "total": 16,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 11,
+    "name": "Anand Vihar lsbt",
+    "simple": 11,
+    "fatal": 5,
+    "total": 16,
+    "road": "Road No.56"
+  },
+  {
+    "rank": 12,
+    "name": "Okhla Mandi",
+    "simple": 6,
+    "fatal": 5,
+    "total": 11,
+    "road": "Captain Gaud Marg"
+  },
+  {
+    "rank": 13,
+    "name": "SgtNagar",
+    "simple": 6,
+    "fatal": 5,
+    "total": 11,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 14,
+    "name": "Akshardham Mandir",
+    "simple": 5,
+    "fatal": 5,
+    "total": 10,
+    "road": "NH-24"
+  },
+  {
+    "rank": 15,
+    "name": "Shalimar Bogh",
+    "simple": 5,
+    "fatal": 5,
+    "total": 10,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 16,
+    "name": "Metro Station Haider Pur",
+    "simple": 5,
+    "fatal": 5,
+    "total": 10,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 17,
+    "name": "Loni Road Crossing",
+    "simple": 5,
+    "fatal": 5,
+    "total": 10,
+    "road": "Wazirabad Road"
+  },
+  {
+    "rank": 18,
+    "name": "Metro Station Madipur",
+    "simple": 4,
+    "fatal": 5,
+    "total": 9,
+    "road": "Rohtak Road"
+  },
+  {
+    "rank": 19,
+    "name": "Raja Harishchander Hospital",
+    "simple": 2,
+    "fatal": 5,
+    "total": 7,
+    "road": "OSI/DC Nore/a Road"
+  },
+  {
+    "rank": 20,
+    "name": "Shamshan Ghat Punjabi Bogh",
+    "simple": 2,
+    "fatal": 5,
+    "total": 7,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 21,
+    "name": "Haryana Maitri Bhawan",
+    "simple": 1,
+    "fatal": 5,
+    "total": 6,
+    "road": "Road No43"
+  },
+  {
+    "rank": 22,
+    "name": "Shastri Park/It Park",
+    "simple": 20,
+    "fatal": 4,
+    "total": 24,
+    "road": "G.T.Road"
+  },
+  {
+    "rank": 23,
+    "name": "Rajouri Garden",
+    "simple": 12,
+    "fatal": 4,
+    "total": 16,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 24,
+    "name": "Swaroop Nagar",
+    "simple": 10,
+    "fatal": 4,
+    "total": 14,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 25,
+    "name": "Modi Mill Flyover",
+    "simple": 10,
+    "fatal": 4,
+    "total": 14,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 26,
+    "name": "Punjabi Bogh Chowk",
+    "simple": 9,
+    "fatal": 4,
+    "total": 13,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 27,
+    "name": "Metro Station Shivaji Park",
+    "simple": 7,
+    "fatal": 4,
+    "total": 11,
+    "road": "Rohtak Road"
+  },
+  {
+    "rank": 28,
+    "name": "Kings Way Camp Chowk",
+    "simple": 6,
+    "fatal": 4,
+    "total": 10,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 29,
+    "name": "Round About Paharganj",
+    "simple": 6,
+    "fatal": 4,
+    "total": 10,
+    "road": "Rani Jhansi Road"
+  },
+  {
+    "rank": 30,
+    "name": "West Enclave Red Light",
+    "simple": 5,
+    "fatal": 4,
+    "total": 9,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 31,
+    "name": "Azadpur Sabzi Mandi",
+    "simple": 5,
+    "fatal": 4,
+    "total": 9,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 32,
+    "name": "Ti/ak Nagar Flyover",
+    "simple": 5,
+    "fatal": 4,
+    "total": 9,
+    "road": "Najafgarh Road"
+  },
+  {
+    "rank": 33,
+    "name": "Nathu Colony Chowk Nand Nagri",
+    "simple": 4,
+    "fatal": 4,
+    "total": 8,
+    "road": "Road No 68"
+  },
+  {
+    "rank": 34,
+    "name": "Dabri Flyover",
+    "simple": 3,
+    "fatal": 4,
+    "total": 7,
+    "road": "Pankha Road"
+  },
+  {
+    "rank": 35,
+    "name": "Saraswati Vihar Bus Stand",
+    "simple": 3,
+    "fatal": 4,
+    "total": 7,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 36,
+    "name": "District Center Janakpuri",
+    "simple": 3,
+    "fatal": 4,
+    "total": 7,
+    "road": "Najafgarh Road"
+  },
+  {
+    "rank": 37,
+    "name": "Nangli Poona",
+    "simple": 3,
+    "fatal": 4,
+    "total": 7,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 38,
+    "name": "Cng Pumpl}ain Mandir NH-1",
+    "simple": 2,
+    "fatal": 4,
+    "total": 6,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 39,
+    "name": "Toll Plaza Badarpur",
+    "simple": 2,
+    "fatal": 4,
+    "total": 6,
+    "road": "Mathura Road"
+  },
+  {
+    "rank": 40,
+    "name": "Round About Seemapuri",
+    "simple": 1,
+    "fatal": 4,
+    "total": 5,
+    "road": "Road No 68"
+  },
+  {
+    "rank": 41,
+    "name": "Peeragarhi Chowk",
+    "simple": 13,
+    "fatal": 3,
+    "total": 16,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 42,
+    "name": "Khajoori Chowk",
+    "simple": 11,
+    "fatal": 3,
+    "total": 14,
+    "road": "Wazirabad Road"
+  },
+  {
+    "rank": 43,
+    "name": "Madhuban Chowk",
+    "simple": 11,
+    "fatal": 3,
+    "total": 14,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 44,
+    "name": "UdyogNagar",
+    "simple": 10,
+    "fatal": 3,
+    "total": 13,
+    "road": "Rohtak Road"
+  },
+  {
+    "rank": 45,
+    "name": "Wazirabad",
+    "simple": 10,
+    "fatal": 3,
+    "total": 13,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 46,
+    "name": "Mukundpur Chowk",
+    "simple": 10,
+    "fatal": 3,
+    "total": 13,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 47,
+    "name": "Maya Puri Chowk",
+    "simple": 9,
+    "fatal": 3,
+    "total": 12,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 48,
+    "name": "Shani Mandir Nh-1",
+    "simple": 9,
+    "fatal": 3,
+    "total": 12,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 49,
+    "name": "Ber Sarai Flyover",
+    "simple": 9,
+    "fatal": 3,
+    "total": 12,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 50,
+    "name": "Sagarpur Bus Stand",
+    "simple": 9,
+    "fatal": 3,
+    "total": 12,
+    "road": "Pankha Road"
+  },
+  {
+    "rank": 51,
+    "name": "Kanhiya Nagar Metro Station",
+    "simple": 9,
+    "fatal": 3,
+    "total": 12,
+    "road": "VIR Banda Bairagi Mr"
+  },
+  {
+    "rank": 52,
+    "name": "Metro Station Welcome",
+    "simple": 8,
+    "fatal": 3,
+    "total": 11,
+    "road": "G.T.Road"
+  },
+  {
+    "rank": 53,
+    "name": "Dtc Bus Depot Nand Nagri",
+    "simple": 8,
+    "fatal": 3,
+    "total": 11,
+    "road": "Wazirabad Road"
+  },
+  {
+    "rank": 54,
+    "name": "Sai Baba Mandir Nh-1",
+    "simple": 7,
+    "fatal": 3,
+    "total": 10,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 55,
+    "name": "Lado Sarai Crossing",
+    "simple": 7,
+    "fatal": 3,
+    "total": 10,
+    "road": "Mehrauli Badarpur Rd"
+  },
+  {
+    "rank": 56,
+    "name": "Shaheen Bagh Road No-13a",
+    "simple": 7,
+    "fatal": 3,
+    "total": 10,
+    "road": "Road No 13a"
+  },
+  {
+    "rank": 57,
+    "name": "Ti/ak Pu/ Dabri",
+    "simple": 6,
+    "fatal": 3,
+    "total": 9,
+    "road": "Pankha Road"
+  },
+  {
+    "rank": 58,
+    "name": "Tikri Khurd Bus Stand",
+    "simple": 6,
+    "fatal": 3,
+    "total": 9,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 59,
+    "name": "Kalkaji Mandir",
+    "simple": 5,
+    "fatal": 3,
+    "total": 8,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 60,
+    "name": "Rajghat",
+    "simple": 5,
+    "fatal": 3,
+    "total": 8,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 61,
+    "name": "Deepali Chowk",
+    "simple": 5,
+    "fatal": 3,
+    "total": 8,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 62,
+    "name": "Metro Station Paschim Vihar",
+    "simple": 5,
+    "fatal": 3,
+    "total": 8,
+    "road": "Rohtak Road"
+  },
+  {
+    "rank": 63,
+    "name": "IT/ Dheerpur",
+    "simple": 5,
+    "fatal": 3,
+    "total": 8,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 64,
+    "name": "Nigam Bodh Ghat",
+    "simple": 4,
+    "fatal": 3,
+    "total": 7,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 65,
+    "name": "Metro Station lnderlok",
+    "simple": 4,
+    "fatal": 3,
+    "total": 7,
+    "road": "VIR Banda Bairagi Mr"
+  },
+  {
+    "rank": 66,
+    "name": "Keshopur T Point",
+    "simple": 4,
+    "fatal": 3,
+    "total": 7,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 67,
+    "name": "Mundka",
+    "simple": 4,
+    "fatal": 3,
+    "total": 7,
+    "road": "Rohtak Road"
+  },
+  {
+    "rank": 68,
+    "name": "Metro Station Ramesh Nagar",
+    "simple": 4,
+    "fatal": 3,
+    "total": 7,
+    "road": "Najafgarh Road"
+  },
+  {
+    "rank": 69,
+    "name": "Rtr Flyover Vasant Vihar",
+    "simple": 4,
+    "fatal": 3,
+    "total": 7,
+    "road": "Outer Ring Road"
+  },
+  {
+    "rank": 70,
+    "name": "OSI/DC Red Light NH-1",
+    "simple": 4,
+    "fatal": 3,
+    "total": 7,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 71,
+    "name": "Adarsh Nagar",
+    "simple": 4,
+    "fatal": 3,
+    "total": 7,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 72,
+    "name": "Arsd College Ring Road",
+    "simple": 3,
+    "fatal": 3,
+    "total": 6,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 73,
+    "name": "Sarai Kale Khan",
+    "simple": 3,
+    "fatal": 3,
+    "total": 6,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 74,
+    "name": "Round About Okh/a Estate",
+    "simple": 3,
+    "fatal": 3,
+    "total": 6,
+    "road": "Anand Mai Marg"
+  },
+  {
+    "rank": 75,
+    "name": "Anand Vihar Railway Flyover",
+    "simple": 3,
+    "fatal": 3,
+    "total": 6,
+    "road": "Road No.56"
+  },
+  {
+    "rank": 76,
+    "name": "Vijay Vihar Rohini",
+    "simple": 3,
+    "fatal": 3,
+    "total": 6,
+    "road": "Rithala Road"
+  },
+  {
+    "rank": 77,
+    "name": "Delhi Cantt Flyover",
+    "simple": 2,
+    "fatal": 3,
+    "total": 5,
+    "road": "Jail Road"
+  },
+  {
+    "rank": 78,
+    "name": "Shakarpur Red Light",
+    "simple": 2,
+    "fatal": 3,
+    "total": 5,
+    "road": "Yamuna Pusta Road"
+  },
+  {
+    "rank": 79,
+    "name": "Geeta Colony Flyover",
+    "simple": 2,
+    "fatal": 3,
+    "total": 5,
+    "road": "Yamuna Pusta Road"
+  },
+  {
+    "rank": 80,
+    "name": "Loha Mandi",
+    "simple": 1,
+    "fatal": 3,
+    "total": 4,
+    "road": "Girdhari Lal Marg"
+  },
+  {
+    "rank": 81,
+    "name": "Siraspur",
+    "simple": 1,
+    "fatal": 3,
+    "total": 4,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 82,
+    "name": "Janak Puri East",
+    "simple": 1,
+    "fatal": 3,
+    "total": 4,
+    "road": "Najafgarh Road"
+  },
+  {
+    "rank": 83,
+    "name": "Mayur Vihar Extension",
+    "simple": 1,
+    "fatal": 3,
+    "total": 4,
+    "road": "Naida Link Road"
+  },
+  {
+    "rank": 84,
+    "name": "Pu/ Mithai Spm Marg",
+    "simple": 1,
+    "fatal": 3,
+    "total": 4,
+    "road": "SPM Marg"
+  },
+  {
+    "rank": 85,
+    "name": "Paper Market Gajipur",
+    "simple": 1,
+    "fatal": 3,
+    "total": 4,
+    "road": "Paper Market Road"
+  },
+  {
+    "rank": 86,
+    "name": "Goy/a Village Najafgarh",
+    "simple": 1,
+    "fatal": 3,
+    "total": 4,
+    "road": "Goy/a Dairy Road"
+  },
+  {
+    "rank": 87,
+    "name": "Near Haldi Ram Wazirpur",
+    "simple": 0,
+    "fatal": 3,
+    "total": 3,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 88,
+    "name": "Surya Nagar Red Light",
+    "simple": 0,
+    "fatal": 3,
+    "total": 3,
+    "road": "Road No.56"
+  },
+  {
+    "rank": 89,
+    "name": "lg Indoor Stadium",
+    "simple": 13,
+    "fatal": 2,
+    "total": 15,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 90,
+    "name": "Seelampur T Point",
+    "simple": 13,
+    "fatal": 2,
+    "total": 15,
+    "road": "G.T.Road"
+  },
+  {
+    "rank": 91,
+    "name": "Moti Bagh Flyover",
+    "simple": 12,
+    "fatal": 2,
+    "total": 14,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 92,
+    "name": "Ashram Chowk",
+    "simple": 12,
+    "fatal": 2,
+    "total": 14,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 93,
+    "name": "Shakarpur Chungi",
+    "simple": 11,
+    "fatal": 2,
+    "total": 13,
+    "road": "Vikas Marg"
+  },
+  {
+    "rank": 94,
+    "name": "Dhaula Kuan",
+    "simple": 10,
+    "fatal": 2,
+    "total": 12,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 95,
+    "name": "Khaira More Najafgarh",
+    "simple": 10,
+    "fatal": 2,
+    "total": 12,
+    "road": "Najafgarh Dwarka Rd"
+  },
+  {
+    "rank": 96,
+    "name": "Azadpur Chowk",
+    "simple": 10,
+    "fatal": 2,
+    "total": 12,
+    "road": "GTKRoad"
+  },
+  {
+    "rank": 97,
+    "name": "Mahipalpur Flyover",
+    "simple": 9,
+    "fatal": 2,
+    "total": 11,
+    "road": "NH-8"
+  },
+  {
+    "rank": 98,
+    "name": "Uttam Nagar",
+    "simple": 8,
+    "fatal": 2,
+    "total": 10,
+    "road": "Najafgarh Road"
+  },
+  {
+    "rank": 99,
+    "name": "Shankar Vihar",
+    "simple": 8,
+    "fatal": 2,
+    "total": 10,
+    "road": "NH-8"
+  },
+  {
+    "rank": 100,
+    "name": "Shanti Van",
+    "simple": 8,
+    "fatal": 2,
+    "total": 10,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 101,
+    "name": "Zakhira Flyover",
+    "simple": 13,
+    "fatal": 1,
+    "total": 14,
+    "road": "Rohtak Road"
+  },
+  {
+    "rank": 102,
+    "name": "Subhash Nagar Metro Station",
+    "simple": 11,
+    "fatal": 1,
+    "total": 12,
+    "road": "Najafgarh Road"
+  },
+  {
+    "rank": 103,
+    "name": "Under Pass Patparganj",
+    "simple": 9,
+    "fatal": 1,
+    "total": 10,
+    "road": "Patparganj Road"
+  },
+  {
+    "rank": 104,
+    "name": "Rajoukari Flyover",
+    "simple": 9,
+    "fatal": 1,
+    "total": 10,
+    "road": "NH-8"
+  },
+  {
+    "rank": 105,
+    "name": "Bara/ Khana Chowk",
+    "simple": 9,
+    "fatal": 1,
+    "total": 10,
+    "road": "Rani Jhansi Road"
+  },
+  {
+    "rank": 106,
+    "name": "Moo/ Chand",
+    "simple": 15,
+    "fatal": 0,
+    "total": 15,
+    "road": "Ring Road"
+  },
+  {
+    "rank": 107,
+    "name": "Outer Circle Cp Near Minto Road",
+    "simple": 10,
+    "fatal": 0,
+    "total": 10,
+    "road": "Outer Circle Cp"
+  }
+]
