@@ -235,18 +235,18 @@ footer a { color: inherit; }
   <div class="controls">
     <div class="metric-tabs" id="metricTabs"></div>
     <div class="metric-tabs" id="yearToggle"></div>
-    <label class="toggle-row" id="lightToggle">
+    <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap">
       <span class="switch"></span>
       Show streetlight survey heatmap
-    </label>
-    <label class="toggle-row" id="policeToggle">
+    </div>
+    <div class="toggle-row" id="policeToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show police markers">
       <span class="switch"></span>
       Show police markers
-    </label>
-    <label class="toggle-row" id="zonesToggle">
+    </div>
+    <div class="toggle-row" id="zonesToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show accident-prone zones">
       <span class="switch"></span>
       Show accident-prone zones
-    </label>
+    </div>
   </div>
 
   <div class="grid">
@@ -409,7 +409,7 @@ footer a { color: inherit; }
         <li><b>Sources &amp; Methodology</b> — full citations with URLs, retrieval date, formulas used, and every known coverage gap and caveat spelled out in one place — meant to be quoted directly in a methods section.</li>
         <li><b>Current Comparison</b> — whatever's plotted in the scatter chart right now.</li>
       </ul>
-      <button class="dl-download-btn" id="dlExcelDownload">⬇ Download Excel Workbook (.xls, 5 sheets)</button>
+      <button class="dl-download-btn" id="dlExcelDownload">⬇ Download Excel Workbook (.xml, 5 sheets)</button>
     </div>
   </div>
 
@@ -573,65 +573,129 @@ function percentileScale(values) {
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function tt(title, body) { return ' data-tt-title="' + esc(title) + '" data-tt-body="' + esc(body || '') + '"'; }
 
-function renderMap() {
+let mapInitialized = false;
+
+function initMap() {
   const svg = document.getElementById('map');
+  if (!svg || mapInitialized) return;
+  mapInitialized = true;
+
+  const parts = [
+    '<defs><pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="7" stroke="var(--label-stroke)" stroke-width="2.5" opacity=".35"></line></pattern></defs>',
+    '<g id="districtPathsLayer"></g>',
+    '<g id="hatchLayer"></g>',
+    '<g id="airportLayer"></g>',
+    '<g id="centerMarkersLayer"></g>',
+    '<g id="policeLayer"></g>',
+    '<g id="zonesLayer"></g>'
+  ];
+  svg.innerHTML = parts.join('');
+
+  const distLayer = svg.querySelector('#districtPathsLayer');
+  DATA.forEach(d => {
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('class', 'district');
+    p.setAttribute('data-name', d.name);
+    p.setAttribute('d', d.path);
+    p.setAttribute('tabindex', '0');
+    p.setAttribute('role', 'button');
+    p.setAttribute('aria-label', d.name + ' District');
+    distLayer.appendChild(p);
+  });
+
+  const hatchLayer = svg.querySelector('#hatchLayer');
+  DATA.forEach(d => {
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('class', 'district-hatch');
+    p.setAttribute('data-name', d.name);
+    p.setAttribute('d', d.path);
+    p.style.display = 'none';
+    hatchLayer.appendChild(p);
+  });
+
+  const airportLayer = svg.querySelector('#airportLayer');
+  airportLayer.innerHTML = '<path class="airport-shape" d="' + AIRPORT_SHAPE.path + '" data-tt-title="IGI Airport" data-tt-body="Separate police jurisdiction — no crime data in this dataset"></path>' +
+    '<text class="airport-label" x="' + AIRPORT_SHAPE.cx + '" y="' + AIRPORT_SHAPE.cy + '">✈ Airport</text>';
+
+  const centerLayer = svg.querySelector('#centerMarkersLayer');
+  const centerParts = [];
+  DATA.forEach(d => {
+    centerParts.push('<circle class="district-center-ring" cx="' + d.cx + '" cy="' + d.cy + '" r="5.5" data-tt-title="' + esc(d.name) + '" data-tt-body="Approximate district center (polygon centroid)"></circle>');
+    centerParts.push('<circle class="district-center-dot" cx="' + d.cx + '" cy="' + d.cy + '" r="2"></circle>');
+    centerParts.push('<text class="district-label" x="' + d.cx + '" y="' + (d.cy + 17) + '">' + d.name + '</text>');
+  });
+  centerLayer.innerHTML = centerParts.join('');
+
+  const policeLayer = svg.querySelector('#policeLayer');
+  const policeParts = [];
+  POLICE_MARKERS.posts.forEach(([x, y, name]) => {
+    policeParts.push('<circle class="police-marker post" cx="' + x + '" cy="' + y + '" r="3.2" data-tt-title="' + esc(name) + '" data-tt-body="Police post / chowki / outpost"></circle>');
+  });
+  POLICE_MARKERS.stations.forEach(([x, y, name]) => {
+    policeParts.push('<circle class="police-marker station" cx="' + x + '" cy="' + y + '" r="4.2" data-tt-title="' + esc(name) + '" data-tt-body="Police station"></circle>');
+  });
+  policeLayer.innerHTML = policeParts.join('');
+
+  const zonesLayer = svg.querySelector('#zonesLayer');
+  const zoneParts = [];
+  ACCIDENT_ZONES_MAPPED.forEach(z => {
+    const x = z.x, y = z.y;
+    const t = Math.max(0, Math.min(1, (z.fatal - 1) / 6));
+    const size = 4.5 + t * 3.5;
+    const opacity = (0.55 + t * 0.45).toFixed(2);
+    zoneParts.push('<path class="zone-marker" style="opacity:' + opacity + '" d="M' + x + ',' + (y - size) + ' L' + (x + size * 0.87) + ',' + (y + size * 0.67) + ' L' + (x - size * 0.87) + ',' + (y + size * 0.67) + ' Z" data-tt-title="' + esc(z.name + ' (' + z.road + ')') + '" data-tt-body="' + esc(z.district + ' · ' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023') + '"></path>');
+  });
+  zonesLayer.innerHTML = zoneParts.join('');
+
+  svg.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      const path = e.target.closest('.district');
+      if (path) {
+        e.preventDefault();
+        selected = selected === path.dataset.name ? null : path.dataset.name;
+        render();
+      }
+    }
+  });
+}
+
+function renderMap() {
+  initMap();
   const m = currentMetric();
   const [lo, hi] = currentDomain();
   const scale = percentileScale(DATA.map(d => metricValue(d, m)).filter(v => v != null));
-  const parts = ['<defs><pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="7" stroke="var(--label-stroke)" stroke-width="2.5" opacity=".35"></line></pattern></defs>'];
-  DATA.forEach(d => {
+
+  document.querySelectorAll('#map path.district').forEach(path => {
+    const name = path.dataset.name;
+    const d = DATA.find(x => x.name === name);
+    if (!d) return;
     const v = metricValue(d, m);
-    // A null value (no data for this district on this metric) is NOT the same as the lowest
-    // real value — render it as a flat neutral instead of the rustScale's low end, which would
-    // misleadingly read as "least crime here" for a district that simply has no reported figure.
     const fill = v == null ? 'var(--map-nodata-stripe)' : rustScale(scale(v));
-    const sel = selected === d.name ? ' style="stroke:var(--night);stroke-width:2.4;"' : '';
+    const isSel = selected === d.name;
     const body = v == null ? 'No data for this metric' : m.short + ': ' + fmtNum(v);
-    parts.push('<path class="district" data-name="' + d.name + '" d="' + d.path + '" fill="' + fill + '"' + sel + tt(d.name, body) + '></path>');
+
+    path.setAttribute('fill', fill);
+    path.style.stroke = isSel ? 'var(--night)' : '';
+    path.style.strokeWidth = isSel ? '2.4' : '';
+    path.setAttribute('aria-selected', isSel ? 'true' : 'false');
+    path.setAttribute('data-tt-title', d.name);
+    path.setAttribute('data-tt-body', body);
   });
-  DATA.forEach(d => {
-    if (metricValue(d, m) != null) return;
-    parts.push('<path class="district-hatch" d="' + d.path + '"></path>');
+
+  document.querySelectorAll('#map path.district-hatch').forEach(path => {
+    const name = path.dataset.name;
+    const d = DATA.find(x => x.name === name);
+    if (!d) return;
+    const v = metricValue(d, m);
+    const showHatch = (v == null) || (showLights && !d.surveyPoints);
+    path.style.display = showHatch ? 'inline' : 'none';
   });
-  if (showLights) {
-    DATA.forEach(d => {
-      if (d.surveyPoints) return;
-      parts.push('<path class="district-hatch" d="' + d.path + '"></path>');
-    });
-  }
-  // IGI Airport is its own police jurisdiction, not one of the 15 districts this dataset covers —
-  // marked explicitly instead of left as an unexplained gap in South-West's territory.
-  parts.push('<path class="airport-shape" d="' + AIRPORT_SHAPE.path + '"' + tt('IGI Airport', 'Separate police jurisdiction — no crime data in this dataset') + '></path>');
-  parts.push('<text class="airport-label" x="' + AIRPORT_SHAPE.cx + '" y="' + AIRPORT_SHAPE.cy + '">✈ Airport</text>');
-  // District center marker — a ring-and-dot symbol at each district's polygon centroid,
-  // the standard cartographic convention for a capital/administrative center. This is the
-  // geometric centroid of the (simplified) district boundary, not a specific DCP office
-  // address — labeled that way below rather than implying survey-grade HQ precision.
-  DATA.forEach(d => {
-    parts.push('<circle class="district-center-ring" cx="' + d.cx + '" cy="' + d.cy + '" r="5.5"' + tt(d.name, 'Approximate district center (polygon centroid)') + '></circle>');
-    parts.push('<circle class="district-center-dot" cx="' + d.cx + '" cy="' + d.cy + '" r="2"></circle>');
-    parts.push('<text class="district-label" x="' + d.cx + '" y="' + (d.cy + 17) + '">' + d.name + '</text>');
-  });
-  if (showPolice) {
-    POLICE_MARKERS.posts.forEach(([x,y,name]) => {
-      parts.push('<circle class="police-marker post" cx="' + x + '" cy="' + y + '" r="3.2"' + tt(name, 'Police post / chowki / outpost') + '></circle>');
-    });
-    POLICE_MARKERS.stations.forEach(([x,y,name]) => {
-      parts.push('<circle class="police-marker station" cx="' + x + '" cy="' + y + '" r="4.2"' + tt(name, 'Police station') + '></circle>');
-    });
-  }
-  if (showZones) {
-    // Triangle size and fill opacity both scale with fatal crash count (1-7 in this dataset) —
-    // a worse blackspot should read as visually heavier, not just present/absent.
-    ACCIDENT_ZONES_MAPPED.forEach(z => {
-      const x = z.x, y = z.y;
-      const t = Math.max(0, Math.min(1, (z.fatal - 1) / 6));
-      const size = 4.5 + t * 3.5;
-      const opacity = 0.55 + t * 0.45;
-      parts.push('<path class="zone-marker" style="opacity:' + opacity.toFixed(2) + '" d="M' + x + ',' + (y-size) + ' L' + (x+size*0.87) + ',' + (y+size*0.67) + ' L' + (x-size*0.87) + ',' + (y+size*0.67) + ' Z"' + tt(z.name + ' (' + z.road + ')', z.district + ' · ' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023') + '></path>');
-    });
-  }
-  svg.innerHTML = parts.join('');
+
+  const policeLayer = document.getElementById('policeLayer');
+  if (policeLayer) policeLayer.style.display = showPolice ? 'inline' : 'none';
+
+  const zonesLayer = document.getElementById('zonesLayer');
+  if (zonesLayer) zonesLayer.style.display = showZones ? 'inline' : 'none';
 
   document.getElementById('legendLabel').textContent = yearLabel(m);
   document.getElementById('legendMin').textContent = fmtNum(lo);
@@ -648,13 +712,12 @@ function renderList() {
   const el = document.getElementById('rankList');
   el.innerHTML = sorted.map((d, i) => {
     const v = metricValue(d, m);
-    // Floor at 3% so the district with the lowest real value still shows a visible sliver
-    // instead of a 0-width bar that reads as "no data."
     const pct = v == null ? 0 : Math.max(3, (hi===lo?100:(v-lo)/(hi-lo)*100));
     const color = v == null ? 'var(--map-nodata-stripe)' : rustScale(scale(v));
     const valLabel = fmtNum(v);
-    return '<div class="rank-row' + (selected===d.name?' selected':'') + '" data-name="' + d.name + '">' +
-      '<span class="rank-num">' + (i+1) + '</span>' +
+    const selClass = selected === d.name ? ' selected' : '';
+    return '<div class="rank-row' + selClass + '" data-name="' + d.name + '">' +
+      '<span class="rank-num">' + (i + 1) + '</span>' +
       '<span class="rank-name">' + d.name + '</span>' +
       '<span class="rank-val">' + valLabel + '</span>' +
       '<div class="rank-bar-track"><div class="rank-bar-fill" style="width:' + pct + '%;background:' + color + ';"></div></div>' +
@@ -859,15 +922,15 @@ function buildScatterTabs() {
   });
 }
 
+let scatterHoveredIndex = -1;
+let scatterPointsCache = [];
+
 function renderScatter() {
   const inf = INFRA.find(i => i.key === scatterType);
   const yMetric = METRICS.find(m => m.key === scatterYMetric);
   const yLabel = yMetric.short + ' density';
   document.getElementById('scatterTitle').textContent = inf.label + ' density vs. ' + yLabel;
 
-  // Must be covered on BOTH axes — a null Y value (e.g. South-West has no 2022 road-safety
-  // entry) divides to a false 0 rather than NaN in JS, which would silently corrupt the
-  // correlation with a fabricated "zero" data point if not filtered out explicitly here.
   const covered = DATA.filter(d => infraCovered(d, inf.key) && d[yMetric.key] != null);
   const pts = covered.map(d => ({ x: d[inf.densityKey], y: d[yMetric.key] / d.areaSqKm, name: d.name }));
   const xs = pts.map(p=>p.x), ys = pts.map(p=>p.y);
@@ -893,10 +956,17 @@ function renderScatter() {
   const px = x => PAD.l + (x/xMax) * (W-PAD.l-PAD.r);
   const py = y => H-PAD.b - (y/yMax) * (H-PAD.t-PAD.b);
 
+  scatterPointsCache = pts.map(p => ({
+    ...p,
+    cx: px(p.x),
+    cy: py(p.y)
+  }));
+
   const styles = getComputedStyle(document.body);
   const border = styles.getPropertyValue('--border').trim();
   const textDim = styles.getPropertyValue('--text-dim').trim();
   const amber = styles.getPropertyValue('--amber').trim();
+  const rust = styles.getPropertyValue('--rust').trim();
   const text = styles.getPropertyValue('--text').trim();
 
   // gridlines + axes
@@ -928,14 +998,42 @@ function renderScatter() {
     ctx.setLineDash([]);
   }
 
-  // points + labels
-  ctx.fillStyle = amber;
-  pts.forEach(p => {
-    ctx.beginPath(); ctx.arc(px(p.x), py(p.y), MARKER_R, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle = text; ctx.font = '10px -apple-system, sans-serif';
-    ctx.fillText(p.name, px(p.x)+8, py(p.y)+3);
-    ctx.fillStyle = amber;
+  // Draw points without static text labels to eliminate collisions
+  scatterPointsCache.forEach((p, idx) => {
+    const isHovered = idx === scatterHoveredIndex;
+    const radius = isHovered ? MARKER_R + 3 : MARKER_R;
+    ctx.beginPath();
+    ctx.arc(p.cx, p.cy, radius, 0, Math.PI*2);
+    ctx.fillStyle = isHovered ? rust : amber;
+    ctx.fill();
+
+    if (isHovered) {
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = text;
+      ctx.stroke();
+    }
   });
+
+  // Dynamic hover label/tooltip on active point
+  if (scatterHoveredIndex >= 0 && scatterPointsCache[scatterHoveredIndex]) {
+    const p = scatterPointsCache[scatterHoveredIndex];
+    ctx.font = 'bold 11px -apple-system, sans-serif';
+    const labelText = p.name + ': (' + p.x.toFixed(1) + ', ' + p.y.toFixed(1) + ')';
+    const labelW = ctx.measureText(labelText).width;
+    let lx = p.cx + 8;
+    if (lx + labelW > W - 10) lx = p.cx - labelW - 8;
+    let ly = p.cy - 6;
+    if (ly < PAD.t + 10) ly = p.cy + 14;
+
+    ctx.fillStyle = styles.getPropertyValue('--surface').trim();
+    ctx.strokeStyle = border;
+    ctx.lineWidth = 1;
+    ctx.fillRect(lx - 4, ly - 12, labelW + 8, 18);
+    ctx.strokeRect(lx - 4, ly - 12, labelW + 8, 18);
+
+    ctx.fillStyle = text;
+    ctx.fillText(labelText, lx, ly);
+  }
 
   updateVersusLabel();
 }
@@ -1136,25 +1234,67 @@ function drawHeat() {
   ctx.putImageData(out,0,0);
 }
 
-document.getElementById('lightToggle').addEventListener('click', function(){
-  showLights = !showLights;
-  this.classList.toggle('on', showLights);
-  document.getElementById('heat').classList.toggle('on', showLights);
-  if (showLights) drawHeat();
-  renderMap();
-});
+function setupToggleControl(id, getter, setter) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.setAttribute('role', 'switch');
+  el.setAttribute('tabindex', '0');
+  el.setAttribute('aria-checked', getter() ? 'true' : 'false');
+  const toggle = () => {
+    const newVal = !getter();
+    setter(newVal);
+    el.classList.toggle('on', newVal);
+    el.setAttribute('aria-checked', newVal ? 'true' : 'false');
+    if (id === 'lightToggle') {
+      document.getElementById('heat').classList.toggle('on', newVal);
+      if (newVal) drawHeat();
+    }
+    renderMap();
+  };
+  el.addEventListener('click', toggle);
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  });
+}
 
-document.getElementById('policeToggle').addEventListener('click', function(){
-  showPolice = !showPolice;
-  this.classList.toggle('on', showPolice);
-  renderMap();
-});
+setupToggleControl('lightToggle', () => showLights, v => { showLights = v; });
+setupToggleControl('policeToggle', () => showPolice, v => { showPolice = v; });
+setupToggleControl('zonesToggle', () => showZones, v => { showZones = v; });
 
-document.getElementById('zonesToggle').addEventListener('click', function(){
-  showZones = !showZones;
-  this.classList.toggle('on', showZones);
-  renderMap();
-});
+const scatterCanvasEl = document.getElementById('scatterCanvas');
+if (scatterCanvasEl) {
+  scatterCanvasEl.addEventListener('mousemove', (e) => {
+    const rect = scatterCanvasEl.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+
+    let closestIdx = -1;
+    let minDist = 16;
+
+    scatterPointsCache.forEach((p, idx) => {
+      const dist = Math.hypot(mx - p.cx, my - p.cy);
+      if (dist < minDist) {
+        minDist = dist;
+        closestIdx = idx;
+      }
+    });
+
+    if (closestIdx !== scatterHoveredIndex) {
+      scatterHoveredIndex = closestIdx;
+      renderScatter();
+    }
+  });
+
+  scatterCanvasEl.addEventListener('mouseleave', () => {
+    if (scatterHoveredIndex !== -1) {
+      scatterHoveredIndex = -1;
+      renderScatter();
+    }
+  });
+}
 
 // Delegated map interaction — one listener each instead of one per district/marker, since
 // renderMap() replaces the SVG's entire innerHTML on every render (metric switch, year toggle,
@@ -1549,10 +1689,10 @@ document.getElementById('dlExcelDownload').addEventListener('click', () => {
     '<Styles><Style ss:ID="hdr"><Font ss:Bold="1"/><Interior ss:Color="#EDEAE2" ss:Pattern="Solid"/></Style></Styles>' +
     sheets +
     '</Workbook>';
-  const blob = new Blob([xml], { type: 'application/vnd.ms-excel' });
+  const blob = new Blob([xml], { type: 'application/xml;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'gaitway_delhi_safety_index.xls';
+  a.href = url; a.download = 'gaitway_delhi_safety_index.xml';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
 });
@@ -1565,7 +1705,7 @@ const ROAD_SAFETY_TABS = [
 let activeRoadSafetyTab = 'trends';
 function renderRoadSafetyTabs() {
   document.getElementById('roadSafetyTabs').innerHTML = ROAD_SAFETY_TABS.map(t =>
-    '<button class="metric-tab' + (t.key===activeRoadSafetyTab?' active':'') + '" data-key="' + t.key + '" aria-pressed="' + (t.key===activeRoadSafetyTab) + '">' + t.label + '</button>'
+    '<button class="metric-tab' + (t.key===activeRoadSafetyTab ? ' active' : '') + '" data-key="' + t.key + '" aria-pressed="' + (t.key===activeRoadSafetyTab) + '">' + t.label + '</button>'
   ).join('');
   document.getElementById('rsTrendsPanel').classList.toggle('active', activeRoadSafetyTab === 'trends');
   document.getElementById('rsVictimsPanel').classList.toggle('active', activeRoadSafetyTab === 'victims');
@@ -1581,7 +1721,7 @@ const DOWNLOAD_TABS = [
 let activeDownloadTab = 'all';
 function renderDownloadTabs() {
   document.getElementById('downloadTabs').innerHTML = DOWNLOAD_TABS.map(t =>
-    '<button class="metric-tab' + (t.key===activeDownloadTab?' active':'') + '" data-key="' + t.key + '" aria-pressed="' + (t.key===activeDownloadTab) + '">' + t.label + '</button>'
+    '<button class="metric-tab' + (t.key===activeDownloadTab ? ' active' : '') + '" data-key="' + t.key + '" aria-pressed="' + (t.key===activeDownloadTab) + '">' + t.label + '</button>'
   ).join('');
   document.querySelectorAll('#downloadTabs .metric-tab').forEach(btn => {
     btn.addEventListener('click', () => {
