@@ -60,7 +60,7 @@ zonesGeo.forEach(z => { geoByName[z.name] = z; });
 const zoneFields = ['rank', 'name', 'road', 'simpleCrashes', 'fatalCrashes', 'totalCrashes', 'lat', 'lng', 'geocoded'];
 const zones = zonesRaw.map(z => {
   const g = geoByName[z.name];
-  const ok = g && g.status === 'ok';
+  const ok = !!(g && g.lat != null && g.lng != null);
   return {
     rank: z.rank, name: z.name, road: z.road,
     simpleCrashes: z.simple, fatalCrashes: z.fatal, totalCrashes: z.total,

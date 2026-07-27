@@ -17,9 +17,12 @@ a browser — no server or build step required to view it.
   zero coverage gaps.
 - **107 named crash-prone zones with real severity**, replacing the old
   87-zone, name-only 2021 list. Each zone now carries its actual 2023 simple/
-  fatal/total crash counts. 42 of the 107 were confidently geocoded and are
-  plotted on the map as a toggleable layer, sized and shaded by fatal crash
-  count; the rest are listed with their real numbers rather than guessed at.
+  fatal/total crash counts, plus coordinates for all 107 (cross-validated
+  against the source table by rank and fatal-crash count — zero mismatches).
+  105 of 107 fall inside a district polygon and are plotted on the map as a
+  toggleable layer, sized and shaded by fatal crash count; the remaining 2
+  sit just outside every simplified district boundary and stay in the text
+  list instead of being force-placed.
 - **District-center markers** on the map — a ring-and-dot symbol at each
   district's polygon centroid (labeled as an approximate center, not a
   specific administrative address).
@@ -47,7 +50,7 @@ coordinates — real latitude/longitude instead).
 | File | Rows | What's in it |
 |---|---|---|
 | `exports/districts.csv` / `.json` | 15 | Every crime (2022/23/24), road-safety (2022 and 2023), and infrastructure figure, one row per district. Raw counts only — no derived ranks or percentages; compute those yourself from these numbers if you need them. |
-| `exports/crash_prone_zones_2023.csv` / `.json` | 107 | Named crash-prone zones with real 2023 simple/fatal/total crash counts. `lat`/`lng` are populated only where `geocoded` is `true` (42 of 107) — treat the rest as name-only, don't assume a location. |
+| `exports/crash_prone_zones_2023.csv` / `.json` | 107 | Named crash-prone zones with real 2023 simple/fatal/total crash counts and coordinates for all 107, `geocoded: true` throughout. |
 | `exports/road_safety_trends_2014_2023.csv` / `.json` | 10 | Citywide road crashes, fatalities, and fatal crashes, one row per year. Not broken down by district. |
 | `exports/road_deaths_by_mode_2019_2023.csv` / `.json` | 5 | Citywide road deaths/injuries by mode of travel (pedestrian, cyclist, car, two-wheeler, bus, slow-moving, other), one row per year. |
 
@@ -127,8 +130,9 @@ downloadable Excel workbook (Sources & Methodology sheet), including:
   districts (Traffic Police's own reporting geography for that year).
 - Citywide road crash/fatality trends (2014-2023) and road deaths by mode of
   travel (2019-2023): Delhi Traffic Police annual road crash data.
-- Crash-prone zone map coordinates: OpenStreetMap Nominatim geocoding of the
-  zone names (42 of 107 resolve confidently; the rest are listed by name).
+- Crash-prone zone map coordinates: provided lat/lng for all 107 zones,
+  cross-validated against the source table by rank and fatal-crash count
+  before use (105 of 107 fall inside a district polygon and are plotted).
 - Streetlights & underpasses: PAPL survey, via Delhi Transport Stack Open
   Transit Data.
 - Metro station gates & police chowkis/outposts: OpenStreetMap (ODbL).

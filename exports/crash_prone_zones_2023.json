@@ -6,8 +6,8 @@
     "simpleCrashes": 12,
     "fatalCrashes": 7,
     "totalCrashes": 19,
-    "lat": 28.6686522,
-    "lng": 77.2306831,
+    "lat": 28.6679,
+    "lng": 77.2284,
     "geocoded": true
   },
   {
@@ -17,8 +17,8 @@
     "simpleCrashes": 11,
     "fatalCrashes": 7,
     "totalCrashes": 18,
-    "lat": 28.7323054,
-    "lng": 77.1520709,
+    "lat": 28.7373,
+    "lng": 77.1598,
     "geocoded": true
   },
   {
@@ -28,9 +28,9 @@
     "simpleCrashes": 11,
     "fatalCrashes": 7,
     "totalCrashes": 18,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.742,
+    "lng": 77.153,
+    "geocoded": true
   },
   {
     "rank": 4,
@@ -39,8 +39,8 @@
     "simpleCrashes": 12,
     "fatalCrashes": 6,
     "totalCrashes": 18,
-    "lat": 28.6665962,
-    "lng": 77.217998,
+    "lat": 28.6651,
+    "lng": 77.221,
     "geocoded": true
   },
   {
@@ -50,8 +50,8 @@
     "simpleCrashes": 9,
     "fatalCrashes": 6,
     "totalCrashes": 15,
-    "lat": 28.6835217,
-    "lng": 77.1329131,
+    "lat": 28.6946,
+    "lng": 77.1396,
     "geocoded": true
   },
   {
@@ -61,9 +61,9 @@
     "simpleCrashes": 8,
     "fatalCrashes": 6,
     "totalCrashes": 14,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.74,
+    "lng": 77.195,
+    "geocoded": true
   },
   {
     "rank": 7,
@@ -72,9 +72,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 6,
     "totalCrashes": 11,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.736,
+    "lng": 77.17,
+    "geocoded": true
   },
   {
     "rank": 8,
@@ -83,8 +83,8 @@
     "simpleCrashes": 4,
     "fatalCrashes": 6,
     "totalCrashes": 10,
-    "lat": 28.7246928,
-    "lng": 77.1518297,
+    "lat": 28.693,
+    "lng": 77.152,
     "geocoded": true
   },
   {
@@ -94,9 +94,9 @@
     "simpleCrashes": 2,
     "fatalCrashes": 6,
     "totalCrashes": 8,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.6635,
+    "lng": 77.2215,
+    "geocoded": true
   },
   {
     "rank": 10,
@@ -105,9 +105,9 @@
     "simpleCrashes": 11,
     "fatalCrashes": 5,
     "totalCrashes": 16,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.718,
+    "lng": 77.206,
+    "geocoded": true
   },
   {
     "rank": 11,
@@ -116,9 +116,9 @@
     "simpleCrashes": 11,
     "fatalCrashes": 5,
     "totalCrashes": 16,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.6465,
+    "lng": 77.316,
+    "geocoded": true
   },
   {
     "rank": 12,
@@ -127,8 +127,8 @@
     "simpleCrashes": 6,
     "fatalCrashes": 5,
     "totalCrashes": 11,
-    "lat": 28.5585019,
-    "lng": 77.263053,
+    "lat": 28.553,
+    "lng": 77.264,
     "geocoded": true
   },
   {
@@ -138,9 +138,9 @@
     "simpleCrashes": 6,
     "fatalCrashes": 5,
     "totalCrashes": 11,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.745,
+    "lng": 77.15,
+    "geocoded": true
   },
   {
     "rank": 14,
@@ -149,9 +149,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 5,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.612,
+    "lng": 77.277,
+    "geocoded": true
   },
   {
     "rank": 15,
@@ -160,9 +160,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 5,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.703,
+    "lng": 77.16,
+    "geocoded": true
   },
   {
     "rank": 16,
@@ -171,9 +171,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 5,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.7145,
+    "lng": 77.147,
+    "geocoded": true
   },
   {
     "rank": 17,
@@ -182,9 +182,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 5,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.705,
+    "lng": 77.288,
+    "geocoded": true
   },
   {
     "rank": 18,
@@ -193,9 +193,9 @@
     "simpleCrashes": 4,
     "fatalCrashes": 5,
     "totalCrashes": 9,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.679,
+    "lng": 77.118,
+    "geocoded": true
   },
   {
     "rank": 19,
@@ -204,9 +204,9 @@
     "simpleCrashes": 2,
     "fatalCrashes": 5,
     "totalCrashes": 7,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.799,
+    "lng": 77.086,
+    "geocoded": true
   },
   {
     "rank": 20,
@@ -215,9 +215,9 @@
     "simpleCrashes": 2,
     "fatalCrashes": 5,
     "totalCrashes": 7,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.666,
+    "lng": 77.13,
+    "geocoded": true
   },
   {
     "rank": 21,
@@ -226,9 +226,9 @@
     "simpleCrashes": 1,
     "fatalCrashes": 5,
     "totalCrashes": 6,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.692,
+    "lng": 77.152,
+    "geocoded": true
   },
   {
     "rank": 22,
@@ -237,9 +237,9 @@
     "simpleCrashes": 20,
     "fatalCrashes": 4,
     "totalCrashes": 24,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.6725,
+    "lng": 77.252,
+    "geocoded": true
   },
   {
     "rank": 23,
@@ -248,8 +248,8 @@
     "simpleCrashes": 12,
     "fatalCrashes": 4,
     "totalCrashes": 16,
-    "lat": 28.6511896,
-    "lng": 77.1242597,
+    "lat": 28.649,
+    "lng": 77.123,
     "geocoded": true
   },
   {
@@ -259,8 +259,8 @@
     "simpleCrashes": 10,
     "fatalCrashes": 4,
     "totalCrashes": 14,
-    "lat": 28.7596436,
-    "lng": 77.1516935,
+    "lat": 28.749,
+    "lng": 77.165,
     "geocoded": true
   },
   {
@@ -270,8 +270,8 @@
     "simpleCrashes": 10,
     "fatalCrashes": 4,
     "totalCrashes": 14,
-    "lat": 28.5575812,
-    "lng": 77.2707494,
+    "lat": 28.552,
+    "lng": 77.265,
     "geocoded": true
   },
   {
@@ -281,9 +281,9 @@
     "simpleCrashes": 9,
     "fatalCrashes": 4,
     "totalCrashes": 13,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.672,
+    "lng": 77.132,
+    "geocoded": true
   },
   {
     "rank": 27,
@@ -292,9 +292,9 @@
     "simpleCrashes": 7,
     "fatalCrashes": 4,
     "totalCrashes": 11,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.678,
+    "lng": 77.13,
+    "geocoded": true
   },
   {
     "rank": 28,
@@ -303,9 +303,9 @@
     "simpleCrashes": 6,
     "fatalCrashes": 4,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.698,
+    "lng": 77.2,
+    "geocoded": true
   },
   {
     "rank": 29,
@@ -314,9 +314,9 @@
     "simpleCrashes": 6,
     "fatalCrashes": 4,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.644,
+    "lng": 77.21,
+    "geocoded": true
   },
   {
     "rank": 30,
@@ -325,9 +325,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 4,
     "totalCrashes": 9,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.685,
+    "lng": 77.098,
+    "geocoded": true
   },
   {
     "rank": 31,
@@ -336,9 +336,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 4,
     "totalCrashes": 9,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.712,
+    "lng": 77.174,
+    "geocoded": true
   },
   {
     "rank": 32,
@@ -347,9 +347,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 4,
     "totalCrashes": 9,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.636,
+    "lng": 77.096,
+    "geocoded": true
   },
   {
     "rank": 33,
@@ -358,9 +358,9 @@
     "simpleCrashes": 4,
     "fatalCrashes": 4,
     "totalCrashes": 8,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.688,
+    "lng": 77.31,
+    "geocoded": true
   },
   {
     "rank": 34,
@@ -369,8 +369,8 @@
     "simpleCrashes": 3,
     "fatalCrashes": 4,
     "totalCrashes": 7,
-    "lat": 28.612285,
-    "lng": 77.0894338,
+    "lat": 28.611,
+    "lng": 77.087,
     "geocoded": true
   },
   {
@@ -380,9 +380,9 @@
     "simpleCrashes": 3,
     "fatalCrashes": 4,
     "totalCrashes": 7,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.696,
+    "lng": 77.123,
+    "geocoded": true
   },
   {
     "rank": 36,
@@ -391,8 +391,8 @@
     "simpleCrashes": 3,
     "fatalCrashes": 4,
     "totalCrashes": 7,
-    "lat": 28.6292578,
-    "lng": 77.0804632,
+    "lat": 28.629,
+    "lng": 77.078,
     "geocoded": true
   },
   {
@@ -402,8 +402,8 @@
     "simpleCrashes": 3,
     "fatalCrashes": 4,
     "totalCrashes": 7,
-    "lat": 28.7731719,
-    "lng": 77.1433187,
+    "lat": 28.761,
+    "lng": 77.143,
     "geocoded": true
   },
   {
@@ -413,9 +413,9 @@
     "simpleCrashes": 2,
     "fatalCrashes": 4,
     "totalCrashes": 6,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.74,
+    "lng": 77.158,
+    "geocoded": true
   },
   {
     "rank": 39,
@@ -424,9 +424,9 @@
     "simpleCrashes": 2,
     "fatalCrashes": 4,
     "totalCrashes": 6,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.497,
+    "lng": 77.304,
+    "geocoded": true
   },
   {
     "rank": 40,
@@ -435,9 +435,9 @@
     "simpleCrashes": 1,
     "fatalCrashes": 4,
     "totalCrashes": 5,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.682,
+    "lng": 77.319,
+    "geocoded": true
   },
   {
     "rank": 41,
@@ -446,8 +446,8 @@
     "simpleCrashes": 13,
     "fatalCrashes": 3,
     "totalCrashes": 16,
-    "lat": 28.6795418,
-    "lng": 77.0946343,
+    "lat": 28.6775,
+    "lng": 77.092,
     "geocoded": true
   },
   {
@@ -457,9 +457,9 @@
     "simpleCrashes": 11,
     "fatalCrashes": 3,
     "totalCrashes": 14,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.712,
+    "lng": 77.262,
+    "geocoded": true
   },
   {
     "rank": 43,
@@ -468,8 +468,8 @@
     "simpleCrashes": 11,
     "fatalCrashes": 3,
     "totalCrashes": 14,
-    "lat": 28.7070531,
-    "lng": 77.1320381,
+    "lat": 28.704,
+    "lng": 77.122,
     "geocoded": true
   },
   {
@@ -479,9 +479,9 @@
     "simpleCrashes": 10,
     "fatalCrashes": 3,
     "totalCrashes": 13,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.682,
+    "lng": 77.08,
+    "geocoded": true
   },
   {
     "rank": 45,
@@ -490,8 +490,8 @@
     "simpleCrashes": 10,
     "fatalCrashes": 3,
     "totalCrashes": 13,
-    "lat": 28.7297608,
-    "lng": 77.2212803,
+    "lat": 28.711,
+    "lng": 77.227,
     "geocoded": true
   },
   {
@@ -501,8 +501,8 @@
     "simpleCrashes": 10,
     "fatalCrashes": 3,
     "totalCrashes": 13,
-    "lat": 28.7336566,
-    "lng": 77.1834315,
+    "lat": 28.73,
+    "lng": 77.185,
     "geocoded": true
   },
   {
@@ -512,9 +512,9 @@
     "simpleCrashes": 9,
     "fatalCrashes": 3,
     "totalCrashes": 12,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.629,
+    "lng": 77.125,
+    "geocoded": true
   },
   {
     "rank": 48,
@@ -523,9 +523,9 @@
     "simpleCrashes": 9,
     "fatalCrashes": 3,
     "totalCrashes": 12,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.738,
+    "lng": 77.16,
+    "geocoded": true
   },
   {
     "rank": 49,
@@ -534,9 +534,9 @@
     "simpleCrashes": 9,
     "fatalCrashes": 3,
     "totalCrashes": 12,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.539,
+    "lng": 77.182,
+    "geocoded": true
   },
   {
     "rank": 50,
@@ -545,9 +545,9 @@
     "simpleCrashes": 9,
     "fatalCrashes": 3,
     "totalCrashes": 12,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.599,
+    "lng": 77.088,
+    "geocoded": true
   },
   {
     "rank": 51,
@@ -556,8 +556,8 @@
     "simpleCrashes": 9,
     "fatalCrashes": 3,
     "totalCrashes": 12,
-    "lat": 28.6824082,
-    "lng": 77.1647754,
+    "lat": 28.682,
+    "lng": 77.165,
     "geocoded": true
   },
   {
@@ -567,8 +567,8 @@
     "simpleCrashes": 8,
     "fatalCrashes": 3,
     "totalCrashes": 11,
-    "lat": 28.6718164,
-    "lng": 77.2776882,
+    "lat": 28.672,
+    "lng": 77.277,
     "geocoded": true
   },
   {
@@ -578,9 +578,9 @@
     "simpleCrashes": 8,
     "fatalCrashes": 3,
     "totalCrashes": 11,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.696,
+    "lng": 77.315,
+    "geocoded": true
   },
   {
     "rank": 54,
@@ -589,9 +589,9 @@
     "simpleCrashes": 7,
     "fatalCrashes": 3,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.741,
+    "lng": 77.157,
+    "geocoded": true
   },
   {
     "rank": 55,
@@ -600,8 +600,8 @@
     "simpleCrashes": 7,
     "fatalCrashes": 3,
     "totalCrashes": 10,
-    "lat": 28.5234185,
-    "lng": 77.1908012,
+    "lat": 28.524,
+    "lng": 77.195,
     "geocoded": true
   },
   {
@@ -611,9 +611,9 @@
     "simpleCrashes": 7,
     "fatalCrashes": 3,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.546,
+    "lng": 77.301,
+    "geocoded": true
   },
   {
     "rank": 57,
@@ -622,9 +622,9 @@
     "simpleCrashes": 6,
     "fatalCrashes": 3,
     "totalCrashes": 9,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.608,
+    "lng": 77.088,
+    "geocoded": true
   },
   {
     "rank": 58,
@@ -633,9 +633,9 @@
     "simpleCrashes": 6,
     "fatalCrashes": 3,
     "totalCrashes": 9,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.818,
+    "lng": 77.121,
+    "geocoded": true
   },
   {
     "rank": 59,
@@ -644,8 +644,8 @@
     "simpleCrashes": 5,
     "fatalCrashes": 3,
     "totalCrashes": 8,
-    "lat": 28.5497752,
-    "lng": 77.2606671,
+    "lat": 28.549,
+    "lng": 77.259,
     "geocoded": true
   },
   {
@@ -655,8 +655,8 @@
     "simpleCrashes": 5,
     "fatalCrashes": 3,
     "totalCrashes": 8,
-    "lat": 28.6408893,
-    "lng": 77.2576586,
+    "lat": 28.64,
+    "lng": 77.247,
     "geocoded": true
   },
   {
@@ -666,8 +666,8 @@
     "simpleCrashes": 5,
     "fatalCrashes": 3,
     "totalCrashes": 8,
-    "lat": 28.6980748,
-    "lng": 77.1182847,
+    "lat": 28.698,
+    "lng": 77.121,
     "geocoded": true
   },
   {
@@ -677,9 +677,9 @@
     "simpleCrashes": 5,
     "fatalCrashes": 3,
     "totalCrashes": 8,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.679,
+    "lng": 77.106,
+    "geocoded": true
   },
   {
     "rank": 63,
@@ -688,8 +688,8 @@
     "simpleCrashes": 5,
     "fatalCrashes": 3,
     "totalCrashes": 8,
-    "lat": 28.7183984,
-    "lng": 77.2118045,
+    "lat": 28.716,
+    "lng": 77.197,
     "geocoded": true
   },
   {
@@ -699,9 +699,9 @@
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.665,
+    "lng": 77.234,
+    "geocoded": true
   },
   {
     "rank": 65,
@@ -710,9 +710,9 @@
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.673,
+    "lng": 77.17,
+    "geocoded": true
   },
   {
     "rank": 66,
@@ -721,9 +721,9 @@
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.643,
+    "lng": 77.082,
+    "geocoded": true
   },
   {
     "rank": 67,
@@ -732,8 +732,8 @@
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
-    "lat": 28.6824341,
-    "lng": 77.0305741,
+    "lat": 28.683,
+    "lng": 77.026,
     "geocoded": true
   },
   {
@@ -743,9 +743,9 @@
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.652,
+    "lng": 77.131,
+    "geocoded": true
   },
   {
     "rank": 69,
@@ -754,8 +754,8 @@
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
-    "lat": 28.5658211,
-    "lng": 77.1665869,
+    "lat": 28.558,
+    "lng": 77.16,
     "geocoded": true
   },
   {
@@ -765,9 +765,9 @@
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.751,
+    "lng": 77.151,
+    "geocoded": true
   },
   {
     "rank": 71,
@@ -776,8 +776,8 @@
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
-    "lat": 28.7165805,
-    "lng": 77.1704223,
+    "lat": 28.716,
+    "lng": 77.172,
     "geocoded": true
   },
   {
@@ -787,8 +787,8 @@
     "simpleCrashes": 3,
     "fatalCrashes": 3,
     "totalCrashes": 6,
-    "lat": 28.5905493,
-    "lng": 77.1682975,
+    "lat": 28.582,
+    "lng": 77.163,
     "geocoded": true
   },
   {
@@ -798,8 +798,8 @@
     "simpleCrashes": 3,
     "fatalCrashes": 3,
     "totalCrashes": 6,
-    "lat": 28.5891891,
-    "lng": 77.2580654,
+    "lat": 28.587,
+    "lng": 77.261,
     "geocoded": true
   },
   {
@@ -809,9 +809,9 @@
     "simpleCrashes": 3,
     "fatalCrashes": 3,
     "totalCrashes": 6,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.536,
+    "lng": 77.275,
+    "geocoded": true
   },
   {
     "rank": 75,
@@ -820,9 +820,9 @@
     "simpleCrashes": 3,
     "fatalCrashes": 3,
     "totalCrashes": 6,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.648,
+    "lng": 77.315,
+    "geocoded": true
   },
   {
     "rank": 76,
@@ -831,8 +831,8 @@
     "simpleCrashes": 3,
     "fatalCrashes": 3,
     "totalCrashes": 6,
-    "lat": 28.7116301,
-    "lng": 77.0978704,
+    "lat": 28.729,
+    "lng": 77.098,
     "geocoded": true
   },
   {
@@ -842,8 +842,8 @@
     "simpleCrashes": 2,
     "fatalCrashes": 3,
     "totalCrashes": 5,
-    "lat": 28.5860009,
-    "lng": 77.0879638,
+    "lat": 28.599,
+    "lng": 77.115,
     "geocoded": true
   },
   {
@@ -853,9 +853,9 @@
     "simpleCrashes": 2,
     "fatalCrashes": 3,
     "totalCrashes": 5,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.628,
+    "lng": 77.279,
+    "geocoded": true
   },
   {
     "rank": 79,
@@ -864,8 +864,8 @@
     "simpleCrashes": 2,
     "fatalCrashes": 3,
     "totalCrashes": 5,
-    "lat": 28.6513586,
-    "lng": 77.2542399,
+    "lat": 28.645,
+    "lng": 77.26,
     "geocoded": true
   },
   {
@@ -875,8 +875,8 @@
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
-    "lat": 28.6394355,
-    "lng": 77.1438843,
+    "lat": 28.636,
+    "lng": 77.135,
     "geocoded": true
   },
   {
@@ -886,8 +886,8 @@
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
-    "lat": 28.7580543,
-    "lng": 77.1297995,
+    "lat": 28.75,
+    "lng": 77.142,
     "geocoded": true
   },
   {
@@ -897,9 +897,9 @@
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.627,
+    "lng": 77.086,
+    "geocoded": true
   },
   {
     "rank": 83,
@@ -908,8 +908,8 @@
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
-    "lat": 28.5941915,
-    "lng": 77.2946235,
+    "lat": 28.594,
+    "lng": 77.294,
     "geocoded": true
   },
   {
@@ -919,9 +919,9 @@
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.66,
+    "lng": 77.215,
+    "geocoded": true
   },
   {
     "rank": 85,
@@ -930,9 +930,9 @@
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.631,
+    "lng": 77.319,
+    "geocoded": true
   },
   {
     "rank": 86,
@@ -941,9 +941,9 @@
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.587,
+    "lng": 76.994,
+    "geocoded": true
   },
   {
     "rank": 87,
@@ -952,9 +952,9 @@
     "simpleCrashes": 0,
     "fatalCrashes": 3,
     "totalCrashes": 3,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.691,
+    "lng": 77.15,
+    "geocoded": true
   },
   {
     "rank": 88,
@@ -963,9 +963,9 @@
     "simpleCrashes": 0,
     "fatalCrashes": 3,
     "totalCrashes": 3,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.668,
+    "lng": 77.324,
+    "geocoded": true
   },
   {
     "rank": 89,
@@ -974,9 +974,9 @@
     "simpleCrashes": 13,
     "fatalCrashes": 2,
     "totalCrashes": 15,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.63,
+    "lng": 77.249,
+    "geocoded": true
   },
   {
     "rank": 90,
@@ -985,9 +985,9 @@
     "simpleCrashes": 13,
     "fatalCrashes": 2,
     "totalCrashes": 15,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.67,
+    "lng": 77.266,
+    "geocoded": true
   },
   {
     "rank": 91,
@@ -996,8 +996,8 @@
     "simpleCrashes": 12,
     "fatalCrashes": 2,
     "totalCrashes": 14,
-    "lat": 28.5782077,
-    "lng": 77.1761778,
+    "lat": 28.585,
+    "lng": 77.171,
     "geocoded": true
   },
   {
@@ -1007,8 +1007,8 @@
     "simpleCrashes": 12,
     "fatalCrashes": 2,
     "totalCrashes": 14,
-    "lat": 28.6392436,
-    "lng": 77.2085787,
+    "lat": 28.572,
+    "lng": 77.256,
     "geocoded": true
   },
   {
@@ -1018,9 +1018,9 @@
     "simpleCrashes": 11,
     "fatalCrashes": 2,
     "totalCrashes": 13,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.631,
+    "lng": 77.279,
+    "geocoded": true
   },
   {
     "rank": 94,
@@ -1029,8 +1029,8 @@
     "simpleCrashes": 10,
     "fatalCrashes": 2,
     "totalCrashes": 12,
-    "lat": 28.5992985,
-    "lng": 77.1628506,
+    "lat": 28.592,
+    "lng": 77.162,
     "geocoded": true
   },
   {
@@ -1040,9 +1040,9 @@
     "simpleCrashes": 10,
     "fatalCrashes": 2,
     "totalCrashes": 12,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.608,
+    "lng": 76.98,
+    "geocoded": true
   },
   {
     "rank": 96,
@@ -1051,9 +1051,9 @@
     "simpleCrashes": 10,
     "fatalCrashes": 2,
     "totalCrashes": 12,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.711,
+    "lng": 77.175,
+    "geocoded": true
   },
   {
     "rank": 97,
@@ -1062,8 +1062,8 @@
     "simpleCrashes": 9,
     "fatalCrashes": 2,
     "totalCrashes": 11,
-    "lat": 28.5461965,
-    "lng": 77.1230442,
+    "lat": 28.548,
+    "lng": 77.131,
     "geocoded": true
   },
   {
@@ -1073,8 +1073,8 @@
     "simpleCrashes": 8,
     "fatalCrashes": 2,
     "totalCrashes": 10,
-    "lat": 28.6248465,
-    "lng": 77.0652861,
+    "lat": 28.621,
+    "lng": 77.065,
     "geocoded": true
   },
   {
@@ -1084,8 +1084,8 @@
     "simpleCrashes": 8,
     "fatalCrashes": 2,
     "totalCrashes": 10,
-    "lat": 28.5574387,
-    "lng": 77.1396655,
+    "lat": 28.558,
+    "lng": 77.145,
     "geocoded": true
   },
   {
@@ -1095,8 +1095,8 @@
     "simpleCrashes": 8,
     "fatalCrashes": 2,
     "totalCrashes": 10,
-    "lat": 28.6496936,
-    "lng": 77.2458704,
+    "lat": 28.647,
+    "lng": 77.247,
     "geocoded": true
   },
   {
@@ -1106,8 +1106,8 @@
     "simpleCrashes": 13,
     "fatalCrashes": 1,
     "totalCrashes": 14,
-    "lat": 28.6704636,
-    "lng": 77.1606005,
+    "lat": 28.665,
+    "lng": 77.159,
     "geocoded": true
   },
   {
@@ -1117,9 +1117,9 @@
     "simpleCrashes": 11,
     "fatalCrashes": 1,
     "totalCrashes": 12,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.64,
+    "lng": 77.112,
+    "geocoded": true
   },
   {
     "rank": 103,
@@ -1128,9 +1128,9 @@
     "simpleCrashes": 9,
     "fatalCrashes": 1,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.625,
+    "lng": 77.296,
+    "geocoded": true
   },
   {
     "rank": 104,
@@ -1139,9 +1139,9 @@
     "simpleCrashes": 9,
     "fatalCrashes": 1,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.52,
+    "lng": 77.106,
+    "geocoded": true
   },
   {
     "rank": 105,
@@ -1150,9 +1150,9 @@
     "simpleCrashes": 9,
     "fatalCrashes": 1,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.663,
+    "lng": 77.206,
+    "geocoded": true
   },
   {
     "rank": 106,
@@ -1161,9 +1161,9 @@
     "simpleCrashes": 15,
     "fatalCrashes": 0,
     "totalCrashes": 15,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.564,
+    "lng": 77.234,
+    "geocoded": true
   },
   {
     "rank": 107,
@@ -1172,8 +1172,8 @@
     "simpleCrashes": 10,
     "fatalCrashes": 0,
     "totalCrashes": 10,
-    "lat": null,
-    "lng": null,
-    "geocoded": false
+    "lat": 28.634,
+    "lng": 77.221,
+    "geocoded": true
   }
 ]
