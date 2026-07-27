@@ -7,6 +7,27 @@ This log tracks all architectural, performance, accessibility, and code quality 
 
 ---
 
+## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 6
+
+### 📊 Dynamic Correlation Matrix & Statistical Rigor Overhaul
+
+1. **Dynamic Pearson $r$ Calculation in `renderMethod()`**
+   - Replaced static single hardcoded Theft correlation ($r = -0.281$) with dynamic Pearson $r$ calculations computed against the **currently active metric** (`activeMetric`) and year (`activeYear`).
+   - Cards update instantly when switching between Theft, Robbery, Burglary, Total IPC, Crimes Against Women, or SLL Crimes.
+
+2. **Interactive 4x6 Correlation Matrix Table (`renderCorrelationMatrix`)**
+   - Added a full, color-coded Pearson Correlation Matrix heatmap table comparing all 4 Infrastructure variables against all 6 Crime metrics.
+   - Color-coded cells indicate strength ($r \ge +0.4$ red, $r \le -0.4$ green) with interactive tooltips showing sample size $n$ and exact coefficient.
+
+3. **Metric-Aware District Detail Correlation Narrative (`computeAnalysis`)**
+   - Replaced fixed single-sentence hit-and-run correlation string in `computeAnalysis()` with a dynamic metric-aware correlation paragraph.
+   - Computes real-time Pearson $r$ for the selected district's active metric vs. streetlight density, ranking the district's density among covered peers.
+
+4. **Confounder & Ecological Fallacy Annotations**
+   - Added methodology notes explaining urban activity density as a confounding variable (commercial corridors concentrate both footfall/infrastructure investment AND crime exposure, preventing naive causal misinterpretations).
+
+---
+
 ## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 5
 
 ### 🐞 Search Bar Scope & Multi-Category Bug Fix

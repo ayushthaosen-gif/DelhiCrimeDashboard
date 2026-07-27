@@ -405,9 +405,10 @@ footer a { color: inherit; }
   <div class="panel detail" id="detail"></div>
 
   <div class="panel method-panel">
-    <h2>How this is calculated</h2>
-    <p class="method-sub">The exact formulas behind every number above, and the real statistical correlations they produce — so you can judge the confidence claims yourself rather than take them on faith.</p>
+    <h2>How this is calculated & Dynamic Correlation Matrix</h2>
+    <p class="method-sub">The exact formulas behind every number above, and the real statistical correlations they produce — updated dynamically for the selected metric and year.</p>
     <div class="method-grid" id="methodGrid"></div>
+    <div id="correlationMatrixCard" style="margin-top:20px;padding:16px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;"></div>
     <details class="method-detail">
       <summary>Full methodology — ranks, percentiles, and confidence thresholds</summary>
       <div class="body">
@@ -989,18 +990,26 @@ function computeAnalysis(d, year) {
   });
   const infraP = infraLines.join(' ');
 
-  // Headline finding: streetlight density vs. hit-and-run density, r=+0.664 (n=8) — see the
-  // scatter panel below for the live, checkable version of this same number.
-  const hrCovered = infraCovered(d, 'streetlight') && d.hitAndRunCrashes2022 != null;
+  const activeM = currentMetric();
+  const activeFieldKey = yearField(activeM.key, year);
+
   let correlationP = null;
-  if (hrCovered) {
-    const hrRate = d.hitAndRunCrashes2022 / d.areaSqKm;
-    const hrRates = DATA.filter(x => infraCovered(x,'streetlight') && x.hitAndRunCrashes2022 != null)
-      .map(x => x.hitAndRunCrashes2022 / x.areaSqKm).sort((a,b)=>b-a);
-    const hrRank = hrRates.indexOf(hrRate) + 1;
-    correlationP = 'Citywide, streetlight density and hit-and-run crash density move together fairly strongly (<b>r = +0.664</b>, 8 districts with both real streetlight and 2022 road-safety data). ' + d.name + "'s own hit-and-run density ranks " + ordinal(hrRank) + ' of ' + hrRates.length + ' in that same group.';
-  } else if (d.hitAndRunCrashes2022 != null) {
-    correlationP = 'The streetlight-vs-hit-and-run relationship (r = +0.664 across 8 districts) cannot be checked here — this district has no PAPL streetlight survey coverage, even though it does have 2022 road-safety data.';
+  const streetCovered = infraCovered(d, 'streetlight') && d[activeFieldKey] != null;
+  if (streetCovered) {
+    const validDists = DATA.filter(x => infraCovered(x, 'streetlight') && x[activeFieldKey] != null);
+    const xs = validDists.map(x => x.lightDensityPerKm2);
+    const ys = validDists.map(x => x[activeFieldKey] / x.areaSqKm);
+    const r = validDists.length >= 2 ? pearson(xs, ys) : 0;
+
+    const rate = d[activeFieldKey] / d.areaSqKm;
+    const rates = validDists.map(x => x[activeFieldKey] / x.areaSqKm).sort((a,b)=>b-a);
+    const rRank = rates.indexOf(rate) + 1;
+    const dir = r >= 0 ? 'positive' : 'negative';
+    const strength = Math.abs(r) >= 0.5 ? 'moderate-to-strong' : Math.abs(r) >= 0.25 ? 'weak' : 'negligible';
+
+    correlationP = 'Across the ' + validDists.length + ' districts with streetlight survey coverage, streetlight density shows a <b>' + strength + ' ' + dir + ' correlation (r = ' + (r >= 0 ? '+' : '') + r.toFixed(3) + ')</b> with ' + activeM.label.toLowerCase() + ' density (' + year + '). ' + d.name + "'s own " + activeM.label.toLowerCase() + ' density ranks <b>' + ordinal(rRank) + ' of ' + validDists.length + '</b> in this group.';
+  } else if (d[activeFieldKey] != null) {
+    correlationP = 'Streetlight correlation with ' + activeM.label.toLowerCase() + ' cannot be computed here — ' + d.name + ' has no PAPL streetlight survey coverage.';
   }
 
   const coveredCount = INFRA.filter(inf => infraCovered(d, inf.key)).length;
@@ -1106,14 +1115,81 @@ const INFRA_NOTES = {
 
 function renderMethod() {
   const el = document.getElementById('methodGrid');
+  if (!el) return;
+  const m = currentMetric();
+  const yKey = yearField(m.key, activeYear);
+
   el.innerHTML = INFRA.map(inf => {
-    const c = CORR[inf.key];
-    const rColor = Math.abs(c.r) >= 0.5 ? 'var(--rust)' : Math.abs(c.r) >= 0.25 ? 'var(--amber-dim)' : 'var(--text-dim)';
-    return '<div class="method-card"><div class="name">' + inf.label + ' density</div>' +
-      '<div class="formula">' + inf.unit + ' ÷ area (km²)</div>' +
-      '<p>r vs. theft density (n=' + c.n + '): <span class="r-value" style="color:' + rColor + '">' + (c.r >= 0 ? '+' : '') + c.r.toFixed(3) + '</span></p>' +
-      '<p>' + INFRA_NOTES[inf.key] + '</p></div>';
+    const validDistricts = DATA.filter(d => infraCovered(d, inf.key) && d[yKey] != null);
+    const xs = validDistricts.map(d => d[inf.densityKey]);
+    const ys = validDistricts.map(d => d[yKey] / d.areaSqKm);
+    const n = xs.length;
+    const r = n >= 2 ? pearson(xs, ys) : 0;
+
+    const rColor = Math.abs(r) >= 0.5 ? 'var(--rust)' : Math.abs(r) >= 0.25 ? 'var(--amber-dim)' : 'var(--text-dim)';
+    const interp = Math.abs(r) >= 0.5 ? 'Moderate to Strong' : Math.abs(r) >= 0.25 ? 'Weak Relationship' : 'No Clear Pattern';
+
+    return '<div class="method-card">' +
+      '<div class="name">' + inf.label + ' Density</div>' +
+      '<div class="formula">' + inf.unit + ' ÷ District Area (km²)</div>' +
+      '<div style="margin:8px 0;padding:8px 10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">' +
+        '<div style="font-size:10.5px;color:var(--text-dim);text-transform:uppercase;font-weight:700;">r vs. ' + esc(m.label) + ' (' + activeYear + ')</div>' +
+        '<div style="font-size:18px;font-weight:700;color:' + rColor + ';margin-top:2px;">r = ' + (r >= 0 ? '+' : '') + r.toFixed(3) + ' <span style="font-size:12px;font-weight:400;color:var(--text-dim);">(n=' + n + ')</span></div>' +
+        '<div style="font-size:11px;font-weight:600;color:var(--text-dim);margin-top:2px;">' + interp + '</div>' +
+      '</div>' +
+      '<p style="font-size:11px;margin:4px 0 0;color:var(--text-dim);">' + INFRA_NOTES[inf.key] + '</p>' +
+    '</div>';
   }).join('');
+}
+
+function renderCorrelationMatrix() {
+  const container = document.getElementById('correlationMatrixCard');
+  if (!container) return;
+
+  const year = activeYear;
+  const infraKeys = INFRA;
+  const metricKeys = METRICS;
+
+  const tableHeader = '<thead><tr style="border-bottom:1px solid var(--border);">' +
+    '<th style="text-align:left;padding:8px 12px;color:var(--text-dim);">Metric (' + year + ')</th>' +
+    infraKeys.map(inf => '<th style="text-align:center;padding:8px 10px;color:var(--text-dim);">' + esc(inf.label) + '</th>').join('') +
+  '</tr></thead>';
+
+  const rows = metricKeys.map(m => {
+    const yKey = yearField(m.key, year);
+    const cells = infraKeys.map(inf => {
+      const valid = DATA.filter(d => infraCovered(d, inf.key) && d[yKey] != null);
+      const xs = valid.map(d => d[inf.densityKey]);
+      const ys = valid.map(d => d[yKey] / d.areaSqKm);
+      const r = valid.length >= 2 ? pearson(xs, ys) : 0;
+
+      const bg = r >= 0.4 ? 'rgba(231,76,60,0.18)' : r <= -0.4 ? 'rgba(46,204,113,0.18)' : 'rgba(255,255,255,0.04)';
+      const color = r >= 0.4 ? 'var(--rust)' : r <= -0.4 ? 'var(--good)' : 'var(--text)';
+      return '<td style="text-align:center;padding:8px 10px;background:' + bg + ';color:' + color + ';font-weight:700;font-family:monospace;" data-tt-title="' + esc(m.label + ' vs ' + inf.label + ' Density') + '" data-tt-body="' + esc('r = ' + (r>=0?'+':'') + r.toFixed(3) + ' across ' + valid.length + ' covered districts (' + year + ')') + '">' +
+        (r >= 0 ? '+' : '') + r.toFixed(3) +
+      '</td>';
+    }).join('');
+
+    return '<tr style="border-bottom:1px solid var(--border);">' +
+      '<td style="font-weight:700;padding:8px 12px;">' + esc(m.label) + '</td>' +
+      cells +
+    '</tr>';
+  }).join('');
+
+  container.innerHTML =
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">' +
+      '<h3 style="font-family:\'Big Shoulders\',sans-serif;font-size:22px;margin:0;color:var(--text);">📊 Dynamic Infrastructure-Crime Correlation Matrix (' + year + ')</h3>' +
+      '<span style="font-size:12px;color:var(--text-dim);font-family:monospace;">Pearson r per-km² density</span>' +
+    '</div>' +
+    '<div style="overflow-x:auto;">' +
+      '<table style="width:100%;border-collapse:collapse;font-size:13px;">' +
+        tableHeader +
+        '<tbody>' + rows + '</tbody>' +
+      '</table>' +
+    '</div>' +
+    '<div style="font-size:12px;color:var(--text-dim);margin-top:12px;line-height:1.5;background:var(--bg);padding:10px 14px;border-radius:6px;border:1px solid var(--border);">' +
+      '💡 <b>Methodology & Confounder Explanation</b>: Coefficients ($r$) measure the linear alignment between infrastructure density ($count / km^2$) and crime density ($cases / km^2$). Positive correlations (e.g. metro stations or police posts with theft) reflect <i>urban activity density</i> — commercial and transit hubs concentrate both infrastructure investments and footfall exposure. They do not imply infrastructure induces crime.' +
+    '</div>';
 }
 
 function pearson(xs, ys) {
@@ -1416,6 +1492,7 @@ function render() {
   renderList();
   renderDetail();
   renderMethod();
+  renderCorrelationMatrix();
   renderTrends();
   renderVictimsByMode();
   renderZones();
