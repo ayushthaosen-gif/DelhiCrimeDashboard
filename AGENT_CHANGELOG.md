@@ -7,7 +7,31 @@ This log tracks all architectural, performance, accessibility, and code quality 
 
 ---
 
-## [2026-07-28] - Antigravity (Google DeepMind AI)
+## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 2
+
+### 🛡️ Feature Additions & Data Mapping Enhancements
+
+1. **Accurate Chowki & Outpost Mapping (`data/police_markers.json`)**
+   - Cleaned up generic names in `data/police_markers.json` to reflect exact descriptive chowki/outpost titles (e.g., "Police Post Majnu ka Tila", "Police Post ISBT Kashmere Gate", "Swarup Nagar Police Post", "Khan Market Police Post").
+   - Added geocoded chowkis and outposts for Outer, Outer North, Dwarka, West, and South-West districts.
+   - Updated map rendering in `initMap()` so hovering over any police station or chowki displays its parent district (e.g. `Police Chowki / Outpost · North District` or `Official Police Station · Karol Bagh District`).
+
+2. **Multi-Crime Breakdown Hover Legend**
+   - Refactored `renderMap()` district hover tooltips to show a multi-crime summary box for the active year whenever a user hovers over any district polygon.
+   - Breakdown shows **Theft, Robbery, Burglary, Crime against Women, and SLL Crimes** side-by-side.
+   - Added hover legend tooltip to the color scale (`#legendScale`) explaining percentile color ranges.
+
+3. **Metric Tab Explanatory Tooltips**
+   - Updated `METRICS` and `INFRA` data structures in `build.js` to include title, description, and source metadata.
+   - Attached `data-tt-title` and `data-tt-body` to all metric tab buttons (`#metricTabs`, `#scatterTabs`, `#scatterYTabs`), so hovering over any metric explains what it measures and its dataset origin.
+
+4. **Project Rationale & Purpose Banner**
+   - Added a prominent project mission card (*"About the Delhi District Safety Index & Project Rationale"*) directly below the main dashboard header.
+   - Clearly outlines the project's goal: evaluating urban safety, walkability, traffic risks, and infrastructure equity for citizens, researchers, and policy makers.
+
+---
+
+## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 1
 
 ### 🚀 Optimizations & Enterprise-Grade Enhancements
 

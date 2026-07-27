@@ -79,6 +79,21 @@ header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 22px; p
 h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; font-size: 42px; line-height: 1.02; margin: 2px 0 4px; text-wrap: balance; letter-spacing: -.01em; }
 .subhead { color: var(--text-dim); font-size: 13.5px; max-width: 66ch; }
 
+.purpose-banner {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--amber);
+  border-radius: 8px; padding: 14px 18px; font-size: 13px; color: var(--text-dim); margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+.purpose-banner b { color: var(--text); font-size: 14.5px; display: block; margin-bottom: 4px; }
+.purpose-banner p { margin: 0; line-height: 1.45; }
+.purpose-icon { font-size: 24px; line-height: 1; flex-shrink: 0; }
+
+.tt-metric { font-size: 12px; margin-bottom: 4px; font-weight: 600; color: var(--text); }
+.tt-breakdown { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 3px; font-size: 11px; min-width: 170px; }
+.tt-row { display: flex; justify-content: space-between; gap: 14px; color: var(--text-dim); }
+.tt-row b { color: var(--text); font-weight: 700; }
+
 .datanote {
   display: flex; gap: 10px; align-items: flex-start;
   background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--amber);
@@ -232,6 +247,14 @@ footer a { color: inherit; }
     <h1>Where the lights end,<br>what does the crime data say?</h1>
     <p class="subhead">Official district-level crime and road-safety figures against real public-infrastructure coverage — streetlights, pedestrian underpasses, metro station gates, and full police infrastructure (stations plus chowkis/outposts) — across Delhi's 15 police districts.</p>
   </header>
+
+  <div class="purpose-banner">
+    <div class="purpose-icon">🛡️</div>
+    <div class="purpose-text">
+      <b>About the Delhi District Safety Index &amp; Project Rationale</b>
+      <p>This interactive dashboard quantifies public safety, crime density, traffic fatality risks, and municipal security infrastructure across Delhi's 15 police jurisdictions. By integrating official <b>NCRB crime reports (2022–2024)</b>, <b>Delhi Traffic Police accident blackspots</b>, and <b>Open Transit municipal surveys</b>, this platform provides citizens, urban planners, and policy researchers with empirical data on safety patterns, infrastructure equity, and urban walkability across the city.</p>
+    </div>
+  </div>
 
   <div class="datanote">
     <span>⚠</span>
@@ -446,32 +469,30 @@ const ACCIDENT_ZONES = ${JSON.stringify(accidentZones)};
 const ACCIDENT_ZONES_MAPPED = ${JSON.stringify(accidentZonesMapped)};
 
 const METRICS = [
-  { key: 'theft', label: 'Theft', short: 'theft', year: '2023', full: 'Theft (Sec. 379 IPC), 2023', prevKey: 'theft2022', prevYear: '2022', key2024: 'theft2024' },
-  { key: 'robbery', label: 'Robbery', short: 'robbery', year: '2023', full: 'Robbery (Sec. 392/394/397 IPC), 2023', prevKey: 'robbery2022', prevYear: '2022', key2024: 'robbery2024' },
-  { key: 'burglary', label: 'Burglary', short: 'burglary', year: '2023', full: 'Burglary (Sec. 454-460 IPC), 2023', prevKey: 'burglary2022', prevYear: '2022', key2024: 'burglary2024' },
-  { key: 'totalIPC', label: 'Total IPC', short: 'total IPC crime', year: '2023', full: 'Total Cognizable IPC Crimes, 2023', prevKey: 'totalIPC2022', prevYear: '2022', key2024: 'totalIPC2024' },
-  { key: 'crimeAgainstWomen', label: 'Vs. Women', short: 'crime against women', year: '2023', full: 'Total Crime Against Women, 2023', prevKey: 'crimeAgainstWomen2022', prevYear: '2022', key2024: 'crimeAgainstWomen2024' },
-  { key: 'totalSLL', label: 'SLL Crimes', short: 'SLL crime', year: '2023', full: 'Total Cognizable SLL Crimes, 2023', prevKey: 'totalSLL2022', prevYear: '2022', key2024: 'totalSLL2024' },
-  { key: 'fatalRoadCrashes2022', label: 'Road Deaths', short: 'fatal road crashes', year: '2022', full: 'Fatal Road Crashes, 2022 (Delhi Traffic Police)', gaps: true },
-  { key: 'hitAndRunCrashes2022', label: 'Hit & Run', short: 'hit-and-run fatal crashes', year: '2022', full: 'Hit-and-Run Fatal Crashes, 2022 (Delhi Traffic Police)', gaps: true },
-  { key: 'crashProneZones2023', label: 'Crash Zones', short: 'crash-prone zones', year: '2023', full: 'Crash-Prone Zones, 2023 (Delhi Road Crash Report, all 15 districts)' },
-  { key: 'fatalCrashes2023', label: 'Fatal Crashes', short: 'fatal crashes', year: '2023', full: 'Fatal Crashes, 2023 (Delhi Road Crash Report, all 15 districts)' },
-  { key: 'totalCrashes2023', label: 'Total Crashes', short: 'total crashes', year: '2023', full: 'Total Crashes, 2023 (Delhi Road Crash Report, all 15 districts)' },
+  { key: 'theft', label: 'Theft', short: 'theft', year: '2023', full: 'Theft (Sec. 379 IPC), 2023', prevKey: 'theft2022', prevYear: '2022', key2024: 'theft2024', title: 'Theft (Sec. 379 IPC)', desc: 'Reported vehicle, property, and personal theft offences registered in the district.', source: 'NCRB Crime in India District-Wise Reports' },
+  { key: 'robbery', label: 'Robbery', short: 'robbery', year: '2023', full: 'Robbery (Sec. 392/394/397 IPC), 2023', prevKey: 'robbery2022', prevYear: '2022', key2024: 'robbery2024', title: 'Robbery (Sec. 392/394/397 IPC)', desc: 'Reported robbery, mugging, and extortion offences involving force or threat.', source: 'NCRB Crime in India District-Wise Reports' },
+  { key: 'burglary', label: 'Burglary', short: 'burglary', year: '2023', full: 'Burglary (Sec. 454-460 IPC), 2023', prevKey: 'burglary2022', prevYear: '2022', key2024: 'burglary2024', title: 'Burglary (Sec. 454-460 IPC)', desc: 'Residential and commercial housebreaking, house-trespass, and break-ins.', source: 'NCRB Crime in India District-Wise Reports' },
+  { key: 'totalIPC', label: 'Total IPC', short: 'total IPC crime', year: '2023', full: 'Total Cognizable IPC Crimes, 2023', prevKey: 'totalIPC2022', prevYear: '2022', key2024: 'totalIPC2024', title: 'Total Cognizable IPC Crimes', desc: 'Aggregate count of all major Indian Penal Code crimes registered in the district.', source: 'NCRB Crime in India District-Wise Reports' },
+  { key: 'crimeAgainstWomen', label: 'Vs. Women', short: 'crime against women', year: '2023', full: 'Total Crime Against Women, 2023', prevKey: 'crimeAgainstWomen2022', prevYear: '2022', key2024: 'crimeAgainstWomen2024', title: 'Crime Against Women', desc: 'Registered cases of assault, harassment, cruelty, and domestic offences against women.', source: 'NCRB Crime in India District-Wise Reports' },
+  { key: 'totalSLL', label: 'SLL Crimes', short: 'SLL crime', year: '2023', full: 'Total Cognizable SLL Crimes, 2023', prevKey: 'totalSLL2022', prevYear: '2022', key2024: 'totalSLL2024', title: 'Special & Local Laws (SLL) Crimes', desc: 'Offences registered under special acts (Arms Act, NDPS, Excise, Cyber Crimes, etc.).', source: 'NCRB Crime in India District-Wise Reports' },
+  { key: 'fatalRoadCrashes2022', label: 'Road Deaths', short: 'fatal road crashes', year: '2022', full: 'Fatal Road Crashes, 2022 (Delhi Traffic Police)', gaps: true, title: 'Fatal Road Crashes (2022)', desc: 'Fatal traffic crashes resulting in deaths recorded by Delhi Traffic Police.', source: 'Delhi Traffic Police 2022 Report' },
+  { key: 'hitAndRunCrashes2022', label: 'Hit & Run', short: 'hit-and-run fatal crashes', year: '2022', full: 'Hit-and-Run Fatal Crashes, 2022 (Delhi Traffic Police)', gaps: true, title: 'Hit-and-Run Fatal Crashes (2022)', desc: 'Fatal road crashes where the offending vehicle fled the scene without stopping.', source: 'Delhi Traffic Police 2022 Report' },
+  { key: 'crashProneZones2023', label: 'Crash Zones', short: 'crash-prone zones', year: '2023', full: 'Crash-Prone Zones, 2023 (Delhi Road Crash Report)', title: 'Identified Crash-Prone Zones (2023)', desc: 'Identified accident blackspots and high-risk traffic corridors.', source: 'Delhi Road Crash Report 2023' },
+  { key: 'fatalCrashes2023', label: 'Fatal Crashes', short: 'fatal crashes', year: '2023', full: 'Fatal Crashes, 2023 (Delhi Road Crash Report)', title: 'Fatal Crashes (2023)', desc: 'Total fatal traffic crashes recorded across all 15 police districts in 2023.', source: 'Delhi Road Crash Report 2023' },
+  { key: 'totalCrashes2023', label: 'Total Crashes', short: 'total crashes', year: '2023', full: 'Total Crashes, 2023 (Delhi Road Crash Report)', title: 'Total Road Crashes (2023)', desc: 'Aggregate count of all recorded road accidents (fatal + simple injury crashes).', source: 'Delhi Road Crash Report 2023' },
 ];
 
 const INFRA = [
-  { key: 'streetlight', densityKey: 'lightDensityPerKm2', countKey: 'totalLights', label: 'Streetlights', unit: 'streetlights' },
-  { key: 'underpass', densityKey: 'underpassDensity', countKey: 'underpasses', label: 'Underpasses', unit: 'underpasses' },
-  { key: 'metroGate', densityKey: 'metroGateDensity', countKey: 'metroGates', label: 'Metro gates', unit: 'metro gates' },
-  { key: 'policeInfra', densityKey: 'policeInfraDensity', countKey: 'policeInfraCount', label: 'Police Infra', unit: 'police posts' },
+  { key: 'streetlight', densityKey: 'lightDensityPerKm2', countKey: 'totalLights', label: 'Streetlights', unit: 'streetlights', title: 'Streetlight Density', desc: 'Number of surveyed functioning streetlights per square kilometer of district area.', source: 'PAPL Open Transit Survey' },
+  { key: 'underpass', densityKey: 'underpassDensity', countKey: 'underpasses', label: 'Underpasses', unit: 'underpasses', title: 'Pedestrian Underpass Density', desc: 'Number of pedestrian underpasses and subways per square kilometer.', source: 'PAPL Open Transit Survey' },
+  { key: 'metroGate', densityKey: 'metroGateDensity', countKey: 'metroGates', label: 'Metro gates', unit: 'metro gates', title: 'Metro Entrance Gate Density', desc: 'Number of Delhi Metro station entrance/exit gates per square kilometer.', source: 'OpenStreetMap' },
+  { key: 'policeInfra', densityKey: 'policeInfraDensity', countKey: 'policeInfraCount', label: 'Police Infra', unit: 'police posts', title: 'Police Infrastructure Density', desc: 'Combined police stations, posts, chowkis, and booths per square kilometer.', source: 'Delhi Police GSDL + OpenStreetMap' },
 ];
 
 // Districts the PAPL survey actually drove through — shared gap for streetlights and underpasses.
 const SURVEYED = new Set(['Central','East','New Delhi','North','Shahdara','South','South-East','South-West','West']);
 function infraCovered(d, infraKey) {
   if (infraKey === 'metroGate') return true;
-  // Police Infra = official stations (always covered) + OSM chowkis/outposts (unmapped in Outer) —
-  // a zero-chowki district still undercounts the combined figure, so flag it the same way.
   if (infraKey === 'policeInfra') return d.chowkiPosts > 0;
   return SURVEYED.has(d.district) && d[infraKey === 'streetlight' ? 'surveyPoints' : 'underpasses'] >= 10;
 }
@@ -494,10 +515,6 @@ function rustScale(t) {
 }
 function fmtNum(n) { return n == null ? '—' : n.toLocaleString('en-IN'); }
 
-// Renders canvas charts at native device pixel density instead of stretching a fixed-resolution
-// buffer via CSS, which is what made them blurry on Retina/high-DPI screens. Returns null when
-// the canvas is currently hidden (e.g. an inactive road-safety tab) — clientWidth is 0 there, and
-// drawing into a 0-width buffer would just waste a frame, so callers should bail out on null.
 function setupHighDPICanvas(canvas, aspectRatio) {
   const cssWidth = canvas.clientWidth;
   if (!cssWidth) return null;
@@ -519,11 +536,16 @@ function debounce(fn, ms) {
 
 function currentMetric() { return METRICS.find(m => m.key === activeMetric); }
 
-// A metric with a prevKey has three years on record — 2022, 2023 (its canonical, unsuffixed key)
-// and 2024 — activeYear picks which to read. Metrics without a prevKey (road-safety, single-year
-// only) always return their one value regardless of activeYear.
 function metricValue(d, m) {
   if (!m.prevKey) return d[m.key];
+  if (activeYear === '2022') return d[m.prevKey];
+  if (activeYear === '2024') return d[m.key2024];
+  return d[m.key];
+}
+
+function yearFieldVal(d, baseKey) {
+  const m = METRICS.find(x => x.key === baseKey);
+  if (!m || !m.prevKey) return d[baseKey];
   if (activeYear === '2022') return d[m.prevKey];
   if (activeYear === '2024') return d[m.key2024];
   return d[m.key];
@@ -545,7 +567,9 @@ function yearSuffix(m) {
 
 function buildMetricTabs() {
   const el = document.getElementById('metricTabs');
-  el.innerHTML = METRICS.map(m => '<button class="metric-tab' + (m.key===activeMetric?' active':'') + '" data-key="' + m.key + '" aria-pressed="' + (m.key===activeMetric) + '">' + m.label + '</button>').join('');
+  el.innerHTML = METRICS.map(m =>
+    '<button class="metric-tab' + (m.key===activeMetric?' active':'') + '" data-key="' + m.key + '" aria-pressed="' + (m.key===activeMetric) + '"' + tt(m.title, m.desc + ' · Source: ' + m.source) + '>' + m.label + '</button>'
+  ).join('');
   el.querySelectorAll('.metric-tab').forEach(btn => {
     btn.addEventListener('click', () => { activeMetric = btn.dataset.key; render(); });
   });
@@ -641,13 +665,22 @@ function initMap() {
   });
   centerLayer.innerHTML = centerParts.join('');
 
+  function findDistrictName(x, y) {
+    return DATA.reduce((best, d) => {
+      const dist = Math.hypot(d.cx - x, d.cy - y);
+      return dist < best.dist ? { d, dist } : best;
+    }, { dist: Infinity }).d.name;
+  }
+
   const policeLayer = svg.querySelector('#policeLayer');
   const policeParts = [];
   POLICE_MARKERS.posts.forEach(([x, y, name]) => {
-    policeParts.push('<circle class="police-marker post" cx="' + x + '" cy="' + y + '" r="3.2" data-tt-title="' + esc(name) + '" data-tt-body="Police post / chowki / outpost"></circle>');
+    const distName = findDistrictName(x, y);
+    policeParts.push('<circle class="police-marker post" cx="' + x + '" cy="' + y + '" r="3.2" data-tt-title="' + esc(name) + '" data-tt-body="Police Chowki / Outpost · ' + esc(distName) + ' District"></circle>');
   });
   POLICE_MARKERS.stations.forEach(([x, y, name]) => {
-    policeParts.push('<circle class="police-marker station" cx="' + x + '" cy="' + y + '" r="4.2" data-tt-title="' + esc(name) + '" data-tt-body="Police station"></circle>');
+    const distName = findDistrictName(x, y);
+    policeParts.push('<circle class="police-marker station" cx="' + x + '" cy="' + y + '" r="4.2" data-tt-title="' + esc(name) + '" data-tt-body="Official Police Station · ' + esc(distName) + ' District"></circle>');
   });
   policeLayer.innerHTML = policeParts.join('');
 
@@ -687,13 +720,29 @@ function renderMap() {
     const v = metricValue(d, m);
     const fill = v == null ? 'var(--map-nodata-stripe)' : rustScale(scale(v));
     const isSel = selected === d.name;
-    const body = v == null ? 'No data for this metric' : m.short + ': ' + fmtNum(v);
+    
+    const yearTheft = yearFieldVal(d, 'theft');
+    const yearRobbery = yearFieldVal(d, 'robbery');
+    const yearBurglary = yearFieldVal(d, 'burglary');
+    const yearCAW = yearFieldVal(d, 'crimeAgainstWomen');
+    const yearSLL = yearFieldVal(d, 'totalSLL');
+
+    const body = v == null
+      ? 'No data for this metric'
+      : '<div class="tt-metric"><b>' + m.short + ' (' + activeYear + '):</b> ' + fmtNum(v) + '</div>' +
+        '<div class="tt-breakdown">' +
+          '<div class="tt-row"><span>🚗 Theft:</span><b>' + fmtNum(yearTheft) + '</b></div>' +
+          '<div class="tt-row"><span>🔓 Robbery:</span><b>' + fmtNum(yearRobbery) + '</b></div>' +
+          '<div class="tt-row"><span>🏚️ Burglary:</span><b>' + fmtNum(yearBurglary) + '</b></div>' +
+          '<div class="tt-row"><span>👩 Vs. Women:</span><b>' + fmtNum(yearCAW) + '</b></div>' +
+          '<div class="tt-row"><span>⚖️ SLL Crimes:</span><b>' + fmtNum(yearSLL) + '</b></div>' +
+        '</div>';
 
     path.setAttribute('fill', fill);
     path.style.stroke = isSel ? 'var(--night)' : '';
     path.style.strokeWidth = isSel ? '2.4' : '';
     path.setAttribute('aria-selected', isSel ? 'true' : 'false');
-    path.setAttribute('data-tt-title', d.name);
+    path.setAttribute('data-tt-title', d.name + ' District');
     path.setAttribute('data-tt-body', body);
   });
 
@@ -715,7 +764,10 @@ function renderMap() {
   document.getElementById('legendLabel').textContent = yearLabel(m);
   document.getElementById('legendMin').textContent = fmtNum(lo);
   document.getElementById('legendMax').textContent = fmtNum(hi);
-  document.getElementById('legendScale').innerHTML = Array.from({length:10}, (_,i) => '<span style="background:' + rustScale(i/9) + '"></span>').join('');
+  const legendScale = document.getElementById('legendScale');
+  legendScale.innerHTML = Array.from({length:10}, (_,i) => '<span style="background:' + rustScale(i/9) + '"></span>').join('');
+  legendScale.setAttribute('data-tt-title', 'District Crime Percentile Scale');
+  legendScale.setAttribute('data-tt-body', 'Light: Lowest Crime Density in Delhi → Dark Rust: Highest Crime Density in Delhi');
 }
 
 function renderList() {
