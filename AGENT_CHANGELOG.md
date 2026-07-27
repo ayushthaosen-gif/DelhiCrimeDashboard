@@ -7,6 +7,24 @@ This log tracks all architectural, performance, accessibility, and code quality 
 
 ---
 
+## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 5
+
+### 🐞 Search Bar Scope & Multi-Category Bug Fix
+
+1. **Global `findDistrictName` Scope Fix**
+   - Moved `findDistrictName(x, y)` helper out of `initMap()` closure into global top-level scope in `build.js`.
+   - Resolves runtime `ReferenceError: findDistrictName is not defined` crash when typing in the search bar.
+
+2. **Multi-Category Match Expansion (`setupSearch`)**
+   - Expanded search type-ahead to match across 3 entity types:
+     1. **Districts** (e.g. Rohini, South-East, Dwarka)
+     2. **Police Stations & Chowkis** (e.g. Kashmere Gate, Majnu ka Tila, Connaught Place)
+     3. **Crash-Prone Blackspot Zones** (e.g. Mukarba Chowk, Peeragarhi, Dhaula Kuan)
+   - Reduced debounce latency to 50ms for instant type-ahead feedback.
+   - Smoothly scrolls to district detail panel upon item selection and automatically turns on the relevant map overlay (`showPolice` / `showZones`).
+
+---
+
 ## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 4
 
 ### 📍 Google Street View Integration for Crash Blackspots & Police Facilities

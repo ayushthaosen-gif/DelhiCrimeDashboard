@@ -619,6 +619,13 @@ function debounce(fn, ms) {
   return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
 }
 
+function findDistrictName(x, y) {
+  return DATA.reduce((best, d) => {
+    const dist = Math.hypot(d.cx - x, d.cy - y);
+    return dist < best.dist ? { d, dist } : best;
+  }, { dist: Infinity }).d.name;
+}
+
 function currentMetric() { return METRICS.find(m => m.key === activeMetric); }
 
 function metricValue(d, m) {
@@ -1679,7 +1686,12 @@ function setupSearch() {
     const distMatches = DATA.filter(d => d.name.toLowerCase().includes(q)).map(d => ({
       title: d.name + ' District',
       type: 'District',
-      action: () => { selected = d.name; render(); }
+      action: () => {
+        selected = d.name;
+        render();
+        const detailEl = document.getElementById('detail');
+        if (detailEl) detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
     }));
 
     const policeMatches = [];
@@ -1689,7 +1701,13 @@ function setupSearch() {
         policeMatches.push({
           title: name,
           type: 'Police Station · ' + distName,
-          action: () => { selected = distName; showPolice = true; document.getElementById('policeToggle').classList.add('on'); render(); }
+          action: () => {
+            selected = distName;
+            showPolice = true;
+            const toggle = document.getElementById('policeToggle');
+            if (toggle) { toggle.classList.add('on'); toggle.setAttribute('aria-checked', 'true'); }
+            render();
+          }
         });
       }
     });
@@ -1699,14 +1717,37 @@ function setupSearch() {
         policeMatches.push({
           title: name,
           type: 'Chowki / Outpost · ' + distName,
-          action: () => { selected = distName; showPolice = true; document.getElementById('policeToggle').classList.add('on'); render(); }
+          action: () => {
+            selected = distName;
+            showPolice = true;
+            const toggle = document.getElementById('policeToggle');
+            if (toggle) { toggle.classList.add('on'); toggle.setAttribute('aria-checked', 'true'); }
+            render();
+          }
         });
       }
     });
 
-    const allMatches = [...distMatches, ...policeMatches].slice(0, 10);
+    const zoneMatches = [];
+    ACCIDENT_ZONES.forEach(z => {
+      if (z.name.toLowerCase().includes(q) || (z.road && z.road.toLowerCase().includes(q))) {
+        zoneMatches.push({
+          title: z.name + (z.road ? ' (' + z.road + ')' : ''),
+          type: 'Crash Zone · ' + z.district,
+          action: () => {
+            selected = z.district;
+            showZones = true;
+            const toggle = document.getElementById('zonesToggle');
+            if (toggle) { toggle.classList.add('on'); toggle.setAttribute('aria-checked', 'true'); }
+            render();
+          }
+        });
+      }
+    });
+
+    const allMatches = [...distMatches, ...policeMatches, ...zoneMatches].slice(0, 12);
     if (!allMatches.length) {
-      dropdown.innerHTML = '<div class="search-item" style="color:var(--text-dim);">No matching district or police station found</div>';
+      dropdown.innerHTML = '<div class="search-item" style="color:var(--text-dim);">No matching district, police station, or crash zone found</div>';
       dropdown.classList.add('on');
       return;
     }
@@ -1729,11 +1770,13 @@ function setupSearch() {
     });
   }
 
-  input.addEventListener('input', debounce(doSearch, 150));
+  input.addEventListener('input', debounce(doSearch, 50));
+  input.addEventListener('focus', () => { if (input.value.trim()) doSearch(); });
   clearBtn.addEventListener('click', () => {
     input.value = '';
     dropdown.classList.remove('on');
     clearBtn.style.display = 'none';
+    input.focus();
   });
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-container')) dropdown.classList.remove('on');
