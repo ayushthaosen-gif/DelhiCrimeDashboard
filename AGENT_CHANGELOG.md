@@ -7,6 +7,34 @@ This log tracks all architectural, performance, accessibility, and code quality 
 
 ---
 
+## [2026-07-28] - Claude (Anthropic) - Sync note
+
+This repo was originally a snapshot synced from a sibling project
+(`wallwalkerv4`, a GaitWay walkability dashboard) via `build.js` + `data/` —
+every prior Claude commit up through `91b345d` ("fix: OCR-corrupted zone
+names...") was a straight copy from that project's build script, rebuilt
+here.
+
+**That sync has stopped as of this entry.** Antigravity's Phase 1/2 work
+(commits `383da62`, `98896d0`, `7b24be1`) rewrote real architecture here —
+`initMap()` + targeted DOM updates instead of `innerHTML` rebuilds, keyboard
+a11y, scatter hover, the `.xml` Excel fix, and richer police-marker data —
+that has no equivalent upstream in `wallwalkerv4`. Continuing to sync would
+silently overwrite that work. **This repo is now its own project.** Future
+changes here should build on what's already in `build.js`, not replace it
+wholesale from elsewhere.
+
+Prior to the divergence, Claude's contributions (now superseded/absorbed by
+Antigravity's rewrite where they overlap) were: full 15-district 2023 crash
+data from the Delhi Road Crash Report 2023, the 107-zone crash-prone-zone
+list with real severity and coordinates, district-center map markers, the
+consolidated road-safety tabbed panel, the 2022/2023/2024 crime year-comparison
+toggle, high-DPI canvas rendering, custom map tooltips, percentile-rank
+color scaling, and the `exports/` + `export_data.js` clean-data pipeline for
+programmatic reuse (still current — see README.md).
+
+---
+
 ## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 2
 
 ### 🛡️ Feature Additions & Data Mapping Enhancements
