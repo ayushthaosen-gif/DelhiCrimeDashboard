@@ -1,0 +1,108 @@
+rank,name,road,simpleCrashes,fatalCrashes,totalCrashes,lat,lng,geocoded
+1,ISBT Kashmiri Gate,Ring Road,12,7,19,28.6686522,77.2306831,true
+2,Mukarba Chowk,GTKRoad,11,7,18,28.7323054,77.1520709,true
+3,Libaspur Bus Stand,GTKRoad,11,7,18,,,false
+4,,Boulevard Road,12,6,18,28.6665962,77.217998,true
+5,Britannia Chowk,Ring Road,9,6,15,28.6835217,77.1329131,true
+6,Burari Chowk,Outer Ring Road,8,6,14,,,false
+7,Bhalswa Chowk,Outer Ring Road,5,6,11,,,false
+8,Wazir Pur Depot,Ring Road,4,6,10,28.7246928,77.1518297,true
+9,Round About Mori Gate,Hamilton Road,2,6,8,,,false
+10,Gandhi Vihar Bus Stand,Outer Ring Road,11,5,16,,,false
+11,Anand Vihar lsbt,Road No.56,11,5,16,,,false
+12,Okhla Mandi,Captain Gaud Marg,6,5,11,28.5585019,77.263053,true
+13,SgtNagar,GTKRoad,6,5,11,,,false
+14,Akshardham Mandir,NH-24,5,5,10,,,false
+15,Shalimar Bogh,Ring Road,5,5,10,,,false
+16,Metro Station Haider Pur,Outer Ring Road,5,5,10,,,false
+17,Loni Road Crossing,Wazirabad Road,5,5,10,,,false
+18,Metro Station Madipur,Rohtak Road,4,5,9,,,false
+19,Raja Harishchander Hospital,OSI/DC Nore/a Road,2,5,7,,,false
+20,Shamshan Ghat Punjabi Bogh,Ring Road,2,5,7,,,false
+21,Haryana Maitri Bhawan,Road No43,1,5,6,,,false
+22,Shastri Park/It Park,G.T.Road,20,4,24,,,false
+23,Rajouri Garden,Ring Road,12,4,16,28.6511896,77.1242597,true
+24,Swaroop Nagar,GTKRoad,10,4,14,28.7596436,77.1516935,true
+25,Modi Mill Flyover,Outer Ring Road,10,4,14,28.5575812,77.2707494,true
+26,Punjabi Bogh Chowk,Ring Road,9,4,13,,,false
+27,Metro Station Shivaji Park,Rohtak Road,7,4,11,,,false
+28,Kings Way Camp Chowk,Ring Road,6,4,10,,,false
+29,Round About Paharganj,Rani Jhansi Road,6,4,10,,,false
+30,West Enclave Red Light,Outer Ring Road,5,4,9,,,false
+31,Azadpur Sabzi Mandi,GTKRoad,5,4,9,,,false
+32,Ti/ak Nagar Flyover,Najafgarh Road,5,4,9,,,false
+33,Nathu Colony Chowk Nand Nagri,Road No 68,4,4,8,,,false
+34,Dabri Flyover,Pankha Road,3,4,7,28.612285,77.0894338,true
+35,Saraswati Vihar Bus Stand,Outer Ring Road,3,4,7,,,false
+36,District Center Janakpuri,Najafgarh Road,3,4,7,28.6292578,77.0804632,true
+37,Nangli Poona,GTKRoad,3,4,7,28.7731719,77.1433187,true
+38,Cng Pumpl}ain Mandir NH-1,GTKRoad,2,4,6,,,false
+39,Toll Plaza Badarpur,Mathura Road,2,4,6,,,false
+40,Round About Seemapuri,Road No 68,1,4,5,,,false
+41,Peeragarhi Chowk,Outer Ring Road,13,3,16,28.6795418,77.0946343,true
+42,Khajoori Chowk,Wazirabad Road,11,3,14,,,false
+43,Madhuban Chowk,Outer Ring Road,11,3,14,28.7070531,77.1320381,true
+44,UdyogNagar,Rohtak Road,10,3,13,,,false
+45,Wazirabad,Outer Ring Road,10,3,13,28.7297608,77.2212803,true
+46,Mukundpur Chowk,Outer Ring Road,10,3,13,28.7336566,77.1834315,true
+47,Maya Puri Chowk,Ring Road,9,3,12,,,false
+48,Shani Mandir Nh-1,GTKRoad,9,3,12,,,false
+49,Ber Sarai Flyover,Outer Ring Road,9,3,12,,,false
+50,Sagarpur Bus Stand,Pankha Road,9,3,12,,,false
+51,Kanhiya Nagar Metro Station,VIR Banda Bairagi Mr,9,3,12,28.6824082,77.1647754,true
+52,Metro Station Welcome,G.T.Road,8,3,11,28.6718164,77.2776882,true
+53,Dtc Bus Depot Nand Nagri,Wazirabad Road,8,3,11,,,false
+54,Sai Baba Mandir Nh-1,GTKRoad,7,3,10,,,false
+55,Lado Sarai Crossing,Mehrauli Badarpur Rd,7,3,10,28.5234185,77.1908012,true
+56,Shaheen Bagh Road No-13a,Road No 13a,7,3,10,,,false
+57,Ti/ak Pu/ Dabri,Pankha Road,6,3,9,,,false
+58,Tikri Khurd Bus Stand,GTKRoad,6,3,9,,,false
+59,Kalkaji Mandir,Outer Ring Road,5,3,8,28.5497752,77.2606671,true
+60,Rajghat,Ring Road,5,3,8,28.6408893,77.2576586,true
+61,Deepali Chowk,Outer Ring Road,5,3,8,28.6980748,77.1182847,true
+62,Metro Station Paschim Vihar,Rohtak Road,5,3,8,,,false
+63,IT/ Dheerpur,Outer Ring Road,5,3,8,28.7183984,77.2118045,true
+64,Nigam Bodh Ghat,Ring Road,4,3,7,,,false
+65,Metro Station lnderlok,VIR Banda Bairagi Mr,4,3,7,,,false
+66,Keshopur T Point,Outer Ring Road,4,3,7,,,false
+67,Mundka,Rohtak Road,4,3,7,28.6824341,77.0305741,true
+68,Metro Station Ramesh Nagar,Najafgarh Road,4,3,7,,,false
+69,Rtr Flyover Vasant Vihar,Outer Ring Road,4,3,7,28.5658211,77.1665869,true
+70,OSI/DC Red Light NH-1,GTKRoad,4,3,7,,,false
+71,Adarsh Nagar,GTKRoad,4,3,7,28.7165805,77.1704223,true
+72,Arsd College Ring Road,Ring Road,3,3,6,28.5905493,77.1682975,true
+73,Sarai Kale Khan,Ring Road,3,3,6,28.5891891,77.2580654,true
+74,Round About Okh/a Estate,Anand Mai Marg,3,3,6,,,false
+75,Anand Vihar Railway Flyover,Road No.56,3,3,6,,,false
+76,Vijay Vihar Rohini,Rithala Road,3,3,6,28.7116301,77.0978704,true
+77,Delhi Cantt Flyover,Jail Road,2,3,5,28.5860009,77.0879638,true
+78,Shakarpur Red Light,Yamuna Pusta Road,2,3,5,,,false
+79,Geeta Colony Flyover,Yamuna Pusta Road,2,3,5,28.6513586,77.2542399,true
+80,Loha Mandi,Girdhari Lal Marg,1,3,4,28.6394355,77.1438843,true
+81,Siraspur,GTKRoad,1,3,4,28.7580543,77.1297995,true
+82,Janak Puri East,Najafgarh Road,1,3,4,,,false
+83,Mayur Vihar Extension,Naida Link Road,1,3,4,28.5941915,77.2946235,true
+84,Pu/ Mithai Spm Marg,SPM Marg,1,3,4,,,false
+85,Paper Market Gajipur,Paper Market Road,1,3,4,,,false
+86,Goy/a Village Najafgarh,Goy/a Dairy Road,1,3,4,,,false
+87,Near Haldi Ram Wazirpur,Ring Road,0,3,3,,,false
+88,Surya Nagar Red Light,Road No.56,0,3,3,,,false
+89,lg Indoor Stadium,Ring Road,13,2,15,,,false
+90,Seelampur T Point,G.T.Road,13,2,15,,,false
+91,Moti Bagh Flyover,Ring Road,12,2,14,28.5782077,77.1761778,true
+92,Ashram Chowk,Ring Road,12,2,14,28.6392436,77.2085787,true
+93,Shakarpur Chungi,Vikas Marg,11,2,13,,,false
+94,Dhaula Kuan,Ring Road,10,2,12,28.5992985,77.1628506,true
+95,Khaira More Najafgarh,Najafgarh Dwarka Rd,10,2,12,,,false
+96,Azadpur Chowk,GTKRoad,10,2,12,,,false
+97,Mahipalpur Flyover,NH-8,9,2,11,28.5461965,77.1230442,true
+98,Uttam Nagar,Najafgarh Road,8,2,10,28.6248465,77.0652861,true
+99,Shankar Vihar,NH-8,8,2,10,28.5574387,77.1396655,true
+100,Shanti Van,Ring Road,8,2,10,28.6496936,77.2458704,true
+101,Zakhira Flyover,Rohtak Road,13,1,14,28.6704636,77.1606005,true
+102,Subhash Nagar Metro Station,Najafgarh Road,11,1,12,,,false
+103,Under Pass Patparganj,Patparganj Road,9,1,10,,,false
+104,Rajoukari Flyover,NH-8,9,1,10,,,false
+105,Bara/ Khana Chowk,Rani Jhansi Road,9,1,10,,,false
+106,Moo/ Chand,Ring Road,15,0,15,,,false
+107,Outer Circle Cp Near Minto Road,Outer Circle Cp,10,0,10,,,false

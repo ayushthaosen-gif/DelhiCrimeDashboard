@@ -1,0 +1,6 @@
+year,pedestrianKilled,pedestrianInjured,cyclistKilled,cyclistInjured,carKilled,carInjured,twoWheelerKilled,twoWheelerInjured,busPassengerKilled,busPassengerInjured,slowMovingKilled,slowMovingInjured,animalDrivenKilled,animalDrivenInjured,otherKilled,otherInjured,totalKilled,totalInjured
+2019,678,1887,36,108,39,281,496,2110,5,30,26,151,1,10,182,575,1463,5152
+2020,505,1241,48,115,37,184,441,1613,5,18,21,110,2,9,132,372,1196,3662
+2021,504,1536,45,123,42,158,472,1868,3,12,18,145,0,7,155,424,1239,4273
+2022,629,1777,48,134,39,227,552,2263,3,25,26,200,1,2,163,573,1461,5201
+2023,622,1941,30,118,45,234,549,2356,0,18,24,203,3,7,184,593,1457,5470
