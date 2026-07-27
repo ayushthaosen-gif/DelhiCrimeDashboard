@@ -85,8 +85,9 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
   border-radius: 8px; padding: 14px 18px; font-size: 13px; color: var(--text-dim); margin-bottom: 22px;
   box-shadow: var(--shadow);
 }
-.purpose-banner b { color: var(--text); font-size: 14.5px; display: block; margin-bottom: 4px; }
+.purpose-title { color: var(--text); font-size: 14.5px; display: block; margin-bottom: 4px; font-weight: 700; }
 .purpose-banner p { margin: 0; line-height: 1.45; }
+.purpose-banner p b { display: inline; font-weight: 700; color: var(--text); }
 .purpose-icon { font-size: 24px; line-height: 1; flex-shrink: 0; }
 
 .tt-metric { font-size: 12px; margin-bottom: 4px; font-weight: 600; color: var(--text); }
@@ -122,10 +123,11 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 
 .map-panel { padding: 14px; }
 .map-stage { position: relative; width: 100%; }
-.map-stage svg { width: 100%; height: auto; display: block; }
+.map-stage svg { width: 100%; height: auto; display: block; outline: none; }
 .map-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity .2s; }
 .map-stage canvas.on { opacity: .85; }
-path.district { stroke: var(--surface); stroke-width: 1.6; cursor: pointer; transition: opacity .12s; }
+path.district { stroke: var(--surface); stroke-width: 1.6; cursor: pointer; transition: opacity .12s; outline: none !important; }
+path.district:focus, path.district:focus-visible, svg *:focus, svg *:focus-visible { outline: none !important; }
 path.district:hover { opacity: .82; }
 .district-hatch { fill: url(#hatch); pointer-events: none; }
 .district-label { font-family: 'Big Shoulders', sans-serif; font-weight: 700; font-size: 13px; fill: var(--label-fill); paint-order: stroke; stroke: var(--label-stroke); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
@@ -140,9 +142,10 @@ path.district:hover { opacity: .82; }
 
 .legend { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--text-dim); flex-wrap: wrap; }
 .legend-scale-note { font-size: 10.5px; font-style: italic; opacity: .8; }
-.map-tooltip { position: absolute; pointer-events: none; z-index: 20; background: var(--night); color: var(--bone); font-size: 12px; line-height: 1.4; padding: 6px 10px; border-radius: 6px; box-shadow: var(--shadow); opacity: 0; transform: translate(-50%, calc(-100% - 10px)); transition: opacity .1s; max-width: 240px; white-space: normal; }
+.map-tooltip { position: fixed; pointer-events: none; z-index: 9999; background: var(--night); color: var(--bone); font-size: 12px; line-height: 1.4; padding: 8px 12px; border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); opacity: 0; transition: opacity .1s ease; max-width: 260px; white-space: normal; border: 1px solid var(--border); }
 .map-tooltip.on { opacity: 1; }
-.map-tooltip b { display: block; margin-bottom: 2px; }
+.map-tooltip b { display: block; margin-bottom: 3px; font-weight: 700; color: var(--bone); }
+.map-tooltip .tt-body { color: var(--text-dim); font-size: 11.5px; line-height: 1.4; }
 .legend-scale { display: flex; height: 10px; width: 140px; border-radius: 3px; overflow: hidden; }
 .legend-scale span { flex: 1; }
 .legend-swatch { width: 12px; height: 12px; border-radius: 2px; display: inline-block; margin-right: 5px; vertical-align: -1px; }
@@ -251,7 +254,7 @@ footer a { color: inherit; }
   <div class="purpose-banner">
     <div class="purpose-icon">🛡️</div>
     <div class="purpose-text">
-      <b>About the Delhi District Safety Index &amp; Project Rationale</b>
+      <b class="purpose-title">About the Delhi District Safety Index &amp; Project Rationale</b>
       <p>This interactive dashboard quantifies public safety, crime density, traffic fatality risks, and municipal security infrastructure across Delhi's 15 police jurisdictions. By integrating official <b>NCRB crime reports (2022–2024)</b>, <b>Delhi Traffic Police accident blackspots</b>, and <b>Open Transit municipal surveys</b>, this platform provides citizens, urban planners, and policy researchers with empirical data on safety patterns, infrastructure equity, and urban walkability across the city.</p>
     </div>
   </div>
@@ -1386,18 +1389,27 @@ document.getElementById('rankList').addEventListener('click', (e) => {
   render();
 });
 
-// Custom tooltip: instant and stylable, unlike SVG <title> which is OS-rendered with a 1-2s
-// hover delay and no CSS control.
-mapSvg.addEventListener('mousemove', (e) => {
+// Global delegated tooltip for all elements with data-tt-title (metric tabs, district map paths, police chowkis, legend scale, etc.)
+document.addEventListener('mousemove', (e) => {
   const el = e.target.closest('[data-tt-title]');
   if (!el) { mapTooltip.classList.remove('on'); return; }
-  const stageRect = mapStage.getBoundingClientRect();
-  mapTooltip.style.left = (e.clientX - stageRect.left) + 'px';
-  mapTooltip.style.top = (e.clientY - stageRect.top) + 'px';
-  mapTooltip.innerHTML = '<b>' + el.dataset.ttTitle + '</b>' + (el.dataset.ttBody || '');
+  const title = el.dataset.ttTitle;
+  const body = el.dataset.ttBody;
+
+  let x = e.clientX + 14;
+  let y = e.clientY + 14;
+
+  const tooltipWidth = 260;
+  const tooltipHeight = 120;
+  if (x + tooltipWidth > window.innerWidth) x = e.clientX - tooltipWidth - 10;
+  if (y + tooltipHeight > window.innerHeight) y = e.clientY - tooltipHeight - 10;
+
+  mapTooltip.style.left = Math.max(10, x) + 'px';
+  mapTooltip.style.top = Math.max(10, y) + 'px';
+  mapTooltip.innerHTML = '<b>' + title + '</b>' + (body ? '<div class="tt-body">' + body + '</div>' : '');
   mapTooltip.classList.add('on');
 });
-mapSvg.addEventListener('mouseleave', () => mapTooltip.classList.remove('on'));
+document.addEventListener('mouseleave', () => mapTooltip.classList.remove('on'));
 
 // Delegated: one listener on the tab strip rather than one per button, since renderRoadSafetyTabs()
 // rebuilds the buttons via innerHTML on every switch.
