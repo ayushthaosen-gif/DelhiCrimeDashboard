@@ -1,0 +1,9 @@
+{
+  "name": "delhi-crime-dashboard",
+  "version": "1.0.0",
+  "description": "Delhi district crime, road-safety, and infrastructure coverage dashboard",
+  "private": true,
+  "scripts": {
+    "build": "node build.js"
+  }
+}
