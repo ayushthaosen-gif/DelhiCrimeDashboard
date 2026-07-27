@@ -9,6 +9,7 @@ const policeMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/police_ma
 const airportShape = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/airport_shape.json'), 'utf8'));
 const roadSafetyTrends = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/road_safety_trends.json'), 'utf8'));
 const accidentZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/accident_zones.json'), 'utf8'));
+const accidentZonesMapped = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/accident_zones_mapped.json'), 'utf8'));
 const font600 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders600.woff2')).toString('base64');
 const font800 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders800.woff2')).toString('base64');
 
@@ -116,6 +117,9 @@ path.district:hover { opacity: .82; }
 .police-marker { stroke: white; stroke-width: 1; cursor: default; }
 .police-marker.station { fill: #3d5a99; }
 .police-marker.post { fill: #7c3aed; }
+.district-center-ring { fill: none; stroke: var(--label-fill); stroke-width: 1.6; pointer-events: auto; cursor: help; }
+.district-center-dot { fill: var(--label-fill); pointer-events: none; }
+.zone-marker { fill: var(--rust); stroke: white; stroke-width: 1; pointer-events: auto; cursor: default; }
 .airport-shape { fill: var(--slate); fill-opacity: .35; stroke: var(--slate); stroke-width: 1.4; stroke-dasharray: 4,3; pointer-events: auto; cursor: help; }
 .airport-label { font-family: 'Big Shoulders', sans-serif; font-weight: 700; font-size: 10.5px; fill: var(--label-fill); paint-order: stroke; stroke: var(--label-stroke); stroke-width: 2.5px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
 
@@ -189,6 +193,8 @@ details.method-detail code { font-family: "IBM Plex Mono", monospace; background
 .zone-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px 12px; margin-top: 14px; }
 .zone-item { font-size: 12.5px; color: var(--text); padding: 6px 8px; border-radius: 5px; background: var(--surface); border: 1px solid var(--border); display: flex; gap: 8px; align-items: baseline; }
 .zone-item .zone-num { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--text-dim); flex-shrink: 0; }
+.rs-tab-panel { display: none; }
+.rs-tab-panel.active { display: block; }
 
 .download-panel { margin-top: 20px; padding: 18px 20px; }
 .download-panel h2 { font-family: 'Big Shoulders', sans-serif; font-size: 18px; font-weight: 800; margin: 0 0 4px; }
@@ -245,6 +251,10 @@ footer a { color: inherit; }
       <span class="switch"></span>
       Show police markers
     </label>
+    <label class="toggle-row" id="zonesToggle">
+      <span class="switch"></span>
+      Show accident-prone zones
+    </label>
   </div>
 
   <div class="grid">
@@ -262,6 +272,8 @@ footer a { color: inherit; }
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:var(--slate);opacity:.6;border:1px dashed var(--slate);"></span>IGI Airport (separate jurisdiction)</span>
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:#3d5a99;border-radius:50%;"></span>police station</span>
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:#7c3aed;border-radius:50%;"></span>chowki / outpost / post</span>
+          <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:transparent;border:1.6px solid var(--label-fill);border-radius:50%;"></span>district center</span>
+          <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:var(--rust);clip-path:polygon(50% 0%, 100% 100%, 0% 100%);"></span>accident-prone zone (2021)</span>
         </span>
       </div>
     </div>
@@ -315,51 +327,54 @@ footer a { color: inherit; }
     </div>
   </div>
 
-  <div class="panel scatter-panel">
-    <h2>Citywide road safety trends, 2014-2023</h2>
-    <p class="scatter-sub">Delhi Traffic Police's own citywide totals — not broken down by district, so this sits alongside the district analysis above rather than inside it. Indexed to 2014 = 100 so three very differently-scaled series (thousands of crashes, hundreds of deaths) can share one axis.</p>
-    <div class="scatter-layout">
-      <canvas id="trendsCanvas" width="640" height="320"></canvas>
-      <div>
-        <div class="scatter-stat">
-          <div class="label">Road crashes, 2014→2023</div>
-          <div class="val" id="trendsCrashesChange"></div>
-        </div>
-        <div class="scatter-stat">
-          <div class="label">Road crash fatalities, 2014→2023</div>
-          <div class="val" id="trendsFatalitiesChange"></div>
-        </div>
-        <div class="scatter-read" id="trendsRead"></div>
-      </div>
-    </div>
-    <button class="dl-download-btn" id="dlTrendsDownload" style="margin-top:14px;">⬇ Download CSV — Citywide Road Safety Trends</button>
-  </div>
+  <div class="panel scatter-panel road-safety-panel">
+    <h2>Citywide road safety</h2>
+    <p class="scatter-sub">Delhi Traffic Police's own citywide figures — not broken down by district, so this is kept as its own section rather than folded into the district map/list above where it would misleadingly imply per-district precision it doesn't have.</p>
+    <div class="metric-tabs" id="roadSafetyTabs" style="margin-bottom:16px;"></div>
 
-  <div class="panel scatter-panel">
-    <h2>Road deaths by mode of travel, 2019-2023</h2>
-    <p class="scatter-sub">Who's actually dying on Delhi's roads — pedestrians, two-wheeler riders, cyclists, car occupants, bus passengers, or other/slow-moving vehicles. Directly relevant to a walkability index: pedestrians are unprotected road users by definition.</p>
-    <div class="scatter-layout">
-      <canvas id="victimsCanvas" width="640" height="320"></canvas>
-      <div>
-        <div class="scatter-stat">
-          <div class="label">Pedestrian share of all road deaths, 2023</div>
-          <div class="val" id="pedestrianShare"></div>
+    <div id="rsTrendsPanel" class="rs-tab-panel">
+      <p class="scatter-sub">2014-2023, indexed to 2014 = 100 so three very differently-scaled series (thousands of crashes, hundreds of deaths) can share one axis.</p>
+      <div class="scatter-layout">
+        <canvas id="trendsCanvas" width="640" height="320"></canvas>
+        <div>
+          <div class="scatter-stat">
+            <div class="label">Road crashes, 2014→2023</div>
+            <div class="val" id="trendsCrashesChange"></div>
+          </div>
+          <div class="scatter-stat">
+            <div class="label">Road crash fatalities, 2014→2023</div>
+            <div class="val" id="trendsFatalitiesChange"></div>
+          </div>
+          <div class="scatter-read" id="trendsRead"></div>
         </div>
-        <div class="scatter-stat">
-          <div class="label">Two-wheeler rider share, 2023</div>
-          <div class="val" id="twoWheelerShare"></div>
-        </div>
-        <div class="scatter-read" id="victimsRead"></div>
       </div>
+      <button class="dl-download-btn" id="dlTrendsDownload" style="margin-top:14px;">⬇ Download CSV — Citywide Road Safety Trends</button>
     </div>
-    <button class="dl-download-btn" id="dlVictimsDownload" style="margin-top:14px;">⬇ Download CSV — Road Deaths by Mode of Travel</button>
-  </div>
 
-  <div class="panel scatter-panel">
-    <h2>87 accident-prone zones, 2021</h2>
-    <p class="scatter-sub">Delhi Traffic Police's official blackspot list for 2021 — junctions, flyovers, and stretches with a documented history of fatal crashes. The source report groups these into 6 Traffic Police Ranges (Outer, Eastern, Central, Western, New Delhi, Southern) on an accompanying map, which is a different geography from the 15 Delhi Police districts used everywhere else on this page, so the two aren't merged here. Locations only, not re-transcribed severity counts.</p>
-    <div class="zone-grid" id="zoneGrid"></div>
-    <button class="dl-download-btn" id="dlZonesDownload" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List</button>
+    <div id="rsVictimsPanel" class="rs-tab-panel">
+      <p class="scatter-sub">Who's actually dying on Delhi's roads, 2019-2023 — pedestrians, two-wheeler riders, cyclists, car occupants, bus passengers, or other/slow-moving vehicles. Directly relevant to a walkability index: pedestrians are unprotected road users by definition.</p>
+      <div class="scatter-layout">
+        <canvas id="victimsCanvas" width="640" height="320"></canvas>
+        <div>
+          <div class="scatter-stat">
+            <div class="label">Pedestrian share of all road deaths, 2023</div>
+            <div class="val" id="pedestrianShare"></div>
+          </div>
+          <div class="scatter-stat">
+            <div class="label">Two-wheeler rider share, 2023</div>
+            <div class="val" id="twoWheelerShare"></div>
+          </div>
+          <div class="scatter-read" id="victimsRead"></div>
+        </div>
+      </div>
+      <button class="dl-download-btn" id="dlVictimsDownload" style="margin-top:14px;">⬇ Download CSV — Road Deaths by Mode of Travel</button>
+    </div>
+
+    <div id="rsZonesPanel" class="rs-tab-panel">
+      <p class="scatter-sub">Delhi Traffic Police's official blackspot list for 2021 — junctions, flyovers, and stretches with a documented history of fatal crashes. <b>35 of these 87</b> could be confidently geocoded (via OpenStreetMap Nominatim, filtered to fall inside a Delhi district polygon) and are plotted on the map above — toggle "Show accident-prone zones" to see them. The rest use informal/colloquial names Nominatim couldn't confidently resolve, so they're listed here by name only rather than guessed at. The source report also groups all 87 into 6 Traffic Police Ranges on its own map, a different geography from the 15 districts used elsewhere here, so that grouping isn't reproduced.</p>
+      <div class="zone-grid" id="zoneGrid"></div>
+      <button class="dl-download-btn" id="dlZonesDownload" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List</button>
+    </div>
   </div>
 
   <div class="panel download-panel">
@@ -405,7 +420,7 @@ footer a { color: inherit; }
   </div>
 
   <footer>
-    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2023) and road deaths by mode of travel (2019-2023): Delhi Traffic Police annual road crash data · 87 accident-prone zones (2021): Delhi Traffic Police, "Accident-Prone Zones of the Year – 2021" · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
+    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2023) and road deaths by mode of travel (2019-2023): Delhi Traffic Police annual road crash data · 87 accident-prone zones (2021): Delhi Traffic Police, "Accident-Prone Zones of the Year – 2021"; 35 of 87 geocoded via <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap Nominatim</a> and shown on the map, remainder listed by name only · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
     <span>District boundary polygons simplified for display (~165m tolerance) — not survey-grade. IGI Airport unit and non-geographic units (Crime Branch, EOW, Metro, Railway, Vigilance, etc.) excluded from district figures.</span>
   </footer>
 </div>
@@ -419,6 +434,7 @@ const AIRPORT_SHAPE = ${JSON.stringify(airportShape)};
 const TRENDS = ${JSON.stringify(roadSafetyTrends.trends)};
 const VICTIMS = ${JSON.stringify(roadSafetyTrends.victims)};
 const ACCIDENT_ZONES = ${JSON.stringify(accidentZones)};
+const ACCIDENT_ZONES_MAPPED = ${JSON.stringify(accidentZonesMapped)};
 
 const METRICS = [
   { key: 'theft', label: 'Theft', short: 'theft', year: '2023', full: 'Theft (Sec. 379 IPC), 2023', prevKey: 'theft2022', prevYear: '2022', key2024: 'theft2024' },
@@ -452,6 +468,7 @@ let activeMetric = 'theft';
 let activeYear = '2023';
 let showLights = false;
 let showPolice = false;
+let showZones = false;
 let selected = null;
 let scatterType = 'streetlight';
 let scatterYMetric = 'hitAndRunCrashes2022';
@@ -546,8 +563,14 @@ function renderMap() {
   // marked explicitly instead of left as an unexplained gap in South-West's territory.
   parts.push('<path class="airport-shape" d="' + AIRPORT_SHAPE.path + '"><title>IGI Airport — separate police jurisdiction, no crime data in this dataset</title></path>');
   parts.push('<text class="airport-label" x="' + AIRPORT_SHAPE.cx + '" y="' + AIRPORT_SHAPE.cy + '">✈ Airport</text>');
+  // District center marker — a ring-and-dot symbol at each district's polygon centroid,
+  // the standard cartographic convention for a capital/administrative center. This is the
+  // geometric centroid of the (simplified) district boundary, not a specific DCP office
+  // address — labeled that way below rather than implying survey-grade HQ precision.
   DATA.forEach(d => {
-    parts.push('<text class="district-label" x="' + d.cx + '" y="' + d.cy + '">' + d.name + '</text>');
+    parts.push('<circle class="district-center-ring" cx="' + d.cx + '" cy="' + d.cy + '" r="5.5"><title>' + d.name + ' district — approximate center</title></circle>');
+    parts.push('<circle class="district-center-dot" cx="' + d.cx + '" cy="' + d.cy + '" r="2"></circle>');
+    parts.push('<text class="district-label" x="' + d.cx + '" y="' + (d.cy + 17) + '">' + d.name + '</text>');
   });
   if (showPolice) {
     POLICE_MARKERS.posts.forEach(([x,y,name]) => {
@@ -555,6 +578,12 @@ function renderMap() {
     });
     POLICE_MARKERS.stations.forEach(([x,y,name]) => {
       parts.push('<circle class="police-marker station" cx="' + x + '" cy="' + y + '" r="4.2"><title>' + name + '</title></circle>');
+    });
+  }
+  if (showZones) {
+    ACCIDENT_ZONES_MAPPED.forEach(z => {
+      const x = z.x, y = z.y;
+      parts.push('<path class="zone-marker" d="M' + x + ',' + (y-6) + ' L' + (x+5.2) + ',' + (y+4) + ' L' + (x-5.2) + ',' + (y+4) + ' Z"><title>' + z.name + ' — accident-prone zone, 2021 (' + z.district + ')</title></path>');
     });
   }
   svg.innerHTML = parts.join('');
@@ -1067,6 +1096,12 @@ document.getElementById('policeToggle').addEventListener('click', function(){
   renderMap();
 });
 
+document.getElementById('zonesToggle').addEventListener('click', function(){
+  showZones = !showZones;
+  this.classList.toggle('on', showZones);
+  renderMap();
+});
+
 // ── DOWNLOAD DATA ──
 // derive fields are computed (not a raw DATA property) — mainly the coverage-flag columns,
 // so the exported data is self-documenting about what's real vs. a survey/reporting gap even
@@ -1356,6 +1391,8 @@ function buildSourcesSheet() {
     ['Citywide road crashes/fatalities, 2014-2023', 'Delhi Traffic Police annual road crash data', 'No single public URL — citywide totals, not district-level', 'Not broken down by district, so not merged into the per-district metrics above. Used only in the standalone "Citywide road safety trends" chart.'],
     ['Road deaths by mode of travel, 2019-2023', 'Delhi Traffic Police annual road crash data', 'No single public URL — citywide totals, not district-level', 'Pedestrian, cyclist, car occupant, two-wheeler rider, bus passenger, slow-moving/animal-driven, and other categories. Citywide only, same caveat as above.'],
     ['87 accident-prone zones, 2021', 'Delhi Traffic Police, "Accident-Prone Zones of the Year – 2021"', 'No single public URL', 'Named blackspot locations only. The source report also groups these into 6 Traffic Police Ranges (Outer, Eastern, Central, Western, New Delhi, Southern) on an accompanying map with a fatal-count legend (3 / 4-6 / 7-8 per zone) — not reproduced here since that Range geography is different from the 15 Delhi Police districts used elsewhere on this page, and the per-zone Range/severity was not reliably re-transcribable from the source map.'],
+    ['Accident-prone zone map coordinates', 'OpenStreetMap Nominatim geocoding of the 87 zone names above', 'https://nominatim.openstreetmap.org/', '35 of 87 (40%) geocoded with a confident, in-Delhi-bounds match and are plotted on the map. The other 52 use informal/colloquial location names (e.g. under-pass or market names) that returned no confident match — listed by name only, not guessed at or force-placed.'],
+    ['District center markers', 'Computed from the district boundary polygons already used for the choropleth', 'n/a — derived, not a separate source', 'Geometric centroid of each simplified district polygon, not a specific administrative headquarters address. Labeled "district center" on the map for that reason.'],
     ['Streetlights', 'PAPL streetlight survey', 'https://otd.delhi.gov.in/ — Delhi Transport Stack Open Transit Data, agency=paplilabs', '9 of 15 districts — the survey vehicle only physically drove through part of Delhi. Zero elsewhere means unsurveyed, not unlit.'],
     ['Pedestrian underpasses', 'PAPL underpass survey', 'https://otd.delhi.gov.in/ — Delhi Transport Stack Open Transit Data, same agency', 'Same 9 districts as streetlights — identical survey vehicle, identical gap.'],
     ['Metro station gates', 'OpenStreetMap, railway=subway_entrance tag', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — thorough community mapping citywide.'],
@@ -1404,6 +1441,30 @@ document.getElementById('dlExcelDownload').addEventListener('click', () => {
   URL.revokeObjectURL(url);
 });
 
+const ROAD_SAFETY_TABS = [
+  { key: 'trends', label: 'Trends, 2014-2023' },
+  { key: 'victims', label: 'By Mode of Travel' },
+  { key: 'zones', label: 'Accident-Prone Zones' },
+];
+let activeRoadSafetyTab = 'trends';
+function renderRoadSafetyTabs() {
+  document.getElementById('roadSafetyTabs').innerHTML = ROAD_SAFETY_TABS.map(t =>
+    '<button class="metric-tab' + (t.key===activeRoadSafetyTab?' active':'') + '" data-key="' + t.key + '">' + t.label + '</button>'
+  ).join('');
+  document.querySelectorAll('#roadSafetyTabs .metric-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeRoadSafetyTab = btn.dataset.key;
+      renderRoadSafetyTabs();
+      document.getElementById('rsTrendsPanel').classList.toggle('active', activeRoadSafetyTab === 'trends');
+      document.getElementById('rsVictimsPanel').classList.toggle('active', activeRoadSafetyTab === 'victims');
+      document.getElementById('rsZonesPanel').classList.toggle('active', activeRoadSafetyTab === 'zones');
+    });
+  });
+  document.getElementById('rsTrendsPanel').classList.toggle('active', activeRoadSafetyTab === 'trends');
+  document.getElementById('rsVictimsPanel').classList.toggle('active', activeRoadSafetyTab === 'victims');
+  document.getElementById('rsZonesPanel').classList.toggle('active', activeRoadSafetyTab === 'zones');
+}
+
 const DOWNLOAD_TABS = [
   { key: 'all', label: 'All District Data' },
   { key: 'corr', label: 'Correlation Matrix' },
@@ -1430,6 +1491,7 @@ function renderDownloadTabs() {
 buildScatterTabs();
 renderScatter();
 render();
+renderRoadSafetyTabs();
 renderDownloadTabs();
 renderDownloadFields();
 </script>
