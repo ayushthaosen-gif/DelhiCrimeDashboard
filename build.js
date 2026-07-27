@@ -324,7 +324,6 @@ footer a { color: inherit; }
   </header>
 
   <div class="purpose-banner">
-    <div class="purpose-icon">🛡️</div>
     <div class="purpose-text">
       <b class="purpose-title">About the Delhi District Safety Index &amp; Project Rationale</b>
       <p>This interactive dashboard quantifies public safety, crime density, traffic fatality risks, and municipal security infrastructure across Delhi's 15 police jurisdictions. By integrating official <b>NCRB crime reports (2022–2024)</b>, <b>Delhi Traffic Police accident blackspots</b>, and <b>Open Transit municipal surveys</b>, this platform provides citizens, urban planners, and policy researchers with empirical data on safety patterns, infrastructure equity, and urban walkability across the city.</p>
@@ -332,7 +331,6 @@ footer a { color: inherit; }
   </div>
 
   <div class="datanote">
-    <span>⚠</span>
     <div>
       <b>Four infrastructure layers, six outcome metrics, several different coverage levels — read the confidence markers.</b>
       <ul>
@@ -348,7 +346,6 @@ footer a { color: inherit; }
   <div class="controls">
     <div class="search-container">
       <div class="search-input-wrap">
-        <span class="search-icon">🔍</span>
         <input type="text" id="districtSearch" class="search-input" placeholder="Search district or police station (e.g. Rohini, Kashmere Gate, Majnu ka Tila, Vasant Kunj)..." autocomplete="off" />
         <button id="searchClear" class="search-clear">✕</button>
       </div>
@@ -356,7 +353,7 @@ footer a { color: inherit; }
     </div>
     <div class="metric-tabs" id="metricTabs"></div>
     <div class="metric-tabs" id="yearToggle"></div>
-    <button class="compare-btn" id="compareToggleBtn">⚔️ Compare Districts</button>
+    <button class="compare-btn" id="compareToggleBtn">Compare Districts</button>
     <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap">
       <span class="switch"></span>
       Show streetlight survey heatmap
@@ -747,7 +744,7 @@ function initMap() {
 
   const airportLayer = svg.querySelector('#airportLayer');
   airportLayer.innerHTML = '<path class="airport-shape" d="' + AIRPORT_SHAPE.path + '" data-tt-title="IGI Airport" data-tt-body="Separate police jurisdiction — no crime data in this dataset"></path>' +
-    '<text class="airport-label" x="' + AIRPORT_SHAPE.cx + '" y="' + AIRPORT_SHAPE.cy + '">✈ Airport</text>';
+    '<text class="airport-label" x="' + AIRPORT_SHAPE.cx + '" y="' + AIRPORT_SHAPE.cy + '">IGI Airport</text>';
 
   const centerLayer = svg.querySelector('#centerMarkersLayer');
   const centerParts = [];
@@ -827,11 +824,11 @@ function renderMap() {
       ? 'No data for this metric'
       : '<div class="tt-metric"><b>' + m.short + ' (' + activeYear + '):</b> ' + fmtNum(v) + '</div>' +
         '<div class="tt-breakdown">' +
-          '<div class="tt-row"><span>🚗 Theft:</span><b>' + fmtNum(yearTheft) + '</b></div>' +
-          '<div class="tt-row"><span>🔓 Robbery:</span><b>' + fmtNum(yearRobbery) + '</b></div>' +
-          '<div class="tt-row"><span>🏚️ Burglary:</span><b>' + fmtNum(yearBurglary) + '</b></div>' +
-          '<div class="tt-row"><span>👩 Vs. Women:</span><b>' + fmtNum(yearCAW) + '</b></div>' +
-          '<div class="tt-row"><span>⚖️ SLL Crimes:</span><b>' + fmtNum(yearSLL) + '</b></div>' +
+          '<div class="tt-row"><span>Theft:</span><b>' + fmtNum(yearTheft) + '</b></div>' +
+          '<div class="tt-row"><span>Robbery:</span><b>' + fmtNum(yearRobbery) + '</b></div>' +
+          '<div class="tt-row"><span>Burglary:</span><b>' + fmtNum(yearBurglary) + '</b></div>' +
+          '<div class="tt-row"><span>Vs. Women:</span><b>' + fmtNum(yearCAW) + '</b></div>' +
+          '<div class="tt-row"><span>SLL Crimes:</span><b>' + fmtNum(yearSLL) + '</b></div>' +
         '</div>';
 
     path.setAttribute('fill', fill);
@@ -1064,13 +1061,13 @@ function renderDetail() {
 
   const svSection = '<div class="section-divider"></div>' +
     '<div class="analysis" style="border:none;padding-top:0;margin-top:0;">' +
-      '<div class="stat-label">📍 Street View Locations (' + d.name + ')</div>' +
+      '<div class="stat-label">Street View Locations (' + d.name + ')</div>' +
       '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">' +
         distStations.slice(0, 3).map(([x,y,name]) =>
-          '<a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name + ' Delhi Police ' + d.name) + '" target="_blank" rel="noopener" class="street-view-btn" style="margin:0;">👮 ' + esc(name) + '</a>'
+          '<a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name + ' Delhi Police ' + d.name) + '" target="_blank" rel="noopener" class="street-view-btn" style="margin:0;">PS ' + esc(name) + '</a>'
         ).join('') +
         distZones.slice(0, 3).map(z =>
-          '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + z.lat + ',' + z.lng + '" target="_blank" rel="noopener" class="street-view-btn" style="margin:0;">🚨 ' + esc(z.name) + ' (' + z.fatal + ' fatal)</a>'
+          '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + z.lat + ',' + z.lng + '" target="_blank" rel="noopener" class="street-view-btn" style="margin:0;">Zone ' + esc(z.name) + ' (' + z.fatal + ' fatal)</a>'
         ).join('') +
       '</div>' +
     '</div>';
@@ -1178,7 +1175,7 @@ function renderCorrelationMatrix() {
 
   container.innerHTML =
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">' +
-      '<h3 style="font-size:22px;font-weight:800;margin:0;color:var(--text);">📊 Dynamic Infrastructure-Crime Correlation Matrix (' + year + ')</h3>' +
+      '<h3 style="font-size:22px;font-weight:800;margin:0;color:var(--text);">Dynamic Infrastructure-Crime Correlation Matrix (' + year + ')</h3>' +
       '<span style="font-size:12px;color:var(--text-dim);font-family:monospace;">Pearson r per-km² density</span>' +
     '</div>' +
     '<div style="overflow-x:auto;">' +
@@ -1188,7 +1185,7 @@ function renderCorrelationMatrix() {
       '</table>' +
     '</div>' +
     '<div style="font-size:12px;color:var(--text-dim);margin-top:12px;line-height:1.5;background:var(--bg);padding:10px 14px;border-radius:6px;border:1px solid var(--border);">' +
-      '💡 <b>Methodology & Confounder Explanation</b>: Coefficients ($r$) measure the linear alignment between infrastructure density ($count / km^2$) and crime density ($cases / km^2$). Positive correlations (e.g. metro stations or police posts with theft) reflect <i>urban activity density</i> — commercial and transit hubs concentrate both infrastructure investments and footfall exposure. They do not imply infrastructure induces crime.' +
+      '<b>Methodology & Confounder Explanation</b>: Coefficients ($r$) measure the linear alignment between infrastructure density ($count / km^2$) and crime density ($cases / km^2$). Positive correlations (e.g. metro stations or police posts with theft) reflect <i>urban activity density</i> — commercial and transit hubs concentrate both infrastructure investments and footfall exposure. They do not imply infrastructure induces crime.' +
     '</div>';
 }
 
@@ -1481,7 +1478,7 @@ function renderZones() {
       '<span class="zone-num">' + z.rank + '</span>' +
       '<span class="zone-name">' + esc(z.name) + ' <span class="zone-road">(' + esc(z.road) + ')</span></span>' +
       '<span class="zone-severity" title="' + z.fatal + ' fatal, ' + z.simple + ' simple, ' + z.total + ' total crashes in 2023">' + z.fatal + ' fatal</span>' +
-      '<a href="' + svUrl + '" target="_blank" rel="noopener" class="street-view-btn" data-tt-title="Open Google Street View" data-tt-body="View 360° Street View photography for ' + esc(z.name) + '">📍 Street View</a>' +
+      '<a href="' + svUrl + '" target="_blank" rel="noopener" class="street-view-btn" data-tt-title="Open Google Street View" data-tt-body="View 360° Street View photography for ' + esc(z.name) + '">Street View</a>' +
     '</div>';
   }).join('');
 }
@@ -1702,7 +1699,7 @@ function renderCompareCard() {
   }
 
   card.innerHTML =
-    '<h2>⚔️ Side-by-Side District Comparison ' +
+    '<h2>Side-by-Side District Comparison ' +
       '<div style="font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;">' +
         '<select id="compSel1" style="font:inherit;font-size:13px;padding:4px 8px;border-radius:6px;background:var(--bg);color:var(--text);border:1px solid var(--border);">' +
           DATA.map(x => '<option value="' + x.name + '"' + (x.name===d1.name?' selected':'') + '>' + x.name + '</option>').join('') +
