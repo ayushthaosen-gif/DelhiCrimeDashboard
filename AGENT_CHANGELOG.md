@@ -7,6 +7,22 @@ This log tracks all architectural, performance, accessibility, and code quality 
 
 ---
 
+## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 4
+
+### 📍 Google Street View Integration for Crash Blackspots & Police Facilities
+
+1. **Crash-Prone Zones Table (`#zoneGrid`)**
+   - Added direct `📍 Street View` links for all 107 accident blackspots pointing to Google Street View 360° panoramas (`viewpoint=lat,lng`).
+
+2. **Map Markers Interactive Click Handler (`data-sv-url`)**
+   - Added `data-sv-url` attributes to all police station, chowki, and crash zone map markers.
+   - Clicking any marker directly opens Google Maps / 360° Street View photography for that location in a new tab.
+
+3. **District Detail Panel Street View Section**
+   - Added a dedicated `📍 Street View Locations` section in `renderDetail()` listing key police stations and top crash blackspots for the selected district.
+
+---
+
 ## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 3
 
 ### 🚀 Search, Sparklines & Comparison Mode

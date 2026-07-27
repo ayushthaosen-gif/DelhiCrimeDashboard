@@ -197,6 +197,29 @@ path.district:hover { opacity: .82; }
 .rank-bar-fill { height: 100%; border-radius: 3px; }
 .rank-val { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace; font-variant-numeric: tabular-nums; font-size: 12.5px; font-weight: 600; }
 
+.street-view-btn {
+  font-family: -apple-system, sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--amber);
+  text-decoration: none;
+  white-space: nowrap;
+  margin-left: 6px;
+  transition: background .12s, color .12s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.street-view-btn:hover {
+  background: var(--amber);
+  color: var(--night);
+  border-color: var(--amber);
+}
+
 .detail { margin-top: 18px; padding: 16px 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px 20px; }
 .detail-head { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 2px; }
 .detail-head h2 { font-family: 'Big Shoulders', sans-serif; font-size: 26px; font-weight: 800; margin: 0; }
@@ -723,11 +746,13 @@ function initMap() {
   const policeParts = [];
   POLICE_MARKERS.posts.forEach(([x, y, name]) => {
     const distName = findDistrictName(x, y);
-    policeParts.push('<circle class="police-marker post" cx="' + x + '" cy="' + y + '" r="3.2" data-tt-title="' + esc(name) + '" data-tt-body="Police Chowki / Outpost · ' + esc(distName) + ' District"></circle>');
+    const svUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name + ' Delhi Police ' + distName);
+    policeParts.push('<circle class="police-marker post" cx="' + x + '" cy="' + y + '" r="3.2" data-sv-url="' + svUrl + '" data-tt-title="' + esc(name) + '" data-tt-body="Police Chowki / Outpost · ' + esc(distName) + ' District (Click to open Street View / Location)"></circle>');
   });
   POLICE_MARKERS.stations.forEach(([x, y, name]) => {
     const distName = findDistrictName(x, y);
-    policeParts.push('<circle class="police-marker station" cx="' + x + '" cy="' + y + '" r="4.2" data-tt-title="' + esc(name) + '" data-tt-body="Official Police Station · ' + esc(distName) + ' District"></circle>');
+    const svUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name + ' Delhi Police ' + distName);
+    policeParts.push('<circle class="police-marker station" cx="' + x + '" cy="' + y + '" r="4.2" data-sv-url="' + svUrl + '" data-tt-title="' + esc(name) + '" data-tt-body="Official Police Station · ' + esc(distName) + ' District (Click to open Street View / Location)"></circle>');
   });
   policeLayer.innerHTML = policeParts.join('');
 
@@ -738,7 +763,8 @@ function initMap() {
     const t = Math.max(0, Math.min(1, (z.fatal - 1) / 6));
     const size = 4.5 + t * 3.5;
     const opacity = (0.55 + t * 0.45).toFixed(2);
-    zoneParts.push('<path class="zone-marker" style="opacity:' + opacity + '" d="M' + x + ',' + (y - size) + ' L' + (x + size * 0.87) + ',' + (y + size * 0.67) + ' L' + (x - size * 0.87) + ',' + (y + size * 0.67) + ' Z" data-tt-title="' + esc(z.name + ' (' + z.road + ')') + '" data-tt-body="' + esc(z.district + ' · ' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023') + '"></path>');
+    const svUrl = z.lat && z.lng ? 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + z.lat + ',' + z.lng : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(z.name + ' ' + z.road + ' Delhi');
+    zoneParts.push('<path class="zone-marker" style="opacity:' + opacity + '" d="M' + x + ',' + (y - size) + ' L' + (x + size * 0.87) + ',' + (y + size * 0.67) + ' L' + (x - size * 0.87) + ',' + (y + size * 0.67) + ' Z" data-sv-url="' + svUrl + '" data-tt-title="' + esc(z.name + ' (' + z.road + ')') + '" data-tt-body="' + esc(z.district + ' · ' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023') + ' (Click for 360° Street View)"></path>');
   });
   zonesLayer.innerHTML = zoneParts.join('');
 
@@ -995,6 +1021,29 @@ function renderDetail() {
       (covered ? '<span class="stat-val">' + val + '</span>' : val) + '</div>';
   }).join('');
 
+  function findDistrictNameForDetail(x, y) {
+    return DATA.reduce((best, distObj) => {
+      const dist = Math.hypot(distObj.cx - x, distObj.cy - y);
+      return dist < best.dist ? { distObj, dist } : best;
+    }, { dist: Infinity }).distObj.name;
+  }
+
+  const distStations = POLICE_MARKERS.stations.filter(([x,y,name]) => findDistrictNameForDetail(x,y) === d.name);
+  const distZones = ACCIDENT_ZONES_MAPPED.filter(z => z.district === d.name);
+
+  const svSection = '<div class="section-divider"></div>' +
+    '<div class="analysis" style="border:none;padding-top:0;margin-top:0;">' +
+      '<div class="stat-label">📍 Street View Locations (' + d.name + ')</div>' +
+      '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">' +
+        distStations.slice(0, 3).map(([x,y,name]) =>
+          '<a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name + ' Delhi Police ' + d.name) + '" target="_blank" rel="noopener" class="street-view-btn" style="margin:0;">👮 ' + esc(name) + '</a>'
+        ).join('') +
+        distZones.slice(0, 3).map(z =>
+          '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + z.lat + ',' + z.lng + '" target="_blank" rel="noopener" class="street-view-btn" style="margin:0;">🚨 ' + esc(z.name) + ' (' + z.fatal + ' fatal)</a>'
+        ).join('') +
+      '</div>' +
+    '</div>';
+
   el.innerHTML = `
     <div class="detail-head">
       <h2>${d.name}</h2>
@@ -1014,6 +1063,7 @@ function renderDetail() {
     <div class="stat"><span class="stat-label"><span class="confidence-dot ${d.hitAndRunCrashes2022!=null?'high':'partial'}"></span>Hit & run '22</span>${d.hitAndRunCrashes2022!=null ? '<span class="stat-val">'+fmtNum(d.hitAndRunCrashes2022)+'</span>' : '<span class="stat-val nodata">Not reported</span>'}</div>
     <div class="section-divider"></div>
     ${infraTiles}
+    ${svSection}
     <div class="analysis">
       <div class="confidence-badge ${a.confidenceLevel}">${a.confidenceLevel === 'high' ? '●' : '◐'} ${a.confidenceLabel}</div>
       <p>${a.crimeP}</p>
@@ -1325,9 +1375,17 @@ function renderVictimsByMode() {
 
 function renderZones() {
   const el = document.getElementById('zoneGrid');
-  el.innerHTML = ACCIDENT_ZONES.map(z =>
-    '<div class="zone-item"><span class="zone-num">' + z.rank + '</span><span class="zone-name">' + z.name + ' <span class="zone-road">(' + z.road + ')</span></span><span class="zone-severity" title="' + z.fatal + ' fatal, ' + z.simple + ' simple, ' + z.total + ' total crashes in 2023">' + z.fatal + ' fatal</span></div>'
-  ).join('');
+  el.innerHTML = ACCIDENT_ZONES.map(z => {
+    const svUrl = z.lat && z.lng
+      ? 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + z.lat + ',' + z.lng
+      : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(z.name + ' ' + z.road + ' Delhi');
+    return '<div class="zone-item">' +
+      '<span class="zone-num">' + z.rank + '</span>' +
+      '<span class="zone-name">' + esc(z.name) + ' <span class="zone-road">(' + esc(z.road) + ')</span></span>' +
+      '<span class="zone-severity" title="' + z.fatal + ' fatal, ' + z.simple + ' simple, ' + z.total + ' total crashes in 2023">' + z.fatal + ' fatal</span>' +
+      '<a href="' + svUrl + '" target="_blank" rel="noopener" class="street-view-btn" data-tt-title="Open Google Street View" data-tt-body="View 360° Street View photography for ' + esc(z.name) + '">📍 Street View</a>' +
+    '</div>';
+  }).join('');
 }
 
 function render() {
@@ -1449,9 +1507,12 @@ const mapStage = document.querySelector('.map-stage');
 const mapTooltip = document.getElementById('mapTooltip');
 
 mapSvg.addEventListener('click', (e) => {
+  const marker = e.target.closest('[data-sv-url]');
+  if (marker && marker.dataset.svUrl) {
+    window.open(marker.dataset.svUrl, '_blank', 'noopener');
+    return;
+  }
   const path = e.target.closest('.district');
-  // Clicking the already-selected district, or empty map background, clears the selection
-  // and falls back to the default district view rather than staying stuck on one district.
   selected = path ? (selected === path.dataset.name ? null : path.dataset.name) : null;
   render();
 });
