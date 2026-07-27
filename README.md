@@ -10,33 +10,37 @@ a browser — no server or build step required to view it.
 
 ## What's new in this version
 
-- **Full 15-district 2023 crash data.** The Delhi Road Crash Report 2023 uses
-  the same 15-district geography as everything else on this page (unlike the
-  2022 report, which only covers 11), so its crash-prone-zone, fatal-crash,
-  and total-crash figures are now selectable choropleth/list metrics with
-  zero coverage gaps.
-- **107 named crash-prone zones with real severity**, replacing the old
-  87-zone, name-only 2021 list. Each zone now carries its actual 2023 simple/
-  fatal/total crash counts, plus coordinates for all 107 (cross-validated
-  against the source table by rank and fatal-crash count — zero mismatches).
-  105 of 107 fall inside a district polygon and are plotted on the map as a
-  toggleable layer, sized and shaded by fatal crash count; the remaining 2
-  sit just outside every simplified district boundary and stay in the text
-  list instead of being force-placed.
-- **District-center markers** on the map — a ring-and-dot symbol at each
-  district's polygon centroid (labeled as an approximate center, not a
-  specific administrative address).
-- **Citywide road-safety detail panel**, consolidated into one tabbed section
-  (Trends / By Mode of Travel / Crash-Prone Zones) instead of three separate
-  panels: a 2014-2023 crash/fatality trend line, a 2019-2023 breakdown of
-  road deaths by mode of travel (pedestrian, two-wheeler, car, cyclist, bus),
-  and the full crash-prone-zone list.
-- **Year comparison for crime data.** A 2022 / 2023 / 2024 toggle on the map,
+- **Sharp charts on high-DPI screens.** The scatter, trends, and
+  road-deaths-by-mode charts now render at native device pixel density
+  instead of a fixed buffer stretched by CSS — no more blur on Retina
+  displays or modern phones.
+- **Custom tooltips** on the map (districts, police markers, crash zones,
+  district centers) replace OS-rendered SVG `<title>` tooltips — instant,
+  styled, no 1-2 second hover delay.
+- **Rank-based (percentile) color scale** on the map and ranked list instead
+  of linear min-max — one outlier district can no longer squash every other
+  district into the bottom of the color range and hide their real variance.
+- **Deselection**: clicking the already-selected district, or the map
+  background, clears the selection instead of it being sticky.
+- Fixed a table-parsing bug where one crash-prone zone had lost its name
+  entirely, and cleaned up OCR artifacts (e.g. "GTKRoad") that had leaked
+  into the *displayed* zone list text, not just the map-coordinate lookups.
+- Full 15-district 2023 crash data (crash-prone zones, fatal crashes, total
+  crashes) from the Delhi Road Crash Report 2023 — zero coverage gaps,
+  unlike the 2022 report's 11-district reporting geography.
+- All 107 named crash-prone zones now carry real 2023 severity counts and
+  coordinates (cross-validated against the source table by rank and
+  fatal-crash count); 105 of 107 plot on the map as a toggleable layer,
+  sized and shaded by fatal crash count.
+- District-center markers on the map — a ring-and-dot symbol at each
+  district's polygon centroid.
+- Citywide road-safety detail panel, consolidated into one tabbed section
+  (Trends / By Mode of Travel / Crash-Prone Zones).
+- Year comparison for crime data: a 2022 / 2023 / 2024 toggle on the map,
   ranked list, and district detail panel, each with a "vs. previous year"
-  change badge, backed by three years of matching NCRB district-wise tables.
-- **Downloadable everything.** Every dataset above has its own CSV button,
-  plus a full Excel workbook (Data, Correlation Matrix, Data Dictionary,
-  Sources & Methodology, Current Comparison sheets) for citation.
+  change badge.
+- Downloadable everything — CSV per dataset, plus a full Excel workbook for
+  citation.
 
 ## Using this data in your own report or dashboard
 

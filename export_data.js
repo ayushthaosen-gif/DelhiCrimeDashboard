@@ -53,13 +53,16 @@ const districts = dashboardFinal.districts.map(d => {
 write('districts', districtFields, districts.map(r => districtFields.map(f => r[f])), districts);
 
 // ── 2. Crash-prone zones, 2023: name, road, severity, and lat/lng where geocoded ──
+// Matched by rank, not name — a couple of zone names have needed correction after the fact
+// (one lost its name entirely to a table-parsing bug), and rank is the stable identifier that
+// survives that, whereas a name-keyed join silently drops the match the moment either side edits it.
 const zonesRaw = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_raw.json'), 'utf8'));
 const zonesGeo = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_geocoded.json'), 'utf8'));
-const geoByName = {};
-zonesGeo.forEach(z => { geoByName[z.name] = z; });
+const geoByRank = {};
+zonesGeo.forEach(z => { geoByRank[z.rank] = z; });
 const zoneFields = ['rank', 'name', 'road', 'simpleCrashes', 'fatalCrashes', 'totalCrashes', 'lat', 'lng', 'geocoded'];
 const zones = zonesRaw.map(z => {
-  const g = geoByName[z.name];
+  const g = geoByRank[z.rank];
   const ok = !!(g && g.lat != null && g.lng != null);
   return {
     rank: z.rank, name: z.name, road: z.road,

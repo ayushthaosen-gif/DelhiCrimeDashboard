@@ -13,7 +13,7 @@
   {
     "rank": 2,
     "name": "Mukarba Chowk",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 11,
     "fatalCrashes": 7,
     "totalCrashes": 18,
@@ -24,7 +24,7 @@
   {
     "rank": 3,
     "name": "Libaspur Bus Stand",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 11,
     "fatalCrashes": 7,
     "totalCrashes": 18,
@@ -34,8 +34,8 @@
   },
   {
     "rank": 4,
-    "name": "",
-    "road": "Boulevard Road",
+    "name": "Boulevard Road",
+    "road": "Kashmiri Gate Area",
     "simpleCrashes": 12,
     "fatalCrashes": 6,
     "totalCrashes": 18,
@@ -111,8 +111,8 @@
   },
   {
     "rank": 11,
-    "name": "Anand Vihar lsbt",
-    "road": "Road No.56",
+    "name": "Anand Vihar ISBT",
+    "road": "Road No. 56",
     "simpleCrashes": 11,
     "fatalCrashes": 5,
     "totalCrashes": 16,
@@ -123,7 +123,7 @@
   {
     "rank": 12,
     "name": "Okhla Mandi",
-    "road": "Captain Gaud Marg",
+    "road": "Captain Gaur Marg",
     "simpleCrashes": 6,
     "fatalCrashes": 5,
     "totalCrashes": 11,
@@ -133,8 +133,8 @@
   },
   {
     "rank": 13,
-    "name": "SgtNagar",
-    "road": "GTKRoad",
+    "name": "SGT Nagar",
+    "road": "GTK Road",
     "simpleCrashes": 6,
     "fatalCrashes": 5,
     "totalCrashes": 11,
@@ -155,7 +155,7 @@
   },
   {
     "rank": 15,
-    "name": "Shalimar Bogh",
+    "name": "Shalimar Bagh",
     "road": "Ring Road",
     "simpleCrashes": 5,
     "fatalCrashes": 5,
@@ -200,7 +200,7 @@
   {
     "rank": 19,
     "name": "Raja Harishchander Hospital",
-    "road": "OSI/DC Nore/a Road",
+    "road": "DSIIDC Narela Road",
     "simpleCrashes": 2,
     "fatalCrashes": 5,
     "totalCrashes": 7,
@@ -210,7 +210,7 @@
   },
   {
     "rank": 20,
-    "name": "Shamshan Ghat Punjabi Bogh",
+    "name": "Shamshan Ghat Punjabi Bagh",
     "road": "Ring Road",
     "simpleCrashes": 2,
     "fatalCrashes": 5,
@@ -222,7 +222,7 @@
   {
     "rank": 21,
     "name": "Haryana Maitri Bhawan",
-    "road": "Road No43",
+    "road": "Road No. 43",
     "simpleCrashes": 1,
     "fatalCrashes": 5,
     "totalCrashes": 6,
@@ -232,8 +232,8 @@
   },
   {
     "rank": 22,
-    "name": "Shastri Park/It Park",
-    "road": "G.T.Road",
+    "name": "Shastri Park / IT Park",
+    "road": "G.T. Road",
     "simpleCrashes": 20,
     "fatalCrashes": 4,
     "totalCrashes": 24,
@@ -255,7 +255,7 @@
   {
     "rank": 24,
     "name": "Swaroop Nagar",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 10,
     "fatalCrashes": 4,
     "totalCrashes": 14,
@@ -276,7 +276,7 @@
   },
   {
     "rank": 26,
-    "name": "Punjabi Bogh Chowk",
+    "name": "Punjabi Bagh Chowk",
     "road": "Ring Road",
     "simpleCrashes": 9,
     "fatalCrashes": 4,
@@ -298,7 +298,7 @@
   },
   {
     "rank": 28,
-    "name": "Kings Way Camp Chowk",
+    "name": "Kingsway Camp Chowk",
     "road": "Ring Road",
     "simpleCrashes": 6,
     "fatalCrashes": 4,
@@ -332,7 +332,7 @@
   {
     "rank": 31,
     "name": "Azadpur Sabzi Mandi",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 5,
     "fatalCrashes": 4,
     "totalCrashes": 9,
@@ -342,7 +342,7 @@
   },
   {
     "rank": 32,
-    "name": "Ti/ak Nagar Flyover",
+    "name": "Tilak Nagar Flyover",
     "road": "Najafgarh Road",
     "simpleCrashes": 5,
     "fatalCrashes": 4,
@@ -354,7 +354,7 @@
   {
     "rank": 33,
     "name": "Nathu Colony Chowk Nand Nagri",
-    "road": "Road No 68",
+    "road": "Road No. 68",
     "simpleCrashes": 4,
     "fatalCrashes": 4,
     "totalCrashes": 8,
@@ -398,7 +398,7 @@
   {
     "rank": 37,
     "name": "Nangli Poona",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 3,
     "fatalCrashes": 4,
     "totalCrashes": 7,
@@ -408,8 +408,8 @@
   },
   {
     "rank": 38,
-    "name": "Cng Pumpl}ain Mandir NH-1",
-    "road": "GTKRoad",
+    "name": "CNG Pump / Jain Mandir NH-1",
+    "road": "GTK Road",
     "simpleCrashes": 2,
     "fatalCrashes": 4,
     "totalCrashes": 6,
@@ -431,7 +431,7 @@
   {
     "rank": 40,
     "name": "Round About Seemapuri",
-    "road": "Road No 68",
+    "road": "Road No. 68",
     "simpleCrashes": 1,
     "fatalCrashes": 4,
     "totalCrashes": 5,
@@ -474,7 +474,7 @@
   },
   {
     "rank": 44,
-    "name": "UdyogNagar",
+    "name": "Udyog Nagar",
     "road": "Rohtak Road",
     "simpleCrashes": 10,
     "fatalCrashes": 3,
@@ -518,8 +518,8 @@
   },
   {
     "rank": 48,
-    "name": "Shani Mandir Nh-1",
-    "road": "GTKRoad",
+    "name": "Shani Mandir NH-1",
+    "road": "GTK Road",
     "simpleCrashes": 9,
     "fatalCrashes": 3,
     "totalCrashes": 12,
@@ -552,7 +552,7 @@
   {
     "rank": 51,
     "name": "Kanhiya Nagar Metro Station",
-    "road": "VIR Banda Bairagi Mr",
+    "road": "VIR Banda Bairagi Marg",
     "simpleCrashes": 9,
     "fatalCrashes": 3,
     "totalCrashes": 12,
@@ -563,7 +563,7 @@
   {
     "rank": 52,
     "name": "Metro Station Welcome",
-    "road": "G.T.Road",
+    "road": "G.T. Road",
     "simpleCrashes": 8,
     "fatalCrashes": 3,
     "totalCrashes": 11,
@@ -573,7 +573,7 @@
   },
   {
     "rank": 53,
-    "name": "Dtc Bus Depot Nand Nagri",
+    "name": "DTC Bus Depot Nand Nagri",
     "road": "Wazirabad Road",
     "simpleCrashes": 8,
     "fatalCrashes": 3,
@@ -584,8 +584,8 @@
   },
   {
     "rank": 54,
-    "name": "Sai Baba Mandir Nh-1",
-    "road": "GTKRoad",
+    "name": "Sai Baba Mandir NH-1",
+    "road": "GTK Road",
     "simpleCrashes": 7,
     "fatalCrashes": 3,
     "totalCrashes": 10,
@@ -606,8 +606,8 @@
   },
   {
     "rank": 56,
-    "name": "Shaheen Bagh Road No-13a",
-    "road": "Road No 13a",
+    "name": "Shaheen Bagh Road No-13A",
+    "road": "Road No. 13A",
     "simpleCrashes": 7,
     "fatalCrashes": 3,
     "totalCrashes": 10,
@@ -617,7 +617,7 @@
   },
   {
     "rank": 57,
-    "name": "Ti/ak Pu/ Dabri",
+    "name": "Tilak Pul Dabri",
     "road": "Pankha Road",
     "simpleCrashes": 6,
     "fatalCrashes": 3,
@@ -629,7 +629,7 @@
   {
     "rank": 58,
     "name": "Tikri Khurd Bus Stand",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 6,
     "fatalCrashes": 3,
     "totalCrashes": 9,
@@ -683,7 +683,7 @@
   },
   {
     "rank": 63,
-    "name": "IT/ Dheerpur",
+    "name": "ITI Dheerpur",
     "road": "Outer Ring Road",
     "simpleCrashes": 5,
     "fatalCrashes": 3,
@@ -705,8 +705,8 @@
   },
   {
     "rank": 65,
-    "name": "Metro Station lnderlok",
-    "road": "VIR Banda Bairagi Mr",
+    "name": "Metro Station Inderlok",
+    "road": "VIR Banda Bairagi Marg",
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
@@ -749,7 +749,7 @@
   },
   {
     "rank": 69,
-    "name": "Rtr Flyover Vasant Vihar",
+    "name": "RTR Flyover Vasant Vihar",
     "road": "Outer Ring Road",
     "simpleCrashes": 4,
     "fatalCrashes": 3,
@@ -760,8 +760,8 @@
   },
   {
     "rank": 70,
-    "name": "OSI/DC Red Light NH-1",
-    "road": "GTKRoad",
+    "name": "DSIIDC Red Light NH-1",
+    "road": "GTK Road",
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
@@ -772,7 +772,7 @@
   {
     "rank": 71,
     "name": "Adarsh Nagar",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 4,
     "fatalCrashes": 3,
     "totalCrashes": 7,
@@ -782,7 +782,7 @@
   },
   {
     "rank": 72,
-    "name": "Arsd College Ring Road",
+    "name": "ARSD College",
     "road": "Ring Road",
     "simpleCrashes": 3,
     "fatalCrashes": 3,
@@ -804,7 +804,7 @@
   },
   {
     "rank": 74,
-    "name": "Round About Okh/a Estate",
+    "name": "Round About Okhla Estate",
     "road": "Anand Mai Marg",
     "simpleCrashes": 3,
     "fatalCrashes": 3,
@@ -816,7 +816,7 @@
   {
     "rank": 75,
     "name": "Anand Vihar Railway Flyover",
-    "road": "Road No.56",
+    "road": "Road No. 56",
     "simpleCrashes": 3,
     "fatalCrashes": 3,
     "totalCrashes": 6,
@@ -882,7 +882,7 @@
   {
     "rank": 81,
     "name": "Siraspur",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
@@ -904,7 +904,7 @@
   {
     "rank": 83,
     "name": "Mayur Vihar Extension",
-    "road": "Naida Link Road",
+    "road": "Noida Link Road",
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
@@ -914,7 +914,7 @@
   },
   {
     "rank": 84,
-    "name": "Pu/ Mithai Spm Marg",
+    "name": "Pul Mithai",
     "road": "SPM Marg",
     "simpleCrashes": 1,
     "fatalCrashes": 3,
@@ -936,8 +936,8 @@
   },
   {
     "rank": 86,
-    "name": "Goy/a Village Najafgarh",
-    "road": "Goy/a Dairy Road",
+    "name": "Goyla Village Najafgarh",
+    "road": "Goyla Dairy Road",
     "simpleCrashes": 1,
     "fatalCrashes": 3,
     "totalCrashes": 4,
@@ -947,7 +947,7 @@
   },
   {
     "rank": 87,
-    "name": "Near Haldi Ram Wazirpur",
+    "name": "Near Haldiram Wazirpur",
     "road": "Ring Road",
     "simpleCrashes": 0,
     "fatalCrashes": 3,
@@ -959,7 +959,7 @@
   {
     "rank": 88,
     "name": "Surya Nagar Red Light",
-    "road": "Road No.56",
+    "road": "Road No. 56",
     "simpleCrashes": 0,
     "fatalCrashes": 3,
     "totalCrashes": 3,
@@ -969,7 +969,7 @@
   },
   {
     "rank": 89,
-    "name": "lg Indoor Stadium",
+    "name": "IG Indoor Stadium",
     "road": "Ring Road",
     "simpleCrashes": 13,
     "fatalCrashes": 2,
@@ -981,7 +981,7 @@
   {
     "rank": 90,
     "name": "Seelampur T Point",
-    "road": "G.T.Road",
+    "road": "G.T. Road",
     "simpleCrashes": 13,
     "fatalCrashes": 2,
     "totalCrashes": 15,
@@ -1047,7 +1047,7 @@
   {
     "rank": 96,
     "name": "Azadpur Chowk",
-    "road": "GTKRoad",
+    "road": "GTK Road",
     "simpleCrashes": 10,
     "fatalCrashes": 2,
     "totalCrashes": 12,
@@ -1134,7 +1134,7 @@
   },
   {
     "rank": 104,
-    "name": "Rajoukari Flyover",
+    "name": "Rajokari Flyover",
     "road": "NH-8",
     "simpleCrashes": 9,
     "fatalCrashes": 1,
@@ -1145,7 +1145,7 @@
   },
   {
     "rank": 105,
-    "name": "Bara/ Khana Chowk",
+    "name": "Baraf Khana Chowk",
     "road": "Rani Jhansi Road",
     "simpleCrashes": 9,
     "fatalCrashes": 1,
@@ -1156,7 +1156,7 @@
   },
   {
     "rank": 106,
-    "name": "Moo/ Chand",
+    "name": "Mool Chand",
     "road": "Ring Road",
     "simpleCrashes": 15,
     "fatalCrashes": 0,
@@ -1167,8 +1167,8 @@
   },
   {
     "rank": 107,
-    "name": "Outer Circle Cp Near Minto Road",
-    "road": "Outer Circle Cp",
+    "name": "Outer Circle CP Near Minto Road",
+    "road": "Outer Circle CP",
     "simpleCrashes": 10,
     "fatalCrashes": 0,
     "totalCrashes": 10,
