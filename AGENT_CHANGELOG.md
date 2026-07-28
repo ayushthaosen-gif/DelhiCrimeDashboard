@@ -1,5 +1,21 @@
 # AI Collaboration Log & Changelog
 
+## [2026-07-29] - Claude (Anthropic) - Ward-Level Bivariate Mode on the Interactive Map
+
+### 🗺️ 290 Delhi wards, infra-vs-infra bivariate (no crime data exists at ward level)
+
+The user asked to find Delhi ward boundaries and add them to the interactive map "for better bivariate." Investigated first rather than building blind: NCRB crime data is published only at the 15 Delhi-Police-district level — a completely different administrative geography from municipal wards, with no public ward-level crime dataset. Confirmed this with the user before building, who chose infra-vs-infra bivariate (two of the existing 4 OSM-derived point layers cross-referenced against each other, at finer spatial resolution than the 15 districts) over a boundaries-only reference layer.
+
+1. **Ward source**: [DataMeet's Municipal_Spatial_Data](https://github.com/datameet/Municipal_Spatial_Data/tree/master/Delhi) (CC-BY-SA 2.5 India), 290 features (273 named MCD wards + 9 NDMC + 8 Delhi Cantonment charges). Bounding box matches this project's existing Delhi NCT boundary almost exactly, confirming correct geography — but the feature count (290, not the current 250-ward post-2022-unification structure) indicates this is most likely the pre-2022 delimitation. Documented as a vintage caveat rather than presented as current; used only for spatial aggregation, not anything requiring official/current ward lines.
+2. **`build_ward_infra.js`** (new): point-in-polygon aggregates the same OSM-derived bus stop/ATM/liquor shop/CCTV point data already used for the 15-district metrics into per-ward counts and densities, with a bbox pre-filter before the full point-in-ring test (290 wards × ~5,400 points would otherwise be ~1.6M checks). 3,148/3,151 bus stops, 649/649 ATMs, 65/65 liquor shops, and 1,579/1,583 surveillance points assigned to a ward (the handful outside every ward polygon mirror the same border-adjacency gaps already documented for the district-level aggregation). Ward area computed via an equirectangular-projected shoelace formula (adequate at Delhi's ~50km scale). Output: `data/delhi_wards_infra.geojson`.
+3. **Ward bivariate mode** in `build_interactive_map.js`: a "Ward bivariate (290 wards)" toggle + two infra-layer dropdowns, reusing the exact same `BIVARIATE_MATRIX`/`getTertileIndex()` 3×3 tertile-color logic as the existing district bivariate mode, just computed from the ward GeoJSON's density fields directly. Ward polygons render on top of the district choropleth (opacity 0.75) with their own dedicated legend and popups (ward name, area, both layers' counts/density, and a source citation including the delimitation-vintage caveat). Wired into the reset-map control alongside every other toggle.
+
+**Bug caught during verification**: the ward GeoJSON was loaded in the Node build script's outer scope but never actually interpolated into the template literal that produces the page's embedded `<script>` block — the browser-side code referenced a `wardsInfra` that didn't exist there, throwing `ReferenceError` the moment ward bivariate mode was toggled on (`wardLayer` silently stayed `null`, easy to miss without deliberately checking). Fixed by adding the missing `const wardsInfra = ${JSON.stringify(wardsInfra)};` line inside the template literal, matching the existing pattern for `BOUNDARIES`/`POLICE`/`POI`/`ZONES`.
+
+Verified: rebuilt, `node --check` passed, served locally — all 290 wards render with correct bivariate coloring and legend text, a spot-checked popup (Chandni Chowk: 2.62 km², 23 bus stops/8.78 per km², 18 CCTV/6.87 per km²) matches the aggregation script's own console output exactly, switching the X/Y infra-layer dropdowns updates the legend and recolors correctly, ward bivariate mode coexists cleanly with district selection/drawer with no interference, and reset-map correctly clears it. No console errors at any step.
+
+---
+
 ## [2026-07-29] - Claude (Anthropic) - Reconstructed Total IPC, Crime Against Women, SLL Crime for 2016-2021
 
 ### 🔢 Filling in the "—" rows the previous entry left deliberately blank

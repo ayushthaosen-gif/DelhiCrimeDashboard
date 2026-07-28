@@ -15,6 +15,7 @@ const dashboardFinal = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboar
 const policeMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/police_markers_latlng.json'), 'utf8'));
 const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_latlng.json'), 'utf8'));
 const crashZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_geocoded.json'), 'utf8'));
+const wardsInfra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_wards_infra.geojson'), 'utf8'));
 
 // Join crime/infra stats onto the boundary features by district name.
 const statsByDistrict = {};
@@ -121,6 +122,8 @@ body { display: flex; flex-direction: column; }
 .point-legend { position: absolute; bottom: 20px; right: 356px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none; }
 .point-legend.show { display: block; }
 .point-legend .row { display: flex; align-items: center; gap: 7px; padding: 2px 0; }
+#wardLegend { position: absolute; bottom: 20px; left: 240px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); max-width: 240px; display: none; }
+#wardLegend.show { display: block; }
 #analysisBar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--bg); border-bottom: 1px solid var(--border); flex-wrap: wrap; font-size: 12.5px; }
 #analysisBar label { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
 #analysisBar select { font: inherit; font-size: 12.5px; padding: 5px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
@@ -151,6 +154,10 @@ body { display: flex; flex-direction: column; }
   <label><input type="checkbox" id="chkBivariate"> Bivariate mode</label>
   <label id="bivInfraWrap" style="display:none">vs. <select id="bivInfraSelect"></select></label>
   <label><input type="checkbox" id="chkHeatmap"> Heatmap (crash zones)</label>
+  <label><input type="checkbox" id="chkWardBivariate"> Ward bivariate (290 wards)</label>
+  <label id="wardInfraWrap" style="display:none">
+    <select id="wardInfraXSelect"></select> × <select id="wardInfraYSelect"></select>
+  </label>
   <div style="position:relative;">
     <input id="districtSearch" type="text" placeholder="Search district…" autocomplete="off">
     <div id="searchResults"></div>
@@ -188,6 +195,7 @@ body { display: flex; flex-direction: column; }
   <div id="mapWrap"><div id="map"></div></div>
   <div class="leg" id="legend"></div>
   <div class="point-legend" id="pointLegend"></div>
+  <div id="wardLegend"></div>
   <div id="nearbyPanel"></div>
   <div id="drawer">
     <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
@@ -215,6 +223,7 @@ const BOUNDARIES = ${JSON.stringify(boundaries)};
 const POLICE = ${JSON.stringify(policeMarkers)};
 const POI = ${JSON.stringify(poiMarkers)};
 const ZONES = ${JSON.stringify(crashZones)};
+const wardsInfra = ${JSON.stringify(wardsInfra)};
 
 // Crime/road-safety metrics -- mirrors build.js's METRICS[] (year-aware fields, sources) so
 // this page's popups/colors carry the same year semantics as the main dashboard instead of
@@ -242,6 +251,16 @@ const INFRA = [
   { key: 'atm', densityKey: 'atmDensity', countKey: 'atms', label: 'ATMs', source: 'OpenStreetMap (Overpass API)' },
   { key: 'alcoholShop', densityKey: 'alcoholShopDensity', countKey: 'alcoholShops', label: 'Liquor Shops', source: 'OpenStreetMap (Overpass API)' },
   { key: 'surveillance', densityKey: 'surveillanceDensity', countKey: 'surveillanceCameras', label: 'CCTV & Guards', source: 'OpenStreetMap (Overpass API)' },
+];
+
+// Ward-level infra layers -- only the four OSM-derived point layers exist at ward granularity
+// (no crime data is published at ward level, so this pairs two infra layers against each other
+// rather than crime vs. infra). Field names match data/delhi_wards_infra.geojson exactly.
+const WARD_INFRA = [
+  { key: 'busStops', densityKey: 'busStopsDensity', label: 'Bus Stops' },
+  { key: 'atms', densityKey: 'atmsDensity', label: 'ATMs' },
+  { key: 'alcoholShops', densityKey: 'alcoholShopsDensity', label: 'Liquor Shops' },
+  { key: 'surveillance', densityKey: 'surveillanceDensity', label: 'CCTV & Guards' },
 ];
 
 // Districts the PAPL survey actually drove through — shared gap for streetlights and
@@ -364,6 +383,65 @@ function getBivariateColor(feats, d, m, inf) {
   const xIndex = getTertileIndex(currentCrime, crimeValues);
   const yIndex = getTertileIndex(currentInfra, infraValues);
   return BIVARIATE_MATRIX[yIndex][xIndex];
+}
+
+// ── Ward-level bivariate mode: two infra layers cross-referenced at ward granularity (290
+// wards) instead of the 15 districts. No crime data exists at ward level (see WARD_INFRA
+// comment), so this is infra-vs-infra, using the same 3x3 tertile-matrix approach as the
+// district bivariate mode above, just against WARDS_INFRA's per-ward density fields directly.
+let wardBivariateMode = false;
+let wardInfraX = 'busStops';
+let wardInfraY = 'surveillance';
+let wardLayer = null;
+
+function getWardBivariateColor(feats, props, xInf, yInf) {
+  const valid = feats.map(f => f.properties).filter(p => p[xInf.densityKey] != null && p[yInf.densityKey] != null);
+  if (!valid.length) return '#999';
+  const xValues = valid.map(p => p[xInf.densityKey]).sort((a,b)=>a-b);
+  const yValues = valid.map(p => p[yInf.densityKey]).sort((a,b)=>a-b);
+  const xv = props[xInf.densityKey], yv = props[yInf.densityKey];
+  if (xv == null || yv == null) return '#999';
+  const xIndex = getTertileIndex(xv, xValues);
+  const yIndex = getTertileIndex(yv, yValues);
+  return BIVARIATE_MATRIX[yIndex][xIndex];
+}
+
+function renderWardLayer() {
+  if (wardLayer) { map.removeLayer(wardLayer); wardLayer = null; }
+  if (!wardBivariateMode) { renderWardLegend(false); return; }
+  const xInf = WARD_INFRA.find(w => w.key === wardInfraX);
+  const yInf = WARD_INFRA.find(w => w.key === wardInfraY);
+  const feats = wardsInfra.features;
+  wardLayer = L.geoJSON(wardsInfra, {
+    style: f => ({ fillColor: getWardBivariateColor(feats, f.properties, xInf, yInf), fillOpacity: 0.75, color: '#fff', weight: 0.8 }),
+    onEachFeature: (f, layer) => {
+      const p = f.properties;
+      const body = '<div class="popup-title">' + p.Ward_Name + '</div>' +
+        '<div class="popup-rank">Ward — ' + p.areaSqKm + ' km²</div>' +
+        '<div>' + xInf.label + ': <b>' + fmtNum(p[xInf.key]) + '</b> (' + fmtNum(p[xInf.densityKey]) + '/km²)</div>' +
+        '<div>' + yInf.label + ': <b>' + fmtNum(p[yInf.key]) + '</b> (' + fmtNum(p[yInf.densityKey]) + '/km²)</div>' +
+        '<div class="popup-src">Ward boundaries: DataMeet Municipal_Spatial_Data (likely pre-2022 delimitation, used for spatial aggregation only) · Infra: OpenStreetMap</div>';
+      layer.bindPopup(body);
+      layer.on('mouseover', () => layer.setStyle({ weight: 2.5, color: '#1c2331' }));
+      layer.on('mouseout', () => layer.setStyle({ weight: 0.8, color: '#fff' }));
+    },
+  }).addTo(map);
+  renderWardLegend(true, xInf, yInf);
+}
+
+function renderWardLegend(show, xInf, yInf) {
+  const el = document.getElementById('wardLegend');
+  if (!show) { el.classList.remove('show'); return; }
+  const cells = [];
+  for (let row = 2; row >= 0; row--) {
+    for (let col = 0; col < 3; col++) cells.push('<div style="background:' + BIVARIATE_MATRIX[row][col] + '"></div>');
+  }
+  el.innerHTML = '<b>' + xInf.label + ' × ' + yInf.label + ' (per ward)</b>' +
+    '<div class="leg-biv-grid">' + cells.join('') + '</div>' +
+    '<div class="leg-biv-axes"><span>↑ ' + yInf.label + '</span></div>' +
+    '<div class="leg-biv-axes"><span>Low ' + xInf.label + ' →</span><span>High</span></div>' +
+    '<div style="margin-top:4px;font-style:italic;">290 wards · tertiles, computed live</div>';
+  el.classList.add('show');
 }
 
 const map = L.map('map', { zoomControl: true }).setView([28.62, 77.21], 11);
@@ -588,6 +666,20 @@ document.getElementById('chkBivariate').addEventListener('change', (e) => {
 });
 bivInfraSelect.addEventListener('change', () => { bivariateInfra = bivInfraSelect.value; renderChoropleth(); });
 
+const wardInfraXSelect = document.getElementById('wardInfraXSelect');
+const wardInfraYSelect = document.getElementById('wardInfraYSelect');
+wardInfraXSelect.innerHTML = WARD_INFRA.map(w => '<option value="' + w.key + '">' + w.label + '</option>').join('');
+wardInfraYSelect.innerHTML = WARD_INFRA.map(w => '<option value="' + w.key + '">' + w.label + '</option>').join('');
+wardInfraXSelect.value = wardInfraX;
+wardInfraYSelect.value = wardInfraY;
+document.getElementById('chkWardBivariate').addEventListener('change', (e) => {
+  wardBivariateMode = e.target.checked;
+  document.getElementById('wardInfraWrap').style.display = wardBivariateMode ? '' : 'none';
+  renderWardLayer();
+});
+wardInfraXSelect.addEventListener('change', () => { wardInfraX = wardInfraXSelect.value; renderWardLayer(); });
+wardInfraYSelect.addEventListener('change', () => { wardInfraY = wardInfraYSelect.value; renderWardLayer(); });
+
 // ── Proportional-circle display mode -- alternative to the choropleth fill that avoids the
 // area bias of coloring physically large/small districts the same way (a small dense district
 // and a large sparse one can look equally "intense" under a fill; circle area scales directly
@@ -647,6 +739,10 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
   unsafeMode = false;
   document.getElementById('chkUnsafe').checked = false;
   document.getElementById('unsafeMethodLink').style.display = 'none';
+  wardBivariateMode = false;
+  document.getElementById('chkWardBivariate').checked = false;
+  document.getElementById('wardInfraWrap').style.display = 'none';
+  renderWardLayer();
   renderChoropleth();
 });
 
