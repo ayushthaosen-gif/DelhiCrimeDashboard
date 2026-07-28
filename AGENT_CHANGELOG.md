@@ -1,5 +1,18 @@
 # AI Collaboration Log & Changelog
 
+## [2026-07-28] - Codex (OpenAI) - Historical Zone-Existence Labels
+
+1. Replaced ambiguous historical `not separately reported` coverage with `district did not exist as a separate reporting zone`.
+2. Added a boolean `districtExistedAsSeparateZoneYYYY` field for every district-year so map and analysis code can distinguish non-existent historical zones from metric-definition nulls.
+3. Updated rendering metadata with the exact user-facing label and an explicit prohibition on displaying either null class as zero.
+
+## [2026-07-28] - Codex (OpenAI) - Incorporation-Safe Historical Schema
+
+1. Extended `build_verified_historical_data.js` to generate `data/delhi_crime_2016_2021_harmonized.json`, keyed by the same district `name` used in `dashboard_final.json`.
+2. Added flat year fields (`theft2016`, `robbery2016`, etc.), per-year coverage, and metric-specific previous-year-comparison eligibility.
+3. Deliberately nulled 2016 burglary because its source definition combines criminal trespass and burglary; 2017 onward uses the comparable day-plus-night burglary definition.
+4. Added machine-readable metric availability and rendering rules so unsupported values cannot become zero, rankings, correlations or invalid percentage changes.
+
 ## [2026-07-28] - Codex (OpenAI) - Verified Historical Crime Data File
 
 1. Added `build_verified_historical_data.js` to reproduce a conservative 2016–2021 Delhi territorial-district crime dataset from the NCRB-derived India Data Portal extracts.
@@ -10,6 +23,24 @@ This log tracks all architectural, performance, accessibility, and code quality 
 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
+
+## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 6: URL State, Export, Mobile (final phase)
+
+### 🔗 Shareable URLs, CSV/GeoJSON export, mobile bottom sheets
+
+Phase 6 of 6 — completes the interactive-map upgrade requested by the user (phases 1-5, below, covered year/rate/bivariate parity, search/zoom/drawer, clustering/heatmap/circles, spatial radius-intersection tools, and the composite unsafe-areas layer).
+
+1. **Shareable URL state** (`?year=2023&crime=theft&rate=perCapita&bivariate=1&infra=busStop&district=North`, matching the exact format the user asked for) — `applyUrlStateOnLoad()` reads params once before the first render; `updateUrlState()` writes them back via `history.replaceState()` at the end of every `renderChoropleth()` call, since virtually every state-changing control already routes through that one function — one hook instead of wiring every individual control. A "🔗 Share view" button copies the current URL to the clipboard.
+2. **CSV / GeoJSON export of the currently filtered map** — both reflect exactly what's on screen (current metric, year, rate mode, and bivariate infra layer if active), not a fixed full-data dump; filenames encode the active state (e.g. `delhi_map_theft_2023_density.csv`).
+3. **Mobile bottom sheets** (`max-width: 720px`) — all filter/toggle controls collapse behind a "☰ Filters" button that slides them up as a bottom sheet instead of a cluttered multi-row topbar; the district drawer switches from a right-side slide-in to a bottom-side slide-up sheet on the same breakpoint.
+
+**Two bugs caught during verification**:
+- The CSV-export row-join used a literal `\n` inside the *outer* template literal that `build_interactive_map.js` itself uses to build the whole HTML/script string — the outer template literal's own escape processing turned `\n` into a real newline character before it ever reached the generated page, landing as an actual line break inside a single-quoted JS string in the shipped script (a syntax error). `node build_interactive_map.js` ran fine (the outer script is valid JS either way) but the *generated* file failed `node --check`. Fixed by escaping it as `\\n` in the source so the generated code contains a literal backslash-n.
+- The mobile "Filters" bottom sheet's `display: none` media-query rule for `#pointLayerToggles` was silently overridded by an inline `style="display:flex"` attribute on that same element from phase 3 — inline styles always beat stylesheet rules regardless of selector specificity. Caught by checking `getComputedStyle(...).display` before/after clicking the mobile toggle and seeing no change. Fixed by moving the inline style to a `.point-toggles-row` CSS class so the media query can actually override it.
+
+Verified: rebuilt, `node --check` passed after both fixes, served locally (with a corrected test server that strips query strings before resolving the file path — the first version 404'd on any `?...` URL, which is a test-harness limitation, not an app bug) — confirmed a full round-trip (set state via UI → read back the resulting URL → reload with those exact params → every piece of state, including zoomed-to-district and open drawer, restored correctly), CSV/GeoJSON downloads captured via a `URL.createObjectURL` override and inspected directly (correct headers, values, and metadata for the active filter state), and the mobile bottom sheet toggling verified at a 375px viewport via `resize_window`. Finished with a full phase 1-6 regression pass together in one script (metric change → district select → point layer → spatial analysis → unsafe mode → URL check → reset) confirming no phase broke any other, and no console errors throughout.
+
+---
 
 ## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 5: Composite "Unsafe Areas" Layer
 

@@ -78,8 +78,20 @@ body { display: flex; flex-direction: column; }
 .shape-icon.dia { transform: rotate(45deg); border-radius: 2px; }
 .shape-icon.dot { border-radius: 50%; }
 .shape-icon.ring { border-radius: 50%; box-shadow: inset 0 0 0 2px #fff; }
-#resetMapBtn { font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
-#resetMapBtn:hover { border-color: var(--amber); }
+#resetMapBtn, #shareUrlBtn, #downloadCsvBtn, #downloadGeoJsonBtn, #mobileFilterToggle { font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
+#resetMapBtn:hover, #shareUrlBtn:hover, #downloadCsvBtn:hover, #downloadGeoJsonBtn:hover, #mobileFilterToggle:hover { border-color: var(--amber); }
+.mobile-only { display: none; }
+.point-toggles-row { flex-basis: 100%; display: flex; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 720px) {
+  .mobile-only { display: inline-block; }
+  #topbar > label, #topbar > .seg, #topbar > div:not(#pointLayerToggles), #analysisBar > label, #analysisBar > .seg, #analysisBar > span, #pointLayerToggles { display: none; }
+  body.mobile-filters-open #topbar > label, body.mobile-filters-open #topbar > .seg, body.mobile-filters-open #topbar > div:not(#pointLayerToggles), body.mobile-filters-open #analysisBar > label, body.mobile-filters-open #analysisBar > .seg, body.mobile-filters-open #analysisBar > span, body.mobile-filters-open #pointLayerToggles { display: flex; }
+  body.mobile-filters-open #topbar, body.mobile-filters-open #analysisBar { position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 1500; max-height: 70vh; overflow-y: auto; flex-direction: column; align-items: stretch; border-top: 1px solid var(--border); box-shadow: 0 -4px 16px rgba(0,0,0,.2); }
+  body.mobile-filters-open #analysisBar { bottom: 0; }
+  #drawer { top: auto; left: 0; right: 0; width: auto; max-width: none; height: 70vh; bottom: 0; transform: translateY(100%); border-left: none; border-top: 1px solid var(--border); border-radius: 12px 12px 0 0; }
+  #drawer.open { transform: translateY(0); }
+  .point-legend { right: 10px !important; }
+}
 .layer-count { color: var(--text-dim); font-size: 10.5px; }
 .point-legend { position: absolute; bottom: 20px; right: 356px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none; }
 .point-legend.show { display: block; }
@@ -119,8 +131,12 @@ body { display: flex; flex-direction: column; }
     <div id="searchResults"></div>
   </div>
   <button id="resetMapBtn" type="button">⟲ Reset map</button>
+  <button id="shareUrlBtn" type="button">🔗 Share view</button>
+  <button id="downloadCsvBtn" type="button">⬇ CSV</button>
+  <button id="downloadGeoJsonBtn" type="button">⬇ GeoJSON</button>
+  <button id="mobileFilterToggle" type="button" class="mobile-only">☰ Filters</button>
   <a class="back" href="delhi_safety_dashboard.html">← Back to dashboard</a>
-  <div style="flex-basis:100%; display:flex; gap:10px; flex-wrap:wrap;" id="pointLayerToggles">
+  <div class="point-toggles-row" id="pointLayerToggles">
     <label><input type="checkbox" id="chkPolice"> Police stations <span class="layer-count" id="cntPolice"></span></label>
     <label><input type="checkbox" id="chkPosts"> Chowkis/posts <span class="layer-count" id="cntPosts"></span></label>
     <label><input type="checkbox" id="chkZones"> Crash zones <span class="layer-count" id="cntZones"></span></label>
@@ -415,6 +431,7 @@ function renderChoropleth() {
   renderLegend(m, inf, lo, hi);
   renderProportionalCircles(m, inf, feats);
   if (selectedDistrict) renderDrawer(selectedDistrict);
+  if (typeof updateUrlState === 'function') updateUrlState();
 }
 
 // ── District search + zoom, and the right-side district intelligence drawer ──
@@ -608,10 +625,117 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
   renderChoropleth();
 });
 
+// ── Shareable URL state: ?year=2023&crime=theft&infra=streetlight&district=North ──
+// Read once on load (before the first render, so the initial paint already reflects it) and
+// written back via history.replaceState() at the end of every renderChoropleth() call, since
+// virtually every state-changing control (metric/year/rate/bivariate/district selection) already
+// routes through that one function -- a single hook here instead of wiring every control.
+let pendingUrlDistrict = null;
+function applyUrlStateOnLoad() {
+  const params = new URLSearchParams(location.search);
+  const crime = params.get('crime');
+  const year = params.get('year');
+  const rate = params.get('rate');
+  const bivariate = params.get('bivariate');
+  const infra = params.get('infra');
+  const district = params.get('district');
+  if (crime && METRICS.some(m => m.key === crime)) metricSelect.value = crime;
+  if (year && ['2022','2023','2024'].includes(year)) activeYear = year;
+  if (rate === 'perCapita') rateMode = 'perCapita';
+  if (infra && INFRA.some(i => i.key === infra)) { bivariateInfra = infra; bivInfraSelect.value = infra; }
+  if (bivariate === '1') {
+    bivariateMode = true;
+    document.getElementById('chkBivariate').checked = true;
+    document.getElementById('bivInfraWrap').style.display = '';
+  }
+  if (district) pendingUrlDistrict = district; // applied after the first render, once districtLayers exists
+}
+function updateUrlState() {
+  const m = currentMetric();
+  const params = new URLSearchParams();
+  if (activeYear !== '2023') params.set('year', activeYear);
+  params.set('crime', m.key);
+  if (rateMode !== 'density') params.set('rate', rateMode);
+  if (bivariateMode) { params.set('bivariate', '1'); params.set('infra', bivariateInfra); }
+  if (selectedDistrict) params.set('district', selectedDistrict);
+  const qs = params.toString();
+  history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+}
+
+applyUrlStateOnLoad();
 buildYearToggle();
 buildRateToggle();
 buildDisplayModeToggle();
 renderChoropleth();
+if (pendingUrlDistrict && districtLayers[pendingUrlDistrict]) {
+  selectDistrict(pendingUrlDistrict);
+  pendingUrlDistrict = null;
+}
+
+// ── CSV / GeoJSON export of the currently filtered map (current metric/year/rate mode) ──
+function downloadBlob(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function currentStateSuffix() {
+  const m = currentMetric();
+  return m.key + '_' + activeYear + '_' + rateMode + (bivariateMode ? '_vs_' + bivariateInfra : '');
+}
+document.getElementById('downloadCsvBtn').addEventListener('click', () => {
+  const m = currentMetric();
+  const inf = currentInfra();
+  const feats = BOUNDARIES.features;
+  const rank = rankOf(feats.map(f=>f.properties), yearFieldKey(m, activeYear));
+  const header = ['district', m.key + '_' + (rateMode==='perCapita'?'per100k':'perKm2'), 'rank_of_15'];
+  if (bivariateMode) header.push(inf.key + '_' + (rateMode==='perCapita'?'per100k':'perKm2'));
+  const rows = feats.map(f => {
+    const d = f.properties;
+    const row = [d.district, metricValue(d, m), rank(d)];
+    if (bivariateMode) row.push(getInfraVal(d, inf));
+    return row.join(',');
+  });
+  downloadBlob(header.join(',') + '\n' + rows.join('\n'), 'delhi_map_' + currentStateSuffix() + '.csv', 'text/csv');
+});
+document.getElementById('downloadGeoJsonBtn').addEventListener('click', () => {
+  const m = currentMetric();
+  const inf = currentInfra();
+  const feats = BOUNDARIES.features;
+  const rank = rankOf(feats.map(f=>f.properties), yearFieldKey(m, activeYear));
+  const out = {
+    type: 'FeatureCollection',
+    metadata: { metric: m.label, year: effectiveYear(m), rateMode, bivariate: bivariateMode ? inf.label : null, source: m.source },
+    features: feats.map(f => {
+      const d = f.properties;
+      const props = { district: d.district, value: metricValue(d, m), rank: rank(d) };
+      if (bivariateMode) props[inf.key] = getInfraVal(d, inf);
+      return { type: 'Feature', properties: props, geometry: f.geometry };
+    }),
+  };
+  downloadBlob(JSON.stringify(out, null, 1), 'delhi_map_' + currentStateSuffix() + '.geojson', 'application/geo+json');
+});
+document.getElementById('shareUrlBtn').addEventListener('click', () => {
+  updateUrlState();
+  const input = document.createElement('input');
+  input.value = location.href;
+  document.body.appendChild(input);
+  input.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(input);
+  const btn = document.getElementById('shareUrlBtn');
+  const original = btn.textContent;
+  btn.textContent = '✓ Copied';
+  setTimeout(() => { btn.textContent = original; }, 1500);
+});
+
+// ── Mobile: filter controls collapse into a bottom sheet below 720px (see the matching
+// @media block in <style>); the district drawer also becomes a bottom sheet on mobile via CSS. ──
+document.getElementById('mobileFilterToggle').addEventListener('click', () => {
+  document.body.classList.toggle('mobile-filters-open');
+});
 
 // ── Point layers, all off by default so the map opens uncluttered ──
 // Small colored shape icons (square/triangle/diamond/ring) instead of uniform circles, so
