@@ -5,6 +5,27 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 3: Clustering, Heatmap, Circles
+
+### 🧩 Marker clustering, shape variety, heatmap/proportional-circle modes, reset control
+
+Phase 3 of the 6-phase interactive map upgrade (phases 1-2, below, added year/rate/bivariate parity and search/zoom/drawer).
+
+1. **Marker clustering** for the two dense point layers (Leaflet.markercluster via CDN) — bus stops (3,151) and ATMs (649) now cluster into bubbles that split apart on zoom, instead of rendering thousands of unclustered circles that were unreadable and slow to pan.
+2. **Distinct marker shapes per layer** (`shapeIcon()` div-icon helper): police stations = square, chowkis/posts = triangle, liquor shops = diamond, CCTV/guards = ring, bus stops/ATMs = small dot inside clusters — colors alone no longer have to carry all the distinction.
+3. **Heatmap mode** (Leaflet.heat) — crash zones weighted by fatal-crash count, toggleable independently of the discrete circle-marker crash-zone layer, for a citywide-glance view of crash concentration.
+4. **Proportional-circle display mode** — a Choropleth/Circles toggle; Circles mode fades the district fill to near-transparent and draws a circle at each district's centroid, area-scaled (sqrt of value, not radius-linear) to the selected metric, avoiding the area bias where a physically large sparse district and a small dense one read as equally "intense" under a flat fill.
+5. **Layer counts** next to every point-layer checkbox label (e.g. "Bus stops (3,151)"), and a **point-layer legend** (shape + color swatch per active layer) that appears once any point layer is toggled on.
+6. **Reset-map control** — one button restores default view/zoom, clears district selection and the drawer, unchecks bivariate/heatmap/all point layers, and resets display mode to choropleth.
+
+**Bug caught during verification**: the reset button's checkbox-clearing loop dispatched the `change` event *before* setting `checked = false`, so the handler still read the old `true` state and re-added layers instead of removing them — bus stops/ATMs stayed on the map after "reset." Fixed by flipping `checked` first, then dispatching only if it had actually been on.
+
+Verified: rebuilt, `node --check` passed, served locally — confirmed via `javascript_tool` that `L.markerClusterGroup`/`L.heatLayer` loaded from CDN and built cluster groups with the exact expected counts (3,151/649), toggling layers updates counts/legend/map state correctly, heatmap and circle modes both activate with the right layer/point counts (15 district circles), and reset now genuinely clears every toggled state (layers, heatmap, circles, selection, drawer, view) — no console errors at any step.
+
+**Not yet done** (later phases): spatial radius-intersection tools, composite "unsafe areas" layer, URL state, CSV/GeoJSON export, mobile bottom sheets.
+
+---
+
 ## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 2: Search, Zoom, District Drawer
 
 ### 🔍 District search + zoom-to-district, right-side district intelligence drawer

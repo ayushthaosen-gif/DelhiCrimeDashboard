@@ -6,6 +6,10 @@
 <title>Delhi District Safety Index — Interactive Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 <style>
 :root {
   --night: #1c2331; --paper: #edeae2; --paper-raised: #f6f4ee;
@@ -65,6 +69,18 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
 #drawer .badge.covered { background: rgba(63,125,82,0.18); color: var(--good); }
 #drawer .badge.gap { background: rgba(177,74,52,0.18); color: var(--rust); }
 #drawer .corr-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 12px; font-family: monospace; }
+.shape-icon { display: block; }
+.shape-icon.sq { border-radius: 2px; }
+.shape-icon.tri { width: 0; height: 0; background: none !important; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom-width: 10px; border-bottom-style: solid; }
+.shape-icon.dia { transform: rotate(45deg); border-radius: 2px; }
+.shape-icon.dot { border-radius: 50%; }
+.shape-icon.ring { border-radius: 50%; box-shadow: inset 0 0 0 2px #fff; }
+#resetMapBtn { font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
+#resetMapBtn:hover { border-color: var(--amber); }
+.layer-count { color: var(--text-dim); font-size: 10.5px; }
+.point-legend { position: absolute; bottom: 20px; right: 356px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none; }
+.point-legend.show { display: block; }
+.point-legend .row { display: flex; align-items: center; gap: 7px; padding: 2px 0; }
 </style>
 </head>
 <body>
@@ -73,25 +89,29 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
   <label>Metric: <select id="metricSelect"></select></label>
   <div class="seg" id="yearToggle"></div>
   <div class="seg" id="rateToggle"></div>
+  <div class="seg" id="displayModeToggle"></div>
   <label><input type="checkbox" id="chkBivariate"> Bivariate mode</label>
   <label id="bivInfraWrap" style="display:none">vs. <select id="bivInfraSelect"></select></label>
+  <label><input type="checkbox" id="chkHeatmap"> Heatmap (crash zones)</label>
   <div style="position:relative;">
     <input id="districtSearch" type="text" placeholder="Search district…" autocomplete="off">
     <div id="searchResults"></div>
   </div>
+  <button id="resetMapBtn" type="button">⟲ Reset map</button>
   <a class="back" href="delhi_safety_dashboard.html">← Back to dashboard</a>
-  <div style="flex-basis:100%; display:flex; gap:10px; flex-wrap:wrap;">
-    <label><input type="checkbox" id="chkPolice"> Police stations</label>
-    <label><input type="checkbox" id="chkPosts"> Chowkis/posts</label>
-    <label><input type="checkbox" id="chkZones"> Crash zones</label>
-    <label><input type="checkbox" id="chkBus"> Bus stops</label>
-    <label><input type="checkbox" id="chkAtm"> ATMs</label>
-    <label><input type="checkbox" id="chkAlcohol"> Liquor shops</label>
-    <label><input type="checkbox" id="chkSurveillance"> CCTV/guards</label>
+  <div style="flex-basis:100%; display:flex; gap:10px; flex-wrap:wrap;" id="pointLayerToggles">
+    <label><input type="checkbox" id="chkPolice"> Police stations <span class="layer-count" id="cntPolice"></span></label>
+    <label><input type="checkbox" id="chkPosts"> Chowkis/posts <span class="layer-count" id="cntPosts"></span></label>
+    <label><input type="checkbox" id="chkZones"> Crash zones <span class="layer-count" id="cntZones"></span></label>
+    <label><input type="checkbox" id="chkBus"> Bus stops <span class="layer-count" id="cntBus"></span></label>
+    <label><input type="checkbox" id="chkAtm"> ATMs <span class="layer-count" id="cntAtm"></span></label>
+    <label><input type="checkbox" id="chkAlcohol"> Liquor shops <span class="layer-count" id="cntAlcohol"></span></label>
+    <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
   </div>
 </div>
 <div id="mapWrap"><div id="map"></div></div>
 <div class="leg" id="legend"></div>
+<div class="point-legend" id="pointLegend"></div>
 <div id="drawer">
   <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
   <div id="drawerBody"></div>
@@ -297,7 +317,7 @@ function renderChoropleth() {
         fillColor = v == null ? '#999' : rustScale(scale(v));
       }
       const isSelected = selectedDistrict === f.properties.district;
-      return { fillColor, fillOpacity: 0.65, color: isSelected ? 'var(--amber)' : '#fff', weight: isSelected ? 3.5 : 1.5 };
+      return { fillColor, fillOpacity: displayMode === 'circles' ? 0.12 : 0.65, color: isSelected ? 'var(--amber)' : '#fff', weight: isSelected ? 3.5 : 1.5 };
     },
     onEachFeature: (f, layer) => {
       const d = f.properties;
@@ -325,6 +345,7 @@ function renderChoropleth() {
   }).addTo(map);
 
   renderLegend(m, inf, lo, hi);
+  renderProportionalCircles(m, inf, feats);
   if (selectedDistrict) renderDrawer(selectedDistrict);
 }
 
@@ -452,24 +473,102 @@ document.getElementById('chkBivariate').addEventListener('change', (e) => {
 });
 bivInfraSelect.addEventListener('change', () => { bivariateInfra = bivInfraSelect.value; renderChoropleth(); });
 
+// ── Proportional-circle display mode -- alternative to the choropleth fill that avoids the
+// area bias of coloring physically large/small districts the same way (a small dense district
+// and a large sparse one can look equally "intense" under a fill; circle area scales directly
+// with the metric instead). Adds circles sized by sqrt(value) (area-proportional, not radius-
+// proportional, so visual size fairly reflects magnitude) at each district's polygon centroid.
+let displayMode = 'choropleth'; // 'choropleth' | 'circles'
+function buildDisplayModeToggle() {
+  const el = document.getElementById('displayModeToggle');
+  el.innerHTML = [['choropleth','Choropleth'],['circles','Circles']].map(([val,label]) =>
+    '<button class="' + (displayMode===val?'active':'') + '" data-v="' + val + '">' + label + '</button>').join('');
+  el.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => { displayMode = btn.dataset.v; buildDisplayModeToggle(); renderChoropleth(); });
+  });
+}
+
+let circleLayer = null;
+function renderProportionalCircles(m, inf, feats) {
+  if (circleLayer) { map.removeLayer(circleLayer); circleLayer = null; }
+  if (displayMode !== 'circles') return;
+  const vals = feats.map(f => metricValue(f.properties, m)).filter(v => v != null);
+  const maxVal = Math.max(...vals) || 1;
+  const maxRadiusPx = 42;
+  circleLayer = L.layerGroup();
+  feats.forEach(f => {
+    const d = f.properties;
+    const layer = districtLayers[d.district];
+    if (!layer) return;
+    const center = layer.getBounds().getCenter();
+    const v = metricValue(d, m);
+    if (v == null) return;
+    const radius = Math.max(4, Math.sqrt(v / maxVal) * maxRadiusPx);
+    const color = bivariateMode ? getBivariateColor(feats, d, m, inf) : rustScale(percentileScale(vals)(v));
+    L.circleMarker(center, { radius, color: '#fff', weight: 1.5, fillColor: color, fillOpacity: 0.75 })
+      .bindPopup('<div class="popup-title">' + d.district + '</div><div>' + fmtNum(v) + ' ' + (rateMode==='perCapita'?'per 100k':'per km²') + '</div>')
+      .addTo(circleLayer);
+  });
+  circleLayer.addTo(map);
+}
+
+document.getElementById('resetMapBtn').addEventListener('click', () => {
+  map.setView([28.62, 77.21], 11, { animate: false });
+  selectedDistrict = null;
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('districtSearch').value = '';
+  document.getElementById('searchResults').style.display = 'none';
+  bivariateMode = false;
+  document.getElementById('chkBivariate').checked = false;
+  document.getElementById('bivInfraWrap').style.display = 'none';
+  displayMode = 'choropleth';
+  buildDisplayModeToggle();
+  document.querySelectorAll('#pointLayerToggles input[type=checkbox]').forEach(chk => { const wasChecked = chk.checked; chk.checked = false; if (wasChecked) chk.dispatchEvent(new Event('change')); });
+  document.getElementById('chkHeatmap').checked = false;
+  if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
+  renderChoropleth();
+});
+
 buildYearToggle();
 buildRateToggle();
+buildDisplayModeToggle();
 renderChoropleth();
 
 // ── Point layers, all off by default so the map opens uncluttered ──
-function makeLayer(points, opts) {
+// Small colored shape icons (square/triangle/diamond/ring) instead of uniform circles, so
+// layers stay visually distinguishable even before checking which color is which.
+function shapeIcon(color, shape, size) {
+  const s = size || 12;
+  const cls = { square: 'sq', triangle: 'tri', diamond: 'dia', dot: 'dot', ring: 'ring' }[shape] || 'dot';
+  const style = shape === 'triangle'
+    ? 'border-bottom-color:' + color + ';'
+    : 'width:' + s + 'px;height:' + s + 'px;background:' + color + ';border:1.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.25)' + (shape==='ring' ? ',inset 0 0 0 2px #fff' : '') + ';';
+  return L.divIcon({ className: 'shape-icon ' + cls, html: '<div class="shape-icon ' + cls + '" style="' + style + '"></div>', iconSize: [s, s], iconAnchor: [s/2, s/2], popupAnchor: [0, -s/2] });
+}
+
+function makeShapeLayer(points, color, shape, size) {
   const group = L.layerGroup();
   points.forEach(([lat, lng, name]) => {
-    L.circleMarker([lat, lng], opts).bindPopup(name).addTo(group);
+    L.marker([lat, lng], { icon: shapeIcon(color, shape, size) }).bindPopup(name + '<div class="popup-src">Source: see footer citation on the main dashboard</div>').addTo(group);
   });
   return group;
 }
-const policeStationLayer = makeLayer(POLICE.stations, { radius: 5, color: '#fff', weight: 1, fillColor: '#3d5a99', fillOpacity: .9 });
-const policePostLayer = makeLayer(POLICE.posts, { radius: 4, color: '#fff', weight: 1, fillColor: '#7c3aed', fillOpacity: .9 });
-const busStopLayer = makeLayer(POI.busStops, { radius: 2, color: '#fff', weight: 0.5, fillColor: '#3f7d52', fillOpacity: .5 });
-const atmLayer = makeLayer(POI.atms, { radius: 3, color: '#fff', weight: 1, fillColor: '#d4af37', fillOpacity: .85 });
-const alcoholLayer = makeLayer(POI.alcoholShops, { radius: 4, color: '#fff', weight: 1, fillColor: '#8b2f5e', fillOpacity: .9 });
-const surveillanceLayer = makeLayer(POI.surveillance, { radius: 3, color: '#fff', weight: 1, fillColor: '#0891b2', fillOpacity: .85 });
+// Dense layers (thousands of points) get marker clustering instead of individual shape icons —
+// rendering 3,151 bus stops or 649 ATMs unclustered would be unreadable and slow to pan/zoom.
+function makeClusterLayer(points, color, popupLabel) {
+  const cluster = L.markerClusterGroup({ maxClusterRadius: 50, spiderfyOnMaxZoom: true });
+  points.forEach(([lat, lng, name]) => {
+    L.marker([lat, lng], { icon: shapeIcon(color, 'dot', 8) }).bindPopup((name || popupLabel) + '<div class="popup-src">Source: see footer citation on the main dashboard</div>').addTo(cluster);
+  });
+  return cluster;
+}
+
+const policeStationLayer = makeShapeLayer(POLICE.stations, '#3d5a99', 'square', 13);
+const policePostLayer = makeShapeLayer(POLICE.posts, '#7c3aed', 'triangle', 13);
+const busStopLayer = makeClusterLayer(POI.busStops, '#3f7d52', 'Bus Stop');
+const atmLayer = makeClusterLayer(POI.atms, '#d4af37', 'ATM');
+const alcoholLayer = makeShapeLayer(POI.alcoholShops, '#8b2f5e', 'diamond', 12);
+const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11);
 
 const zonesGroup = L.layerGroup();
 ZONES.filter(z => z.lat != null && z.lng != null).forEach(z => {
@@ -480,13 +579,46 @@ ZONES.filter(z => z.lat != null && z.lng != null).forEach(z => {
 });
 
 const toggles = [
-  ['chkPolice', policeStationLayer], ['chkPosts', policePostLayer], ['chkZones', zonesGroup],
-  ['chkBus', busStopLayer], ['chkAtm', atmLayer], ['chkAlcohol', alcoholLayer], ['chkSurveillance', surveillanceLayer],
+  ['chkPolice', policeStationLayer, 'cntPolice'], ['chkPosts', policePostLayer, 'cntPosts'], ['chkZones', zonesGroup, 'cntZones'],
+  ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'],
 ];
-toggles.forEach(([id, layer]) => {
+const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: ZONES.filter(z=>z.lat!=null).length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length };
+toggles.forEach(([id, layer, countId]) => {
+  document.getElementById(countId).textContent = '(' + layerCounts[countId].toLocaleString('en-IN') + ')';
   document.getElementById(id).addEventListener('change', (e) => {
     if (e.target.checked) layer.addTo(map); else map.removeLayer(layer);
+    updatePointLegend();
   });
+});
+
+const POINT_LEGEND_ITEMS = [
+  ['chkPolice', '#3d5a99', 'square', 'Police stations'], ['chkPosts', '#7c3aed', 'triangle', 'Chowkis/posts'],
+  ['chkZones', '#b14a34', 'dot', 'Crash zones (size = fatal crashes)'], ['chkBus', '#3f7d52', 'dot', 'Bus stops (clustered)'],
+  ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'],
+];
+function updatePointLegend() {
+  const active = POINT_LEGEND_ITEMS.filter(([id]) => document.getElementById(id).checked);
+  const el = document.getElementById('pointLegend');
+  if (!active.length) { el.classList.remove('show'); return; }
+  el.innerHTML = '<b style="color:var(--text);display:block;margin-bottom:4px;">Point layers</b>' + active.map(([id, color, shape, label]) =>
+    '<div class="row"><span class="shape-icon ' + ({square:'sq',triangle:'tri',diamond:'dia',dot:'dot',ring:'ring'}[shape]) + '" style="width:10px;height:10px;background:' + (shape==='triangle'?'transparent':color) + ';' + (shape==='triangle' ? 'border-bottom-color:' + color + ';border-bottom-width:9px;' : 'border:1px solid #fff;') + '"></span>' + label + '</div>'
+  ).join('');
+  el.classList.add('show');
+}
+
+// ── Heatmap mode (Leaflet.heat) — crash zones weighted by fatal-crash count, as an alternative
+// to plotting each zone as a discrete circle. Density heatmaps read more naturally than dozens
+// of overlapping circles when zooming out to see citywide crash concentration at a glance.
+let heatLayer = null;
+document.getElementById('chkHeatmap').addEventListener('change', (e) => {
+  if (e.target.checked) {
+    const points = ZONES.filter(z => z.lat != null && z.lng != null).map(z => [z.lat, z.lng, Math.min(1, z.fatal / 10)]);
+    heatLayer = L.heatLayer(points, { radius: 28, blur: 20, maxZoom: 15, gradient: { 0.2: '#e8d6b3', 0.5: '#d48a5a', 0.8: '#b14a34', 1: '#7a2515' } });
+    heatLayer.addTo(map);
+  } else if (heatLayer) {
+    map.removeLayer(heatLayer);
+    heatLayer = null;
+  }
 });
 </script>
 </body>
