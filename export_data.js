@@ -44,6 +44,8 @@ const districtFields = [
   'underpasses', 'underpassDensity',
   'metroGates', 'metroGateDensity',
   'policeStations', 'chowkiPosts', 'policeInfraCount', 'policeInfraDensity',
+  'busStops', 'busStopDensity', 'atms', 'atmDensity',
+  'alcoholShops', 'alcoholShopDensity', 'surveillanceCameras', 'surveillanceDensity',
 ];
 const districts = dashboardFinal.districts.map(d => {
   const row = {};

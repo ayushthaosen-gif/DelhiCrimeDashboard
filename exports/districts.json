@@ -36,7 +36,15 @@
     "policeStations": 19,
     "chowkiPosts": 10,
     "policeInfraCount": 29,
-    "policeInfraDensity": 1.04
+    "policeInfraDensity": 1.04,
+    "busStops": 189,
+    "busStopDensity": 6.8,
+    "atms": 38,
+    "atmDensity": 1.37,
+    "alcoholShops": 6,
+    "alcoholShopDensity": 0.22,
+    "surveillanceCameras": 15,
+    "surveillanceDensity": 0.54
   },
   {
     "district": "Dwarka",
@@ -75,7 +83,15 @@
     "policeStations": 13,
     "chowkiPosts": 7,
     "policeInfraCount": 20,
-    "policeInfraDensity": 0.07
+    "policeInfraDensity": 0.07,
+    "busStops": 135,
+    "busStopDensity": 0.49,
+    "atms": 31,
+    "atmDensity": 0.11,
+    "alcoholShops": 2,
+    "alcoholShopDensity": 0.01,
+    "surveillanceCameras": 2,
+    "surveillanceDensity": 0.01
   },
   {
     "district": "East",
@@ -114,7 +130,15 @@
     "policeStations": 13,
     "chowkiPosts": 3,
     "policeInfraCount": 16,
-    "policeInfraDensity": 0.38
+    "policeInfraDensity": 0.38,
+    "busStops": 329,
+    "busStopDensity": 7.87,
+    "atms": 81,
+    "atmDensity": 1.94,
+    "alcoholShops": 6,
+    "alcoholShopDensity": 0.14,
+    "surveillanceCameras": 113,
+    "surveillanceDensity": 2.7
   },
   {
     "district": "New Delhi",
@@ -153,7 +177,15 @@
     "policeStations": 13,
     "chowkiPosts": 12,
     "policeInfraCount": 25,
-    "policeInfraDensity": 0.69
+    "policeInfraDensity": 0.69,
+    "busStops": 286,
+    "busStopDensity": 7.92,
+    "atms": 61,
+    "atmDensity": 1.69,
+    "alcoholShops": 5,
+    "alcoholShopDensity": 0.14,
+    "surveillanceCameras": 119,
+    "surveillanceDensity": 3.3
   },
   {
     "district": "North",
@@ -192,7 +224,15 @@
     "policeStations": 19,
     "chowkiPosts": 10,
     "policeInfraCount": 29,
-    "policeInfraDensity": 0.44
+    "policeInfraDensity": 0.44,
+    "busStops": 247,
+    "busStopDensity": 3.72,
+    "atms": 47,
+    "atmDensity": 0.71,
+    "alcoholShops": 0,
+    "alcoholShopDensity": 0,
+    "surveillanceCameras": 34,
+    "surveillanceDensity": 0.51
   },
   {
     "district": "North-East",
@@ -231,7 +271,15 @@
     "policeStations": 16,
     "chowkiPosts": 4,
     "policeInfraCount": 20,
-    "policeInfraDensity": 0.4
+    "policeInfraDensity": 0.4,
+    "busStops": 63,
+    "busStopDensity": 1.26,
+    "atms": 5,
+    "atmDensity": 0.1,
+    "alcoholShops": 0,
+    "alcoholShopDensity": 0,
+    "surveillanceCameras": 0,
+    "surveillanceDensity": 0
   },
   {
     "district": "North-West",
@@ -270,7 +318,15 @@
     "policeStations": 14,
     "chowkiPosts": 7,
     "policeInfraCount": 21,
-    "policeInfraDensity": 0.51
+    "policeInfraDensity": 0.51,
+    "busStops": 150,
+    "busStopDensity": 3.64,
+    "atms": 36,
+    "atmDensity": 0.87,
+    "alcoholShops": 3,
+    "alcoholShopDensity": 0.07,
+    "surveillanceCameras": 1,
+    "surveillanceDensity": 0.02
   },
   {
     "district": "Outer",
@@ -309,7 +365,15 @@
     "policeStations": 12,
     "chowkiPosts": 0,
     "policeInfraCount": 12,
-    "policeInfraDensity": 0.14
+    "policeInfraDensity": 0.14,
+    "busStops": 51,
+    "busStopDensity": 0.62,
+    "atms": 3,
+    "atmDensity": 0.04,
+    "alcoholShops": 0,
+    "alcoholShopDensity": 0,
+    "surveillanceCameras": 0,
+    "surveillanceDensity": 0
   },
   {
     "district": "Outer North",
@@ -348,7 +412,15 @@
     "policeStations": 9,
     "chowkiPosts": 4,
     "policeInfraCount": 13,
-    "policeInfraDensity": 0.05
+    "policeInfraDensity": 0.05,
+    "busStops": 72,
+    "busStopDensity": 0.27,
+    "atms": 8,
+    "atmDensity": 0.03,
+    "alcoholShops": 0,
+    "alcoholShopDensity": 0,
+    "surveillanceCameras": 2,
+    "surveillanceDensity": 0.01
   },
   {
     "district": "Rohini",
@@ -387,7 +459,15 @@
     "policeStations": 12,
     "chowkiPosts": 2,
     "policeInfraCount": 14,
-    "policeInfraDensity": 0.11
+    "policeInfraDensity": 0.11,
+    "busStops": 66,
+    "busStopDensity": 0.5,
+    "atms": 11,
+    "atmDensity": 0.08,
+    "alcoholShops": 2,
+    "alcoholShopDensity": 0.02,
+    "surveillanceCameras": 10,
+    "surveillanceDensity": 0.08
   },
   {
     "district": "Shahdara",
@@ -426,7 +506,15 @@
     "policeStations": 12,
     "chowkiPosts": 7,
     "policeInfraCount": 19,
-    "policeInfraDensity": 0.71
+    "policeInfraDensity": 0.71,
+    "busStops": 89,
+    "busStopDensity": 3.31,
+    "atms": 20,
+    "atmDensity": 0.74,
+    "alcoholShops": 3,
+    "alcoholShopDensity": 0.11,
+    "surveillanceCameras": 2,
+    "surveillanceDensity": 0.07
   },
   {
     "district": "South",
@@ -465,7 +553,15 @@
     "policeStations": 20,
     "chowkiPosts": 8,
     "policeInfraCount": 28,
-    "policeInfraDensity": 0.17
+    "policeInfraDensity": 0.17,
+    "busStops": 485,
+    "busStopDensity": 3.02,
+    "atms": 125,
+    "atmDensity": 0.78,
+    "alcoholShops": 12,
+    "alcoholShopDensity": 0.07,
+    "surveillanceCameras": 33,
+    "surveillanceDensity": 0.21
   },
   {
     "district": "South-East",
@@ -504,7 +600,15 @@
     "policeStations": 19,
     "chowkiPosts": 8,
     "policeInfraCount": 27,
-    "policeInfraDensity": 0.33
+    "policeInfraDensity": 0.33,
+    "busStops": 311,
+    "busStopDensity": 3.79,
+    "atms": 74,
+    "atmDensity": 0.9,
+    "alcoholShops": 5,
+    "alcoholShopDensity": 0.06,
+    "surveillanceCameras": 85,
+    "surveillanceDensity": 1.04
   },
   {
     "district": "South-West",
@@ -543,7 +647,15 @@
     "policeStations": 13,
     "chowkiPosts": 11,
     "policeInfraCount": 24,
-    "policeInfraDensity": 0.19
+    "policeInfraDensity": 0.19,
+    "busStops": 469,
+    "busStopDensity": 3.77,
+    "atms": 92,
+    "atmDensity": 0.74,
+    "alcoholShops": 6,
+    "alcoholShopDensity": 0.05,
+    "surveillanceCameras": 15,
+    "surveillanceDensity": 0.12
   },
   {
     "district": "West",
@@ -582,6 +694,14 @@
     "policeStations": 16,
     "chowkiPosts": 7,
     "policeInfraCount": 23,
-    "policeInfraDensity": 0.36
+    "policeInfraDensity": 0.36,
+    "busStops": 209,
+    "busStopDensity": 3.23,
+    "atms": 17,
+    "atmDensity": 0.26,
+    "alcoholShops": 0,
+    "alcoholShopDensity": 0,
+    "surveillanceCameras": 2,
+    "surveillanceDensity": 0.03
   }
 ]

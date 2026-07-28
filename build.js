@@ -572,12 +572,14 @@ const INFRA = [
   { key: 'policeInfra', densityKey: 'policeInfraDensity', countKey: 'policeInfraCount', label: 'Police Infra', unit: 'police posts', title: 'Police Infrastructure Density', desc: 'Combined police stations, posts, chowkis, and booths per square kilometer.', source: 'Delhi Police GSDL + OpenStreetMap' },
   { key: 'busStop', densityKey: 'busStopDensity', countKey: 'busStops', label: 'Bus Stops', unit: 'bus stops', title: 'Bus Stop Density', desc: 'Number of OpenStreetMap-tagged bus stops per square kilometer.', source: 'OpenStreetMap' },
   { key: 'atm', densityKey: 'atmDensity', countKey: 'atms', label: 'ATMs', unit: 'ATMs', title: 'ATM Density', desc: 'Number of OpenStreetMap-tagged automated teller machines per square kilometer.', source: 'OpenStreetMap (Overpass API)' },
+  { key: 'alcoholShop', densityKey: 'alcoholShopDensity', countKey: 'alcoholShops', label: 'Liquor Shops', unit: 'liquor shops', title: 'Liquor & Wine Shop Density', desc: 'Number of OpenStreetMap-tagged liquor vends and wine/beer shops per square kilometer.', source: 'OpenStreetMap (Overpass API)' },
+  { key: 'surveillance', densityKey: 'surveillanceDensity', countKey: 'surveillanceCameras', label: 'CCTV & Guards', unit: 'cameras/posts', title: 'Surveillance Camera & Guard Density', desc: 'Number of OpenStreetMap-tagged CCTV cameras, ALPR systems, and security guards per square kilometer.', source: 'OpenStreetMap (Overpass API)' },
 ];
 
 // Districts the PAPL survey actually drove through — shared gap for streetlights and underpasses.
 const SURVEYED = new Set(['Central','East','New Delhi','North','Shahdara','South','South-East','South-West','West']);
 function infraCovered(d, infraKey) {
-  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm') return true;
+  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance') return true;
   if (infraKey === 'policeInfra') return d.chowkiPosts > 0;
   return SURVEYED.has(d.district) && d[infraKey === 'streetlight' ? 'surveyPoints' : 'underpasses'] >= 10;
 }
@@ -1112,6 +1114,8 @@ const INFRA_NOTES = {
   policeInfra: 'Stations: Delhi Police GSDL, official — all 15. Chowkis/outposts: OpenStreetMap — 14 of 15 (Outer unmapped)',
   busStop: 'OpenStreetMap (highway=bus_stop / public_transport=platform, 3,199 points) — all 15 districts',
   atm: 'OpenStreetMap (amenity=atm via Overpass API, 666 points) — all 15 districts',
+  alcoholShop: 'OpenStreetMap (shop=alcohol via Overpass API, 50 points) — all 15 districts',
+  surveillance: 'OpenStreetMap (man_made=surveillance via Overpass API, 433 points) — all 15 districts',
 };
 
 function renderMethod() {
@@ -1930,6 +1934,10 @@ const FIELDS = [
   { key: 'busStopDensity', label: 'Bus stop density (per km²)', numeric: true },
   { key: 'atms', label: 'ATMs (count)', numeric: true },
   { key: 'atmDensity', label: 'ATM density (per km²)', numeric: true },
+  { key: 'alcoholShops', label: 'Liquor shops (count)', numeric: true },
+  { key: 'alcoholShopDensity', label: 'Liquor shop density (per km²)', numeric: true },
+  { key: 'surveillanceCameras', label: 'CCTV & guards (count)', numeric: true },
+  { key: 'surveillanceDensity', label: 'CCTV & guard density (per km²)', numeric: true },
 ];
 function fieldValue(d, key) {
   const f = FIELDS.find(x => x.key === key);
@@ -2119,6 +2127,7 @@ function buildDictionarySheet() {
     metroGates: 'OpenStreetMap', metroGateDensity: 'OpenStreetMap (derived)',
     policeStations: 'Delhi Police GSDL', chowkiPosts: 'OpenStreetMap', policeInfraCount: 'GSDL + OpenStreetMap (combined)', policeInfraDensity: 'GSDL + OpenStreetMap (derived)',
     busStops: 'OpenStreetMap', busStopDensity: 'OpenStreetMap (derived)', atms: 'OpenStreetMap (Overpass API)', atmDensity: 'OpenStreetMap (derived)',
+    alcoholShops: 'OpenStreetMap (Overpass API)', alcoholShopDensity: 'OpenStreetMap (derived)', surveillanceCameras: 'OpenStreetMap (Overpass API)', surveillanceDensity: 'OpenStreetMap (derived)',
   };
   const DESC = {
     district: 'One of Delhi Police’s 15 law-and-order districts (IGI Airport excluded — separate jurisdiction).',
@@ -2172,6 +2181,8 @@ function buildSourcesSheet() {
     ['Metro station gates', 'OpenStreetMap, railway=subway_entrance tag', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — thorough community mapping citywide.'],
     ['Bus stops', 'OpenStreetMap, highway=bus_stop / public_transport=platform tags (3,199 points)', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — 48 of 3,199 points fell outside every district polygon (likely just across the Delhi border) and are excluded from the district counts.'],
     ['ATMs', 'OpenStreetMap, amenity=atm tag, queried via Overpass API (666 points)', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — 17 of 666 points fell outside every district polygon and are excluded from the district counts.'],
+    ['Liquor Shops', 'OpenStreetMap, shop=alcohol tag, queried via Overpass API (50 points)', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — mapped cleanly into district polygons via spatial point-in-polygon.'],
+    ['CCTV & Guards', 'OpenStreetMap, man_made=surveillance tag, queried via Overpass API (433 points)', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — includes fixed/dome CCTV cameras, ALPR systems, and security guard posts.'],
     ['Police stations', 'Delhi Police GSDL official station location list (224 points)', 'https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac — community mirror of GSDL GIS server export', 'All 15 districts, official and complete.'],
     ['Chowkis, outposts, police booths', 'OpenStreetMap, amenity=police tag (station-named entries excluded to avoid double-counting)', 'https://www.openstreetmap.org/copyright — ODbL license', '14 of 15 districts — no official geocoded chowki dataset exists publicly (confirmed against the same GSDL source as police stations). Outer has zero mapped, almost certainly an under-mapping gap.'],
     ['District boundaries, IGI Airport jurisdiction', 'Delhi Police GSDL (16 units total, including IGI Airport)', 'https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac — community mirror of GSDL GIS server export', 'Boundary polygons simplified to ~165m tolerance for display — not survey-grade.'],

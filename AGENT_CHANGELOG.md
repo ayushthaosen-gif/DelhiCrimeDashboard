@@ -5,6 +5,22 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 9
+
+### 🍷 Liquor Shops & CCTV/Guard Surveillance Infrastructure Layers
+
+1. **Liquor Shops (`data/dashboard_final.json`, `build.js` INFRA[])**
+   - Mapped 50 OpenStreetMap liquor/wine & beer shop points (`shop=alcohol` via Overpass API) cleanly into Delhi's 15 police districts using affine coordinate projection & point-in-polygon spatial testing.
+   - Added `alcoholShop` metric (`alcoholShops` count and `alcoholShopDensity` per km²) to `INFRA[]` with full 15-district coverage.
+
+2. **CCTV & Security Guard Surveillance (`data/dashboard_final.json`, `build.js` INFRA[])**
+   - Mapped 433 OpenStreetMap surveillance points (`man_made=surveillance` via Overpass API, including CCTV cameras, ALPR systems, and security guard posts).
+   - Added `surveillance` metric (`surveillanceCameras` count and `surveillanceDensity` per km²) to `INFRA[]` across all 15 districts (e.g. New Delhi: 119, East: 113, South-East: 85).
+
+3. **Dashboard & Export Wiring**
+   - Automatically flows through dynamic Pearson correlation matrix (`renderCorrelationMatrix()`), scatter plot tabs, CSV/Excel workbook export builders, and data dictionary.
+   - Updated `export_data.js` and regenerated `exports/districts.csv` and `exports/districts.json`.
+
 ---
 
 ## [2026-07-28] - Claude (Anthropic) - Bus Stops & ATM Infrastructure Layers
