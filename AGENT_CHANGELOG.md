@@ -5,6 +5,20 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Claude (Anthropic) - DMRC Official Station/Gate Data Evaluated, Not Integrated
+
+### 🚇 `metroGates` left on OSM data — user-supplied DMRC file has a data-quality problem
+
+The user supplied `dmrc_station_and_gate_locations.xlsx` (official DMRC station + gate list, 2 sheets, no xlsx-reading package in the repo so parsed manually from the underlying OOXML via `unzip` + a small regex-based sheet reader) as a candidate to replace the OSM-derived `metroGates` metric (`railway=subway_entrance`, 529 points).
+
+**Finding**: after parsing (268 station rows / 264 unique stations; 687 gate rows) and building a coordinate parser robust to the file's many DMS notations (`°`/`˚`/`*`/`⁰`, dotted deg.min.sec, swapped lat/lng, literal `"28 DEG N"` placeholders), a systemic issue surfaced that isn't a formatting quirk: **~13% of stations (34 of 264) and ~82 of 687 gates share one of a handful of identical placeholder coordinates with completely unrelated stations** — e.g. `28.6314,77.2192` (Rajiv Chowk's real coordinate) is reused verbatim by 19 different stations (Arjan Garh, Laxmi Nagar, Noida City Centre, Nehru Place, Palam, Sikanderpur, etc.) and 41 gates across 14 stations. This reads as an incomplete geocoding pass baked into the source file, not noise — using it as-is would silently mis-plot ~1 in 8 stations on top of Rajiv Chowk instead of their real location.
+
+**Decision**: presented the full flagged list to the user (34 station rows, 33 format-unparseable/geographically-nonsensical gate rows, 49 placeholder-sharing gate rows) with options to exclude-and-integrate, gates-only, or hold off. **User chose to hold off** — `metroGates`/`metroGateDensity` remain unchanged (OSM `railway=subway_entrance`, 529 points). No data files were modified for this item.
+
+**If revisited later**: the coordinate parser and full flagged-row lists exist only in this session's scratch directory (not committed) — would need to be redone, but the methodology (regex DMS parser handling `°/˚/*/⁰` symbols + dotted deg-min-sec, plus a placeholder-coordinate detector via grouping by rounded lat/lng and flagging clusters shared across >2 distinct station names) is documented here for whoever picks this up.
+
+---
+
 ## [2026-07-28] - Claude (Anthropic) - Refreshed Liquor Shop & CCTV Datasets (Overpass Re-query)
 
 ### 📡 More Complete OSM Data for `alcoholShop` and `surveillance` Layers
