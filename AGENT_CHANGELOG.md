@@ -5,6 +5,22 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Claude (Anthropic) - POI Point Markers & Sources Citation Fix
+
+### 🗺️ Bus Stop, ATM, Liquor Shop & CCTV/Guard Point Markers
+
+1. **Sources citation gap**: the visible footer citation was missing Liquor Shops and CCTV/Guards — both had been added to `INFRA[]`, the Data Dictionary, and the Excel Sources & Methodology sheet, but never to the footer users actually see on the page. Added both.
+
+2. **Point-level marker data (`data/poi_markers.json`)**: until now, bus stops/ATMs/liquor shops/surveillance only existed as per-district aggregate counts (density metrics) — there was no way to actually see *where* they are. Projected all four datasets into the map's SVG coordinate space using the exact same equirectangular projection as the district polygons (verified point-in-polygon counts match the existing aggregate counts exactly: 3,151/3,199 bus stops, 649/666 ATMs, 50/50 liquor shops, 430/433 surveillance points — the same points excluded from the district-count aggregation for falling outside every polygon are excluded here too).
+
+3. **Four new toggleable map layers** (`#busStopLayer`, `#atmLayer`, `#alcoholLayer`, `#surveillanceLayer`), built once in `initMap()` following the existing police/zones pattern, with per-marker hover tooltips (name + district). Bus stops render small and semi-transparent (3,151 points) so they don't visually overwhelm the choropleth underneath; the other three are more visible at natural counts (fewer points).
+
+4. **Purpose**: lets a viewer visually cross-reference where these POI types cluster against the crime choropleth or the bivariate mode added last commit — multiple layers can be toggled on simultaneously to look for spatial overlap/correlation directly on the map, not just as an r-value in the correlation matrix.
+
+Verified: all four layer counts match their known aggregate totals exactly, tooltips show correct name/district on hover, all layers can be toggled on simultaneously together with bivariate mode + police + zones with no console errors and negligible render cost (layers are pre-built once, toggling is just a display:none/inline flip), and the CSV/Excel export builders still produce valid output.
+
+---
+
 ## [2026-07-28] - Claude (Anthropic) - Bivariate Crime × Infrastructure Choropleth
 
 ### 🗺️ 3x3 Bivariate Map Mode

@@ -10,6 +10,7 @@ const airportShape = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/airport_sh
 const roadSafetyTrends = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/road_safety_trends.json'), 'utf8'));
 const accidentZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_raw.json'), 'utf8'));
 const accidentZonesMapped = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_mapped.json'), 'utf8'));
+const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers.json'), 'utf8'));
 const font600 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders600.woff2')).toString('base64');
 const font800 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders800.woff2')).toString('base64');
 
@@ -186,6 +187,11 @@ path.district:hover { opacity: .82; }
 .district-center-ring { fill: none; stroke: var(--label-fill); stroke-width: 1.6; pointer-events: auto; cursor: help; }
 .district-center-dot { fill: var(--label-fill); pointer-events: none; }
 .zone-marker { fill: var(--rust); stroke: white; stroke-width: 1; pointer-events: auto; cursor: default; }
+.poi-marker { cursor: default; pointer-events: auto; }
+.poi-bus { fill: var(--good); stroke: white; stroke-width: .5; opacity: .55; }
+.poi-atm { fill: #d4af37; stroke: white; stroke-width: .75; opacity: .8; }
+.poi-alcohol { fill: #8b2f5e; stroke: white; stroke-width: .75; opacity: .85; }
+.poi-surveillance { fill: #0891b2; stroke: white; stroke-width: .75; opacity: .8; }
 .airport-shape { fill: var(--slate); fill-opacity: .35; stroke: var(--slate); stroke-width: 1.4; stroke-dasharray: 4,3; pointer-events: auto; cursor: help; }
 .airport-label { font-family: 'Big Shoulders', sans-serif; font-weight: 700; font-size: 10.5px; fill: var(--label-fill); paint-order: stroke; stroke: var(--label-stroke); stroke-width: 2.5px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
 
@@ -371,6 +377,22 @@ footer a { color: inherit; }
       <span class="switch"></span>
       Bivariate map (crime × infrastructure)
     </div>
+    <div class="toggle-row" id="busStopToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bus stops">
+      <span class="switch"></span>
+      Show bus stops
+    </div>
+    <div class="toggle-row" id="atmToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show ATMs">
+      <span class="switch"></span>
+      Show ATMs
+    </div>
+    <div class="toggle-row" id="alcoholToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show liquor shops">
+      <span class="switch"></span>
+      Show liquor shops
+    </div>
+    <div class="toggle-row" id="surveillanceToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show CCTV and guard posts">
+      <span class="switch"></span>
+      Show CCTV/guard posts
+    </div>
   </div>
   <div id="compareCard" class="compare-card" style="display:none;"></div>
 
@@ -409,6 +431,10 @@ footer a { color: inherit; }
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:#7c3aed;border-radius:50%;"></span>chowki / outpost / post</span>
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:transparent;border:1.6px solid var(--label-fill);border-radius:50%;"></span>district center</span>
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:var(--rust);clip-path:polygon(50% 0%, 100% 100%, 0% 100%);"></span>crash-prone zone, 2023 (size/shade = fatal crashes)</span>
+          <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:var(--good);border-radius:50%;opacity:.55;"></span>bus stop</span>
+          <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:#d4af37;border-radius:50%;"></span>ATM</span>
+          <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:#8b2f5e;border-radius:50%;"></span>liquor shop</span>
+          <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:#0891b2;border-radius:50%;"></span>CCTV / guard post</span>
         </span>
       </div>
     </div>
@@ -556,7 +582,7 @@ footer a { color: inherit; }
   </div>
 
   <footer>
-    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2023) and road deaths by mode of travel (2019-2023): Delhi Traffic Police annual road crash data · District-wise crash data and 107 crash-prone zones (2023): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); coordinates for all 107 zones cross-checked against the source table by rank and fatal-crash count, 105 of which fall inside a district polygon and are shown on the map sized by fatal crash count · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
+    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2023) and road deaths by mode of travel (2019-2023): Delhi Traffic Police annual road crash data · District-wise crash data and 107 crash-prone zones (2023): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); coordinates for all 107 zones cross-checked against the source table by rank and fatal-crash count, 105 of which fall inside a district polygon and are shown on the map sized by fatal crash count · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol via Overpass API, 50 points), ODbL · CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 433 points), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
     <span>District boundary polygons simplified for display (~165m tolerance) — not survey-grade. IGI Airport unit and non-geographic units (Crime Branch, EOW, Metro, Railway, Vigilance, etc.) excluded from district figures.</span>
   </footer>
 </div>
@@ -571,6 +597,7 @@ const TRENDS = ${JSON.stringify(roadSafetyTrends.trends)};
 const VICTIMS = ${JSON.stringify(roadSafetyTrends.victims)};
 const ACCIDENT_ZONES = ${JSON.stringify(accidentZones)};
 const ACCIDENT_ZONES_MAPPED = ${JSON.stringify(accidentZonesMapped)};
+const POI_MARKERS = ${JSON.stringify(poiMarkers)};
 
 const METRICS = [
   { key: 'theft', label: 'Theft', short: 'theft', year: '2023', full: 'Theft (Sec. 379 IPC), 2023', prevKey: 'theft2022', prevYear: '2022', key2024: 'theft2024', title: 'Theft (Sec. 379 IPC)', desc: 'Reported vehicle, property, and personal theft offences registered in the district.', source: 'NCRB Crime in India District-Wise Reports' },
@@ -612,6 +639,10 @@ let corrCoeffMode = 'pearson'; // 'pearson' (linear) or 'spearman' (rank)
 let showLights = false;
 let showPolice = false;
 let showZones = false;
+let showBusStops = false;
+let showAtms = false;
+let showAlcohol = false;
+let showSurveillance = false;
 let isBivariateMode = false;
 let selected = null;
 let scatterType = 'streetlight';
@@ -883,7 +914,11 @@ function initMap() {
     '<g id="airportLayer"></g>',
     '<g id="centerMarkersLayer"></g>',
     '<g id="policeLayer"></g>',
-    '<g id="zonesLayer"></g>'
+    '<g id="zonesLayer"></g>',
+    '<g id="busStopLayer"></g>',
+    '<g id="atmLayer"></g>',
+    '<g id="alcoholLayer"></g>',
+    '<g id="surveillanceLayer"></g>'
   ];
   svg.innerHTML = parts.join('');
 
@@ -954,6 +989,23 @@ function initMap() {
     zoneParts.push('<path class="zone-marker" style="opacity:' + opacity + '" d="M' + x + ',' + (y - size) + ' L' + (x + size * 0.87) + ',' + (y + size * 0.67) + ' L' + (x - size * 0.87) + ',' + (y + size * 0.67) + ' Z" data-sv-url="' + svUrl + '" data-tt-title="' + esc(z.name + ' (' + z.road + ')') + '" data-tt-body="' + esc(z.district + ' · ' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023') + ' (Click for 360° Street View)"></path>');
   });
   zonesLayer.innerHTML = zoneParts.join('');
+
+  // POI marker layers — plain point data (no per-item Street View lookup, unlike police/zones
+  // above), kept as small low-opacity dots so 3,000+ bus stops don't visually overwhelm the
+  // choropleth underneath. Toggled independently so multiple layers can be compared against
+  // each other and against the crime coloring at once.
+  function poiLayer(id, points, className, radius) {
+    const layer = svg.querySelector('#' + id);
+    if (!layer) return;
+    layer.innerHTML = points.map(([x, y, name]) => {
+      const distName = findDistrictName(x, y);
+      return '<circle class="' + className + '" cx="' + x + '" cy="' + y + '" r="' + radius + '" data-tt-title="' + esc(name) + '" data-tt-body="' + esc(distName + ' District') + '"></circle>';
+    }).join('');
+  }
+  poiLayer('busStopLayer', POI_MARKERS.busStops, 'poi-marker poi-bus', 1.6);
+  poiLayer('atmLayer', POI_MARKERS.atms, 'poi-marker poi-atm', 2.2);
+  poiLayer('alcoholLayer', POI_MARKERS.alcoholShops, 'poi-marker poi-alcohol', 3);
+  poiLayer('surveillanceLayer', POI_MARKERS.surveillance, 'poi-marker poi-surveillance', 2.2);
 
   svg.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -1033,6 +1085,15 @@ function renderMap() {
 
   const zonesLayer = document.getElementById('zonesLayer');
   if (zonesLayer) zonesLayer.style.display = showZones ? 'inline' : 'none';
+
+  const busStopLayer = document.getElementById('busStopLayer');
+  if (busStopLayer) busStopLayer.style.display = showBusStops ? 'inline' : 'none';
+  const atmLayer = document.getElementById('atmLayer');
+  if (atmLayer) atmLayer.style.display = showAtms ? 'inline' : 'none';
+  const alcoholLayer = document.getElementById('alcoholLayer');
+  if (alcoholLayer) alcoholLayer.style.display = showAlcohol ? 'inline' : 'none';
+  const surveillanceLayer = document.getElementById('surveillanceLayer');
+  if (surveillanceLayer) surveillanceLayer.style.display = showSurveillance ? 'inline' : 'none';
 
   const singleLegend = document.getElementById('singleLegend');
   const bivariateLegend = document.getElementById('bivariateLegend');
@@ -1799,6 +1860,10 @@ setupToggleControl('lightToggle', () => showLights, v => { showLights = v; });
 setupToggleControl('policeToggle', () => showPolice, v => { showPolice = v; });
 setupToggleControl('zonesToggle', () => showZones, v => { showZones = v; });
 setupToggleControl('bivariateToggle', () => isBivariateMode, v => { isBivariateMode = v; });
+setupToggleControl('busStopToggle', () => showBusStops, v => { showBusStops = v; });
+setupToggleControl('atmToggle', () => showAtms, v => { showAtms = v; });
+setupToggleControl('alcoholToggle', () => showAlcohol, v => { showAlcohol = v; });
+setupToggleControl('surveillanceToggle', () => showSurveillance, v => { showSurveillance = v; });
 
 const scatterCanvasEl = document.getElementById('scatterCanvas');
 if (scatterCanvasEl) {
