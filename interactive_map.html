@@ -22,7 +22,8 @@
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
-#topbar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; row-gap: 6px; }
+body { display: flex; flex-direction: column; }
+#topbar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; row-gap: 6px; flex: 0 0 auto; }
 #topbar h1 { font-size: 15px; margin: 0; font-weight: 800; margin-right: 6px; white-space: nowrap; }
 #topbar a.back { font-size: 13px; color: var(--text); text-decoration: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; background: var(--bg); margin-left: auto; }
 #topbar a.back:hover { border-color: var(--amber); }
@@ -34,7 +35,9 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
 .seg button.active { background: var(--rust); color: #fff; }
 .seg button:hover:not(.active) { background: var(--paper-raised); color: var(--text); }
 #map { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
-#mapWrap { position: absolute; top: 78px; left: 0; right: 0; bottom: 0; }
+#analysisBar { flex: 0 0 auto; }
+#mapRegion { position: relative; flex: 1 1 auto; min-height: 0; }
+#mapWrap { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 .leaflet-popup-content-wrapper { background: var(--surface); color: var(--text); }
 .leaflet-popup-tip { background: var(--surface); }
 .leaflet-popup-content { font-size: 12.5px; line-height: 1.5; }
@@ -55,7 +58,7 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
 #searchResults { position: absolute; z-index: 1200; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,.2); max-height: 220px; overflow-y: auto; display: none; min-width: 180px; }
 #searchResults div { padding: 6px 12px; font-size: 13px; cursor: pointer; }
 #searchResults div:hover, #searchResults div.active-hl { background: var(--rust); color: #fff; }
-#drawer { position: absolute; top: 78px; right: 0; bottom: 0; width: 340px; max-width: 92vw; background: var(--surface); border-left: 1px solid var(--border); box-shadow: -4px 0 16px rgba(0,0,0,.12); transform: translateX(100%); transition: transform .2s ease; z-index: 1100; overflow-y: auto; padding: 16px; }
+#drawer { position: absolute; top: 0; right: 0; bottom: 0; width: 340px; max-width: 92vw; background: var(--surface); border-left: 1px solid var(--border); box-shadow: -4px 0 16px rgba(0,0,0,.12); transform: translateX(100%); transition: transform .2s ease; z-index: 1100; overflow-y: auto; padding: 16px; }
 #drawer.open { transform: translateX(0); }
 #drawer .drawer-close { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 20px; color: var(--text-dim); cursor: pointer; line-height: 1; }
 #drawer h2 { margin: 0 4px 2px; font-size: 19px; font-weight: 800; }
@@ -81,6 +84,24 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
 .point-legend { position: absolute; bottom: 20px; right: 356px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none; }
 .point-legend.show { display: block; }
 .point-legend .row { display: flex; align-items: center; gap: 7px; padding: 2px 0; }
+#analysisBar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--bg); border-bottom: 1px solid var(--border); flex-wrap: wrap; font-size: 12.5px; }
+#analysisBar label { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+#analysisBar select { font: inherit; font-size: 12.5px; padding: 5px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
+.analysis-summary { font-size: 12px; color: var(--text-dim); }
+.analysis-summary b { color: var(--text); }
+.zone-match-ring { filter: drop-shadow(0 0 3px var(--amber)); }
+#nearbyPanel { position: absolute; top: 10px; left: 10px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); max-width: 260px; display: none; }
+#nearbyPanel.show { display: block; }
+#nearbyPanel b { color: var(--text); display: block; margin-bottom: 4px; font-size: 12px; }
+#nearbyPanel .nb-row { display: flex; justify-content: space-between; padding: 2px 0; }
+.weak-cov-outline { stroke-dasharray: 6 4 !important; }
+#methodOverlay { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 1900; display: none; align-items: center; justify-content: center; }
+#methodOverlay.show { display: flex; }
+#methodPanel2 { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; max-width: 480px; max-height: 80vh; overflow-y: auto; box-shadow: 0 8px 30px rgba(0,0,0,.3); }
+#methodPanel2 h3 { margin: 0 0 10px; font-size: 16px; }
+#methodPanel2 p, #methodPanel2 li { font-size: 12.5px; color: var(--text-dim); line-height: 1.6; }
+#methodPanel2 button { margin-top: 10px; font: inherit; font-size: 12px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
+.unsafe-factor-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; font-family: monospace; }
 </style>
 </head>
 <body>
@@ -109,12 +130,43 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
     <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
   </div>
 </div>
-<div id="mapWrap"><div id="map"></div></div>
-<div class="leg" id="legend"></div>
-<div class="point-legend" id="pointLegend"></div>
-<div id="drawer">
-  <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
-  <div id="drawerBody"></div>
+<div id="analysisBar">
+  <label>Spatial analysis: <select id="analysisSelect">
+    <option value="none">None</option>
+    <option value="crashesNearLiquor">Crashes near liquor shops</option>
+    <option value="crashesNoSurveillance">Crashes without nearby surveillance</option>
+    <option value="crashesNearBus">Crashes near bus stops</option>
+    <option value="weakPoliceCoverage">High-crime districts, weak police coverage</option>
+  </select></label>
+  <label>Radius: <div class="seg" id="radiusToggle"></div></label>
+  <label><input type="checkbox" id="chkUnsafe"> Show unsafe areas (composite)</label>
+  <span id="unsafeMethodLink" style="display:none; cursor:pointer; text-decoration:underline; color:var(--text-dim); font-size:11.5px;">ⓘ methodology</span>
+  <span class="analysis-summary" id="analysisSummary"></span>
+</div>
+<div id="mapRegion">
+  <div id="mapWrap"><div id="map"></div></div>
+  <div class="leg" id="legend"></div>
+  <div class="point-legend" id="pointLegend"></div>
+  <div id="nearbyPanel"></div>
+  <div id="drawer">
+    <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
+    <div id="drawerBody"></div>
+  </div>
+</div>
+<div id="methodOverlay">
+  <div id="methodPanel2">
+    <h3>Composite "Unsafe Areas" — methodology</h3>
+    <p>Each district's score is the plain average of five factors, each converted to a 0-1 percentile rank across the 15 districts first (so no single factor's raw scale can dominate the others). No hidden weighting — every factor counts equally.</p>
+    <ul>
+      <li><b>Total IPC crime density</b> (higher rank = less safe)</li>
+      <li><b>Crime against women density</b> (higher rank = less safe)</li>
+      <li><b>Fatal crashes (2023) density</b> (higher rank = less safe)</li>
+      <li><b>Police infrastructure density</b> (rank inverted — lower coverage = less safe)</li>
+      <li><b>Streetlight density</b> (rank inverted — lower coverage = less safe; districts the PAPL survey never covered are excluded from this one factor only, and flagged, rather than silently counted as "no streetlights")</li>
+    </ul>
+    <p>This is one illustrative composite, not an official risk index — click any district while this mode is on to see its exact factor-by-factor breakdown in the popup.</p>
+    <button id="methodCloseBtn" type="button">Close</button>
+  </div>
 </div>
 
 <script>
@@ -171,6 +223,11 @@ let activeYear = '2023';
 let rateMode = 'density'; // 'density' (per km²) or 'perCapita' (per 100k residents)
 let bivariateMode = false;
 let bivariateInfra = 'policeInfra';
+let unsafeMode = false; // declared here (not near its own module further below) because
+                          // renderChoropleth() references it and runs once during initial
+                          // page setup, before later let/const lines would otherwise execute --
+                          // referencing a not-yet-initialized let throws and silently halts the
+                          // rest of the script, which is exactly what happened before this fix.
 let selectedDistrict = null;
 
 const metricSelect = document.getElementById('metricSelect');
@@ -307,10 +364,14 @@ function renderChoropleth() {
 
   if (geoLayer) map.removeLayer(geoLayer);
   Object.keys(districtLayers).forEach(k => delete districtLayers[k]);
+  const unsafeScores = unsafeMode ? computeUnsafeScores() : null;
   geoLayer = L.geoJSON(BOUNDARIES, {
     style: f => {
       let fillColor;
-      if (bivariateMode) {
+      if (unsafeMode) {
+        const s = unsafeScores[f.properties.district].score;
+        fillColor = s == null ? '#999' : rustScale(s);
+      } else if (bivariateMode) {
         fillColor = getBivariateColor(feats, f.properties, m, inf);
       } else {
         const v = metricValue(f.properties, m);
@@ -329,13 +390,20 @@ function renderChoropleth() {
       const prevRate = prevRaw != null ? getRateVal(prevRaw, d) : null;
 
       let body = '<div class="popup-title">' + d.district + '</div>';
-      body += '<div class="popup-rank">' + m.full + ', ' + year + ' — rank ' + ordinal(rank(d)) + ' of 15</div>';
-      body += '<div><b>' + fmtNum(v) + '</b> ' + (rateMode === 'perCapita' ? 'per 100k residents' : 'per km²') + '</div>';
-      if (prevRate != null) body += '<div>' + yoyBadge(v, prevRate) + '</div>';
-      if (bivariateMode) {
-        body += '<div style="margin-top:4px;">' + inf.label + ': <b>' + fmtNum(getInfraVal(d, inf)) + '</b> ' + (rateMode === 'perCapita' ? '/100k' : '/km²') + '</div>';
+      if (unsafeMode) {
+        const us = unsafeScores[d.district];
+        body += '<div class="popup-rank">Composite unsafe score: <b>' + (us.score != null ? (us.score*100).toFixed(0) + '/100' : '—') + '</b> (' + us.coveredFactors + '/' + us.totalFactors + ' factors covered)</div>';
+        body += us.contributions.map(c => '<div class="unsafe-factor-row"><span>' + c.label + '</span><span>' + (c.percentile != null ? (c.percentile*100).toFixed(0) + 'pct' : 'n/a') + '</span></div>').join('');
+        body += '<div class="popup-src">Equal-weight average of percentile ranks — click "ⓘ methodology" for the full writeup.</div>';
+      } else {
+        body += '<div class="popup-rank">' + m.full + ', ' + year + ' — rank ' + ordinal(rank(d)) + ' of 15</div>';
+        body += '<div><b>' + fmtNum(v) + '</b> ' + (rateMode === 'perCapita' ? 'per 100k residents' : 'per km²') + '</div>';
+        if (prevRate != null) body += '<div>' + yoyBadge(v, prevRate) + '</div>';
+        if (bivariateMode) {
+          body += '<div style="margin-top:4px;">' + inf.label + ': <b>' + fmtNum(getInfraVal(d, inf)) + '</b> ' + (rateMode === 'perCapita' ? '/100k' : '/km²') + '</div>';
+        }
+        body += '<div class="popup-src">Source: ' + m.source + (bivariateMode ? ' · ' + inf.source : '') + '</div>';
       }
-      body += '<div class="popup-src">Source: ' + m.source + (bivariateMode ? ' · ' + inf.source : '') + '</div>';
 
       layer.bindPopup(body);
       layer.on('mouseover', () => { if (selectedDistrict !== d.district) layer.setStyle({ weight: 3, color: '#1c2331' }); });
@@ -445,7 +513,12 @@ document.addEventListener('click', (e) => {
 
 function renderLegend(m, inf, lo, hi) {
   const el = document.getElementById('legend');
-  if (bivariateMode) {
+  if (unsafeMode) {
+    el.innerHTML = '<b>Composite Unsafe Score</b>' +
+      '<div class="leg-scale">' + Array.from({length:8}, (_,i) => '<span style="background:' + rustScale(i/7) + '"></span>').join('') + '</div>' +
+      '<div style="display:flex;justify-content:space-between;"><span>Safer</span><span>Less safe</span></div>' +
+      '<div style="margin-top:4px;font-style:italic;">equal-weight avg of 5 percentile-ranked factors — click "ⓘ methodology"</div>';
+  } else if (bivariateMode) {
     const cells = [];
     for (let row = 2; row >= 0; row--) {
       for (let col = 0; col < 3; col++) cells.push('<div style="background:' + BIVARIATE_MATRIX[row][col] + '"></div>');
@@ -526,6 +599,12 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
   document.querySelectorAll('#pointLayerToggles input[type=checkbox]').forEach(chk => { const wasChecked = chk.checked; chk.checked = false; if (wasChecked) chk.dispatchEvent(new Event('change')); });
   document.getElementById('chkHeatmap').checked = false;
   if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
+  document.getElementById('analysisSelect').value = 'none';
+  if (typeof clearAnalysisHighlight === 'function') clearAnalysisHighlight();
+  document.getElementById('nearbyPanel').classList.remove('show');
+  unsafeMode = false;
+  document.getElementById('chkUnsafe').checked = false;
+  document.getElementById('unsafeMethodLink').style.display = 'none';
   renderChoropleth();
 });
 
@@ -571,11 +650,16 @@ const alcoholLayer = makeShapeLayer(POI.alcoholShops, '#8b2f5e', 'diamond', 12);
 const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11);
 
 const zonesGroup = L.layerGroup();
+const zoneMarkers = []; // { zone, marker, baseStyle } -- kept so spatial-analysis highlighting and the
+                          // click-for-nearby-infra panel can restyle/query individual zone markers.
 ZONES.filter(z => z.lat != null && z.lng != null).forEach(z => {
   const t = Math.max(0, Math.min(1, (z.fatal - 1) / 6));
-  L.circleMarker([z.lat, z.lng], {
-    radius: 4 + t * 4, color: '#fff', weight: 1, fillColor: '#b14a34', fillOpacity: 0.55 + t * 0.4,
-  }).bindPopup('<b>' + z.name + '</b> (' + z.road + ')<br>' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023<div class="popup-src">Source: Delhi Road Crash Report 2023</div>').addTo(zonesGroup);
+  const baseStyle = { radius: 4 + t * 4, color: '#fff', weight: 1, fillColor: '#b14a34', fillOpacity: 0.55 + t * 0.4 };
+  const marker = L.circleMarker([z.lat, z.lng], baseStyle)
+    .bindPopup('<b>' + z.name + '</b> (' + z.road + ')<br>' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023<div class="popup-src">Source: Delhi Road Crash Report 2023</div>')
+    .addTo(zonesGroup);
+  marker.on('click', () => showNearbyInfra(z));
+  zoneMarkers.push({ zone: z, marker, baseStyle });
 });
 
 const toggles = [
@@ -620,6 +704,149 @@ document.getElementById('chkHeatmap').addEventListener('change', (e) => {
     heatLayer = null;
   }
 });
+
+// ── Spatial-intersection analysis tools ──
+// Haversine great-circle distance in meters -- accurate enough at Delhi's scale (city spans
+// ~50km, well within the range where the spherical-earth approximation's error is negligible).
+function haversineMeters(lat1, lng1, lat2, lng2) {
+  const R = 6371000;
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1), dLng = toRad(lng2 - lng1);
+  const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+function pointsWithin(lat, lng, points, radiusM) {
+  return points.filter(p => haversineMeters(lat, lng, p[0], p[1]) <= radiusM);
+}
+
+let analysisRadius = 250;
+function buildRadiusToggle() {
+  const el = document.getElementById('radiusToggle');
+  el.innerHTML = [100, 250, 500, 1000].map(r =>
+    '<button class="' + (analysisRadius===r?'active':'') + '" data-r="' + r + '">' + (r>=1000 ? (r/1000)+'km' : r+'m') + '</button>').join('');
+  el.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => { analysisRadius = Number(btn.dataset.r); buildRadiusToggle(); runAnalysis(); });
+  });
+}
+buildRadiusToggle();
+
+const weakCoverageLayer = L.layerGroup();
+function clearAnalysisHighlight() {
+  zoneMarkers.forEach(({ marker, baseStyle }) => marker.setStyle(Object.assign({}, baseStyle, { className: '' })));
+  map.removeLayer(weakCoverageLayer);
+  document.getElementById('analysisSummary').textContent = '';
+}
+
+function runAnalysis() {
+  const type = document.getElementById('analysisSelect').value;
+  clearAnalysisHighlight();
+  const summaryEl = document.getElementById('analysisSummary');
+  if (type === 'none') return;
+
+  if (type === 'weakPoliceCoverage') {
+    // District-level, not radius-based: districts in the top tertile for the selected crime
+    // metric AND the bottom tertile for police infrastructure density -- high crime, thin cover.
+    const m = currentMetric();
+    const feats = BOUNDARIES.features;
+    const crimeVals = feats.map(f => metricValue(f.properties, m)).filter(v => v != null).sort((a,b)=>a-b);
+    const policeVals = feats.map(f => f.properties.policeInfraDensity).filter(v => v != null).sort((a,b)=>a-b);
+    const matches = feats.filter(f => {
+      const crime = metricValue(f.properties, m), police = f.properties.policeInfraDensity;
+      if (crime == null || police == null) return false;
+      return getTertileIndex(crime, crimeVals) === 2 && getTertileIndex(police, policeVals) === 0;
+    });
+    matches.forEach(f => {
+      L.geoJSON(f, { style: { fillColor: 'transparent', fillOpacity: 0, color: 'var(--rust)', weight: 3, className: 'weak-cov-outline' } })
+        .bindTooltip(f.properties.district + ' — high ' + m.label.toLowerCase() + ', weak police coverage', { sticky: true })
+        .addTo(weakCoverageLayer);
+    });
+    weakCoverageLayer.addTo(map);
+    summaryEl.innerHTML = '<b>' + matches.length + ' of 15</b> districts: top-tertile ' + m.label + ' + bottom-tertile Police Infra density (dashed rust outline).';
+    return;
+  }
+
+  // Point-radius analyses over the 107 geocoded crash zones.
+  const liquorPts = POI.alcoholShops.map(p => [p[0], p[1]]);
+  const survPts = POI.surveillance.map(p => [p[0], p[1]]);
+  const busPts = POI.busStops.map(p => [p[0], p[1]]);
+  let matchCount = 0, label = '';
+  zoneMarkers.forEach(({ zone, marker, baseStyle }) => {
+    let isMatch = false;
+    if (type === 'crashesNearLiquor') { isMatch = pointsWithin(zone.lat, zone.lng, liquorPts, analysisRadius).length > 0; label = 'have a liquor shop within'; }
+    else if (type === 'crashesNoSurveillance') { isMatch = pointsWithin(zone.lat, zone.lng, survPts, analysisRadius).length === 0; label = 'have NO surveillance point within'; }
+    else if (type === 'crashesNearBus') { isMatch = pointsWithin(zone.lat, zone.lng, busPts, analysisRadius).length > 0; label = 'have a bus stop within'; }
+    if (isMatch) {
+      matchCount++;
+      marker.setStyle(Object.assign({}, baseStyle, { color: 'var(--amber)', weight: 3 }));
+    } else {
+      marker.setStyle(Object.assign({}, baseStyle, { fillOpacity: 0.15, color: '#fff' }));
+    }
+  });
+  if (!map.hasLayer(zonesGroup)) { zonesGroup.addTo(map); document.getElementById('chkZones').checked = true; }
+  summaryEl.innerHTML = '<b>' + matchCount + ' of ' + zoneMarkers.length + '</b> crash zones ' + label + ' ' + (analysisRadius>=1000 ? analysisRadius/1000+'km' : analysisRadius+'m') + '. Amber ring = match, faded = no match.';
+}
+document.getElementById('analysisSelect').addEventListener('change', runAnalysis);
+
+// Click a crash zone → nearby-infrastructure panel, counting each POI type within the current
+// analysis radius (defaults to 250m if no radius has been picked via the analysis tools yet).
+function showNearbyInfra(zone) {
+  const r = analysisRadius;
+  const counts = {
+    'Liquor shops': pointsWithin(zone.lat, zone.lng, POI.alcoholShops.map(p=>[p[0],p[1]]), r).length,
+    'CCTV/guards': pointsWithin(zone.lat, zone.lng, POI.surveillance.map(p=>[p[0],p[1]]), r).length,
+    'Bus stops': pointsWithin(zone.lat, zone.lng, POI.busStops.map(p=>[p[0],p[1]]), r).length,
+    'ATMs': pointsWithin(zone.lat, zone.lng, POI.atms.map(p=>[p[0],p[1]]), r).length,
+    'Police stations': pointsWithin(zone.lat, zone.lng, POLICE.stations.map(p=>[p[0],p[1]]), r).length,
+    'Chowkis/posts': pointsWithin(zone.lat, zone.lng, POLICE.posts.map(p=>[p[0],p[1]]), r).length,
+  };
+  const el = document.getElementById('nearbyPanel');
+  el.innerHTML = '<b>' + zone.name + ' — within ' + (r>=1000 ? r/1000+'km' : r+'m') + '</b>' +
+    Object.entries(counts).map(([label, n]) => '<div class="nb-row"><span>' + label + '</span><span><b>' + n + '</b></span></div>').join('') +
+    '<div style="margin-top:6px;font-style:italic;">Change the Radius control above to adjust.</div>';
+  el.classList.add('show');
+}
+
+// ── Composite "unsafe areas" layer — transparent methodology: plain average of five equally-
+// weighted, percentile-ranked factors (see #methodOverlay for the full writeup, shown to the
+// user via the "ⓘ methodology" link rather than left undocumented). No hidden weighting, no
+// black-box scoring — every factor and its direction is spelled out and re-derivable from the
+// same district fields already used elsewhere on this page.
+const UNSAFE_FACTORS = [
+  { key: 'totalIPCDensity', label: 'Total IPC crime density', invert: false, get: d => d.totalIPC != null ? d.totalIPC / d.areaSqKm : null },
+  { key: 'crimeAgainstWomenDensity', label: 'Crime against women density', invert: false, get: d => d.crimeAgainstWomen != null ? d.crimeAgainstWomen / d.areaSqKm : null },
+  { key: 'fatalCrashDensity', label: 'Fatal crashes (2023) density', invert: false, get: d => d.fatalCrashes2023 != null ? d.fatalCrashes2023 / d.areaSqKm : null },
+  { key: 'policeInfraDensity', label: 'Police infrastructure density', invert: true, get: d => d.policeInfraDensity },
+  { key: 'lightDensityPerKm2', label: 'Streetlight density', invert: true, get: d => (SURVEYED.has(d.district) ? d.lightDensityPerKm2 : null) },
+];
+function computeUnsafeScores() {
+  const allProps = BOUNDARIES.features.map(f => f.properties);
+  const factorScales = UNSAFE_FACTORS.map(f => {
+    const vals = allProps.map(f.get).filter(v => v != null);
+    return { factor: f, scale: percentileScale(vals), n: vals.length };
+  });
+  const scores = {};
+  allProps.forEach(d => {
+    const contributions = factorScales.map(({ factor, scale }) => {
+      const v = factor.get(d);
+      if (v == null) return { label: factor.label, value: null, percentile: null };
+      const pct = factor.invert ? 1 - scale(v) : scale(v);
+      return { label: factor.label, value: v, percentile: pct };
+    });
+    const valid = contributions.filter(c => c.percentile != null);
+    const score = valid.length ? valid.reduce((a,c) => a + c.percentile, 0) / valid.length : null;
+    scores[d.district] = { score, contributions, coveredFactors: valid.length, totalFactors: UNSAFE_FACTORS.length };
+  });
+  return scores;
+}
+
+document.getElementById('chkUnsafe').addEventListener('change', (e) => {
+  unsafeMode = e.target.checked;
+  document.getElementById('unsafeMethodLink').style.display = unsafeMode ? '' : 'none';
+  renderChoropleth();
+});
+document.getElementById('unsafeMethodLink').addEventListener('click', () => document.getElementById('methodOverlay').classList.add('show'));
+document.getElementById('methodCloseBtn').addEventListener('click', () => document.getElementById('methodOverlay').classList.remove('show'));
+document.getElementById('methodOverlay').addEventListener('click', (e) => { if (e.target.id === 'methodOverlay') e.currentTarget.classList.remove('show'); });
 </script>
 </body>
 </html>

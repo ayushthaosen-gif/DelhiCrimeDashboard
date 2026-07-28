@@ -1,9 +1,58 @@
 # AI Collaboration Log & Changelog
 
+## [2026-07-28] - Codex (OpenAI) - Verified Historical Crime Data File
+
+1. Added `build_verified_historical_data.js` to reproduce a conservative 2016–2021 Delhi territorial-district crime dataset from the NCRB-derived India Data Portal extracts.
+2. The generated file contains theft, robbery and burglary only, with per-row coverage and comparability flags. Unsafe reconstructed IPC, crime-against-women and SLL totals are explicitly omitted.
+3. The verification metadata records the 45/45 exact 2022 cross-check, district-coverage changes, specialized-unit exclusions, the 2016 burglary definition break and the confirmed misclassified Lakshadweep SLL record.
+
 This log tracks all architectural, performance, accessibility, and code quality changes made by AI assistants (Antigravity & Claude) on the **Delhi Crime Dashboard** repository.
 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
+
+## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 5: Composite "Unsafe Areas" Layer
+
+### ⚠️ Transparent composite risk layer, with a user-facing methodology writeup
+
+Phase 5 of the 6-phase interactive map upgrade (phases 1-4, below, covered year/rate/bivariate parity, search/zoom/drawer, clustering/heatmap/circles, and spatial radius-intersection tools).
+
+1. **`computeUnsafeScores()`** — each district's composite score is the plain average of five factors, each independently converted to a 0-1 percentile rank first (`percentileScale()`, already used elsewhere on this page) so no single factor's raw scale can dominate: total IPC crime density, crime-against-women density, and fatal-crash (2023) density (higher rank = less safe), plus police infrastructure density and streetlight density (both inverted — lower coverage = less safe). Streetlight density is excluded from the average for districts the PAPL survey never covered, rather than silently treated as zero.
+2. **No hidden weighting** — every factor counts equally, and this is stated directly in a methodology modal (`#methodOverlay`, opened via a "ⓘ methodology" link that only appears once the layer is on) rather than left for the user to reverse-engineer.
+3. **Toggle** (`#chkUnsafe`) replaces the choropleth fill with the composite score (0-100 scale, same rust color ramp) and each district's popup switches to a full factor-by-factor breakdown (label + percentile per factor, plus how many of the 5 factors were actually covered for that district) instead of the usual single-metric popup.
+4. Wired into the reset-map control, same as every other toggle added in phases 3-4.
+
+**Serious bug caught during verification** (via `javascript_tool`, not a visible failure): `unsafeMode` was declared with `let` far below where `renderChoropleth()` first runs during initial page setup. Referencing a `let` before its declaration line has executed throws a `ReferenceError` and — critically — silently halts all remaining top-level script execution for the rest of that `<script>` block. This meant the entire Phase 4 spatial-analysis wiring (event listeners for the analysis dropdown, radius toggle, heatmap checkbox, methodology modal) would have shipped broken, not just the new Phase 5 code, because they're declared later in the same script and never got the chance to register. Fixed by moving `let unsafeMode = false;` up next to the page's other early state variables (`bivariateMode`, `displayMode`, etc.), before the first `renderChoropleth()` call. A second, unrelated syntax error (backticks inside a JS comment prematurely closing the outer template literal that builds the whole HTML string in `build_interactive_map.js`) was caught by `node build_interactive_map.js` itself failing to run, before this even reached the browser.
+
+Verified: after both fixes, re-ran the *entire* phase 3-5 test suite end-to-end in one pass (not just the new Phase 5 code) specifically because the TDZ bug had a blast radius — confirmed marker clustering, heatmap, bus-stop toggling, the crashes-near-liquor-shops analysis (4 of 107 within 250m, unchanged from Phase 4's own verification), the composite score computation and legend/popup content, the methodology modal open/close, and reset-map all work correctly together with no console errors.
+
+**Not yet done** (final phase): URL state, CSV/GeoJSON export of the filtered map, mobile bottom sheets.
+
+---
+
+## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 4: Spatial-Intersection Tools
+
+### 📐 Radius-based crash-zone analyses, weak-police-coverage districts, adjustable radius
+
+Phase 4 of the 6-phase interactive map upgrade (phases 1-3, below, covered year/rate/bivariate parity, search/zoom/drawer, and clustering/heatmap/circles).
+
+1. **`haversineMeters()`** — great-circle distance, accurate at Delhi's scale (city spans ~50km, well within where the spherical-earth approximation's error is negligible).
+2. **Adjustable radius control** (100m / 250m / 500m / 1km segmented toggle, `analysisRadius`), shared by every spatial tool below.
+3. **Four analysis modes** (`#analysisSelect`), computed live over the 107 geocoded crash zones and existing POI datasets — no new data needed:
+   - Crashes with a liquor shop within the radius
+   - Crashes with **no** surveillance point within the radius
+   - Crashes with a bus stop within the radius
+   - High-crime districts with weak police coverage (district-level, not radius-based — top-tertile on the selected crime metric **and** bottom-tertile on police infrastructure density, using the same `getTertileIndex()` as bivariate mode)
+   Point-radius modes recolor matching crash-zone markers (amber ring) and fade non-matches; the district mode draws a dashed rust outline around matches. A plain-English summary line states the exact match count and radius used.
+4. **Click a crash zone → nearby-infrastructure panel** (`showNearbyInfra()`) — counts liquor shops, CCTV/guards, bus stops, ATMs, police stations, and chowkis within the current radius of that specific zone, independent of whichever analysis mode (if any) is active.
+
+**Sanity-checked, not just executed**: the weak-police-coverage query returned "0 of 15" districts for Theft — rather than assuming that's a bug, cross-checked the raw per-district crime/police-density numbers directly and confirmed it's a real result: Delhi's top-tertile-crime districts (North-West, North-East, Shahdara, East, Central) all happen to have above-average police infrastructure density, consistent with the existing correlation matrix's already-verified +0.538 Pearson r between Police Infra and Theft — police presence tracks crime demand here, so "high crime + weak coverage" is a genuinely empty intersection for this metric, not a broken query.
+
+Verified: rebuilt, `node --check` passed, served locally — all four analysis modes return sensible, radius-scaling match counts (liquor-shop proximity: 4/107 at 250m → 26/107 at 1km), the nearby-infrastructure panel returns correct per-type counts on a real zone click, and the page layout was restructured from fragile hardcoded pixel offsets (`top: 78px`) to a flexbox column (topbar + analysis bar auto-sized, map region filling the remainder) specifically because the new analysis bar row would otherwise have silently overlapped the map — confirmed via `map.getSize()`/`clientHeight` matching the actual available space. No console errors.
+
+**Not yet done** (later phases): composite "unsafe areas" layer, URL state, CSV/GeoJSON export, mobile bottom sheets.
+
+---
 
 ## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 3: Clustering, Heatmap, Circles
 
