@@ -7,6 +7,28 @@ This log tracks all architectural, performance, accessibility, and code quality 
 
 ---
 
+## [2026-07-28] - Claude (Anthropic) - Bus Stops & ATM Infrastructure Layers
+
+### 🚌 New Infrastructure Metrics
+
+1. **Bus Stops (`data/dashboard_final.json`, `build.js` INFRA[])**
+   - Aggregated 3,199 OpenStreetMap bus stop points (`highway=bus_stop` / `public_transport=platform`) into per-district counts via point-in-polygon against the existing district boundaries.
+   - 48 of 3,199 points fell outside every district polygon (likely just across the Delhi border) and are excluded from the district counts.
+   - Added as a new `INFRA[]` entry (`busStop`) — full 15-district coverage, no survey gap, same treatment as `metroGate`.
+
+2. **ATMs (`data/dashboard_final.json`, `build.js` INFRA[])**
+   - Same treatment for 666 ATM points (`amenity=atm`, sourced via Overpass API). 17 of 666 fell outside every district polygon and are excluded.
+   - Added as a new `INFRA[]` entry (`atm`).
+
+3. **Wiring**
+   - Both new entries flow automatically through every INFRA-driven feature already built by Antigravity's Phase 6 rewrite (dynamic `renderMethod()`, `renderCorrelationMatrix()`, scatter tabs, `computeAnalysis()`) since those all iterate `INFRA[]`/`METRICS[]` generically rather than hardcoding dimensions — no changes needed to that logic.
+   - Added `busStops`/`busStopDensity`/`atms`/`atmDensity` to `FIELDS[]` (CSV/Excel export), the Data Dictionary SRC map, the Sources & Methodology sheet, and the footer citation.
+   - Not added to `renderCompareCard()`'s side-by-side comparison — that function hand-picks a curated subset of fields (doesn't even include existing metro gates or underpasses), so this was left as a deliberate scope boundary rather than folded in.
+
+**Note on repo scope**: per explicit user instruction, this chat now treats `DelhiCrimeDashboard` as the sole active project — no further changes will be synced in from `wallwalkerv4`. Bus stops were also added to `wallwalkerv4`'s copy of the dashboard earlier the same day, before this instruction; that copy has since diverged further (via Antigravity's Phase 3-8 work here) and should not be treated as a sync source going forward.
+
+---
+
 ## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 8
 
 ### 🎨 Clean Enterprise Design (Emoji Removal)
