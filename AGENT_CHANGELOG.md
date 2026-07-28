@@ -5,6 +5,26 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 1: Year/Rate/Bivariate Parity
+
+### 🗺️ `interactive_map.html` gains the main dashboard's core analytical parity
+
+**Why**: the user asked for a substantial upgrade to the Leaflet interactive map (~20 requested features — year selector, drawer, clustering, heatmaps, spatial-intersection tools, URL state, mobile sheets, etc.). Given the scope, agreed with the user to build it in phases rather than one large unverified pass. This is phase 1 of 6.
+
+1. **Year selector (2022/2023/2024)** — mirrors `build.js`'s year-aware `METRICS[]` (`prevKey`/`key2024` fields); switches choropleth colors, popup values, and ranks. Road-safety metrics with a fixed reporting year (`fatalRoadCrashes2022`, `crashProneZones2023`, etc.) hide the toggle, same as the main dashboard.
+2. **Density (per km²) / per-capita (per 100k) toggle** — reuses the same `getRateVal()` formula as `build.js`.
+3. **Year-over-year % change badge** in every district popup (▲/▼, colored), computed against the previous year's value in the same rate mode.
+4. **3×3 bivariate mode** (crime × infrastructure) — ported `BIVARIATE_MATRIX`/`getTertileIndex()`/`getBivariateColor()` from `build.js` verbatim (tertiles computed live from whichever districts have valid data, not fixed cut points), with its own dedicated 3×3 grid legend and an infra-layer dropdown.
+5. **Richer popups**: district name, metric+year, rank of 15, formatted value with unit, YoY badge, and a source citation line (crime source + infra source when in bivariate mode) — previously just showed a bare number.
+
+**Bug caught during verification**: initial `rankOf()` port expected feature objects (`f.properties[key]`) but was called with an already-unwrapped properties array, throwing `Cannot read properties of undefined` on every choropleth render after the first. Caught via `javascript_tool` after a UI click produced no visible change and `geoLayer` stayed `null`; fixed by matching the function signature to what's actually passed in.
+
+Verified: rebuilt via `node build_interactive_map.js`, extracted `<script>` passed `node --check`, served locally, confirmed via `javascript_tool` — year/rate toggles update `activeYear`/`rateMode` and the legend text correctly (checked Theft 2023 density → 2024 per-100k, values changed as expected), bivariate mode renders the correct 3×3 legend and combined-source popup content, no console errors at any step.
+
+**Not yet done** (later phases): district search/zoom, intelligence drawer, marker clustering, heatmap/proportional-circle modes, spatial radius-intersection tools, composite "unsafe areas" layer, URL state, CSV/GeoJSON export, mobile bottom sheets.
+
+---
+
 ## [2026-07-28] - Claude (Anthropic) - DMRC Official Station/Gate Data Evaluated, Not Integrated
 
 ### 🚇 `metroGates` left on OSM data — user-supplied DMRC file has a data-quality problem
