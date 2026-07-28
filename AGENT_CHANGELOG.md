@@ -5,6 +5,24 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Claude (Anthropic) - Bivariate Crime × Infrastructure Choropleth
+
+### 🗺️ 3x3 Bivariate Map Mode
+
+1. **`BIVARIATE_MATRIX` + `getTertileIndex()`** — 3x3 color grid (crime columns × infrastructure rows), tertile split computed live from whichever districts have valid data on both axes (not fixed cut points), so the grouping stays meaningful across metric/year/rate-mode switches.
+
+2. **`getBivariateColor(d, crimeMetricKey, infraMetricKey)`** — deliberately built on `metricValue()`/`getInfraVal()` rather than dividing by `areaSqKm` directly, so bivariate mode respects whichever year (`activeYear`) and rate mode (density vs. per-capita, `rateMode`) are already selected elsewhere on the page instead of silently using a different basis.
+
+3. **`renderMap()`**: branches fill color and hover-tooltip body on `isBivariateMode`; swaps between the existing percentile legend (`#singleLegend`) and a new 3x3 grid legend (`#bivariateLegend`) with live-updating axis labels (crime metric label / infra layer label).
+
+4. **New toggle** (`#bivariateToggle`, wired via the existing `setupToggleControl()` helper) — "Bivariate map (crime × infrastructure)", crossing whichever crime metric tab (`activeMetric`) and infrastructure scatter-tab (`scatterType`) are currently selected.
+
+5. **Bug caught during wiring**: the infrastructure scatter-tab click handler only called `renderScatter()`, not `renderMap()` — switching the infra axis while bivariate mode was on left the map showing the previous layer. Fixed by also calling `renderMap()` there when `isBivariateMode` is true.
+
+Verified: toggled on/off cleanly, switched crime metric and infra tabs with live map/label updates (no manual refresh needed), confirmed all 9 matrix cells actually get used across the 15 districts, confirmed per-capita rate-mode switch doesn't crash it, and confirmed the CSV/Excel export builders (unrelated code path, sanity-checked since nearby) still produce valid output.
+
+---
+
 ## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 10
 
 ### 📐 Academic & Public Policy Statistical Rigor Overhaul

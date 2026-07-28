@@ -352,6 +352,10 @@ footer a { color: inherit; }
       <span class="switch"></span>
       Show accident-prone zones
     </div>
+    <div class="toggle-row" id="bivariateToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bivariate crime and infrastructure map">
+      <span class="switch"></span>
+      Bivariate map (crime × infrastructure)
+    </div>
   </div>
   <div id="compareCard" class="compare-card" style="display:none;"></div>
 
@@ -363,10 +367,26 @@ footer a { color: inherit; }
         <div id="mapTooltip" class="map-tooltip"></div>
       </div>
       <div class="legend">
-        <span id="legendLabel">Theft (Sec. 379 IPC), 2023</span>
-        <div class="legend-scale" id="legendScale"></div>
-        <span id="legendMin"></span> – <span id="legendMax"></span>
-        <span class="legend-scale-note">(ranked, not linear — an outlier district can't wash out the rest of the scale)</span>
+        <div id="singleLegend" style="display:contents;">
+          <span id="legendLabel">Theft (Sec. 379 IPC), 2023</span>
+          <div class="legend-scale" id="legendScale"></div>
+          <span id="legendMin"></span> – <span id="legendMax"></span>
+          <span class="legend-scale-note">(ranked, not linear — an outlier district can't wash out the rest of the scale)</span>
+        </div>
+        <div id="bivariateLegend" style="display:none;align-items:center;gap:10px;">
+          <div style="display:flex;align-items:flex-end;gap:4px;">
+            <div style="display:flex;flex-direction:column-reverse;gap:2px;" class="bivariate-legend">
+              <div style="display:grid;grid-template-columns:repeat(3,16px);grid-template-rows:repeat(3,16px);gap:2px;" data-tt-title="Bivariate key" data-tt-body="Rows = infrastructure density (bottom to top: low to high). Columns = crime (left to right: low to high). Dark red-brown = high crime + high infra; teal = low crime + high infra.">
+              <div style="background:#5b9e9e;"></div><div style="background:#5d757d;"></div><div style="background:#574249;"></div>
+              <div style="background:#a0c7c7;"></div><div style="background:#ad9ea5;"></div><div style="background:#985356;"></div>
+              <div style="background:#e8e8e8;"></div><div style="background:#e4acac;"></div><div style="background:#c85a5a;"></div>
+              </div>
+            </div>
+            <span id="bivariateYLabel" style="font-size:10.5px;color:var(--text-dim);writing-mode:vertical-rl;transform:rotate(180deg);">Infra →</span>
+          </div>
+          <span id="bivariateXLabel" style="font-size:10.5px;color:var(--text-dim);">Crime →</span>
+          <span class="legend-scale-note">(tertiles — low/med/high thirds of covered districts, not fixed cut points)</span>
+        </div>
         <span style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:var(--map-nodata-stripe);"></span>no streetlight/underpass survey</span>
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:var(--slate);opacity:.6;border:1px dashed var(--slate);"></span>IGI Airport (separate jurisdiction)</span>
@@ -577,6 +597,7 @@ let corrCoeffMode = 'pearson'; // 'pearson' (linear) or 'spearman' (rank)
 let showLights = false;
 let showPolice = false;
 let showZones = false;
+let isBivariateMode = false;
 let selected = null;
 let scatterType = 'streetlight';
 let scatterYMetric = 'hitAndRunCrashes2022';
@@ -789,6 +810,50 @@ function percentileScale(values) {
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function tt(title, body) { return ' data-tt-title="' + esc(title) + '" data-tt-body="' + esc(body || '') + '"'; }
 
+// 3x3 Bivariate Color Matrix — rows = infrastructure density (low → high), columns = crime (low → high)
+const BIVARIATE_MATRIX = [
+  ['#e8e8e8', '#e4acac', '#c85a5a'], // Low infra:  [Low, Med, High] crime
+  ['#a0c7c7', '#ad9ea5', '#985356'], // Med infra
+  ['#5b9e9e', '#5d757d', '#574249'], // High infra
+];
+
+function getTertileIndex(val, sortedArr) {
+  if (val == null || sortedArr.length === 0) return 0;
+  const q33 = sortedArr[Math.floor(sortedArr.length * 0.33)];
+  const q66 = sortedArr[Math.floor(sortedArr.length * 0.66)];
+  if (val <= q33) return 0;
+  if (val <= q66) return 1;
+  return 2;
+}
+
+// Bivariate color for one district, crossing a crime metric against an infrastructure layer.
+// Reuses metricValue()/getInfraVal() rather than dividing by area directly, so this respects
+// whichever year (activeYear) and rate mode (density vs per-capita, rateMode) are already
+// selected elsewhere on the page instead of silently showing a different basis than the rest
+// of the dashboard. Tertiles are computed live from whichever districts have valid data on
+// both axes, not fixed cut points, so the grouping stays meaningful across metric/year/rate-mode
+// switches instead of drifting when the underlying value scale changes.
+function getBivariateColor(d, crimeMetricKey, infraMetricKey) {
+  const m = METRICS.find(x => x.key === crimeMetricKey);
+  const inf = INFRA.find(x => x.key === infraMetricKey);
+  if (!m || !inf) return 'var(--map-nodata-stripe)';
+
+  const validDists = DATA.filter(x => infraCovered(x, infraMetricKey) && metricValue(x, m) != null);
+  if (!validDists.length) return 'var(--map-nodata-stripe)';
+
+  const crimeValues = validDists.map(x => metricValue(x, m)).sort((a, b) => a - b);
+  const infraValues = validDists.map(x => getInfraVal(x, inf)).sort((a, b) => a - b);
+
+  if (!infraCovered(d, infraMetricKey)) return 'var(--map-nodata-stripe)';
+  const currentCrime = metricValue(d, m);
+  const currentInfra = getInfraVal(d, inf);
+  if (currentCrime == null) return 'var(--map-nodata-stripe)';
+
+  const xIndex = getTertileIndex(currentCrime, crimeValues);
+  const yIndex = getTertileIndex(currentInfra, infraValues);
+  return BIVARIATE_MATRIX[yIndex][xIndex];
+}
+
 let mapInitialized = false;
 
 function initMap() {
@@ -890,6 +955,7 @@ function initMap() {
 function renderMap() {
   initMap();
   const m = currentMetric();
+  const inf = INFRA.find(x => x.key === scatterType);
   const [lo, hi] = currentDomain();
   const scale = percentileScale(DATA.map(d => metricValue(d, m)).filter(v => v != null));
 
@@ -898,25 +964,35 @@ function renderMap() {
     const d = DATA.find(x => x.name === name);
     if (!d) return;
     const v = metricValue(d, m);
-    const fill = v == null ? 'var(--map-nodata-stripe)' : rustScale(scale(v));
     const isSel = selected === d.name;
-    
+
     const yearTheft = yearFieldVal(d, 'theft');
     const yearRobbery = yearFieldVal(d, 'robbery');
     const yearBurglary = yearFieldVal(d, 'burglary');
     const yearCAW = yearFieldVal(d, 'crimeAgainstWomen');
     const yearSLL = yearFieldVal(d, 'totalSLL');
 
-    const body = v == null
-      ? 'No data for this metric'
-      : '<div class="tt-metric"><b>' + m.short + ' (' + activeYear + '):</b> ' + fmtNum(v) + '</div>' +
-        '<div class="tt-breakdown">' +
-          '<div class="tt-row"><span>Theft:</span><b>' + fmtNum(yearTheft) + '</b></div>' +
-          '<div class="tt-row"><span>Robbery:</span><b>' + fmtNum(yearRobbery) + '</b></div>' +
-          '<div class="tt-row"><span>Burglary:</span><b>' + fmtNum(yearBurglary) + '</b></div>' +
-          '<div class="tt-row"><span>Vs. Women:</span><b>' + fmtNum(yearCAW) + '</b></div>' +
-          '<div class="tt-row"><span>SLL Crimes:</span><b>' + fmtNum(yearSLL) + '</b></div>' +
-        '</div>';
+    let fill, body;
+    if (isBivariateMode) {
+      fill = getBivariateColor(d, activeMetric, scatterType);
+      const infraVal = infraCovered(d, scatterType) ? getInfraVal(d, inf) : null;
+      body = (v == null || infraVal == null)
+        ? 'No data for one or both axes'
+        : '<div class="tt-metric"><b>' + m.short + ' (' + activeYear + '):</b> ' + fmtNum(v) + '</div>' +
+          '<div class="tt-metric"><b>' + inf.label + ':</b> ' + fmtNum(infraVal) + '</div>';
+    } else {
+      fill = v == null ? 'var(--map-nodata-stripe)' : rustScale(scale(v));
+      body = v == null
+        ? 'No data for this metric'
+        : '<div class="tt-metric"><b>' + m.short + ' (' + activeYear + '):</b> ' + fmtNum(v) + '</div>' +
+          '<div class="tt-breakdown">' +
+            '<div class="tt-row"><span>Theft:</span><b>' + fmtNum(yearTheft) + '</b></div>' +
+            '<div class="tt-row"><span>Robbery:</span><b>' + fmtNum(yearRobbery) + '</b></div>' +
+            '<div class="tt-row"><span>Burglary:</span><b>' + fmtNum(yearBurglary) + '</b></div>' +
+            '<div class="tt-row"><span>Vs. Women:</span><b>' + fmtNum(yearCAW) + '</b></div>' +
+            '<div class="tt-row"><span>SLL Crimes:</span><b>' + fmtNum(yearSLL) + '</b></div>' +
+          '</div>';
+    }
 
     path.setAttribute('fill', fill);
     path.style.stroke = isSel ? 'var(--night)' : '';
@@ -931,7 +1007,9 @@ function renderMap() {
     const d = DATA.find(x => x.name === name);
     if (!d) return;
     const v = metricValue(d, m);
-    const showHatch = (v == null) || (showLights && !d.surveyPoints);
+    const showHatch = isBivariateMode
+      ? (v == null || !infraCovered(d, scatterType))
+      : ((v == null) || (showLights && !d.surveyPoints));
     path.style.display = showHatch ? 'inline' : 'none';
   });
 
@@ -941,13 +1019,25 @@ function renderMap() {
   const zonesLayer = document.getElementById('zonesLayer');
   if (zonesLayer) zonesLayer.style.display = showZones ? 'inline' : 'none';
 
-  document.getElementById('legendLabel').textContent = yearLabel(m);
-  document.getElementById('legendMin').textContent = fmtNum(lo);
-  document.getElementById('legendMax').textContent = fmtNum(hi);
-  const legendScale = document.getElementById('legendScale');
-  legendScale.innerHTML = Array.from({length:10}, (_,i) => '<span style="background:' + rustScale(i/9) + '"></span>').join('');
-  legendScale.setAttribute('data-tt-title', 'District Crime Percentile Scale');
-  legendScale.setAttribute('data-tt-body', 'Light: Lowest Crime Density in Delhi → Dark Rust: Highest Crime Density in Delhi');
+  const singleLegend = document.getElementById('singleLegend');
+  const bivariateLegend = document.getElementById('bivariateLegend');
+  if (singleLegend) singleLegend.style.display = isBivariateMode ? 'none' : '';
+  if (bivariateLegend) bivariateLegend.style.display = isBivariateMode ? '' : 'none';
+
+  if (isBivariateMode) {
+    const xLabel = document.getElementById('bivariateXLabel');
+    const yLabel = document.getElementById('bivariateYLabel');
+    if (xLabel) xLabel.textContent = m.short + ' →';
+    if (yLabel) yLabel.textContent = inf.label + ' →';
+  } else {
+    document.getElementById('legendLabel').textContent = yearLabel(m);
+    document.getElementById('legendMin').textContent = fmtNum(lo);
+    document.getElementById('legendMax').textContent = fmtNum(hi);
+    const legendScale = document.getElementById('legendScale');
+    legendScale.innerHTML = Array.from({length:10}, (_,i) => '<span style="background:' + rustScale(i/9) + '"></span>').join('');
+    legendScale.setAttribute('data-tt-title', 'District Crime Percentile Scale');
+    legendScale.setAttribute('data-tt-body', 'Light: Lowest Crime Density in Delhi → Dark Rust: Highest Crime Density in Delhi');
+  }
 }
 
 function renderList() {
@@ -1325,7 +1415,7 @@ function buildScatterTabs() {
   const el = document.getElementById('scatterTabs');
   el.innerHTML = INFRA.map(inf => '<button class="metric-tab' + (inf.key===scatterType?' active':'') + '" data-key="' + inf.key + '" aria-pressed="' + (inf.key===scatterType) + '">' + inf.label + '</button>').join('');
   el.querySelectorAll('.metric-tab').forEach(btn => {
-    btn.addEventListener('click', () => { scatterType = btn.dataset.key; renderScatter(); });
+    btn.addEventListener('click', () => { scatterType = btn.dataset.key; renderScatter(); if (isBivariateMode) renderMap(); });
   });
   const yEl = document.getElementById('scatterYTabs');
   yEl.innerHTML = METRICS.map(m => '<button class="metric-tab' + (m.key===scatterYMetric?' active':'') + '" data-key="' + m.key + '" aria-pressed="' + (m.key===scatterYMetric) + '">' + m.label + '</button>').join('');
@@ -1693,6 +1783,7 @@ function setupToggleControl(id, getter, setter) {
 setupToggleControl('lightToggle', () => showLights, v => { showLights = v; });
 setupToggleControl('policeToggle', () => showPolice, v => { showPolice = v; });
 setupToggleControl('zonesToggle', () => showZones, v => { showZones = v; });
+setupToggleControl('bivariateToggle', () => isBivariateMode, v => { isBivariateMode = v; });
 
 const scatterCanvasEl = document.getElementById('scatterCanvas');
 if (scatterCanvasEl) {
