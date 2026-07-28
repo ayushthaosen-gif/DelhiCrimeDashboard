@@ -5,6 +5,28 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Claude (Anthropic) - Interactive Leaflet Map (separate page)
+
+### 🗺️ Real Basemap, Zoom/Pan — `interactive_map.html` + `build_interactive_map.js`
+
+**Why a separate page, not a rewrite of the main dashboard**: the main dashboard is deliberately a single self-contained HTML file (no external requests, works from `file://`). Leaflet needs a tile server (CARTO, in this case) and the Leaflet library itself at view-time, which breaks that property. Rather than compromise the main dashboard's portability, this ships as a second, independent static page — `delhi_safety_dashboard.html` is completely unchanged in its own logic, just gained one link.
+
+1. **`build_interactive_map.js`** generates `interactive_map.html`: Leaflet 1.9.4 (via unpkg CDN) + CARTO's free keyless Voyager basemap tiles (`{s}.basemaps.cartocdn.com`, OSM + CARTO attribution, no API key/signup required — chosen specifically over Stadia Maps, which needs a domain-registered key).
+
+2. **Real lat/lng data, not the dashboard's projected SVG coordinates.** The main dashboard projects everything into a custom 1000×900 equirectangular SVG space with no inverse available for reuse. For this page:
+   - `data/poi_markers_latlng.json` — bus stops/ATMs/liquor shops/surveillance re-derived from the original OSM sources keeping real lat/lng (same district point-in-polygon filter as `data/poi_markers.json`, so counts match exactly: 3,151 bus stops, 649 ATMs, 50 liquor shops, 430 surveillance).
+   - `data/police_markers_latlng.json` — police stations/chowkis **inverse-projected** back to lat/lng from the existing `data/police_markers.json` (only x/y was ever saved for these), verified the round-trip lands on sane real-world coordinates (e.g. PS Civil Lines → 28.689, 77.222).
+   - `data/dashboard_boundaries_simplified.geojson` copied in directly — already real lat/lng, no conversion needed.
+   - Crash zones reuse `data/crash_zones_2023_geocoded.json` directly (already has real lat/lng).
+
+3. **Features**: a metric dropdown (12 crime/infra metrics) driving a live percentile-scaled choropleth over the district GeoJSON (same rank-based color logic as the main dashboard, reimplemented standalone here since this page has no shared JS with `build.js`); seven independently toggleable point layers (police stations, chowkis, crash zones, bus stops, ATMs, liquor shops, CCTV/guards) — all off by default so the map opens uncluttered; popups on every marker and district.
+
+4. **Link back**: added one button in the main dashboard's header (`Open interactive street map →`) linking to `interactive_map.html`; the new page has a "← Back to dashboard" link in its own topbar.
+
+Verified: no console errors, Leaflet/CARTO tiles actually load over the network (confirmed via `.leaflet-tile-loaded` in the DOM, not just absence of errors), all layer counts match their known totals exactly (15 districts, 107 zones, 3,151/649/50/430 POI points), metric switching updates the choropleth colors and legend live, and layer toggle checkboxes correctly add/remove their Leaflet layer group from the map.
+
+---
+
 ## [2026-07-28] - Claude (Anthropic) - POI Point Markers & Sources Citation Fix
 
 ### 🗺️ Bus Stop, ATM, Liquor Shop & CCTV/Guard Point Markers

@@ -327,6 +327,7 @@ footer a { color: inherit; }
     <div class="eyebrow">Delhi Police &amp; Traffic Police District Data · 2022–2023</div>
     <h1>Where the lights end,<br>what does the crime data say?</h1>
     <p class="subhead">Official district-level crime and road-safety figures against real public-infrastructure coverage — streetlights, pedestrian underpasses, metro station gates, and full police infrastructure (stations plus chowkis/outposts) — across Delhi's 15 police districts.</p>
+    <a class="compare-btn" href="interactive_map.html" style="margin-top:10px;text-decoration:none;">Open interactive street map (zoom/pan, real basemap) →</a>
   </header>
 
   <div class="purpose-banner">
