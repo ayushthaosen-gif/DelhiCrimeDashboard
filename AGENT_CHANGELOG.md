@@ -5,6 +5,27 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 2: Search, Zoom, District Drawer
+
+### 🔍 District search + zoom-to-district, right-side district intelligence drawer
+
+Phase 2 of the 6-phase interactive map upgrade (phase 1, below, added year/rate/bivariate parity).
+
+1. **District search** — text input in the topbar with a live-filtered dropdown (substring match on district name); Enter selects the typed exact match or the first filtered result; Escape/outside-click dismisses.
+2. **Zoom-to-district** — selecting a district (via search, or clicking its polygon) calls `map.fitBounds()` on that district's geometry and opens its popup. The selected district's outline is highlighted (amber, thicker stroke) in `renderChoropleth()`.
+3. **Right-side district intelligence drawer** (`#drawer`, slide-in panel) — shows the selected district's current metric value/rank/YoY change, area & population, a full infrastructure-coverage list (value + covered/gap badge per `infraCovered()`, same logic as `build.js`), and a live correlation column (Pearson r of every INFRA layer vs. the currently selected crime metric, citywide) — reusing `pearson()` ported from `build.js`. Closes via an ✕ button, which also clears `selectedDistrict` and re-renders.
+4. Drawer content re-renders automatically whenever the year/rate-mode/metric changes while a district is selected (`renderChoropleth()` calls `renderDrawer()` at the end when `selectedDistrict` is set), so it never shows stale numbers against the current map state.
+
+**Two bugs caught during verification, both via `javascript_tool` rather than a visible failure**:
+- `selectDistrict()` captured the Leaflet layer reference *before* calling `renderChoropleth()`, which rebuilds `geoLayer` (and therefore `districtLayers`) from scratch — the captured reference was already detached by the time `fitBounds()`/`openPopup()` ran. Fixed by re-reading `districtLayers[name]` after the rebuild.
+- `map.fitBounds()` with default animation never updated `getCenter()`/`getZoom()` in this verification environment — traced to the Browser pane not actively compositing frames (confirmed via `map._lastCenter`, which *did* update correctly, versus the animated `getCenter()`, which lagged indefinitely). Fixed by passing `{ animate: false }`, which is also more robust for the URL-driven navigation planned in a later phase.
+
+Verified: rebuilt, `node --check` on the extracted script passed, served locally — `selectDistrict()` correctly updates the map center/zoom/selected outline and opens the drawer with values cross-checked against the main dashboard's own South-East detail panel (theft 238.9/km², rank 4th, +14.3% vs 2022) and correlation matrix (Police Infra r=+0.538, Streetlights r=-0.281, etc. — exact matches); search filtering, Enter-to-select (verified via direct event dispatch matching real focus/value state), and drawer-close all confirmed with no console errors.
+
+**Not yet done** (later phases): marker clustering, heatmap/proportional-circle modes, spatial radius-intersection tools, composite "unsafe areas" layer, URL state, CSV/GeoJSON export, mobile bottom sheets.
+
+---
+
 ## [2026-07-28] - Claude (Anthropic) - Interactive Map Upgrade, Phase 1: Year/Rate/Bivariate Parity
 
 ### 🗺️ `interactive_map.html` gains the main dashboard's core analytical parity

@@ -72,6 +72,24 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
 .leg-biv-grid { display: grid; grid-template-columns: repeat(3, 16px); grid-template-rows: repeat(3, 16px); gap: 2px; margin: 6px 0; }
 .leg-biv-grid div { border-radius: 2px; }
 .leg-biv-axes { display: flex; justify-content: space-between; font-size: 10px; }
+#districtSearch { font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); width: 160px; }
+#searchResults { position: absolute; z-index: 1200; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,.2); max-height: 220px; overflow-y: auto; display: none; min-width: 180px; }
+#searchResults div { padding: 6px 12px; font-size: 13px; cursor: pointer; }
+#searchResults div:hover, #searchResults div.active-hl { background: var(--rust); color: #fff; }
+#drawer { position: absolute; top: 78px; right: 0; bottom: 0; width: 340px; max-width: 92vw; background: var(--surface); border-left: 1px solid var(--border); box-shadow: -4px 0 16px rgba(0,0,0,.12); transform: translateX(100%); transition: transform .2s ease; z-index: 1100; overflow-y: auto; padding: 16px; }
+#drawer.open { transform: translateX(0); }
+#drawer .drawer-close { position: absolute; top: 10px; right: 12px; background: none; border: none; font-size: 20px; color: var(--text-dim); cursor: pointer; line-height: 1; }
+#drawer h2 { margin: 0 4px 2px; font-size: 19px; font-weight: 800; }
+#drawer .drawer-sub { margin: 0 4px 14px; font-size: 12px; color: var(--text-dim); }
+#drawer .drawer-section { margin-bottom: 16px; }
+#drawer .drawer-section h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: var(--text-dim); margin: 0 0 8px; font-weight: 700; }
+#drawer .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+#drawer .stat-row .v { font-weight: 700; }
+#drawer .infra-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 12.5px; }
+#drawer .infra-row .badge { font-size: 10px; padding: 1px 6px; border-radius: 8px; }
+#drawer .badge.covered { background: rgba(63,125,82,0.18); color: var(--good); }
+#drawer .badge.gap { background: rgba(177,74,52,0.18); color: var(--rust); }
+#drawer .corr-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 12px; font-family: monospace; }
 </style>
 </head>
 <body>
@@ -82,6 +100,10 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
   <div class="seg" id="rateToggle"></div>
   <label><input type="checkbox" id="chkBivariate"> Bivariate mode</label>
   <label id="bivInfraWrap" style="display:none">vs. <select id="bivInfraSelect"></select></label>
+  <div style="position:relative;">
+    <input id="districtSearch" type="text" placeholder="Search district…" autocomplete="off">
+    <div id="searchResults"></div>
+  </div>
   <a class="back" href="delhi_safety_dashboard.html">← Back to dashboard</a>
   <div style="flex-basis:100%; display:flex; gap:10px; flex-wrap:wrap;">
     <label><input type="checkbox" id="chkPolice"> Police stations</label>
@@ -95,6 +117,10 @@ html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, Bl
 </div>
 <div id="mapWrap"><div id="map"></div></div>
 <div class="leg" id="legend"></div>
+<div id="drawer">
+  <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
+  <div id="drawerBody"></div>
+</div>
 
 <script>
 const BOUNDARIES = ${JSON.stringify(boundaries)};
@@ -130,10 +156,27 @@ const INFRA = [
   { key: 'surveillance', densityKey: 'surveillanceDensity', countKey: 'surveillanceCameras', label: 'CCTV & Guards', source: 'OpenStreetMap (Overpass API)' },
 ];
 
+// Districts the PAPL survey actually drove through — shared gap for streetlights and
+// underpasses. Mirrors build.js's SURVEYED set/infraCovered() exactly.
+const SURVEYED = new Set(['Central','East','New Delhi','North','Shahdara','South','South-East','South-West','West']);
+function infraCovered(d, infraKey) {
+  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance') return true;
+  if (infraKey === 'policeInfra') return d.chowkiPosts > 0;
+  return SURVEYED.has(d.district) && d[infraKey === 'streetlight' ? 'surveyPoints' : 'underpasses'] >= 10;
+}
+function pearson(xs, ys) {
+  const n = xs.length;
+  const mx = xs.reduce((a,b)=>a+b,0)/n, my = ys.reduce((a,b)=>a+b,0)/n;
+  let num=0, dx2=0, dy2=0;
+  for (let i=0;i<n;i++){ const dx=xs[i]-mx, dy=ys[i]-my; num+=dx*dy; dx2+=dx*dx; dy2+=dy*dy; }
+  return num/Math.sqrt(dx2*dy2);
+}
+
 let activeYear = '2023';
 let rateMode = 'density'; // 'density' (per km²) or 'perCapita' (per 100k residents)
 let bivariateMode = false;
 let bivariateInfra = 'policeInfra';
+let selectedDistrict = null;
 
 const metricSelect = document.getElementById('metricSelect');
 metricSelect.innerHTML = METRICS.map(m => '<option value="' + m.key + '">' + m.label + '</option>').join('');
@@ -257,6 +300,7 @@ function buildRateToggle() {
 }
 
 let geoLayer = null;
+const districtLayers = {};
 function renderChoropleth() {
   const m = currentMetric();
   const inf = currentInfra();
@@ -267,6 +311,7 @@ function renderChoropleth() {
   const lo = Math.min(...vals), hi = Math.max(...vals);
 
   if (geoLayer) map.removeLayer(geoLayer);
+  Object.keys(districtLayers).forEach(k => delete districtLayers[k]);
   geoLayer = L.geoJSON(BOUNDARIES, {
     style: f => {
       let fillColor;
@@ -276,10 +321,12 @@ function renderChoropleth() {
         const v = metricValue(f.properties, m);
         fillColor = v == null ? '#999' : rustScale(scale(v));
       }
-      return { fillColor, fillOpacity: 0.65, color: '#fff', weight: 1.5 };
+      const isSelected = selectedDistrict === f.properties.district;
+      return { fillColor, fillOpacity: 0.65, color: isSelected ? 'var(--amber)' : '#fff', weight: isSelected ? 3.5 : 1.5 };
     },
     onEachFeature: (f, layer) => {
       const d = f.properties;
+      districtLayers[d.district] = layer;
       const v = metricValue(d, m);
       const year = effectiveYear(m);
       const prevYear = prevYearOf(activeYear);
@@ -296,13 +343,109 @@ function renderChoropleth() {
       body += '<div class="popup-src">Source: ' + m.source + (bivariateMode ? ' · ' + inf.source : '') + '</div>';
 
       layer.bindPopup(body);
-      layer.on('mouseover', () => layer.setStyle({ weight: 3, color: '#1c2331' }));
-      layer.on('mouseout', () => layer.setStyle({ weight: 1.5, color: '#fff' }));
+      layer.on('mouseover', () => { if (selectedDistrict !== d.district) layer.setStyle({ weight: 3, color: '#1c2331' }); });
+      layer.on('mouseout', () => { if (selectedDistrict !== d.district) layer.setStyle({ weight: 1.5, color: '#fff' }); });
+      layer.on('click', () => selectDistrict(d.district));
     },
   }).addTo(map);
 
   renderLegend(m, inf, lo, hi);
+  if (selectedDistrict) renderDrawer(selectedDistrict);
 }
+
+// ── District search + zoom, and the right-side district intelligence drawer ──
+function selectDistrict(name, opts) {
+  if (!districtLayers[name]) return;
+  selectedDistrict = name;
+  renderChoropleth(); // rebuilds geoLayer (recolors the selected outline, re-renders the drawer) --
+  // districtLayers is repopulated as a side effect, so re-read the layer reference afterwards
+  // rather than reusing one captured before the rebuild (the old layer object is detached).
+  const layer = districtLayers[name];
+  if (!opts || opts.fitBounds !== false) map.fitBounds(layer.getBounds(), { maxZoom: 13, animate: false });
+  layer.openPopup();
+  document.getElementById('drawer').classList.add('open');
+}
+
+function renderDrawer(name) {
+  const props = BOUNDARIES.features.find(f => f.properties.district === name).properties;
+  const allProps = BOUNDARIES.features.map(f => f.properties);
+  const m = currentMetric();
+  const yKey = yearFieldKey(m, activeYear);
+  const rank = rankOf(allProps, yKey)(props);
+  const v = metricValue(props, m);
+  const prevYear = prevYearOf(activeYear);
+  const prevRaw = m.prevKey && prevYear ? props[yearFieldKey(m, prevYear)] : null;
+  const prevRate = prevRaw != null ? getRateVal(prevRaw, props) : null;
+
+  const statsHtml =
+    '<div class="stat-row"><span>' + m.full + ' (' + effectiveYear(m) + ')</span><span class="v">' + fmtNum(v) + '</span></div>' +
+    '<div class="stat-row"><span>Rank of 15</span><span class="v">' + ordinal(rank) + '</span></div>' +
+    (prevRate != null ? '<div class="stat-row"><span>Change vs ' + prevYear + '</span><span class="v">' + yoyBadge(v, prevRate) + '</span></div>' : '') +
+    '<div class="stat-row"><span>Area</span><span class="v">' + props.areaSqKm + ' km²</span></div>' +
+    '<div class="stat-row"><span>Population</span><span class="v">' + fmtNum(props.population) + '</span></div>';
+
+  const infraHtml = INFRA.map(inf => {
+    const covered = infraCovered(props, inf.key);
+    const val = getInfraVal(props, inf);
+    return '<div class="infra-row"><span>' + inf.label + '</span><span>' +
+      (val != null ? fmtNum(val) + (rateMode === 'perCapita' ? '/100k' : '/km²') : '—') +
+      ' <span class="badge ' + (covered ? 'covered' : 'gap') + '">' + (covered ? 'covered' : 'gap') + '</span></span></div>';
+  }).join('');
+
+  const corrHtml = INFRA.map(inf => {
+    const valid = BOUNDARIES.features.map(f=>f.properties).filter(d => infraCovered(d, inf.key) && d[yKey] != null);
+    const xs = valid.map(d => getInfraVal(d, inf));
+    const ys = valid.map(d => getRateVal(d[yKey], d));
+    const r = valid.length >= 2 ? pearson(xs, ys) : 0;
+    const color = Math.abs(r) >= 0.5 ? 'var(--rust)' : Math.abs(r) >= 0.25 ? 'var(--amber)' : 'var(--text-dim)';
+    return '<div class="corr-row"><span>' + inf.label + '</span><span style="color:' + color + ';font-weight:700;">' + (r>=0?'+':'') + r.toFixed(3) + '</span></div>';
+  }).join('');
+
+  document.getElementById('drawerBody').innerHTML =
+    '<h2>' + name + '</h2>' +
+    '<div class="drawer-sub">District intelligence — ' + effectiveYear(m) + (rateMode==='perCapita' ? ' · per 100k' : ' · per km²') + '</div>' +
+    '<div class="drawer-section"><h3>Selected metric</h3>' + statsHtml + '</div>' +
+    '<div class="drawer-section"><h3>Infrastructure coverage</h3>' + infraHtml + '</div>' +
+    '<div class="drawer-section"><h3>Correlation vs. ' + m.label + ' (citywide, r)</h3>' + corrHtml + '</div>';
+}
+
+document.getElementById('drawerClose').addEventListener('click', () => {
+  document.getElementById('drawer').classList.remove('open');
+  selectedDistrict = null;
+  renderChoropleth();
+});
+
+const searchInput = document.getElementById('districtSearch');
+const searchResults = document.getElementById('searchResults');
+const districtNames = BOUNDARIES.features.map(f => f.properties.district).sort();
+function showSearchResults(query) {
+  const q = query.trim().toLowerCase();
+  const matches = q ? districtNames.filter(n => n.toLowerCase().includes(q)) : [];
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.innerHTML = matches.map(n => '<div data-name="' + n + '">' + n + '</div>').join('');
+  searchResults.style.display = 'block';
+  searchResults.querySelectorAll('div').forEach(row => {
+    row.addEventListener('click', () => {
+      selectDistrict(row.dataset.name);
+      searchInput.value = row.dataset.name;
+      searchResults.style.display = 'none';
+    });
+  });
+}
+searchInput.addEventListener('input', () => showSearchResults(searchInput.value));
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const exact = districtNames.find(n => n.toLowerCase() === searchInput.value.trim().toLowerCase());
+    const first = searchResults.querySelector('div');
+    const target = exact || (first && first.dataset.name);
+    if (target) { selectDistrict(target); searchInput.value = target; searchResults.style.display = 'none'; }
+  } else if (e.key === 'Escape') {
+    searchResults.style.display = 'none';
+  }
+});
+document.addEventListener('click', (e) => {
+  if (e.target !== searchInput && !searchResults.contains(e.target)) searchResults.style.display = 'none';
+});
 
 function renderLegend(m, inf, lo, hi) {
   const el = document.getElementById('legend');
