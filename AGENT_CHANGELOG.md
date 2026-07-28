@@ -1,5 +1,22 @@
 # AI Collaboration Log & Changelog
 
+## [2026-07-29] - Claude (Anthropic) - Reconstructed Total IPC, Crime Against Women, SLL Crime for 2016-2021
+
+### 🔢 Filling in the "—" rows the previous entry left deliberately blank
+
+The user asked why Total IPC/Crime Against Women/SLL Crime showed "0/15 districts" / "—" for 2016-2021, then asked to reconstruct that data too. Codex had explicitly left these three out of the historical extract for specific, verified reasons (see the two Codex entries below) — reconstructing them meant addressing those reasons, not just filling cells.
+
+1. **Investigated why they were excluded**: none of the source India Data Portal tables (`districtwise-ipc-crimes-*`, `districtwise-crime-against-women-*`, `districtwise-sll-crimes-*`) has a "total" column — each metric is only available as ~30-115 individual offence-category columns that would need summing, and the category schema changes completely between the 2016 table and the 2017+ tables (e.g. IPC 2016 has ~29 categories, IPC 2017+ has ~115 much more granular ones).
+2. **Validated the summation method before trusting it**: summed every non-metadata column, per district, for **2022** — a year already in `dashboard_final.json` with real official NCRB totals — across all three metrics. Got **45/45 exact matches** (15 districts × 3 metrics), meaning the 2017+ schema's columns really do add up to the official published total with no double-counting or gaps. This is the same validation discipline Codex used for theft/robbery/burglary, applied to the metrics Codex had been unable to validate.
+3. **Extended 2017-2021 using the validated method** for all three metrics (same 14/15 → 15/15 district-coverage pattern already established, confirmed the exact same district — Outer North — is missing in 2017-2018 as in the existing theft/robbery data, cross-checking internal consistency).
+4. **Deliberately still omitted 2016** for these three metrics — the 2016 table uses the old, non-matching category schema, and there's no 2016-era official total to validate a 2016 summation against (unlike 2017-2021, which could be checked against 2022's already-verified same-schema data). Rather than guess, left 2016 as "—" for Total IPC/Crime Against Women/SLL Crime specifically, consistent with the same caution Codex applied to burglary's 2016 gap.
+5. **Confirmed the known bad SLL record** (district_code 553, mislabeled "Lakshadweep District" under state "Delhi", year 2017) is excluded automatically by the existing district-name matcher — no special-case code needed, it simply doesn't match any of the 15 real Delhi district names.
+6. Extended `METRICS[].historicalYears` for `totalIPC`/`crimeAgainstWomen`/`totalSLL` to `['2017'..'2021']`, and refined `computeAnalysis()`'s branching: it previously treated *any* non-2022-2024 year as "theft-only, no IPC framing" — now correctly distinguishes "no full crime metrics for this specific year" (true only for 2016) from "historical year, so suppress the infrastructure-correlation paragraph" (true for any pre-2022 year regardless of metric, since that paragraph's problem — comparing old crime data to current infrastructure — applies independent of which crime metric has data).
+
+Verified: rebuilt, `node --check` passed, served locally — 2019 Total IPC/Crime Against Women/SLL Crime rows now show real values with correct YoY badges (e.g. South-East Total IPC 2019: 23,467, +3.6% vs 2018) and the detail panel's narrative correctly uses the full IPC-ranking framing instead of the theft-only fallback; 2016 still correctly shows "—" for these three with the theft-only narrative and a clear explanation; Total IPC's year toggle starts at 2017 (not 2016); the 2019 map has zero no-data districts for Total IPC (matching full 15/15 coverage); no console errors. Footer citation, Excel Sources & Methodology sheet, and the "Year comparison" methodology blurb all updated to describe the reconstruction and its verification.
+
+---
+
 ## [2026-07-28] - Claude (Anthropic) - Historical Data Integrated into Main Dashboard, Total-Infra Default View
 
 ### 📈 2016-2021 theft/robbery/burglary now live on the map, list, and detail panel
