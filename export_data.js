@@ -31,7 +31,7 @@ function write(name, headers, rows, objects) {
 // ── 1. Districts: every crime/infrastructure/crash figure, no SVG path or pixel coords ──
 const dashboardFinal = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_final.json'), 'utf8'));
 const districtFields = [
-  'district', 'areaSqKm',
+  'district', 'areaSqKm', 'population',
   'theft2022', 'theft', 'theft2024',
   'robbery2022', 'robbery', 'robbery2024',
   'burglary2022', 'burglary', 'burglary2024',

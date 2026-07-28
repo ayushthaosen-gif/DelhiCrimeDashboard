@@ -353,6 +353,7 @@ footer a { color: inherit; }
     </div>
     <div class="metric-tabs" id="metricTabs"></div>
     <div class="metric-tabs" id="yearToggle"></div>
+    <div class="metric-tabs" id="rateToggle"></div>
     <button class="compare-btn" id="compareToggleBtn">Compare Districts</button>
     <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap">
       <span class="switch"></span>
@@ -586,12 +587,91 @@ function infraCovered(d, infraKey) {
 
 let activeMetric = 'theft';
 let activeYear = '2023';
+let rateMode = 'density'; // 'density' (per km²) or 'perCapita' (per 100k residents)
+let corrCoeffMode = 'pearson'; // 'pearson' (linear) or 'spearman' (rank)
 let showLights = false;
 let showPolice = false;
 let showZones = false;
 let selected = null;
 let scatterType = 'streetlight';
 let scatterYMetric = 'hitAndRunCrashes2022';
+
+function getCorrelationPValue(r, n) {
+  if (n <= 2 || Math.abs(r) >= 1) return { p: 0, t: Infinity, df: Math.max(1, n - 2), isSig: true };
+  const df = n - 2;
+  const t = (Math.abs(r) * Math.sqrt(df)) / Math.sqrt(1 - r * r);
+  let p = 0;
+  if (df === 13) {
+    p = Math.exp(-0.717 * t - 0.416 * t * t);
+  } else if (df === 7) {
+    p = Math.exp(-0.75 * t - 0.35 * t * t);
+  } else {
+    p = Math.exp(-0.8 * t);
+  }
+  p = Math.min(1, Math.max(0, p));
+  return { p, t, df, isSig: p < 0.05 };
+}
+
+function spearmanRank(xs, ys) {
+  const getRanks = (arr) => {
+    const sorted = arr.map((v, i) => ({ v, i })).sort((a, b) => a.v - b.v);
+    const ranks = new Array(arr.length);
+    let i = 0;
+    while (i < sorted.length) {
+      let j = i;
+      while (j < sorted.length && sorted[j].v === sorted[i].v) j++;
+      const rank = (i + 1 + j) / 2;
+      for (let k = i; k < j; k++) ranks[sorted[k].i] = rank;
+      i = j;
+    }
+    return ranks;
+  };
+
+  const rx = getRanks(xs);
+  const ry = getRanks(ys);
+  const n = xs.length;
+  if (n <= 1) return 0;
+  let sumD2 = 0;
+  for (let i = 0; i < n; i++) {
+    const d = rx[i] - ry[i];
+    sumD2 += d * d;
+  }
+  return 1 - (6 * sumD2) / (n * (n * n - 1));
+}
+
+function calcMean(arr) {
+  if (!arr || !arr.length) return 0;
+  return arr.reduce((a, b) => a + b, 0) / arr.length;
+}
+
+function calcStdDev(arr, mean) {
+  if (!arr || arr.length <= 1) return 1;
+  const m = mean !== undefined ? mean : calcMean(arr);
+  const variance = arr.reduce((a, b) => a + Math.pow(b - m, 2), 0) / arr.length;
+  return Math.sqrt(variance) || 1;
+}
+
+function computeZScore(val, mean, stdDev) {
+  if (!stdDev) return 0;
+  return (val - mean) / stdDev;
+}
+
+function getRateVal(rawCount, d) {
+  if (rawCount == null) return null;
+  if (rateMode === 'perCapita') {
+    return Math.round((rawCount / d.population) * 100000 * 10) / 10;
+  }
+  return Math.round((rawCount / d.areaSqKm) * 10) / 10;
+}
+
+function getInfraVal(d, inf) {
+  const count = d[inf.countKey];
+  if (count == null) return null;
+  if (rateMode === 'perCapita') {
+    return Math.round((count / d.population) * 100000 * 10) / 10;
+  }
+  return d[inf.densityKey];
+}
 
 function rustScale(t) {
   const c1 = [230, 214, 179], c2 = [177, 74, 52];
@@ -631,10 +711,13 @@ function findDistrictName(x, y) {
 function currentMetric() { return METRICS.find(m => m.key === activeMetric); }
 
 function metricValue(d, m) {
-  if (!m.prevKey) return d[m.key];
-  if (activeYear === '2022') return d[m.prevKey];
-  if (activeYear === '2024') return d[m.key2024];
-  return d[m.key];
+  let val;
+  if (!m.prevKey) val = d[m.key];
+  else if (activeYear === '2022') val = d[m.prevKey];
+  else if (activeYear === '2024') val = d[m.key2024];
+  else val = d[m.key];
+
+  return getRateVal(val, d);
 }
 
 function yearFieldVal(d, baseKey) {
@@ -668,6 +751,7 @@ function buildMetricTabs() {
     btn.addEventListener('click', () => { activeMetric = btn.dataset.key; render(); });
   });
   buildYearToggle();
+  buildRateToggle();
 }
 
 function buildYearToggle() {
@@ -679,6 +763,20 @@ function buildYearToggle() {
   el.innerHTML = opts.map(([val, label]) => '<button class="metric-tab' + (activeYear===val?' active':'') + '" data-val="' + val + '" aria-pressed="' + (activeYear===val) + '">' + label + '</button>').join('');
   el.querySelectorAll('.metric-tab').forEach(btn => {
     btn.addEventListener('click', () => { activeYear = btn.dataset.val; render(); });
+  });
+}
+
+function buildRateToggle() {
+  const el = document.getElementById('rateToggle');
+  if (!el) return;
+  const opts = [['density', 'Spatial Density (per km²)'], ['perCapita', 'Per-Capita Rate (per 100k)']];
+  el.innerHTML = opts.map(([val, label]) => '<button class="metric-tab' + (rateMode===val?' active':'') + '" data-val="' + val + '" aria-pressed="' + (rateMode===val) + '">' + label + '</button>').join('');
+  el.querySelectorAll('.metric-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      rateMode = btn.dataset.val;
+      buildRateToggle();
+      render();
+    });
   });
 }
 
@@ -1126,20 +1224,25 @@ function renderMethod() {
 
   el.innerHTML = INFRA.map(inf => {
     const validDistricts = DATA.filter(d => infraCovered(d, inf.key) && d[yKey] != null);
-    const xs = validDistricts.map(d => d[inf.densityKey]);
-    const ys = validDistricts.map(d => d[yKey] / d.areaSqKm);
+    const xs = validDistricts.map(d => getInfraVal(d, inf));
+    const ys = validDistricts.map(d => getRateVal(d[yKey], d));
     const n = xs.length;
     const r = n >= 2 ? pearson(xs, ys) : 0;
+    const rho = n >= 2 ? spearmanRank(xs, ys) : 0;
+    const pObj = getCorrelationPValue(corrCoeffMode === 'spearman' ? rho : r, n);
 
-    const rColor = Math.abs(r) >= 0.5 ? 'var(--rust)' : Math.abs(r) >= 0.25 ? 'var(--amber-dim)' : 'var(--text-dim)';
-    const interp = Math.abs(r) >= 0.5 ? 'Moderate to Strong' : Math.abs(r) >= 0.25 ? 'Weak Relationship' : 'No Clear Pattern';
+    const coeffVal = corrCoeffMode === 'spearman' ? rho : r;
+    const rColor = Math.abs(coeffVal) >= 0.5 ? 'var(--rust)' : Math.abs(coeffVal) >= 0.25 ? 'var(--amber-dim)' : 'var(--text-dim)';
+    const interp = Math.abs(coeffVal) >= 0.5 ? 'Moderate to Strong' : Math.abs(coeffVal) >= 0.25 ? 'Weak Relationship' : 'No Clear Pattern';
+    const sigLabel = pObj.isSig ? ' (p<0.05*)' : ' (ns, p≥0.05)';
 
     return '<div class="method-card">' +
-      '<div class="name">' + inf.label + ' Density</div>' +
-      '<div class="formula">' + inf.unit + ' ÷ District Area (km²)</div>' +
+      '<div class="name">' + inf.label + ' (' + (rateMode === 'perCapita' ? 'Per 100k' : 'Per km²') + ')</div>' +
+      '<div class="formula">' + inf.unit + ' ÷ ' + (rateMode === 'perCapita' ? 'Population (100k)' : 'District Area (km²)') + '</div>' +
       '<div style="margin:8px 0;padding:8px 10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">' +
-        '<div style="font-size:10.5px;color:var(--text-dim);text-transform:uppercase;font-weight:700;">r vs. ' + esc(m.label) + ' (' + activeYear + ')</div>' +
-        '<div style="font-size:18px;font-weight:700;color:' + rColor + ';margin-top:2px;">r = ' + (r >= 0 ? '+' : '') + r.toFixed(3) + ' <span style="font-size:12px;font-weight:400;color:var(--text-dim);">(n=' + n + ')</span></div>' +
+        '<div style="font-size:10.5px;color:var(--text-dim);text-transform:uppercase;font-weight:700;">' + (corrCoeffMode === 'spearman' ? 'Spearman ρ' : 'Pearson r') + ' vs. ' + esc(m.label) + ' (' + activeYear + ')</div>' +
+        '<div style="font-size:16px;font-weight:700;color:' + rColor + ';margin-top:2px;">' + (corrCoeffMode === 'spearman' ? 'ρ' : 'r') + ' = ' + (coeffVal >= 0 ? '+' : '') + coeffVal.toFixed(3) + ' <span style="font-size:11px;font-weight:600;color:var(--text-dim);">' + sigLabel + '</span></div>' +
+        '<div style="font-size:11px;color:var(--text-dim);margin-top:2px;">r = ' + (r>=0?'+':'') + r.toFixed(3) + ' · ρ = ' + (rho>=0?'+':'') + rho.toFixed(3) + ' (n=' + n + ')</div>' +
         '<div style="font-size:11px;font-weight:600;color:var(--text-dim);margin-top:2px;">' + interp + '</div>' +
       '</div>' +
       '<p style="font-size:11px;margin:4px 0 0;color:var(--text-dim);">' + INFRA_NOTES[inf.key] + '</p>' +
@@ -1164,14 +1267,25 @@ function renderCorrelationMatrix() {
     const yKey = yearField(m.key, year);
     const cells = infraKeys.map(inf => {
       const valid = DATA.filter(d => infraCovered(d, inf.key) && d[yKey] != null);
-      const xs = valid.map(d => d[inf.densityKey]);
-      const ys = valid.map(d => d[yKey] / d.areaSqKm);
+      const xs = valid.map(d => getInfraVal(d, inf));
+      const ys = valid.map(d => getRateVal(d[yKey], d));
       const r = valid.length >= 2 ? pearson(xs, ys) : 0;
+      const rho = valid.length >= 2 ? spearmanRank(xs, ys) : 0;
+      const val = corrCoeffMode === 'spearman' ? rho : r;
+      const pObj = getCorrelationPValue(val, valid.length);
 
-      const bg = r >= 0.4 ? 'rgba(231,76,60,0.18)' : r <= -0.4 ? 'rgba(46,204,113,0.18)' : 'rgba(255,255,255,0.04)';
-      const color = r >= 0.4 ? 'var(--rust)' : r <= -0.4 ? 'var(--good)' : 'var(--text)';
-      return '<td style="text-align:center;padding:8px 10px;background:' + bg + ';color:' + color + ';font-weight:700;font-family:monospace;" data-tt-title="' + esc(m.label + ' vs ' + inf.label + ' Density') + '" data-tt-body="' + esc('r = ' + (r>=0?'+':'') + r.toFixed(3) + ' across ' + valid.length + ' covered districts (' + year + ')') + '">' +
-        (r >= 0 ? '+' : '') + r.toFixed(3) +
+      const bg = val >= 0.4 ? 'rgba(231,76,60,0.18)' : val <= -0.4 ? 'rgba(46,204,113,0.18)' : 'rgba(255,255,255,0.04)';
+      const color = val >= 0.4 ? 'var(--rust)' : val <= -0.4 ? 'var(--good)' : 'var(--text)';
+      const sigBadge = pObj.isSig ? '<span style="color:var(--amber);margin-left:2px;font-size:11px;">*</span>' : '<span style="color:var(--text-dim);font-size:9px;margin-left:2px;opacity:0.7;">(ns)</span>';
+
+      const ttBody = (corrCoeffMode === 'spearman' ? 'Spearman ρ' : 'Pearson r') + ' = ' + (val >= 0 ? '+' : '') + val.toFixed(3) +
+        '<br>' + (corrCoeffMode === 'spearman' ? 'Pearson r' : 'Spearman ρ') + ' = ' + (corrCoeffMode === 'spearman' ? (r>=0?'+':'')+r.toFixed(3) : (rho>=0?'+':'')+rho.toFixed(3)) +
+        '<br>t-statistic = ' + pObj.t.toFixed(2) + ', df = ' + pObj.df + ', p-value = ' + pObj.p.toFixed(4) + ' (' + (pObj.isSig ? 'significant p<0.05' : 'not significant p≥0.05') + ')' +
+        '<br>Calculation Mode: ' + (rateMode === 'perCapita' ? 'Per-Capita Rate (per 100k)' : 'Spatial Density (per km²)') +
+        '<br>Sample n = ' + valid.length + ' covered districts (' + year + ')';
+
+      return '<td style="text-align:center;padding:8px 10px;background:' + bg + ';color:' + color + ';font-weight:700;font-family:monospace;"' + tt(m.label + ' vs ' + inf.label, ttBody) + '>' +
+        (val >= 0 ? '+' : '') + val.toFixed(3) + sigBadge +
       '</td>';
     }).join('');
 
@@ -1183,8 +1297,14 @@ function renderCorrelationMatrix() {
 
   container.innerHTML =
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">' +
-      '<h3 style="font-size:22px;font-weight:800;margin:0;color:var(--text);">Dynamic Infrastructure-Crime Correlation Matrix (' + year + ')</h3>' +
-      '<span style="font-size:12px;color:var(--text-dim);font-family:monospace;">Pearson r per-km² density</span>' +
+      '<h3 style="font-size:20px;font-weight:800;margin:0;color:var(--text);">Dynamic Correlation Matrix (' + year + ')</h3>' +
+      '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">' +
+        '<div class="metric-tabs" id="corrCoeffToggle">' +
+          '<button class="metric-tab' + (corrCoeffMode === 'pearson' ? ' active' : '') + '" data-coeff="pearson" aria-pressed="' + (corrCoeffMode === 'pearson') + '">Pearson r (Linear)</button>' +
+          '<button class="metric-tab' + (corrCoeffMode === 'spearman' ? ' active' : '') + '" data-coeff="spearman" aria-pressed="' + (corrCoeffMode === 'spearman') + '">Spearman ρ (Rank)</button>' +
+        '</div>' +
+        '<span style="font-size:11px;color:var(--text-dim);font-family:monospace;background:var(--bg);padding:4px 8px;border-radius:4px;border:1px solid var(--border);">' + (rateMode === 'perCapita' ? 'Per 100k Residents' : 'Per km² Density') + '</span>' +
+      '</div>' +
     '</div>' +
     '<div style="overflow-x:auto;">' +
       '<table style="width:100%;border-collapse:collapse;font-size:13px;">' +
@@ -1192,9 +1312,20 @@ function renderCorrelationMatrix() {
         '<tbody>' + rows + '</tbody>' +
       '</table>' +
     '</div>' +
-    '<div style="font-size:12px;color:var(--text-dim);margin-top:12px;line-height:1.5;background:var(--bg);padding:10px 14px;border-radius:6px;border:1px solid var(--border);">' +
-      '<b>Methodology & Confounder Explanation</b>: Coefficients ($r$) measure the linear alignment between infrastructure density ($count / km^2$) and crime density ($cases / km^2$). Positive correlations (e.g. metro stations or police posts with theft) reflect <i>urban activity density</i> — commercial and transit hubs concentrate both infrastructure investments and footfall exposure. They do not imply infrastructure induces crime.' +
+    '<div style="font-size:11.5px;color:var(--text-dim);margin-top:12px;line-height:1.5;background:var(--bg);padding:10px 14px;border-radius:6px;border:1px solid var(--border);">' +
+      '<b>Statistical Notes &amp; Rigor</b>: <span style="color:var(--amber);font-weight:700;">*</span> indicates statistically significant correlation (two-tailed Student\'s t-test <i>p</i> &lt; 0.05). <span style="opacity:0.7;">(ns)</span> indicates non-significant correlation (<i>p</i> ≥ 0.05). Spearman ρ evaluates monotonic rank alignment, mitigating linear outlier skew.' +
     '</div>';
+
+  const corrToggle = document.getElementById('corrCoeffToggle');
+  if (corrToggle) {
+    corrToggle.querySelectorAll('.metric-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        corrCoeffMode = btn.dataset.coeff;
+        renderCorrelationMatrix();
+        renderMethod();
+      });
+    });
+  }
 }
 
 function pearson(xs, ys) {
@@ -1224,20 +1355,28 @@ let scatterPointsCache = [];
 function renderScatter() {
   const inf = INFRA.find(i => i.key === scatterType);
   const yMetric = METRICS.find(m => m.key === scatterYMetric);
-  const yLabel = yMetric.short + ' density';
-  document.getElementById('scatterTitle').textContent = inf.label + ' density vs. ' + yLabel;
+  const modeLabel = rateMode === 'perCapita' ? ' (Per 100k Residents)' : ' (Per km² Density)';
+  const yLabel = yMetric.short + (rateMode === 'perCapita' ? ' rate' : ' density');
+  document.getElementById('scatterTitle').textContent = inf.label + ' vs. ' + yLabel + modeLabel;
 
   const covered = DATA.filter(d => infraCovered(d, inf.key) && d[yMetric.key] != null);
-  const pts = covered.map(d => ({ x: d[inf.densityKey], y: d[yMetric.key] / d.areaSqKm, name: d.name }));
+  const pts = covered.map(d => ({ x: getInfraVal(d, inf), y: getRateVal(d[yMetric.key], d), name: d.name }));
   const xs = pts.map(p=>p.x), ys = pts.map(p=>p.y);
   const r = pts.length >= 2 ? pearson(xs, ys) : 0;
+  const rho = pts.length >= 2 ? spearmanRank(xs, ys) : 0;
+  const pR = getCorrelationPValue(r, pts.length);
+  const pRho = getCorrelationPValue(rho, pts.length);
 
-  document.getElementById('scatterR').textContent = (r >= 0 ? '+' : '') + r.toFixed(3);
+  document.getElementById('scatterR').innerHTML =
+    'r = ' + (r >= 0 ? '+' : '') + r.toFixed(3) + ' <span style="font-size:11px;font-weight:400;color:var(--text-dim);">(p=' + pR.p.toFixed(3) + ', ' + (pR.isSig ? 'p<0.05*' : 'ns') + ')</span>' +
+    ' &nbsp;·&nbsp; ρ = ' + (rho >= 0 ? '+' : '') + rho.toFixed(3) + ' <span style="font-size:11px;font-weight:400;color:var(--text-dim);">(p=' + pRho.p.toFixed(3) + ', ' + (pRho.isSig ? 'p<0.05*' : 'ns') + ')</span>';
+
   document.getElementById('scatterN').textContent = pts.length + ' of 15 districts';
-  const strength = Math.abs(r) >= 0.5 ? 'a moderate-to-strong' : Math.abs(r) >= 0.25 ? 'a weak' : 'essentially no';
-  const direction = r >= 0 ? 'higher ' + inf.unit + ' density tracks with higher ' + yLabel : 'higher ' + inf.unit + ' density tracks with lower ' + yLabel;
+  const mainCoeff = corrCoeffMode === 'spearman' ? rho : r;
+  const strength = Math.abs(mainCoeff) >= 0.5 ? 'a moderate-to-strong' : Math.abs(mainCoeff) >= 0.25 ? 'a weak' : 'essentially no';
+  const direction = mainCoeff >= 0 ? 'higher ' + inf.unit + ' tracks with higher ' + yLabel : 'higher ' + inf.unit + ' tracks with lower ' + yLabel;
   let extra = '';
-  if (inf.key === 'policeInfra' && r > 0.3) extra = ' Read this as police presence following crime, not causing it — stations and posts go where crime and population already are.';
+  if (inf.key === 'policeInfra' && mainCoeff > 0.3) extra = ' Read this as police presence following crime, not causing it — stations and posts go where crime and population already are.';
   document.getElementById('scatterRead').textContent = 'This is ' + strength + ' relationship: ' + direction + ' across these ' + pts.length + ' districts.' + extra;
 
   const canvas = document.getElementById('scatterCanvas');

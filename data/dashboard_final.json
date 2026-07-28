@@ -54,7 +54,8 @@
       "alcoholShops": 6,
       "alcoholShopDensity": 0.22,
       "surveillanceCameras": 15,
-      "surveillanceDensity": 0.54
+      "surveillanceDensity": 0.54,
+      "population": 580000
     },
     {
       "name": "Dwarka",
@@ -109,7 +110,8 @@
       "alcoholShops": 2,
       "alcoholShopDensity": 0.01,
       "surveillanceCameras": 2,
-      "surveillanceDensity": 0.01
+      "surveillanceDensity": 0.01,
+      "population": 1100000
     },
     {
       "name": "East",
@@ -164,7 +166,8 @@
       "alcoholShops": 6,
       "alcoholShopDensity": 0.14,
       "surveillanceCameras": 113,
-      "surveillanceDensity": 2.7
+      "surveillanceDensity": 2.7,
+      "population": 1710000
     },
     {
       "name": "New Delhi",
@@ -219,7 +222,8 @@
       "alcoholShops": 5,
       "alcoholShopDensity": 0.14,
       "surveillanceCameras": 119,
-      "surveillanceDensity": 3.3
+      "surveillanceDensity": 3.3,
+      "population": 142000
     },
     {
       "name": "North",
@@ -274,7 +278,8 @@
       "alcoholShops": 0,
       "alcoholShopDensity": 0,
       "surveillanceCameras": 34,
-      "surveillanceDensity": 0.51
+      "surveillanceDensity": 0.51,
+      "population": 890000
     },
     {
       "name": "North-East",
@@ -329,7 +334,8 @@
       "alcoholShops": 0,
       "alcoholShopDensity": 0,
       "surveillanceCameras": 0,
-      "surveillanceDensity": 0
+      "surveillanceDensity": 0,
+      "population": 2240000
     },
     {
       "name": "North-West",
@@ -384,7 +390,8 @@
       "alcoholShops": 3,
       "alcoholShopDensity": 0.07,
       "surveillanceCameras": 1,
-      "surveillanceDensity": 0.02
+      "surveillanceDensity": 0.02,
+      "population": 1500000
     },
     {
       "name": "Outer",
@@ -439,7 +446,8 @@
       "alcoholShops": 0,
       "alcoholShopDensity": 0,
       "surveillanceCameras": 0,
-      "surveillanceDensity": 0
+      "surveillanceDensity": 0,
+      "population": 1050000
     },
     {
       "name": "Outer North",
@@ -494,7 +502,8 @@
       "alcoholShops": 0,
       "alcoholShopDensity": 0,
       "surveillanceCameras": 2,
-      "surveillanceDensity": 0.01
+      "surveillanceDensity": 0.01,
+      "population": 800000
     },
     {
       "name": "Rohini",
@@ -549,7 +558,8 @@
       "alcoholShops": 2,
       "alcoholShopDensity": 0.02,
       "surveillanceCameras": 10,
-      "surveillanceDensity": 0.08
+      "surveillanceDensity": 0.08,
+      "population": 1020000
     },
     {
       "name": "Shahdara",
@@ -604,7 +614,8 @@
       "alcoholShops": 3,
       "alcoholShopDensity": 0.11,
       "surveillanceCameras": 2,
-      "surveillanceDensity": 0.07
+      "surveillanceDensity": 0.07,
+      "population": 1490000
     },
     {
       "name": "South",
@@ -659,7 +670,8 @@
       "alcoholShops": 12,
       "alcoholShopDensity": 0.07,
       "surveillanceCameras": 33,
-      "surveillanceDensity": 0.21
+      "surveillanceDensity": 0.21,
+      "population": 1390000
     },
     {
       "name": "South-East",
@@ -714,7 +726,8 @@
       "alcoholShops": 5,
       "alcoholShopDensity": 0.06,
       "surveillanceCameras": 85,
-      "surveillanceDensity": 1.04
+      "surveillanceDensity": 1.04,
+      "population": 1420000
     },
     {
       "name": "South-West",
@@ -769,7 +782,8 @@
       "alcoholShops": 6,
       "alcoholShopDensity": 0.05,
       "surveillanceCameras": 15,
-      "surveillanceDensity": 0.12
+      "surveillanceDensity": 0.12,
+      "population": 1070000
     },
     {
       "name": "West",
@@ -824,7 +838,8 @@
       "alcoholShops": 0,
       "alcoholShopDensity": 0,
       "surveillanceCameras": 2,
-      "surveillanceDensity": 0.03
+      "surveillanceDensity": 0.03,
+      "population": 1740000
     }
   ]
 }

@@ -2,6 +2,7 @@
   {
     "district": "Central",
     "areaSqKm": 27.8,
+    "population": 580000,
     "theft2022": 9370,
     "theft": 9697,
     "theft2024": 6770,
@@ -49,6 +50,7 @@
   {
     "district": "Dwarka",
     "areaSqKm": 273.4,
+    "population": 1100000,
     "theft2022": 16581,
     "theft": 17856,
     "theft2024": 12082,
@@ -96,6 +98,7 @@
   {
     "district": "East",
     "areaSqKm": 41.8,
+    "population": 1710000,
     "theft2022": 14828,
     "theft": 15169,
     "theft2024": 13510,
@@ -143,6 +146,7 @@
   {
     "district": "New Delhi",
     "areaSqKm": 36.1,
+    "population": 142000,
     "theft2022": 1350,
     "theft": 1436,
     "theft2024": 1142,
@@ -190,6 +194,7 @@
   {
     "district": "North",
     "areaSqKm": 66.4,
+    "population": 890000,
     "theft2022": 14023,
     "theft": 18450,
     "theft2024": 15084,
@@ -237,6 +242,7 @@
   {
     "district": "North-East",
     "areaSqKm": 49.9,
+    "population": 2240000,
     "theft2022": 19364,
     "theft": 19610,
     "theft2024": 16434,
@@ -284,6 +290,7 @@
   {
     "district": "North-West",
     "areaSqKm": 41.2,
+    "population": 1500000,
     "theft2022": 18480,
     "theft": 21436,
     "theft2024": 17357,
@@ -331,6 +338,7 @@
   {
     "district": "Outer",
     "areaSqKm": 82.9,
+    "population": 1050000,
     "theft2022": 15120,
     "theft": 14716,
     "theft2024": 13432,
@@ -378,6 +386,7 @@
   {
     "district": "Outer North",
     "areaSqKm": 261.9,
+    "population": 800000,
     "theft2022": 9044,
     "theft": 10129,
     "theft2024": 8316,
@@ -425,6 +434,7 @@
   {
     "district": "Rohini",
     "areaSqKm": 133.2,
+    "population": 1020000,
     "theft2022": 12058,
     "theft": 13042,
     "theft2024": 10023,
@@ -472,6 +482,7 @@
   {
     "district": "Shahdara",
     "areaSqKm": 26.9,
+    "population": 1490000,
     "theft2022": 11122,
     "theft": 9968,
     "theft2024": 8128,
@@ -519,6 +530,7 @@
   {
     "district": "South",
     "areaSqKm": 160.5,
+    "population": 1390000,
     "theft2022": 15243,
     "theft": 17800,
     "theft2024": 11868,
@@ -566,6 +578,7 @@
   {
     "district": "South-East",
     "areaSqKm": 82,
+    "population": 1420000,
     "theft2022": 17144,
     "theft": 19591,
     "theft2024": 16299,
@@ -613,6 +626,7 @@
   {
     "district": "South-West",
     "areaSqKm": 124.5,
+    "population": 1070000,
     "theft2022": 7461,
     "theft": 7594,
     "theft2024": 5388,
@@ -660,6 +674,7 @@
   {
     "district": "West",
     "areaSqKm": 64.7,
+    "population": 1740000,
     "theft2022": 18360,
     "theft": 21084,
     "theft2024": 12997,

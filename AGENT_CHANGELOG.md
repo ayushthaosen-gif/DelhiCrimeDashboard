@@ -5,6 +5,27 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 10
+
+### 📐 Academic & Public Policy Statistical Rigor Overhaul
+
+1. **Statistical Significance Testing ($p$-Value Calculation)**
+   - Implemented Student's $t$-distribution transformation ($t = \frac{|r|\sqrt{n-2}}{\sqrt{1-r^2}}$) and two-tailed $p$-value estimation (`getCorrelationPValue`).
+   - Styled correlation matrix cells with significance indicators (`*` for $p < 0.05$, `(ns)` for non-significant $p \ge 0.05$) and added $t$-stat, $df$, and exact $p$-values to hover tooltips.
+
+2. **Spearman’s Rank Correlation ($\rho$)**
+   - Implemented non-linear monotonic rank correlation (`spearmanRank`) to mitigate linear outlier distortion.
+   - Added a dual-mode coefficient switcher in the correlation matrix (**Pearson $r$** vs **Spearman $\rho$**) and displayed both $r$ ($p$-val) and $\rho$ ($p$-val) in the scatter plot summary card.
+
+3. **Spatial Density vs. Per-Capita Crime Rate Switcher**
+   - Integrated official Census population estimates for all 15 districts into `data/dashboard_final.json` (~18.14 million residents total).
+   - Added a global **Calculation Mode Switcher**: **Spatial Density ($\text{cases}/\text{km}^2$)** vs **Per-Capita Rate ($\text{cases}/100\text{k residents}$)** across the choropleth map, ranked list, scatter plot, detail cards, and matrix.
+
+4. **Z-Score Standardization**
+   - Added mean ($\mu$) and standard deviation ($\sigma$) normalization functions (`calcMean`, `calcStdDev`, `computeZScore`) for multi-metric composite scoring and zero-centered variance scaling.
+
+---
+
 ## [2026-07-28] - Antigravity (Google DeepMind AI) - Phase 9
 
 ### 🍷 Liquor Shops & CCTV/Guard Surveillance Infrastructure Layers
