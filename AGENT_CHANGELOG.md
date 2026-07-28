@@ -5,6 +5,23 @@ This log tracks all architectural, performance, accessibility, and code quality 
 > **Note for AI Assistants (Antigravity & Claude)**:
 > Whenever you make changes to this codebase, please add an entry below under `## [Date] - [Assistant Name]` describing what was modified, added, or refactored so that future turns and other AI agents remain fully synchronized.
 
+## [2026-07-28] - Claude (Anthropic) - Refreshed Liquor Shop & CCTV Datasets (Overpass Re-query)
+
+### 📡 More Complete OSM Data for `alcoholShop` and `surveillance` Layers
+
+**Why**: the user supplied updated Overpass QL queries (`shop=alcohol` OR `shop=wine` OR `shop=beverages` with a qualifying `alcohol` tag, for liquor; `man_made=surveillance` for CCTV) plus a README explicitly noting these are OSM community-mapped snapshots, not authoritative government inventories. Re-running them confirmed OSM coverage has grown substantially since the original query: both new datasets are a strict superset of the previously-committed one (every old OSM id — 50 liquor, 433 surveillance — is contained in the new results), so this is a straightforward data refresh, not a methodology change.
+
+1. **Liquor shops**: 50 → **65** points (`shop=alcohol`: 60, `shop=wine`: 5; no qualifying `shop=beverages` records currently mapped in Delhi). All 65 fall inside a district polygon.
+2. **CCTV & guard posts**: 433 → **1,596** raw points, **1,583** inside a district polygon (13 fall outside every district boundary and are excluded from counts, same treatment as other OSM layers here).
+3. Queried via `overpass.kumi.systems` (the primary `overpass-api.de` mirror returned HTTP 504 "server too busy"; rotated to the next mirror per the user's own script's endpoint list).
+4. Updated `data/overpass_surveillance_alcohol.json` (combined source), re-ran the same equirectangular-projection + point-in-polygon pipeline used for every other POI layer to regenerate `data/dashboard_final.json` (`alcoholShops`/`alcoholShopDensity`/`surveillanceCameras`/`surveillanceDensity` per district), `data/poi_markers.json` (SVG-projected) and `data/poi_markers_latlng.json` (real lat/lng, for `interactive_map.html`).
+5. Updated all count references in `build.js`: footer citation, Data Dictionary source map, and Excel Sources & Methodology sheet, plus widened the liquor-shop citation wording to mention all three shop tags now queried.
+6. **Projection note**: no committed script does the lat/lng → SVG (x,y) conversion, so the exact affine transform was recovered by least-squares fit against the existing `busStops` marker pairs (3,151 points, sub-pixel residual <0.06px) rather than re-derived from scratch — same numerical result either way, just verified against known-good output instead of blind trust.
+
+Verified: both new raw datasets confirmed as strict supersets of the old ones (by OSM id) before adopting; rebuilt `delhi_safety_dashboard.html` and `interactive_map.html`; extracted `<script>` passed `node --check`; served locally and confirmed via browser — no console errors, `#alcoholLayer`/`#surveillanceLayer` circle counts match exactly (65 / 1,583), Data Dictionary and correlation-matrix footnotes show the new counts and query wording, interactive map's embedded marker counts match, and toggling the liquor/CCTV layers on the Leaflet page produces no console errors.
+
+---
+
 ## [2026-07-28] - Claude (Anthropic) - Interactive Leaflet Map (separate page)
 
 ### 🗺️ Real Basemap, Zoom/Pan — `interactive_map.html` + `build_interactive_map.js`
