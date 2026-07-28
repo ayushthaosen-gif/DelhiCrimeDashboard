@@ -345,7 +345,7 @@ footer a { color: inherit; }
         <li><b>Metro station gates</b> (OpenStreetMap, 529 points), <b>bus stops</b> (OpenStreetMap, 3,199 points), and <b>ATMs</b> (OpenStreetMap via Overpass API, 666 points) have real, complete coverage across all 15 districts.</li>
         <li><b>Police Infra</b> combines two sources: full <b>police stations</b> (Delhi Police GSDL, official geocoded list, 224 points — complete for all 15 districts) plus <b>chowkis, outposts &amp; booths</b> (OpenStreetMap community mapping, 120 points — no official geocoded chowki dataset exists publicly, confirmed against the same GSDL source). The combined figure is fully trustworthy for 14 of 15 districts; <b>Outer</b> shows 12 real stations but zero mapped chowkis, almost certainly an OSM under-mapping gap, so its combined count is flagged as an undercount.</li>
         <li><b>Road Deaths &amp; Hit-and-Run</b> (Delhi Traffic Police, 2022 Delhi Road Crash Fatalities Report) can be plotted on the map and scatter chart alongside the 2023 crime figures. It's a year older and uses Traffic Police's own <b>11-district reporting geography</b>, not the 15 Delhi Police districts — <b>Outer, Outer North, Rohini and South-West have no separate entry</b> and show hatched on the map, not zero deaths.</li>
-        <li><b>Year comparison</b>: the six NCRB crime metrics (theft, robbery, burglary, total IPC, crime against women, SLL crimes) each have a matching figure for <b>2022, 2023 and 2024</b> from the same NCRB district-wise tables. Use the <b>2022 / 2023 / 2024</b> toggle above the map to switch the map, ranked list, and district detail panel to that year — the road-safety metrics have no equivalent multi-year series, so that toggle is hidden when they're selected. Selecting a year shows the percent change from the previous year in the district detail panel (2022 has no earlier year on record, so no change is shown there). The 2024 IPC table also switched to the new BNS section numbering alongside the old IPC references — the offence categories carry over, it's the legal citation that changed.</li>
+        <li><b>Year comparison</b>: the six NCRB crime metrics (theft, robbery, burglary, total IPC, crime against women, SLL crimes) each have a matching figure for <b>2022, 2023 and 2024</b> from the same NCRB district-wise tables. Use the <b>2022 / 2023 / 2024</b> toggle above the map to switch the map, ranked list, and district detail panel to that year — the road-safety metrics have no equivalent multi-year series, so that toggle is hidden when they're selected. Selecting a year shows the percent change from the previous year in the district detail panel. The 2024 IPC table also switched to the new BNS section numbering alongside the old IPC references — the offence categories carry over, it's the legal citation that changed. <b>Theft, robbery and burglary</b> additionally extend back to <b>2016</b> (burglary from 2017 — 2016 is omitted due to a source definition break) via a separately verified NCRB extract; total IPC, crime against women and SLL crime were not reconstructed for that period, so those rows show "—" and infrastructure-correlation text is suppressed when a historical year is selected, rather than comparing against data from a different time period. Year-over-year change is hidden wherever the underlying source data isn't comparable across the boundary (e.g. the 2016→2017 burglary definition break, or a district that didn't yet exist as its own reporting zone).</li>
       </ul>
     </div>
   </div>
@@ -583,7 +583,7 @@ footer a { color: inherit; }
   </div>
 
   <footer>
-    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2023) and road deaths by mode of travel (2019-2023): Delhi Traffic Police annual road crash data · District-wise crash data and 107 crash-prone zones (2023): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); coordinates for all 107 zones cross-checked against the source table by rank and fatal-crash count, 105 of which fall inside a district polygon and are shown on the map sized by fatal crash count · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol, shop=wine, shop=beverages+alcohol tag via Overpass API, 65 points), ODbL · CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 1,596 points, 1,583 within district polygons), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
+    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Historical theft, robbery &amp; burglary (2016-2021): National Crime Records Bureau, Crime in India, via <a href="https://indiadataportal.com" target="_blank" rel="noopener">India Data Portal</a> (verified extract; theft/robbery 2016-2021, burglary 2017-2021 — 2016 burglary omitted due to a source definition break; total IPC, crime against women and SLL crime not reconstructed for this period) · Official licensed liquor vends: Delhi State Civil Supplies Corporation (DSCSC) / DCCWS published list, 374 records citywide (only 1 has a matched map coordinate; not usable for per-district mapping) · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2023) and road deaths by mode of travel (2019-2023): Delhi Traffic Police annual road crash data · District-wise crash data and 107 crash-prone zones (2023): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); coordinates for all 107 zones cross-checked against the source table by rank and fatal-crash count, 105 of which fall inside a district polygon and are shown on the map sized by fatal crash count · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol, shop=wine, shop=beverages+alcohol tag via Overpass API, 65 points), ODbL · CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 1,596 points, 1,583 within district polygons), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
     <span>District boundary polygons simplified for display (~165m tolerance) — not survey-grade. IGI Airport unit and non-geographic units (Crime Branch, EOW, Metro, Railway, Vigilance, etc.) excluded from district figures.</span>
   </footer>
 </div>
@@ -601,9 +601,9 @@ const ACCIDENT_ZONES_MAPPED = ${JSON.stringify(accidentZonesMapped)};
 const POI_MARKERS = ${JSON.stringify(poiMarkers)};
 
 const METRICS = [
-  { key: 'theft', label: 'Theft', short: 'theft', year: '2023', full: 'Theft (Sec. 379 IPC), 2023', prevKey: 'theft2022', prevYear: '2022', key2024: 'theft2024', title: 'Theft (Sec. 379 IPC)', desc: 'Reported vehicle, property, and personal theft offences registered in the district.', source: 'NCRB Crime in India District-Wise Reports' },
-  { key: 'robbery', label: 'Robbery', short: 'robbery', year: '2023', full: 'Robbery (Sec. 392/394/397 IPC), 2023', prevKey: 'robbery2022', prevYear: '2022', key2024: 'robbery2024', title: 'Robbery (Sec. 392/394/397 IPC)', desc: 'Reported robbery, mugging, and extortion offences involving force or threat.', source: 'NCRB Crime in India District-Wise Reports' },
-  { key: 'burglary', label: 'Burglary', short: 'burglary', year: '2023', full: 'Burglary (Sec. 454-460 IPC), 2023', prevKey: 'burglary2022', prevYear: '2022', key2024: 'burglary2024', title: 'Burglary (Sec. 454-460 IPC)', desc: 'Residential and commercial housebreaking, house-trespass, and break-ins.', source: 'NCRB Crime in India District-Wise Reports' },
+  { key: 'theft', label: 'Theft', short: 'theft', year: '2023', full: 'Theft (Sec. 379 IPC), 2023', prevKey: 'theft2022', prevYear: '2022', key2024: 'theft2024', title: 'Theft (Sec. 379 IPC)', desc: 'Reported vehicle, property, and personal theft offences registered in the district.', source: 'NCRB Crime in India District-Wise Reports', historicalYears: ['2016','2017','2018','2019','2020','2021'], historicalSource: 'NCRB Crime in India, via India Data Portal (verified extract, 2016-2021)' },
+  { key: 'robbery', label: 'Robbery', short: 'robbery', year: '2023', full: 'Robbery (Sec. 392/394/397 IPC), 2023', prevKey: 'robbery2022', prevYear: '2022', key2024: 'robbery2024', title: 'Robbery (Sec. 392/394/397 IPC)', desc: 'Reported robbery, mugging, and extortion offences involving force or threat.', source: 'NCRB Crime in India District-Wise Reports', historicalYears: ['2016','2017','2018','2019','2020','2021'], historicalSource: 'NCRB Crime in India, via India Data Portal (verified extract, 2016-2021)' },
+  { key: 'burglary', label: 'Burglary', short: 'burglary', year: '2023', full: 'Burglary (Sec. 454-460 IPC), 2023', prevKey: 'burglary2022', prevYear: '2022', key2024: 'burglary2024', title: 'Burglary (Sec. 454-460 IPC)', desc: 'Residential and commercial housebreaking, house-trespass, and break-ins.', source: 'NCRB Crime in India District-Wise Reports', historicalYears: ['2017','2018','2019','2020','2021'], historicalSource: 'NCRB Crime in India, via India Data Portal (verified extract, 2017-2021; 2016 omitted — source definition combines criminal trespass and burglary)' },
   { key: 'totalIPC', label: 'Total IPC', short: 'total IPC crime', year: '2023', full: 'Total Cognizable IPC Crimes, 2023', prevKey: 'totalIPC2022', prevYear: '2022', key2024: 'totalIPC2024', title: 'Total Cognizable IPC Crimes', desc: 'Aggregate count of all major Indian Penal Code crimes registered in the district.', source: 'NCRB Crime in India District-Wise Reports' },
   { key: 'crimeAgainstWomen', label: 'Vs. Women', short: 'crime against women', year: '2023', full: 'Total Crime Against Women, 2023', prevKey: 'crimeAgainstWomen2022', prevYear: '2022', key2024: 'crimeAgainstWomen2024', title: 'Crime Against Women', desc: 'Registered cases of assault, harassment, cruelty, and domestic offences against women.', source: 'NCRB Crime in India District-Wise Reports' },
   { key: 'totalSLL', label: 'SLL Crimes', short: 'SLL crime', year: '2023', full: 'Total Cognizable SLL Crimes, 2023', prevKey: 'totalSLL2022', prevYear: '2022', key2024: 'totalSLL2024', title: 'Special & Local Laws (SLL) Crimes', desc: 'Offences registered under special acts (Arms Act, NDPS, Excise, Cyber Crimes, etc.).', source: 'NCRB Crime in India District-Wise Reports' },
@@ -763,36 +763,39 @@ function findDistrictName(x, y) {
 
 function currentMetric() { return METRICS.find(m => m.key === activeMetric); }
 
-function metricValue(d, m) {
-  let val;
-  if (!m.prevKey) val = d[m.key];
-  else if (activeYear === '2022') val = d[m.prevKey];
-  else if (activeYear === '2024') val = d[m.key2024];
-  else val = d[m.key];
+// Field-naming convention across the whole dataset: <metricKey><year>, except the metric's own
+// "current" year (m.year, e.g. '2023') which is stored bare as <metricKey>. This holds for both
+// the original 2022/2024 fields and the 2016-2021 historical extension merged into
+// dashboard_final.json, so one generalized lookup covers every year without special-casing.
+function yearFieldKey(m, year) {
+  if (!m.prevKey) return m.key;
+  if (year === m.year) return m.key;
+  return m.key + year;
+}
+function metricSupportsYear(m, year) {
+  if (!m.prevKey) return year === m.year;
+  if (['2022','2023','2024'].includes(year)) return true;
+  return !!(m.historicalYears && m.historicalYears.includes(year));
+}
 
+function metricValue(d, m) {
+  const val = !m.prevKey ? d[m.key] : d[yearFieldKey(m, activeYear)];
   return getRateVal(val, d);
 }
 
 function yearFieldVal(d, baseKey) {
   const m = METRICS.find(x => x.key === baseKey);
   if (!m || !m.prevKey) return d[baseKey];
-  if (activeYear === '2022') return d[m.prevKey];
-  if (activeYear === '2024') return d[m.key2024];
-  return d[m.key];
+  return d[yearFieldKey(m, activeYear)];
 }
 
 function yearLabel(m) {
   if (!m.prevKey) return m.full;
-  if (activeYear === '2022') return m.full.replace('2023', '2022');
-  if (activeYear === '2024') return m.full.replace('2023', '2024');
-  return m.full;
+  return m.full.replace(m.year, activeYear);
 }
 
 function yearSuffix(m) {
-  if (!m.prevKey) return m.year;
-  if (activeYear === '2022') return m.prevYear;
-  if (activeYear === '2024') return '2024';
-  return m.year;
+  return m.prevKey ? activeYear : m.year;
 }
 
 function buildMetricTabs() {
@@ -801,7 +804,12 @@ function buildMetricTabs() {
     '<button class="metric-tab' + (m.key===activeMetric?' active':'') + '" data-key="' + m.key + '" aria-pressed="' + (m.key===activeMetric) + '"' + tt(m.title, m.desc + ' · Source: ' + m.source) + '>' + m.label + '</button>'
   ).join('');
   el.querySelectorAll('.metric-tab').forEach(btn => {
-    btn.addEventListener('click', () => { activeMetric = btn.dataset.key; render(); });
+    btn.addEventListener('click', () => {
+      activeMetric = btn.dataset.key;
+      const m = currentMetric();
+      if (!metricSupportsYear(m, activeYear)) activeYear = '2023';
+      render();
+    });
   });
   buildYearToggle();
   buildRateToggle();
@@ -812,8 +820,9 @@ function buildYearToggle() {
   const m = currentMetric();
   if (!m.prevKey) { el.style.display = 'none'; return; }
   el.style.display = '';
-  const opts = [['2022', '2022'], ['2023', '2023'], ['2024', '2024']];
-  el.innerHTML = opts.map(([val, label]) => '<button class="metric-tab' + (activeYear===val?' active':'') + '" data-val="' + val + '" aria-pressed="' + (activeYear===val) + '">' + label + '</button>').join('');
+  const years = m.historicalYears ? [...m.historicalYears, '2022', '2023', '2024'] : ['2022', '2023', '2024'];
+  const opts = years.map(y => [y, y]);
+  el.innerHTML = opts.map(([val, label]) => '<button class="metric-tab' + (activeYear===val?' active':'') + '" data-val="' + val + '" aria-pressed="' + (activeYear===val) + '"' + (m.historicalYears && Number(val) <= 2021 ? tt('Historical extension', m.historicalSource) : '') + '>' + label + '</button>').join('');
   el.querySelectorAll('.metric-tab').forEach(btn => {
     btn.addEventListener('click', () => { activeYear = btn.dataset.val; render(); });
   });
@@ -1195,23 +1204,41 @@ function renderSparkline(d, baseKey) {
 function yearField(baseKey, year) {
   const m = METRICS.find(x => x.key === baseKey);
   if (!m || !m.prevKey) return baseKey;
-  if (year === '2022') return m.prevKey;
-  if (year === '2024') return m.key2024;
-  return m.key;
+  return yearFieldKey(m, year);
 }
-function prevYearOf(year) { return year === '2024' ? '2023' : year === '2023' ? '2022' : null; }
+// Generalized to any year - 1 (not just 2022-2024) now that theft/robbery/burglary carry
+// 2016-2021 data too. Safe for metrics without historical data: yoyBadge()/fmtNum() already
+// treat a missing/undefined field the same as null (renders '—', no badge), so asking for e.g.
+// totalIPC2021 (a field that doesn't exist) just produces the same "no data" result it always did.
+function prevYearOf(year) {
+  const y = Number(year);
+  return Number.isFinite(y) ? String(y - 1) : null;
+}
 
 function computeAnalysis(d, year) {
   const n = DATA.length;
-  const ipcKey = yearField('totalIPC', year), theftKey = yearField('theft', year), cawKey = yearField('crimeAgainstWomen', year);
-  const ipcRank = rankOf(d, ipcKey);
+  // Only theft/robbery/burglary carry 2016-2021 data (see METRICS[].historicalYears) -- total
+  // IPC, crime against women, and SLL crime were deliberately not reconstructed for that period
+  // (see build_verified_historical_data.js's omittedMetrics), so referencing their fields for a
+  // historical year would silently resolve to undefined and produce garbage ranks/percentages.
+  const isHistoricalYear = !['2022','2023','2024'].includes(year);
+  const theftKey = yearField('theft', year);
   const theftRank = rankOf(d, theftKey);
-  const cawRank = rankOf(d, cawKey);
   const theftPct = pctVsCityAvg(d, theftKey);
-  const severityWord = ipcRank <= 5 ? 'among the highest-crime districts' : ipcRank >= 11 ? 'among the lower-crime districts' : 'in the middle of the pack';
-  const crimeP = d.name + ' ranks <b>' + ordinal(ipcRank) + ' of ' + n + '</b> districts by total IPC crime in <b>' + year + '</b> — ' + severityWord + ' in Delhi, with theft cases ' +
-    (theftPct >= 0 ? '<b>' + theftPct + '% above</b>' : '<b>' + Math.abs(theftPct) + '% below</b>') +
-    ' the citywide average (' + ordinal(theftRank) + ' highest for theft specifically). It ranks ' + ordinal(cawRank) + ' of ' + n + ' for crime against women.';
+  let crimeP;
+  if (isHistoricalYear) {
+    crimeP = d.name + ' ranks <b>' + ordinal(theftRank) + ' of ' + n + '</b> districts by theft in <b>' + year + '</b>, with theft cases ' +
+      (theftPct >= 0 ? '<b>' + theftPct + '% above</b>' : '<b>' + Math.abs(theftPct) + '% below</b>') +
+      ' the citywide average. This historical extract (2016-2021) covers theft, robbery, and burglary only — total IPC crime, crime against women, and SLL crime were not reconstructed for this period (see Sources).';
+  } else {
+    const ipcKey = yearField('totalIPC', year), cawKey = yearField('crimeAgainstWomen', year);
+    const ipcRank = rankOf(d, ipcKey);
+    const cawRank = rankOf(d, cawKey);
+    const severityWord = ipcRank <= 5 ? 'among the highest-crime districts' : ipcRank >= 11 ? 'among the lower-crime districts' : 'in the middle of the pack';
+    crimeP = d.name + ' ranks <b>' + ordinal(ipcRank) + ' of ' + n + '</b> districts by total IPC crime in <b>' + year + '</b> — ' + severityWord + ' in Delhi, with theft cases ' +
+      (theftPct >= 0 ? '<b>' + theftPct + '% above</b>' : '<b>' + Math.abs(theftPct) + '% below</b>') +
+      ' the citywide average (' + ordinal(theftRank) + ' highest for theft specifically). It ranks ' + ordinal(cawRank) + ' of ' + n + ' for crime against women.';
+  }
 
   const roadSafetyCovered = DATA.filter(x => x.fatalRoadCrashes2022 != null).length;
   const roadP = d.fatalRoadCrashes2022 != null
@@ -1246,7 +1273,9 @@ function computeAnalysis(d, year) {
 
   let correlationP = null;
   const streetCovered = infraCovered(d, 'streetlight') && d[activeFieldKey] != null;
-  if (streetCovered) {
+  if (isHistoricalYear) {
+    correlationP = 'Infrastructure correlation is not computed for historical years — current streetlight/underpass/police survey data reflects present-day conditions, not ' + year + ', so comparing them would conflate two different time periods.';
+  } else if (streetCovered) {
     const validDists = DATA.filter(x => infraCovered(x, 'streetlight') && x[activeFieldKey] != null);
     const xs = validDists.map(x => x.lightDensityPerKm2);
     const ys = validDists.map(x => x[activeFieldKey] / x.areaSqKm);
@@ -1272,10 +1301,54 @@ function computeAnalysis(d, year) {
   return { crimeP, roadP, crash23P, infraP, correlationP, confidenceLevel, confidenceLabel };
 }
 
+// Shown in the detail panel when no district is selected -- citywide totals rather than
+// arbitrarily defaulting to one district (South-East, previously). Also the only place the
+// official DSCSC/DCCWS licensed liquor vend count belongs: it's a citywide administrative total
+// with no reliable district-level breakdown (only 1 of 374 official records has a matched
+// coordinate), so it can't be shown as a per-district stat anywhere else on the page.
+function renderTotalInfraSummary() {
+  const el = document.getElementById('detail');
+  const totalArea = DATA.reduce((a, d) => a + d.areaSqKm, 0);
+  const totalPop = DATA.reduce((a, d) => a + d.population, 0);
+
+  function totalCrimeRow(label, baseKey) {
+    const key = yearField(baseKey, activeYear);
+    const coveredDistricts = DATA.filter(d => d[key] != null);
+    const total = coveredDistricts.reduce((a, d) => a + d[key], 0);
+    const coverageNote = coveredDistricts.length < 15 ? ' <span class="stat-sub">(' + coveredDistricts.length + '/15 districts)</span>' : '';
+    return '<div class="stat"><span class="stat-label">' + label + ' (' + activeYear + ')' + coverageNote + '</span><span class="stat-val">' + fmtNum(coveredDistricts.length ? total : null) + '</span></div>';
+  }
+
+  const infraTiles = INFRA.map(inf => {
+    const coveredDistricts = DATA.filter(d => infraCovered(d, inf.key));
+    const total = DATA.reduce((a, d) => a + (d[inf.countKey] || 0), 0);
+    const dotClass = coveredDistricts.length === 15 ? 'high' : 'partial';
+    return '<div class="stat"><span class="stat-label"><span class="confidence-dot ' + dotClass + '"></span>' + inf.label + '</span><span class="stat-val">' + fmtNum(total) + ' <span class="stat-sub">(' + coveredDistricts.length + '/15 districts covered)</span></span></div>';
+  }).join('');
+
+  el.innerHTML = \`
+    <div class="detail-head">
+      <h2>Total Infrastructure — Citywide</h2>
+      <span class="area">\${totalArea.toLocaleString('en-IN')} km² · pop. \${totalPop.toLocaleString('en-IN')}</span>
+    </div>
+    <p style="font-size:12.5px;color:var(--text-dim);margin:4px 0 12px;">No district selected — citywide totals across all 15 police districts. Click a district on the map or in the ranked list for its individual profile.</p>
+    \${totalCrimeRow('Theft', 'theft')}
+    \${totalCrimeRow('Robbery', 'robbery')}
+    \${totalCrimeRow('Burglary', 'burglary')}
+    \${totalCrimeRow('Total IPC', 'totalIPC')}
+    \${totalCrimeRow('Vs. women', 'crimeAgainstWomen')}
+    \${totalCrimeRow('SLL crimes', 'totalSLL')}
+    <div class="section-divider"></div>
+    \${infraTiles}
+    <div class="stat"><span class="stat-label"><span class="confidence-dot partial"></span>Official licensed liquor vends</span><span class="stat-val">374 <span class="stat-sub">(DSCSC/DCCWS, citywide only — not mappable per-district)</span></span></div>
+  \`;
+}
+
 function renderDetail() {
   const el = document.getElementById('detail');
-  const d = DATA.find(x => x.name === selected) || DATA.find(x => x.name === 'South-East');
-  if (!d) { el.innerHTML = ''; return; }
+  if (!selected) { renderTotalInfraSummary(); return; }
+  const d = DATA.find(x => x.name === selected);
+  if (!d) { renderTotalInfraSummary(); return; }
   const detailYear = activeYear;
   const a = computeAnalysis(d, detailYear);
   const prevYear = prevYearOf(detailYear);
@@ -1283,11 +1356,18 @@ function renderDetail() {
     const key = yearField(baseKey, detailYear);
     const val = d[key];
     let sub = '';
-    if (prevYear) {
+    // A flag field only exists for the 2016-2021 historical extension (e.g.
+    // theftPreviousYearComparable2017); its absence means "2022-2024 range", which was always
+    // comparable, so treat a missing flag as comparable rather than as "no".
+    const comparableFlagKey = baseKey + 'PreviousYearComparable' + detailYear;
+    const isComparable = !(comparableFlagKey in d) || d[comparableFlagKey];
+    if (prevYear && isComparable) {
       const prevKey = yearField(baseKey, prevYear);
       const prevVal = d[prevKey];
       const badge = yoyBadge(val, prevVal, 'vs ' + prevYear);
       sub = '<span class="stat-sub">' + badge + '</span>';
+    } else if (prevYear && !isComparable) {
+      sub = '<span class="stat-sub" style="color:var(--text-dim);font-style:italic;">not comparable to ' + prevYear + '</span>';
     }
     const spark = renderSparkline(d, baseKey);
     return '<div class="stat"><span class="stat-label">' + label + ' (' + detailYear + ')' + spark + '</span><span class="stat-val">' + fmtNum(val) + '</span>' + sub + '</div>';
@@ -2478,6 +2558,8 @@ function buildSourcesSheet() {
     ['Bus stops', 'OpenStreetMap, highway=bus_stop / public_transport=platform tags (3,199 points)', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — 48 of 3,199 points fell outside every district polygon (likely just across the Delhi border) and are excluded from the district counts.'],
     ['ATMs', 'OpenStreetMap, amenity=atm tag, queried via Overpass API (666 points)', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — 17 of 666 points fell outside every district polygon and are excluded from the district counts.'],
     ['Liquor Shops', 'OpenStreetMap, shop=alcohol / shop=wine / shop=beverages+alcohol tag, queried via Overpass API (65 points)', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — mapped cleanly into district polygons via spatial point-in-polygon.'],
+    ['Official licensed liquor vends (citywide total)', 'Delhi State Civil Supplies Corporation (DSCSC) / DCCWS published vend list (374 records)', 'https://dscsc.delhi.gov.in/dscsc/liquor-vends', 'Citywide count only, not district-level — only 1 of 374 official records has a matched map coordinate (13 additional standalone OSM points, already included in the 65-point Liquor Shops layer above, add no new locations). Shown as a single citywide figure in the "no district selected" summary rather than force-distributed across districts.'],
+    ['Historical theft, robbery, burglary (2016-2021)', 'NCRB Crime in India, verified extract via India Data Portal', 'https://indiadataportal.com', 'Theft/robbery: 2016-2021 (11 of 15 districts in 2016, 14 of 15 in 2017-2018, all 15 from 2019). Burglary: 2017-2021 only — 2016 uses an incompatible source definition (criminal trespass combined with burglary) and is deliberately omitted rather than shown as a misleadingly comparable number. Total IPC, crime against women, and SLL crime were not reconstructed for this period. Year-over-year change is suppressed across any boundary the source data itself flags as not comparable.'],
     ['CCTV & Guards', 'OpenStreetMap, man_made=surveillance tag, queried via Overpass API (1,596 points, 1,583 within district polygons)', 'https://www.openstreetmap.org/copyright — ODbL license', 'All 15 districts — includes fixed/dome CCTV cameras, ALPR systems, and security guard posts.'],
     ['Police stations', 'Delhi Police GSDL official station location list (224 points)', 'https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac — community mirror of GSDL GIS server export', 'All 15 districts, official and complete.'],
     ['Chowkis, outposts, police booths', 'OpenStreetMap, amenity=police tag (station-named entries excluded to avoid double-counting)', 'https://www.openstreetmap.org/copyright — ODbL license', '14 of 15 districts — no official geocoded chowki dataset exists publicly (confirmed against the same GSDL source as police stations). Outer has zero mapped, almost certainly an under-mapping gap.'],
