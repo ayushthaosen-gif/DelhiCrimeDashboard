@@ -1,0 +1,592 @@
+{
+ "enforcement": {
+  "2023": {
+   "hitAndRunFatalCrashes": 660,
+   "hitAndRunShareOfFatalPercent": 46.08,
+   "drinkingDrivingProsecutions": 15972,
+   "rlvdCameraSystems": 209,
+   "rlvdJunctions": 43,
+   "osvdCameraSystems": 125,
+   "osvdLocations": 66,
+   "overspeedNotices": 3003969
+  },
+  "2024": {
+   "hitAndRunFatalCrashes": 634,
+   "hitAndRunShareOfFatalPercent": 42.15,
+   "drinkingDrivingProsecutions": 22952,
+   "rlvdCameraSystems": 209,
+   "rlvdJunctions": 43,
+   "osvdCameraSystems": 125,
+   "osvdLocations": 66,
+   "overspeedNotices": 2461882
+  }
+ },
+ "roadSummary": {
+  "2023": [
+   {
+    "rank": 1,
+    "road": "Ring Road",
+    "zones": 20,
+    "simple": 153,
+    "fatal": 69,
+    "total": 222
+   },
+   {
+    "rank": 2,
+    "road": "Outer Ring Road",
+    "zones": 17,
+    "simple": 123,
+    "fatal": 64,
+    "total": 187
+   },
+   {
+    "rank": 3,
+    "road": "GTK Road",
+    "zones": 14,
+    "simple": 89,
+    "fatal": 55,
+    "total": 144
+   },
+   {
+    "rank": 4,
+    "road": "Najafgarh Road",
+    "zones": 6,
+    "simple": 32,
+    "fatal": 17,
+    "total": 49
+   },
+   {
+    "rank": 5,
+    "road": "Rohtak Road",
+    "zones": 6,
+    "simple": 43,
+    "fatal": 19,
+    "total": 62
+   },
+   {
+    "rank": 6,
+    "road": "Wazirabad Road",
+    "zones": 3,
+    "simple": 24,
+    "fatal": 11,
+    "total": 35
+   },
+   {
+    "rank": 7,
+    "road": "NH-8",
+    "zones": 3,
+    "simple": 26,
+    "fatal": 5,
+    "total": 31
+   },
+   {
+    "rank": 8,
+    "road": "Road No.56",
+    "zones": 3,
+    "simple": 14,
+    "fatal": 11,
+    "total": 25
+   },
+   {
+    "rank": 9,
+    "road": "Pankha Road",
+    "zones": 3,
+    "simple": 18,
+    "fatal": 10,
+    "total": 28
+   },
+   {
+    "rank": 10,
+    "road": "G.T. Road",
+    "zones": 3,
+    "simple": 41,
+    "fatal": 9,
+    "total": 50
+   },
+   {
+    "rank": 11,
+    "road": "Yamuna Pusta Road",
+    "zones": 2,
+    "simple": 4,
+    "fatal": 6,
+    "total": 10
+   },
+   {
+    "rank": 12,
+    "road": "Rani Jhansi Road",
+    "zones": 2,
+    "simple": 15,
+    "fatal": 5,
+    "total": 20
+   },
+   {
+    "rank": 13,
+    "road": "Road No. 68",
+    "zones": 2,
+    "simple": 5,
+    "fatal": 8,
+    "total": 13
+   },
+   {
+    "rank": 14,
+    "road": "Vir Banda Bairagi Marg",
+    "zones": 2,
+    "simple": 13,
+    "fatal": 6,
+    "total": 19
+   },
+   {
+    "rank": 15,
+    "road": "Mehrauli Badarpur Road",
+    "zones": 1,
+    "simple": 7,
+    "fatal": 3,
+    "total": 10
+   },
+   {
+    "rank": 16,
+    "road": "Goyla Dairy Road",
+    "zones": 1,
+    "simple": 1,
+    "fatal": 3,
+    "total": 4
+   },
+   {
+    "rank": 17,
+    "road": "DSIDC Narela Road",
+    "zones": 1,
+    "simple": 2,
+    "fatal": 5,
+    "total": 7
+   },
+   {
+    "rank": 18,
+    "road": "Captain Gaur Marg",
+    "zones": 1,
+    "simple": 6,
+    "fatal": 5,
+    "total": 11
+   },
+   {
+    "rank": 19,
+    "road": "Hamilton Road",
+    "zones": 1,
+    "simple": 2,
+    "fatal": 6,
+    "total": 8
+   },
+   {
+    "rank": 20,
+    "road": "Jail Road",
+    "zones": 1,
+    "simple": 2,
+    "fatal": 3,
+    "total": 5
+   },
+   {
+    "rank": 21,
+    "road": "Boulevard Road",
+    "zones": 1,
+    "simple": 12,
+    "fatal": 6,
+    "total": 18
+   },
+   {
+    "rank": 22,
+    "road": "Mathura Road",
+    "zones": 1,
+    "simple": 2,
+    "fatal": 4,
+    "total": 6
+   },
+   {
+    "rank": 23,
+    "road": "Girdhari Lal Marg",
+    "zones": 1,
+    "simple": 1,
+    "fatal": 3,
+    "total": 4
+   },
+   {
+    "rank": 24,
+    "road": "Najafgarh Dwarka Road",
+    "zones": 1,
+    "simple": 10,
+    "fatal": 2,
+    "total": 12
+   },
+   {
+    "rank": 25,
+    "road": "NH-24",
+    "zones": 1,
+    "simple": 5,
+    "fatal": 5,
+    "total": 10
+   },
+   {
+    "rank": 26,
+    "road": "Anand Mai Marg",
+    "zones": 1,
+    "simple": 3,
+    "fatal": 3,
+    "total": 6
+   },
+   {
+    "rank": 27,
+    "road": "Outer Circle CP",
+    "zones": 1,
+    "simple": 10,
+    "fatal": 0,
+    "total": 10
+   },
+   {
+    "rank": 28,
+    "road": "Paper Market Road",
+    "zones": 1,
+    "simple": 1,
+    "fatal": 3,
+    "total": 4
+   },
+   {
+    "rank": 29,
+    "road": "Patparganj Road",
+    "zones": 1,
+    "simple": 9,
+    "fatal": 1,
+    "total": 10
+   },
+   {
+    "rank": 30,
+    "road": "Rithala Road",
+    "zones": 1,
+    "simple": 3,
+    "fatal": 3,
+    "total": 6
+   },
+   {
+    "rank": 31,
+    "road": "Road No. 13A",
+    "zones": 1,
+    "simple": 7,
+    "fatal": 3,
+    "total": 10
+   },
+   {
+    "rank": 32,
+    "road": "Road No. 43",
+    "zones": 1,
+    "simple": 1,
+    "fatal": 5,
+    "total": 6
+   },
+   {
+    "rank": 33,
+    "road": "SPM Marg",
+    "zones": 1,
+    "simple": 1,
+    "fatal": 3,
+    "total": 4
+   },
+   {
+    "rank": 34,
+    "road": "Vikas Marg",
+    "zones": 1,
+    "simple": 11,
+    "fatal": 2,
+    "total": 13
+   },
+   {
+    "rank": 35,
+    "road": "Noida Link Road",
+    "zones": 1,
+    "simple": 1,
+    "fatal": 3,
+    "total": 4
+   }
+  ],
+  "2024": [
+   {
+    "rank": 1,
+    "road": "Ring Road",
+    "zones": 19,
+    "simple": 123,
+    "fatal": 70,
+    "total": 193
+   },
+   {
+    "rank": 2,
+    "road": "GTK Road",
+    "zones": 13,
+    "simple": 85,
+    "fatal": 61,
+    "total": 146
+   },
+   {
+    "rank": 3,
+    "road": "Outer Ring Road",
+    "zones": 13,
+    "simple": 83,
+    "fatal": 58,
+    "total": 141
+   },
+   {
+    "rank": 4,
+    "road": "Rohtak Road",
+    "zones": 6,
+    "simple": 27,
+    "fatal": 22,
+    "total": 49
+   },
+   {
+    "rank": 5,
+    "road": "NH-8",
+    "zones": 5,
+    "simple": 22,
+    "fatal": 19,
+    "total": 41
+   },
+   {
+    "rank": 6,
+    "road": "Grand Trunk Road",
+    "zones": 4,
+    "simple": 48,
+    "fatal": 11,
+    "total": 59
+   },
+   {
+    "rank": 7,
+    "road": "Mehrauli Badarpur Road",
+    "zones": 4,
+    "simple": 14,
+    "fatal": 14,
+    "total": 28
+   },
+   {
+    "rank": 8,
+    "road": "Najafgarh Road",
+    "zones": 4,
+    "simple": 22,
+    "fatal": 12,
+    "total": 34
+   },
+   {
+    "rank": 9,
+    "road": "NH-24",
+    "zones": 4,
+    "simple": 21,
+    "fatal": 17,
+    "total": 38
+   },
+   {
+    "rank": 10,
+    "road": "Yamuna Pusta Road",
+    "zones": 4,
+    "simple": 10,
+    "fatal": 18,
+    "total": 28
+   },
+   {
+    "rank": 11,
+    "road": "Pankha Road",
+    "zones": 3,
+    "simple": 9,
+    "fatal": 10,
+    "total": 19
+   },
+   {
+    "rank": 12,
+    "road": "Wazirabad Road",
+    "zones": 3,
+    "simple": 25,
+    "fatal": 10,
+    "total": 35
+   },
+   {
+    "rank": 13,
+    "road": "Bawana Road",
+    "zones": 2,
+    "simple": 15,
+    "fatal": 8,
+    "total": 23
+   },
+   {
+    "rank": 14,
+    "road": "N. Subhash Marg",
+    "zones": 2,
+    "simple": 7,
+    "fatal": 7,
+    "total": 14
+   },
+   {
+    "rank": 15,
+    "road": "Patel Road",
+    "zones": 2,
+    "simple": 14,
+    "fatal": 5,
+    "total": 19
+   },
+   {
+    "rank": 16,
+    "road": "Road No.56",
+    "zones": 2,
+    "simple": 17,
+    "fatal": 11,
+    "total": 28
+   },
+   {
+    "rank": 17,
+    "road": "UER II",
+    "zones": 2,
+    "simple": 16,
+    "fatal": 9,
+    "total": 25
+   },
+   {
+    "rank": 18,
+    "road": "Vir Banda Bairagi Marg",
+    "zones": 2,
+    "simple": 18,
+    "fatal": 6,
+    "total": 24
+   },
+   {
+    "rank": 19,
+    "road": "Anand Mai Marg",
+    "zones": 1,
+    "simple": 4,
+    "fatal": 4,
+    "total": 8
+   },
+   {
+    "rank": 20,
+    "road": "Boulevard Road",
+    "zones": 1,
+    "simple": 14,
+    "fatal": 4,
+    "total": 18
+   },
+   {
+    "rank": 21,
+    "road": "BSZ Marg",
+    "zones": 1,
+    "simple": 3,
+    "fatal": 3,
+    "total": 6
+   },
+   {
+    "rank": 22,
+    "road": "DSIDC Narela Road",
+    "zones": 1,
+    "simple": 3,
+    "fatal": 3,
+    "total": 6
+   },
+   {
+    "rank": 23,
+    "road": "Goyla Dairy Road",
+    "zones": 1,
+    "simple": 2,
+    "fatal": 5,
+    "total": 7
+   },
+   {
+    "rank": 24,
+    "road": "Josef Broz Tito Marg",
+    "zones": 1,
+    "simple": 2,
+    "fatal": 5,
+    "total": 7
+   },
+   {
+    "rank": 25,
+    "road": "New Rohtak Road",
+    "zones": 1,
+    "simple": 2,
+    "fatal": 3,
+    "total": 5
+   },
+   {
+    "rank": 26,
+    "road": "Noida Link Road",
+    "zones": 1,
+    "simple": 3,
+    "fatal": 3,
+    "total": 6
+   },
+   {
+    "rank": 27,
+    "road": "Pusta Road",
+    "zones": 1,
+    "simple": 5,
+    "fatal": 3,
+    "total": 8
+   },
+   {
+    "rank": 28,
+    "road": "Qutab Garh Road",
+    "zones": 1,
+    "simple": 7,
+    "fatal": 5,
+    "total": 12
+   },
+   {
+    "rank": 29,
+    "road": "Raja Ram Kohli Marg",
+    "zones": 1,
+    "simple": 1,
+    "fatal": 4,
+    "total": 5
+   },
+   {
+    "rank": 30,
+    "road": "Road No. 13A",
+    "zones": 1,
+    "simple": 9,
+    "fatal": 2,
+    "total": 11
+   },
+   {
+    "rank": 31,
+    "road": "Road No. 57",
+    "zones": 1,
+    "simple": 9,
+    "fatal": 2,
+    "total": 11
+   },
+   {
+    "rank": 32,
+    "road": "Road No. 51",
+    "zones": 1,
+    "simple": 2,
+    "fatal": 4,
+    "total": 6
+   },
+   {
+    "rank": 33,
+    "road": "Road No.51",
+    "zones": 1,
+    "simple": 7,
+    "fatal": 4,
+    "total": 11
+   },
+   {
+    "rank": 34,
+    "road": "Sardar Patel Marg",
+    "zones": 1,
+    "simple": 9,
+    "fatal": 2,
+    "total": 11
+   },
+   {
+    "rank": 35,
+    "road": "Tilak Marg",
+    "zones": 1,
+    "simple": 3,
+    "fatal": 3,
+    "total": 6
+   }
+  ]
+ },
+ "source": "Delhi Road Crash Report 2023 & 2024, Delhi Traffic Police (Table 6.33 for road summary; report-level metrics for enforcement)",
+ "caveat": "Enforcement figures (hit-and-run share, RLVD/OSVD, overspeed notices) are citywide totals only, not broken down by district in the source. Road-level summary rows are crashes within identified crash-prone zones on that road specifically, not the road's full crash count."
+}

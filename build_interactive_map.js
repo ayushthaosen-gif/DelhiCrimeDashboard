@@ -15,6 +15,7 @@ const dashboardFinal = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboar
 const policeMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/police_markers_latlng.json'), 'utf8'));
 const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_latlng.json'), 'utf8'));
 const crashZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_geocoded.json'), 'utf8'));
+const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2024_geocoded.json'), 'utf8'));
 const wardsInfra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_wards_infra.geojson'), 'utf8'));
 
 // Join crime/infra stats onto the boundary features by district name.
@@ -172,10 +173,12 @@ body { display: flex; flex-direction: column; }
     <label><input type="checkbox" id="chkPolice"> Police stations <span class="layer-count" id="cntPolice"></span></label>
     <label><input type="checkbox" id="chkPosts"> Chowkis/posts <span class="layer-count" id="cntPosts"></span></label>
     <label><input type="checkbox" id="chkZones"> Crash zones <span class="layer-count" id="cntZones"></span></label>
+    <label>Zone year: <div class="seg" id="zoneYearToggle"><button class="active" data-year="2023">2023</button><button data-year="2024">2024</button></div></label>
     <label><input type="checkbox" id="chkBus"> Bus stops <span class="layer-count" id="cntBus"></span></label>
     <label><input type="checkbox" id="chkAtm"> ATMs <span class="layer-count" id="cntAtm"></span></label>
     <label><input type="checkbox" id="chkAlcohol"> Liquor shops <span class="layer-count" id="cntAlcohol"></span></label>
     <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
+    <label><input type="checkbox" id="chkCctvPriority"> CCTV priority sites <span class="layer-count" id="cntCctvPriority"></span></label>
   </div>
 </div>
 <div id="analysisBar">
@@ -222,7 +225,8 @@ body { display: flex; flex-direction: column; }
 const BOUNDARIES = ${JSON.stringify(boundaries)};
 const POLICE = ${JSON.stringify(policeMarkers)};
 const POI = ${JSON.stringify(poiMarkers)};
-const ZONES = ${JSON.stringify(crashZones)};
+const ZONES_BY_YEAR = { '2023': ${JSON.stringify(crashZones)}, '2024': ${JSON.stringify(crashZones2024)} };
+const ZONES = ZONES_BY_YEAR['2023'];
 const wardsInfra = ${JSON.stringify(wardsInfra)};
 
 // Crime/road-safety metrics -- mirrors build.js's METRICS[] (year-aware fields, sources) so
@@ -743,6 +747,9 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
   document.getElementById('chkWardBivariate').checked = false;
   document.getElementById('wardInfraWrap').style.display = 'none';
   renderWardLayer();
+  zoneYear = '2023';
+  document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.year === zoneYear));
+  rebuildZonesLayer();
   renderChoropleth();
 });
 
@@ -894,24 +901,64 @@ const atmLayer = makeClusterLayer(POI.atms, '#d4af37', 'ATM');
 const alcoholLayer = makeShapeLayer(POI.alcoholShops, '#8b2f5e', 'diamond', 12);
 const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11);
 
+// Crash zones support a year toggle (2023/2024) -- rebuildZonesLayer() clears and repopulates
+// zonesGroup/zoneMarkers from whichever year is selected, so every spatial-analysis tool already
+// built around zoneMarkers (runAnalysis(), showNearbyInfra()) automatically operates on the
+// selected year without needing its own year-awareness.
+let zoneYear = '2023';
 const zonesGroup = L.layerGroup();
-const zoneMarkers = []; // { zone, marker, baseStyle } -- kept so spatial-analysis highlighting and the
-                          // click-for-nearby-infra panel can restyle/query individual zone markers.
-ZONES.filter(z => z.lat != null && z.lng != null).forEach(z => {
-  const t = Math.max(0, Math.min(1, (z.fatal - 1) / 6));
-  const baseStyle = { radius: 4 + t * 4, color: '#fff', weight: 1, fillColor: '#b14a34', fillOpacity: 0.55 + t * 0.4 };
-  const marker = L.circleMarker([z.lat, z.lng], baseStyle)
-    .bindPopup('<b>' + z.name + '</b> (' + z.road + ')<br>' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023<div class="popup-src">Source: Delhi Road Crash Report 2023</div>')
-    .addTo(zonesGroup);
-  marker.on('click', () => showNearbyInfra(z));
-  zoneMarkers.push({ zone: z, marker, baseStyle });
+let zoneMarkers = []; // { zone, marker, baseStyle } -- kept so spatial-analysis highlighting and the
+                        // click-for-nearby-infra panel can restyle/query individual zone markers.
+function richBreakdownLine(z) {
+  const parts = [];
+  if (z.pedestrian_crash_prone) parts.push('Pedestrian: ' + z.pedestrian_fatal_crashes + ' fatal / ' + z.pedestrian_total_crashes + ' total');
+  if (z.two_wheeler_crash_prone) parts.push('Two-wheeler: ' + z.two_wheeler_fatal_crashes + ' fatal / ' + z.two_wheeler_total_crashes + ' total');
+  if (z.htv_crash_prone) parts.push('HTV: ' + z.htv_fatal_crashes + ' fatal / ' + z.htv_total_crashes + ' total');
+  if (z.hit_and_run_crash_prone) parts.push('Hit-and-run: ' + z.hit_and_run_fatal_crashes + ' fatal / ' + z.hit_and_run_total_crashes + ' total');
+  return parts.length ? '<div class="popup-src">' + parts.join(' · ') + '</div>' : '';
+}
+function rebuildZonesLayer() {
+  zonesGroup.clearLayers();
+  zoneMarkers = [];
+  const wasOnMap = map.hasLayer(zonesGroup);
+  ZONES_BY_YEAR[zoneYear].filter(z => z.lat != null && z.lng != null).forEach(z => {
+    const t = Math.max(0, Math.min(1, (z.fatal - 1) / 6));
+    const baseStyle = { radius: 4 + t * 4, color: '#fff', weight: 1, fillColor: '#b14a34', fillOpacity: 0.55 + t * 0.4 };
+    const marker = L.circleMarker([z.lat, z.lng], baseStyle)
+      .bindPopup('<b>' + z.name + '</b> (' + z.road + ')<br>' + z.fatal + ' fatal, ' + z.total + ' total crashes, ' + zoneYear +
+        richBreakdownLine(z) +
+        '<div class="popup-src">Source: Delhi Road Crash Report ' + zoneYear + '</div>')
+      .addTo(zonesGroup);
+    marker.on('click', () => showNearbyInfra(z));
+    zoneMarkers.push({ zone: z, marker, baseStyle });
+  });
+  document.getElementById('cntZones').textContent = '(' + zoneMarkers.length.toLocaleString('en-IN') + ')';
+  if (wasOnMap && !map.hasLayer(zonesGroup)) zonesGroup.addTo(map);
+}
+rebuildZonesLayer();
+
+// CCTV priority-candidate locations (report-recommended sites, not an existing camera inventory)
+// -- pooled across both years' geocoded zones, deduplicated by name since a location can recur.
+const cctvPriorityLayer = L.layerGroup();
+const cctvSeen = new Set();
+['2023', '2024'].forEach(year => {
+  ZONES_BY_YEAR[year].filter(z => z.lat != null && z.cctvPriorityCandidate && !cctvSeen.has(z.name)).forEach(z => {
+    cctvSeen.add(z.name);
+    L.marker([z.lat, z.lng], { icon: shapeIcon('#0891b2', 'ring', 13) })
+      .bindPopup('<div class="popup-title">' + z.name + '</div>' +
+        '<div class="popup-rank">Recommended CCTV site (' + year + ' report)</div>' +
+        '<div>' + z.fatal + ' fatal, ' + z.total + ' total crashes in identified zone</div>' +
+        '<div class="popup-src">Report recommendation, not a verified existing camera — see the "CCTV/guards" layer for OSM-mapped existing cameras nearby. Source: Delhi Road Crash Report ' + year + ', Table 6.37.</div>')
+      .addTo(cctvPriorityLayer);
+  });
 });
 
 const toggles = [
   ['chkPolice', policeStationLayer, 'cntPolice'], ['chkPosts', policePostLayer, 'cntPosts'], ['chkZones', zonesGroup, 'cntZones'],
   ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'],
+  ['chkCctvPriority', cctvPriorityLayer, 'cntCctvPriority'],
 ];
-const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: ZONES.filter(z=>z.lat!=null).length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length };
+const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntCctvPriority: cctvPriorityLayer.getLayers().length };
 toggles.forEach(([id, layer, countId]) => {
   document.getElementById(countId).textContent = '(' + layerCounts[countId].toLocaleString('en-IN') + ')';
   document.getElementById(id).addEventListener('change', (e) => {
@@ -920,10 +967,19 @@ toggles.forEach(([id, layer, countId]) => {
   });
 });
 
+document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    zoneYear = btn.dataset.year;
+    document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.year === zoneYear));
+    rebuildZonesLayer();
+  });
+});
+
 const POINT_LEGEND_ITEMS = [
   ['chkPolice', '#3d5a99', 'square', 'Police stations'], ['chkPosts', '#7c3aed', 'triangle', 'Chowkis/posts'],
   ['chkZones', '#b14a34', 'dot', 'Crash zones (size = fatal crashes)'], ['chkBus', '#3f7d52', 'dot', 'Bus stops (clustered)'],
   ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'],
+  ['chkCctvPriority', '#0891b2', 'ring', 'CCTV priority candidates (recommended, not existing)'],
 ];
 function updatePointLegend() {
   const active = POINT_LEGEND_ITEMS.filter(([id]) => document.getElementById(id).checked);
@@ -941,7 +997,7 @@ function updatePointLegend() {
 let heatLayer = null;
 document.getElementById('chkHeatmap').addEventListener('change', (e) => {
   if (e.target.checked) {
-    const points = ZONES.filter(z => z.lat != null && z.lng != null).map(z => [z.lat, z.lng, Math.min(1, z.fatal / 10)]);
+    const points = ZONES_BY_YEAR[zoneYear].filter(z => z.lat != null && z.lng != null).map(z => [z.lat, z.lng, Math.min(1, z.fatal / 10)]);
     heatLayer = L.heatLayer(points, { radius: 28, blur: 20, maxZoom: 15, gradient: { 0.2: '#e8d6b3', 0.5: '#d48a5a', 0.8: '#b14a34', 1: '#7a2515' } });
     heatLayer.addTo(map);
   } else if (heatLayer) {

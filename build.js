@@ -8,6 +8,7 @@ const correlations = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/correlatio
 const policeMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/police_markers.json'), 'utf8'));
 const airportShape = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/airport_shape.json'), 'utf8'));
 const roadSafetyTrends = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/road_safety_trends.json'), 'utf8'));
+const roadSafetyExtra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/road_safety_extra_2023_2024.json'), 'utf8'));
 const accidentZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_raw.json'), 'utf8'));
 const accidentZonesMapped = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_mapped.json'), 'utf8'));
 const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers.json'), 'utf8'));
@@ -496,7 +497,7 @@ footer a { color: inherit; }
     <div class="metric-tabs" id="roadSafetyTabs" style="margin-bottom:16px;"></div>
 
     <div id="rsTrendsPanel" class="rs-tab-panel">
-      <p class="scatter-sub">2014-2023, indexed to 2014 = 100 so three very differently-scaled series (thousands of crashes, hundreds of deaths) can share one axis.</p>
+      <p class="scatter-sub">2014-2024, indexed to 2014 = 100 so three very differently-scaled series (thousands of crashes, hundreds of deaths) can share one axis.</p>
       <div class="scatter-layout">
         <canvas id="trendsCanvas" width="640" height="320"></canvas>
         <div>
@@ -515,16 +516,16 @@ footer a { color: inherit; }
     </div>
 
     <div id="rsVictimsPanel" class="rs-tab-panel">
-      <p class="scatter-sub">Who's actually dying on Delhi's roads, 2019-2023 — pedestrians, two-wheeler riders, cyclists, car occupants, bus passengers, or other/slow-moving vehicles. Directly relevant to a walkability index: pedestrians are unprotected road users by definition.</p>
+      <p class="scatter-sub">Who's actually dying on Delhi's roads, 2019-2024 — pedestrians, two-wheeler riders, cyclists, car occupants, bus passengers, or other/slow-moving vehicles. Directly relevant to a walkability index: pedestrians are unprotected road users by definition.</p>
       <div class="scatter-layout">
         <canvas id="victimsCanvas" width="640" height="320"></canvas>
         <div>
           <div class="scatter-stat">
-            <div class="label">Pedestrian share of all road deaths, 2023</div>
+            <div class="label">Pedestrian share of all road deaths, 2024</div>
             <div class="val" id="pedestrianShare"></div>
           </div>
           <div class="scatter-stat">
-            <div class="label">Two-wheeler rider share, 2023</div>
+            <div class="label">Two-wheeler rider share, 2024</div>
             <div class="val" id="twoWheelerShare"></div>
           </div>
           <div class="scatter-read" id="victimsRead"></div>
@@ -537,6 +538,17 @@ footer a { color: inherit; }
       <p class="scatter-sub">Delhi Traffic Police's official blackspot list from the <b>Delhi Road Crash Report 2023</b> — 107 identified crash-prone zones, each with its actual 2023 crash counts (not just a name), matched to specific coordinates and cross-checked against every zone's rank and fatal-crash count from the source table (all 107 matched exactly). <b>105 of 107</b> fall inside one of the 15 district polygons and are plotted on the map above — toggle "Show accident-prone zones" to see them, sized and shaded by fatal crash count. The remaining 2 sit just outside every simplified district boundary and are listed here with their real severity numbers instead of being force-placed. Sorted fatal-crashes descending, as in the source report.</p>
       <div class="zone-grid" id="zoneGrid"></div>
       <button class="dl-download-btn" id="dlZonesDownload" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List</button>
+    </div>
+
+    <div id="rsEnforcementPanel" class="rs-tab-panel">
+      <p class="scatter-sub">Citywide enforcement and hit-and-run figures, 2023 vs 2024 — not broken down by district in the source, so kept here rather than on the map.</p>
+      <div id="enforcementGrid"></div>
+    </div>
+
+    <div id="rsRoadsPanel" class="rs-tab-panel">
+      <p class="scatter-sub">Roads with the most identified crash-prone zones, 2023 vs 2024 (Table 6.33) — crashes recorded specifically within those zones on each road, not the road's full crash count. Sorted by 2024 fatal crashes descending.</p>
+      <div id="roadSummaryGrid"></div>
+      <button class="dl-download-btn" id="dlRoadsDownload" style="margin-top:14px;">⬇ Download CSV — Top Roads by Crash-Prone Zones</button>
     </div>
   </div>
 
@@ -583,7 +595,7 @@ footer a { color: inherit; }
   </div>
 
   <footer>
-    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Historical crime data (2016-2021): National Crime Records Bureau, Crime in India, via <a href="https://indiadataportal.com" target="_blank" rel="noopener">India Data Portal</a> — theft &amp; robbery 2016-2021, burglary 2017-2021 (2016 burglary omitted, incompatible source definition); total IPC crime, crime against women &amp; SLL crime reconstructed by summing each metric's full district-wise offence-category table for 2017-2021, verified by exactly reproducing the official 2022 total for all 15 districts before extending backward — 2016 omitted for these three (older, non-matching category schema with no same-schema year available to validate the summation against) · Official licensed liquor vends: Delhi State Civil Supplies Corporation (DSCSC) / DCCWS published list, 374 records citywide (only 1 has a matched map coordinate; not usable for per-district mapping) · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2023) and road deaths by mode of travel (2019-2023): Delhi Traffic Police annual road crash data · District-wise crash data and 107 crash-prone zones (2023): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); coordinates for all 107 zones cross-checked against the source table by rank and fatal-crash count, 105 of which fall inside a district polygon and are shown on the map sized by fatal crash count · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol, shop=wine, shop=beverages+alcohol tag via Overpass API, 65 points), ODbL · CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 1,596 points, 1,583 within district polygons), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
+    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Historical crime data (2016-2021): National Crime Records Bureau, Crime in India, via <a href="https://indiadataportal.com" target="_blank" rel="noopener">India Data Portal</a> — theft &amp; robbery 2016-2021, burglary 2017-2021 (2016 burglary omitted, incompatible source definition); total IPC crime, crime against women &amp; SLL crime reconstructed by summing each metric's full district-wise offence-category table for 2017-2021, verified by exactly reproducing the official 2022 total for all 15 districts before extending backward — 2016 omitted for these three (older, non-matching category schema with no same-schema year available to validate the summation against) · Official licensed liquor vends: Delhi State Civil Supplies Corporation (DSCSC) / DCCWS published list, 374 records citywide (only 1 has a matched map coordinate; not usable for per-district mapping) · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2024) and road deaths by mode of travel (2019-2024): Delhi Traffic Police annual road crash data · District-wise crash data and 107/111 crash-prone zones (2023/2024): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a> &amp; <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2024" target="_blank" rel="noopener">2024</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); zone coordinates cross-checked against the source table by rank and fatal-crash count — 105 of 107 (2023) and 54 of 93 named (2024) resolved to real coordinates (2024's remainder are hyper-local names an OSM geocoder can't resolve; flagged unresolved rather than force-placed) · Persons killed/injured, top crash-prone roads, and citywide enforcement stats (hit-and-run share, drink-driving prosecutions, RLVD/OSVD cameras) for 2023/2024: Delhi Road Crash Report 2023 &amp; 2024, Tables 6.2/6.33 and report-level metrics · CCTV priority-candidate sites: Delhi Road Crash Report 2023/2024, Table 6.37 — report-recommended installation sites, not a verified existing-camera inventory · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol, shop=wine, shop=beverages+alcohol tag via Overpass API, 65 points), ODbL · CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 1,596 points, 1,583 within district polygons), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
     <span>District boundary polygons simplified for display (~165m tolerance) — not survey-grade. IGI Airport unit and non-geographic units (Crime Branch, EOW, Metro, Railway, Vigilance, etc.) excluded from district figures.</span>
   </footer>
 </div>
@@ -596,6 +608,7 @@ const POLICE_MARKERS = ${JSON.stringify(policeMarkers)};
 const AIRPORT_SHAPE = ${JSON.stringify(airportShape)};
 const TRENDS = ${JSON.stringify(roadSafetyTrends.trends)};
 const VICTIMS = ${JSON.stringify(roadSafetyTrends.victims)};
+const ROAD_EXTRA = ${JSON.stringify(roadSafetyExtra)};
 const ACCIDENT_ZONES = ${JSON.stringify(accidentZones)};
 const ACCIDENT_ZONES_MAPPED = ${JSON.stringify(accidentZonesMapped)};
 const POI_MARKERS = ${JSON.stringify(poiMarkers)};
@@ -610,8 +623,15 @@ const METRICS = [
   { key: 'fatalRoadCrashes2022', label: 'Road Deaths', short: 'fatal road crashes', year: '2022', full: 'Fatal Road Crashes, 2022 (Delhi Traffic Police)', gaps: true, title: 'Fatal Road Crashes (2022)', desc: 'Fatal traffic crashes resulting in deaths recorded by Delhi Traffic Police.', source: 'Delhi Traffic Police 2022 Report' },
   { key: 'hitAndRunCrashes2022', label: 'Hit & Run', short: 'hit-and-run fatal crashes', year: '2022', full: 'Hit-and-Run Fatal Crashes, 2022 (Delhi Traffic Police)', gaps: true, title: 'Hit-and-Run Fatal Crashes (2022)', desc: 'Fatal road crashes where the offending vehicle fled the scene without stopping.', source: 'Delhi Traffic Police 2022 Report' },
   { key: 'crashProneZones2023', label: 'Crash Zones', short: 'crash-prone zones', year: '2023', full: 'Crash-Prone Zones, 2023 (Delhi Road Crash Report)', title: 'Identified Crash-Prone Zones (2023)', desc: 'Identified accident blackspots and high-risk traffic corridors.', source: 'Delhi Road Crash Report 2023' },
-  { key: 'fatalCrashes2023', label: 'Fatal Crashes', short: 'fatal crashes', year: '2023', full: 'Fatal Crashes, 2023 (Delhi Road Crash Report)', title: 'Fatal Crashes (2023)', desc: 'Total fatal traffic crashes recorded across all 15 police districts in 2023.', source: 'Delhi Road Crash Report 2023' },
-  { key: 'totalCrashes2023', label: 'Total Crashes', short: 'total crashes', year: '2023', full: 'Total Crashes, 2023 (Delhi Road Crash Report)', title: 'Total Road Crashes (2023)', desc: 'Aggregate count of all recorded road accidents (fatal + simple injury crashes).', source: 'Delhi Road Crash Report 2023' },
+  { key: 'fatalCrashes2023', label: 'Fatal Crashes', short: 'fatal crashes', year: '2023', full: 'Fatal Crashes, 2023 (Delhi Road Crash Report)', title: 'Fatal Crashes (2023)', desc: 'Fatal traffic crashes recorded specifically within this district\\'s identified crash-prone zones in 2023 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2023' },
+  { key: 'totalCrashes2023', label: 'Total Crashes', short: 'total crashes', year: '2023', full: 'Total Crashes, 2023 (Delhi Road Crash Report)', title: 'Total Road Crashes (2023)', desc: 'Fatal + simple-injury crashes recorded specifically within this district\\'s identified crash-prone zones in 2023 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2023' },
+  { key: 'crashProneZones2024', label: 'Crash Zones \\'24', short: 'crash-prone zones', year: '2024', full: 'Crash-Prone Zones, 2024 (Delhi Road Crash Report)', title: 'Identified Crash-Prone Zones (2024)', desc: 'Identified accident blackspots and high-risk traffic corridors.', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'fatalCrashes2024', label: 'Fatal Crashes \\'24', short: 'fatal crashes (2024)', year: '2024', full: 'Fatal Crashes, 2024 (Delhi Road Crash Report)', title: 'Fatal Crashes (2024)', desc: 'Fatal traffic crashes recorded specifically within this district\\'s identified crash-prone zones in 2024 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'totalCrashes2024', label: 'Total Crashes \\'24', short: 'total crashes (2024)', year: '2024', full: 'Total Crashes, 2024 (Delhi Road Crash Report)', title: 'Total Road Crashes (2024)', desc: 'Fatal + simple-injury crashes recorded specifically within this district\\'s identified crash-prone zones in 2024 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'personsKilled2023', label: 'Persons Killed \\'23', short: 'persons killed in road crashes (2023)', year: '2023', full: 'Persons Killed in Road Crashes, 2023 (Delhi Road Crash Report)', title: 'Persons Killed in Road Crashes (2023)', desc: 'Total persons killed across all road crashes citywide in this district in 2023 (full district total, not limited to crash-prone zones — a wider scope than the Fatal/Total Crashes metrics above).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'personsKilled2024', label: 'Persons Killed \\'24', short: 'persons killed in road crashes (2024)', year: '2024', full: 'Persons Killed in Road Crashes, 2024 (Delhi Road Crash Report)', title: 'Persons Killed in Road Crashes (2024)', desc: 'Total persons killed across all road crashes citywide in this district in 2024 (full district total, not limited to crash-prone zones — a wider scope than the Fatal/Total Crashes metrics above).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'personsInjured2023', label: 'Persons Injured \\'23', short: 'persons injured in road crashes (2023)', year: '2023', full: 'Persons Injured in Road Crashes, 2023 (Delhi Road Crash Report)', title: 'Persons Injured in Road Crashes (2023)', desc: 'Total persons injured across all road crashes citywide in this district in 2023 (full district total, not limited to crash-prone zones).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'personsInjured2024', label: 'Persons Injured \\'24', short: 'persons injured in road crashes (2024)', year: '2024', full: 'Persons Injured in Road Crashes, 2024 (Delhi Road Crash Report)', title: 'Persons Injured in Road Crashes (2024)', desc: 'Total persons injured across all road crashes citywide in this district in 2024 (full district total, not limited to crash-prone zones).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
 ];
 
 const INFRA = [
@@ -1423,6 +1443,11 @@ function renderDetail() {
     <div class="stat"><span class="stat-label"><span class="confidence-dot high"></span>Crash-prone zones '23</span><span class="stat-val">\${fmtNum(d.crashProneZones2023)}</span></div>
     <div class="stat"><span class="stat-label"><span class="confidence-dot high"></span>Fatal crashes '23</span><span class="stat-val">\${fmtNum(d.fatalCrashes2023)}</span></div>
     <div class="stat"><span class="stat-label"><span class="confidence-dot high"></span>Total crashes '23</span><span class="stat-val">\${fmtNum(d.totalCrashes2023)}</span></div>
+    <div class="stat"><span class="stat-label"><span class="confidence-dot high"></span>Crash-prone zones '24</span><span class="stat-val">\${fmtNum(d.crashProneZones2024)}</span></div>
+    <div class="stat"><span class="stat-label"><span class="confidence-dot high"></span>Fatal crashes '24</span><span class="stat-val">\${fmtNum(d.fatalCrashes2024)}</span></div>
+    <div class="stat"><span class="stat-label"><span class="confidence-dot high"></span>Total crashes '24</span><span class="stat-val">\${fmtNum(d.totalCrashes2024)}</span></div>
+    <div class="stat"><span class="stat-label"><span class="confidence-dot high"></span>Persons killed '23 / '24</span><span class="stat-val">\${fmtNum(d.personsKilled2023)} / \${fmtNum(d.personsKilled2024)}</span></div>
+    <div class="stat"><span class="stat-label"><span class="confidence-dot high"></span>Persons injured '23 / '24</span><span class="stat-val">\${fmtNum(d.personsInjured2023)} / \${fmtNum(d.personsInjured2024)}</span></div>
     <div class="stat"><span class="stat-label"><span class="confidence-dot \${d.fatalRoadCrashes2022!=null?'high':'partial'}"></span>Road deaths '22</span>\${d.fatalRoadCrashes2022!=null ? '<span class="stat-val">'+fmtNum(d.fatalRoadCrashes2022)+'</span>' : '<span class="stat-val nodata">Not reported</span>'}</div>
     <div class="stat"><span class="stat-label"><span class="confidence-dot \${d.hitAndRunCrashes2022!=null?'high':'partial'}"></span>Hit & run '22</span>\${d.hitAndRunCrashes2022!=null ? '<span class="stat-val">'+fmtNum(d.hitAndRunCrashes2022)+'</span>' : '<span class="stat-val nodata">Not reported</span>'}</div>
     <div class="section-divider"></div>
@@ -1716,7 +1741,7 @@ function renderTrends() {
   document.getElementById('trendsFatalitiesChange').textContent = (fatalitiesChange >= 0 ? '+' : '') + fatalitiesChange + '%';
   document.getElementById('trendsFatalitiesChange').style.color = fatalitiesChange >= 0 ? 'var(--rust)' : 'var(--good)';
   const minYear = TRENDS.reduce((m,t) => t.fatalities < m.fatalities ? t : m, TRENDS[0]);
-  document.getElementById('trendsRead').textContent = 'Both crashes and fatalities fell sharply through 2020 (the COVID lockdown year, ' + minYear.year + ' was the low point at ' + fmtNum(minYear.fatalities) + ' deaths) and have partly rebounded since — 2023 fatalities are still ' + Math.round(((last.fatalities - minYear.fatalities)/minYear.fatalities)*100) + '% above that low.';
+  document.getElementById('trendsRead').textContent = 'Both crashes and fatalities fell sharply through 2020 (the COVID lockdown year, ' + minYear.year + ' was the low point at ' + fmtNum(minYear.fatalities) + ' deaths) and have partly rebounded since — ' + last.year + ' fatalities are still ' + Math.round(((last.fatalities - minYear.fatalities)/minYear.fatalities)*100) + '% above that low.';
 
   const canvas = document.getElementById('trendsCanvas');
   const setup = setupHighDPICanvas(canvas, 320/640);
@@ -1864,6 +1889,48 @@ function renderZones() {
   }).join('');
 }
 
+function renderEnforcement() {
+  const el = document.getElementById('enforcementGrid');
+  const e23 = ROAD_EXTRA.enforcement['2023'], e24 = ROAD_EXTRA.enforcement['2024'];
+  const rows = [
+    ['Hit-and-run fatal crashes', fmtNum(e23.hitAndRunFatalCrashes), fmtNum(e24.hitAndRunFatalCrashes)],
+    ['Hit-and-run share of fatal crashes', e23.hitAndRunShareOfFatalPercent + '%', e24.hitAndRunShareOfFatalPercent + '%'],
+    ['Drinking &amp; driving prosecutions', fmtNum(e23.drinkingDrivingProsecutions), fmtNum(e24.drinkingDrivingProsecutions)],
+    ['RLVD camera systems / junctions', e23.rlvdCameraSystems + ' / ' + e23.rlvdJunctions, e24.rlvdCameraSystems + ' / ' + e24.rlvdJunctions],
+    ['OSVD camera systems / locations', e23.osvdCameraSystems + ' / ' + e23.osvdLocations, e24.osvdCameraSystems + ' / ' + e24.osvdLocations],
+    ['Overspeed notices (OSVD + tripod)', fmtNum(e23.overspeedNotices), fmtNum(e24.overspeedNotices)],
+  ];
+  el.innerHTML = '<table style="width:100%;border-collapse:collapse;font-size:13px;">' +
+    '<thead><tr style="border-bottom:1px solid var(--border);"><th style="text-align:left;padding:8px 12px;color:var(--text-dim);">Metric</th><th style="text-align:right;padding:8px 12px;color:var(--text-dim);">2023</th><th style="text-align:right;padding:8px 12px;color:var(--text-dim);">2024</th></tr></thead>' +
+    '<tbody>' + rows.map(r => '<tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px;">' + r[0] + '</td><td style="padding:8px 12px;text-align:right;font-weight:700;">' + r[1] + '</td><td style="padding:8px 12px;text-align:right;font-weight:700;">' + r[2] + '</td></tr>').join('') + '</tbody>' +
+  '</table>';
+}
+
+function renderRoadSummary() {
+  const el = document.getElementById('roadSummaryGrid');
+  const r23 = Object.fromEntries(ROAD_EXTRA.roadSummary['2023'].map(r => [r.road, r]));
+  const r24 = ROAD_EXTRA.roadSummary['2024'];
+  const merged = r24.map(r => ({ road: r.road, fatal24: r.fatal, total24: r.total, fatal23: r23[r.road] ? r23[r.road].fatal : null, total23: r23[r.road] ? r23[r.road].total : null }))
+    .sort((a,b) => b.fatal24 - a.fatal24)
+    .slice(0, 15);
+  el.innerHTML = '<table style="width:100%;border-collapse:collapse;font-size:13px;">' +
+    '<thead><tr style="border-bottom:1px solid var(--border);">' +
+      '<th style="text-align:left;padding:8px 12px;color:var(--text-dim);">Road</th>' +
+      '<th style="text-align:right;padding:8px 12px;color:var(--text-dim);">Fatal &apos;23</th>' +
+      '<th style="text-align:right;padding:8px 12px;color:var(--text-dim);">Fatal &apos;24</th>' +
+      '<th style="text-align:right;padding:8px 12px;color:var(--text-dim);">Total &apos;23</th>' +
+      '<th style="text-align:right;padding:8px 12px;color:var(--text-dim);">Total &apos;24</th>' +
+    '</tr></thead>' +
+    '<tbody>' + merged.map(r => '<tr style="border-bottom:1px solid var(--border);">' +
+      '<td style="padding:8px 12px;font-weight:700;">' + esc(r.road) + '</td>' +
+      '<td style="padding:8px 12px;text-align:right;">' + fmtNum(r.fatal23) + '</td>' +
+      '<td style="padding:8px 12px;text-align:right;font-weight:700;">' + fmtNum(r.fatal24) + '</td>' +
+      '<td style="padding:8px 12px;text-align:right;">' + fmtNum(r.total23) + '</td>' +
+      '<td style="padding:8px 12px;text-align:right;font-weight:700;">' + fmtNum(r.total24) + '</td>' +
+    '</tr>').join('') + '</tbody>' +
+  '</table>';
+}
+
 function render() {
   buildMetricTabs();
   renderMap();
@@ -1874,6 +1941,8 @@ function render() {
   renderTrends();
   renderVictimsByMode();
   renderZones();
+  renderEnforcement();
+  renderRoadSummary();
   if (compareMode) renderCompareCard();
 }
 
@@ -2406,19 +2475,31 @@ document.getElementById('dlCorrDownload').addEventListener('click', () => {
 document.getElementById('dlTrendsDownload').addEventListener('click', () => {
   const headers = ['Year', 'Road Crashes', 'Road Crash Fatalities', 'Fatal Road Crashes'];
   const rows = TRENDS.map(t => [t.year, t.crashes, t.fatalities, t.fatalCrashes]);
-  triggerDownload('gaitway_delhi_road_safety_trends_2014_2023.csv', toCSV(headers, rows));
+  triggerDownload('gaitway_delhi_road_safety_trends_2014_2024.csv', toCSV(headers, rows));
 });
 
 document.getElementById('dlVictimsDownload').addEventListener('click', () => {
   const headers = ['Year','Pedestrian Killed','Pedestrian Injured','Cyclists Killed','Cyclists Injured','Car Occupants Killed','Car Occupants Injured','Scooter/Motorcycle Riders Killed','Scooter/Motorcycle Riders Injured','Bus Passengers Killed','Bus Passengers Injured','Slow Moving Vehicles Killed','Slow Moving Vehicles Injured','Animal Driven Vehicles Killed','Animal Driven Vehicles Injured','Other Killed','Other Injured','Total Killed','Total Injured'];
   const rows = VICTIMS.map(v => [v.year, v.pedestrianKilled, v.pedestrianInjured, v.cyclistKilled, v.cyclistInjured, v.carKilled, v.carInjured, v.twoWheelerKilled, v.twoWheelerInjured, v.busPassengerKilled, v.busPassengerInjured, v.slowMovingKilled, v.slowMovingInjured, v.animalDrivenKilled, v.animalDrivenInjured, v.otherKilled, v.otherInjured, v.totalKilled, v.totalInjured]);
-  triggerDownload('gaitway_delhi_road_deaths_by_mode_2019_2023.csv', toCSV(headers, rows));
+  triggerDownload('gaitway_delhi_road_deaths_by_mode_2019_2024.csv', toCSV(headers, rows));
 });
 
 document.getElementById('dlZonesDownload').addEventListener('click', () => {
   const headers = ['Rank (fatal descending)', 'Crash-Prone Zone', 'Road Name', 'Simple Crashes', 'Fatal Crashes', 'Total Crashes'];
   const rows = ACCIDENT_ZONES.map(z => [z.rank, z.name, z.road, z.simple, z.fatal, z.total]);
   triggerDownload('gaitway_delhi_crash_prone_zones_2023.csv', toCSV(headers, rows));
+});
+
+document.getElementById('dlRoadsDownload').addEventListener('click', () => {
+  const headers = ['Road Name', 'Zones \\'23', 'Simple \\'23', 'Fatal \\'23', 'Total \\'23', 'Zones \\'24', 'Simple \\'24', 'Fatal \\'24', 'Total \\'24'];
+  const r23 = Object.fromEntries(ROAD_EXTRA.roadSummary['2023'].map(r => [r.road, r]));
+  const r24 = Object.fromEntries(ROAD_EXTRA.roadSummary['2024'].map(r => [r.road, r]));
+  const allRoads = [...new Set([...Object.keys(r23), ...Object.keys(r24)])].sort();
+  const rows = allRoads.map(road => {
+    const a = r23[road], b = r24[road];
+    return [road, a ? a.zones : '', a ? a.simple : '', a ? a.fatal : '', a ? a.total : '', b ? b.zones : '', b ? b.simple : '', b ? b.fatal : '', b ? b.total : ''];
+  });
+  triggerDownload('gaitway_delhi_top_crash_roads_2023_2024.csv', toCSV(headers, rows));
 });
 
 function updateVersusLabel() {
@@ -2553,6 +2634,9 @@ function buildSourcesSheet() {
     ['Crash-prone zones, fatal/simple/total crash counts (2023)', 'Delhi Traffic Police, Delhi Road Crash Report 2023 — Table 6.29', 'https://traffic.delhipolice.gov.in/delhi-crash-report-2023', '107 zones with real 2023 crash counts (not just names). Cross-validated: the sum of per-district crash-prone-zone counts (Table 6.31) equals exactly 107, matching this table.'],
     ['District-wise crash-prone zones and crashes (2023)', 'Delhi Traffic Police, Delhi Road Crash Report 2023 — Table 6.31', 'https://traffic.delhipolice.gov.in/delhi-crash-report-2023', 'All 15 Delhi Police districts — this table uses the same 15-district geography as the rest of this page, unlike the 2022 report above which only covers 11.'],
     ['Crash-prone zone map coordinates', 'Latitude/longitude for the 107 named zones above', 'Provided coordinate set, cross-validated programmatically against the source table (rank and fatal-crash count matched exactly for all 107, zero mismatches) and spot-checked against known Delhi landmarks', '105 of 107 fall inside one of the 15 district polygons and are plotted on the map, sized/shaded by fatal crash count. The remaining 2 (Surya Nagar Red Light, Seelampur T Point) sit just outside every simplified district boundary and are listed by name with their real severity numbers rather than force-placed.'],
+    ['2024 crash-prone zones, per-zone breakdown & coordinates (interactive map only)', 'Delhi Road Crash Report 2024, plus a user-supplied structured extract of Tables 6.29/6.31/6.37 with per-zone pedestrian/two-wheeler/HTV/hit-and-run/day-night breakdowns', 'https://traffic.delhipolice.gov.in/delhi-crash-report-2024', 'The 2024 report names only 88 of its stated 111 crash-prone zones in its visible table (93 unique locations across all sub-tables); of those, 54 (58%) resolved to real coordinates — 42 by matching the same location name in the already-verified 2023 geocoded set, 12 fresh via OSM Nominatim. The remaining 39 are hyper-local names (e.g. informal landmarks, "X More") that a geocoder can\\'t resolve on free text alone; kept as unresolved (no coordinates) rather than force-placed. Available as a year toggle on the interactive map\\'s crash-zone layer, not on this page\\'s SVG map.'],
+    ['CCTV priority-candidate sites (interactive map only)', 'Delhi Road Crash Report 2023 & 2024, Table 6.37 — hit-and-run crash-prone zones the report recommends for CCTV installation', 'https://traffic.delhipolice.gov.in/delhi-crash-report-2024', 'Explicitly a recommendation list, not a verified existing-camera inventory — labeled as such in every popup. Shares coordinates with the crash-zone geocoding above, so only locations that resolved to real coordinates (a subset of 22 for 2023 and 32 for 2024, deduplicated) appear on the map.'],
+    ['Persons killed/injured, top crash-prone roads, enforcement stats (2023-2024)', 'Delhi Road Crash Report 2023 & 2024 — Table 6.2 (persons killed/injured, full district totals), Table 6.33 (road-level crash-prone-zone rankings), report-level metrics (hit-and-run share, drink-driving prosecutions, RLVD/OSVD cameras, overspeed notices)', 'https://traffic.delhipolice.gov.in/delhi-crash-report-2024', 'Persons killed/injured are full district totals (not limited to crash-prone zones, unlike Fatal/Total Crashes above) — verified by summing all 15 districts and matching the report\\'s citywide total exactly for both years. Road rankings and enforcement stats are citywide/road-level only, not further broken down by district.'],
     ['District center markers', 'Computed from the district boundary polygons already used for the choropleth', 'n/a — derived, not a separate source', 'Geometric centroid of each simplified district polygon, not a specific administrative headquarters address. Labeled "district center" on the map for that reason.'],
     ['Streetlights', 'PAPL streetlight survey', 'https://otd.delhi.gov.in/ — Delhi Transport Stack Open Transit Data, agency=paplilabs', '9 of 15 districts — the survey vehicle only physically drove through part of Delhi. Zero elsewhere means unsurveyed, not unlit.'],
     ['Pedestrian underpasses', 'PAPL underpass survey', 'https://otd.delhi.gov.in/ — Delhi Transport Stack Open Transit Data, same agency', 'Same 9 districts as streetlights — identical survey vehicle, identical gap.'],
@@ -2610,9 +2694,11 @@ document.getElementById('dlExcelDownload').addEventListener('click', () => {
 });
 
 const ROAD_SAFETY_TABS = [
-  { key: 'trends', label: 'Trends, 2014-2023' },
+  { key: 'trends', label: 'Trends, 2014-2024' },
   { key: 'victims', label: 'By Mode of Travel' },
   { key: 'zones', label: 'Crash-Prone Zones (2023)' },
+  { key: 'enforcement', label: 'Enforcement, 2023-2024' },
+  { key: 'roads', label: 'Top Roads, 2023-2024' },
 ];
 let activeRoadSafetyTab = 'trends';
 function renderRoadSafetyTabs() {
@@ -2622,6 +2708,8 @@ function renderRoadSafetyTabs() {
   document.getElementById('rsTrendsPanel').classList.toggle('active', activeRoadSafetyTab === 'trends');
   document.getElementById('rsVictimsPanel').classList.toggle('active', activeRoadSafetyTab === 'victims');
   document.getElementById('rsZonesPanel').classList.toggle('active', activeRoadSafetyTab === 'zones');
+  document.getElementById('rsEnforcementPanel').classList.toggle('active', activeRoadSafetyTab === 'enforcement');
+  document.getElementById('rsRoadsPanel').classList.toggle('active', activeRoadSafetyTab === 'roads');
 }
 
 const DOWNLOAD_TABS = [
