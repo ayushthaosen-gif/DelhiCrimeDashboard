@@ -1,5 +1,21 @@
 # AI Collaboration Log & Changelog
 
+## [2026-07-29] - Claude (Anthropic) - Fix: Interactive Map Was Actually Broken (Silent Script Failure)
+
+### 🐛 The previous entry's "verified" build never actually ran in a browser — it was broken
+
+The user reported the interactive map "seems broken" right after the previous entry claimed full `node --check` verification. Investigation found the check itself was invalid: the verification script extracted the embedded `<script>` block via `html.indexOf('<script>')` paired with `html.indexOf('</script>')` — but the page's `<head>` also has three CDN `<script src="...">` tags, and their closing `</script>` tags come *before* the real inline script's opening tag positionally when searched with plain `indexOf`. The slice this produced was empty, and `node --check` on an empty string trivially "passes" — so every "syntax check passed" claim in the previous entry was checking nothing.
+
+Running the real page (via a temporary local static server, since the sandbox's Browser pane couldn't reach the repo path directly with `file://`) showed the real problem: an earlier edit that inserted `wardMetricLine()` ahead of a rewritten `renderWardLayer()` left a stray, incomplete duplicate of the *old* `renderWardLayer()` header still in the file (`function renderWardLayer() { ... const feats = wardsInfra.features;` with no closing brace) sitting directly above the new function. That one extra unclosed `{` threw the whole inline script off balance — a real browser hit `Unexpected end of input` and the entire script silently failed to execute, leaving the metric/ward dropdowns empty and the map non-interactive, exactly as the user described.
+
+**Fixed**: removed the orphaned fragment; corrected the verification extraction to use the *last* `</script>` in the file, not the first. Re-verified for real this time via a local Node static server + the Browser pane: metric/ward dropdowns populate (11/8 options), the new liquor-vends and 2024-crash-zone point layers toggle on with correct counts (387/93), the liquor×crash ward bivariate pairing renders with the correct legend text, the heatmap correctly rebuilds (not duplicates) on a 2023→2024 zone-year switch, a CCTV site recommended in both report years shows both in its popup, `updateUrlState()`/reload correctly restores heatmap/zoneYear/ward mode+selectors/point layers, and an invalid URL (`crime=bogus&zoneYear=1999&wx=notreal&ward=nope`) is correctly rejected with defaults kept, with zero console errors throughout.
+
+**Lesson**: `node --check` on a manually-sliced substring is only as trustworthy as the slicing logic — it must be checked against the real rendered page (or the extraction logic must be proven correct first), not treated as equivalent to a passing test.
+
+Verified: `node build_interactive_map.js`, corrected extraction + `node --check` → real pass this time (2,144,929 chars, not 0); `node --test test/liquor_crash_proximity.test.js test/exploratory_score.test.js` — 21/21 pass; live browser verification as described above.
+
+---
+
 ## [2026-07-29] - Claude (Anthropic) - Liquor Vends/Crash Zones Folded Into the Interactive Map, Infra×Crime Ward Bivariate, Robustness Fixes
 
 ### 🗺️ The standalone liquor-crash page's datasets become independent map layers + a ward bivariate pairing, plus 5 real bugs fixed in the existing interactive map
