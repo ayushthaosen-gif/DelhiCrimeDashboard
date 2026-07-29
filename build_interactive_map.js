@@ -439,12 +439,6 @@ function getWardBivariateColor(feats, props, xInf, yInf) {
   return BIVARIATE_MATRIX[yIndex][xIndex];
 }
 
-function renderWardLayer() {
-  if (wardLayer) { map.removeLayer(wardLayer); wardLayer = null; }
-  if (!wardBivariateMode) { renderWardLegend(false); return; }
-  const xInf = WARD_INFRA.find(w => w.key === wardInfraX);
-  const yInf = WARD_INFRA.find(w => w.key === wardInfraY);
-  const feats = wardsInfra.features;
 function wardMetricLine(p, inf) {
   const sameKey = inf.key === inf.densityKey;
   const valueHtml = sameKey
