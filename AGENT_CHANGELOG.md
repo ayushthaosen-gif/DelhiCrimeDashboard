@@ -1,5 +1,17 @@
 # AI Collaboration Log & Changelog
 
+## [2026-07-29] - Claude (Anthropic) - Remove the Standalone Liquor-Crash Page's Dashboard Link
+
+### 🔗 Main dashboard now points only at the interactive map for this data
+
+The user pointed out that even after the datasets were folded into `interactive_map.html`, the main dashboard's header still had a separate "Open liquor vends × crash-zone spatial exploration (2024) →" button linking to the old standalone `liquor_crash_analysis.html` page — the previous entries' plan had deliberately kept that page as a "companion deep-dive," but the user's follow-up made clear they want the interactive map to be the single entry point, not a page users can still land on separately from the dashboard.
+
+Removed that second button from `build.js`'s header (kept the one "Open interactive street map" button, its label extended to mention the liquor/crash-zone exploration is included) and updated the footer citation's liquor-vends source line to link to `interactive_map.html` instead. `liquor_crash_analysis.html` and its build script/data pipeline still exist in the repo (not deleted — no request to remove the underlying analysis, just to stop surfacing it as a separate dashboard entry point), just no longer linked from the dashboard UI.
+
+Verified: `node build.js`, extracted `<script>` (this file only has one script tag, unlike the interactive map's CDN-tag ambiguity, so a plain `indexOf`/`lastIndexOf` extraction is unambiguous here) → `node --check` passed; served locally and confirmed via `javascript_tool` exactly one `a.compare-btn` now exists, pointing at `interactive_map.html`, no console errors.
+
+---
+
 ## [2026-07-29] - Claude (Anthropic) - Fix: Interactive Map Was Actually Broken (Silent Script Failure)
 
 ### 🐛 The previous entry's "verified" build never actually ran in a browser — it was broken

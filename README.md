@@ -150,13 +150,14 @@ calculated" panel for details.
 ## Liquor vends × crash-prone zones spatial exploration
 
 Both datasets — 374 official liquor vends and the 93 named 2024 crash-prone
-zones — are also available directly in `interactive_map.html` as two
-independent, toggleable point layers, and as a ward-level bivariate pairing
-option ("Liquor Vends (official)" × "Crash Zones (2024)", under the ward
-bivariate mode's Infrastructure/Crime dropdown groups). A separate, deeper
-standalone page (`liquor_crash_analysis.html`, linked from the main
-dashboard's header) still exists for the fuller proximity-band analysis,
-sortable tables, and exports. **Every coordinate in both places is
+zones — live directly in `interactive_map.html` as two independent,
+toggleable point layers, and as a ward-level bivariate pairing option
+("Liquor Vends (official)" × "Crash Zones (2024)", under the ward bivariate
+mode's Infrastructure/Crime dropdown groups). This is the only place the
+main dashboard links to for this data — the earlier standalone page
+(`liquor_crash_analysis.html`) is no longer linked from the dashboard header,
+though its build script and the deeper proximity-band analysis/exports it
+produces still exist in the repo if needed directly. **Every coordinate is
 approximate** — locality/sector centroids for vends, landmark/intersection
 centres for crash zones, neither a verified vend entrance nor an official
 Delhi Traffic Police geotag. Both treat proximity/co-location as broad
