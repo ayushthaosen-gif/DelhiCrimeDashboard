@@ -1,0 +1,94 @@
+location_name,longitude,latitude,listed_in_main_table,simple_crashes,fatal_crashes,total_crashes,road_name,coordinate_method,coordinate_confidence,estimated_accuracy_m,warning
+Azadpur Sabzi Mandi,77.1748,28.7098,True,9,11,20,GTK Road,landmark_centre,high,250,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Wazirabad,77.229,28.714,True,6,9,15,Outer Ring Road,locality_intersection_centre,medium,700,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Akshardham Mandir,77.2773,28.6127,True,11,8,19,NH-24,landmark_centre,high,200,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+ISBT Kashmiri Gate,77.2295,28.6679,True,9,8,17,Ring Road,transport_hub_centre,high,250,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Anand Vihar ISBT,77.315,28.6469,True,8,8,16,Road No.56,transport_hub_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+SGT Nagar,77.139,28.748,True,11,7,18,GTK Road,locality_centre,medium,700,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Rajoukari Flyover,77.116,28.513,True,9,7,16,NH-8,flyover_area_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Near Yashobhoomi Convention Centre Dwarka,77.039,28.5528,True,5,7,12,UER II,landmark_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Bhalswa Chowk,77.165,28.738,True,13,6,19,Outer Ring Road,intersection_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Libaspur Bus Stand,77.151,28.747,True,12,6,18,GTK Road,bus_stand_area_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Mukundpur Chowk,77.181,28.732,True,8,6,14,Outer Ring Road,intersection_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Geeta Colony Flyover,77.271,28.657,True,5,6,11,Yamuna Pusta Road,flyover_area_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Chandgi Ram Akhara,77.224,28.698,True,4,6,10,Outer Ring Road,landmark_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Hanuman Mandir JJ Colony Bawana,77.039,28.801,True,14,5,19,Bawana Road,locality_landmark_centre,medium,800,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Seelampur T Point,77.268,28.67,True,12,5,17,G.T. Road,intersection_centre,medium,450,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Singhu Border,77.136,28.879,True,10,5,15,GTK Road,border_crossing_centre,high,400,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Khajoori Chowk,77.259,28.71,True,9,5,14,Wazirabad Road,intersection_centre,medium,450,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Britannia Chowk,77.17,28.69,True,8,5,13,Ring Road,intersection_centre,medium,450,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Metro Station Haider Pur,77.149,28.73,True,8,5,13,Outer Ring Road,metro_station_centre,high,150,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Sec-23 Petrol Pump,77.082,28.718,True,7,5,12,Qutab Garh Road,sector_area_centre,low,1800,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Zakhira Flyover,77.158,28.669,True,6,5,11,Rohtak Road,flyover_area_centre,medium,400,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Red Light Pulprahlad Pur,77.294,28.499,True,5,5,10,Mehrauli Badarpur Road,intersection_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Prem Bari Pull,77.168,28.699,True,4,5,9,Ring Road,bridge_intersection_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Hanuman Mandir Yamuna Bazar,77.232,28.665,True,4,5,9,Ring Road,landmark_area_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Punjabi Bagh Chowk,77.132,28.668,True,4,5,9,Ring Road,intersection_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Mukarba Chowk,77.155,28.733,True,3,5,8,GTK Road,intersection_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Shamshan Ghat Geeta Colony,77.274,28.657,True,3,5,8,Yamuna Pusta Road,landmark_area_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Goyla Village Najafgarh,77.025,28.609,True,2,5,7,Goyla Dairy Road,village_centre,medium,900,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Gandhi Vihar Bus Stand,77.226,28.711,True,2,5,7,Outer Ring Road,bus_stand_area_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Archana Cinema Red Light,77.235,28.553,True,2,5,7,Josef Broz Tito Marg,landmark_intersection_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Sarai Kale Khan,77.255,28.588,True,16,4,20,Ring Road,transport_hub_centre,high,350,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Kashmiri Gate Chowk Boulevard Road,77.229,28.667,True,14,4,18,Boulevard Road,intersection_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Burari Chowk,77.199,28.745,True,12,4,16,Outer Ring Road,intersection_centre,medium,550,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Adarsh Nagar,77.17,28.716,True,12,4,16,GTK Road,locality_centre,medium,650,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Chhatra Marg Crossing,77.208,28.688,True,12,4,16,Ring Road,intersection_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Shastri Nagar Metro Station,77.181,28.67,True,10,4,14,Vir Banda Bairagi Marg,metro_station_centre,high,150,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Majlis Park Metro Station,77.1817,28.7246,True,7,4,11,Road No.51,metro_station_centre,high,150,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Keshopur T Point,77.082,28.653,True,7,4,11,Outer Ring Road,intersection_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Azad Pur Chowk,77.175,28.706,True,7,4,11,GTK Road,intersection_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Delhi Gate,77.24,28.64,True,6,4,10,N. Subhash Marg,landmark_intersection_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Siraspur,77.119,28.759,True,6,4,10,GTK Road,locality_centre,medium,800,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Dhaula Kuan,77.162,28.592,True,5,4,9,Ring Road,interchange_centre,high,350,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Monastery Ring Road,77.228,28.702,True,5,4,9,Ring Road,landmark_area_centre,medium,550,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Kingsway Camp Chowk,77.206,28.7,True,4,4,8,Ring Road,intersection_centre,medium,450,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Govindpuri Metro Station,77.264,28.544,True,4,4,8,Anand Mai Marg,metro_station_centre,high,150,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Nangloi Metro Station,77.063,28.682,True,3,4,7,Rohtak Road,metro_station_centre,high,150,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Metro Station Madipur,77.119,28.676,True,3,4,7,Rohtak Road,metro_station_centre,high,150,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Keval Park Road No. 51,77.178,28.717,True,2,4,6,Road No. 51,locality_road_centre,medium,700,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Near Triveni Park Nangal Village Delhi Cantt,77.11,28.609,True,2,4,6,Pankha Road,locality_centre,medium,800,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Near SDM Office Geeta Colony,77.274,28.651,True,1,4,5,Yamuna Pusta Road,civic_landmark_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Flyover Raja Ram Marg,77.279,28.653,True,1,4,5,Raja Ram Kohli Marg,flyover_area_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Telco Gajipur,77.322,28.629,True,9,3,12,Road No.56,industrial_landmark_area,medium,700,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Loni Road Crossing,77.295,28.686,True,8,3,11,Wazirabad Road,intersection_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Metro Station Dilshad Garden,77.321,28.675,True,7,3,10,G.T. Road,metro_station_centre,high,150,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Hamdard Nagar Red Light,77.25,28.515,True,7,3,10,Mehrauli Badarpur Road,intersection_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Uttam Nagar,77.056,28.621,True,7,3,10,Najafgarh Road,locality_centre,medium,900,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Radisson Hotel,77.119,28.544,True,6,3,9,NH-8,hotel_area_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+District Center Janakpuri,77.081,28.629,True,6,3,9,Najafgarh Road,commercial_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Udyog Nagar,77.094,28.681,True,6,3,9,Rohtak Road,locality_metro_area_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Sai Baba Mandir Najafgarh,76.985,28.61,True,6,3,9,Najafgarh Road,locality_landmark_centre,low,1200,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Rama Road Crossing,77.147,28.661,True,6,3,9,Patel Road,intersection_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+C-1 Janakpuri,77.087,28.618,True,6,3,9,Pankha Road,block_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Ghewra More,76.996,28.685,True,5,3,8,Rohtak Road,intersection_metro_area,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Deepali Chowk,77.121,28.698,True,5,3,8,Outer Ring Road,intersection_centre,medium,450,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+CRPF Camp Sonia Vihar,77.248,28.733,True,5,3,8,Pusta Road,institution_area_centre,medium,900,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Budhpur Ganda Nala/Hanuman Mandir Budhpur,77.134,28.776,True,5,3,8,GTK Road,locality_landmark_centre,low,1200,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Sai Baba Mandir NH-1,77.139,28.771,True,4,3,7,GTK Road,corridor_landmark_area,low,1600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Khichadi Pur,77.318,28.62,True,4,3,7,NH-24,locality_centre,medium,700,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Kirari More,77.052,28.706,True,4,3,7,Rohtak Road,intersection_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Jharera Village,77.124,28.581,True,4,3,7,NH-8,village_centre,medium,900,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Wazir Pur Depot,77.167,28.699,True,4,3,7,Ring Road,depot_area_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Under Pass Gajipur,77.323,28.624,True,4,3,7,NH-24,underpass_area_centre,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Hilton Hotel,77.298,28.606,True,3,3,6,Noida Link Road,hotel_area_centre,medium,800,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Ram Charan Aggarwal Chowk,77.244,28.63,True,3,3,6,BSZ Marg,intersection_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+AIIMS,77.21,28.567,True,3,3,6,Ring Road,hospital_centre,high,250,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Tilak Nagar Flyover,77.097,28.639,True,3,3,6,Najafgarh Road,flyover_area_centre,medium,450,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Shani Mandir NH-1,77.144,28.811,True,3,3,6,GTK Road,corridor_landmark_area,low,1800,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Tilak Marg Bhagwan Das Marg Crossing,77.234,28.622,True,3,3,6,Tilak Marg,intersection_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Nirankari Colony,77.225,28.716,True,3,3,6,Outer Ring Road,locality_centre,medium,800,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Satya Niketan Nanakpura,77.17,28.588,True,3,3,6,Ring Road,locality_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Near Haldiram Wazirpur,77.167,28.699,True,3,3,6,Ring Road,commercial_landmark_area,medium,500,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Raja Harishchander Hospital,77.096,28.852,True,3,3,6,DSIDC Narela Road,hospital_centre,high,300,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Shalimar Bagh,77.157,28.716,True,3,3,6,Ring Road,locality_centre,medium,800,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Round About Bhairaon Enclave,77.087,28.674,True,3,3,6,Outer Ring Road,roundabout_area_centre,medium,650,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Jeewan Mala Hospital,77.19,28.659,True,2,3,5,New Rohtak Road,hospital_area_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Tughlaqabad Village Red Light,77.276,28.511,True,2,3,5,Mehrauli Badarpur Road,intersection_centre,medium,650,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Khel Gaon,77.272,28.611,True,2,3,5,NH-24,landmark_area_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Near KV School Naraina,77.1375,28.6295,True,2,3,5,Ring Road,institution_area_centre,medium,650,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Hanuman Mandir,77.212,28.63,False,,,,,ambiguous_city_landmark_fallback,very_low,5000,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Kabootar Market,77.234,28.652,False,,,,,market_area_centre,low,1200,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Nangli Poona,77.147,28.77,False,,,,,village_centre,medium,900,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Rajouri Garden,77.12,28.642,False,,,,,locality_centre,medium,700,Not the Delhi Traffic Police geotag and not a surveyed crash location.
+Shastri Park/IT Park,77.25,28.668,False,,,,,locality_landmark_centre,medium,600,Not the Delhi Traffic Police geotag and not a surveyed crash location.

@@ -146,3 +146,34 @@ Coverage gaps (e.g. districts the streetlight survey never drove through, or
 the 2022 road-crash report's 11-district geography) are treated as missing
 data, not zero — see the in-app confidence markers and the "How this is
 calculated" panel for details.
+
+## Liquor vends × crash-prone zones spatial exploration (`liquor_crash_analysis.html`)
+
+A separate, standalone page (linked from the main dashboard's header)
+exploring spatial proximity between Delhi's 374 official liquor vends and the
+93 named 2024 crash-prone zones. **Every coordinate on this page is
+approximate** — locality/sector centroids for vends, landmark/intersection
+centres for crash zones, neither a verified vend entrance nor an official
+Delhi Traffic Police geotag. The page treats proximity as broad spatial
+association only, never causation, and says so persistently in its
+methodology banner.
+
+To refresh this analysis (e.g. if updated source extracts become available):
+
+1. Replace the source files in `data/`: `delhi_liquor_vends_all_coordinates_approx.geojson`,
+   `delhi_crash_prone_zones_2024_all_named_approx.geojson`,
+   `delhi_crash_prone_zones_2024_250m_buffers_approx.geojson`,
+   `delhi_crash_report_relevant_metrics_2024.json` — keep the exact filenames.
+2. `npm install` once, if `node_modules/` isn't present (installs `@turf/turf`
+   for the spatial math; `build_liquor_crash_proximity.js` falls back to a
+   hand-rolled haversine/point-in-polygon implementation if `@turf/turf` isn't
+   installed, so this step is optional but recommended).
+3. `npm run build:liquor-crash` — runs `build_liquor_crash_proximity.js`
+   (produces the three derived files: `liquor_vend_crash_proximity_2024.geojson`,
+   `crash_zone_liquor_proximity_2024.geojson`, `liquor_crash_proximity_summary_2024.json`)
+   then `build_liquor_crash_analysis.js` (produces `liquor_crash_analysis.html`).
+4. `npm test` — runs the automated validation suite
+   (`test/liquor_crash_proximity.test.js`, Node's built-in test runner) covering
+   coordinate order/validity, official-vs-OSM record counts, monotonic
+   distance-band counts, no negative values, and a check that no built page
+   text uses causal language about liquor vends and crashes.

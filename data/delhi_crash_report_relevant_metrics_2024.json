@@ -1,0 +1,21 @@
+{
+  "source": "Delhi Road Crash Report 2024, Delhi Traffic Police",
+  "year": 2024,
+  "total_road_crashes": 5657,
+  "fatal_crashes": 1504,
+  "persons_killed": 1551,
+  "persons_injured": 5224,
+  "crash_prone_zones_reported": 111,
+  "crashes_at_crash_prone_zones": 1088,
+  "fatal_crashes_at_crash_prone_zones": 427,
+  "simple_crashes_at_crash_prone_zones": 661,
+  "hit_and_run_fatal_crashes": 634,
+  "hit_and_run_share_of_fatal_crashes_percent": 42.15,
+  "drinking_and_driving_prosecutions": 22952,
+  "rlvd_camera_systems": 209,
+  "rlvd_junctions": 43,
+  "osvd_camera_systems": 125,
+  "osvd_locations": 66,
+  "overspeed_notices_from_osvd_and_tripod_cameras": 2461882,
+  "caveat": "The report speculates that alcohol may be involved in some hit-and-run cases whose causes could not be established. That statement is not evidence that those crashes were alcohol-related and should not be coded as such."
+}

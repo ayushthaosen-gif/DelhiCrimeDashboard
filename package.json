@@ -4,6 +4,11 @@
   "description": "Delhi district crime, road-safety, and infrastructure coverage dashboard",
   "private": true,
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js",
+    "build:liquor-crash": "node build_liquor_crash_proximity.js && node build_liquor_crash_analysis.js",
+    "test": "node --test test/liquor_crash_proximity.test.js"
+  },
+  "dependencies": {
+    "@turf/turf": "^7.3.5"
   }
 }

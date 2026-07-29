@@ -1,0 +1,510 @@
+{
+ "analysisYear": 2024,
+ "generatedAt": "2026-07-29T09:05:11.190Z",
+ "vendsWithinBand": {
+  "500m": {
+   "count": 85,
+   "total": 374,
+   "sharePercent": 22.7
+  },
+  "1km": {
+   "count": 148,
+   "total": 374,
+   "sharePercent": 39.6
+  },
+  "2km": {
+   "count": 300,
+   "total": 374,
+   "sharePercent": 80.2
+  }
+ },
+ "blackspotsWithVendWithinBand": {
+  "500m": {
+   "count": 4,
+   "total": 10,
+   "sharePercent": 40
+  },
+  "1km": {
+   "count": 5,
+   "total": 10,
+   "sharePercent": 50
+  },
+  "2km": {
+   "count": 8,
+   "total": 10,
+   "sharePercent": 80
+  }
+ },
+ "nightRiskZonesWithVendWithinBand": {
+  "500m": {
+   "count": 20,
+   "total": 42,
+   "sharePercent": 47.6
+  },
+  "1km": {
+   "count": 23,
+   "total": 42,
+   "sharePercent": 54.8
+  },
+  "2km": {
+   "count": 34,
+   "total": 42,
+   "sharePercent": 81
+  }
+ },
+ "hitAndRunZonesWithVendWithinBand": {
+  "500m": {
+   "count": 15,
+   "total": 32,
+   "sharePercent": 46.9
+  },
+  "1km": {
+   "count": 20,
+   "total": 32,
+   "sharePercent": 62.5
+  },
+  "2km": {
+   "count": 28,
+   "total": 32,
+   "sharePercent": 87.5
+  }
+ },
+ "distributionByOperator": {
+  "Delhi State Civil Supplies Corporation Limited (DSCSC)": 201,
+  "Delhi Consumer's Co-operative Wholesale Store Ltd. (DCCWS)": 173
+ },
+ "distributionByVendCoordinateConfidence": {
+  "medium": 346,
+  "low": 27,
+  "unknown": 1
+ },
+ "distributionByZoneCoordinateConfidence": {
+  "high": 27,
+  "medium": 59,
+  "low": 6,
+  "very_low": 1
+ },
+ "exactVsApproximate": {
+  "vendsExact": 14,
+  "vendsApproximate": 373,
+  "zonesTotal": 93,
+  "zonesApproximate": 93
+ },
+ "coverageWarning": "111 crash-prone zones were reported for 2024, but the published tables provide enough names to map only 93 unique locations. Aggregate report totals and mapped point counts therefore have different coverage.",
+ "methodologyWarning": "This tool explores spatial proximity between published liquor-vend listings and named road crash-prone locations. Most liquor-vend coordinates represent approximate locality or sector centres, and all crash-zone coordinates represent approximate landmark or intersection centres rather than official Delhi Traffic Police geotags. Proximity therefore indicates broad spatial association only. It does not establish that a liquor vend contributed to any crash. Results should be interpreted at neighbourhood scale, with 1-kilometre and 2-kilometre bands preferred over precise metre-level distances.",
+ "reportMetrics": {
+  "source": "Delhi Road Crash Report 2024, Delhi Traffic Police",
+  "year": 2024,
+  "total_road_crashes": 5657,
+  "fatal_crashes": 1504,
+  "persons_killed": 1551,
+  "persons_injured": 5224,
+  "crash_prone_zones_reported": 111,
+  "crashes_at_crash_prone_zones": 1088,
+  "fatal_crashes_at_crash_prone_zones": 427,
+  "simple_crashes_at_crash_prone_zones": 661,
+  "hit_and_run_fatal_crashes": 634,
+  "hit_and_run_share_of_fatal_crashes_percent": 42.15,
+  "drinking_and_driving_prosecutions": 22952,
+  "rlvd_camera_systems": 209,
+  "rlvd_junctions": 43,
+  "osvd_camera_systems": 125,
+  "osvd_locations": 66,
+  "overspeed_notices_from_osvd_and_tripod_cameras": 2461882,
+  "caveat": "The report speculates that alcohol may be involved in some hit-and-run cases whose causes could not be established. That statement is not evidence that those crashes were alcohol-related and should not be coded as such."
+ },
+ "corridorSummary": [
+  {
+   "roadName": "Ring Road",
+   "namedZoneCount": 16,
+   "totalFatalCrashes": 66,
+   "totalCrashes": 155,
+   "blackspotCount": 1,
+   "nightRiskZoneCount": 8,
+   "hitAndRunZoneCount": 5,
+   "officialVendsWithin1kmOfAnyZone": 23
+  },
+  {
+   "roadName": "GTK Road",
+   "namedZoneCount": 11,
+   "totalFatalCrashes": 55,
+   "totalCrashes": 137,
+   "blackspotCount": 3,
+   "nightRiskZoneCount": 9,
+   "hitAndRunZoneCount": 7,
+   "officialVendsWithin1kmOfAnyZone": 11
+  },
+  {
+   "roadName": "Outer Ring Road",
+   "namedZoneCount": 11,
+   "totalFatalCrashes": 54,
+   "totalCrashes": 125,
+   "blackspotCount": 2,
+   "nightRiskZoneCount": 5,
+   "hitAndRunZoneCount": 5,
+   "officialVendsWithin1kmOfAnyZone": 10
+  },
+  {
+   "roadName": "Rohtak Road",
+   "namedZoneCount": 6,
+   "totalFatalCrashes": 22,
+   "totalCrashes": 49,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 3,
+   "hitAndRunZoneCount": 2,
+   "officialVendsWithin1kmOfAnyZone": 9
+  },
+  {
+   "roadName": "NH-24",
+   "namedZoneCount": 4,
+   "totalFatalCrashes": 17,
+   "totalCrashes": 38,
+   "blackspotCount": 1,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 2,
+   "officialVendsWithin1kmOfAnyZone": 8
+  },
+  {
+   "roadName": "Yamuna Pusta Road",
+   "namedZoneCount": 3,
+   "totalFatalCrashes": 15,
+   "totalCrashes": 24,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 2,
+   "hitAndRunZoneCount": 2,
+   "officialVendsWithin1kmOfAnyZone": 7
+  },
+  {
+   "roadName": "NH-8",
+   "namedZoneCount": 3,
+   "totalFatalCrashes": 13,
+   "totalCrashes": 32,
+   "blackspotCount": 1,
+   "nightRiskZoneCount": 2,
+   "hitAndRunZoneCount": 1,
+   "officialVendsWithin1kmOfAnyZone": 2
+  },
+  {
+   "roadName": "Najafgarh Road",
+   "namedZoneCount": 4,
+   "totalFatalCrashes": 12,
+   "totalCrashes": 34,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 1,
+   "officialVendsWithin1kmOfAnyZone": 20
+  },
+  {
+   "roadName": "Mehrauli Badarpur Road",
+   "namedZoneCount": 3,
+   "totalFatalCrashes": 11,
+   "totalCrashes": 25,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 0
+  },
+  {
+   "roadName": "Road No.56",
+   "namedZoneCount": 2,
+   "totalFatalCrashes": 11,
+   "totalCrashes": 28,
+   "blackspotCount": 1,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 1,
+   "officialVendsWithin1kmOfAnyZone": 6
+  },
+  {
+   "roadName": "G.T. Road",
+   "namedZoneCount": 2,
+   "totalFatalCrashes": 8,
+   "totalCrashes": 27,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 6
+  },
+  {
+   "roadName": "Wazirabad Road",
+   "namedZoneCount": 2,
+   "totalFatalCrashes": 8,
+   "totalCrashes": 25,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 2,
+   "officialVendsWithin1kmOfAnyZone": 6
+  },
+  {
+   "roadName": "Pankha Road",
+   "namedZoneCount": 2,
+   "totalFatalCrashes": 7,
+   "totalCrashes": 15,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 4
+  },
+  {
+   "roadName": "UER II",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 7,
+   "totalCrashes": 12,
+   "blackspotCount": 1,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 0
+  },
+  {
+   "roadName": "Bawana Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 5,
+   "totalCrashes": 19,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 3
+  },
+  {
+   "roadName": "Goyla Dairy Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 5,
+   "totalCrashes": 7,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 1
+  },
+  {
+   "roadName": "Josef Broz Tito Marg",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 5,
+   "totalCrashes": 7,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 3
+  },
+  {
+   "roadName": "Qutab Garh Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 5,
+   "totalCrashes": 12,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 1,
+   "officialVendsWithin1kmOfAnyZone": 2
+  },
+  {
+   "roadName": "Anand Mai Marg",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 4,
+   "totalCrashes": 8,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 4
+  },
+  {
+   "roadName": "Boulevard Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 4,
+   "totalCrashes": 18,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 2
+  },
+  {
+   "roadName": "N. Subhash Marg",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 4,
+   "totalCrashes": 10,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 0
+  },
+  {
+   "roadName": "Raja Ram Kohli Marg",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 4,
+   "totalCrashes": 5,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 1,
+   "officialVendsWithin1kmOfAnyZone": 4
+  },
+  {
+   "roadName": "Road No. 51",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 4,
+   "totalCrashes": 6,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 1
+  },
+  {
+   "roadName": "Road No.51",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 4,
+   "totalCrashes": 11,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 0
+  },
+  {
+   "roadName": "Vir Banda Bairagi Marg",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 4,
+   "totalCrashes": 14,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 1,
+   "officialVendsWithin1kmOfAnyZone": 5
+  },
+  {
+   "roadName": "BSZ Marg",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 3,
+   "totalCrashes": 6,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 1
+  },
+  {
+   "roadName": "DSIDC Narela Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 3,
+   "totalCrashes": 6,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 2
+  },
+  {
+   "roadName": "New Rohtak Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 3,
+   "totalCrashes": 5,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 1
+  },
+  {
+   "roadName": "Noida Link Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 3,
+   "totalCrashes": 6,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 4
+  },
+  {
+   "roadName": "Patel Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 3,
+   "totalCrashes": 9,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 3
+  },
+  {
+   "roadName": "Pusta Road",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 3,
+   "totalCrashes": 8,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 1,
+   "hitAndRunZoneCount": 1,
+   "officialVendsWithin1kmOfAnyZone": 0
+  },
+  {
+   "roadName": "Tilak Marg",
+   "namedZoneCount": 1,
+   "totalFatalCrashes": 3,
+   "totalCrashes": 6,
+   "blackspotCount": 0,
+   "nightRiskZoneCount": 0,
+   "hitAndRunZoneCount": 0,
+   "officialVendsWithin1kmOfAnyZone": 0
+  }
+ ],
+ "operatorSummary": [
+  {
+   "operator": "Delhi State Civil Supplies Corporation Limited (DSCSC)",
+   "vendCount": 201,
+   "shareWithin500m": {
+    "count": 45,
+    "total": 201,
+    "sharePercent": 22.4
+   },
+   "shareWithin1km": {
+    "count": 77,
+    "total": 201,
+    "sharePercent": 38.3
+   },
+   "shareWithin2km": {
+    "count": 163,
+    "total": 201,
+    "sharePercent": 81.1
+   },
+   "shareWithin1kmOfBlackspot": {
+    "count": 5,
+    "total": 201,
+    "sharePercent": 2.5
+   },
+   "shareWithin1kmOfNightRiskZone": {
+    "count": 35,
+    "total": 201,
+    "sharePercent": 17.4
+   },
+   "shareWithin1kmOfHitAndRunZone": {
+    "count": 30,
+    "total": 201,
+    "sharePercent": 14.9
+   },
+   "interpretationNote": "Operator differences are not adjusted for geographic distribution of vends across Delhi and should not be interpreted as an operator effect."
+  },
+  {
+   "operator": "Delhi Consumer's Co-operative Wholesale Store Ltd. (DCCWS)",
+   "vendCount": 173,
+   "shareWithin500m": {
+    "count": 40,
+    "total": 173,
+    "sharePercent": 23.1
+   },
+   "shareWithin1km": {
+    "count": 71,
+    "total": 173,
+    "sharePercent": 41
+   },
+   "shareWithin2km": {
+    "count": 137,
+    "total": 173,
+    "sharePercent": 79.2
+   },
+   "shareWithin1kmOfBlackspot": {
+    "count": 6,
+    "total": 173,
+    "sharePercent": 3.5
+   },
+   "shareWithin1kmOfNightRiskZone": {
+    "count": 29,
+    "total": 173,
+    "sharePercent": 16.8
+   },
+   "shareWithin1kmOfHitAndRunZone": {
+    "count": 21,
+    "total": 173,
+    "sharePercent": 12.1
+   },
+   "interpretationNote": "Operator differences are not adjusted for geographic distribution of vends across Delhi and should not be interpreted as an operator effect."
+  }
+ ]
+}
