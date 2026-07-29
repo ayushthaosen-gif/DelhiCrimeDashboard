@@ -6,7 +6,9 @@
   "scripts": {
     "build": "node build.js",
     "build:liquor-crash": "node build_liquor_crash_proximity.js && node build_liquor_crash_analysis.js",
-    "test": "node --test test/liquor_crash_proximity.test.js"
+    "build:ward-infra": "node build_ward_infra.js",
+    "build:interactive-map": "node build_ward_infra.js && node build_interactive_map.js",
+    "test": "node --test test/liquor_crash_proximity.test.js test/exploratory_score.test.js"
   },
   "dependencies": {
     "@turf/turf": "^7.3.5"

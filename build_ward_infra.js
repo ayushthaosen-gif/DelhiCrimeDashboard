@@ -1,14 +1,23 @@
-// Aggregates the existing infrastructure point layers (bus stops, ATMs, liquor shops, CCTV)
-// into per-ward counts/densities using Delhi's ward boundaries, for a finer-grained ward-level
-// bivariate mode on the interactive map. Crime data does NOT exist at ward level (NCRB publishes
-// only at the 15 Delhi-Police-district level, a different administrative geography from MCD/NDMC
-// wards), so this produces an infra-vs-infra pairing, not crime-vs-infra.
+// Aggregates the existing infrastructure point layers (bus stops, ATMs, liquor shops, CCTV),
+// the official liquor-vend dataset, and the 2024 crash zones into per-ward counts/densities using
+// Delhi's ward boundaries, for a finer-grained ward-level bivariate mode on the interactive map.
+// Crime data itself does NOT exist at ward level (NCRB publishes only at the 15 Delhi-Police-
+// district level, a different administrative geography from MCD/NDMC wards) -- to still offer an
+// infra x crime pairing at ward granularity, each ward's parent district is found by point-in-
+// polygon (ward centroid vs. district boundaries) and that district's crime figures are copied
+// down onto every ward inside it. Those inherited fields are district-resolution, not ward-
+// resolution, and are flagged as such (`wardMetricBasis: 'district-inherited'`) everywhere they
+// appear downstream.
 //
 // Ward source: DataMeet Municipal_Spatial_Data (CC-BY-SA 2.5 India), scraped from an ArcGIS Online
 // map. 290 features (273 named MCD wards + 9 NDMC charges + 8 Delhi Cantonment charges) -- the
 // count (273, not 250) and naming style indicate this is most likely the pre-2022-unification
 // ward delimitation, not the current 250-ward structure. Used here only as a finer spatial grid
 // for aggregating point density, not for anything requiring official/current ward boundaries.
+//
+// The liquor-vend and 2024 crash-zone source coordinates are themselves approximate (locality/
+// sector centroids, landmark/intersection centres -- see each file's own coordinate_confidence),
+// so every ward count derived from them is flagged `wardAssignmentBasis: 'exploratory'`.
 //
 //   node build_ward_infra.js
 
@@ -19,6 +28,10 @@ const SCRATCH_WARDS = 'C:/Users/ayush/AppData/Local/Temp/claude/C--Users-ayush/2
 
 const wards = JSON.parse(fs.readFileSync(SCRATCH_WARDS, 'utf8'));
 const poi = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_latlng.json'), 'utf8'));
+const liquorVends = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_liquor_vends_all_coordinates_approx.geojson'), 'utf8'));
+const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_crash_prone_zones_2024_all_named_approx.geojson'), 'utf8'));
+const districtBoundaries = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_boundaries_simplified.geojson'), 'utf8'));
+const dashboardFinal = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_final.json'), 'utf8'));
 
 // Equirectangular-projected shoelace area -- adequate at Delhi's scale (~50km across); avoids
 // pulling in a full geodesic library for a one-off area calc.
@@ -108,9 +121,77 @@ for (const layerKey of Object.keys(LAYERS)) {
   }
 }
 
+// ── Official liquor vends (374 of the 387 features; the 13 OSM-only records are excluded here
+// since they're already covered by the `alcoholShops` OSM layer above) and the 93 named 2024
+// crash zones — both approximately-coordinated (locality/landmark centroids, not verified
+// geotags), so every count derived from them carries `wardAssignmentBasis: 'exploratory'`.
+const officialVendFeatures = liquorVends.features.filter(f => f.properties.record_source !== 'OpenStreetMap');
+wards.features.forEach(f => {
+  f.properties.officialLiquorVends = 0;
+  f.properties.crashZones2024 = 0;
+  f.properties.crashZones2024FatalSum = 0;
+});
+let vendsAssigned = 0, vendsOutside = 0;
+for (const feat of officialVendFeatures) {
+  const [lng, lat] = feat.geometry.coordinates;
+  let assigned = false;
+  for (const f of wards.features) {
+    const [minLng, minLat, maxLng, maxLat] = f.properties._bbox;
+    if (lng < minLng || lng > maxLng || lat < minLat || lat > maxLat) continue;
+    if (pointInGeometry(lng, lat, f.geometry)) { f.properties.officialLiquorVends++; assigned = true; break; }
+  }
+  if (assigned) vendsAssigned++; else vendsOutside++;
+}
+let zonesAssigned = 0, zonesOutside = 0;
+for (const feat of crashZones2024.features) {
+  const [lng, lat] = feat.geometry.coordinates;
+  const fatal = feat.properties.all_fatal_crashes || 0;
+  let assigned = false;
+  for (const f of wards.features) {
+    const [minLng, minLat, maxLng, maxLat] = f.properties._bbox;
+    if (lng < minLng || lng > maxLng || lat < minLat || lat > maxLat) continue;
+    if (pointInGeometry(lng, lat, f.geometry)) {
+      f.properties.crashZones2024++;
+      f.properties.crashZones2024FatalSum += fatal;
+      assigned = true;
+      break;
+    }
+  }
+  if (assigned) zonesAssigned++; else zonesOutside++;
+}
+totalAssigned.officialLiquorVends = vendsAssigned; totalOutside.officialLiquorVends = vendsOutside;
+totalAssigned.crashZones2024 = zonesAssigned; totalOutside.crashZones2024 = zonesOutside;
+
+// ── District-inherited crime metrics: crime data doesn't exist below the 15-district level, so
+// each ward's parent district is found via point-in-polygon against the district boundaries
+// (using the ward's bbox-center as a representative point -- an approximation, not a true
+// centroid, but adequate for assigning a ward to its enclosing district at this city scale) and
+// that district's crime density is copied onto the ward. Flagged `wardMetricBasis:
+// 'district-inherited'` since it is district-resolution, not ward-resolution, data.
+const districtByName = {};
+dashboardFinal.districts.forEach(d => { districtByName[d.district] = d; });
+let districtAssigned = 0, districtUnassigned = 0;
+wards.features.forEach(f => {
+  const [minLng, minLat, maxLng, maxLat] = f.properties._bbox;
+  const cLng = (minLng + maxLng) / 2, cLat = (minLat + maxLat) / 2;
+  const match = districtBoundaries.features.find(df => pointInGeometry(cLng, cLat, df.geometry));
+  if (match) {
+    districtAssigned++;
+    const d = districtByName[match.properties.district];
+    f.properties.assignedDistrict = match.properties.district;
+    f.properties.totalIPCDensity2024Inherited = d && d.totalIPC2024 != null && d.areaSqKm ? Math.round((d.totalIPC2024 / d.areaSqKm) * 100) / 100 : null;
+    f.properties.crimeAgainstWomenDensity2024Inherited = d && d.crimeAgainstWomen2024 != null && d.areaSqKm ? Math.round((d.crimeAgainstWomen2024 / d.areaSqKm) * 100) / 100 : null;
+  } else {
+    districtUnassigned++;
+    f.properties.assignedDistrict = null;
+    f.properties.totalIPCDensity2024Inherited = null;
+    f.properties.crimeAgainstWomenDensity2024Inherited = null;
+  }
+});
+
 wards.features.forEach(f => {
   delete f.properties._bbox;
-  for (const layerKey of Object.keys(LAYERS)) {
+  for (const layerKey of [...Object.keys(LAYERS), 'officialLiquorVends', 'crashZones2024']) {
     const count = f.properties[layerKey];
     f.properties[layerKey + 'Density'] = f.properties.areaSqKm > 0 ? Math.round((count / f.properties.areaSqKm) * 100) / 100 : null;
   }
@@ -118,6 +199,7 @@ wards.features.forEach(f => {
 
 console.log('assigned:', totalAssigned);
 console.log('outside every ward:', totalOutside);
+console.log('district assignment: matched', districtAssigned, 'unmatched', districtUnassigned);
 console.log('sample ward (Chandni Chowk):', JSON.stringify(wards.features.find(f => f.properties.Ward_Name === 'CHANDNI CHOWK')?.properties));
 
 const out = {
@@ -126,7 +208,11 @@ const out = {
     source: 'DataMeet Municipal_Spatial_Data (CC-BY-SA 2.5 India), scraped from ArcGIS Online',
     sourceUrl: 'https://github.com/datameet/Municipal_Spatial_Data/tree/master/Delhi',
     vintageNote: '290 features (273 named wards + 9 NDMC + 8 Cantonment charges) — ward count does not match the current 250-ward post-2022-unification structure, so this is most likely the pre-2022 delimitation. Used here as a finer spatial grid for point-density aggregation only, not as an official/current administrative boundary.',
-    infraLayers: 'busStops, atms, alcoholShops, surveillance — aggregated by point-in-polygon from the same OSM-derived point data already used for the 15-district metrics elsewhere in this project. No crime data exists at ward level.',
+    infraLayers: 'busStops, atms, alcoholShops, surveillance, officialLiquorVends — aggregated by point-in-polygon from the same OSM-derived/official point data used elsewhere in this project.',
+    crashLayers: 'crashZones2024, crashZones2024FatalSum — 2024 crash-prone zones aggregated by point-in-polygon. Both the liquor-vend and 2024 crash-zone source coordinates are approximate (locality/landmark centroids, not verified geotags); every ward count derived from them carries wardAssignmentBasis: exploratory.',
+    inheritedCrimeLayers: "totalIPCDensity2024Inherited, crimeAgainstWomenDensity2024Inherited — no crime data is published below the 15-district level; these fields copy the enclosing district's 2024 crime density onto every ward inside it via point-in-polygon (ward bbox-center vs. district boundary). District-resolution, not ward-resolution — flagged wardMetricBasis: district-inherited.",
+    wardAssignmentBasis: 'exploratory',
+    wardMetricBasis: 'district-inherited (for totalIPCDensity2024Inherited, crimeAgainstWomenDensity2024Inherited only)',
   },
   features: wards.features,
 };

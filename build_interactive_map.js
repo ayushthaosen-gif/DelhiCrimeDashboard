@@ -17,6 +17,8 @@ const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_
 const crashZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_geocoded.json'), 'utf8'));
 const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2024_geocoded.json'), 'utf8'));
 const wardsInfra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_wards_infra.geojson'), 'utf8'));
+const liquorVendsApprox = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_liquor_vends_all_coordinates_approx.geojson'), 'utf8'));
+const crashZones2024Approx = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_crash_prone_zones_2024_all_named_approx.geojson'), 'utf8'));
 
 // Join crime/infra stats onto the boundary features by district name.
 const statsByDistrict = {};
@@ -159,6 +161,7 @@ body { display: flex; flex-direction: column; }
   <label id="wardInfraWrap" style="display:none">
     <select id="wardInfraXSelect"></select> × <select id="wardInfraYSelect"></select>
   </label>
+  <label><input type="checkbox" id="chkWardExploratoryIndex"> Liquor-crash exploratory index (wards)</label>
   <div style="position:relative;">
     <input id="districtSearch" type="text" placeholder="Search district…" autocomplete="off">
     <div id="searchResults"></div>
@@ -179,6 +182,8 @@ body { display: flex; flex-direction: column; }
     <label><input type="checkbox" id="chkAlcohol"> Liquor shops <span class="layer-count" id="cntAlcohol"></span></label>
     <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
     <label><input type="checkbox" id="chkCctvPriority"> CCTV priority sites <span class="layer-count" id="cntCctvPriority"></span></label>
+    <label><input type="checkbox" id="chkLiquorVends"> Liquor vends (official, approx.) <span class="layer-count" id="cntLiquorVends"></span></label>
+    <label><input type="checkbox" id="chkCrashZones2024Approx"> Crash zones 2024 (full, approx.) <span class="layer-count" id="cntCrashZones2024Approx"></span></label>
   </div>
 </div>
 <div id="analysisBar">
@@ -228,6 +233,8 @@ const POI = ${JSON.stringify(poiMarkers)};
 const ZONES_BY_YEAR = { '2023': ${JSON.stringify(crashZones)}, '2024': ${JSON.stringify(crashZones2024)} };
 const ZONES = ZONES_BY_YEAR['2023'];
 const wardsInfra = ${JSON.stringify(wardsInfra)};
+const LIQUOR_VENDS_APPROX = ${JSON.stringify(liquorVendsApprox)};
+const CRASH_ZONES_2024_APPROX = ${JSON.stringify(crashZones2024Approx)};
 
 // Crime/road-safety metrics -- mirrors build.js's METRICS[] (year-aware fields, sources) so
 // this page's popups/colors carry the same year semantics as the main dashboard instead of
@@ -257,15 +264,28 @@ const INFRA = [
   { key: 'surveillance', densityKey: 'surveillanceDensity', countKey: 'surveillanceCameras', label: 'CCTV & Guards', source: 'OpenStreetMap (Overpass API)' },
 ];
 
-// Ward-level infra layers -- only the four OSM-derived point layers exist at ward granularity
-// (no crime data is published at ward level, so this pairs two infra layers against each other
-// rather than crime vs. infra). Field names match data/delhi_wards_infra.geojson exactly.
+// Ward-level metrics available to the bivariate mode, split into two groups so any pairing —
+// infra x infra, crime x crime, or infra x crime — is possible, not just infra x infra as before.
+// "Infra" fields are OSM/official point layers aggregated onto wards by point-in-polygon (basis:
+// exploratory, since the source coordinates for liquor vends are themselves approximate).
+// "Crime/incidents" fields are either true ward-level incident counts (2024 crash zones — also
+// approximate-coordinate point-in-polygon, basis: exploratory) or a district crime figure copied
+// down onto every ward inside it, since NCRB does not publish crime below district level (basis:
+// district-inherited). Field names match data/delhi_wards_infra.geojson exactly.
 const WARD_INFRA = [
-  { key: 'busStops', densityKey: 'busStopsDensity', label: 'Bus Stops' },
-  { key: 'atms', densityKey: 'atmsDensity', label: 'ATMs' },
-  { key: 'alcoholShops', densityKey: 'alcoholShopsDensity', label: 'Liquor Shops' },
-  { key: 'surveillance', densityKey: 'surveillanceDensity', label: 'CCTV & Guards' },
+  { key: 'busStops', densityKey: 'busStopsDensity', label: 'Bus Stops', group: 'infra', basis: null },
+  { key: 'atms', densityKey: 'atmsDensity', label: 'ATMs', group: 'infra', basis: null },
+  { key: 'alcoholShops', densityKey: 'alcoholShopsDensity', label: 'Liquor Shops (OSM)', group: 'infra', basis: null },
+  { key: 'surveillance', densityKey: 'surveillanceDensity', label: 'CCTV & Guards', group: 'infra', basis: null },
+  { key: 'officialLiquorVends', densityKey: 'officialLiquorVendsDensity', label: 'Liquor Vends (official)', group: 'infra', basis: 'exploratory' },
+  { key: 'crashZones2024', densityKey: 'crashZones2024Density', label: 'Crash Zones (2024)', group: 'crime', basis: 'exploratory' },
+  { key: 'totalIPCDensity2024Inherited', densityKey: 'totalIPCDensity2024Inherited', label: 'Total IPC Crime Rate (district)', group: 'crime', basis: 'district-inherited' },
+  { key: 'crimeAgainstWomenDensity2024Inherited', densityKey: 'crimeAgainstWomenDensity2024Inherited', label: 'Crime vs. Women Rate (district)', group: 'crime', basis: 'district-inherited' },
 ];
+const WARD_INFRA_BASIS_LABEL = {
+  exploratory: 'exploratory — assigned to this ward from an approximate coordinate, not a verified location',
+  'district-inherited': "district-inherited — this is the enclosing district's figure, not ward-specific data",
+};
 
 // Districts the PAPL survey actually drove through — shared gap for streetlights and
 // underpasses. Mirrors build.js's SURVEYED set/infraCovered() exactly.
@@ -389,14 +409,23 @@ function getBivariateColor(feats, d, m, inf) {
   return BIVARIATE_MATRIX[yIndex][xIndex];
 }
 
-// ── Ward-level bivariate mode: two infra layers cross-referenced at ward granularity (290
-// wards) instead of the 15 districts. No crime data exists at ward level (see WARD_INFRA
-// comment), so this is infra-vs-infra, using the same 3x3 tertile-matrix approach as the
-// district bivariate mode above, just against WARDS_INFRA's per-ward density fields directly.
+// ── Ward-level bivariate mode: two WARD_INFRA metrics cross-referenced at ward granularity (290
+// wards) instead of the 15 districts — infra x infra, crime x crime, or infra x crime, using the
+// same 3x3 tertile-matrix approach as the district bivariate mode above, against WARDS_INFRA's
+// per-ward density fields directly.
 let wardBivariateMode = false;
 let wardInfraX = 'busStops';
 let wardInfraY = 'surveillance';
 let wardLayer = null;
+let wardExploratoryMode = false; // declared here, not near its own section further below, for the
+                                   // same TDZ reason as heatLayer/zoneYear above.
+// heatLayer and zoneYear are declared here (not near their own sections further below) because
+// rebuildZonesLayer()'s initial call, and the first updateUrlState() call inside the initial
+// renderChoropleth(), both happen before those sections textually run -- referencing either
+// variable before its let executes would throw a TDZ ReferenceError and silently halt the rest
+// of the script, the same class of bug already documented on unsafeMode above.
+let heatLayer = null;
+let zoneYear = '2023';
 
 function getWardBivariateColor(feats, props, xInf, yInf) {
   const valid = feats.map(f => f.properties).filter(p => p[xInf.densityKey] != null && p[yInf.densityKey] != null);
@@ -416,15 +445,28 @@ function renderWardLayer() {
   const xInf = WARD_INFRA.find(w => w.key === wardInfraX);
   const yInf = WARD_INFRA.find(w => w.key === wardInfraY);
   const feats = wardsInfra.features;
+function wardMetricLine(p, inf) {
+  const sameKey = inf.key === inf.densityKey;
+  const valueHtml = sameKey
+    ? '<b>' + fmtNum(p[inf.key]) + '</b>/km²'
+    : '<b>' + fmtNum(p[inf.key]) + '</b> (' + fmtNum(p[inf.densityKey]) + '/km²)';
+  const caveat = inf.basis ? ' <span style="font-style:italic;">— ' + WARD_INFRA_BASIS_LABEL[inf.basis] + '</span>' : '';
+  return '<div>' + inf.label + ': ' + valueHtml + caveat + '</div>';
+}
+function renderWardLayer() {
+  if (wardLayer) { map.removeLayer(wardLayer); wardLayer = null; }
+  if (!wardBivariateMode) { renderWardLegend(false); return; }
+  const xInf = WARD_INFRA.find(w => w.key === wardInfraX);
+  const yInf = WARD_INFRA.find(w => w.key === wardInfraY);
+  const feats = wardsInfra.features;
   wardLayer = L.geoJSON(wardsInfra, {
     style: f => ({ fillColor: getWardBivariateColor(feats, f.properties, xInf, yInf), fillOpacity: 0.75, color: '#fff', weight: 0.8 }),
     onEachFeature: (f, layer) => {
       const p = f.properties;
       const body = '<div class="popup-title">' + p.Ward_Name + '</div>' +
-        '<div class="popup-rank">Ward — ' + p.areaSqKm + ' km²</div>' +
-        '<div>' + xInf.label + ': <b>' + fmtNum(p[xInf.key]) + '</b> (' + fmtNum(p[xInf.densityKey]) + '/km²)</div>' +
-        '<div>' + yInf.label + ': <b>' + fmtNum(p[yInf.key]) + '</b> (' + fmtNum(p[yInf.densityKey]) + '/km²)</div>' +
-        '<div class="popup-src">Ward boundaries: DataMeet Municipal_Spatial_Data (likely pre-2022 delimitation, used for spatial aggregation only) · Infra: OpenStreetMap</div>';
+        '<div class="popup-rank">Ward — ' + p.areaSqKm + ' km² · enclosing district (approx.): ' + (p.assignedDistrict || 'unassigned') + '</div>' +
+        wardMetricLine(p, xInf) + wardMetricLine(p, yInf) +
+        '<div class="popup-src">Ward boundaries: DataMeet Municipal_Spatial_Data (likely pre-2022 delimitation, used for spatial aggregation only) · ' + WARD_INFRA.filter(w=>[xInf.key,yInf.key].includes(w.key)).map(w=>w.label).join(' & ') + ' — see caveats above</div>';
       layer.bindPopup(body);
       layer.on('mouseover', () => layer.setStyle({ weight: 2.5, color: '#1c2331' }));
       layer.on('mouseout', () => layer.setStyle({ weight: 0.8, color: '#fff' }));
@@ -440,11 +482,13 @@ function renderWardLegend(show, xInf, yInf) {
   for (let row = 2; row >= 0; row--) {
     for (let col = 0; col < 3; col++) cells.push('<div style="background:' + BIVARIATE_MATRIX[row][col] + '"></div>');
   }
-  el.innerHTML = '<b>' + xInf.label + ' × ' + yInf.label + ' (per ward)</b>' +
+  const caveats = [xInf, yInf].filter(inf => inf.basis).map(inf => inf.label + ': ' + WARD_INFRA_BASIS_LABEL[inf.basis]);
+  el.innerHTML = '<b>' + xInf.label + ' (' + xInf.group + ') × ' + yInf.label + ' (' + yInf.group + ') — per ward</b>' +
     '<div class="leg-biv-grid">' + cells.join('') + '</div>' +
     '<div class="leg-biv-axes"><span>↑ ' + yInf.label + '</span></div>' +
     '<div class="leg-biv-axes"><span>Low ' + xInf.label + ' →</span><span>High</span></div>' +
-    '<div style="margin-top:4px;font-style:italic;">290 wards · tertiles, computed live</div>';
+    '<div style="margin-top:4px;font-style:italic;">290 wards · tertiles, computed live</div>' +
+    (caveats.length ? '<div style="margin-top:4px;font-style:italic;">' + caveats.join('<br>') + '</div>' : '');
   el.classList.add('show');
 }
 
@@ -672,17 +716,30 @@ bivInfraSelect.addEventListener('change', () => { bivariateInfra = bivInfraSelec
 
 const wardInfraXSelect = document.getElementById('wardInfraXSelect');
 const wardInfraYSelect = document.getElementById('wardInfraYSelect');
-wardInfraXSelect.innerHTML = WARD_INFRA.map(w => '<option value="' + w.key + '">' + w.label + '</option>').join('');
-wardInfraYSelect.innerHTML = WARD_INFRA.map(w => '<option value="' + w.key + '">' + w.label + '</option>').join('');
+function wardInfraOptionsHtml() {
+  const groups = [['infra', 'Infrastructure'], ['crime', 'Crime / Incidents']];
+  return groups.map(([g, label]) =>
+    '<optgroup label="' + label + '">' +
+    WARD_INFRA.filter(w => w.group === g).map(w => '<option value="' + w.key + '">' + w.label + '</option>').join('') +
+    '</optgroup>'
+  ).join('');
+}
+wardInfraXSelect.innerHTML = wardInfraOptionsHtml();
+wardInfraYSelect.innerHTML = wardInfraOptionsHtml();
 wardInfraXSelect.value = wardInfraX;
 wardInfraYSelect.value = wardInfraY;
 document.getElementById('chkWardBivariate').addEventListener('change', (e) => {
   wardBivariateMode = e.target.checked;
   document.getElementById('wardInfraWrap').style.display = wardBivariateMode ? '' : 'none';
+  if (wardBivariateMode) {
+    wardExploratoryMode = false;
+    document.getElementById('chkWardExploratoryIndex').checked = false;
+  }
   renderWardLayer();
+  updateUrlState();
 });
-wardInfraXSelect.addEventListener('change', () => { wardInfraX = wardInfraXSelect.value; renderWardLayer(); });
-wardInfraYSelect.addEventListener('change', () => { wardInfraY = wardInfraYSelect.value; renderWardLayer(); });
+wardInfraXSelect.addEventListener('change', () => { wardInfraX = wardInfraXSelect.value; renderWardLayer(); updateUrlState(); });
+wardInfraYSelect.addEventListener('change', () => { wardInfraY = wardInfraYSelect.value; renderWardLayer(); updateUrlState(); });
 
 // ── Proportional-circle display mode -- alternative to the choropleth fill that avoids the
 // area bias of coloring physically large/small districts the same way (a small dense district
@@ -736,7 +793,7 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
   buildDisplayModeToggle();
   document.querySelectorAll('#pointLayerToggles input[type=checkbox]').forEach(chk => { const wasChecked = chk.checked; chk.checked = false; if (wasChecked) chk.dispatchEvent(new Event('change')); });
   document.getElementById('chkHeatmap').checked = false;
-  if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
+  rebuildHeatLayer();
   document.getElementById('analysisSelect').value = 'none';
   if (typeof clearAnalysisHighlight === 'function') clearAnalysisHighlight();
   document.getElementById('nearbyPanel').classList.remove('show');
@@ -746,6 +803,8 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
   wardBivariateMode = false;
   document.getElementById('chkWardBivariate').checked = false;
   document.getElementById('wardInfraWrap').style.display = 'none';
+  wardExploratoryMode = false;
+  document.getElementById('chkWardExploratoryIndex').checked = false;
   renderWardLayer();
   zoneYear = '2023';
   document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.year === zoneYear));
@@ -753,12 +812,17 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
   renderChoropleth();
 });
 
-// ── Shareable URL state: ?year=2023&crime=theft&infra=streetlight&district=North ──
-// Read once on load (before the first render, so the initial paint already reflects it) and
-// written back via history.replaceState() at the end of every renderChoropleth() call, since
-// virtually every state-changing control (metric/year/rate/bivariate/district selection) already
-// routes through that one function -- a single hook here instead of wiring every control.
+// ── Shareable URL state: ?year=2023&crime=theft&infra=streetlight&district=North&heatmap=1&
+// zoneYear=2024&ward=biv&wx=..&wy=..&layers=chkBus,chkAtm ── Read once on load (before the first
+// render, so the initial paint already reflects it) and written back via history.replaceState()
+// on every relevant control change. Every value read back from the URL is validated against the
+// actual known option lists below before being applied -- an unrecognized value is silently
+// ignored and the corresponding default is kept, never applied blindly.
+const POINT_LAYER_IDS = ['chkPolice', 'chkPosts', 'chkZones', 'chkBus', 'chkAtm', 'chkAlcohol', 'chkSurveillance', 'chkCctvPriority', 'chkLiquorVends', 'chkCrashZones2024Approx'];
 let pendingUrlDistrict = null;
+let pendingUrlState = null; // { heatmap, zoneYear, ward, wx, wy, layers } -- applied once every
+                              // relevant section has finished wiring its own event listeners (see
+                              // applyDeferredUrlState() at the very end of the script).
 function applyUrlStateOnLoad() {
   const params = new URLSearchParams(location.search);
   const crime = params.get('crime');
@@ -777,6 +841,21 @@ function applyUrlStateOnLoad() {
     document.getElementById('bivInfraWrap').style.display = '';
   }
   if (district) pendingUrlDistrict = district; // applied after the first render, once districtLayers exists
+
+  const heatmap = params.get('heatmap');
+  const zoneYearParam = params.get('zoneYear');
+  const ward = params.get('ward');
+  const wx = params.get('wx');
+  const wy = params.get('wy');
+  const layersParam = params.get('layers');
+  pendingUrlState = {
+    heatmap: heatmap === '1',
+    zoneYear: (zoneYearParam && ['2023', '2024'].includes(zoneYearParam)) ? zoneYearParam : null,
+    ward: (ward === 'biv' || ward === 'exp') ? ward : null,
+    wx: (wx && WARD_INFRA.some(w => w.key === wx)) ? wx : null,
+    wy: (wy && WARD_INFRA.some(w => w.key === wy)) ? wy : null,
+    layers: layersParam ? layersParam.split(',').filter(id => POINT_LAYER_IDS.includes(id)) : [],
+  };
 }
 function updateUrlState() {
   const m = currentMetric();
@@ -786,6 +865,12 @@ function updateUrlState() {
   if (rateMode !== 'density') params.set('rate', rateMode);
   if (bivariateMode) { params.set('bivariate', '1'); params.set('infra', bivariateInfra); }
   if (selectedDistrict) params.set('district', selectedDistrict);
+  if (document.getElementById('chkHeatmap').checked) params.set('heatmap', '1');
+  if (zoneYear !== '2023') params.set('zoneYear', zoneYear);
+  if (wardBivariateMode) { params.set('ward', 'biv'); params.set('wx', wardInfraX); params.set('wy', wardInfraY); }
+  else if (wardExploratoryMode) { params.set('ward', 'exp'); }
+  const checkedLayers = POINT_LAYER_IDS.filter(id => { const el = document.getElementById(id); return el && el.checked; });
+  if (checkedLayers.length) params.set('layers', checkedLayers.join(','));
   const qs = params.toString();
   history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
 }
@@ -901,11 +986,48 @@ const atmLayer = makeClusterLayer(POI.atms, '#d4af37', 'ATM');
 const alcoholLayer = makeShapeLayer(POI.alcoholShops, '#8b2f5e', 'diamond', 12);
 const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11);
 
+// ── Official liquor vends (approximate coordinates) — independent point layer, not the OSM-
+// derived "Liquor Shops" layer above. Faded/hollow diamond styling signals "approximate, not a
+// verified location" at a glance, matching this project's established approximate-vs-exact
+// visual convention. Includes both the 374 official DSCSC/DCCWS records and the 13 OSM-only ones
+// already present in the source file, distinguished in the popup by record_source.
+const liquorVendsLayer = L.layerGroup();
+LIQUOR_VENDS_APPROX.features.forEach(f => {
+  const p = f.properties;
+  const [lng, lat] = f.geometry.coordinates;
+  const isOfficial = p.record_source !== 'OpenStreetMap';
+  L.marker([lat, lng], { icon: shapeIcon(isOfficial ? '#8b2f5e' : '#b98cae', 'diamond', 11) })
+    .bindPopup('<div class="popup-title">' + p.name + '</div>' +
+      '<div class="popup-rank">' + (isOfficial ? 'Official liquor vend' : 'OSM-only record') + (p.vend_category ? ' — ' + p.vend_category : '') + '</div>' +
+      '<div style="font-style:italic;">Approximate coordinate (' + (p.coordinate_confidence || 'unknown') + ' confidence, ±' + fmtNum(p.estimated_accuracy_m) + 'm) — ' + (p.coordinate_warning || 'not a verified vend entrance') + '</div>' +
+      '<div class="popup-src">Source: ' + (p.operator || 'DSCSC/DCCWS official list') + '</div>')
+    .addTo(liquorVendsLayer);
+});
+
+// ── 2024 crash zones, full 93-zone approximate-coordinate pass — a separate, richer dataset from
+// the "Crash zones" layer's 2024 option above (which uses only the 54/93 Nominatim-geocoded
+// subset). Every one of these 93 has a coordinate, but every coordinate is an approximation
+// (landmark/intersection/locality centre), never a surveyed crash location — labeled as such in
+// every popup, not just a tooltip.
+const crashZones2024ApproxLayer = L.layerGroup();
+CRASH_ZONES_2024_APPROX.features.forEach(f => {
+  const p = f.properties;
+  const [lng, lat] = f.geometry.coordinates;
+  const fatal = p.all_fatal_crashes, total = p.all_total_crashes;
+  const t = fatal != null ? Math.max(0, Math.min(1, (fatal - 1) / 6)) : 0.3;
+  L.circleMarker([lat, lng], { radius: 4 + t * 4, color: '#e3a13b', weight: 1.5, dashArray: '3 2', fillColor: '#b14a34', fillOpacity: 0.5 + t * 0.35 })
+    .bindPopup('<div class="popup-title">' + p.location_name + '</div>' +
+      '<div class="popup-rank">' + (p.road_name || '') + '</div>' +
+      '<div>' + (fatal != null ? fatal + ' fatal, ' + total + ' total crashes, 2024' : 'Not individually tabulated in Table 6.29 — no crash counts available') + '</div>' +
+      '<div style="font-style:italic;">Approximate coordinate (' + p.coordinate_method + ', ' + p.coordinate_confidence + ' confidence, ±' + fmtNum(p.estimated_accuracy_m) + 'm) — ' + p.coordinate_warning + '</div>' +
+      '<div class="popup-src">Source: Delhi Road Crash Report 2024, Delhi Traffic Police. Full 93-zone approximate-coordinate pass — distinct from the 54/93 geocoded subset in the "Crash zones" layer.</div>')
+    .addTo(crashZones2024ApproxLayer);
+});
+
 // Crash zones support a year toggle (2023/2024) -- rebuildZonesLayer() clears and repopulates
 // zonesGroup/zoneMarkers from whichever year is selected, so every spatial-analysis tool already
 // built around zoneMarkers (runAnalysis(), showNearbyInfra()) automatically operates on the
 // selected year without needing its own year-awareness.
-let zoneYear = '2023';
 const zonesGroup = L.layerGroup();
 let zoneMarkers = []; // { zone, marker, baseStyle } -- kept so spatial-analysis highlighting and the
                         // click-for-nearby-infra panel can restyle/query individual zone markers.
@@ -934,36 +1056,45 @@ function rebuildZonesLayer() {
   });
   document.getElementById('cntZones').textContent = '(' + zoneMarkers.length.toLocaleString('en-IN') + ')';
   if (wasOnMap && !map.hasLayer(zonesGroup)) zonesGroup.addTo(map);
+  if (typeof rebuildHeatLayer === 'function') rebuildHeatLayer();
 }
 rebuildZonesLayer();
 
 // CCTV priority-candidate locations (report-recommended sites, not an existing camera inventory)
-// -- pooled across both years' geocoded zones, deduplicated by name since a location can recur.
+// -- pooled across both years' geocoded zones, grouped by name since a location can recur across
+// report years. Every year a location was recommended in is shown in its popup, rather than
+// keeping only the first year seen and silently dropping the rest.
 const cctvPriorityLayer = L.layerGroup();
-const cctvSeen = new Set();
+const cctvByName = new Map();
 ['2023', '2024'].forEach(year => {
-  ZONES_BY_YEAR[year].filter(z => z.lat != null && z.cctvPriorityCandidate && !cctvSeen.has(z.name)).forEach(z => {
-    cctvSeen.add(z.name);
-    L.marker([z.lat, z.lng], { icon: shapeIcon('#0891b2', 'ring', 13) })
-      .bindPopup('<div class="popup-title">' + z.name + '</div>' +
-        '<div class="popup-rank">Recommended CCTV site (' + year + ' report)</div>' +
-        '<div>' + z.fatal + ' fatal, ' + z.total + ' total crashes in identified zone</div>' +
-        '<div class="popup-src">Report recommendation, not a verified existing camera — see the "CCTV/guards" layer for OSM-mapped existing cameras nearby. Source: Delhi Road Crash Report ' + year + ', Table 6.37.</div>')
-      .addTo(cctvPriorityLayer);
+  ZONES_BY_YEAR[year].filter(z => z.lat != null && z.cctvPriorityCandidate).forEach(z => {
+    if (!cctvByName.has(z.name)) cctvByName.set(z.name, { name: z.name, lat: z.lat, lng: z.lng, years: [] });
+    cctvByName.get(z.name).years.push({ year, fatal: z.fatal, total: z.total });
   });
+});
+cctvByName.forEach(site => {
+  const yearsLine = site.years.map(y => y.year + ' (' + y.fatal + ' fatal / ' + y.total + ' total)').join(', ');
+  L.marker([site.lat, site.lng], { icon: shapeIcon('#0891b2', 'ring', 13) })
+    .bindPopup('<div class="popup-title">' + site.name + '</div>' +
+      '<div class="popup-rank">Recommended CCTV site — ' + site.years.length + ' report year' + (site.years.length > 1 ? 's' : '') + '</div>' +
+      '<div>Recommended in: <b>' + yearsLine + '</b></div>' +
+      '<div class="popup-src">Report recommendation, not a verified existing camera — see the "CCTV/guards" layer for OSM-mapped existing cameras nearby. Source: Delhi Road Crash Report(s), Table 6.37.</div>')
+    .addTo(cctvPriorityLayer);
 });
 
 const toggles = [
   ['chkPolice', policeStationLayer, 'cntPolice'], ['chkPosts', policePostLayer, 'cntPosts'], ['chkZones', zonesGroup, 'cntZones'],
   ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'],
   ['chkCctvPriority', cctvPriorityLayer, 'cntCctvPriority'],
+  ['chkLiquorVends', liquorVendsLayer, 'cntLiquorVends'], ['chkCrashZones2024Approx', crashZones2024ApproxLayer, 'cntCrashZones2024Approx'],
 ];
-const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntCctvPriority: cctvPriorityLayer.getLayers().length };
+const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length };
 toggles.forEach(([id, layer, countId]) => {
   document.getElementById(countId).textContent = '(' + layerCounts[countId].toLocaleString('en-IN') + ')';
   document.getElementById(id).addEventListener('change', (e) => {
     if (e.target.checked) layer.addTo(map); else map.removeLayer(layer);
     updatePointLegend();
+    updateUrlState();
   });
 });
 
@@ -972,6 +1103,7 @@ document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(btn
     zoneYear = btn.dataset.year;
     document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.year === zoneYear));
     rebuildZonesLayer();
+    updateUrlState();
   });
 });
 
@@ -980,6 +1112,8 @@ const POINT_LEGEND_ITEMS = [
   ['chkZones', '#b14a34', 'dot', 'Crash zones (size = fatal crashes)'], ['chkBus', '#3f7d52', 'dot', 'Bus stops (clustered)'],
   ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'],
   ['chkCctvPriority', '#0891b2', 'ring', 'CCTV priority candidates (recommended, not existing)'],
+  ['chkLiquorVends', '#8b2f5e', 'diamond', 'Liquor vends, official (approx. coordinates)'],
+  ['chkCrashZones2024Approx', '#b14a34', 'dot', 'Crash zones 2024, full 93 (approx. coordinates)'],
 ];
 function updatePointLegend() {
   const active = POINT_LEGEND_ITEMS.filter(([id]) => document.getElementById(id).checked);
@@ -994,17 +1128,18 @@ function updatePointLegend() {
 // ── Heatmap mode (Leaflet.heat) — crash zones weighted by fatal-crash count, as an alternative
 // to plotting each zone as a discrete circle. Density heatmaps read more naturally than dozens
 // of overlapping circles when zooming out to see citywide crash concentration at a glance.
-let heatLayer = null;
-document.getElementById('chkHeatmap').addEventListener('change', (e) => {
-  if (e.target.checked) {
-    const points = ZONES_BY_YEAR[zoneYear].filter(z => z.lat != null && z.lng != null).map(z => [z.lat, z.lng, Math.min(1, z.fatal / 10)]);
-    heatLayer = L.heatLayer(points, { radius: 28, blur: 20, maxZoom: 15, gradient: { 0.2: '#e8d6b3', 0.5: '#d48a5a', 0.8: '#b14a34', 1: '#7a2515' } });
-    heatLayer.addTo(map);
-  } else if (heatLayer) {
-    map.removeLayer(heatLayer);
-    heatLayer = null;
-  }
-});
+// rebuildHeatLayer() is the single place that ever creates/replaces heatLayer, called both from
+// this checkbox and from rebuildZonesLayer()/the reset button, so switching the crash-zone year
+// while the heatmap is on refreshes it in place instead of leaving stale points on screen, and at
+// most one heatLayer instance ever exists on the map at a time.
+function rebuildHeatLayer() {
+  if (heatLayer) { map.removeLayer(heatLayer); heatLayer = null; }
+  if (!document.getElementById('chkHeatmap').checked) return;
+  const points = ZONES_BY_YEAR[zoneYear].filter(z => z.lat != null && z.lng != null).map(z => [z.lat, z.lng, Math.min(1, z.fatal / 10)]);
+  heatLayer = L.heatLayer(points, { radius: 28, blur: 20, maxZoom: 15, gradient: { 0.2: '#e8d6b3', 0.5: '#d48a5a', 0.8: '#b14a34', 1: '#7a2515' } });
+  heatLayer.addTo(map);
+}
+document.getElementById('chkHeatmap').addEventListener('change', () => { rebuildHeatLayer(); updateUrlState(); });
 
 // ── Spatial-intersection analysis tools ──
 // Haversine great-circle distance in meters -- accurate enough at Delhi's scale (city spans
@@ -1107,11 +1242,66 @@ function showNearbyInfra(zone) {
   el.classList.add('show');
 }
 
+// ── Shared, validated exploratory-scoring helper — one implementation reused by every composite
+// score on this page, instead of each score reinventing its own weighting/NaN-handling. Given a
+// list of items and factors (each { key, label, invert, get(item) -> number|null }) and an
+// optional weight map:
+//   - Weights are normalized to sum to 1. If none are supplied, or any is missing/negative/non-
+//     finite, or they sum to 0, falls back to equal weighting across all factors (never silently
+//     drops a factor to weight 0 due to a bad input).
+//   - A missing (null) factor value for an item is excluded from that item's score and its
+//     weight is redistributed across the item's remaining covered factors — never coerced to 0,
+//     so missing data cannot masquerade as "safest possible" or "worst possible".
+//   - The result is always finite and clamped to [0, 100], or null if an item has zero covered
+//     factors (never NaN).
+//   - This only ever returns a percentile-based score — it never infers or displays a count (e.g.
+//     "N cameras") from the score itself.
+function normalizeExploratoryWeights(factorKeys, weights) {
+  const equal = () => { const out = {}; factorKeys.forEach(k => { out[k] = 1 / factorKeys.length; }); return out; };
+  if (!weights) return equal();
+  const raw = factorKeys.map(k => weights[k]);
+  const allValid = raw.every(w => typeof w === 'number' && Number.isFinite(w) && w >= 0);
+  if (!allValid) return equal();
+  const sum = raw.reduce((a, b) => a + b, 0);
+  if (sum <= 0) return equal();
+  const out = {};
+  factorKeys.forEach((k, i) => { out[k] = raw[i] / sum; });
+  return out;
+}
+function computeExploratoryScore(items, factors, weights) {
+  const normWeights = normalizeExploratoryWeights(factors.map(f => f.key), weights);
+  const factorScales = factors.map(f => {
+    const vals = items.map(f.get).filter(v => v != null && Number.isFinite(v));
+    return { factor: f, scale: percentileScale(vals) };
+  });
+  const results = new Map();
+  items.forEach(item => {
+    const contributions = factorScales.map(({ factor, scale }) => {
+      const v = factor.get(item);
+      const weight = normWeights[factor.key];
+      if (v == null || !Number.isFinite(v)) return { key: factor.key, label: factor.label, value: null, percentile: null, weight };
+      const pct = factor.invert ? 1 - scale(v) : scale(v);
+      return { key: factor.key, label: factor.label, value: v, percentile: pct, weight };
+    });
+    const covered = contributions.filter(c => c.percentile != null);
+    const coveredWeightSum = covered.reduce((a, c) => a + c.weight, 0);
+    let score = null;
+    if (covered.length && coveredWeightSum > 0) {
+      const weighted = covered.reduce((a, c) => a + (c.percentile * c.weight) / coveredWeightSum, 0);
+      score = Math.max(0, Math.min(100, Math.round(weighted * 1000) / 10));
+      if (!Number.isFinite(score)) score = null; // defensive: never surface a non-finite score
+    }
+    results.set(item, { score, contributions, coveredFactors: covered.length, totalFactors: factors.length });
+  });
+  return { scores: results, weights: normWeights };
+}
+
 // ── Composite "unsafe areas" layer — transparent methodology: plain average of five equally-
 // weighted, percentile-ranked factors (see #methodOverlay for the full writeup, shown to the
 // user via the "ⓘ methodology" link rather than left undocumented). No hidden weighting, no
 // black-box scoring — every factor and its direction is spelled out and re-derivable from the
-// same district fields already used elsewhere on this page.
+// same district fields already used elsewhere on this page. Uses computeExploratoryScore with no
+// explicit weights, which falls back to the same equal-weighting this always used.
 const UNSAFE_FACTORS = [
   { key: 'totalIPCDensity', label: 'Total IPC crime density', invert: false, get: d => d.totalIPC != null ? d.totalIPC / d.areaSqKm : null },
   { key: 'crimeAgainstWomenDensity', label: 'Crime against women density', invert: false, get: d => d.crimeAgainstWomen != null ? d.crimeAgainstWomen / d.areaSqKm : null },
@@ -1121,21 +1311,16 @@ const UNSAFE_FACTORS = [
 ];
 function computeUnsafeScores() {
   const allProps = BOUNDARIES.features.map(f => f.properties);
-  const factorScales = UNSAFE_FACTORS.map(f => {
-    const vals = allProps.map(f.get).filter(v => v != null);
-    return { factor: f, scale: percentileScale(vals), n: vals.length };
-  });
+  const { scores: scoreMap } = computeExploratoryScore(allProps, UNSAFE_FACTORS, null);
   const scores = {};
   allProps.forEach(d => {
-    const contributions = factorScales.map(({ factor, scale }) => {
-      const v = factor.get(d);
-      if (v == null) return { label: factor.label, value: null, percentile: null };
-      const pct = factor.invert ? 1 - scale(v) : scale(v);
-      return { label: factor.label, value: v, percentile: pct };
-    });
-    const valid = contributions.filter(c => c.percentile != null);
-    const score = valid.length ? valid.reduce((a,c) => a + c.percentile, 0) / valid.length : null;
-    scores[d.district] = { score, contributions, coveredFactors: valid.length, totalFactors: UNSAFE_FACTORS.length };
+    const r = scoreMap.get(d);
+    scores[d.district] = {
+      score: r.score != null ? r.score / 100 : null, // kept on this page's existing 0-1 convention (popup multiplies by 100)
+      contributions: r.contributions.map(c => ({ label: c.label, value: c.value, percentile: c.percentile })),
+      coveredFactors: r.coveredFactors,
+      totalFactors: r.totalFactors,
+    };
   });
   return scores;
 }
@@ -1148,6 +1333,99 @@ document.getElementById('chkUnsafe').addEventListener('change', (e) => {
 document.getElementById('unsafeMethodLink').addEventListener('click', () => document.getElementById('methodOverlay').classList.add('show'));
 document.getElementById('methodCloseBtn').addEventListener('click', () => document.getElementById('methodOverlay').classList.remove('show'));
 document.getElementById('methodOverlay').addEventListener('click', (e) => { if (e.target.id === 'methodOverlay') e.currentTarget.classList.remove('show'); });
+
+// ── Ward liquor-crash exploratory risk index — a new, ward-level composite distinct from both
+// the district "unsafe areas" score above and the CCTV-priority-candidate layer (which is a
+// report recommendation, not a model score). Explicitly exploratory: built from approximate-
+// coordinate ward aggregates (2024 crash-zone density + official liquor-vend density), not an
+// official Delhi Police index, and never attributes camera counts or any other inference beyond
+// the percentile score itself.
+const WARD_EXPLORATORY_FACTORS = [
+  { key: 'crashZones2024Density', label: '2024 crash-zone density', invert: false, get: p => p.crashZones2024Density },
+  { key: 'officialLiquorVendsDensity', label: 'Official liquor-vend density', invert: false, get: p => p.officialLiquorVendsDensity },
+];
+const WARD_EXPLORATORY_WEIGHTS = { crashZones2024Density: 0.6, officialLiquorVendsDensity: 0.4 };
+let wardExploratoryScores = null;
+function computeWardExploratoryScores() {
+  const { scores } = computeExploratoryScore(wardsInfra.features.map(f => f.properties), WARD_EXPLORATORY_FACTORS, WARD_EXPLORATORY_WEIGHTS);
+  return scores;
+}
+
+function renderWardExploratoryLayer() {
+  if (wardLayer) { map.removeLayer(wardLayer); wardLayer = null; }
+  if (!wardExploratoryMode) { renderWardLegend(false); return; }
+  wardExploratoryScores = computeWardExploratoryScores();
+  wardLayer = L.geoJSON(wardsInfra, {
+    style: f => {
+      const s = wardExploratoryScores.get(f.properties);
+      return { fillColor: s.score == null ? '#999' : rustScale(s.score / 100), fillOpacity: 0.75, color: '#fff', weight: 0.8, dashArray: '4 2' };
+    },
+    onEachFeature: (f, layer) => {
+      const p = f.properties;
+      const s = wardExploratoryScores.get(p);
+      const body = '<div class="popup-title">' + p.Ward_Name + '</div>' +
+        '<div class="popup-rank">Liquor-crash exploratory index: <b>' + (s.score != null ? s.score.toFixed(0) + '/100' : '—') + '</b> (' + s.coveredFactors + '/' + s.totalFactors + ' factors covered)</div>' +
+        s.contributions.map(c => '<div class="unsafe-factor-row"><span>' + c.label + '</span><span>' + (c.percentile != null ? (c.percentile * 100).toFixed(0) + 'pct' : 'n/a') + '</span></div>').join('') +
+        '<div class="popup-src">Exploratory index only — not an official Delhi Police score, not a camera-placement recommendation. Weighted average of percentile-ranked, approximate-coordinate ward aggregates (' + WARD_INFRA_BASIS_LABEL.exploratory + ').</div>';
+      layer.bindPopup(body);
+      layer.on('mouseover', () => layer.setStyle({ weight: 2.5, color: '#1c2331' }));
+      layer.on('mouseout', () => layer.setStyle({ weight: 0.8, color: '#fff' }));
+    },
+  }).addTo(map);
+  const el = document.getElementById('wardLegend');
+  el.innerHTML = '<b>Liquor-Crash Exploratory Index (per ward)</b>' +
+    '<div class="leg-scale">' + Array.from({length:8}, (_,i) => '<span style="background:' + rustScale(i/7) + '"></span>').join('') + '</div>' +
+    '<div style="display:flex;justify-content:space-between;"><span>Lower</span><span>Higher</span></div>' +
+    '<div style="margin-top:4px;font-style:italic;">0-100, exploratory — not an official score. Weighted avg: crash-zone density 60%, liquor-vend density 40%.</div>';
+  el.classList.add('show');
+}
+document.getElementById('chkWardExploratoryIndex').addEventListener('change', (e) => {
+  wardExploratoryMode = e.target.checked;
+  if (wardExploratoryMode) {
+    wardBivariateMode = false;
+    document.getElementById('chkWardBivariate').checked = false;
+    document.getElementById('wardInfraWrap').style.display = 'none';
+  }
+  renderWardExploratoryLayer();
+  updateUrlState();
+});
+
+// ── Apply the deferred parts of the shared URL state (heatmap, zone year, ward mode/selectors,
+// point layers) now that every section above has finished wiring its own event listeners --
+// checking a box and dispatching 'change' here reaches the same code path a real click would.
+function applyDeferredUrlState() {
+  const s = pendingUrlState;
+  if (!s) return;
+  if (s.zoneYear && s.zoneYear !== zoneYear) {
+    zoneYear = s.zoneYear;
+    document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.year === zoneYear));
+    rebuildZonesLayer();
+  }
+  if (s.layers.length) {
+    s.layers.forEach(id => {
+      const chk = document.getElementById(id);
+      if (chk && !chk.checked) { chk.checked = true; chk.dispatchEvent(new Event('change')); }
+    });
+  }
+  if (s.heatmap) {
+    const chk = document.getElementById('chkHeatmap');
+    if (!chk.checked) { chk.checked = true; rebuildHeatLayer(); }
+  }
+  if (s.ward === 'biv') {
+    if (s.wx) { wardInfraX = s.wx; wardInfraXSelect.value = s.wx; }
+    if (s.wy) { wardInfraY = s.wy; wardInfraYSelect.value = s.wy; }
+    document.getElementById('chkWardBivariate').checked = true;
+    wardBivariateMode = true;
+    document.getElementById('wardInfraWrap').style.display = '';
+    renderWardLayer();
+  } else if (s.ward === 'exp') {
+    document.getElementById('chkWardExploratoryIndex').checked = true;
+    wardExploratoryMode = true;
+    renderWardExploratoryLayer();
+  }
+  updateUrlState();
+}
+applyDeferredUrlState();
 </script>
 </body>
 </html>
