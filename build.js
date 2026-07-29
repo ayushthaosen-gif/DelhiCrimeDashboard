@@ -11,6 +11,7 @@ const roadSafetyTrends = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/road_s
 const roadSafetyExtra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/road_safety_extra_2023_2024.json'), 'utf8'));
 const accidentZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_raw.json'), 'utf8'));
 const accidentZonesMapped = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_mapped.json'), 'utf8'));
+const accidentZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2024_geocoded.json'), 'utf8'));
 const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers.json'), 'utf8'));
 const font600 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders600.woff2')).toString('base64');
 const font800 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders800.woff2')).toString('base64');
@@ -540,6 +541,12 @@ footer a { color: inherit; }
       <button class="dl-download-btn" id="dlZonesDownload" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List</button>
     </div>
 
+    <div id="rsZones2024Panel" class="rs-tab-panel">
+      <p class="scatter-sub">Delhi Traffic Police's blackspot list from the <b>Delhi Road Crash Report 2024</b> — 93 named crash-prone zones, each with real 2024 crash counts and (where the report itself flags it) a breakdown by pedestrian/two-wheeler/HTV/hit-and-run and day/night crashes. None of the 2024 report's zones have published coordinates — <b>54 of 93</b> were matched to a coordinate (42 shared a name with an already-geocoded 2023 zone, 12 resolved via OpenStreetMap geocoding) and are plotted on the map above under the 2024 zone-year option; the remaining 39 are hyper-local names a geocoder can't resolve on free text alone, listed here with their real severity numbers rather than force-placed. Sorted fatal-crashes descending, as in the source report.</p>
+      <div class="zone-grid" id="zoneGrid2024"></div>
+      <button class="dl-download-btn" id="dlZones2024Download" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List (2024)</button>
+    </div>
+
     <div id="rsEnforcementPanel" class="rs-tab-panel">
       <p class="scatter-sub">Citywide enforcement and hit-and-run figures, 2023 vs 2024 — not broken down by district in the source, so kept here rather than on the map.</p>
       <div id="enforcementGrid"></div>
@@ -611,6 +618,7 @@ const VICTIMS = ${JSON.stringify(roadSafetyTrends.victims)};
 const ROAD_EXTRA = ${JSON.stringify(roadSafetyExtra)};
 const ACCIDENT_ZONES = ${JSON.stringify(accidentZones)};
 const ACCIDENT_ZONES_MAPPED = ${JSON.stringify(accidentZonesMapped)};
+const ACCIDENT_ZONES_2024 = ${JSON.stringify(accidentZones2024)};
 const POI_MARKERS = ${JSON.stringify(poiMarkers)};
 
 const METRICS = [
@@ -1518,8 +1526,8 @@ function renderCorrelationMatrix() {
   const metricKeys = METRICS;
 
   const tableHeader = '<thead><tr style="border-bottom:1px solid var(--border);">' +
-    '<th style="text-align:left;padding:8px 12px;color:var(--text-dim);">Metric (' + year + ')</th>' +
-    infraKeys.map(inf => '<th style="text-align:center;padding:8px 10px;color:var(--text-dim);">' + esc(inf.label) + '</th>').join('') +
+    '<th style="text-align:left;padding:8px 12px;color:var(--text-dim);position:sticky;left:0;background:var(--surface);z-index:1;">Metric (' + year + ')</th>' +
+    infraKeys.map(inf => '<th style="text-align:center;padding:8px 10px;color:var(--text-dim);white-space:nowrap;">' + esc(inf.label) + '</th>').join('') +
   '</tr></thead>';
 
   const rows = metricKeys.map(m => {
@@ -1549,13 +1557,13 @@ function renderCorrelationMatrix() {
     }).join('');
 
     return '<tr style="border-bottom:1px solid var(--border);">' +
-      '<td style="font-weight:700;padding:8px 12px;">' + esc(m.label) + '</td>' +
+      '<td style="font-weight:700;padding:8px 12px;white-space:nowrap;position:sticky;left:0;background:var(--surface);">' + esc(m.label) + '</td>' +
       cells +
     '</tr>';
   }).join('');
 
   container.innerHTML =
-    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px;">' +
       '<h3 style="font-size:20px;font-weight:800;margin:0;color:var(--text);">Dynamic Correlation Matrix (' + year + ')</h3>' +
       '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">' +
         '<div class="metric-tabs" id="corrCoeffToggle">' +
@@ -1565,6 +1573,7 @@ function renderCorrelationMatrix() {
         '<span style="font-size:11px;color:var(--text-dim);font-family:monospace;background:var(--bg);padding:4px 8px;border-radius:4px;border:1px solid var(--border);">' + (rateMode === 'perCapita' ? 'Per 100k Residents' : 'Per km² Density') + '</span>' +
       '</div>' +
     '</div>' +
+    '<p style="font-size:12.5px;color:var(--text-dim);margin:0 0 12px;line-height:1.5;">Each row is a crime or road-safety metric; each column is an infrastructure type. A cell is the ' + (corrCoeffMode === 'spearman' ? 'Spearman rank correlation (ρ)' : 'Pearson correlation (r)') + ' between that metric and that infrastructure\\'s density across districts — <span style="color:var(--amber);font-weight:700;">*</span> means statistically significant (p&lt;0.05), <span style="opacity:0.7;">(ns)</span> means not. Scroll right for more columns; the metric column stays pinned.</p>' +
     '<div style="overflow-x:auto;">' +
       '<table style="width:100%;border-collapse:collapse;font-size:13px;">' +
         tableHeader +
@@ -1889,6 +1898,21 @@ function renderZones() {
   }).join('');
 }
 
+function renderZones2024() {
+  const el = document.getElementById('zoneGrid2024');
+  el.innerHTML = ACCIDENT_ZONES_2024.map(z => {
+    const svUrl = z.lat && z.lng
+      ? 'https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + z.lat + ',' + z.lng
+      : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(z.name + ' ' + z.road + ' Delhi');
+    return '<div class="zone-item">' +
+      '<span class="zone-num">' + z.rank + '</span>' +
+      '<span class="zone-name">' + esc(z.name) + ' <span class="zone-road">(' + esc(z.road) + ')</span></span>' +
+      '<span class="zone-severity" title="' + z.fatal + ' fatal, ' + z.simple + ' simple, ' + z.total + ' total crashes in 2024' + (z.lat == null ? ' — coordinate unresolved' : '') + '">' + z.fatal + ' fatal</span>' +
+      '<a href="' + svUrl + '" target="_blank" rel="noopener" class="street-view-btn" data-tt-title="Open Google Street View" data-tt-body="View 360° Street View photography for ' + esc(z.name) + '">Street View</a>' +
+    '</div>';
+  }).join('');
+}
+
 function renderEnforcement() {
   const el = document.getElementById('enforcementGrid');
   const e23 = ROAD_EXTRA.enforcement['2023'], e24 = ROAD_EXTRA.enforcement['2024'];
@@ -1941,6 +1965,7 @@ function render() {
   renderTrends();
   renderVictimsByMode();
   renderZones();
+  renderZones2024();
   renderEnforcement();
   renderRoadSummary();
   if (compareMode) renderCompareCard();
@@ -2490,6 +2515,12 @@ document.getElementById('dlZonesDownload').addEventListener('click', () => {
   triggerDownload('gaitway_delhi_crash_prone_zones_2023.csv', toCSV(headers, rows));
 });
 
+document.getElementById('dlZones2024Download').addEventListener('click', () => {
+  const headers = ['Rank (fatal descending)', 'Crash-Prone Zone', 'Road Name', 'Simple Crashes', 'Fatal Crashes', 'Total Crashes', 'Coordinate Resolved'];
+  const rows = ACCIDENT_ZONES_2024.map(z => [z.rank, z.name, z.road, z.simple, z.fatal, z.total, z.lat != null ? 'yes' : 'no']);
+  triggerDownload('gaitway_delhi_crash_prone_zones_2024.csv', toCSV(headers, rows));
+});
+
 document.getElementById('dlRoadsDownload').addEventListener('click', () => {
   const headers = ['Road Name', 'Zones \\'23', 'Simple \\'23', 'Fatal \\'23', 'Total \\'23', 'Zones \\'24', 'Simple \\'24', 'Fatal \\'24', 'Total \\'24'];
   const r23 = Object.fromEntries(ROAD_EXTRA.roadSummary['2023'].map(r => [r.road, r]));
@@ -2697,6 +2728,7 @@ const ROAD_SAFETY_TABS = [
   { key: 'trends', label: 'Trends, 2014-2024' },
   { key: 'victims', label: 'By Mode of Travel' },
   { key: 'zones', label: 'Crash-Prone Zones (2023)' },
+  { key: 'zones2024', label: 'Crash-Prone Zones (2024)' },
   { key: 'enforcement', label: 'Enforcement, 2023-2024' },
   { key: 'roads', label: 'Top Roads, 2023-2024' },
 ];
@@ -2708,6 +2740,7 @@ function renderRoadSafetyTabs() {
   document.getElementById('rsTrendsPanel').classList.toggle('active', activeRoadSafetyTab === 'trends');
   document.getElementById('rsVictimsPanel').classList.toggle('active', activeRoadSafetyTab === 'victims');
   document.getElementById('rsZonesPanel').classList.toggle('active', activeRoadSafetyTab === 'zones');
+  document.getElementById('rsZones2024Panel').classList.toggle('active', activeRoadSafetyTab === 'zones2024');
   document.getElementById('rsEnforcementPanel').classList.toggle('active', activeRoadSafetyTab === 'enforcement');
   document.getElementById('rsRoadsPanel').classList.toggle('active', activeRoadSafetyTab === 'roads');
 }

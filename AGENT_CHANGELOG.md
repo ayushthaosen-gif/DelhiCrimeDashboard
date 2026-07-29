@@ -1,5 +1,17 @@
 # AI Collaboration Log & Changelog
 
+## [2026-07-29] - Claude (Anthropic) - Correlation Matrix Labeling + Missing 2024 Crash-Zone List
+
+### 📊 Explained caption/sticky column for the correlation matrix, and a real gap found: 2024's 93 named zones were never in the main dashboard
+
+Two follow-ups from the user after reviewing the dashboard. First, the "Dynamic Correlation Matrix" table (12 crime/road-safety metric rows × 8 infrastructure columns) had real per-cell tooltips and column headers already, but no caption explaining what the table was for, and its header column would scroll out of view on narrower screens — mocked up two fixes as an interactive widget (a labeled/sticky matrix vs. splitting into per-infrastructure tabs) before implementing; user picked the matrix option since it preserves cross-comparison. Added a one-line caption above the table ("Each row is a crime or road-safety metric; each column is an infrastructure type...") and made both the header row's and every row's first (metric-label) cell `position: sticky; left: 0`, so the row labels stay visible while scrolling through all 8 columns.
+
+Second, the user asked why the "Road safety detail" panel's "Crash-Prone Zones" tab only covers 2023. Root cause: `build.js` never loaded `data/crash_zones_2024_geocoded.json` at all — that 93-zone 2024 dataset (added to the interactive map several entries ago) was simply never wired into the main dashboard's build script. Added a new "Crash-Prone Zones (2024)" tab, mirroring the existing 2023 one exactly: `ACCIDENT_ZONES_2024` embedded const, `renderZones2024()`, a `zoneGrid2024` list (93 zones, Street View links, fatal/simple/total counts, unresolved-coordinate zones flagged in their tooltip rather than hidden), and a CSV download button.
+
+Verified: `node build.js`, extracted `<script>` (single tag, unambiguous) → `node --check` passed; served locally and confirmed via `javascript_tool` — the new "Crash-Prone Zones (2024)" tab renders all 93 zones (first: Azadpur Sabzi Mandi, 11 fatal), the correlation matrix's caption text and sticky-positioned header cell both present, the new CSV download button exists, zero console errors.
+
+---
+
 ## [2026-07-29] - Claude (Anthropic) - Remove the Standalone Liquor-Crash Page's Dashboard Link
 
 ### 🔗 Main dashboard now points only at the interactive map for this data
