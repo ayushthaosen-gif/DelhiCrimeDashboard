@@ -459,6 +459,7 @@ function renderWardLayer() {
       const p = f.properties;
       const body = '<div class="popup-title">' + p.Ward_Name + '</div>' +
         '<div class="popup-rank">Ward — ' + p.areaSqKm + ' km² · enclosing district (approx.): ' + (p.assignedDistrict || 'unassigned') + '</div>' +
+        (p.highInjuryNetwork ? '<div style="color:var(--rust);font-weight:700;">⚠ High-Injury Network — #' + p.highInjuryNetworkRank + ' of 18 wards accounting for half of 2024\\'s ward-assigned fatal crashes</div>' : '') +
         wardMetricLine(p, xInf) + wardMetricLine(p, yInf) +
         '<div class="popup-src">Ward boundaries: DataMeet Municipal_Spatial_Data (likely pre-2022 delimitation, used for spatial aggregation only) · ' + WARD_INFRA.filter(w=>[xInf.key,yInf.key].includes(w.key)).map(w=>w.label).join(' & ') + ' — see caveats above</div>';
       layer.bindPopup(body);
@@ -1358,6 +1359,7 @@ function renderWardExploratoryLayer() {
       const p = f.properties;
       const s = wardExploratoryScores.get(p);
       const body = '<div class="popup-title">' + p.Ward_Name + '</div>' +
+        (p.highInjuryNetwork ? '<div style="color:var(--rust);font-weight:700;">⚠ High-Injury Network — #' + p.highInjuryNetworkRank + ' of 18 wards accounting for half of 2024\\'s ward-assigned fatal crashes</div>' : '') +
         '<div class="popup-rank">Liquor-crash exploratory index: <b>' + (s.score != null ? s.score.toFixed(0) + '/100' : '—') + '</b> (' + s.coveredFactors + '/' + s.totalFactors + ' factors covered)</div>' +
         s.contributions.map(c => '<div class="unsafe-factor-row"><span>' + c.label + '</span><span>' + (c.percentile != null ? (c.percentile * 100).toFixed(0) + 'pct' : 'n/a') + '</span></div>').join('') +
         '<div class="popup-src">Exploratory index only — not an official Delhi Police score, not a camera-placement recommendation. Weighted average of percentile-ranked, approximate-coordinate ward aggregates (' + WARD_INFRA_BASIS_LABEL.exploratory + ').</div>';

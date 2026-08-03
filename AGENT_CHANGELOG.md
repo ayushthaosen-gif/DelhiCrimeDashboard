@@ -1,5 +1,20 @@
 # AI Collaboration Log & Changelog
 
+## [2026-07-29] - Claude (Anthropic) - High-Injury Network: A Vision Zero-Style Ward Ranking, Computed Not Guessed
+
+### 🚨 Formalizing "worst wards" into a named, reusable, government-legible metric
+
+Asked to research what makes best-in-class civic data journalism/dashboards work and propose ideas, then to pick the single best one for this project's purpose. Researched SafetiPin and Safecity (both Delhi-origin crowdsourced safety-mapping precedents), Vision Zero dashboards (Philly, Portland, DC, Indianapolis), The Marshall Project/ProPublica's crowdsourced-report-plus-news-corroboration pattern, Chicago's open-data/API practices, and FiveThirtyEight/Upshot's uncertainty-as-design ethos. Recommended the Vision Zero **High-Injury Network** concept as the best fit: it required no new infrastructure, no moderation/legal exposure, and directly reuses analysis this project already had (the ward-level fatal-crash ranking) — it just needed a real, computed threshold instead of an arbitrary top-5, and the standard term the field already uses.
+
+1. **`build_ward_infra.js`**: added a `highInjuryNetwork` (bool) / `highInjuryNetworkRank` (int|null) computation — wards ranked by `crashZones2024FatalSum` descending, flagged until the running cumulative total first reaches 50% of the total across every ward with at least one 2024 fatal crash. This is a real cutoff recomputed on every rebuild, not a fixed top-N: currently **18 of 290 wards (6.2%)** account for half of all 370 ward-assigned 2024 fatal crashes.
+2. **Caught a real data-quality gap while computing it**: one ward polygon in the DataMeet source boundary file has no `Ward_Name` or `Ward_No` at all, and it ranks #7 in the High-Injury Network (11 fatal crashes, Shahdara district by point-in-polygon assignment). Flagged explicitly as "(unnamed ward — source data gap)" everywhere it's referenced, rather than silently showing `null` or dropping it from the ranking.
+3. **`build_interactive_map.js`**: both ward popup builders (`renderWardLayer` for the bivariate mode, `renderWardExploratoryLayer` for the liquor-crash index) now show a "⚠ High-Injury Network — #N of 18 wards..." badge whenever a ward carries the flag, so the designation is visible in the actual map, not just the article.
+4. **Article/artifact and `ARTICLE.md`**: replaced the old "top 5 wards" table with the properly framed High-Injury Network section — full top-18 ranking, the 6.2%/50% headline stat, and the unnamed-ward caveat.
+
+Verified: `node build_ward_infra.js` printed the computed cutoff (18 of 66 fatal-crash wards, 6.2% of all 290, 50% of 370) matching independent verification via a standalone script; `node build_interactive_map.js` → `node --check` on the correctly-extracted (last `</script>`, not first) embedded script passed; served locally, confirmed via `javascript_tool` that `wardsInfra.features` has exactly 18 `highInjuryNetwork: true` wards, and that Adarsh Nagar's ward-bivariate popup renders the badge with the correct rank and escaped apostrophe; `node --test` — 21/21 pass.
+
+---
+
 ## [2026-07-29] - Claude (Anthropic) - Correlation Matrix Labeling + Missing 2024 Crash-Zone List
 
 ### 📊 Explained caption/sticky column for the correlation matrix, and a real gap found: 2024's 93 named zones were never in the main dashboard

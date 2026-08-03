@@ -162,6 +162,26 @@ for (const feat of crashZones2024.features) {
 totalAssigned.officialLiquorVends = vendsAssigned; totalOutside.officialLiquorVends = vendsOutside;
 totalAssigned.crashZones2024 = zonesAssigned; totalOutside.crashZones2024 = zonesOutside;
 
+// ── High-Injury Network (Vision Zero terminology): the smallest set of wards that together
+// account for half of all 2024 fatal crashes captured in the ward-assigned crash-zone data.
+// Ranked by crashZones2024FatalSum descending; a ward is flagged `highInjuryNetwork: true` once
+// the running cumulative total first reaches 50% of the sum across every ward with at least one
+// fatal crash. This is a real, computed cutoff, not an arbitrary top-N -- it will include more or
+// fewer wards depending on how concentrated fatalities actually are in a given year's data.
+wards.features.forEach(f => { f.properties.highInjuryNetwork = false; f.properties.highInjuryNetworkRank = null; });
+const wardsWithFatal = wards.features.filter(f => f.properties.crashZones2024FatalSum > 0)
+  .sort((a, b) => b.properties.crashZones2024FatalSum - a.properties.crashZones2024FatalSum);
+const totalFatalAcrossWards = wardsWithFatal.reduce((a, f) => a + f.properties.crashZones2024FatalSum, 0);
+let hinCum = 0, hinCount = 0;
+for (const f of wardsWithFatal) {
+  hinCum += f.properties.crashZones2024FatalSum;
+  hinCount++;
+  f.properties.highInjuryNetwork = true;
+  f.properties.highInjuryNetworkRank = hinCount;
+  if (hinCum >= totalFatalAcrossWards * 0.5) break;
+}
+console.log('High-Injury Network:', hinCount, 'of', wardsWithFatal.length, 'fatal-crash wards (' + (hinCount / wards.features.length * 100).toFixed(1) + '% of all 290) account for 50% of', totalFatalAcrossWards, 'ward-assigned fatal crashes');
+
 // ── District-inherited crime metrics: crime data doesn't exist below the 15-district level, so
 // each ward's parent district is found via point-in-polygon against the district boundaries
 // (using the ward's bbox-center as a representative point -- an approximation, not a true
@@ -210,6 +230,7 @@ const out = {
     vintageNote: '290 features (273 named wards + 9 NDMC + 8 Cantonment charges) — ward count does not match the current 250-ward post-2022-unification structure, so this is most likely the pre-2022 delimitation. Used here as a finer spatial grid for point-density aggregation only, not as an official/current administrative boundary.',
     infraLayers: 'busStops, atms, alcoholShops, surveillance, officialLiquorVends — aggregated by point-in-polygon from the same OSM-derived/official point data used elsewhere in this project.',
     crashLayers: 'crashZones2024, crashZones2024FatalSum — 2024 crash-prone zones aggregated by point-in-polygon. Both the liquor-vend and 2024 crash-zone source coordinates are approximate (locality/landmark centroids, not verified geotags); every ward count derived from them carries wardAssignmentBasis: exploratory.',
+    highInjuryNetwork: 'highInjuryNetwork (bool), highInjuryNetworkRank (int|null) — Vision Zero terminology for the smallest set of wards that together account for half of all ward-assigned 2024 fatal crashes, ranked by crashZones2024FatalSum descending. A computed cutoff (recomputed on every rebuild), not an arbitrary top-N. Same exploratory basis as crashZones2024.',
     inheritedCrimeLayers: "totalIPCDensity2024Inherited, crimeAgainstWomenDensity2024Inherited — no crime data is published below the 15-district level; these fields copy the enclosing district's 2024 crime density onto every ward inside it via point-in-polygon (ward bbox-center vs. district boundary). District-resolution, not ward-resolution — flagged wardMetricBasis: district-inherited.",
     wardAssignmentBasis: 'exploratory',
     wardMetricBasis: 'district-inherited (for totalIPCDensity2024Inherited, crimeAgainstWomenDensity2024Inherited only)',

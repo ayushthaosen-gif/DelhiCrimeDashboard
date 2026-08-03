@@ -1,6 +1,6 @@
 # Where the lights end: what Delhi's own data says about safety, and what it still can't tell us
 
-*Ten years of NCRB crime data, three years of named crash blackspots, one infrastructure survey, and 290 municipal wards — cross-referenced for the first time in one place. Here's what came out, and what it still can't answer.*
+*Nearly a decade of district-level NCRB crime data, two years of named crash-prone zones, and multiple public-infrastructure datasets — brought together across Delhi's police districts and 290 legacy ward polygons. Here is what the combined view suggests, and what the data still cannot answer.*
 
 ## Why this exists
 
@@ -88,7 +88,25 @@ Two datasets have point coordinates — the 2024 crash zones and the 374 officia
 - **50 of 290** wards have both a crash zone and a liquor vend present
 - **287 of 290** wards matched to an enclosing district for crime-rate context
 
-**Wards with the most 2024 fatal crashes**: Adarsh Nagar (North-West, 3 zones, 19 fatal), Timar Pur (North, 3 zones, 19 fatal), Kashmere Gate (North, 3 zones, 17 fatal), Ashok Vihar (North-West, 4 zones, 16 fatal), Krishna Nagar (Shahdara, 2 zones, 11 fatal). Three of the worst five sit in North or North-West — the same two districts ranking highest for total IPC crime in 2024. Whether that's one underlying density/traffic-volume effect or two coincidences isn't something a correlation table can settle at this sample size; it's a lead, not a conclusion.
+### The High-Injury Network
+
+Vision Zero road-safety programs use a specific term for this: the **High-Injury Network** — the small share of a city's geography responsible for a disproportionate share of its fatal crashes, ranked and named so limited enforcement and engineering budgets go where they matter most. Delhi has never had one formally published; this dashboard can now compute one, from real data, at ward granularity.
+
+- **18 of 290 wards (6.2%)** together account for **half** of every 2024 ward-assigned fatal crash — a real, computed cutoff (recomputed on every data rebuild), not an arbitrary top-N.
+- **370** total 2024 fatal crashes summed across the 66 wards that have at least one.
+
+| Rank | Ward | District | Zones | Fatal (sum) |
+|---:|---|---|---:|---:|
+| 1 | Adarsh Nagar | North-West | 3 | 19 |
+| 2 | Timar Pur | North | 3 | 19 |
+| 3 | Kashmere Gate | North | 3 | 17 |
+| 4 | Ashok Vihar | North-West | 4 | 16 |
+| 5 | Krishna Nagar | Shahdara | 2 | 11 |
+| 6 | I.P. Extension | East | 2 | 11 |
+| 7 | *(unnamed ward — source data gap)* | Shahdara | 3 | 11 |
+| 8–18 | Dhir Pur, Punjabi Bagh, Sarai Pipal Thala, Mukherjee Nagar, Karam Pura, Bijwasan, Libas Pur, Kishangarh, Janak Puri West, Khichripur, Peragharhi | mixed | — | 6–10 each |
+
+Rank 7 is a real ward polygon in the source boundary file with no name or ward number attached — flagged here rather than dropped or silently relabeled, the same discipline applied to every other data gap in this project. Three of the top five sit in North or North-West — the same two districts ranking highest for total IPC crime in 2024. Whether that's one underlying density/traffic-volume effect or two coincidences isn't something a correlation table can settle at this sample size; it's a lead, not a conclusion. This High-Injury Network designation is now flagged directly on every ward in the interactive map's ward-bivariate and exploratory-index popups, not just in this table.
 
 Because no crime data is published below the district level, wards additionally inherit their enclosing district's crime rate (flagged *district-inherited*, not ward-specific) so a ward-level bivariate view — liquor vends × crash zones, or liquor vends × district crime rate — is possible at all. It's the most honest way to get finer-grained answers out of data that fundamentally isn't published fine-grained.
 
