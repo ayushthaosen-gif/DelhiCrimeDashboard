@@ -1,0 +1,19 @@
+name: Pipeline 2025 validation
+on:
+  pull_request:
+    paths: ['pipeline_2025/**', '.github/workflows/pipeline-2025-*.yml']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults: {run: {working-directory: pipeline_2025}}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12', cache: pip, cache-dependency-path: pipeline_2025/pyproject.toml}
+      - run: pip install -e '.[dev]'
+      - run: ruff check src tests
+      - run: pytest
+      - run: python -m delhi_data_2025 collect --year 2025 --offline
+      - run: git diff --exit-code -- output/reports output/manifests

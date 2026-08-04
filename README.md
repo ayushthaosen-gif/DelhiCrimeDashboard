@@ -1,5 +1,9 @@
 # Delhi Crime Dashboard
 
+## Automated 2025 staging pipeline
+
+`pipeline_2025/` contains the separate, auditable Python 3.12 collection pipeline for official 2025 sources. It stages raw downloads, checksums, provenance, review queues and validation reports without modifying production dashboard data. See [`pipeline_2025/README.md`](pipeline_2025/README.md). Dashboard integration is always a separate human-approved proposal.
+
 A self-contained, single-file dashboard analyzing crime and road-safety data
 across Delhi's 15 police districts (2022-2024) against real public
 infrastructure coverage — streetlights, pedestrian underpasses, metro station

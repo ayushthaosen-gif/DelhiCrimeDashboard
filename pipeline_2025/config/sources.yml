@@ -1,0 +1,73 @@
+settings:
+  user_agent: "DelhiCrimeDashboard-2025-Pipeline/0.1 (contact: PROJECT_CONTACT_PLACEHOLDER)"
+  requests_per_second_per_host: 1
+  request_timeout_seconds: 30
+  pipeline_timeout_seconds: 1800
+  max_file_size_bytes: 52428800
+  minimum_extraction_confidence: 0.8
+sources:
+  ncrb_crime_monitor:
+    agency: National Crime Records Bureau
+    dataset: crime
+    year: 2025
+    page_url: https://ncrb.gov.in/
+    allowed_domains: [ncrb.gov.in, mha.gov.in, pib.gov.in]
+    mode: monitor
+  delhi_traffic_report_monitor:
+    agency: Delhi Traffic Police
+    dataset: road_crash_report
+    year: 2025
+    page_url: https://traffic.delhipolice.gov.in/
+    allowed_domains: [traffic.delhipolice.gov.in]
+    mode: monitor
+  irad_new_delhi:
+    agency: District Administration New Delhi
+    dataset: irad_edar
+    year: 2025
+    page_url: https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/
+    police_station_page_url: https://dmnewdelhi.delhi.gov.in/police-station-wise-accident-cases/
+    allowed_domains: [dmnewdelhi.delhi.gov.in]
+    mode: collect
+  irad_west:
+    agency: District Administration West Delhi
+    dataset: irad_edar
+    year: 2025
+    page_url: https://dmwest.delhi.gov.in/integrated-road-accident-cases-month-wise/
+    allowed_domains: [dmwest.delhi.gov.in]
+    mode: collect
+  irad_south_east:
+    agency: District Administration South East Delhi
+    dataset: irad_edar
+    year: 2025
+    page_url: https://dmsoutheast.delhi.gov.in/irad-edar-south-east/
+    allowed_domains: [dmsoutheast.delhi.gov.in]
+    mode: collect
+  irad_north_west:
+    agency: District Administration North West Delhi
+    dataset: irad_edar
+    year: 2025
+    page_url: https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/
+    allowed_domains: [dmnorthwest.delhi.gov.in]
+    mode: collect
+  excise_preferred_vends_2025:
+    agency: Delhi Excise Department
+    dataset: liquor_vends_preferred
+    year: 2025
+    page_url: https://excise.delhi.gov.in/excise/preferred-vends-purchaseprocurement-liquor-p-10-permit
+    allowed_domains: [excise.delhi.gov.in, delhi.gov.in]
+    mode: collect
+  dscsc_vends:
+    agency: Delhi State Civil Supplies Corporation
+    dataset: liquor_vends
+    year: 2025
+    page_url: https://dscsc.delhi.gov.in/dscsc/liquor-vends
+    allowed_domains: [dscsc.delhi.gov.in]
+    mode: collect_with_date_warning
+  osm_snapshot_2025:
+    agency: OpenStreetMap contributors
+    dataset: infrastructure
+    year: 2025
+    endpoint: https://api.ohsome.org/v1/elements/geometry
+    allowed_domains: [api.ohsome.org]
+    snapshot_time: '2025-12-31T23:59:59Z'
+    mode: collect

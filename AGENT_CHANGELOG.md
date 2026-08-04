@@ -1,5 +1,12 @@
 # AI Collaboration Log & Changelog
 
+## [2026-08-03] - Codex (OpenAI) - Automated 2025 Data-Collection Pipeline
+
+1. Added the isolated `pipeline_2025/` Python 3.12 package with configurable official-source registry, allowlisted discovery, candidate scoring, atomic checksummed downloads, extraction fallbacks, normalization, validation, provenance and status reporting.
+2. Added iRAD/eDAR, liquor-vend, NCRB/Traffic publication-monitor and historical ohsome snapshot adapters. Missing 2025 sources are explicit statuses; legacy data is never relabelled.
+3. Added a non-destructive dashboard-patch proposal gate, offline fixtures/tests, skipped live smoke checks and minimal-permission GitHub Actions workflows.
+4. Production `data/`, `exports/`, `build.js` and generated dashboard HTML were intentionally not modified.
+
 ## [2026-07-29] - Claude (Anthropic) - High-Injury Network: A Vision Zero-Style Ward Ranking, Computed Not Guessed
 
 ### 🚨 Formalizing "worst wards" into a named, reusable, government-legible metric

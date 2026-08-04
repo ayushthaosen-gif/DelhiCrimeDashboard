@@ -1,0 +1,12 @@
+attribution: "OpenStreetMap contributors, ODbL"
+snapshot_time: '2025-12-31T23:59:59Z'
+filters:
+  bus_stops: 'type:node and (highway=bus_stop or public_transport=platform)'
+  atms: 'type:node and amenity=atm'
+  metro_entrances: 'type:node and railway=subway_entrance'
+  police: 'amenity=police or police=post'
+  liquor_shops: 'shop=alcohol'
+  surveillance: 'man_made=surveillance'
+  alpr_anpr: 'man_made=surveillance and surveillance:type=ALPR'
+  security_guards: 'security=guard'
+  pedestrian_underpasses: 'tunnel=yes and highway=footway'

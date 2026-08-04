@@ -1,0 +1,522 @@
+{
+  "year": 2025,
+  "generated_at": "2026-08-04T06:18:11.084012+00:00",
+  "sources": [
+    {
+      "source_id": "ncrb_crime_monitor",
+      "agency": "National Crime Records Bureau",
+      "dataset": "crime",
+      "mode": "monitor",
+      "page_url": "https://ncrb.gov.in/",
+      "candidates": [
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "ए आई बी ई परिणाम - 2025",
+          "url": "https://www.ncrb.gov.in/uploads/files/ANNEXUREA-FINALRESULT.pdf",
+          "score": 40,
+          "reasons": [
+            "requested year",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "संवाद पत्र अक्टूबर-दिसंबर 2025",
+          "url": "https://www.ncrb.gov.in/uploads/files/Newsletter-Dec2025.pdf",
+          "score": 40,
+          "reasons": [
+            "requested year",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "एनसीआरबी इंटर्नशिप स्कीम",
+          "url": "https://www.ncrb.gov.in/uploads/2022/May/19/1652958572_InternshipPolicy2020.pdf",
+          "score": 12,
+          "reasons": [
+            "monthly coverage",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "वार्षिक प्रशिक्षण कैलेंडर 2026-2027",
+          "url": "https://www.ncrb.gov.in/uploads/files/TrainingCalendar2026-27final.pdf",
+          "score": 10,
+          "reasons": [
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "हैकाथॉन परिणाम - 2023",
+          "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1691130450Hackathon-Result-2023.pdf",
+          "score": 10,
+          "reasons": [
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "एनसीआरबी जर्नल",
+          "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1703246581Book.pdf",
+          "score": 10,
+          "reasons": [
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "आंतरिक शिकायत समिति (आईसीसी) - महिला",
+          "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/tester/1695543709ICC-Women.pdf",
+          "score": 10,
+          "reasons": [
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "https://www.ncrb.gov.in/uploads/2022/May/23/1653304931_IMG_1-U.jpg",
+          "url": "https://www.ncrb.gov.in/uploads/2022/May/23/1653304931_IMG_1-U.jpg",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "https://www.ncrb.gov.in/uploads/2022/May/23/1653304931_IMG_2-U.jpg",
+          "url": "https://www.ncrb.gov.in/uploads/2022/May/23/1653304931_IMG_2-U.jpg",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "https://www.ncrb.gov.in/uploads/2022/May/23/1653304932_IMG_3-U.jpg",
+          "url": "https://www.ncrb.gov.in/uploads/2022/May/23/1653304932_IMG_3-U.jpg",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "https://www.ncrb.gov.in/uploads/2022/May/23/1653304932_IMG_4-U.jpg",
+          "url": "https://www.ncrb.gov.in/uploads/2022/May/23/1653304932_IMG_4-U.jpg",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "https://www.ncrb.gov.in/uploads/2022/May/23/1653313621_Short_film_on_NCRB_eng.mp4",
+          "url": "https://www.ncrb.gov.in/uploads/2022/May/23/1653313621_Short_film_on_NCRB_eng.mp4",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "सीसीटीएनएस पर लघु फिल्म",
+          "url": "https://www.ncrb.gov.in/uploads/2022/May/23/1653313621_Short_film_on_NCRB_eng.mp4",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "ncrb_crime_monitor",
+          "title": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1684917447mha13october2020.mp4",
+          "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1684917447mha13october2020.mp4",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "delhi_traffic_report_monitor",
+      "agency": "Delhi Traffic Police",
+      "dataset": "road_crash_report",
+      "mode": "monitor",
+      "page_url": "https://traffic.delhipolice.gov.in/",
+      "candidates": [],
+      "error": null
+    },
+    {
+      "source_id": "irad_new_delhi",
+      "agency": "District Administration New Delhi",
+      "dataset": "irad_edar",
+      "mode": "collect",
+      "page_url": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "candidates": [
+        {
+          "source_id": "irad_new_delhi",
+          "title": "Configured official landing page: irad_edar",
+          "url": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+          "score": 50,
+          "reasons": [
+            "configured official landing page snapshot"
+          ],
+          "selected": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "irad_west",
+      "agency": "District Administration West Delhi",
+      "dataset": "irad_edar",
+      "mode": "collect",
+      "page_url": "https://dmwest.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "candidates": [
+        {
+          "source_id": "irad_west",
+          "title": "Configured official landing page: irad_edar",
+          "url": "https://dmwest.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+          "score": 50,
+          "reasons": [
+            "configured official landing page snapshot"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "irad_west",
+          "title": "link",
+          "url": "https://dmwest.delhi.gov.in/document/from-1-jan-2025-to-30-april-2025/",
+          "score": 32,
+          "reasons": [
+            "requested year",
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_west",
+          "title": "link",
+          "url": "https://dmwest.delhi.gov.in/document/month-of-june-2025/",
+          "score": 32,
+          "reasons": [
+            "requested year",
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_west",
+          "title": "link",
+          "url": "https://dmwest.delhi.gov.in/document/month-of-may-2025/",
+          "score": 32,
+          "reasons": [
+            "requested year",
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_west",
+          "title": "link",
+          "url": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_west",
+          "title": "link",
+          "url": "https://dmwest.delhi.gov.in/document/month-of-august/",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_west",
+          "title": "link",
+          "url": "https://dmwest.delhi.gov.in/document/month-of-july/",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "irad_south_east",
+      "agency": "District Administration South East Delhi",
+      "dataset": "irad_edar",
+      "mode": "collect",
+      "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "candidates": [
+        {
+          "source_id": "irad_south_east",
+          "title": "Configured official landing page: irad_edar",
+          "url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+          "score": 50,
+          "reasons": [
+            "configured official landing page snapshot"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "Social Media Links",
+          "url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD/eDAR South East",
+          "url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "Media Gallery",
+          "url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/#SkipContent",
+          "url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/#SkipContent",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "irad_north_west",
+      "agency": "District Administration North West Delhi",
+      "dataset": "irad_edar",
+      "mode": "collect",
+      "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "candidates": [
+        {
+          "source_id": "irad_north_west",
+          "title": "Configured official landing page: irad_edar",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+          "score": 50,
+          "reasons": [
+            "configured official landing page snapshot"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "Social Media Links",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD/eDAR, North-West Delhi",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "Gallery",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "Notices",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/#SkipContent",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/#SkipContent",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "excise_preferred_vends_2025",
+      "agency": "Delhi Excise Department",
+      "dataset": "liquor_vends_preferred",
+      "mode": "collect",
+      "page_url": "https://excise.delhi.gov.in/excise/preferred-vends-purchaseprocurement-liquor-p-10-permit",
+      "candidates": [
+        {
+          "source_id": "excise_preferred_vends_2025",
+          "title": "Configured official landing page: liquor_vends_preferred",
+          "url": "https://excise.delhi.gov.in/excise/preferred-vends-purchaseprocurement-liquor-p-10-permit",
+          "score": 50,
+          "reasons": [
+            "configured official landing page snapshot"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "excise_preferred_vends_2025",
+          "title": "https://delhi.gov.in/sites/default/files/2025-04/i4c_handbook_dos_and_don_t_final.pdf",
+          "url": "https://delhi.gov.in/sites/default/files/2025-04/i4c_handbook_dos_and_don_t_final.pdf",
+          "score": 40,
+          "reasons": [
+            "requested year",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "excise_preferred_vends_2025",
+          "title": "Download",
+          "url": "https://excise.delhi.gov.in/sites/default/files/Excise/circulars-orders/circular_p10.pdf",
+          "score": 10,
+          "reasons": [
+            "downloadable document"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "dscsc_vends",
+      "agency": "Delhi State Civil Supplies Corporation",
+      "dataset": "liquor_vends",
+      "mode": "collect_with_date_warning",
+      "page_url": "https://dscsc.delhi.gov.in/dscsc/liquor-vends",
+      "candidates": [
+        {
+          "source_id": "dscsc_vends",
+          "title": "Configured official landing page: liquor_vends",
+          "url": "https://dscsc.delhi.gov.in/dscsc/liquor-vends",
+          "score": 50,
+          "reasons": [
+            "configured official landing page snapshot"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "dscsc_vends",
+          "title": "Annual Demand and Lifting of Sugar",
+          "url": "https://dscsc.delhi.gov.in/dscsc/annual-demand-and-lifting-sugar",
+          "score": 25,
+          "reasons": [
+            "annual coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "dscsc_vends",
+          "title": "Annual Demand and Lifting of Sugar",
+          "url": "https://dscsc.delhi.gov.in/dscsc/annual-demand-and-lifting-sugar",
+          "score": 25,
+          "reasons": [
+            "annual coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "dscsc_vends",
+          "title": "Annual Return",
+          "url": "https://dscsc.delhi.gov.in/dscsc/annual-return",
+          "score": 25,
+          "reasons": [
+            "annual coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "dscsc_vends",
+          "title": "Download",
+          "url": "https://dscsc.delhi.gov.in/sites/default/files/2024-10/application_form.pdf",
+          "score": 10,
+          "reasons": [
+            "downloadable document"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "osm_snapshot_2025",
+      "agency": "OpenStreetMap contributors",
+      "dataset": "infrastructure",
+      "mode": "collect",
+      "page_url": "https://api.ohsome.org/v1/elements/geometry",
+      "candidates": [
+        {
+          "source_id": "osm_snapshot_2025",
+          "title": "ohsome historical snapshot 2025",
+          "url": "https://api.ohsome.org/v1/elements/geometry",
+          "score": 100,
+          "reasons": [
+            "configured exact snapshot endpoint"
+          ],
+          "selected": true
+        }
+      ],
+      "error": null
+    }
+  ]
+}
