@@ -13,10 +13,10 @@ const assert = require('node:assert/strict');
 const fs = require('fs');
 const path = require('path');
 
-const src = fs.readFileSync(path.join(__dirname, '..', 'build_interactive_map.js'), 'utf8');
+const src = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'build_interactive_map.js'), 'utf8');
 function extractFn(name) {
   const start = src.indexOf('function ' + name);
-  assert.ok(start !== -1, 'function not found in build_interactive_map.js: ' + name);
+  assert.ok(start !== -1, 'function not found in scripts/build_interactive_map.js: ' + name);
   let i = src.indexOf('{', start);
   let depth = 0;
   for (; i < src.length; i++) {

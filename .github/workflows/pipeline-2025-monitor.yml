@@ -8,11 +8,11 @@ permissions:
 jobs:
   discover:
     runs-on: ubuntu-latest
-    defaults: {run: {working-directory: pipeline_2025}}
+    defaults: {run: {working-directory: tools/pipeline_2025}}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: {python-version: '3.12', cache: pip, cache-dependency-path: pipeline_2025/pyproject.toml}
+        with: {python-version: '3.12', cache: pip, cache-dependency-path: tools/pipeline_2025/pyproject.toml}
       - run: pip install -e .
       - run: python -m delhi_data_2025 discover --year 2025
       - run: python -m delhi_data_2025 report --year 2025
@@ -20,6 +20,6 @@ jobs:
         with:
           name: source-discovery-2025
           path: |
-            pipeline_2025/output/manifests/source_manifest_2025.json
-            pipeline_2025/output/reports/coverage_report_2025.md
+            tools/pipeline_2025/output/manifests/source_manifest_2025.json
+            tools/pipeline_2025/output/reports/coverage_report_2025.md
           retention-days: 30

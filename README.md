@@ -2,7 +2,7 @@
 
 ## Automated 2025 staging pipeline
 
-`pipeline_2025/` contains the separate, auditable Python 3.12 collection pipeline for official 2025 sources. It stages raw downloads, checksums, provenance, review queues and validation reports without modifying production dashboard data. See [`pipeline_2025/README.md`](pipeline_2025/README.md). Dashboard integration is always a separate human-approved proposal.
+`tools/pipeline_2025/` contains the separate, auditable Python 3.12 collection pipeline for official 2025 sources. It stages raw downloads, checksums, provenance, review queues and validation reports without modifying production dashboard data. See [`tools/pipeline_2025/README.md`](tools/pipeline_2025/README.md). Dashboard integration is always a separate human-approved proposal.
 
 A self-contained, single-file dashboard analyzing crime and road-safety data
 across Delhi's 15 police districts (2022-2024) against real public
@@ -11,6 +11,16 @@ gates, and police infrastructure.
 
 Open [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html) directly in
 a browser — no server or build step required to view it.
+
+## Repository layout
+
+- `*.html` at the root: published GitHub Pages entry points; kept in place so existing public URLs remain stable.
+- [`scripts/`](scripts/): JavaScript build, export, geocoding, and analysis tools.
+- [`data/`](data/): production datasets, immutable source inputs, and audited yearly releases.
+- [`exports/`](exports/): researcher-friendly CSV, JSON, and GeoJSON outputs.
+- [`tools/pipeline_2025/`](tools/pipeline_2025/): isolated Python collection and validation pipeline for 2025.
+- [`docs/`](docs/): project article, changelog, and the detailed [repository structure guide](docs/STRUCTURE.md).
+- [`test/`](test/): JavaScript regression tests; the Python pipeline has its own tests beside its source.
 
 ## What's new in this version
 
@@ -82,7 +92,7 @@ districts = pd.read_csv('https://raw.githubusercontent.com/ayushthaosen-gif/Delh
 **Regenerate the exports** after changing anything in `data/`:
 
 ```bash
-node export_data.js
+node scripts/export_data.js
 ```
 
 **Before you publish anything built on this data**, keep two things straight:
@@ -99,28 +109,28 @@ node export_data.js
 
 ## Regenerating the dashboard
 
-The HTML file is generated from `build.js`, which reads the data in `data/`
+The HTML file is generated from `scripts/build.js`, which reads the data in `data/`
 and the fonts in `fonts/`, and writes the finished `delhi_safety_dashboard.html`
 back to the repo root:
 
 ```bash
-node build.js
+npm run build
 ```
 
-Edit `build.js` (not the generated HTML) to change layout, styling, or logic,
+Edit `scripts/build.js` (not the generated HTML) to change layout, styling, or logic,
 then re-run the command above.
 
 ## What's in here
 
 - **`delhi_safety_dashboard.html`** — the generated dashboard (the actual
   deliverable).
-- **`build.js`** — the Node build script: one large template literal producing
+- **`scripts/build.js`** — the Node build script: one large template literal producing
   the full HTML + CSS + JS, with no external libraries or CDN dependencies.
 - **`data/`** — district-level crime, infrastructure, road-safety, and
   correlation data as JSON. Internal, purpose-built for `build.js` — if you
   want to reuse the data yourself, use `exports/` instead (see above).
 - **`fonts/`** — the Big Shoulders webfont, embedded as base64 at build time.
-- **`export_data.js`** / **`exports/`** — the clean CSV/JSON exports and the
+- **`scripts/export_data.js`** / **`exports/`** — the clean CSV/JSON exports and the
   script that generates them, for anyone integrating this data elsewhere.
 
 ## Data & sourcing
@@ -174,13 +184,13 @@ To refresh this analysis (e.g. if updated source extracts become available):
    `delhi_crash_prone_zones_2024_250m_buffers_approx.geojson`,
    `delhi_crash_report_relevant_metrics_2024.json` — keep the exact filenames.
 2. `npm install` once, if `node_modules/` isn't present (installs `@turf/turf`
-   for the spatial math; `build_liquor_crash_proximity.js` falls back to a
+   for the spatial math; `scripts/build_liquor_crash_proximity.js` falls back to a
    hand-rolled haversine/point-in-polygon implementation if `@turf/turf` isn't
    installed, so this step is optional but recommended).
-3. `npm run build:liquor-crash` — runs `build_liquor_crash_proximity.js`
+3. `npm run build:liquor-crash` — runs `scripts/build_liquor_crash_proximity.js`
    (produces the three derived files: `liquor_vend_crash_proximity_2024.geojson`,
    `crash_zone_liquor_proximity_2024.geojson`, `liquor_crash_proximity_summary_2024.json`)
-   then `build_liquor_crash_analysis.js` (produces `liquor_crash_analysis.html`).
+   then `scripts/build_liquor_crash_analysis.js` (produces `liquor_crash_analysis.html`).
 4. `npm test` — runs the automated validation suite
    (`test/liquor_crash_proximity.test.js`, Node's built-in test runner) covering
    coordinate order/validity, official-vs-OSM record counts, monotonic

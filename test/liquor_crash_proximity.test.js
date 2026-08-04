@@ -99,7 +99,7 @@ test('9. Null crash counts are treated as unknown, not silently coerced to zero 
 test('10. No UI/build text uses banned causal phrases', () => {
   const bannedPhrases = ['caused by liquor', 'alcohol-related crash', 'vend risk probability', 'risk probability'];
   const htmlPath = path.join(ROOT, 'liquor_crash_analysis.html');
-  assert.ok(fs.existsSync(htmlPath), 'liquor_crash_analysis.html must be built before running this test (node build_liquor_crash_analysis.js)');
+  assert.ok(fs.existsSync(htmlPath), 'liquor_crash_analysis.html must be built before running this test (npm run build:liquor-crash)');
   const html = fs.readFileSync(htmlPath, 'utf8').toLowerCase();
   for (const phrase of bannedPhrases) {
     assert.ok(!html.includes(phrase), 'banned causal phrase found in built page: "' + phrase + '"');

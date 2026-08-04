@@ -4,10 +4,10 @@
   "description": "Delhi district crime, road-safety, and infrastructure coverage dashboard",
   "private": true,
   "scripts": {
-    "build": "node build.js",
-    "build:liquor-crash": "node build_liquor_crash_proximity.js && node build_liquor_crash_analysis.js",
-    "build:ward-infra": "node build_ward_infra.js",
-    "build:interactive-map": "node build_ward_infra.js && node build_interactive_map.js",
+    "build": "node scripts/build.js",
+    "build:liquor-crash": "node scripts/build_liquor_crash_proximity.js && node scripts/build_liquor_crash_analysis.js",
+    "build:ward-infra": "node scripts/build_ward_infra.js",
+    "build:interactive-map": "node scripts/build_ward_infra.js && node scripts/build_interactive_map.js",
     "test": "node --test test/liquor_crash_proximity.test.js test/exploratory_score.test.js"
   },
   "dependencies": {
