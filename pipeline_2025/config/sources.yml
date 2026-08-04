@@ -26,28 +26,28 @@ sources:
     year: 2025
     page_url: https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/
     police_station_page_url: https://dmnewdelhi.delhi.gov.in/police-station-wise-accident-cases/
-    allowed_domains: [dmnewdelhi.delhi.gov.in]
+    allowed_domains: [dmnewdelhi.delhi.gov.in, cdn.s3waas.gov.in]
     mode: collect
   irad_west:
     agency: District Administration West Delhi
     dataset: irad_edar
     year: 2025
     page_url: https://dmwest.delhi.gov.in/integrated-road-accident-cases-month-wise/
-    allowed_domains: [dmwest.delhi.gov.in]
+    allowed_domains: [dmwest.delhi.gov.in, cdn.s3waas.gov.in]
     mode: collect
   irad_south_east:
     agency: District Administration South East Delhi
     dataset: irad_edar
     year: 2025
     page_url: https://dmsoutheast.delhi.gov.in/irad-edar-south-east/
-    allowed_domains: [dmsoutheast.delhi.gov.in]
+    allowed_domains: [dmsoutheast.delhi.gov.in, cdn.s3waas.gov.in]
     mode: collect
   irad_north_west:
     agency: District Administration North West Delhi
     dataset: irad_edar
     year: 2025
     page_url: https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/
-    allowed_domains: [dmnorthwest.delhi.gov.in]
+    allowed_domains: [dmnorthwest.delhi.gov.in, cdn.s3waas.gov.in]
     mode: collect
   excise_preferred_vends_2025:
     agency: Delhi Excise Department

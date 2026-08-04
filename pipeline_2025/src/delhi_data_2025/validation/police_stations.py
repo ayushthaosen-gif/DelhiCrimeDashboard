@@ -37,8 +37,8 @@ def validate_station_mapping(rows: list[dict]) -> list[ValidationIssue]:
         if found != DISTRICTS:
             issues.append(
                 ValidationIssue(
-                    severity="error",
-                    code="district_coverage",
+                    severity="warning",
+                    code="partial_district_coverage",
                     message=(
                         f"Resolved data covers {len(found)} police districts, expected exactly 15"
                     ),

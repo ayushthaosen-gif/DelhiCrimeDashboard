@@ -12,7 +12,7 @@ from .discovery import discover_source
 from .download import download_candidate
 from .extraction.crime_monitor import monitor_crime
 from .extraction.html_tables import extract_tables
-from .extraction.irad import INTEGER_FIELDS, extract_irad
+from .extraction.irad import INTEGER_FIELDS, extract_irad, extract_irad_pdf_tables
 from .extraction.liquor_vends import extract_vends
 from .extraction.pdf_text import extract_pdf_text
 from .http import SafeHttpClient, redact_url
@@ -203,11 +203,15 @@ def extract(year=2025, source_id=None, offline=False, root=None):
         path = Path(item["local_path"])
         tables = []
         pdf_text = None
+        pdf_rows = []
         try:
-            if path.suffix.lower() in {".html", ".htm"}:
+            content_type = str(item.get("content_type") or "").lower()
+            if path.suffix.lower() in {".html", ".htm"} or "html" in content_type:
                 tables = extract_tables(path.read_text(encoding="utf-8", errors="replace"))
             elif path.suffix.lower() == ".pdf":
                 pdf_text, status = extract_pdf_text(path)
+                if source.dataset == "irad_edar":
+                    pdf_rows = extract_irad_pdf_tables(path, source.source_id)
                 if status == "needs_manual_review":
                     review.append(
                         {
@@ -217,7 +221,11 @@ def extract(year=2025, source_id=None, offline=False, root=None):
                         }
                     )
             if source.dataset == "irad_edar":
-                rows, status = extract_irad(tables, pdf_text, source.source_id)
+                rows, status = (
+                    (pdf_rows, "extracted")
+                    if pdf_rows
+                    else extract_irad(tables, pdf_text, source.source_id)
+                )
                 extracted += rows
                 if status == "needs_manual_review":
                     review.append(
@@ -228,9 +236,12 @@ def extract(year=2025, source_id=None, offline=False, root=None):
                         }
                     )
             elif source.dataset.startswith("liquor_vends"):
-                extracted += extract_vends(
+                vend_rows = extract_vends(
                     tables, source.source_id, source.agency, source.mode.value == "collect"
                 )
+                for vend in vend_rows:
+                    vend["source_file"] = str(path)
+                extracted += vend_rows
         except Exception as exc:
             review.append(
                 {"source_id": source.source_id, "source_file": str(path), "reason": str(exc)}

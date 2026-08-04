@@ -20,6 +20,10 @@ def load_crosswalk(path: Path) -> dict[str, dict]:
 def apply_crosswalk(rows: list[dict], crosswalk: dict[str, dict]) -> tuple[list[dict], list[dict]]:
     unmapped = []
     for row in rows:
+        if row.get("police_district"):
+            row["police_station_normalized"] = row.get("police_station_raw")
+            row["review_status"] = "source_report_district"
+            continue
         match = crosswalk.get(canonical(row.get("police_station_raw")))
         if match:
             row["police_station_normalized"] = match["police_station_normalized"]

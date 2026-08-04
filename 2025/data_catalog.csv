@@ -1,0 +1,8 @@
+dataset,file,status,records,coverage,important_warning
+iRAD road crashes by police station,validated/road_crashes_by_police_station_2025.csv,validated_partial,50,West; South East; North West,Only 3 of 15 police districts
+iRAD road crashes by police district,validated/road_crashes_by_police_district_2025.csv,validated_partial,3,West; South East; North West,Not a Delhi-wide total
+DSCSC liquor vends,needs_review/liquor_vends_snapshot_date_unclear.csv,temporal_review_required,201,Official page snapshot,Effective calendar year is not stated
+New Delhi iRAD annual report,raw_sources/irad_new_delhi_2025_official.pdf,manual_extraction_required,0,New Delhi,Image-only PDF; no automatic OCR figures published
+NCRB crime,none,not_published,0,Delhi,No unambiguous official Crime in India 2025 release found
+Delhi Traffic Police annual crash report,none,not_published,0,Delhi,No qualifying 2025 annual report found
+Historical OSM infrastructure,none,download_failed,0,Delhi,ohsome endpoint returned HTTP 403; unavailable is not zero

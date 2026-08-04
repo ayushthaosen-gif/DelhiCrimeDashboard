@@ -9,7 +9,7 @@ from .http import allowed
 from .models import Candidate, SourceConfig
 
 ANNUAL = [
-    r"jan(?:uary)?\s*2025.*dec(?:ember)?\s*2025",
+    r"jan(?:uary)?[\s,./-]*2025.*dec(?:ember)?[\s,./-]*2025",
     r"01\s*jan\s*2025.*31\s*dec\s*2025",
     r"annual",
 ]
@@ -30,10 +30,16 @@ def score_candidate(title: str, url: str, year: int, dataset: str) -> tuple[int,
     text = f"{title} {url}".lower()
     score = 0
     reasons = []
-    if str(year) in text:
+    title_text = title.lower()
+    title_years = re.findall(r"\b(?:19|20)\d{2}\b", title_text)
+    year_match = str(year) in title_text or (not title_years and str(year) in url)
+    if year_match:
         score += 30
         reasons.append("requested year")
-    if any(re.search(p, text, re.I) for p in TARGETS):
+    dataset_match = any(re.search(p, text, re.I) for p in TARGETS)
+    if dataset == "irad_edar" and str(year) in text:
+        dataset_match = True
+    if dataset_match:
         score += 30
         reasons.append("dataset title pattern")
     if any(re.search(p, text, re.I) for p in ANNUAL):
@@ -60,7 +66,10 @@ def discover_html(
     candidates = []
     for link in soup.select("a[href]"):
         url = urljoin(base, link.get("href", ""))
-        title = " ".join(link.stripped_strings) or url
+        own_title = " ".join(link.stripped_strings) or url
+        row = link.find_parent("tr")
+        row_context = " ".join(row.stripped_strings) if row else ""
+        title = " ".join(part for part in (own_title, row_context) if part)
         if not allowed(url, source.allowed_domains):
             continue
         score, reasons = score_candidate(title, url, source.year, source.dataset)
@@ -102,4 +111,18 @@ def discover_source(source: SourceConfig, client) -> list[Candidate]:
     if source.endpoint and not source.page_url:
         return []
     response = client.get(str(source.page_url), source.allowed_domains)
-    return discover_html(source, response.text)
+    candidates = discover_html(source, response.text)
+    selected = next((candidate for candidate in candidates if candidate.selected), None)
+    if (
+        selected
+        and not str(selected.url)
+        .lower()
+        .split("?")[0]
+        .endswith((".pdf", ".csv", ".xlsx", ".json", ".geojson"))
+        and str(selected.url) != str(source.page_url)
+    ):
+        nested_response = client.get(str(selected.url), source.allowed_domains)
+        nested = discover_html(source, nested_response.text, str(selected.url))
+        if any(candidate.selected for candidate in nested):
+            return nested
+    return candidates

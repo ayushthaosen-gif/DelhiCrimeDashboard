@@ -7,7 +7,7 @@ name = "delhi-data-2025"
 version = "0.1.0"
 description = "Auditable staging pipeline for official Delhi 2025 data"
 requires-python = ">=3.12"
-dependencies = ["beautifulsoup4>=4.12", "httpx>=0.27", "lxml>=5.2", "pandas>=2.2", "pydantic>=2.7", "pypdf>=5.0", "PyYAML>=6.0", "tenacity>=9.0", "typer>=0.12"]
+dependencies = ["beautifulsoup4>=4.12", "httpx>=0.27", "lxml>=5.2", "html5lib>=1.1", "pandas>=2.2", "pydantic>=2.7", "pypdf>=5.0", "pdfplumber>=0.11", "PyYAML>=6.0", "tenacity>=9.0", "typer>=0.12"]
 
 [project.optional-dependencies]
 geo = ["geopandas>=1.0", "pyproj>=3.7", "shapely>=2.0"]

@@ -1,13 +1,15 @@
 from __future__ import annotations
 
+import re
+
 
 def normalize_vend(row: dict, source_id: str, agency: str, temporal_status: str) -> dict:
-    low = {str(k).strip().lower().replace(" ", "_"): v for k, v in row.items()}
+    low = {re.sub(r"[^a-z0-9]+", "_", str(k).strip().lower()).strip("_"): v for k, v in row.items()}
     return {
         "source_id": source_id,
         "agency": agency,
         "corporation": low.get("corporation"),
-        "vend_name": low.get("vend_name") or low.get("name"),
+        "vend_name": low.get("vend_name") or low.get("name") or low.get("name_of_vends"),
         "address": low.get("address"),
         "licence_number": low.get("licence_number") or low.get("license_number"),
         "licence_type": low.get("licence_type"),
@@ -29,4 +31,12 @@ def normalize_vend(row: dict, source_id: str, agency: str, temporal_status: str)
 
 def extract_vends(tables: list[list[dict]], source_id: str, agency: str, dated: bool) -> list[dict]:
     temporal = "dated_2025_source" if dated else "unclear"
-    return [normalize_vend(row, source_id, agency, temporal) for table in tables for row in table]
+    records = [
+        normalize_vend(row, source_id, agency, temporal) for table in tables for row in table
+    ]
+    invalid_names = {"", "nan", "name of vends"}
+    return [
+        record
+        for record in records
+        if str(record.get("vend_name") or "").strip().lower() not in invalid_names
+    ]

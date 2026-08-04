@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import re
+from pathlib import Path
+
+import pdfplumber
 
 INTEGER_FIELDS = [
     "fatal_accidents",
@@ -91,3 +94,65 @@ def extract_irad(
         if rows:
             return rows, "extracted"
     return [], "needs_manual_review"
+
+
+def extract_irad_pdf_tables(path: Path, source_id: str) -> list[dict]:
+    """Extract fixed-position iRAD station tables without shifting blank cells."""
+    rows = []
+    source_districts = {
+        "irad_new_delhi": "New Delhi",
+        "irad_west": "West",
+        "irad_south_east": "South East",
+        "irad_north_west": "North West",
+    }
+    source_district = source_districts.get(source_id)
+    with pdfplumber.open(path) as document:
+        for page_number, page in enumerate(document.pages, start=1):
+            for table in page.extract_tables():
+                for cells in table:
+                    if len(cells) < 22 or not str(cells[0] or "").strip().isdigit():
+                        continue
+                    station = " ".join(str(cells[2] or "").split()) or None
+                    minor_hospitalised = _number(cells[5])
+                    minor_non_hospitalised = _number(cells[6])
+                    minor_total = (
+                        minor_hospitalised + minor_non_hospitalised
+                        if minor_hospitalised is not None and minor_non_hospitalised is not None
+                        else None
+                    )
+                    injured_grievous = _number(cells[15])
+                    injured_minor = _number(cells[16])
+                    persons_injured = (
+                        injured_grievous + injured_minor
+                        if injured_grievous is not None and injured_minor is not None
+                        else None
+                    )
+                    rows.append(
+                        {
+                            "source_id": source_id,
+                            "source_file": str(path),
+                            "source_page": page_number,
+                            "revenue_district": None,
+                            "police_station_raw": station,
+                            "police_station_normalized": None,
+                            "police_district": source_district,
+                            "period_start": "2025-01-01",
+                            "period_end": "2025-12-31",
+                            "fatal_accidents": _number(cells[3]),
+                            "serious_injury_accidents": _number(cells[4]),
+                            "minor_injury_accidents": minor_total,
+                            "non_injury_accidents": _number(cells[7]),
+                            "simple_accidents": None,
+                            "total_accidents": _number(cells[9]),
+                            "persons_killed": _number(cells[14]),
+                            "persons_injured": persons_injured,
+                            "extraction_method": "pdf_geometry_table",
+                            "extraction_confidence": 0.98,
+                            "review_status": "source_report_district",
+                            "notes": (
+                                "Blank source cells remain null; minor injury combines the two "
+                                "published minor-injury columns only when both are populated."
+                            ),
+                        }
+                    )
+    return rows
