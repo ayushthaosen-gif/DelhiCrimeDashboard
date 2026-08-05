@@ -1,5 +1,19 @@
 # AI Collaboration Log & Changelog
 
+## [2026-08-05] - Claude (Anthropic) - Sparklines Only Ever Plotted 3 Years, Even Though 8-9 Years of Real Data Already Existed
+
+### 📈 renderSparkline() was hardcoded to prevKey/key/key2024 and never looked at historicalYears, which every other part of this dashboard already reads
+
+User asked why the district-detail sparklines showed only 3 years when the dashboard should have at least 5. The real answer: `renderSparkline()` was hardcoded to exactly three fields (`prevKey` → 2022, `key` → 2023, `key2024` → 2024) and never referenced `METRICS[].historicalYears` at all — even though that field already exists, already has verified data (theft/robbery/burglary: 2016-2021; total IPC/crime-against-women/SLL: 2017-2021), and is already used by the year toggle and historical charts elsewhere on this same page. The sparkline function alone never grew past its original 3-point design from before that historical data existed.
+
+1. Rewrote `renderSparkline()` to build the full available year sequence (`historicalYears` + 2022/2023/2024) and plot only the years with a real, non-null value for that specific district — rather than a hardcoded 3-point line, it now dynamically spaces N points across the same 60×22 viewBox, shrinks the point radius slightly (2.5→1.8) so up to 9 points don't visually collide, and computes percentage change end-to-end over whatever span is actually available (not always "3Y").
+2. Tooltip now lists every plotted year's value and the true span (e.g. "+41.5% over 2016-2024"), not a hardcoded "3-Year Trajectory (2022-2024)" label that would have been wrong the moment this changed.
+3. Metrics without historical data (fatal-crash-2022-only metrics, etc.) are unaffected — the existing `!m.prevKey` guard already skipped them, and still does.
+
+Verified: `node --check` on the correctly-extracted embedded script passed; `npm run build` completed; served locally, confirmed via `javascript_tool` on a real selected district — Theft and Robbery sparklines now plot 9 points (2016-2024), Burglary/Total IPC/Crime-Against-Women/SLL plot 8 (2017-2024), tooltip values match the underlying data exactly, zero console errors; `npm test` — 25/25 pass, unaffected (no test covered this function before).
+
+---
+
 ## [2026-08-05] - Claude (Anthropic) - Fixed the Stale 2023 Default Year — Not a Data Gap, a Leftover
 
 ### 📅 The district drawer's crime metrics defaulted to 2023 even though every district has complete 2024 data

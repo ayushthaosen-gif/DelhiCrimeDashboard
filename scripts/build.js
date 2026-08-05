@@ -1208,27 +1208,36 @@ function yoyBadge(cur, prev, label) {
 function renderSparkline(d, baseKey) {
   const m = METRICS.find(x => x.key === baseKey);
   if (!m || !m.prevKey) return '';
-  const y22 = d[m.prevKey], y23 = d[m.key], y24 = d[m.key2024];
-  if (y22 == null || y23 == null || y24 == null) return '';
+  // Every metric with a prevKey/key2024 also carries historicalYears (theft/robbery/burglary:
+  // 2016-2021; totalIPC/crimeAgainstWomen/totalSLL: 2017-2021) -- this used to be hardcoded to
+  // exactly 3 points (2022/2023/2024) and silently ignored that real, already-verified data.
+  // Build the full available year sequence instead: historicalYears, then 2022 (prevKey), 2023
+  // (the bare key), 2024 (key2024) -- whichever of those actually have a non-null value here.
+  const years = [...(m.historicalYears || []), '2022', '2023', '2024'];
+  const points = years.map(y => {
+    const key = y === '2022' ? m.prevKey : y === '2023' ? m.key : y === '2024' ? m.key2024 : baseKey + y;
+    return { year: y, value: d[key] };
+  }).filter(p => p.value != null);
+  if (points.length < 2) return '';
 
-  const min = Math.min(y22, y23, y24);
-  const max = Math.max(y22, y23, y24);
+  const values = points.map(p => p.value);
+  const min = Math.min(...values), max = Math.max(...values);
   const range = (max - min) || 1;
-
+  const w = 60, pad = 4, innerW = w - pad * 2;
+  const px = i => points.length === 1 ? pad : pad + (i / (points.length - 1)) * innerW;
   const py = v => 18 - ((v - min) / range) * 14;
-  const p1 = '4,' + py(y22).toFixed(1);
-  const p2 = '30,' + py(y23).toFixed(1);
-  const p3 = '56,' + py(y24).toFixed(1);
+  const coords = points.map((p, i) => [px(i), py(p.value)]);
 
-  const pct3Y = ((y24 - y22) / y22) * 100;
-  const strokeColor = pct3Y >= 0 ? 'var(--rust)' : 'var(--good)';
+  const first = points[0].value, last = points[points.length - 1].value;
+  const pctChange = first !== 0 ? ((last - first) / first) * 100 : null;
+  const strokeColor = pctChange == null ? 'var(--text-dim)' : pctChange >= 0 ? 'var(--rust)' : 'var(--good)';
+  const spanLabel = points[0].year + '-' + points[points.length - 1].year;
+  const tooltipBody = points.map(p => p.year + ': ' + fmtNum(p.value)).join(' · ') + (pctChange != null ? ' (' + (pctChange >= 0 ? '+' : '') + pctChange.toFixed(1) + '% over ' + spanLabel + ')' : '');
 
-  return '<span class="sparkline-wrap" data-tt-title="' + esc(m.label + ' 3-Year Trajectory (2022-2024)') + '" data-tt-body="' + esc('2022: ' + fmtNum(y22) + ' · 2023: ' + fmtNum(y23) + ' · 2024: ' + fmtNum(y24) + ' (' + (pct3Y >= 0 ? '+' : '') + pct3Y.toFixed(1) + '% 3Y change)') + '">' +
+  return '<span class="sparkline-wrap" data-tt-title="' + esc(m.label + ' ' + spanLabel + ' Trajectory') + '" data-tt-body="' + esc(tooltipBody) + '">' +
     '<svg class="sparkline-svg" viewBox="0 0 60 22">' +
-      '<polyline points="' + p1 + ' ' + p2 + ' ' + p3 + '" fill="none" stroke="' + strokeColor + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>' +
-      '<circle cx="4" cy="' + py(y22) + '" r="2.5" fill="' + strokeColor + '"/>' +
-      '<circle cx="30" cy="' + py(y23) + '" r="2.5" fill="' + strokeColor + '"/>' +
-      '<circle cx="56" cy="' + py(y24) + '" r="2.5" fill="' + strokeColor + '"/>' +
+      '<polyline points="' + coords.map(c => c[0].toFixed(1) + ',' + c[1].toFixed(1)).join(' ') + '" fill="none" stroke="' + strokeColor + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>' +
+      coords.map(c => '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="1.8" fill="' + strokeColor + '"/>').join('') +
     '</svg>' +
   '</span>';
 }
