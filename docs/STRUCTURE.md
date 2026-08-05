@@ -4,6 +4,8 @@ The repository separates published pages, source data, reusable exports, build t
 
 ```text
 DelhiCrimeDashboard/
+├── LICENSE                            # MIT (code); third-party data keeps its own license
+├── CITATION.cff                       # how to cite this repository
 ├── index.html                         # GitHub Pages entry point
 ├── delhi_safety_dashboard.html       # generated main dashboard
 ├── interactive_map.html              # generated Leaflet map

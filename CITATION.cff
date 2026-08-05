@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software or the data it publishes, please cite it using
+  the metadata below. For a specific figure, also cite the original source
+  agency named in that figure's manifest.json or the README's "Data &
+  sourcing" section (e.g. NCRB, Delhi Traffic Police) -- this repository is
+  a compilation, not the primary source.
+title: "DelhiCrimeDashboard: Delhi Urban Safety Observatory"
+type: software
+abstract: >-
+  A district-level crime, road-safety, and infrastructure dashboard for
+  Delhi, India, with an interactive Leaflet map and manifest-documented,
+  checksummed yearly research releases (2016-2024) for programmatic reuse.
+authors:
+  - name: "ayushthaosen-gif"
+    alias: "ayushthaosen-gif"
+repository-code: "https://github.com/ayushthaosen-gif/DelhiCrimeDashboard"
+url: "https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/"
+license: MIT
+keywords:
+  - delhi
+  - crime-data
+  - road-safety
+  - open-data
+  - urban-safety
+  - ncrb
+  - gis

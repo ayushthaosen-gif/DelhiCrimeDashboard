@@ -12,6 +12,10 @@ gates, and police infrastructure.
 Open [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html) directly in
 a browser — no server or build step required to view it.
 
+Code is [MIT-licensed](LICENSE); third-party data keeps its own source
+license (see "Data & sourcing" below). See [`CITATION.cff`](CITATION.cff)
+for how to cite this repository.
+
 ## Repository layout
 
 - `*.html` at the root: published GitHub Pages entry points; kept in place so existing public URLs remain stable.
