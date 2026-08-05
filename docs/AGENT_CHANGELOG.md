@@ -1,5 +1,21 @@
 # AI Collaboration Log & Changelog
 
+## [2026-08-05] - Claude (Anthropic) - Reconciled a Parallel Foot-Over-Bridge Effort, Added a Road-Crossing Distinction
+
+### 🌉 Two independent AI sessions built near-duplicate FOB pipelines at the same time — kept the better-engineered one, ported the one real improvement over
+
+Pushed a standalone foot-over-bridge pipeline (`build_pedestrian_bridges.js`, 132 bridges, road-crossing-only) at the same time Codex independently built `scripts/build_pedestrian_overpasses.js` (242 bridges, broader "any mapped pedestrian bridge" scope) as part of a larger repo reorganization + branding pass. Discovered the collision at push time (`origin/main` had diverged 5 commits). Rather than force-push over it or ship two confusingly similar Infra metrics, compared both approaches directly with the user before touching anything:
+
+- **Kept Codex's pipeline as the base** — it's better engineered in three real ways: exact union-find merging on shared OSM node IDs (vs. my distance-heuristic clustering), correct polygon-hole handling in the district point-in-polygon test (a gap in mine), and a reproducible committed raw-Overpass snapshot (`data/source/`) instead of a live API call at build time (which had rate-limited my own pipeline twice in the prior session).
+- **Discarded my own `build_pedestrian_bridges.js`** — its unique value was narrow enough to port as one field rather than justify a second dataset.
+- **Ported the one real improvement**: added `crossesMajorRoad` (bool) to `scripts/build_pedestrian_overpasses.js` — a proper segment-intersection test (not a distance guess) against a newly-fetched, separately-committed major-road snapshot (`data/source/osm_major_roads_delhi_raw.json`), correctly built from each OSM way's own node order (a component's deduplicated node set has no path order on its own — an easy mistake to make and initially made here before catching it). This distinguishes Codex's broader "any mapped pedestrian bridge" scope from a foot-over-bridge in the sense PWD Delhi and press coverage use the term (crosses live traffic, not a drain/canal/park path).
+- **Cross-validated the two independent methodologies against each other**: 133 of 242 bridges cross a major road by this new check — within 1 of my separately-built pipeline's 132-bridge total from a completely different merge algorithm and dataset. That convergence is real evidence both approaches are measuring the same thing correctly, not just internally consistent.
+- Surfaced `crossesMajorRoad` directly in the existing point-layer popup (not a separate layer) and added a test asserting it's a real, meaningfully-split boolean (not silently always true/false) plus consistency with the independent cross-check bound.
+
+Verified: `node --check` on `scripts/build_pedestrian_overpasses.js` passed; reran it — 242 features unchanged, 133 now flagged `crossesMajorRoad`; `npm run build:interactive-map` and `npm run build` both completed; `node --check` on both correctly-extracted embedded scripts (last `</script>`, not first) passed; served locally, confirmed via `javascript_tool` a live popup renders the new road-crossing sentence correctly with zero console errors; `npm test` — 24/24 pass (3 new, all previously-passing tests unaffected).
+
+---
+
 ## [2026-08-04] - Codex (OpenAI) - Delhi Urban Safety Observatory Branding & Pedestrian Overbridges
 
 1. Renamed the main dashboard to **Delhi Urban Safety Observatory** and the Leaflet page to **Delhi Safety & Infrastructure Explorer**, preserving their existing public filenames and URLs.

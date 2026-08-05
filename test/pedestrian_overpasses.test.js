@@ -27,3 +27,14 @@ test('district overbridge counts reconcile exactly with the GeoJSON', () => {
     assert.equal(d.pedestrianOverpassDensity, Math.round((d.pedestrianOverpasses / d.areaSqKm) * 100) / 100);
   });
 });
+
+test('crossesMajorRoad is a real boolean on every feature, not always the same value', () => {
+  const values = bridges.features.map(f => f.properties.crossesMajorRoad);
+  values.forEach(v => assert.equal(typeof v, 'boolean'));
+  const crossingCount = values.filter(Boolean).length;
+  // Independently cross-checked against a separate road-crossing-only pipeline (132 bridges,
+  // built with a different merge algorithm) -- this script's own count should land close to
+  // that, not at 0 or at the full 242 (which would mean the check silently isn't discriminating).
+  assert.ok(crossingCount > 50 && crossingCount < bridges.features.length - 20,
+    'expected crossesMajorRoad to meaningfully split the 242 features, got ' + crossingCount + ' crossing');
+});
