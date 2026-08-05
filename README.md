@@ -1,4 +1,4 @@
-# Delhi Crime Dashboard
+# Delhi Urban Safety Observatory
 
 ## Automated 2025 staging pipeline
 
@@ -6,7 +6,7 @@
 
 A self-contained, single-file dashboard analyzing crime and road-safety data
 across Delhi's 15 police districts (2022-2024) against real public
-infrastructure coverage — streetlights, pedestrian underpasses, metro station
+infrastructure coverage — streetlights, pedestrian underpasses, mapped pedestrian overbridges, metro station
 gates, and police infrastructure.
 
 Open [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html) directly in
@@ -135,6 +135,8 @@ then re-run the command above.
 
 ## Data & sourcing
 
+Pedestrian-overbridge data is a reproducible OpenStreetMap Overpass snapshot from 4 August 2026. It selects pedestrian ways tagged as bridges, groups connected/nearby segments into 242 mapped bridge features, and assigns their centroids to the 15 district polygons. This is not an official completeness register; unmapped features and accessibility/status changes may be missing.
+
 Every figure is cited directly in the dashboard's footer and in its
 downloadable Excel workbook (Sources & Methodology sheet), including:
 
@@ -153,7 +155,7 @@ downloadable Excel workbook (Sources & Methodology sheet), including:
   before use (105 of 107 fall inside a district polygon and are plotted).
 - Streetlights & underpasses: PAPL survey, via Delhi Transport Stack Open
   Transit Data.
-- Metro station gates & police chowkis/outposts: OpenStreetMap (ODbL).
+- Mapped pedestrian overbridges (242 OSM bridge groups), metro station gates & police chowkis/outposts: OpenStreetMap (ODbL).
 - Police stations & district boundaries: Delhi Police GSDL.
 
 Coverage gaps (e.g. districts the streetlight survey never drove through, or

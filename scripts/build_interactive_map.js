@@ -19,6 +19,7 @@ const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zo
 const wardsInfra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_wards_infra.geojson'), 'utf8'));
 const liquorVendsApprox = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_liquor_vends_all_coordinates_approx.geojson'), 'utf8'));
 const crashZones2024Approx = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_crash_prone_zones_2024_all_named_approx.geojson'), 'utf8'));
+const pedestrianOverpasses = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_pedestrian_overpasses_osm.geojson'), 'utf8'));
 
 // Join crime/infra stats onto the boundary features by district name.
 const statsByDistrict = {};
@@ -32,7 +33,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Delhi District Safety Index — Interactive Map</title>
+<title>Delhi Safety & Infrastructure Explorer</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
@@ -50,10 +51,10 @@ const html = `<!doctype html>
   :root { --bg: #14181f; --surface: #1c2331; --border: #303a4c; --text: var(--bone); --text-dim: #9aa3b2; }
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
 body { display: flex; flex-direction: column; }
 #topbar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; row-gap: 6px; flex: 0 0 auto; }
-#topbar h1 { font-size: 15px; margin: 0; font-weight: 800; margin-right: 6px; white-space: nowrap; }
+#topbar h1 { font-size: 17px; margin: 0; font-weight: 800; margin-right: 6px; white-space: nowrap; }
 #topbar a.back { font-size: 13px; color: var(--text); text-decoration: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; background: var(--bg); margin-left: auto; }
 #topbar a.back:hover { border-color: var(--amber); }
 #topbar select { font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
@@ -119,7 +120,11 @@ body { display: flex; flex-direction: column; }
   body.mobile-filters-open #analysisBar { bottom: 0; }
   #drawer { top: auto; left: 0; right: 0; width: auto; max-width: none; height: 70vh; bottom: 0; transform: translateY(100%); border-left: none; border-top: 1px solid var(--border); border-radius: 12px 12px 0 0; }
   #drawer.open { transform: translateY(0); }
-  .point-legend { right: 10px !important; }
+  .point-legend { right: 10px !important; bottom: 12px; max-width: calc(100vw - 20px); max-height: 34vh; overflow-y: auto; }
+  .leg { max-width: calc(100vw - 20px); bottom: 12px; }
+  #wardLegend { left: 10px; max-width: calc(100vw - 20px); }
+  #topbar { padding: 8px 10px; } #analysisBar label { min-width: 0; width: 100%; } #analysisBar select { min-width: 0; max-width: 100%; width: auto; flex: 1; } #topbar h1 { max-width: calc(100vw - 145px); white-space: normal; line-height: 1.1; } #topbar a.back { padding: 6px 8px; }
+  .leaflet-control-zoom { margin-top: 10px !important; }
 }
 .layer-count { color: var(--text-dim); font-size: 10.5px; }
 .point-legend { position: absolute; bottom: 20px; right: 356px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none; }
@@ -149,7 +154,7 @@ body { display: flex; flex-direction: column; }
 </head>
 <body>
 <div id="topbar">
-  <h1>Delhi District Safety Index — Interactive Map</h1>
+  <h1>Delhi Safety &amp; Infrastructure Explorer</h1>
   <label>Metric: <select id="metricSelect"></select></label>
   <div class="seg" id="yearToggle"></div>
   <div class="seg" id="rateToggle"></div>
@@ -181,6 +186,7 @@ body { display: flex; flex-direction: column; }
     <label><input type="checkbox" id="chkAtm"> ATMs <span class="layer-count" id="cntAtm"></span></label>
     <label><input type="checkbox" id="chkAlcohol"> Liquor shops <span class="layer-count" id="cntAlcohol"></span></label>
     <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
+    <label><input type="checkbox" id="chkOverpasses"> Pedestrian overbridges <span class="layer-count" id="cntOverpasses"></span></label>
     <label><input type="checkbox" id="chkCctvPriority"> CCTV priority sites <span class="layer-count" id="cntCctvPriority"></span></label>
     <label><input type="checkbox" id="chkLiquorVends"> Liquor vends (official, approx.) <span class="layer-count" id="cntLiquorVends"></span></label>
     <label><input type="checkbox" id="chkCrashZones2024Approx"> Crash zones 2024 (full, approx.) <span class="layer-count" id="cntCrashZones2024Approx"></span></label>
@@ -235,6 +241,7 @@ const ZONES = ZONES_BY_YEAR['2023'];
 const wardsInfra = ${JSON.stringify(wardsInfra)};
 const LIQUOR_VENDS_APPROX = ${JSON.stringify(liquorVendsApprox)};
 const CRASH_ZONES_2024_APPROX = ${JSON.stringify(crashZones2024Approx)};
+const PEDESTRIAN_OVERPASSES = ${JSON.stringify(pedestrianOverpasses)};
 
 // Crime/road-safety metrics -- mirrors build.js's METRICS[] (year-aware fields, sources) so
 // this page's popups/colors carry the same year semantics as the main dashboard instead of
@@ -256,6 +263,7 @@ const METRICS = [
 const INFRA = [
   { key: 'streetlight', densityKey: 'lightDensityPerKm2', countKey: 'totalLights', label: 'Streetlights', source: 'PAPL Open Transit Survey' },
   { key: 'underpass', densityKey: 'underpassDensity', countKey: 'underpasses', label: 'Underpasses', source: 'PAPL Open Transit Survey' },
+  { key: 'pedestrianOverpass', densityKey: 'pedestrianOverpassDensity', countKey: 'pedestrianOverpasses', label: 'Pedestrian Overbridges', source: 'OpenStreetMap Overpass snapshot 2026-08-04 (mapped inventory)' },
   { key: 'metroGate', densityKey: 'metroGateDensity', countKey: 'metroGates', label: 'Metro gates', source: 'OpenStreetMap' },
   { key: 'policeInfra', densityKey: 'policeInfraDensity', countKey: 'policeInfraCount', label: 'Police Infra', source: 'Delhi Police GSDL + OpenStreetMap' },
   { key: 'busStop', densityKey: 'busStopDensity', countKey: 'busStops', label: 'Bus Stops', source: 'OpenStreetMap' },
@@ -291,7 +299,7 @@ const WARD_INFRA_BASIS_LABEL = {
 // underpasses. Mirrors build.js's SURVEYED set/infraCovered() exactly.
 const SURVEYED = new Set(['Central','East','New Delhi','North','Shahdara','South','South-East','South-West','West']);
 function infraCovered(d, infraKey) {
-  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance') return true;
+  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance' || infraKey === 'pedestrianOverpass') return true;
   if (infraKey === 'policeInfra') return d.chowkiPosts > 0;
   return SURVEYED.has(d.district) && d[infraKey === 'streetlight' ? 'surveyPoints' : 'underpasses'] >= 10;
 }
@@ -813,7 +821,7 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
 // on every relevant control change. Every value read back from the URL is validated against the
 // actual known option lists below before being applied -- an unrecognized value is silently
 // ignored and the corresponding default is kept, never applied blindly.
-const POINT_LAYER_IDS = ['chkPolice', 'chkPosts', 'chkZones', 'chkBus', 'chkAtm', 'chkAlcohol', 'chkSurveillance', 'chkCctvPriority', 'chkLiquorVends', 'chkCrashZones2024Approx'];
+const POINT_LAYER_IDS = ['chkPolice', 'chkPosts', 'chkZones', 'chkBus', 'chkAtm', 'chkAlcohol', 'chkSurveillance', 'chkOverpasses', 'chkCctvPriority', 'chkLiquorVends', 'chkCrashZones2024Approx'];
 let pendingUrlDistrict = null;
 let pendingUrlState = null; // { heatmap, zoneYear, ward, wx, wy, layers } -- applied once every
                               // relevant section has finished wiring its own event listeners (see
@@ -980,6 +988,8 @@ const busStopLayer = makeClusterLayer(POI.busStops, '#3f7d52', 'Bus Stop');
 const atmLayer = makeClusterLayer(POI.atms, '#d4af37', 'ATM');
 const alcoholLayer = makeShapeLayer(POI.alcoholShops, '#8b2f5e', 'diamond', 12);
 const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11);
+const overpassLayer = L.markerClusterGroup({ maxClusterRadius: 42, spiderfyOnMaxZoom: true });
+PEDESTRIAN_OVERPASSES.features.forEach(f => { const p=f.properties, c=f.geometry.coordinates; L.marker([c[1],c[0]], {icon:shapeIcon('#e3a13b','square',10)}).bindPopup('<div class="popup-title">'+p.name+'</div><div>'+p.district+' District</div><div class="popup-src">Mapped pedestrian bridge/overpass &middot; OSM snapshot '+p.sourceSnapshot+' &middot; <a href="'+p.osmUrl+'" target="_blank" rel="noopener">OpenStreetMap object</a><br>'+p.coverageNote+'</div>').addTo(overpassLayer); });
 
 // ── Official liquor vends (approximate coordinates) — independent point layer, not the OSM-
 // derived "Liquor Shops" layer above. Faded/hollow diamond styling signals "approximate, not a
@@ -1079,11 +1089,11 @@ cctvByName.forEach(site => {
 
 const toggles = [
   ['chkPolice', policeStationLayer, 'cntPolice'], ['chkPosts', policePostLayer, 'cntPosts'], ['chkZones', zonesGroup, 'cntZones'],
-  ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'],
+  ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'], ['chkOverpasses', overpassLayer, 'cntOverpasses'],
   ['chkCctvPriority', cctvPriorityLayer, 'cntCctvPriority'],
   ['chkLiquorVends', liquorVendsLayer, 'cntLiquorVends'], ['chkCrashZones2024Approx', crashZones2024ApproxLayer, 'cntCrashZones2024Approx'],
 ];
-const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length };
+const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length };
 toggles.forEach(([id, layer, countId]) => {
   document.getElementById(countId).textContent = '(' + layerCounts[countId].toLocaleString('en-IN') + ')';
   document.getElementById(id).addEventListener('change', (e) => {
@@ -1105,7 +1115,7 @@ document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(btn
 const POINT_LEGEND_ITEMS = [
   ['chkPolice', '#3d5a99', 'square', 'Police stations'], ['chkPosts', '#7c3aed', 'triangle', 'Chowkis/posts'],
   ['chkZones', '#b14a34', 'dot', 'Crash zones (size = fatal crashes)'], ['chkBus', '#3f7d52', 'dot', 'Bus stops (clustered)'],
-  ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'],
+  ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'], ['chkOverpasses', '#e3a13b', 'square', 'Pedestrian overbridges (OSM mapped)'],
   ['chkCctvPriority', '#0891b2', 'ring', 'CCTV priority candidates (recommended, not existing)'],
   ['chkLiquorVends', '#8b2f5e', 'diamond', 'Liquor vends, official (approx. coordinates)'],
   ['chkCrashZones2024Approx', '#b14a34', 'dot', 'Crash zones 2024, full 93 (approx. coordinates)'],
@@ -1227,6 +1237,7 @@ function showNearbyInfra(zone) {
     'CCTV/guards': pointsWithin(zone.lat, zone.lng, POI.surveillance.map(p=>[p[0],p[1]]), r).length,
     'Bus stops': pointsWithin(zone.lat, zone.lng, POI.busStops.map(p=>[p[0],p[1]]), r).length,
     'ATMs': pointsWithin(zone.lat, zone.lng, POI.atms.map(p=>[p[0],p[1]]), r).length,
+    'Pedestrian overbridges': pointsWithin(zone.lat, zone.lng, PEDESTRIAN_OVERPASSES.features.map(f=>[f.geometry.coordinates[1],f.geometry.coordinates[0]]), r).length,
     'Police stations': pointsWithin(zone.lat, zone.lng, POLICE.stations.map(p=>[p[0],p[1]]), r).length,
     'Chowkis/posts': pointsWithin(zone.lat, zone.lng, POLICE.posts.map(p=>[p[0],p[1]]), r).length,
   };

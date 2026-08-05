@@ -32,6 +32,8 @@
     "lightDensityPerKm2": 293.5,
     "underpasses": 35,
     "underpassDensity": 1.26,
+    "pedestrianOverpasses": 8,
+    "pedestrianOverpassDensity": 0.29,
     "metroGates": 46,
     "metroGateDensity": 1.65,
     "policeStations": 19,
@@ -44,8 +46,8 @@
     "atmDensity": 1.37,
     "alcoholShops": 6,
     "alcoholShopDensity": 0.22,
-    "surveillanceCameras": 15,
-    "surveillanceDensity": 0.54
+    "surveillanceCameras": 32,
+    "surveillanceDensity": 1.15
   },
   {
     "district": "Dwarka",
@@ -80,6 +82,8 @@
     "lightDensityPerKm2": 0,
     "underpasses": 0,
     "underpassDensity": 0,
+    "pedestrianOverpasses": 2,
+    "pedestrianOverpassDensity": 0.01,
     "metroGates": 34,
     "metroGateDensity": 0.12,
     "policeStations": 13,
@@ -90,7 +94,7 @@
     "busStopDensity": 0.49,
     "atms": 31,
     "atmDensity": 0.11,
-    "alcoholShops": 2,
+    "alcoholShops": 3,
     "alcoholShopDensity": 0.01,
     "surveillanceCameras": 2,
     "surveillanceDensity": 0.01
@@ -128,6 +132,8 @@
     "lightDensityPerKm2": 40.8,
     "underpasses": 37,
     "underpassDensity": 0.89,
+    "pedestrianOverpasses": 28,
+    "pedestrianOverpassDensity": 0.67,
     "metroGates": 43,
     "metroGateDensity": 1.03,
     "policeStations": 13,
@@ -138,10 +144,10 @@
     "busStopDensity": 7.87,
     "atms": 81,
     "atmDensity": 1.94,
-    "alcoholShops": 6,
-    "alcoholShopDensity": 0.14,
-    "surveillanceCameras": 113,
-    "surveillanceDensity": 2.7
+    "alcoholShops": 10,
+    "alcoholShopDensity": 0.24,
+    "surveillanceCameras": 232,
+    "surveillanceDensity": 5.55
   },
   {
     "district": "New Delhi",
@@ -176,6 +182,8 @@
     "lightDensityPerKm2": 240,
     "underpasses": 40,
     "underpassDensity": 1.11,
+    "pedestrianOverpasses": 15,
+    "pedestrianOverpassDensity": 0.42,
     "metroGates": 49,
     "metroGateDensity": 1.36,
     "policeStations": 13,
@@ -186,10 +194,10 @@
     "busStopDensity": 7.92,
     "atms": 61,
     "atmDensity": 1.69,
-    "alcoholShops": 5,
-    "alcoholShopDensity": 0.14,
-    "surveillanceCameras": 119,
-    "surveillanceDensity": 3.3
+    "alcoholShops": 6,
+    "alcoholShopDensity": 0.17,
+    "surveillanceCameras": 313,
+    "surveillanceDensity": 8.67
   },
   {
     "district": "North",
@@ -224,6 +232,8 @@
     "lightDensityPerKm2": 103,
     "underpasses": 29,
     "underpassDensity": 0.44,
+    "pedestrianOverpasses": 16,
+    "pedestrianOverpassDensity": 0.24,
     "metroGates": 30,
     "metroGateDensity": 0.45,
     "policeStations": 19,
@@ -236,8 +246,8 @@
     "atmDensity": 0.71,
     "alcoholShops": 0,
     "alcoholShopDensity": 0,
-    "surveillanceCameras": 34,
-    "surveillanceDensity": 0.51
+    "surveillanceCameras": 409,
+    "surveillanceDensity": 6.16
   },
   {
     "district": "North-East",
@@ -272,6 +282,8 @@
     "lightDensityPerKm2": 0,
     "underpasses": 0,
     "underpassDensity": 0,
+    "pedestrianOverpasses": 7,
+    "pedestrianOverpassDensity": 0.14,
     "metroGates": 2,
     "metroGateDensity": 0.04,
     "policeStations": 16,
@@ -320,6 +332,8 @@
     "lightDensityPerKm2": 0,
     "underpasses": 0,
     "underpassDensity": 0,
+    "pedestrianOverpasses": 14,
+    "pedestrianOverpassDensity": 0.34,
     "metroGates": 33,
     "metroGateDensity": 0.8,
     "policeStations": 14,
@@ -330,10 +344,10 @@
     "busStopDensity": 3.64,
     "atms": 36,
     "atmDensity": 0.87,
-    "alcoholShops": 3,
-    "alcoholShopDensity": 0.07,
-    "surveillanceCameras": 1,
-    "surveillanceDensity": 0.02
+    "alcoholShops": 5,
+    "alcoholShopDensity": 0.12,
+    "surveillanceCameras": 33,
+    "surveillanceDensity": 0.8
   },
   {
     "district": "Outer",
@@ -368,6 +382,8 @@
     "lightDensityPerKm2": 0,
     "underpasses": 0,
     "underpassDensity": 0,
+    "pedestrianOverpasses": 5,
+    "pedestrianOverpassDensity": 0.06,
     "metroGates": 1,
     "metroGateDensity": 0.01,
     "policeStations": 12,
@@ -378,8 +394,8 @@
     "busStopDensity": 0.62,
     "atms": 3,
     "atmDensity": 0.04,
-    "alcoholShops": 0,
-    "alcoholShopDensity": 0,
+    "alcoholShops": 1,
+    "alcoholShopDensity": 0.01,
     "surveillanceCameras": 0,
     "surveillanceDensity": 0
   },
@@ -416,6 +432,8 @@
     "lightDensityPerKm2": 0,
     "underpasses": 0,
     "underpassDensity": 0,
+    "pedestrianOverpasses": 4,
+    "pedestrianOverpassDensity": 0.02,
     "metroGates": 5,
     "metroGateDensity": 0.02,
     "policeStations": 9,
@@ -426,7 +444,7 @@
     "busStopDensity": 0.27,
     "atms": 8,
     "atmDensity": 0.03,
-    "alcoholShops": 0,
+    "alcoholShops": 1,
     "alcoholShopDensity": 0,
     "surveillanceCameras": 2,
     "surveillanceDensity": 0.01
@@ -464,6 +482,8 @@
     "lightDensityPerKm2": 0,
     "underpasses": 0,
     "underpassDensity": 0,
+    "pedestrianOverpasses": 3,
+    "pedestrianOverpassDensity": 0.02,
     "metroGates": 8,
     "metroGateDensity": 0.06,
     "policeStations": 12,
@@ -474,10 +494,10 @@
     "busStopDensity": 0.5,
     "atms": 11,
     "atmDensity": 0.08,
-    "alcoholShops": 2,
-    "alcoholShopDensity": 0.02,
-    "surveillanceCameras": 10,
-    "surveillanceDensity": 0.08
+    "alcoholShops": 4,
+    "alcoholShopDensity": 0.03,
+    "surveillanceCameras": 13,
+    "surveillanceDensity": 0.1
   },
   {
     "district": "Shahdara",
@@ -512,6 +532,8 @@
     "lightDensityPerKm2": 88.4,
     "underpasses": 32,
     "underpassDensity": 1.19,
+    "pedestrianOverpasses": 6,
+    "pedestrianOverpassDensity": 0.22,
     "metroGates": 5,
     "metroGateDensity": 0.19,
     "policeStations": 12,
@@ -522,10 +544,10 @@
     "busStopDensity": 3.31,
     "atms": 20,
     "atmDensity": 0.74,
-    "alcoholShops": 3,
-    "alcoholShopDensity": 0.11,
-    "surveillanceCameras": 2,
-    "surveillanceDensity": 0.07
+    "alcoholShops": 4,
+    "alcoholShopDensity": 0.15,
+    "surveillanceCameras": 1,
+    "surveillanceDensity": 0.04
   },
   {
     "district": "South",
@@ -560,6 +582,8 @@
     "lightDensityPerKm2": 43.2,
     "underpasses": 15,
     "underpassDensity": 0.09,
+    "pedestrianOverpasses": 31,
+    "pedestrianOverpassDensity": 0.19,
     "metroGates": 58,
     "metroGateDensity": 0.36,
     "policeStations": 20,
@@ -570,10 +594,10 @@
     "busStopDensity": 3.02,
     "atms": 125,
     "atmDensity": 0.78,
-    "alcoholShops": 12,
-    "alcoholShopDensity": 0.07,
-    "surveillanceCameras": 33,
-    "surveillanceDensity": 0.21
+    "alcoholShops": 13,
+    "alcoholShopDensity": 0.08,
+    "surveillanceCameras": 162,
+    "surveillanceDensity": 1.01
   },
   {
     "district": "South-East",
@@ -608,6 +632,8 @@
     "lightDensityPerKm2": 186.8,
     "underpasses": 99,
     "underpassDensity": 1.21,
+    "pedestrianOverpasses": 51,
+    "pedestrianOverpassDensity": 0.62,
     "metroGates": 48,
     "metroGateDensity": 0.59,
     "policeStations": 19,
@@ -620,8 +646,8 @@
     "atmDensity": 0.9,
     "alcoholShops": 5,
     "alcoholShopDensity": 0.06,
-    "surveillanceCameras": 85,
-    "surveillanceDensity": 1.04
+    "surveillanceCameras": 155,
+    "surveillanceDensity": 1.89
   },
   {
     "district": "South-West",
@@ -656,6 +682,8 @@
     "lightDensityPerKm2": 179.1,
     "underpasses": 119,
     "underpassDensity": 0.96,
+    "pedestrianOverpasses": 41,
+    "pedestrianOverpassDensity": 0.33,
     "metroGates": 59,
     "metroGateDensity": 0.47,
     "policeStations": 13,
@@ -668,8 +696,8 @@
     "atmDensity": 0.74,
     "alcoholShops": 6,
     "alcoholShopDensity": 0.05,
-    "surveillanceCameras": 15,
-    "surveillanceDensity": 0.12
+    "surveillanceCameras": 227,
+    "surveillanceDensity": 1.82
   },
   {
     "district": "West",
@@ -704,6 +732,8 @@
     "lightDensityPerKm2": 17.1,
     "underpasses": 9,
     "underpassDensity": 0.14,
+    "pedestrianOverpasses": 11,
+    "pedestrianOverpassDensity": 0.17,
     "metroGates": 38,
     "metroGateDensity": 0.59,
     "policeStations": 16,
@@ -714,8 +744,8 @@
     "busStopDensity": 3.23,
     "atms": 17,
     "atmDensity": 0.26,
-    "alcoholShops": 0,
-    "alcoholShopDensity": 0,
+    "alcoholShops": 1,
+    "alcoholShopDensity": 0.02,
     "surveillanceCameras": 2,
     "surveillanceDensity": 0.03
   }

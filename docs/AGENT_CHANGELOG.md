@@ -1,5 +1,14 @@
 # AI Collaboration Log & Changelog
 
+## [2026-08-04] - Codex (OpenAI) - Delhi Urban Safety Observatory Branding & Pedestrian Overbridges
+
+1. Renamed the main dashboard to **Delhi Urban Safety Observatory** and the Leaflet page to **Delhi Safety & Infrastructure Explorer**, preserving their existing public filenames and URLs.
+2. Added a responsive civic-data hero illustration, project favicon, mobile layout refinements, viewport metadata, and overflow-safe map controls/legends.
+3. Collected an OpenStreetMap Overpass snapshot of pedestrian bridge ways, grouped connected/nearby segments into 242 mapped pedestrian bridge features, filtered them to the 15 district polygons, and recorded OSM provenance/completeness caveats.
+4. Added pedestrian-overbridge counts and densities to district analysis/exports and a clustered, URL-persisted point layer to the interactive map, including crash-zone proximity readouts.
+5. Added automated tests validating all bridge coordinates, provenance links, district totals, and density calculations.
+
+
 ## [2026-08-03] - Codex (OpenAI) - Automated 2025 Data-Collection Pipeline
 
 1. Added the isolated `pipeline_2025/` Python 3.12 package with configurable official-source registry, allowlisted discovery, candidate scoring, atomic checksummed downloads, extraction fallbacks, normalization, validation, provenance and status reporting.

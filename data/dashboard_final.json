@@ -146,7 +146,9 @@
    "personsKilled2023": 51,
    "personsKilled2024": 72,
    "personsInjured2023": 295,
-   "personsInjured2024": 236
+   "personsInjured2024": 236,
+   "pedestrianOverpasses": 8,
+   "pedestrianOverpassDensity": 0.29
   },
   {
    "name": "Dwarka",
@@ -293,7 +295,9 @@
    "personsKilled2023": 93,
    "personsKilled2024": 106,
    "personsInjured2023": 477,
-   "personsInjured2024": 400
+   "personsInjured2024": 400,
+   "pedestrianOverpasses": 2,
+   "pedestrianOverpassDensity": 0.01
   },
   {
    "name": "East",
@@ -440,7 +444,9 @@
    "personsKilled2023": 79,
    "personsKilled2024": 92,
    "personsInjured2023": 305,
-   "personsInjured2024": 269
+   "personsInjured2024": 269,
+   "pedestrianOverpasses": 28,
+   "pedestrianOverpassDensity": 0.67
   },
   {
    "name": "New Delhi",
@@ -587,7 +593,9 @@
    "personsKilled2023": 39,
    "personsKilled2024": 40,
    "personsInjured2023": 160,
-   "personsInjured2024": 206
+   "personsInjured2024": 206,
+   "pedestrianOverpasses": 15,
+   "pedestrianOverpassDensity": 0.42
   },
   {
    "name": "North",
@@ -734,7 +742,9 @@
    "personsKilled2023": 116,
    "personsKilled2024": 142,
    "personsInjured2023": 429,
-   "personsInjured2024": 369
+   "personsInjured2024": 369,
+   "pedestrianOverpasses": 16,
+   "pedestrianOverpassDensity": 0.24
   },
   {
    "name": "North-East",
@@ -881,7 +891,9 @@
    "personsKilled2023": 98,
    "personsKilled2024": 84,
    "personsInjured2023": 378,
-   "personsInjured2024": 320
+   "personsInjured2024": 320,
+   "pedestrianOverpasses": 7,
+   "pedestrianOverpassDensity": 0.14
   },
   {
    "name": "North-West",
@@ -1028,7 +1040,9 @@
    "personsKilled2023": 125,
    "personsKilled2024": 141,
    "personsInjured2023": 337,
-   "personsInjured2024": 349
+   "personsInjured2024": 349,
+   "pedestrianOverpasses": 14,
+   "pedestrianOverpassDensity": 0.34
   },
   {
    "name": "Outer",
@@ -1175,7 +1189,9 @@
    "personsKilled2023": 123,
    "personsKilled2024": 105,
    "personsInjured2023": 308,
-   "personsInjured2024": 306
+   "personsInjured2024": 306,
+   "pedestrianOverpasses": 5,
+   "pedestrianOverpassDensity": 0.06
   },
   {
    "name": "Outer North",
@@ -1322,7 +1338,9 @@
    "personsKilled2023": 181,
    "personsKilled2024": 187,
    "personsInjured2023": 568,
-   "personsInjured2024": 643
+   "personsInjured2024": 643,
+   "pedestrianOverpasses": 4,
+   "pedestrianOverpassDensity": 0.02
   },
   {
    "name": "Rohini",
@@ -1469,7 +1487,9 @@
    "personsKilled2023": 73,
    "personsKilled2024": 70,
    "personsInjured2023": 222,
-   "personsInjured2024": 252
+   "personsInjured2024": 252,
+   "pedestrianOverpasses": 3,
+   "pedestrianOverpassDensity": 0.02
   },
   {
    "name": "Shahdara",
@@ -1616,7 +1636,9 @@
    "personsKilled2023": 48,
    "personsKilled2024": 61,
    "personsInjured2023": 188,
-   "personsInjured2024": 218
+   "personsInjured2024": 218,
+   "pedestrianOverpasses": 6,
+   "pedestrianOverpassDensity": 0.22
   },
   {
    "name": "South",
@@ -1763,7 +1785,9 @@
    "personsKilled2023": 65,
    "personsKilled2024": 73,
    "personsInjured2023": 408,
-   "personsInjured2024": 350
+   "personsInjured2024": 350,
+   "pedestrianOverpasses": 31,
+   "pedestrianOverpassDensity": 0.19
   },
   {
    "name": "South-East",
@@ -1910,7 +1934,9 @@
    "personsKilled2023": 116,
    "personsKilled2024": 95,
    "personsInjured2023": 476,
-   "personsInjured2024": 463
+   "personsInjured2024": 463,
+   "pedestrianOverpasses": 51,
+   "pedestrianOverpassDensity": 0.62
   },
   {
    "name": "South-West",
@@ -2057,7 +2083,9 @@
    "personsKilled2023": 110,
    "personsKilled2024": 151,
    "personsInjured2023": 484,
-   "personsInjured2024": 443
+   "personsInjured2024": 443,
+   "pedestrianOverpasses": 41,
+   "pedestrianOverpassDensity": 0.33
   },
   {
    "name": "West",
@@ -2204,7 +2232,9 @@
    "personsKilled2023": 140,
    "personsKilled2024": 132,
    "personsInjured2023": 435,
-   "personsInjured2024": 400
+   "personsInjured2024": 400,
+   "pedestrianOverpasses": 11,
+   "pedestrianOverpassDensity": 0.17
   }
  ]
 }

@@ -42,6 +42,7 @@ const districtFields = [
   'crashProneZones2023', 'simpleCrashes2023', 'fatalCrashes2023', 'totalCrashes2023',
   'surveyPoints', 'totalLights', 'lightDensityPerKm2',
   'underpasses', 'underpassDensity',
+  'pedestrianOverpasses', 'pedestrianOverpassDensity',
   'metroGates', 'metroGateDensity',
   'policeStations', 'chowkiPosts', 'policeInfraCount', 'policeInfraDensity',
   'busStops', 'busStopDensity', 'atms', 'atmDensity',

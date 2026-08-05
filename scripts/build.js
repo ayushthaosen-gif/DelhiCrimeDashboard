@@ -16,7 +16,7 @@ const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers.
 const font600 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders600.woff2')).toString('base64');
 const font800 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders800.woff2')).toString('base64');
 
-const html = `<title>Delhi District Safety Index — 2023</title>
+const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Delhi Urban Safety Observatory</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"></head>
 <style>
 @font-face { font-family: 'Big Shoulders'; font-weight: 600; font-style: normal; src: url(data:font/woff2;base64,${font600}) format('woff2'); }
 @font-face { font-family: 'Big Shoulders'; font-weight: 800; font-style: normal; src: url(data:font/woff2;base64,${font800}) format('woff2'); }
@@ -77,7 +77,10 @@ body {
 }
 .wrap { max-width: 1280px; margin: 0 auto; padding: 28px 24px 60px; }
 
-header { display: flex; flex-direction: column; gap: 6px; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+header { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,460px); gap: 24px; align-items: center; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+.header-copy { min-width: 0; }
+.hero-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+@media (max-width: 760px) { .wrap { padding: 18px 14px 44px; } header { grid-template-columns: 1fr; gap: 16px; } h1 { font-size: clamp(34px, 11vw, 46px); } .hero-image { max-height: 260px; } .controls { gap: 9px; } .metric-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; } .metric-tab { flex: 0 0 auto; } .toggle-row { width: 100%; margin-left: 0; } .panel { border-radius: 8px; } .map-panel, .detail, .method-panel, .scatter-panel, .download-panel { padding: 12px; } .detail-head { align-items: flex-start; flex-direction: column; } }
 .eyebrow { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--amber-dim); }
 h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; font-size: 42px; line-height: 1.02; margin: 2px 0 4px; text-wrap: balance; letter-spacing: -.01em; }
 .subhead { color: var(--text-dim); font-size: 13.5px; max-width: 66ch; }
@@ -327,23 +330,26 @@ footer a { color: inherit; }
 <div class="wrap">
   <header>
     <div class="eyebrow">Delhi Police &amp; Traffic Police District Data · 2022–2023</div>
-    <h1>Where the lights end,<br>what does the crime data say?</h1>
-    <p class="subhead">Official district-level crime and road-safety figures against real public-infrastructure coverage — streetlights, pedestrian underpasses, metro station gates, and full police infrastructure (stations plus chowkis/outposts) — across Delhi's 15 police districts.</p>
-    <a class="compare-btn" href="interactive_map.html" style="margin-top:10px;text-decoration:none;">Open interactive street map (zoom/pan, real basemap, liquor vends × crash-zone exploration) →</a>
+    <h1>Delhi Urban Safety Observatory</h1>
+    <p class="subhead">Official district-level crime and road-safety figures against real public-infrastructure coverage — streetlights, pedestrian underpasses, mapped pedestrian overbridges, metro station gates, and police infrastructure (stations plus chowkis/outposts) — across Delhi's 15 police districts.</p>
+    <a class="compare-btn" href="interactive_map.html" style="margin-top:10px;text-decoration:none;">Open Delhi Safety &amp; Infrastructure Explorer →</a>
+    </div>
+    <img class="hero-image" src="assets/delhi-safety-hero.png" alt="Illustrated Delhi streets showing a pedestrian overbridge, transit, streetlights and safety-data map overlays">
   </header>
 
   <div class="purpose-banner">
     <div class="purpose-text">
-      <b class="purpose-title">About the Delhi District Safety Index &amp; Project Rationale</b>
+      <b class="purpose-title">About the Delhi Urban Safety Observatory &amp; Project Rationale</b>
       <p>This interactive dashboard quantifies public safety, crime density, traffic fatality risks, and municipal security infrastructure across Delhi's 15 police jurisdictions. By integrating official <b>NCRB crime reports (2022–2024)</b>, <b>Delhi Traffic Police accident blackspots</b>, and <b>Open Transit municipal surveys</b>, this platform provides citizens, urban planners, and policy researchers with empirical data on safety patterns, infrastructure equity, and urban walkability across the city.</p>
     </div>
   </div>
 
   <div class="datanote">
     <div>
-      <b>Six infrastructure layers, six outcome metrics, several different coverage levels — read the confidence markers.</b>
+      <b>Multiple infrastructure layers, six outcome metrics, several different coverage levels — read the confidence markers.</b>
       <ul>
         <li><b>Streetlights</b> (PAPL survey, ~40k points) and <b>underpasses</b> (PAPL survey, 417 points) share the exact same gap: <b>Dwarka, North-East, North-West, Outer, Outer North and Rohini were never driven through.</b> Zero there means "not surveyed," not "not present."</li>
+        <li><b>Pedestrian overbridges</b> (OpenStreetMap/Overpass snapshot, 242 connected mapped bridge groups) are available across all district polygons, but this is a mapped inventory rather than an official completeness register. A zero means no matching OSM feature was mapped, not verified absence.</li>
         <li><b>Metro station gates</b> (OpenStreetMap, 529 points), <b>bus stops</b> (OpenStreetMap, 3,199 points), and <b>ATMs</b> (OpenStreetMap via Overpass API, 666 points) have real, complete coverage across all 15 districts.</li>
         <li><b>Police Infra</b> combines two sources: full <b>police stations</b> (Delhi Police GSDL, official geocoded list, 224 points — complete for all 15 districts) plus <b>chowkis, outposts &amp; booths</b> (OpenStreetMap community mapping, 120 points — no official geocoded chowki dataset exists publicly, confirmed against the same GSDL source). The combined figure is fully trustworthy for 14 of 15 districts; <b>Outer</b> shows 12 real stations but zero mapped chowkis, almost certainly an OSM under-mapping gap, so its combined count is flagged as an undercount.</li>
         <li><b>Road Deaths &amp; Hit-and-Run</b> (Delhi Traffic Police, 2022 Delhi Road Crash Fatalities Report) can be plotted on the map and scatter chart alongside the 2023 crime figures. It's a year older and uses Traffic Police's own <b>11-district reporting geography</b>, not the 15 Delhi Police districts — <b>Outer, Outer North, Rohini and South-West have no separate entry</b> and show hatched on the map, not zero deaths.</li>
@@ -645,6 +651,7 @@ const METRICS = [
 const INFRA = [
   { key: 'streetlight', densityKey: 'lightDensityPerKm2', countKey: 'totalLights', label: 'Streetlights', unit: 'streetlights', title: 'Streetlight Density', desc: 'Number of surveyed functioning streetlights per square kilometer of district area.', source: 'PAPL Open Transit Survey' },
   { key: 'underpass', densityKey: 'underpassDensity', countKey: 'underpasses', label: 'Underpasses', unit: 'underpasses', title: 'Pedestrian Underpass Density', desc: 'Number of pedestrian underpasses and subways per square kilometer.', source: 'PAPL Open Transit Survey' },
+  { key: 'pedestrianOverpass', densityKey: 'pedestrianOverpassDensity', countKey: 'pedestrianOverpasses', label: 'Pedestrian Overbridges', unit: 'mapped bridges', title: 'Mapped Pedestrian Overbridge Density', desc: 'OpenStreetMap footway/path/steps bridge segments grouped into pedestrian bridge features per square kilometer. Mapped inventory, not an official completeness register.', source: 'OpenStreetMap (Overpass API snapshot 2026-08-04)' },
   { key: 'metroGate', densityKey: 'metroGateDensity', countKey: 'metroGates', label: 'Metro gates', unit: 'metro gates', title: 'Metro Entrance Gate Density', desc: 'Number of Delhi Metro station entrance/exit gates per square kilometer.', source: 'OpenStreetMap' },
   { key: 'policeInfra', densityKey: 'policeInfraDensity', countKey: 'policeInfraCount', label: 'Police Infra', unit: 'police posts', title: 'Police Infrastructure Density', desc: 'Combined police stations, posts, chowkis, and booths per square kilometer.', source: 'Delhi Police GSDL + OpenStreetMap' },
   { key: 'busStop', densityKey: 'busStopDensity', countKey: 'busStops', label: 'Bus Stops', unit: 'bus stops', title: 'Bus Stop Density', desc: 'Number of OpenStreetMap-tagged bus stops per square kilometer.', source: 'OpenStreetMap' },
@@ -656,7 +663,7 @@ const INFRA = [
 // Districts the PAPL survey actually drove through — shared gap for streetlights and underpasses.
 const SURVEYED = new Set(['Central','East','New Delhi','North','Shahdara','South','South-East','South-West','West']);
 function infraCovered(d, infraKey) {
-  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance') return true;
+  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance' || infraKey === 'pedestrianOverpass') return true;
   if (infraKey === 'policeInfra') return d.chowkiPosts > 0;
   return SURVEYED.has(d.district) && d[infraKey === 'streetlight' ? 'surveyPoints' : 'underpasses'] >= 10;
 }
@@ -2391,6 +2398,8 @@ const FIELDS = [
   { key: 'streetlightCoverage', label: 'Streetlight data coverage',
     derive: d => d.surveyPoints >= 10 ? 'Surveyed' : d.surveyPoints > 0 ? 'Sparse (<10 pts) — do not trust' : 'Not surveyed (PAPL gap)' },
   { key: 'underpasses', label: 'Underpasses (count)', numeric: true },
+  { key: 'pedestrianOverpasses', label: 'Mapped pedestrian overbridges (count)', numeric: true },
+  { key: 'pedestrianOverpassDensity', label: 'Mapped pedestrian overbridge density (per km²)', numeric: true },
   { key: 'underpassDensity', label: 'Underpass density (per km²)', numeric: true },
   { key: 'underpassCoverage', label: 'Underpass data coverage',
     derive: d => d.surveyPoints >= 10 ? 'Surveyed' : d.surveyPoints > 0 ? 'Sparse (<10 pts) — do not trust' : 'Not surveyed (PAPL gap)' },
@@ -2613,7 +2622,7 @@ function buildDictionarySheet() {
     crashProneZones2023: 'Delhi Road Crash Report 2023, Table 6.31', simpleCrashes2023: 'Delhi Road Crash Report 2023, Table 6.31',
     fatalCrashes2023: 'Delhi Road Crash Report 2023, Table 6.31', totalCrashes2023: 'Delhi Road Crash Report 2023, Table 6.31',
     surveyPoints: 'PAPL streetlight survey', totalLights: 'PAPL streetlight survey', lightDensityPerKm2: 'PAPL streetlight survey (derived)',
-    underpasses: 'PAPL underpass survey', underpassDensity: 'PAPL underpass survey (derived)',
+    underpasses: 'PAPL underpass survey', underpassDensity: 'PAPL underpass survey (derived)', pedestrianOverpasses: 'OpenStreetMap Overpass snapshot 2026-08-04', pedestrianOverpassDensity: 'OpenStreetMap Overpass snapshot (derived)',
     metroGates: 'OpenStreetMap', metroGateDensity: 'OpenStreetMap (derived)',
     policeStations: 'Delhi Police GSDL', chowkiPosts: 'OpenStreetMap', policeInfraCount: 'GSDL + OpenStreetMap (combined)', policeInfraDensity: 'GSDL + OpenStreetMap (derived)',
     busStops: 'OpenStreetMap', busStopDensity: 'OpenStreetMap (derived)', atms: 'OpenStreetMap (Overpass API)', atmDensity: 'OpenStreetMap (derived)',
@@ -2697,7 +2706,7 @@ function buildSourcesSheet() {
     ['Small samples', '', '', 'Streetlight/underpass correlations use only 8-9 districts. Coefficients from this few points carry wide uncertainty — read them as suggestive, not conclusive.'],
     ['Mixed vintage', '', '', 'Crime figures span 2022-2024 (three NCRB annual reports); road-safety figures are 2022 only (the most recent available district-wise report at time of compilation). The 2024 IPC crime table also switched to BNS section numbering (the new criminal code) alongside the old IPC references — treat the 2024 row as the same offence categories, not a break in the series.'],
     ['', '', '', ''],
-    ['Compiled for', 'GaitWay walkability project — Delhi District Safety Index dashboard', '', 'Cite the individual source rows above, not this workbook, in academic or official work.'],
+    ['Compiled for', 'GaitWay walkability project — Delhi Urban Safety Observatory dashboard', '', 'Cite the individual source rows above, not this workbook, in academic or official work.'],
   ];
   return xlSheet('Sources & Methodology', headers, rows, [false,false,false,false]);
 }

@@ -1,0 +1,6310 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "title": "Delhi mapped pedestrian bridges and overpasses",
+    "source": "OpenStreetMap contributors",
+    "sourceUrl": "https://www.openstreetmap.org/copyright",
+    "query": "highway=footway|path|steps + bridge=yes|footbridge; connected segments merged; centroids filtered to dashboard district polygons",
+    "snapshotDate": "2026-08-04",
+    "coverageCaveat": "This is a mapped-feature inventory, not an official completeness register. Unmapped structures are absent."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Foot Over Bridge 1",
+        "district": "Central",
+        "osmWayIds": [
+          80414535,
+          80414542,
+          80414549,
+          80414552,
+          80414555,
+          80414557,
+          80414561,
+          80414563,
+          80414566,
+          80418123,
+          509046751,
+          509046754,
+          509046755,
+          1490884129,
+          1490884130,
+          1490884133
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80414535",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": "no",
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2202718,
+          28.643462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Foot Over Bridge 3",
+        "district": "Central",
+        "osmWayIds": [
+          34404746,
+          34404747,
+          34404748,
+          34404751,
+          34404752,
+          34404755,
+          260315528,
+          403830707,
+          403831592,
+          403831855,
+          509045586,
+          509045588,
+          509045593,
+          509045595,
+          509045597,
+          509045599,
+          509045601,
+          509045602,
+          509045606,
+          509045608,
+          509046750,
+          729346158,
+          729346160,
+          729346161,
+          772150065,
+          1106796945,
+          1106796946,
+          1106796947,
+          1106796948,
+          1106796949,
+          1106796950,
+          1158472632,
+          1158472633,
+          1158472637,
+          1158472638,
+          1169369737,
+          1169369739,
+          1169371687,
+          1169371688,
+          1169865305,
+          1199194997,
+          1199195000,
+          1199195002,
+          1199195003
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/34404746",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": "no",
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2209863,
+          28.6419983
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Central",
+        "osmWayIds": [
+          253307751
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/253307751",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2053772,
+          28.6492707
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Central",
+        "osmWayIds": [
+          814940336
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/814940336",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2413454,
+          28.6266272
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Central",
+        "osmWayIds": [
+          998790348,
+          1057986369,
+          1057986370
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/998790348",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2438886,
+          28.6279699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Central",
+        "osmWayIds": [
+          1248079213
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1248079213",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2486385,
+          28.6204236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Central",
+        "osmWayIds": [
+          1294941406
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1294941406",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2297516,
+          28.6338819
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Central",
+        "osmWayIds": [
+          1381065160,
+          1381072978
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1381065160",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1997227,
+          28.6445359
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sulahkul Bridge",
+        "district": "Dwarka",
+        "osmWayIds": [
+          1159245450,
+          1159245451,
+          1159245452
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1159245450",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0350766,
+          28.6077855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Dwarka",
+        "osmWayIds": [
+          1534261320
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1534261320",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0320354,
+          28.5679603
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          296547470,
+          733572428,
+          1278044356,
+          1530969756
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/296547470",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3157492,
+          28.6471312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          343651490
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/343651490",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2794574,
+          28.6185552
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          446886391,
+          446886393,
+          731556937
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/446886391",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2770333,
+          28.6300642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          447280914
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/447280914",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3076369,
+          28.6359621
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          662311123
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/662311123",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2888233,
+          28.6297854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          684512046
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/684512046",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3121382,
+          28.6255212
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          696182643,
+          696182644,
+          696182645
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/696182643",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3024145,
+          28.5890901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          729897420
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/729897420",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2852373,
+          28.6155579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          729959839
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/729959839",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "no",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2820211,
+          28.6122959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          733572422
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/733572422",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3175919,
+          28.6278257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          733572423
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/733572423",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.318011,
+          28.6270054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          735127900,
+          1287923424
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/735127900",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3050823,
+          28.6198167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          767622261
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/767622261",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2629692,
+          28.6015269
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          772865912
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/772865912",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2949067,
+          28.6144202
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          852601465
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/852601465",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "no",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2916522,
+          28.5982342
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          923756407
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/923756407",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3228214,
+          28.6291254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1000905446,
+          1157693635,
+          1157693639,
+          1157693640,
+          1157693642,
+          1157845535
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1000905446",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2867388,
+          28.6365775
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1156111201,
+          1194008460,
+          1194008463,
+          1194008465,
+          1194008466
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1156111201",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2897544,
+          28.6039695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1228398404,
+          1228398405,
+          1228398406,
+          1228398407,
+          1228398409,
+          1228398410,
+          1228398412,
+          1228398413,
+          1228398414,
+          1228398415,
+          1228398416,
+          1311981581,
+          1311981582,
+          1311981583,
+          1311981584,
+          1311982777
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1228398404",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2824305,
+          28.6242164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1232390950
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1232390950",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2698979,
+          28.6347407
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1302640651,
+          1302640666
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1302640651",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.286441,
+          28.6390034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1311981586
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1311981586",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2798481,
+          28.6267567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1312820315
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1312820315",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3160319,
+          28.642047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1319740105
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1319740105",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3023092,
+          28.6402211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1450941339,
+          1450941340
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1450941339",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3010716,
+          28.5903574
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1450941341,
+          1450941342
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1450941341",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3030793,
+          28.5912809
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1452587941,
+          1452587943
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1452587941",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2710801,
+          28.6316608
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "East",
+        "osmWayIds": [
+          1453524539
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1453524539",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2772528,
+          28.6305899
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Athpula Bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          275400778
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/275400778",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.22287,
+          28.5964625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ITO Skywalk",
+        "district": "New Delhi",
+        "osmWayIds": [
+          854903774,
+          854903775,
+          854903776,
+          1284279345
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/854903774",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2407669,
+          28.6247988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          200251460
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/200251460",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2083995,
+          28.6391771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          275400397
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/275400397",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.221019,
+          28.5952376
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          435426345
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/435426345",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2401818,
+          28.6137031
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          738895053
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/738895053",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2195415,
+          28.591038
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          740206502
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/740206502",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1986034,
+          28.625062
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          993862148,
+          993862151
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/993862148",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2387594,
+          28.6240388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          1248031156
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1248031156",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2402557,
+          28.6161513
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          1271640957
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1271640957",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1947589,
+          28.5900353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          1279270079
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1279270079",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.195858,
+          28.6221705
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          1339328491,
+          1339328493,
+          1339328496
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1339328491",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1774392,
+          28.6155221
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          1339328501
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1339328501",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1774718,
+          28.6164803
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          1339328505
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1339328505",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1781744,
+          28.6174442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "New Delhi",
+        "osmWayIds": [
+          1448561131
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1448561131",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2414223,
+          28.6236469
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          77614294
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/77614294",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": "no",
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2225749,
+          28.6615418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          80432278,
+          1446500672
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80432278",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2317306,
+          28.6692566
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          80932781
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80932781",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1852601,
+          28.6635632
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          80932790
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80932790",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1981422,
+          28.6627341
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          129788536
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/129788536",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2274814,
+          28.7005422
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          403854450
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/403854450",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1917838,
+          28.6619417
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          464265880,
+          464265884
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/464265880",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2165217,
+          28.6668361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          464312306,
+          464312307,
+          464312308,
+          1317345209,
+          1317345214
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/464312306",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2172657,
+          28.6577964
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          709852953
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/709852953",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1988264,
+          28.6861256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          737067271
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/737067271",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.169314,
+          28.6723856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          1064086534,
+          1307469424
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1064086534",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1652924,
+          28.6742403
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          1269035916
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1269035916",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2273762,
+          28.6813532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          1287299124
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1287299124",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.227086,
+          28.6616512
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          1287299130
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1287299130",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2286185,
+          28.6615672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          1464086812
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1464086812",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1854448,
+          28.6769904
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North",
+        "osmWayIds": [
+          1490254292,
+          1490254300
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1490254292",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.227558,
+          28.7018681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Footover Bridge",
+        "district": "North-East",
+        "osmWayIds": [
+          80429792
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80429792",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2508294,
+          28.6687295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Footover Bridge",
+        "district": "North-East",
+        "osmWayIds": [
+          687889664
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/687889664",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2952937,
+          28.700447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Footover Bridge",
+        "district": "North-East",
+        "osmWayIds": [
+          690743232,
+          690743704
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/690743232",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.322165,
+          28.698634
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-East",
+        "osmWayIds": [
+          702114796
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/702114796",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2652343,
+          28.670516
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-East",
+        "osmWayIds": [
+          1173994491,
+          1173994493,
+          1173994495
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1173994491",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2793371,
+          28.6912388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-East",
+        "osmWayIds": [
+          1174916049
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1174916049",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2876852,
+          28.7014106
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-East",
+        "osmWayIds": [
+          1339456722,
+          1339456723,
+          1339456724
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1339456722",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2428466,
+          28.6740602
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Footover Bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          707631379,
+          1462071151
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/707631379",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1501543,
+          28.6943625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Punjab Kesari",
+        "district": "North-West",
+        "osmWayIds": [
+          1276011916
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1276011916",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1551528,
+          28.6953784
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Red Line - Pink Line, Pacific Mall Pathway",
+        "district": "North-West",
+        "osmWayIds": [
+          1209274129
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1209274129",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1534979,
+          28.6955849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          256583534
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/256583534",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1788942,
+          28.7080602
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          256583535,
+          297012567,
+          297012569,
+          740669858,
+          1161087640,
+          1161087641,
+          1161087642,
+          1161087644,
+          1161087650,
+          1161087651,
+          1161087653,
+          1161087654,
+          1161087655,
+          1161087656
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/256583535",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1789498,
+          28.7076579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          344439896
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/344439896",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1621131,
+          28.6891542
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          685106606,
+          685106611
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/685106606",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2060302,
+          28.6925923
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          734726466
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/734726466",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1672346,
+          28.7140211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          1035763361
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1035763361",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.142899,
+          28.6808355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          1158374735
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1158374735",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1937749,
+          28.7026664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          1189514223
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1189514223",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1599753,
+          28.7369583
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          1245432616
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1245432616",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1357061,
+          28.7091792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          1276012135
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1276012135",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1513413,
+          28.6865613
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "North-West",
+        "osmWayIds": [
+          1282330329
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1282330329",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1775272,
+          28.7028835
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Outer",
+        "osmWayIds": [
+          436902020
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/436902020",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1348251,
+          28.6913094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Outer",
+        "osmWayIds": [
+          436902021,
+          436902024
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/436902021",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.133981,
+          28.6915009
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Outer",
+        "osmWayIds": [
+          436902025
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/436902025",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1311142,
+          28.6918345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Outer",
+        "osmWayIds": [
+          735113550
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/735113550",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0304282,
+          28.6822273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Outer",
+        "osmWayIds": [
+          1159133945
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1159133945",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1278793,
+          28.6839205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Monkey Bridge",
+        "district": "Outer North",
+        "osmWayIds": [
+          1162590987
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1162590987",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1147531,
+          28.7527228
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Outer North",
+        "osmWayIds": [
+          1073968572,
+          1073968574,
+          1073968576
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1073968572",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1891152,
+          28.7377203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Outer North",
+        "osmWayIds": [
+          1163480630,
+          1163480631
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1163480630",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1379987,
+          28.7455706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Outer North",
+        "osmWayIds": [
+          1186181602
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1186181602",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1743595,
+          28.7601846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Rohini",
+        "osmWayIds": [
+          1004344563
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1004344563",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1191424,
+          28.7189866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Rohini",
+        "osmWayIds": [
+          1185876278
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1185876278",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1144037,
+          28.7242059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Rohini",
+        "osmWayIds": [
+          1385683627
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1385683627",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.126219,
+          28.7074482
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Footover Bridge",
+        "district": "Shahdara",
+        "osmWayIds": [
+          697071465
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/697071465",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3119718,
+          28.6760626
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Shahdara",
+        "osmWayIds": [
+          734739489
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/734739489",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3063108,
+          28.6496384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Shahdara",
+        "osmWayIds": [
+          799466958,
+          799466959,
+          799466960,
+          799466966
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/799466958",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2926147,
+          28.6731279
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Shahdara",
+        "osmWayIds": [
+          1231005350
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1231005350",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2889313,
+          28.659314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Shahdara",
+        "osmWayIds": [
+          1292823385
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1292823385",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": "yes",
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2866921,
+          28.6623256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "Shahdara",
+        "osmWayIds": [
+          1536770208
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1536770208",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3195985,
+          28.6596218
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          403224848
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/403224848",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2270538,
+          28.5795661
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          403224851
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/403224851",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2318322,
+          28.5795072
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          526531981
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/526531981",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2270439,
+          28.5440751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          548804854
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/548804854",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2126499,
+          28.5432146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          552152635,
+          659833946,
+          659833947
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/552152635",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2022834,
+          28.5206252
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          557575822
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/557575822",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2444191,
+          28.5437545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          570572092
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/570572092",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2118259,
+          28.5184735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          586012610
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/586012610",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2284498,
+          28.5206187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          586012612
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/586012612",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2268257,
+          28.5166362
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          586087729,
+          586087730,
+          586087731
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/586087729",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2008039,
+          28.5434086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          653313816
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/653313816",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2336815,
+          28.5654849
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          665875927
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/665875927",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.207589,
+          28.5638873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          668809526,
+          668809527,
+          668809530
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/668809526",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2072529,
+          28.5609618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          674373146
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/674373146",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2501136,
+          28.5119473
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          681341414,
+          681341415,
+          681341416,
+          681341417,
+          681341418
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/681341414",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2440981,
+          28.5121397
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          695953901
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/695953901",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2319667,
+          28.5340423
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          718065532
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/718065532",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1860279,
+          28.5138114
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          721897434,
+          721897438
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/721897434",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.217684,
+          28.5688361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          724090886
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/724090886",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2256807,
+          28.5620451
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          730985200
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/730985200",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2321618,
+          28.5394767
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          767444492
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/767444492",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2293872,
+          28.5468693
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          832487989
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/832487989",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2138906,
+          28.5614082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1156936628
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1156936628",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2257853,
+          28.5394019
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1156938672
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1156938672",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2193508,
+          28.530316
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1158477615
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1158477615",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2037165,
+          28.5499916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1158477616
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1158477616",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2055863,
+          28.5541221
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1256745056
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1256745056",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2234471,
+          28.5328199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1280801696
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1280801696",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1257907,
+          28.4804751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1333246733
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1333246733",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2296823,
+          28.5857163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1436656165
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1436656165",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2248422,
+          28.5789314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South",
+        "osmWayIds": [
+          1537427633,
+          1537427636,
+          1537427638
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1537427633",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2163661,
+          28.5796553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Barapullah Bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1314555167
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1314555167",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2533757,
+          28.5843684
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FOB 1",
+        "district": "South-East",
+        "osmWayIds": [
+          80440828,
+          763087907,
+          986016697,
+          986016699,
+          1200971082,
+          1200971083,
+          1200971084,
+          1200971085,
+          1200971086,
+          1486440641
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80440828",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2540672,
+          28.58954
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FOB 2",
+        "district": "South-East",
+        "osmWayIds": [
+          80440855,
+          986016698,
+          1509738976
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80440855",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2540341,
+          28.5885334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FOB 3",
+        "district": "South-East",
+        "osmWayIds": [
+          1410329111
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1410329111",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2542362,
+          28.587643
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Footover Bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          316271004
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/316271004",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3033274,
+          28.543038
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Footover Bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          665275864
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/665275864",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2896574,
+          28.537455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          80511307,
+          1319732512,
+          1319732513
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80511307",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.296224,
+          28.50461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          80511318
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/80511318",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2968834,
+          28.50394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          164702308
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/164702308",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2918383,
+          28.5624405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          164702326,
+          652159359,
+          652159361,
+          659283550,
+          659283551,
+          659283552,
+          659283554
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/164702326",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2656538,
+          28.5551301
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          174265742,
+          174265743
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/174265742",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2941342,
+          28.5484539
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          220380722
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/220380722",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2413312,
+          28.5789816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          344424391
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/344424391",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2408221,
+          28.5842612
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          344426781
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/344426781",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2834517,
+          28.5386119
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          344430671,
+          583665560,
+          583665562,
+          583665564,
+          583665567
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/344430671",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2570414,
+          28.5486208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          344442943
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/344442943",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2359871,
+          28.5705636
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          344472566
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/344472566",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2945817,
+          28.5197136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          454519597,
+          682871467,
+          682871469,
+          682871471,
+          1313027073
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/454519597",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.254053,
+          28.5687161
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          464487669
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/464487669",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.265231,
+          28.5596503
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          464488783
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/464488783",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.268883,
+          28.5569101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          582873046,
+          1138613781,
+          1314127712
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/582873046",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.244246,
+          28.5790542
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          653313815
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/653313815",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2345264,
+          28.5654059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          659283944
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/659283944",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2643762,
+          28.5524258
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          662256257
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/662256257",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2568794,
+          28.5743181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          697784572,
+          1384259213
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/697784572",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2368169,
+          28.5702168
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          698298770
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/698298770",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2885375,
+          28.5290004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          733579815
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/733579815",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2647448,
+          28.5540715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          734721448
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/734721448",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2978212,
+          28.5457184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          757279919
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/757279919",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2406468,
+          28.5967823
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          763110791
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/763110791",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2913649,
+          28.5014923
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          767442800
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/767442800",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2506352,
+          28.5835803
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          916559488
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/916559488",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2767377,
+          28.5475563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1071446283
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1071446283",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2633195,
+          28.6006272
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1122107667
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1122107667",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2581764,
+          28.5499477
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1128026718,
+          1128026720
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1128026718",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2452141,
+          28.5983916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1135350561
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1135350561",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2418632,
+          28.5889111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1138075161
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1138075161",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2402134,
+          28.6060016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1152735265
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1152735265",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2442134,
+          28.5870588
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1161637421
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1161637421",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2419482,
+          28.5553022
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1183458859
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1183458859",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "no",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2975725,
+          28.5407909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1184218309,
+          1184218310,
+          1184218311,
+          1184218312
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1184218309",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.3063741,
+          28.5426388
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1203022335
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1203022335",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2658315,
+          28.5815975
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1252762970
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1252762970",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2587454,
+          28.571902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1258245101
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1258245101",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2509792,
+          28.5504814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1271622446
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1271622446",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2563069,
+          28.5920884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1271622460,
+          1465361520,
+          1465361521,
+          1465361522,
+          1465361523,
+          1465361524,
+          1465361525,
+          1465361526,
+          1465361527,
+          1465361528,
+          1465361529,
+          1465361530,
+          1465361531,
+          1465361532,
+          1465361533,
+          1465361534,
+          1465361537,
+          1465361539,
+          1465361540,
+          1465361544
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1271622460",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2570117,
+          28.589072
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1285005497,
+          1285005501,
+          1285005503,
+          1285005504
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1285005497",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "no",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2518852,
+          28.5932949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1285005499,
+          1285005507,
+          1285005509
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1285005499",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "no",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2518657,
+          28.5927758
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1285006401,
+          1285006403,
+          1285006405,
+          1285006407
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1285006401",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2494625,
+          28.5937793
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1285006409,
+          1285006411,
+          1285006412,
+          1285006415
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1285006409",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2494967,
+          28.5932502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-East",
+        "osmWayIds": [
+          1297324908
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1297324908",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.2627559,
+          28.5949595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Path around Hauz Khas Tank",
+        "district": "South-West",
+        "osmWayIds": [
+          88213154
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/88213154",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1926252,
+          28.5537004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Path around Hauz Khas Tank",
+        "district": "South-West",
+        "osmWayIds": [
+          88213160
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/88213160",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1918776,
+          28.554155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          77363920
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/77363920",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1470877,
+          28.5750884
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          141597466,
+          176162164,
+          176162166,
+          1274184138,
+          1274184139,
+          1274184140
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/141597466",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1663165,
+          28.5944263
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          313547228
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/313547228",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.134173,
+          28.5664096
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          401538840,
+          746761886,
+          746761887
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/401538840",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.175123,
+          28.5067044
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          408035620,
+          535250511
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/408035620",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.091509,
+          28.5838442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          514521569
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/514521569",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1894356,
+          28.5483609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          531906925
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/531906925",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1447611,
+          28.5791108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          532524797,
+          1271149758,
+          1271149760,
+          1271149761,
+          1272325570,
+          1313638998,
+          1313639001,
+          1313639009,
+          1313639010,
+          1313639012
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/532524797",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": "no",
+        "lit": "no",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1686654,
+          28.5883211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          532529570,
+          1276727713
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/532529570",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1722749,
+          28.5851295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          560355146
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/560355146",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1766717,
+          28.5553366
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          651654692
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/651654692",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1745827,
+          28.581131
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          673710064
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/673710064",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.142672,
+          28.5336824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          691637290,
+          740134978,
+          740134983
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/691637290",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1657547,
+          28.592183
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          740390430
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/740390430",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1899806,
+          28.5751348
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          754391957
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/754391957",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": "no",
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.162323,
+          28.5925151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          769883146
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/769883146",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1761366,
+          28.5666976
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1097564978
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1097564978",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1917635,
+          28.5447179
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1097567212
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1097567212",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1828418,
+          28.5432665
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1121198024,
+          1121198025
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1121198024",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1766339,
+          28.5710973
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1156204197,
+          1158477608,
+          1158477609
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1156204197",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.167431,
+          28.5560384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1156205716
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1156205716",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1559011,
+          28.5398525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1158477612
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1158477612",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1793528,
+          28.553576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1198407805
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1198407805",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1303441,
+          28.5682514
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1271750985
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1271750985",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1507563,
+          28.5959674
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1273561770
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1273561770",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1115625,
+          28.5766921
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1275484012
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1275484012",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1621552,
+          28.5914383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1275484014
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1275484014",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1623896,
+          28.590548
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1275484029
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1275484029",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.162637,
+          28.5912224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1278970649
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1278970649",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "yes",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1410604,
+          28.5976712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1280801697
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1280801697",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1254439,
+          28.4807715
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1288626085
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1288626085",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": "no",
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1012666,
+          28.5797089
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1292797639
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1292797639",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1744068,
+          28.5778466
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1347831353
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1347831353",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": "no",
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1963885,
+          28.5524252
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1347831355
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1347831355",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1890157,
+          28.5653003
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1362333180
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1362333180",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1038114,
+          28.531794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1434332267
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1434332267",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1777585,
+          28.5755981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1445726393
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1445726393",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1558194,
+          28.6038919
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1474137204
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1474137204",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1351545,
+          28.6031617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "South-West",
+        "osmWayIds": [
+          1511545733
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1511545733",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.189166,
+          28.5682389
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          153965528
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/153965528",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1279497,
+          28.6806373
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          314653353
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/314653353",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1265037,
+          28.6466814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          344465368,
+          1123529896
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/344465368",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1194093,
+          28.6763718
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          408087781,
+          408087784,
+          408087786,
+          825476044,
+          825476053
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/408087781",
+        "highway": "steps",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.115907,
+          28.6125872
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          608695101
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/608695101",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": "designated",
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1402026,
+          28.6088615
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          623242414
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/623242414",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0933833,
+          28.6107087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          1081319998
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1081319998",
+        "highway": "path",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0677347,
+          28.6238063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          1159133953
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1159133953",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1422886,
+          28.6612405
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          1288839472
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1288839472",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.080743,
+          28.633612
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          1373391085
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1373391085",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": "no",
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.0787218,
+          28.6300827
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unnamed mapped pedestrian bridge",
+        "district": "West",
+        "osmWayIds": [
+          1513060905,
+          1513060909
+        ],
+        "osmUrl": "https://www.openstreetmap.org/way/1513060905",
+        "highway": "footway",
+        "bridge": "yes",
+        "wheelchair": null,
+        "lit": null,
+        "source": "OpenStreetMap contributors",
+        "sourceSnapshot": "2026-08-04",
+        "coverageNote": "Mapped OSM features only; absence does not prove no bridge exists."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1268948,
+          28.6808526
+        ]
+      }
+    }
+  ]
+}
