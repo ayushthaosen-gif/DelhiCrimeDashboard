@@ -17,7 +17,7 @@ a browser — no server or build step required to view it.
 - `*.html` at the root: published GitHub Pages entry points; kept in place so existing public URLs remain stable.
 - [`scripts/`](scripts/): JavaScript build, export, geocoding, and analysis tools.
 - [`data/`](data/): production datasets, immutable source inputs, and audited yearly releases.
-- [`exports/`](exports/): researcher-friendly CSV, JSON, and GeoJSON outputs.
+- [`exports/`](exports/): legacy flat CSV/JSON outputs, deprecated in favor of `data/releases/<year>/` but kept for URL stability.
 - [`tools/pipeline_2025/`](tools/pipeline_2025/): isolated Python collection and validation pipeline for 2025.
 - [`docs/`](docs/): project article, changelog, and the detailed [repository structure guide](docs/STRUCTURE.md).
 - [`test/`](test/): JavaScript regression tests; the Python pipeline has its own tests beside its source.
@@ -97,37 +97,52 @@ npm run build:releases
 
 The dashboard's in-app CSV/Excel buttons are meant for a person clicking
 around in a browser. If you want to pull the data programmatically instead —
-into a report, a notebook, or your own dashboard — use the [`exports/`](exports/)
-directory: plain CSV + JSON files, one per dataset, stripped of anything
-specific to this dashboard's own rendering (no SVG path strings, no pixel
-coordinates — real latitude/longitude instead).
+into a report, a notebook, or your own dashboard — use the
+[year-by-year research releases](#year-by-year-research-releases) above
+(`data/releases/2016/` through `data/releases/2024/`). Each year has a
+`manifest.json` with source URLs, SHA-256 checksums, coverage flags, and
+null/comparability rules, so you never have to guess whether a missing value
+means zero or means "not reported."
 
-| File | Rows | What's in it |
-|---|---|---|
-| `exports/districts.csv` / `.json` | 15 | Every crime (2022/23/24), road-safety (2022 and 2023), and infrastructure figure, one row per district. Raw counts only — no derived ranks or percentages; compute those yourself from these numbers if you need them. |
-| `data/delhi_pedestrian_overpasses_osm.geojson` | 242 | Mapped pedestrian footbridge/overbridge groups with coordinates, assigned district, OSM way IDs, direct source-object links, snapshot date, and completeness caveat. |
-| `exports/crash_prone_zones_2023.csv` / `.json` | 107 | Named crash-prone zones with real 2023 simple/fatal/total crash counts and coordinates for all 107, `geocoded: true` throughout. |
-| `exports/road_safety_trends_2014_2023.csv` / `.json` | 10 | Citywide road crashes, fatalities, and fatal crashes, one row per year. Not broken down by district. |
-| `exports/road_deaths_by_mode_2019_2023.csv` / `.json` | 5 | Citywide road deaths/injuries by mode of travel (pedestrian, cyclist, car, two-wheeler, bus, slow-moving, other), one row per year. |
+```python
+import json
+import pandas as pd
+from pathlib import Path
 
-**Fetch directly without cloning**, e.g. from a notebook or another app:
-
-```bash
-curl -O https://raw.githubusercontent.com/ayushthaosen-gif/DelhiCrimeDashboard/main/exports/districts.csv
+year = 2024
+release = Path(f'data/releases/{year}')
+manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
+districts = pd.read_csv(release / 'district_crime.csv')
 ```
 
 ```js
 const districts = await fetch(
-  'https://raw.githubusercontent.com/ayushthaosen-gif/DelhiCrimeDashboard/main/exports/districts.json'
+  'https://raw.githubusercontent.com/ayushthaosen-gif/DelhiCrimeDashboard/main/data/releases/2024/district_crime.json'
 ).then(r => r.json());
 ```
 
-```python
-import pandas as pd
-districts = pd.read_csv('https://raw.githubusercontent.com/ayushthaosen-gif/DelhiCrimeDashboard/main/exports/districts.csv')
+### Legacy `exports/` (deprecated, kept for URL stability)
+
+`exports/districts.csv` / `.json` and the other flat files in
+[`exports/`](exports/) predate the year-by-year releases above. They are
+**stale** — they mix 2023 crime figures with a single infrastructure
+snapshot, don't include 2024, and carry no manifest or checksums. They are
+kept in place, unchanged, only so that existing links/scripts pointing at
+them don't break; do not build anything new on top of them.
+
+| Deprecated file | Superseded by |
+|---|---|
+| `exports/districts.csv` / `.json` | `data/releases/<year>/district_crime.csv` / `.json` (+ `district_road_safety.*` for 2022-2024) |
+| `exports/crash_prone_zones_2023.csv` / `.json` | `data/releases/2023/crash_prone_zones.csv` / `.json` (2024 also now available at `data/releases/2024/crash_prone_zones.*`) |
+| `exports/road_safety_trends_2014_2023.csv` / `.json` | `data/releases/<year>/citywide_road_safety.csv` / `.json` |
+| `exports/road_deaths_by_mode_2019_2023.csv` / `.json` | `data/releases/<year>/citywide_road_safety.csv` / `.json` |
+
+```bash
+# legacy — still works, but stale; prefer data/releases/2024/ instead
+curl -O https://raw.githubusercontent.com/ayushthaosen-gif/DelhiCrimeDashboard/main/exports/districts.csv
 ```
 
-**Regenerate the exports** after changing anything in `data/`:
+Regenerate the legacy exports (unchanged behavior) with:
 
 ```bash
 node scripts/export_data.js
@@ -166,10 +181,14 @@ Edit `scripts/build.js` and `scripts/build_interactive_map.js` rather than their
   the full HTML + CSS + JS, with no external libraries or CDN dependencies.
 - **`data/`** — district-level crime, infrastructure, road-safety, and
   correlation data as JSON. Internal, purpose-built for `build.js` — if you
-  want to reuse the data yourself, use `exports/` instead (see above).
+  want to reuse the data yourself, use `data/releases/<year>/` instead (see
+  [Year-by-year research releases](#year-by-year-research-releases) above).
 - **`fonts/`** — the Big Shoulders webfont, embedded as base64 at build time.
-- **`scripts/export_data.js`** / **`exports/`** — the clean CSV/JSON exports and the
-  script that generates them, for anyone integrating this data elsewhere.
+- **`scripts/build_yearly_releases.js`** / **`data/releases/`** — the manifest-documented,
+  checksummed CSV/JSON research releases, one folder per year, for anyone
+  integrating this data elsewhere.
+- **`scripts/export_data.js`** / **`exports/`** — older, flat CSV/JSON exports,
+  kept only for URL-compatibility; deprecated in favor of `data/releases/`.
 
 ## Open-data locations and original URLs
 
