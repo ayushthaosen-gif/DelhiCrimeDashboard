@@ -22,7 +22,15 @@ a browser — no server or build step required to view it.
 - [`docs/`](docs/): project article, changelog, and the detailed [repository structure guide](docs/STRUCTURE.md).
 - [`test/`](test/): JavaScript regression tests; the Python pipeline has its own tests beside its source.
 
+## Public pages
+
+- [Delhi Urban Safety Observatory](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/)
+- [Delhi Safety & Infrastructure Explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/interactive_map.html)
+
 ## What's new in this version
+
+- **New identity and compact map hero.** The project is now the **Delhi Urban Safety Observatory**; its Leaflet page is the **Delhi Safety & Infrastructure Explorer**. The responsive header uses a shorter map-led safety visualization and a project favicon.
+- **Pedestrian-overbridge coverage.** A reproducible OpenStreetMap/Overpass snapshot is processed into 242 mapped pedestrian bridge groups, district counts/densities, an interactive clustered point layer, nearby-crash-zone context, and reusable exports. It is marked as mapped coverage rather than an official completeness register.
 
 - **Sharp charts on high-DPI screens.** The scatter, trends, and
   road-deaths-by-mode charts now render at native device pixel density
@@ -68,6 +76,7 @@ coordinates — real latitude/longitude instead).
 | File | Rows | What's in it |
 |---|---|---|
 | `exports/districts.csv` / `.json` | 15 | Every crime (2022/23/24), road-safety (2022 and 2023), and infrastructure figure, one row per district. Raw counts only — no derived ranks or percentages; compute those yourself from these numbers if you need them. |
+| `data/delhi_pedestrian_overpasses_osm.geojson` | 242 | Mapped pedestrian footbridge/overbridge groups with coordinates, assigned district, OSM way IDs, direct source-object links, snapshot date, and completeness caveat. |
 | `exports/crash_prone_zones_2023.csv` / `.json` | 107 | Named crash-prone zones with real 2023 simple/fatal/total crash counts and coordinates for all 107, `geocoded: true` throughout. |
 | `exports/road_safety_trends_2014_2023.csv` / `.json` | 10 | Citywide road crashes, fatalities, and fatal crashes, one row per year. Not broken down by district. |
 | `exports/road_deaths_by_mode_2019_2023.csv` / `.json` | 5 | Citywide road deaths/injuries by mode of travel (pedestrian, cyclist, car, two-wheeler, bus, slow-moving, other), one row per year. |
@@ -115,10 +124,10 @@ back to the repo root:
 
 ```bash
 npm run build
+npm run build:interactive-map
 ```
 
-Edit `scripts/build.js` (not the generated HTML) to change layout, styling, or logic,
-then re-run the command above.
+Edit `scripts/build.js` and `scripts/build_interactive_map.js` rather than their generated HTML files, then run the corresponding build command above. `build:interactive-map` also refreshes the overbridge and ward-infrastructure derived data.
 
 ## What's in here
 
