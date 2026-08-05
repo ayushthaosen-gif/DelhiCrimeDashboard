@@ -22,7 +22,15 @@ a browser — no server or build step required to view it.
 - [`docs/`](docs/): project article, changelog, and the detailed [repository structure guide](docs/STRUCTURE.md).
 - [`test/`](test/): JavaScript regression tests; the Python pipeline has its own tests beside its source.
 
+## Public pages
+
+- [Delhi Urban Safety Observatory](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/)
+- [Delhi Safety & Infrastructure Explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/interactive_map.html)
+
 ## What's new in this version
+
+- **New identity and compact map hero.** The project is now the **Delhi Urban Safety Observatory**; its Leaflet page is the **Delhi Safety & Infrastructure Explorer**. The responsive header uses a shorter map-led safety visualization and a project favicon.
+- **Pedestrian-overbridge coverage.** A reproducible OpenStreetMap/Overpass snapshot is processed into 242 mapped pedestrian bridge groups, district counts/densities, an interactive clustered point layer, nearby-crash-zone context, and reusable exports. It is marked as mapped coverage rather than an official completeness register.
 
 - **Sharp charts on high-DPI screens.** The scatter, trends, and
   road-deaths-by-mode charts now render at native device pixel density
@@ -68,6 +76,7 @@ coordinates — real latitude/longitude instead).
 | File | Rows | What's in it |
 |---|---|---|
 | `exports/districts.csv` / `.json` | 15 | Every crime (2022/23/24), road-safety (2022 and 2023), and infrastructure figure, one row per district. Raw counts only — no derived ranks or percentages; compute those yourself from these numbers if you need them. |
+| `data/delhi_pedestrian_overpasses_osm.geojson` | 242 | Mapped pedestrian footbridge/overbridge groups with coordinates, assigned district, OSM way IDs, direct source-object links, snapshot date, and completeness caveat. |
 | `exports/crash_prone_zones_2023.csv` / `.json` | 107 | Named crash-prone zones with real 2023 simple/fatal/total crash counts and coordinates for all 107, `geocoded: true` throughout. |
 | `exports/road_safety_trends_2014_2023.csv` / `.json` | 10 | Citywide road crashes, fatalities, and fatal crashes, one row per year. Not broken down by district. |
 | `exports/road_deaths_by_mode_2019_2023.csv` / `.json` | 5 | Citywide road deaths/injuries by mode of travel (pedestrian, cyclist, car, two-wheeler, bus, slow-moving, other), one row per year. |
@@ -115,10 +124,10 @@ back to the repo root:
 
 ```bash
 npm run build
+npm run build:interactive-map
 ```
 
-Edit `scripts/build.js` (not the generated HTML) to change layout, styling, or logic,
-then re-run the command above.
+Edit `scripts/build.js` and `scripts/build_interactive_map.js` rather than their generated HTML files, then run the corresponding build command above. `build:interactive-map` also refreshes the overbridge and ward-infrastructure derived data.
 
 ## What's in here
 
@@ -132,6 +141,40 @@ then re-run the command above.
 - **`fonts/`** — the Big Shoulders webfont, embedded as base64 at build time.
 - **`scripts/export_data.js`** / **`exports/`** — the clean CSV/JSON exports and the
   script that generates them, for anyone integrating this data elsewhere.
+
+## Open-data locations and original URLs
+
+The links below are locations where researchers can inspect or retrieve the underlying public data. A public URL does **not** automatically grant an open-data licence: check each publisher's terms before redistribution. OpenStreetMap-derived files require OpenStreetMap attribution and ODbL compliance.
+
+| Dataset used by the dashboard | Publisher / original location | Direct data or landing-page URL | Format and coverage | Reuse note |
+|---|---|---|---|---|
+| District crime, 2024 | National Crime Records Bureau (NCRB), *Crime in India* district tables | [IPC/BNS crime XLSX](https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx); [SLL crime XLSX](https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx); [Crime against women XLSX](https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx) | XLSX; district tables | Official public files; verify NCRB terms before redistribution. |
+| District crime, 2023 | NCRB, *Crime in India* district tables | [IPC crime XLSX](https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx); [SLL crime XLSX](https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx); [Crime against women XLSX](https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx) | XLSX; district tables | Official public files; verify NCRB terms before redistribution. |
+| District crime, 2022 | NCRB, *Crime in India* district tables | [IPC crime XLSX](https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx); [SLL crime XLSX](https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx); [Crime against women XLSX](https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx) | XLSX; district tables | Official public files; verify NCRB terms before redistribution. |
+| Historical crime, 2016-2021 | NCRB source tables distributed through India Data Portal | [2016 district IPC CSV](https://ckandev.indiadataportal.com/dataset/e311a510-ce48-4f4c-baf6-0ec5f9278285/resource/7d5e2cc6-a704-4248-aa44-13d7186f847c/download/districtwise-ipc-crimes-2016.csv); [2017 onward district IPC CSV](https://ckandev.indiadataportal.com/dataset/e311a510-ce48-4f4c-baf6-0ec5f9278285/resource/387dedad-5978-4f97-a6c5-60ca45f9405a/download/districtwise-ipc-crimes-2017-onwards.csv) | CSV; harmonized selectively in this project | See the compatibility/null rules in this README and the verified historical JSON metadata. |
+| Road crashes and crash-prone zones, 2023 | Delhi Traffic Police | [Delhi Crash Report 2023](https://traffic.delhipolice.gov.in/delhi-crash-report-2023) | Web landing page with report download; all 15 police districts | Official report; map coordinates include project validation/geocoding notes. |
+| Road crashes and crash-prone zones, 2024 | Delhi Traffic Police | [Delhi Crash Report 2024](https://traffic.delhipolice.gov.in/delhi-crash-report-2024) | Web landing page with report download; all 15 police districts | Official report; unresolved hyper-local locations remain flagged. |
+| Fatal crashes and hit-and-run, 2022 | Transport Department, GNCTD / Delhi Traffic Police | [2022 Delhi Road Crash Fatalities Report PDF](https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf) | PDF; Traffic Police's 11-district geography | Four dashboard districts are null, not zero, because this report used a different geography. |
+| Streetlights and pedestrian underpasses | Delhi Transport Stack Open Transit Data; PAPL survey | [Open Transit Data portal](https://otd.delhi.gov.in/) | Portal/API data; surveyed portions of 9 of 15 districts | Portal terms apply; unsurveyed districts are stored as coverage gaps. |
+| Pedestrian overbridges | OpenStreetMap via Overpass API | [Overpass API endpoint](https://overpass-api.de/api/interpreter); [exact query and processing notes](data/source/README.md); [project GeoJSON](data/delhi_pedestrian_overpasses_osm.geojson) | OSM ways grouped into 242 mapped bridge features; snapshot 2026-08-04 | ODbL; mapped inventory, not an official completeness register. |
+| Metro gates, bus stops, ATMs, liquor shops, surveillance and mapped police posts | OpenStreetMap contributors | [OpenStreetMap data and licence](https://www.openstreetmap.org/copyright); [Overpass Turbo query interface](https://overpass-turbo.eu/) | OSM point/way features; tag filters are documented in the dashboard footer and workbook | ODbL attribution/share-alike requirements apply. |
+| Official licensed liquor-vend list | Delhi State Civil Supplies Corporation (DSCSC) / DCCWS | [DSCSC Liquor Vends page](https://dscsc.delhi.gov.in/dscsc/liquor-vends) | Published list; 374 official records in the project | Location coordinates are approximate unless explicitly marked as exact. |
+| Police stations and police-district boundaries | Delhi Police GSDL GIS export | [Community mirror of the GSDL export](https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac) | GIS station points and jurisdiction polygons | Mirror is provided because a stable original download URL is not available; inspect provenance before reuse. |
+
+### 2025 sources staged for review
+
+These files are **not automatically integrated into the production dashboard**. Their collection status, checksums, resolved URLs and validation notes are recorded in [`data/releases/2025/audit/`](data/releases/2025/audit/) and [`tools/pipeline_2025/output/`](tools/pipeline_2025/output/). Current public landing pages include:
+
+- [NCRB](https://ncrb.gov.in/) - no unambiguous official *Crime in India 2025* district release was found by the pipeline.
+- [Delhi Traffic Police](https://traffic.delhipolice.gov.in/) - no qualifying full 2025 crash report was found by the pipeline.
+- [New Delhi district iRAD/eDAR](https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/)
+- [West Delhi district iRAD/eDAR](https://dmwest.delhi.gov.in/integrated-road-accident-cases-month-wise/)
+- [South-East Delhi district iRAD/eDAR](https://dmsoutheast.delhi.gov.in/irad-edar-south-east/)
+- [North-West Delhi district iRAD/eDAR](https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/)
+- [Delhi Excise preferred-vends page](https://excise.delhi.gov.in/excise/preferred-vends-purchaseprocurement-liquor-p-10-permit)
+- [DSCSC liquor-vends page](https://dscsc.delhi.gov.in/dscsc/liquor-vends)
+
+Use the audit manifests - not a copied URL alone - to determine whether a 2025 source was downloaded, validated, review-pending or unavailable.
 
 ## Data & sourcing
 
