@@ -5,7 +5,7 @@
   "geography": "15 current territorial police-district names",
   "joinKey": "district",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-08-05T10:43:29.057Z",
+  "generatedAt": "2026-08-05T12:16:10.912Z",
   "productionStatus": "production dashboard data",
   "nullPolicy": "Null is unknown, unavailable, incompatible, or not separately reported; never coerce null to zero.",
   "comparability": "Inspect per-metric previous-year comparability flags before calculating change.",
@@ -90,8 +90,8 @@
       "path": "district_crime.csv",
       "datasetId": "delhi_district_crime_2024",
       "mediaType": "text/csv",
-      "sha256": "6f176b4850b4ebd160a58be5bdbf8a4f50b228fabc00e5fe2d54d38d72fded02",
-      "bytes": 1671,
+      "sha256": "f150447232f5ef41f6f9e66be62c1c101c4be411e091f0f11e1d28daf66f1558",
+      "bytes": 1655,
       "derivedFrom": [
         "data/dashboard_final.json"
       ]
@@ -110,8 +110,8 @@
       "path": "district_road_safety.csv",
       "datasetId": "delhi_district_road_safety_2024",
       "mediaType": "text/csv",
-      "sha256": "356def6ee09e166f712bd6193176d625e73481fcadf85a18a4abfa13689db8eb",
-      "bytes": 777,
+      "sha256": "7194973aa916ebf4c131b00a1da48175a124f906bfbed436c423f17d08520843",
+      "bytes": 761,
       "derivedFrom": [
         "data/dashboard_final.json"
       ]
@@ -130,8 +130,8 @@
       "path": "citywide_road_safety.csv",
       "datasetId": "delhi_citywide_road_safety_2024",
       "mediaType": "text/csv",
-      "sha256": "0bae6e43dbfbddaa915414a5a25b04222350ad8955392e5563a7de1a347b09f5",
-      "bytes": 409,
+      "sha256": "dd30d8995c4c909bf4345599599aff2081ad58d967306a5145ce5075a1242668",
+      "bytes": 407,
       "derivedFrom": [
         "data/road_safety_trends.json"
       ]
@@ -150,8 +150,8 @@
       "path": "crash_prone_zones.csv",
       "datasetId": "delhi_crash_prone_zones_2024",
       "mediaType": "text/csv",
-      "sha256": "8410447f518f4065622253b351f9dbb740fa5aaf582ac819f29e6c3e230ee886",
-      "bytes": 22649,
+      "sha256": "6584dd0c8dda54d959e119a5e41a742dbfdeae12f065de0149a0041c0cf83550",
+      "bytes": 22555,
       "derivedFrom": [
         "data/crash_zones_2024_geocoded.json"
       ]
