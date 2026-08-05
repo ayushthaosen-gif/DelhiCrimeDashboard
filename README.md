@@ -87,7 +87,11 @@ manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
 districts = pd.read_csv(release / 'district_crime.csv')
 ```
 
-Read `manifest.json` before analysis: it defines source URLs, SHA-256 checksums, coverage, null meaning, and previous-year comparability. Regenerate all yearly releases with:
+Read `manifest.json` before analysis: it defines source URLs, SHA-256 checksums, coverage, null meaning, and previous-year comparability. For a fuller worked example — loading all nine years into one long panel, checking coverage before aggregating, and a basic citywide trend plot — see [`notebooks/example_analysis.ipynb`](notebooks/example_analysis.ipynb).
+
+If a figure you've already cited from here changes in a later release, it will be logged in [`docs/DATA_CHANGELOG.md`](docs/DATA_CHANGELOG.md), separate from the dev-facing [`docs/AGENT_CHANGELOG.md`](docs/AGENT_CHANGELOG.md).
+
+Regenerate all yearly releases with:
 
 ```bash
 npm run build:releases

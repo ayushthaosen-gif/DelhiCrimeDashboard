@@ -10,12 +10,13 @@ DelhiCrimeDashboard/
 ├── liquor_crash_analysis.html        # generated spatial analysis
 ├── data/                              # dashboard source and derived datasets
 │   └── releases/2025/                 # audited 2025 research release
-├── exports/                           # dashboard-independent CSV/JSON exports
+├── exports/                           # legacy dashboard-independent CSV/JSON exports (deprecated)
 ├── fonts/                             # fonts embedded by the main build
+├── notebooks/                          # example analysis notebook(s) over data/releases/
 ├── scripts/                           # Node build and data-maintenance scripts
 ├── test/                              # Node tests
 ├── tools/pipeline_2025/               # isolated Python collection pipeline
-├── docs/                              # article, changelog, and project documentation
+├── docs/                              # article, changelog, data changelog, and project documentation
 └── .github/workflows/                 # CI and source-monitoring workflows
 ```
 

@@ -1,5 +1,13 @@
 # AI Collaboration Log & Changelog
 
+> **Before adding an entry here**: if the change alters the *value* of a
+> figure already published in a prior `data/releases/<year>/` snapshot (a
+> corrected total, a fixed miscount, a revised source figure — not a new
+> dataset, not extended coverage, not a UI/build fix), also add a line to
+> [`DATA_CHANGELOG.md`](DATA_CHANGELOG.md). This log is for every change to
+> the repo; that one is only for numbers a researcher may have already
+> cited.
+
 ## [2026-08-05] - Claude (Anthropic) - Sparklines Only Ever Plotted 3 Years, Even Though 8-9 Years of Real Data Already Existed
 
 ### 📈 renderSparkline() was hardcoded to prevKey/key/key2024 and never looked at historicalYears, which every other part of this dashboard already reads
