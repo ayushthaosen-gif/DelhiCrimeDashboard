@@ -45,7 +45,7 @@ function csvEscape(value) {
 }
 function toCsv(rows) {
   const headers = Object.keys(rows[0] || {});
-  return [headers.join(','), ...rows.map(row => headers.map(h => csvEscape(row[h])).join(','))].join('\r\n') + '\r\n';
+  return [headers.join(','), ...rows.map(row => headers.map(h => csvEscape(row[h])).join(','))].join('\n') + '\n';
 }
 function write(file, content) {
   fs.mkdirSync(path.dirname(file), { recursive: true });

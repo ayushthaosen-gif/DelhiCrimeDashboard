@@ -1,1 +1,11 @@
+# Force LF line endings on checkout for all text files so checksums baked into
+# data/releases/**/manifest.json stay byte-stable regardless of the checking-out
+# machine's core.autocrlf setting (Windows defaults it to true, which otherwise
+# rewrites these files to CRLF and breaks every stored SHA-256).
+* text=auto eol=lf
+
+*.woff2 binary
+*.png binary
+*.pdf binary
+
 data/releases/2025/raw_sources/** -whitespace

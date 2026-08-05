@@ -5,7 +5,7 @@
   "geography": "15 current territorial police-district names",
   "joinKey": "district",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-08-05T10:43:29.015Z",
+  "generatedAt": "2026-08-05T12:16:10.869Z",
   "productionStatus": "production dashboard data",
   "nullPolicy": "Null is unknown, unavailable, incompatible, or not separately reported; never coerce null to zero.",
   "comparability": "Some current districts were not separately reported; inspect row coverage and comparability flags.",
@@ -83,8 +83,8 @@
       "path": "district_crime.csv",
       "datasetId": "delhi_district_crime_2017",
       "mediaType": "text/csv",
-      "sha256": "442d116a5c87e61178d18cdcedc0089f9742f795856327a022c9850dbb2b315c",
-      "bytes": 1814,
+      "sha256": "20a0e0d85ed43db9e0186294c82dd40a94b502eef206266d8574799e404989c2",
+      "bytes": 1798,
       "derivedFrom": [
         "data/dashboard_final.json"
       ]
@@ -103,8 +103,8 @@
       "path": "citywide_road_safety.csv",
       "datasetId": "delhi_citywide_road_safety_2017",
       "mediaType": "text/csv",
-      "sha256": "57034b43e3094bc30b256ea4265326eec29b203a2726e84af7153dd9fac3b3b1",
-      "bytes": 59,
+      "sha256": "7c81eb6d0a9fa475149045568feb3b80e6b2514f32f7fa0b8f348ae078daad9e",
+      "bytes": 57,
       "derivedFrom": [
         "data/road_safety_trends.json"
       ]
