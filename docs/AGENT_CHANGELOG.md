@@ -1,5 +1,19 @@
 # AI Collaboration Log & Changelog
 
+## [2026-08-05] - Claude (Anthropic) - Fixed the Stale 2023 Default Year — Not a Data Gap, a Leftover
+
+### 📅 The district drawer's crime metrics defaulted to 2023 even though every district has complete 2024 data
+
+User asked why the district-intelligence drawer showed only 2023 figures. Checked the data before assuming: all 15 districts have complete 2024 values for every crime metric (theft, robbery, burglary, total IPC, crime against women, SLL) and every road-safety metric (crash-prone zones, fatal/total crashes) — no coverage gap. The `activeYear = '2023'` default was simply never updated after 2024 data was added to the dashboard earlier in its history; the page title itself had already been renamed away from "...— 2023" in an earlier branding pass, but this internal default was missed.
+
+1. **`scripts/build.js`**: `activeYear` default → `'2024'`; also fixed a second, easy-to-miss instance — the metric-switch fallback that resets `activeYear` to `'2023'` when the newly-selected metric doesn't support the current year — to `'2024'` as well, so switching metrics doesn't silently drop back to the stale year.
+2. **`scripts/build_interactive_map.js`**: same `activeYear` default fix, plus the URL-state "omit if default" comparison (`if (activeYear !== '2023') ...`) updated to `'2024'` so shared links stay clean at the new default instead of always carrying a redundant `year=2024` param.
+3. **Deliberately left `zoneYear` (the crash-zone point-layer toggle) at its 2023 default** — that one has a real, different reason: the 2023 crash-zone dataset has far better geocoding coverage (105 of 107 zones plotted) than 2024's (54 of 93), so defaulting the *point layer specifically* to 2024 would show a visibly sparser map on load, not a "more current" one. Not every "why is this still 2023" is the same bug — checked this one before changing it and kept it as-is.
+
+Verified: `node --check` on both correctly-extracted embedded scripts passed; `npm run build` and `npm run build:interactive-map` both completed; served locally, confirmed via `javascript_tool` that `activeYear` is now `'2024'` on load and a real district's detail panel shows "THEFT (2024)" / "TOTAL IPC (2024)" etc. with "vs 2023" comparisons, not the reverse; zero console errors; `npm test` — 25/25 pass (unaffected by this change, as expected).
+
+---
+
 ## [2026-08-05] - Claude (Anthropic) - Named the Pedestrian Overbridges
 
 ### 🏷️ 221 of 242 bridges shared the literal string "Unnamed mapped pedestrian bridge" — gave every one a real, distinguishing name

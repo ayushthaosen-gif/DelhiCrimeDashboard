@@ -669,7 +669,7 @@ function infraCovered(d, infraKey) {
 }
 
 let activeMetric = 'theft';
-let activeYear = '2023';
+let activeYear = '2024'; // most recent year with complete data for all 15 districts on every metric
 let rateMode = 'density'; // 'density' (per km²) or 'perCapita' (per 100k residents)
 let corrCoeffMode = 'pearson'; // 'pearson' (linear) or 'spearman' (rank)
 let showLights = false;
@@ -842,7 +842,7 @@ function buildMetricTabs() {
     btn.addEventListener('click', () => {
       activeMetric = btn.dataset.key;
       const m = currentMetric();
-      if (!metricSupportsYear(m, activeYear)) activeYear = '2023';
+      if (!metricSupportsYear(m, activeYear)) activeYear = '2024';
       render();
     });
   });

@@ -281,7 +281,7 @@ function pearson(xs, ys) {
   return num/Math.sqrt(dx2*dy2);
 }
 
-let activeYear = '2023';
+let activeYear = '2024'; // most recent year with complete data for all 15 districts on every metric
 let rateMode = 'density'; // 'density' (per km²) or 'perCapita' (per 100k residents)
 let bivariateMode = false;
 let bivariateInfra = 'policeInfra';
@@ -833,7 +833,7 @@ function applyUrlStateOnLoad() {
 function updateUrlState() {
   const m = currentMetric();
   const params = new URLSearchParams();
-  if (activeYear !== '2023') params.set('year', activeYear);
+  if (activeYear !== '2024') params.set('year', activeYear);
   params.set('crime', m.key);
   if (rateMode !== 'density') params.set('rate', rateMode);
   if (bivariateMode) { params.set('bivariate', '1'); params.set('infra', bivariateInfra); }
