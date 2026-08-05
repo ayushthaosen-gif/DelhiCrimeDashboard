@@ -1,0 +1,107 @@
+[
+  {
+    "year": 2022,
+    "district": "Central",
+    "fatal_road_crashes": 143,
+    "hit_and_run_crashes": 84,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "Dwarka",
+    "fatal_road_crashes": 132,
+    "hit_and_run_crashes": 75,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "East",
+    "fatal_road_crashes": 104,
+    "hit_and_run_crashes": 64,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "New Delhi",
+    "fatal_road_crashes": 187,
+    "hit_and_run_crashes": 104,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "North",
+    "fatal_road_crashes": 260,
+    "hit_and_run_crashes": 150,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "North-East",
+    "fatal_road_crashes": 53,
+    "hit_and_run_crashes": 34,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "North-West",
+    "fatal_road_crashes": 150,
+    "hit_and_run_crashes": 82,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "Outer",
+    "fatal_road_crashes": null,
+    "hit_and_run_crashes": null,
+    "coverage": "not separately reported in 11-district source geography"
+  },
+  {
+    "year": 2022,
+    "district": "Outer North",
+    "fatal_road_crashes": null,
+    "hit_and_run_crashes": null,
+    "coverage": "not separately reported in 11-district source geography"
+  },
+  {
+    "year": 2022,
+    "district": "Rohini",
+    "fatal_road_crashes": null,
+    "hit_and_run_crashes": null,
+    "coverage": "not separately reported in 11-district source geography"
+  },
+  {
+    "year": 2022,
+    "district": "Shahdara",
+    "fatal_road_crashes": 92,
+    "hit_and_run_crashes": 63,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "South",
+    "fatal_road_crashes": 65,
+    "hit_and_run_crashes": 36,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "South-East",
+    "fatal_road_crashes": 150,
+    "hit_and_run_crashes": 96,
+    "coverage": "reported"
+  },
+  {
+    "year": 2022,
+    "district": "South-West",
+    "fatal_road_crashes": null,
+    "hit_and_run_crashes": null,
+    "coverage": "not separately reported in 11-district source geography"
+  },
+  {
+    "year": 2022,
+    "district": "West",
+    "fatal_road_crashes": 158,
+    "hit_and_run_crashes": 97,
+    "coverage": "reported"
+  }
+]

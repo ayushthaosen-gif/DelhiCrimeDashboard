@@ -1,0 +1,16 @@
+year,district,district_existed_as_separate_reporting_zone,coverage,theft,robbery,burglary,total_ipc_bns,crime_against_women,total_sll,theft_previous_year_comparable,robbery_previous_year_comparable,burglary_previous_year_comparable,total_ipc_previous_year_comparable,crime_against_women_previous_year_comparable,total_sll_previous_year_comparable,null_reason
+2017,Central,true,reported,7362,165,529,10983,600,710,true,true,false,false,false,false,
+2017,Dwarka,true,reported,9521,149,902,13821,1142,609,false,false,false,false,false,false,
+2017,East,true,reported,14186,220,575,17838,847,906,true,true,false,false,false,false,
+2017,New Delhi,true,reported,2599,33,62,3514,130,57,true,true,false,false,false,false,
+2017,North,true,reported,7713,109,525,11023,544,585,true,true,false,false,false,false,
+2017,North-East,true,reported,11552,473,532,16623,1253,2045,true,true,false,false,false,false,
+2017,North-West,true,reported,15913,348,906,21911,1298,1013,true,true,false,false,false,false,
+2017,Outer,true,reported,10688,216,971,15324,1109,981,true,true,false,false,false,false,
+2017,Outer North,false,district did not exist as a separate reporting zone,,,,,,,false,false,false,false,false,false,district did not exist as a separate reporting zone
+2017,Rohini,true,reported,14620,334,1219,20190,1370,1038,false,false,false,false,false,false,
+2017,Shahdara,true,reported,11565,258,551,14662,667,1037,false,false,false,false,false,false,
+2017,South,true,reported,15838,255,795,20825,1143,1111,true,true,false,false,false,false,
+2017,South-East,true,reported,14585,188,813,18837,1083,755,true,true,false,false,false,false,
+2017,South-West,true,reported,6864,92,568,10092,727,596,true,true,false,false,false,false,
+2017,West,true,reported,13790,295,875,18181,912,622,true,true,false,false,false,false,

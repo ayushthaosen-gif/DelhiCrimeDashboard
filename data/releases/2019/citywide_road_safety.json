@@ -1,0 +1,26 @@
+[
+  {
+    "year": 2019,
+    "crashes": 5610,
+    "fatalities": 1463,
+    "fatalCrashes": 1433,
+    "pedestrianKilled": 678,
+    "pedestrianInjured": 1887,
+    "cyclistKilled": 36,
+    "cyclistInjured": 108,
+    "carKilled": 39,
+    "carInjured": 281,
+    "twoWheelerKilled": 496,
+    "twoWheelerInjured": 2110,
+    "busPassengerKilled": 5,
+    "busPassengerInjured": 30,
+    "slowMovingKilled": 26,
+    "slowMovingInjured": 151,
+    "animalDrivenKilled": 1,
+    "animalDrivenInjured": 10,
+    "otherKilled": 182,
+    "otherInjured": 575,
+    "totalKilled": 1463,
+    "totalInjured": 5152
+  }
+]

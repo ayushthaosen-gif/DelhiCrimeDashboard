@@ -1,0 +1,117 @@
+{
+  "schemaVersion": "1.0.0",
+  "releaseYear": 2020,
+  "jurisdiction": "Delhi",
+  "geography": "15 current territorial police-district names",
+  "joinKey": "district",
+  "generatedBy": "scripts/build_yearly_releases.js",
+  "generatedAt": "2026-08-05T10:43:29.027Z",
+  "productionStatus": "production dashboard data",
+  "nullPolicy": "Null is unknown, unavailable, incompatible, or not separately reported; never coerce null to zero.",
+  "comparability": "Inspect per-metric previous-year comparability flags before calculating change.",
+  "coverage": {
+    "districtRows": 15,
+    "districtsWithAnyCrimeValue": 15,
+    "nullCounts": {
+      "theft": 0,
+      "robbery": 0,
+      "burglary": 0,
+      "totalIPC": 0,
+      "crimeAgainstWomen": 0,
+      "totalSLL": 0
+    }
+  },
+  "schemas": {
+    "districtCrime": {
+      "year": "integer",
+      "district": "string; join key",
+      "district_existed_as_separate_reporting_zone": "boolean",
+      "coverage": "string",
+      "theft": "integer|null; registered cases",
+      "robbery": "integer|null; registered cases",
+      "burglary": "integer|null; registered cases",
+      "total_ipc_bns": "integer|null; registered cases",
+      "crime_against_women": "integer|null; registered cases",
+      "total_sll": "integer|null; registered cases",
+      "theft_previous_year_comparable": "boolean",
+      "robbery_previous_year_comparable": "boolean",
+      "burglary_previous_year_comparable": "boolean",
+      "total_ipc_previous_year_comparable": "boolean",
+      "crime_against_women_previous_year_comparable": "boolean",
+      "total_sll_previous_year_comparable": "boolean",
+      "null_reason": "string; empty when no row-level caveat applies"
+    },
+    "districtRoadSafety": null,
+    "citywideRoadSafety": "One row; citywide counts from the annual trend/victim table.",
+    "crashProneZones": null
+  },
+  "sources": [
+    {
+      "id": "ncrb_ipc_2017_onward",
+      "publisher": "NCRB via India Data Portal",
+      "url": "https://ckandev.indiadataportal.com/dataset/e311a510-ce48-4f4c-baf6-0ec5f9278285/resource/387dedad-5978-4f97-a6c5-60ca45f9405a/download/districtwise-ipc-crimes-2017-onwards.csv",
+      "role": "theft, robbery and burglary extraction",
+      "status": "used"
+    },
+    {
+      "id": "ncrb_category_tables",
+      "publisher": "NCRB via India Data Portal",
+      "url": "https://indiadataportal.com",
+      "role": "full category tables used for reconstructed total IPC, crime against women and SLL",
+      "status": "used; 2022 exact-total validation"
+    },
+    {
+      "id": "delhi_traffic_annual_2020",
+      "publisher": "Delhi Traffic Police",
+      "url": "https://traffic.delhipolice.gov.in/",
+      "role": "citywide crash trend and victims by mode",
+      "status": "used in compiled trend series"
+    }
+  ],
+  "files": [
+    {
+      "path": "district_crime.json",
+      "datasetId": "delhi_district_crime_2020",
+      "mediaType": "application/json",
+      "sha256": "2ce3381404accaac5365262595fd146991673dc1d62f077227965d569fa57d52",
+      "bytes": 8930,
+      "derivedFrom": [
+        "data/dashboard_final.json"
+      ]
+    },
+    {
+      "path": "district_crime.csv",
+      "datasetId": "delhi_district_crime_2020",
+      "mediaType": "text/csv",
+      "sha256": "602b219cc6fca680d35ade65fe60e7348e0e3c9f8a0b68f3b5ac77ba5ada8ee4",
+      "bytes": 1667,
+      "derivedFrom": [
+        "data/dashboard_final.json"
+      ]
+    },
+    {
+      "path": "citywide_road_safety.json",
+      "datasetId": "delhi_citywide_road_safety_2020",
+      "mediaType": "application/json",
+      "sha256": "7c04b47c8280f30f172f1fd9a5949ce5cc5b66365d742ef0f4def664cf2348e9",
+      "bytes": 593,
+      "derivedFrom": [
+        "data/road_safety_trends.json"
+      ]
+    },
+    {
+      "path": "citywide_road_safety.csv",
+      "datasetId": "delhi_citywide_road_safety_2020",
+      "mediaType": "text/csv",
+      "sha256": "a0fec8e7780640c76773828fe8787e11eac8008198a5db629d0804c04b75dd88",
+      "bytes": 408,
+      "derivedFrom": [
+        "data/road_safety_trends.json"
+      ]
+    }
+  ],
+  "sharedData": {
+    "manifest": "../shared/manifest.json",
+    "warning": "Infrastructure layers are latest-available snapshots, not measurements for this crime year."
+  }
+}

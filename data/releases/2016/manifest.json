@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0.0",
+  "releaseYear": 2016,
+  "jurisdiction": "Delhi",
+  "geography": "15 current territorial police-district names",
+  "joinKey": "district",
+  "generatedBy": "scripts/build_yearly_releases.js",
+  "generatedAt": "2026-08-05T10:43:29.009Z",
+  "productionStatus": "production dashboard data",
+  "nullPolicy": "Null is unknown, unavailable, incompatible, or not separately reported; never coerce null to zero.",
+  "comparability": "Burglary and reconstructed totals are deliberately null because source definitions/schemas are incompatible.",
+  "coverage": {
+    "districtRows": 15,
+    "districtsWithAnyCrimeValue": 11,
+    "nullCounts": {
+      "theft": 4,
+      "robbery": 4,
+      "burglary": 15,
+      "totalIPC": 15,
+      "crimeAgainstWomen": 15,
+      "totalSLL": 15
+    }
+  },
+  "schemas": {
+    "districtCrime": {
+      "year": "integer",
+      "district": "string; join key",
+      "district_existed_as_separate_reporting_zone": "boolean",
+      "coverage": "string",
+      "theft": "integer|null; registered cases",
+      "robbery": "integer|null; registered cases",
+      "burglary": "integer|null; registered cases",
+      "total_ipc_bns": "integer|null; registered cases",
+      "crime_against_women": "integer|null; registered cases",
+      "total_sll": "integer|null; registered cases",
+      "theft_previous_year_comparable": "boolean",
+      "robbery_previous_year_comparable": "boolean",
+      "burglary_previous_year_comparable": "boolean",
+      "total_ipc_previous_year_comparable": "boolean",
+      "crime_against_women_previous_year_comparable": "boolean",
+      "total_sll_previous_year_comparable": "boolean",
+      "null_reason": "string; empty when no row-level caveat applies"
+    },
+    "districtRoadSafety": null,
+    "citywideRoadSafety": "One row; citywide counts from the annual trend/victim table.",
+    "crashProneZones": null
+  },
+  "sources": [
+    {
+      "id": "ncrb_ipc_2016",
+      "publisher": "NCRB via India Data Portal",
+      "url": "https://ckandev.indiadataportal.com/dataset/e311a510-ce48-4f4c-baf6-0ec5f9278285/resource/7d5e2cc6-a704-4248-aa44-13d7186f847c/download/districtwise-ipc-crimes-2016.csv",
+      "role": "primary extraction file",
+      "status": "used"
+    },
+    {
+      "id": "delhi_traffic_annual_2016",
+      "publisher": "Delhi Traffic Police",
+      "url": "https://traffic.delhipolice.gov.in/",
+      "role": "citywide crash trend",
+      "status": "used in compiled trend series"
+    }
+  ],
+  "files": [
+    {
+      "path": "district_crime.json",
+      "datasetId": "delhi_district_crime_2016",
+      "mediaType": "application/json",
+      "sha256": "b4af86b2172cf162efc0778aa783980950b77472fffa47c7e1ae43520f60da20",
+      "bytes": 10484,
+      "derivedFrom": [
+        "data/dashboard_final.json"
+      ]
+    },
+    {
+      "path": "district_crime.csv",
+      "datasetId": "delhi_district_crime_2016",
+      "mediaType": "text/csv",
+      "sha256": "a3ceaa51b7c1e936aa28437ea14c7ffe79020370889c8ca9147580e85d9cb066",
+      "bytes": 2949,
+      "derivedFrom": [
+        "data/dashboard_final.json"
+      ]
+    },
+    {
+      "path": "citywide_road_safety.json",
+      "datasetId": "delhi_citywide_road_safety_2016",
+      "mediaType": "application/json",
+      "sha256": "1b8810e63060d8f83080acb81873cc1c68a4ae3ff958790eb4d1885a37d13046",
+      "bytes": 100,
+      "derivedFrom": [
+        "data/road_safety_trends.json"
+      ]
+    },
+    {
+      "path": "citywide_road_safety.csv",
+      "datasetId": "delhi_citywide_road_safety_2016",
+      "mediaType": "text/csv",
+      "sha256": "d7c999dbb9dd27159a987e21526767f101f70cc01838ac17858d42a6b0f64d86",
+      "bytes": 59,
+      "derivedFrom": [
+        "data/road_safety_trends.json"
+      ]
+    }
+  ],
+  "sharedData": {
+    "manifest": "../shared/manifest.json",
+    "warning": "Infrastructure layers are latest-available snapshots, not measurements for this crime year."
+  }
+}

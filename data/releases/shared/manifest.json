@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "shared and non-year-specific production datasets",
+  "generatedBy": "scripts/build_yearly_releases.js",
+  "generatedAt": "2026-08-05T10:43:29.075Z",
+  "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
+  "datasets": [
+    {
+      "id": "streetlights_underpasses",
+      "file": "data/streetlight_grid.json",
+      "publisher": "Delhi Transport Stack Open Transit Data / PAPL survey",
+      "url": "https://otd.delhi.gov.in/",
+      "licenseAndCaveat": "Publisher terms; partial 9-district survey coverage",
+      "sha256": "1c784dc282ac64ae3dcaa721a98c0d8c6c96e9d378d250ea51fa9eea48ebad3e",
+      "bytes": 38971
+    },
+    {
+      "id": "pedestrian_overbridges",
+      "file": "data/delhi_pedestrian_overpasses_osm.geojson",
+      "publisher": "OpenStreetMap contributors via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "licenseAndCaveat": "ODbL; mapped inventory, snapshot 2026-08-04",
+      "sha256": "a5c6438448f8c3b981d4950fd69b589f7f584be9cd85d0fbb7bac2d051a9a767",
+      "bytes": 185789
+    },
+    {
+      "id": "metro_bus_atm_liquor_surveillance",
+      "file": "data/poi_markers_latlng.json",
+      "publisher": "OpenStreetMap contributors via Overpass",
+      "url": "https://www.openstreetmap.org/copyright",
+      "licenseAndCaveat": "ODbL; tag-based mapped coverage",
+      "sha256": "df535835cc55ef7c59ca74742590ed73125125cc87358c8740f0f8538ad0f0d6",
+      "bytes": 228695
+    },
+    {
+      "id": "police_locations",
+      "file": "data/police_markers_latlng.json",
+      "publisher": "Delhi Police GSDL plus OpenStreetMap posts",
+      "url": "https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac",
+      "licenseAndCaveat": "Official station export plus ODbL community-mapped posts",
+      "sha256": "77b6273d12974c6240e68a1a93c7411b95ab45ff737b11fe40f7eb9f98dc4c0a",
+      "bytes": 14547
+    },
+    {
+      "id": "district_boundaries",
+      "file": "data/dashboard_boundaries_simplified.geojson",
+      "publisher": "Delhi Police GSDL",
+      "url": "https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac",
+      "licenseAndCaveat": "Simplified display geometry; not survey-grade",
+      "sha256": "1e6dd26f2f89b5885934ca54f42c57a2ed2531de89053ffdb99e0d94962aa09e",
+      "bytes": 82707
+    },
+    {
+      "id": "ward_boundaries_and_derived_infrastructure",
+      "file": "data/delhi_wards_infra.geojson",
+      "publisher": "Project spatial join over legacy ward polygons",
+      "url": "data/source/README.md",
+      "licenseAndCaveat": "Derived; 290 legacy wards; inspect basis fields",
+      "sha256": "4ca30ac2c57dd470eea3c6de60d913ef3712347a722d8d63eb4c358917709f54",
+      "bytes": 782115
+    },
+    {
+      "id": "liquor_vends_approximate",
+      "file": "data/delhi_liquor_vends_all_coordinates_approx.geojson",
+      "publisher": "DSCSC / DCCWS published vend list",
+      "url": "https://dscsc.delhi.gov.in/dscsc/liquor-vends",
+      "licenseAndCaveat": "Coordinates are approximate unless explicitly flagged exact",
+      "sha256": "f32bb607fb87ed644097cc045a2243aa997ddf9a0b7fe0f6cb62b1fe6d010d1a",
+      "bytes": 606011
+    }
+  ],
+  "productionFileInventory": [
+    {
+      "file": "data/airport_shape.json",
+      "datasetId": "airport_shape",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "c82a554cc1c95645ac45eaf8486b018cfc17663fbd883112d61f1933d164deaa",
+      "bytes": 1456
+    },
+    {
+      "file": "data/correlations.json",
+      "datasetId": "correlations",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "4ab5e2ae8ceffa53f8b4f240b5cf55fc02de460babade6d3e26a03d4cb84cfe9",
+      "bytes": 209
+    },
+    {
+      "file": "data/crash_zones_2023_geocoded.json",
+      "datasetId": "crash_zones_2023_geocoded",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "0ec8a1c23185880cd961e395181eefa66c29331e094fe3759025bec6353027da",
+      "bytes": 125180
+    },
+    {
+      "file": "data/crash_zones_2023_mapped.json",
+      "datasetId": "crash_zones_2023_mapped",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "754381567c8db2d2a6ef61f4496413da9e06b1c419bcad951103d91c2d6bcc3c",
+      "bytes": 15812
+    },
+    {
+      "file": "data/crash_zones_2023_raw.json",
+      "datasetId": "crash_zones_2023_raw",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "501e3c3da73deef689cb9f24a823d866bc8a46502827b0e078921753338ca0d2",
+      "bytes": 9991
+    },
+    {
+      "file": "data/crash_zones_2024_geocoded.json",
+      "datasetId": "crash_zones_2024_geocoded",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "a734a10ccea6fa7921f16fb44500f056a2cb4c3f96448484943cc0f4199923a0",
+      "bytes": 115464
+    },
+    {
+      "file": "data/crash_zone_liquor_proximity_2024.geojson",
+      "datasetId": "crash_zone_liquor_proximity_2024",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "5c57e2a5c8b71647c317bfe29b72d379dd5fee2250ccf84b422a90d7a80c7ff6",
+      "bytes": 362682
+    },
+    {
+      "file": "data/dashboard_boundaries_simplified.geojson",
+      "datasetId": "district_boundaries",
+      "provenanceStatus": "source-described-above",
+      "documentation": null,
+      "sha256": "1e6dd26f2f89b5885934ca54f42c57a2ed2531de89053ffdb99e0d94962aa09e",
+      "bytes": 82707
+    },
+    {
+      "file": "data/dashboard_final.json",
+      "datasetId": "dashboard_final",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "09d402b2c739fde9fd91ae4ad7268ce8a64c4621405b5fc1392f375b6d6406c4",
+      "bytes": 128526
+    },
+    {
+      "file": "data/delhi_crash_prone_zones_2024_250m_buffers_approx.geojson",
+      "datasetId": "delhi_crash_prone_zones_2024_250m_buffers_approx",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "d41c0bbf7e295a04ef2a0805a2c9ccc1e9fd4faccc64598aa9fd8734d0536c28",
+      "bytes": 745628
+    },
+    {
+      "file": "data/delhi_crash_prone_zones_2024_all_named_approx.geojson",
+      "datasetId": "delhi_crash_prone_zones_2024_all_named_approx",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "0c64923aa7afa6b7911bf726782e7a905b4591f63a1dd01a91a81a9edd86909c",
+      "bytes": 279392
+    },
+    {
+      "file": "data/delhi_crash_prone_zones_2024_coordinate_audit.csv",
+      "datasetId": "delhi_crash_prone_zones_2024_coordinate_audit",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "5c43871f47b96ac12defaf2cff91b9bbb8711863e077bd74e319ed16ef5ee977",
+      "bytes": 15050
+    },
+    {
+      "file": "data/delhi_crash_report_relevant_metrics_2024.json",
+      "datasetId": "delhi_crash_report_relevant_metrics_2024",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "4c0063ee5c2607945b7e09069b380f15e7c18f142c3095d34ec3e0e6e3e24c6e",
+      "bytes": 921
+    },
+    {
+      "file": "data/delhi_crime_2016_2021_harmonized.json",
+      "datasetId": "delhi_crime_2016_2021_harmonized",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "420c44e614eb9cc6e838ad5559acd8de078fb9a41c49c816f4f5c4207f6d37b5",
+      "bytes": 32787
+    },
+    {
+      "file": "data/delhi_crime_2016_2021_verified.json",
+      "datasetId": "delhi_crime_2016_2021_verified",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "ae3acc74ff089222b4e2000f8fd6edb76490a89d193d87dac00955c96c6a2162",
+      "bytes": 43701
+    },
+    {
+      "file": "data/delhi_liquor_vends_all_coordinates_approx.geojson",
+      "datasetId": "liquor_vends_approximate",
+      "provenanceStatus": "source-described-above",
+      "documentation": null,
+      "sha256": "f32bb607fb87ed644097cc045a2243aa997ddf9a0b7fe0f6cb62b1fe6d010d1a",
+      "bytes": 606011
+    },
+    {
+      "file": "data/delhi_liquor_vends_coordinate_audit.csv",
+      "datasetId": "delhi_liquor_vends_coordinate_audit",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "96705a8d1780dc8bbf1fcfda4ceb1adb1430d3cb3fbe738291f7a9a66e4cd320",
+      "bytes": 132666
+    },
+    {
+      "file": "data/delhi_pedestrian_overpasses_osm.geojson",
+      "datasetId": "pedestrian_overbridges",
+      "provenanceStatus": "source-described-above",
+      "documentation": null,
+      "sha256": "a5c6438448f8c3b981d4950fd69b589f7f584be9cd85d0fbb7bac2d051a9a767",
+      "bytes": 185789
+    },
+    {
+      "file": "data/delhi_wards_infra.geojson",
+      "datasetId": "ward_boundaries_and_derived_infrastructure",
+      "provenanceStatus": "source-described-above",
+      "documentation": null,
+      "sha256": "4ca30ac2c57dd470eea3c6de60d913ef3712347a722d8d63eb4c358917709f54",
+      "bytes": 782115
+    },
+    {
+      "file": "data/liquor_crash_proximity_summary_2024.json",
+      "datasetId": "liquor_crash_proximity_summary_2024",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "9fb293ef1266115162cd7829d76a7ca2adc9fc6c2ed69f37a8fffce304792fe1",
+      "bytes": 13115
+    },
+    {
+      "file": "data/liquor_vend_crash_proximity_2024.geojson",
+      "datasetId": "liquor_vend_crash_proximity_2024",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "37ec2046f1ff505dae24bbe8eb56f6f4864a08365bd4cd6db2045455adc0525b",
+      "bytes": 1035952
+    },
+    {
+      "file": "data/overpass_surveillance_alcohol.json",
+      "datasetId": "overpass_surveillance_alcohol",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "0fe985154036aa26de521d3a606e581aac9775f2b64bf0605b288b17dea56360",
+      "bytes": 691821
+    },
+    {
+      "file": "data/poi_markers.json",
+      "datasetId": "poi_markers",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "32def029a6b3901d538bfd6bbdd7de56ed99494c8e66c67f708cc752678270ac",
+      "bytes": 173352
+    },
+    {
+      "file": "data/poi_markers_latlng.json",
+      "datasetId": "metro_bus_atm_liquor_surveillance",
+      "provenanceStatus": "source-described-above",
+      "documentation": null,
+      "sha256": "df535835cc55ef7c59ca74742590ed73125125cc87358c8740f0f8538ad0f0d6",
+      "bytes": 228695
+    },
+    {
+      "file": "data/police_markers.json",
+      "datasetId": "police_markers",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "e153820890f8020f6bf4e803d3e3e6ce712e1767d5c729bad19bfcc37043d098",
+      "bytes": 11872
+    },
+    {
+      "file": "data/police_markers_latlng.json",
+      "datasetId": "police_locations",
+      "provenanceStatus": "source-described-above",
+      "documentation": null,
+      "sha256": "77b6273d12974c6240e68a1a93c7411b95ab45ff737b11fe40f7eb9f98dc4c0a",
+      "bytes": 14547
+    },
+    {
+      "file": "data/road_safety_extra_2023_2024.json",
+      "datasetId": "road_safety_extra_2023_2024",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "3882a7c160262c49b29ed5f113a89cc500a423b9de588716886b499b487b279b",
+      "bytes": 10137
+    },
+    {
+      "file": "data/road_safety_trends.json",
+      "datasetId": "road_safety_trends",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "fe58074ae82f039e5fbbb2e2ee141b29c5d83756befb806b43e67b5da1becfa8",
+      "bytes": 3157
+    },
+    {
+      "file": "data/streetlight_grid.json",
+      "datasetId": "streetlights_underpasses",
+      "provenanceStatus": "source-described-above",
+      "documentation": null,
+      "sha256": "1c784dc282ac64ae3dcaa721a98c0d8c6c96e9d378d250ea51fa9eea48ebad3e",
+      "bytes": 38971
+    }
+  ]
+}

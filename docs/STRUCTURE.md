@@ -22,3 +22,7 @@ DelhiCrimeDashboard/
 The generated HTML pages remain at the repository root intentionally. Moving them would change the existing GitHub Pages URLs.
 
 Run build and test tasks through `npm` from the repository root. Run the Python collector from `tools/pipeline_2025/`.
+
+## Research releases
+
+`data/releases/2016/` through `data/releases/2024/` are generated, year-by-year import releases. Each has a machine-readable manifest and normalized CSV/JSON. `data/releases/shared/` catalogs non-year-specific production layers. `data/releases/2025/` remains the independently audited staging release.

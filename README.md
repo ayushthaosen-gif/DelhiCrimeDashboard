@@ -64,6 +64,35 @@ a browser — no server or build step required to view it.
 - Downloadable everything — CSV per dataset, plus a full Excel workbook for
   citation.
 
+## Year-by-year research releases
+
+Import-ready releases are organized like the audited 2025 folder:
+
+- [`data/releases/2016/`](data/releases/2016/) through [`data/releases/2024/`](data/releases/2024/): one folder per production year.
+- Every year contains `district_crime.csv`, `district_crime.json`, `manifest.json`, and a short README.
+- Compatible road-safety and crash-zone tables are included only for years in which those datasets exist.
+- [`data/releases/shared/manifest.json`](data/releases/shared/manifest.json) catalogs infrastructure, boundaries, approximate-location layers, derived analyses, checksums, source URLs and reuse caveats that do not belong to one year.
+- [`data/releases/manifest.json`](data/releases/manifest.json) is the machine-readable release index. The existing [`data/releases/2025/`](data/releases/2025/) remains a separate audited staging release and is not silently treated as production.
+
+Recommended import sequence:
+
+```python
+import json
+import pandas as pd
+from pathlib import Path
+
+year = 2024
+release = Path(f'data/releases/{year}')
+manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
+districts = pd.read_csv(release / 'district_crime.csv')
+```
+
+Read `manifest.json` before analysis: it defines source URLs, SHA-256 checksums, coverage, null meaning, and previous-year comparability. Regenerate all yearly releases with:
+
+```bash
+npm run build:releases
+```
+
 ## Using this data in your own report or dashboard
 
 The dashboard's in-app CSV/Excel buttons are meant for a person clicking

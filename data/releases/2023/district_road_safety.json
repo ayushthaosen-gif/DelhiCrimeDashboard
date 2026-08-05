@@ -1,0 +1,167 @@
+[
+  {
+    "year": 2023,
+    "district": "Central",
+    "crash_prone_zones": 3,
+    "simple_crashes_at_zones": 24,
+    "fatal_crashes_at_zones": 9,
+    "total_crashes_at_zones": 33,
+    "persons_killed": 51,
+    "persons_injured": 295,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "Dwarka",
+    "crash_prone_zones": 2,
+    "simple_crashes_at_zones": 11,
+    "fatal_crashes_at_zones": 5,
+    "total_crashes_at_zones": 16,
+    "persons_killed": 93,
+    "persons_injured": 477,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "East",
+    "crash_prone_zones": 8,
+    "simple_crashes_at_zones": 43,
+    "fatal_crashes_at_zones": 25,
+    "total_crashes_at_zones": 68,
+    "persons_killed": 79,
+    "persons_injured": 305,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "New Delhi",
+    "crash_prone_zones": 1,
+    "simple_crashes_at_zones": 10,
+    "fatal_crashes_at_zones": 0,
+    "total_crashes_at_zones": 10,
+    "persons_killed": 39,
+    "persons_injured": 160,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "North",
+    "crash_prone_zones": 12,
+    "simple_crashes_at_zones": 86,
+    "fatal_crashes_at_zones": 48,
+    "total_crashes_at_zones": 134,
+    "persons_killed": 116,
+    "persons_injured": 429,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "North-East",
+    "crash_prone_zones": 7,
+    "simple_crashes_at_zones": 69,
+    "fatal_crashes_at_zones": 24,
+    "total_crashes_at_zones": 93,
+    "persons_killed": 98,
+    "persons_injured": 378,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "North-West",
+    "crash_prone_zones": 13,
+    "simple_crashes_at_zones": 83,
+    "fatal_crashes_at_zones": 57,
+    "total_crashes_at_zones": 140,
+    "persons_killed": 125,
+    "persons_injured": 337,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "Outer",
+    "crash_prone_zones": 9,
+    "simple_crashes_at_zones": 57,
+    "fatal_crashes_at_zones": 31,
+    "total_crashes_at_zones": 88,
+    "persons_killed": 123,
+    "persons_injured": 308,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "Outer North",
+    "crash_prone_zones": 11,
+    "simple_crashes_at_zones": 61,
+    "fatal_crashes_at_zones": 44,
+    "total_crashes_at_zones": 105,
+    "persons_killed": 181,
+    "persons_injured": 568,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "Rohini",
+    "crash_prone_zones": 1,
+    "simple_crashes_at_zones": 3,
+    "fatal_crashes_at_zones": 3,
+    "total_crashes_at_zones": 6,
+    "persons_killed": 73,
+    "persons_injured": 222,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "Shahdara",
+    "crash_prone_zones": 3,
+    "simple_crashes_at_zones": 3,
+    "fatal_crashes_at_zones": 10,
+    "total_crashes_at_zones": 13,
+    "persons_killed": 48,
+    "persons_injured": 188,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "South",
+    "crash_prone_zones": 1,
+    "simple_crashes_at_zones": 7,
+    "fatal_crashes_at_zones": 3,
+    "total_crashes_at_zones": 10,
+    "persons_killed": 65,
+    "persons_injured": 408,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "South-East",
+    "crash_prone_zones": 9,
+    "simple_crashes_at_zones": 63,
+    "fatal_crashes_at_zones": 27,
+    "total_crashes_at_zones": 90,
+    "persons_killed": 116,
+    "persons_injured": 476,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "South-West",
+    "crash_prone_zones": 9,
+    "simple_crashes_at_zones": 66,
+    "fatal_crashes_at_zones": 21,
+    "total_crashes_at_zones": 87,
+    "persons_killed": 110,
+    "persons_injured": 484,
+    "coverage": "reported"
+  },
+  {
+    "year": 2023,
+    "district": "West",
+    "crash_prone_zones": 18,
+    "simple_crashes_at_zones": 111,
+    "fatal_crashes_at_zones": 59,
+    "total_crashes_at_zones": 170,
+    "persons_killed": 140,
+    "persons_injured": 435,
+    "coverage": "reported"
+  }
+]

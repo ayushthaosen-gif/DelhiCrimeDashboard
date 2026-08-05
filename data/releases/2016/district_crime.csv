@@ -1,0 +1,16 @@
+year,district,district_existed_as_separate_reporting_zone,coverage,theft,robbery,burglary,total_ipc_bns,crime_against_women,total_sll,theft_previous_year_comparable,robbery_previous_year_comparable,burglary_previous_year_comparable,total_ipc_previous_year_comparable,crime_against_women_previous_year_comparable,total_sll_previous_year_comparable,null_reason
+2016,Central,true,reported,6768,208,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,Dwarka,false,district did not exist as a separate reporting zone,,,,,,,false,false,false,false,false,false,district did not exist as a separate reporting zone
+2016,East,true,reported,13901,658,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,New Delhi,true,reported,1830,63,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,North,true,reported,7280,233,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,North-East,true,reported,11615,829,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,North-West,true,reported,12135,597,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,Outer,true,reported,15033,852,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,Outer North,false,district did not exist as a separate reporting zone,,,,,,,false,false,false,false,false,false,district did not exist as a separate reporting zone
+2016,Rohini,false,district did not exist as a separate reporting zone,,,,,,,false,false,false,false,false,false,district did not exist as a separate reporting zone
+2016,Shahdara,false,district did not exist as a separate reporting zone,,,,,,,false,false,false,false,false,false,district did not exist as a separate reporting zone
+2016,South,true,reported,13965,325,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,South-East,true,reported,10812,265,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,South-West,true,reported,6872,225,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible
+2016,West,true,reported,16944,442,,,,,false,false,false,false,false,false,burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible

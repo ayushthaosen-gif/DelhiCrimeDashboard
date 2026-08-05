@@ -1,0 +1,16 @@
+year,district,crash_prone_zones,simple_crashes_at_zones,fatal_crashes_at_zones,total_crashes_at_zones,persons_killed,persons_injured,coverage
+2023,Central,3,24,9,33,51,295,reported
+2023,Dwarka,2,11,5,16,93,477,reported
+2023,East,8,43,25,68,79,305,reported
+2023,New Delhi,1,10,0,10,39,160,reported
+2023,North,12,86,48,134,116,429,reported
+2023,North-East,7,69,24,93,98,378,reported
+2023,North-West,13,83,57,140,125,337,reported
+2023,Outer,9,57,31,88,123,308,reported
+2023,Outer North,11,61,44,105,181,568,reported
+2023,Rohini,1,3,3,6,73,222,reported
+2023,Shahdara,3,3,10,13,48,188,reported
+2023,South,1,7,3,10,65,408,reported
+2023,South-East,9,63,27,90,116,476,reported
+2023,South-West,9,66,21,87,110,484,reported
+2023,West,18,111,59,170,140,435,reported

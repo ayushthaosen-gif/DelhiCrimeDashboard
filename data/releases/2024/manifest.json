@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "1.0.0",
+  "releaseYear": 2024,
+  "jurisdiction": "Delhi",
+  "geography": "15 current territorial police-district names",
+  "joinKey": "district",
+  "generatedBy": "scripts/build_yearly_releases.js",
+  "generatedAt": "2026-08-05T10:43:29.057Z",
+  "productionStatus": "production dashboard data",
+  "nullPolicy": "Null is unknown, unavailable, incompatible, or not separately reported; never coerce null to zero.",
+  "comparability": "Inspect per-metric previous-year comparability flags before calculating change.",
+  "coverage": {
+    "districtRows": 15,
+    "districtsWithAnyCrimeValue": 15,
+    "nullCounts": {
+      "theft": 0,
+      "robbery": 0,
+      "burglary": 0,
+      "totalIPC": 0,
+      "crimeAgainstWomen": 0,
+      "totalSLL": 0
+    }
+  },
+  "schemas": {
+    "districtCrime": {
+      "year": "integer",
+      "district": "string; join key",
+      "district_existed_as_separate_reporting_zone": "boolean",
+      "coverage": "string",
+      "theft": "integer|null; registered cases",
+      "robbery": "integer|null; registered cases",
+      "burglary": "integer|null; registered cases",
+      "total_ipc_bns": "integer|null; registered cases",
+      "crime_against_women": "integer|null; registered cases",
+      "total_sll": "integer|null; registered cases",
+      "theft_previous_year_comparable": "boolean",
+      "robbery_previous_year_comparable": "boolean",
+      "burglary_previous_year_comparable": "boolean",
+      "total_ipc_previous_year_comparable": "boolean",
+      "crime_against_women_previous_year_comparable": "boolean",
+      "total_sll_previous_year_comparable": "boolean",
+      "null_reason": "string; empty when no row-level caveat applies"
+    },
+    "districtRoadSafety": "Columns are self-describing snake_case counts plus coverage.",
+    "citywideRoadSafety": "One row; citywide counts from the annual trend/victim table.",
+    "crashProneZones": "Normalized year/record_id/location/road/district/crash counts/lat-lon/status plus preserved source fields."
+  },
+  "sources": [
+    {
+      "id": "ncrb_ipc_2024",
+      "publisher": "National Crime Records Bureau",
+      "url": "https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx",
+      "role": "official district table",
+      "status": "used"
+    },
+    {
+      "id": "ncrb_sll_2024",
+      "publisher": "National Crime Records Bureau",
+      "url": "https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx",
+      "role": "official district table",
+      "status": "used"
+    },
+    {
+      "id": "ncrb_women_2024",
+      "publisher": "National Crime Records Bureau",
+      "url": "https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx",
+      "role": "official district table",
+      "status": "used"
+    },
+    {
+      "id": "delhi_crash_report_2024",
+      "publisher": "Delhi Traffic Police",
+      "url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+      "role": "district crash totals, named zones, citywide trend and victims",
+      "status": "used"
+    }
+  ],
+  "files": [
+    {
+      "path": "district_crime.json",
+      "datasetId": "delhi_district_crime_2024",
+      "mediaType": "application/json",
+      "sha256": "60a4df8ba37088c161710d4e21afdeacddf76b982c6b4cb2f651efcb9e74270b",
+      "bytes": 8934,
+      "derivedFrom": [
+        "data/dashboard_final.json"
+      ]
+    },
+    {
+      "path": "district_crime.csv",
+      "datasetId": "delhi_district_crime_2024",
+      "mediaType": "text/csv",
+      "sha256": "6f176b4850b4ebd160a58be5bdbf8a4f50b228fabc00e5fe2d54d38d72fded02",
+      "bytes": 1671,
+      "derivedFrom": [
+        "data/dashboard_final.json"
+      ]
+    },
+    {
+      "path": "district_road_safety.json",
+      "datasetId": "delhi_district_road_safety_2024",
+      "mediaType": "application/json",
+      "sha256": "d3f921e2bd343e2f8f04e6e8e5a46a8e97521921ab654e600e4509b237b3256e",
+      "bytes": 4012,
+      "derivedFrom": [
+        "data/dashboard_final.json"
+      ]
+    },
+    {
+      "path": "district_road_safety.csv",
+      "datasetId": "delhi_district_road_safety_2024",
+      "mediaType": "text/csv",
+      "sha256": "356def6ee09e166f712bd6193176d625e73481fcadf85a18a4abfa13689db8eb",
+      "bytes": 777,
+      "derivedFrom": [
+        "data/dashboard_final.json"
+      ]
+    },
+    {
+      "path": "citywide_road_safety.json",
+      "datasetId": "delhi_citywide_road_safety_2024",
+      "mediaType": "application/json",
+      "sha256": "6aded66e60c74729f87e0112d54ffd683a4461c7fe716e363c0f1bdcee7f748d",
+      "bytes": 594,
+      "derivedFrom": [
+        "data/road_safety_trends.json"
+      ]
+    },
+    {
+      "path": "citywide_road_safety.csv",
+      "datasetId": "delhi_citywide_road_safety_2024",
+      "mediaType": "text/csv",
+      "sha256": "0bae6e43dbfbddaa915414a5a25b04222350ad8955392e5563a7de1a347b09f5",
+      "bytes": 409,
+      "derivedFrom": [
+        "data/road_safety_trends.json"
+      ]
+    },
+    {
+      "path": "crash_prone_zones.json",
+      "datasetId": "delhi_crash_prone_zones_2024",
+      "mediaType": "application/json",
+      "sha256": "36e65d76e7eaad8389e2c32949d758bdd3838ee66ccab7c2c8c5db33121e2437",
+      "bytes": 143956,
+      "derivedFrom": [
+        "data/crash_zones_2024_geocoded.json"
+      ]
+    },
+    {
+      "path": "crash_prone_zones.csv",
+      "datasetId": "delhi_crash_prone_zones_2024",
+      "mediaType": "text/csv",
+      "sha256": "8410447f518f4065622253b351f9dbb740fa5aaf582ac819f29e6c3e230ee886",
+      "bytes": 22649,
+      "derivedFrom": [
+        "data/crash_zones_2024_geocoded.json"
+      ]
+    }
+  ],
+  "sharedData": {
+    "manifest": "../shared/manifest.json",
+    "warning": "Infrastructure layers are latest-available snapshots, not measurements for this crime year."
+  }
+}

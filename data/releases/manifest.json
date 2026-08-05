@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi Urban Safety Observatory yearly research releases",
+  "years": [
+    {
+      "year": 2016,
+      "path": "2016/manifest.json",
+      "files": 4,
+      "districtRows": 15
+    },
+    {
+      "year": 2017,
+      "path": "2017/manifest.json",
+      "files": 4,
+      "districtRows": 15
+    },
+    {
+      "year": 2018,
+      "path": "2018/manifest.json",
+      "files": 4,
+      "districtRows": 15
+    },
+    {
+      "year": 2019,
+      "path": "2019/manifest.json",
+      "files": 4,
+      "districtRows": 15
+    },
+    {
+      "year": 2020,
+      "path": "2020/manifest.json",
+      "files": 4,
+      "districtRows": 15
+    },
+    {
+      "year": 2021,
+      "path": "2021/manifest.json",
+      "files": 4,
+      "districtRows": 15
+    },
+    {
+      "year": 2022,
+      "path": "2022/manifest.json",
+      "files": 6,
+      "districtRows": 15
+    },
+    {
+      "year": 2023,
+      "path": "2023/manifest.json",
+      "files": 8,
+      "districtRows": 15
+    },
+    {
+      "year": 2024,
+      "path": "2024/manifest.json",
+      "files": 8,
+      "districtRows": 15
+    }
+  ],
+  "shared": "shared/manifest.json",
+  "staged2025": "2025/README.md",
+  "importGuidance": "Choose a year, read manifest.json, then import CSV or JSON. Do not join shared infrastructure as if it were measured in that year."
+}

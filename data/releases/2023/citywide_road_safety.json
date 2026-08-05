@@ -1,0 +1,26 @@
+[
+  {
+    "year": 2023,
+    "crashes": 5834,
+    "fatalities": 1457,
+    "fatalCrashes": 1432,
+    "pedestrianKilled": 622,
+    "pedestrianInjured": 1941,
+    "cyclistKilled": 30,
+    "cyclistInjured": 118,
+    "carKilled": 45,
+    "carInjured": 234,
+    "twoWheelerKilled": 549,
+    "twoWheelerInjured": 2356,
+    "busPassengerKilled": 0,
+    "busPassengerInjured": 18,
+    "slowMovingKilled": 24,
+    "slowMovingInjured": 203,
+    "animalDrivenKilled": 3,
+    "animalDrivenInjured": 7,
+    "otherKilled": 184,
+    "otherInjured": 593,
+    "totalKilled": 1457,
+    "totalInjured": 5470
+  }
+]

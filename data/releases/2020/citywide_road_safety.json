@@ -1,0 +1,26 @@
+[
+  {
+    "year": 2020,
+    "crashes": 4178,
+    "fatalities": 1196,
+    "fatalCrashes": 1163,
+    "pedestrianKilled": 505,
+    "pedestrianInjured": 1241,
+    "cyclistKilled": 48,
+    "cyclistInjured": 115,
+    "carKilled": 37,
+    "carInjured": 184,
+    "twoWheelerKilled": 441,
+    "twoWheelerInjured": 1613,
+    "busPassengerKilled": 5,
+    "busPassengerInjured": 18,
+    "slowMovingKilled": 21,
+    "slowMovingInjured": 110,
+    "animalDrivenKilled": 2,
+    "animalDrivenInjured": 9,
+    "otherKilled": 132,
+    "otherInjured": 372,
+    "totalKilled": 1196,
+    "totalInjured": 3662
+  }
+]

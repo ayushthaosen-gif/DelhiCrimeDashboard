@@ -1,0 +1,16 @@
+year,district,fatal_road_crashes,hit_and_run_crashes,coverage
+2022,Central,143,84,reported
+2022,Dwarka,132,75,reported
+2022,East,104,64,reported
+2022,New Delhi,187,104,reported
+2022,North,260,150,reported
+2022,North-East,53,34,reported
+2022,North-West,150,82,reported
+2022,Outer,,,not separately reported in 11-district source geography
+2022,Outer North,,,not separately reported in 11-district source geography
+2022,Rohini,,,not separately reported in 11-district source geography
+2022,Shahdara,92,63,reported
+2022,South,65,36,reported
+2022,South-East,150,96,reported
+2022,South-West,,,not separately reported in 11-district source geography
+2022,West,158,97,reported
