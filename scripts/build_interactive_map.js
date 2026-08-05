@@ -253,8 +253,8 @@ const METRICS = [
   { key: 'totalIPC', label: 'Total IPC', full: 'Total Cognizable IPC Crimes', prevKey: 'totalIPC2022', key2024: 'totalIPC2024', source: 'NCRB Crime in India District-Wise Reports' },
   { key: 'crimeAgainstWomen', label: 'Vs. Women', full: 'Total Crime Against Women', prevKey: 'crimeAgainstWomen2022', key2024: 'crimeAgainstWomen2024', source: 'NCRB Crime in India District-Wise Reports' },
   { key: 'totalSLL', label: 'SLL Crimes', full: 'Total Cognizable SLL Crimes', prevKey: 'totalSLL2022', key2024: 'totalSLL2024', source: 'NCRB Crime in India District-Wise Reports' },
-  { key: 'fatalRoadCrashes2022', label: 'Road Deaths (2022)', full: 'Fatal Road Crashes, 2022', fixedYear: '2022', source: 'Delhi Traffic Police 2022 Report' },
-  { key: 'hitAndRunCrashes2022', label: 'Hit & Run (2022)', full: 'Hit-and-Run Fatal Crashes, 2022', fixedYear: '2022', source: 'Delhi Traffic Police 2022 Report' },
+  { key: 'fatalRoadCrashes2022', label: 'Road Deaths (2022)', full: 'Fatal Road Crashes, 2022 — the source report changed format after 2022; for 2023/2024 use Persons Killed instead', fixedYear: '2022', source: 'Delhi Traffic Police 2022 Report' },
+  { key: 'hitAndRunCrashes2022', label: 'Hit & Run (2022)', full: 'Hit-and-Run Fatal Crashes, 2022 — not published in this district-level form after 2022', fixedYear: '2022', source: 'Delhi Traffic Police 2022 Report' },
   { key: 'crashProneZones2023', label: 'Crash Zones (2023)', full: 'Crash-Prone Zones, 2023', fixedYear: '2023', source: 'Delhi Road Crash Report 2023' },
   { key: 'fatalCrashes2023', label: 'Fatal Crashes (2023)', full: 'Fatal Crashes, 2023', fixedYear: '2023', source: 'Delhi Road Crash Report 2023' },
   { key: 'totalCrashes2023', label: 'Total Crashes (2023)', full: 'Total Road Crashes, 2023', fixedYear: '2023', source: 'Delhi Road Crash Report 2023' },
@@ -323,9 +323,9 @@ let unsafeMode = false; // declared here (not near its own module further below)
 let selectedDistrict = null;
 
 const metricSelect = document.getElementById('metricSelect');
-metricSelect.innerHTML = METRICS.map(m => '<option value="' + m.key + '">' + m.label + '</option>').join('');
+metricSelect.innerHTML = METRICS.map(m => '<option value="' + m.key + '" title="' + (m.full + ' — ' + m.source).replace(/"/g, '&quot;') + '">' + m.label + '</option>').join('');
 const bivInfraSelect = document.getElementById('bivInfraSelect');
-bivInfraSelect.innerHTML = INFRA.map(i => '<option value="' + i.key + '">' + i.label + '</option>').join('');
+bivInfraSelect.innerHTML = INFRA.map(i => '<option value="' + i.key + '" title="' + (i.label + ' — Source: ' + i.source).replace(/"/g, '&quot;') + '">' + i.label + '</option>').join('');
 bivInfraSelect.value = bivariateInfra;
 
 function fmtNum(n) { return n == null ? '—' : n.toLocaleString('en-IN'); }
@@ -777,6 +777,7 @@ function renderProportionalCircles(m, inf, feats) {
     const radius = Math.max(4, Math.sqrt(v / maxVal) * maxRadiusPx);
     const color = bivariateMode ? getBivariateColor(feats, d, m, inf) : rustScale(percentileScale(vals)(v));
     L.circleMarker(center, { radius, color: '#fff', weight: 1.5, fillColor: color, fillOpacity: 0.75 })
+      .bindTooltip(d.district + ': ' + fmtNum(v), { sticky: true })
       .bindPopup('<div class="popup-title">' + d.district + '</div><div>' + fmtNum(v) + ' ' + (rateMode==='perCapita'?'per 100k':'per km²') + '</div>')
       .addTo(circleLayer);
   });
@@ -968,7 +969,9 @@ function shapeIcon(color, shape, size) {
 function makeShapeLayer(points, color, shape, size) {
   const group = L.layerGroup();
   points.forEach(([lat, lng, name]) => {
-    L.marker([lat, lng], { icon: shapeIcon(color, shape, size) }).bindPopup(name + '<div class="popup-src">Source: see footer citation on the main dashboard</div>').addTo(group);
+    L.marker([lat, lng], { icon: shapeIcon(color, shape, size) })
+      .bindTooltip(name, { sticky: true })
+      .bindPopup(name + '<div class="popup-src">Source: see footer citation on the main dashboard</div>').addTo(group);
   });
   return group;
 }
@@ -977,7 +980,9 @@ function makeShapeLayer(points, color, shape, size) {
 function makeClusterLayer(points, color, popupLabel) {
   const cluster = L.markerClusterGroup({ maxClusterRadius: 50, spiderfyOnMaxZoom: true });
   points.forEach(([lat, lng, name]) => {
-    L.marker([lat, lng], { icon: shapeIcon(color, 'dot', 8) }).bindPopup((name || popupLabel) + '<div class="popup-src">Source: see footer citation on the main dashboard</div>').addTo(cluster);
+    L.marker([lat, lng], { icon: shapeIcon(color, 'dot', 8) })
+      .bindTooltip(name || popupLabel, { sticky: true })
+      .bindPopup((name || popupLabel) + '<div class="popup-src">Source: see footer citation on the main dashboard</div>').addTo(cluster);
   });
   return cluster;
 }
@@ -989,7 +994,7 @@ const atmLayer = makeClusterLayer(POI.atms, '#d4af37', 'ATM');
 const alcoholLayer = makeShapeLayer(POI.alcoholShops, '#8b2f5e', 'diamond', 12);
 const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11);
 const overpassLayer = L.markerClusterGroup({ maxClusterRadius: 42, spiderfyOnMaxZoom: true });
-PEDESTRIAN_OVERPASSES.features.forEach(f => { const p=f.properties, c=f.geometry.coordinates; L.marker([c[1],c[0]], {icon:shapeIcon('#e3a13b','square',10)}).bindPopup('<div class="popup-title">'+p.name+'</div><div>'+p.district+' District</div><div>'+(p.crossesMajorRoad ? '<b>Crosses a major road</b> (motorway/trunk/primary/secondary) — a foot-over-bridge in the sense PWD Delhi and press coverage use the term.' : 'Does not cross a major road in this check — likely a footbridge over a drain, canal, or park path rather than live traffic.')+'</div><div class="popup-src">Mapped pedestrian bridge/overpass &middot; OSM snapshot '+p.sourceSnapshot+' &middot; <a href="'+p.osmUrl+'" target="_blank" rel="noopener">OpenStreetMap object</a><br>'+p.coverageNote+'</div>').addTo(overpassLayer); });
+PEDESTRIAN_OVERPASSES.features.forEach(f => { const p=f.properties, c=f.geometry.coordinates; L.marker([c[1],c[0]], {icon:shapeIcon('#e3a13b','square',10)}).bindTooltip(p.name, { sticky: true }).bindPopup('<div class="popup-title">'+p.name+'</div><div>'+p.district+' District</div><div>'+(p.crossesMajorRoad ? '<b>Crosses a major road</b> (motorway/trunk/primary/secondary) — a foot-over-bridge in the sense PWD Delhi and press coverage use the term.' : 'Does not cross a major road in this check — likely a footbridge over a drain, canal, or park path rather than live traffic.')+'</div><div class="popup-src">Mapped pedestrian bridge/overpass &middot; OSM snapshot '+p.sourceSnapshot+' &middot; <a href="'+p.osmUrl+'" target="_blank" rel="noopener">OpenStreetMap object</a><br>'+p.coverageNote+'</div>').addTo(overpassLayer); });
 
 // ── Official liquor vends (approximate coordinates) — independent point layer, not the OSM-
 // derived "Liquor Shops" layer above. Faded/hollow diamond styling signals "approximate, not a
@@ -1002,6 +1007,7 @@ LIQUOR_VENDS_APPROX.features.forEach(f => {
   const [lng, lat] = f.geometry.coordinates;
   const isOfficial = p.record_source !== 'OpenStreetMap';
   L.marker([lat, lng], { icon: shapeIcon(isOfficial ? '#8b2f5e' : '#b98cae', 'diamond', 11) })
+    .bindTooltip(p.name + (isOfficial ? ' (official)' : ' (OSM-only)'), { sticky: true })
     .bindPopup('<div class="popup-title">' + p.name + '</div>' +
       '<div class="popup-rank">' + (isOfficial ? 'Official liquor vend' : 'OSM-only record') + (p.vend_category ? ' — ' + p.vend_category : '') + '</div>' +
       '<div style="font-style:italic;">Approximate coordinate (' + (p.coordinate_confidence || 'unknown') + ' confidence, ±' + fmtNum(p.estimated_accuracy_m) + 'm) — ' + (p.coordinate_warning || 'not a verified vend entrance') + '</div>' +
@@ -1021,6 +1027,7 @@ CRASH_ZONES_2024_APPROX.features.forEach(f => {
   const fatal = p.all_fatal_crashes, total = p.all_total_crashes;
   const t = fatal != null ? Math.max(0, Math.min(1, (fatal - 1) / 6)) : 0.3;
   L.circleMarker([lat, lng], { radius: 4 + t * 4, color: '#e3a13b', weight: 1.5, dashArray: '3 2', fillColor: '#b14a34', fillOpacity: 0.5 + t * 0.35 })
+    .bindTooltip(p.location_name + (fatal != null ? ' — ' + fatal + ' fatal, ' + total + ' total (2024)' : ' — not tabulated'), { sticky: true })
     .bindPopup('<div class="popup-title">' + p.location_name + '</div>' +
       '<div class="popup-rank">' + (p.road_name || '') + '</div>' +
       '<div>' + (fatal != null ? fatal + ' fatal, ' + total + ' total crashes, 2024' : 'Not individually tabulated in Table 6.29 — no crash counts available') + '</div>' +
@@ -1052,6 +1059,7 @@ function rebuildZonesLayer() {
     const t = Math.max(0, Math.min(1, (z.fatal - 1) / 6));
     const baseStyle = { radius: 4 + t * 4, color: '#fff', weight: 1, fillColor: '#b14a34', fillOpacity: 0.55 + t * 0.4 };
     const marker = L.circleMarker([z.lat, z.lng], baseStyle)
+      .bindTooltip(z.name + ' — ' + z.fatal + ' fatal, ' + z.total + ' total (' + zoneYear + ')', { sticky: true })
       .bindPopup('<b>' + z.name + '</b> (' + z.road + ')<br>' + z.fatal + ' fatal, ' + z.total + ' total crashes, ' + zoneYear +
         richBreakdownLine(z) +
         '<div class="popup-src">Source: Delhi Road Crash Report ' + zoneYear + '</div>')
@@ -1080,6 +1088,7 @@ const cctvByName = new Map();
 cctvByName.forEach(site => {
   const yearsLine = site.years.map(y => y.year + ' (' + y.fatal + ' fatal / ' + y.total + ' total)').join(', ');
   L.marker([site.lat, site.lng], { icon: shapeIcon('#0891b2', 'ring', 13) })
+    .bindTooltip(site.name + ' — recommended CCTV site', { sticky: true })
     .bindPopup('<div class="popup-title">' + site.name + '</div>' +
       '<div class="popup-rank">Recommended CCTV site — ' + site.years.length + ' report year' + (site.years.length > 1 ? 's' : '') + '</div>' +
       '<div>Recommended in: <b>' + yearsLine + '</b></div>' +
@@ -1175,6 +1184,7 @@ const weakCoverageLayer = L.layerGroup();
 function clearAnalysisHighlight() {
   zoneMarkers.forEach(({ marker, baseStyle }) => marker.setStyle(Object.assign({}, baseStyle, { className: '' })));
   map.removeLayer(weakCoverageLayer);
+  weakCoverageLayer.clearLayers();
   document.getElementById('analysisSummary').textContent = '';
 }
 
