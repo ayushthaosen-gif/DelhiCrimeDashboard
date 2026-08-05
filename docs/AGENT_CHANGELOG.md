@@ -1,5 +1,20 @@
 # AI Collaboration Log & Changelog
 
+## [2026-08-05] - Claude (Anthropic) - Named the Pedestrian Overbridges
+
+### 🏷️ 221 of 242 bridges shared the literal string "Unnamed mapped pedestrian bridge" — gave every one a real, distinguishing name
+
+91% of the 242 mapped bridges had no OSM name tag at all, and most of the small remainder carried a generic placeholder a mapper typed once ("Foot Over Bridge 1", "FOB 2", "Footover Bridge") that doesn't distinguish one bridge from another anywhere in the dataset. Only 8 features had genuinely specific real names ("Barapullah Bridge", "ITO Skywalk," etc.).
+
+1. **Generate a name only where the existing one is generic** — a real, specific OSM name is always kept untouched. Detection: exact match on the code's own "Unnamed mapped pedestrian bridge" fallback, or a regex for the "Foot Over Bridge N" / "FOB N" placeholder family (case- and spacing-insensitive).
+2. **Naming scheme reuses the `crossesMajorRoad` distinction added in the previous entry**: a bridge that crosses a major road becomes "`<road it crosses>` FOB" (e.g. "Rohtak Road FOB", "Mahatma Gandhi Marg FOB 11" when a road has several); one that doesn't becomes "`<district>` Footbridge" — deliberately *not* called a FOB in that case, since the road-crossing check itself says it isn't one. Numbered per key only when more than one bridge would otherwise share the generated name.
+3. **Result: 241 of 242 features now have a distinct name** (up from 15 distinct names across all 242 before). The one remaining duplicate is a real OSM name — two physically separate structures both mapped as "Path around Hauz Khas Tank" — correctly left alone rather than force-disambiguated.
+4. Added a test asserting no feature is left with a generic/bare-placeholder name, and that every generated name's suffix ("FOB" vs "Footbridge") agrees with that same feature's own `crossesMajorRoad` value — catching a bug class where the two computations could silently drift apart.
+
+Verified: reran the pipeline — 233 of 242 names were regenerated, 241 distinct overall; `node --check` passed on the script and on both correctly-extracted embedded HTML scripts; `npm run build:interactive-map` and `npm run build` both completed; served locally, confirmed via `javascript_tool` a live popup renders a real name ("Rohtak Road FOB 2") with the road-crossing sentence, zero console errors; `npm test` — 25/25 pass (1 new).
+
+---
+
 ## [2026-08-05] - Claude (Anthropic) - Reconciled a Parallel Foot-Over-Bridge Effort, Added a Road-Crossing Distinction
 
 ### 🌉 Two independent AI sessions built near-duplicate FOB pipelines at the same time — kept the better-engineered one, ported the one real improvement over

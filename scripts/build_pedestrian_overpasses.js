@@ -40,22 +40,47 @@ function crossesMajorRoad(componentWays){
   // meaningless "segments" between unrelated points.
   const segments=[];
   componentWays.forEach(w => { for (let i=1;i<w.nodes.length;i++){ const a=nodeById.get(w.nodes[i-1]), b=nodeById.get(w.nodes[i]); if (a&&b) segments.push([[a.lon,a.lat],[b.lon,b.lat]]); } });
-  if (!segments.length) return false;
+  if (!segments.length) return {crosses:false,roadName:null};
   const lons=segments.flat().map(p=>p[0]), lats=segments.flat().map(p=>p[1]);
   const compBbox=[Math.min(...lons),Math.min(...lats),Math.max(...lons),Math.max(...lats)];
   for (const road of roadWays) {
     if (!bboxOverlap(compBbox, road._bbox)) continue;
     for (const [p1,p2] of segments) for (let j=1;j<road.geometry.length;j++) {
-      if (segmentsIntersect(p1, p2, [road.geometry[j-1].lon,road.geometry[j-1].lat], [road.geometry[j].lon,road.geometry[j].lat])) return true;
+      if (segmentsIntersect(p1, p2, [road.geometry[j-1].lon,road.geometry[j-1].lat], [road.geometry[j].lon,road.geometry[j].lat])) return {crosses:true,roadName:(road.tags&&road.tags.name)||null};
     }
   }
-  return false;
+  return {crosses:false,roadName:null};
 }
 
-const features=[];
-for(const c of components){const boundary=boundaries.features.find(f=>pointInGeometry(c.lon,c.lat,f.geometry)); if(!boundary) continue; const ids=c.ways.map(w=>w.id).sort((a,b)=>a-b); const tags=Object.assign({},...c.ways.map(w=>w.tags||{})); features.push({type:'Feature',properties:{name:c.name||'Unnamed mapped pedestrian bridge',district:boundary.properties.district,osmWayIds:ids,osmUrl:'https://www.openstreetmap.org/way/'+ids[0],highway:tags.highway||null,bridge:tags.bridge||'yes',wheelchair:tags.wheelchair||null,lit:tags.lit||null,crossesMajorRoad:crossesMajorRoad(c.ways),source:'OpenStreetMap contributors',sourceSnapshot:'2026-08-04',coverageNote:'Mapped OSM features only; absence does not prove no bridge exists.'},geometry:{type:'Point',coordinates:[+c.lon.toFixed(7),+c.lat.toFixed(7)]}});}
+// Real, specific OSM names ("Barapullah Bridge", "ITO Skywalk") are always kept. But 91% of
+// these 242 features carry no name tag at all, and most of the rest carry a generic placeholder
+// a mapper typed once ("Foot Over Bridge 1", "FOB 2", "Footover Bridge") that doesn't actually
+// distinguish one bridge from another anywhere in the dataset -- 221 features would otherwise
+// all share the literal string "Unnamed mapped pedestrian bridge". Generate a real name for
+// exactly those: "<road it crosses> FOB" (numbered for repeats) when it crosses a major road,
+// or "<district> footbridge" (numbered) when it doesn't -- deliberately not calling the latter
+// group "FOB" since this script's own crossesMajorRoad check says it isn't one in that sense.
+const GENERIC_NAME = /^(foot\s*over\s*bridge|fob)\s*\d*$/i;
+function isGenericName(name){ return !name || name === 'Unnamed mapped pedestrian bridge' || GENERIC_NAME.test(name.trim()); }
+
+const kept=[];
+for(const c of components){const boundary=boundaries.features.find(f=>pointInGeometry(c.lon,c.lat,f.geometry)); if(!boundary) continue; const ids=c.ways.map(w=>w.id).sort((a,b)=>a-b); const tags=Object.assign({},...c.ways.map(w=>w.tags||{})); const crossing=crossesMajorRoad(c.ways); kept.push({c,boundary,ids,tags,crossing});}
+
+// Two passes: first count how many generic-name bridges will share each generated-name key
+// (road name, or district for non-road-crossing ones) so repeats get numbered "FOB 1"/"FOB 2"
+// instead of every one silently being "FOB" with no way to tell them apart on the map.
+const nameKeyCounts={};
+kept.forEach(k => { if(!isGenericName(k.c.name)) return; const key=k.crossing.crosses ? (k.crossing.roadName||'Unnamed major road') : k.boundary.properties.district; nameKeyCounts[key]=(nameKeyCounts[key]||0)+1; });
+const nameKeySeen={};
+function generatedName(k){
+  if(!isGenericName(k.c.name)) return k.c.name;
+  if(k.crossing.crosses){ const road=k.crossing.roadName||'Unnamed major road'; nameKeySeen[road]=(nameKeySeen[road]||0)+1; const suffix=nameKeyCounts[road]>1?' FOB '+nameKeySeen[road]:' FOB'; return road+suffix; }
+  const district=k.boundary.properties.district; nameKeySeen[district]=(nameKeySeen[district]||0)+1; const suffix=nameKeyCounts[district]>1?' Footbridge '+nameKeySeen[district]:' Footbridge'; return district+suffix;
+}
+
+const features=kept.map(k => ({type:'Feature',properties:{name:generatedName(k),district:k.boundary.properties.district,osmWayIds:k.ids,osmUrl:'https://www.openstreetmap.org/way/'+k.ids[0],highway:k.tags.highway||null,bridge:k.tags.bridge||'yes',wheelchair:k.tags.wheelchair||null,lit:k.tags.lit||null,crossesMajorRoad:k.crossing.crosses,source:'OpenStreetMap contributors',sourceSnapshot:'2026-08-04',coverageNote:'Mapped OSM features only; absence does not prove no bridge exists.'},geometry:{type:'Point',coordinates:[+k.c.lon.toFixed(7),+k.c.lat.toFixed(7)]}}));
 features.sort((a,b)=>a.properties.district.localeCompare(b.properties.district)||a.properties.name.localeCompare(b.properties.name));
-const out={type:'FeatureCollection',metadata:{title:'Delhi mapped pedestrian bridges and overpasses',source:'OpenStreetMap contributors',sourceUrl:'https://www.openstreetmap.org/copyright',query:'highway=footway|path|steps + bridge=yes|footbridge; connected segments merged; centroids filtered to dashboard district polygons',snapshotDate:'2026-08-04',coverageCaveat:'This is a mapped-feature inventory, not an official completeness register. Unmapped structures are absent.',crossesMajorRoadNote:'crossesMajorRoad (bool) distinguishes this script\'s broader scope (any mapped pedestrian bridge, including footbridges over drains/canals/park paths) from a foot-over-bridge in the PWD Delhi / press sense (one that crosses a motorway/trunk/primary/secondary road). Computed against a separate committed snapshot, data/source/osm_major_roads_delhi_raw.json.'},features};
+const out={type:'FeatureCollection',metadata:{title:'Delhi mapped pedestrian bridges and overpasses',source:'OpenStreetMap contributors',sourceUrl:'https://www.openstreetmap.org/copyright',query:'highway=footway|path|steps + bridge=yes|footbridge; connected segments merged; centroids filtered to dashboard district polygons',snapshotDate:'2026-08-04',coverageCaveat:'This is a mapped-feature inventory, not an official completeness register. Unmapped structures are absent.',crossesMajorRoadNote:'crossesMajorRoad (bool) distinguishes this script\'s broader scope (any mapped pedestrian bridge, including footbridges over drains/canals/park paths) from a foot-over-bridge in the PWD Delhi / press sense (one that crosses a motorway/trunk/primary/secondary road). Computed against a separate committed snapshot, data/source/osm_major_roads_delhi_raw.json.',namingNote:'A real, specific OSM name tag is always kept. Where the source has no name, or only a generic placeholder ("Foot Over Bridge 1", "FOB 2", "Unnamed mapped pedestrian bridge" -- 233 of 242 features, none of which uniquely identify a bridge), a name is generated instead: "<road crossed> FOB" (numbered for repeats) if crossesMajorRoad is true, else "<district> Footbridge" (numbered) -- deliberately not called a FOB in that case, matching what the crossesMajorRoad check itself found.'},features};
 fs.writeFileSync(outputPath,JSON.stringify(out,null,2)+'\n');
 const dashboard=JSON.parse(fs.readFileSync(dashboardPath,'utf8')); const counts={}; features.forEach(f=>counts[f.properties.district]=(counts[f.properties.district]||0)+1); dashboard.districts.forEach(d=>{d.pedestrianOverpasses=counts[d.district]||0; d.pedestrianOverpassDensity=Math.round((d.pedestrianOverpasses/d.areaSqKm)*100)/100;}); fs.writeFileSync(dashboardPath,JSON.stringify(dashboard,null,1)+'\n');
 console.log('Mapped pedestrian bridge groups:',features.length); console.log(counts);
