@@ -561,7 +561,19 @@ footer a { color: inherit; }
 
     <div class="dl-static">
       <div class="dl-static-label"><b>Prefer pre-published files instead of generating one here?</b>Two sets are on GitHub, built by this repo's own scripts — not the buttons below.</div>
-      <a class="dl-link-btn primary" href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/tree/main/data/releases/2024" target="_blank" rel="noopener">Manifest release (recommended)</a>
+      <select id="dlReleaseYear" class="dl-mini-btn" style="font-size:12.5px; padding:9px 10px; border-radius:7px; cursor:pointer;">
+        <option value="">All years (2016-2024)</option>
+        <option value="2024">2024 only</option>
+        <option value="2023">2023 only</option>
+        <option value="2022">2022 only</option>
+        <option value="2021">2021 only</option>
+        <option value="2020">2020 only</option>
+        <option value="2019">2019 only</option>
+        <option value="2018">2018 only</option>
+        <option value="2017">2017 only</option>
+        <option value="2016">2016 only</option>
+      </select>
+      <a class="dl-link-btn primary" id="dlManifestLink" href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/tree/main/data/releases" target="_blank" rel="noopener">Open manifest release</a>
       <a class="dl-link-btn secondary" href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/tree/main/exports" target="_blank" rel="noopener">Legacy export (deprecated)</a>
     </div>
 
@@ -2354,6 +2366,19 @@ setupSearch();
 setupCompareMode();
 
 // ── DOWNLOAD DATA ──
+(function () {
+  const releaseSelect = document.getElementById('dlReleaseYear');
+  const releaseLink = document.getElementById('dlManifestLink');
+  const baseUrl = 'https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/tree/main/data/releases';
+  function updateReleaseLink() {
+    const year = releaseSelect.value;
+    releaseLink.href = year ? baseUrl + '/' + year : baseUrl;
+    releaseLink.textContent = year ? 'Open ' + year + ' manifest release' : 'Open all manifest releases (2016-2024)';
+  }
+  releaseSelect.addEventListener('change', updateReleaseLink);
+  updateReleaseLink();
+})();
+
 // derive fields are computed (not a raw DATA property) — mainly the coverage-flag columns,
 // so the exported data is self-documenting about what's real vs. a survey/reporting gap even
 // when opened outside this dashboard, with no dots or hatching to explain it.
