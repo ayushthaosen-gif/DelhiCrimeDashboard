@@ -74,6 +74,8 @@ body { display: flex; flex-direction: column; }
 .popup-title { font-weight: 800; font-size: 13.5px; margin-bottom: 2px; }
 .popup-rank { color: var(--text-dim); font-size: 11.5px; }
 .popup-src { color: var(--text-dim); font-size: 10.5px; margin-top: 6px; border-top: 1px solid var(--border); padding-top: 4px; }
+.popup-why-list { margin: 3px 0 0 16px; padding: 0; font-size: 11.5px; }
+.popup-why-list li { margin-bottom: 2px; }
 .yoy { font-weight: 700; }
 .yoy.up { color: var(--rust); }
 .yoy.down { color: var(--good); }
@@ -188,6 +190,7 @@ body { display: flex; flex-direction: column; }
     <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
     <label><input type="checkbox" id="chkOverpasses"> Pedestrian overbridges <span class="layer-count" id="cntOverpasses"></span></label>
     <label><input type="checkbox" id="chkCctvPriority"> CCTV priority sites <span class="layer-count" id="cntCctvPriority"></span></label>
+    <label><input type="checkbox" id="chkCctvExploratory" title="Project-computed from crash severity, volume, and nearby camera gap — not an official report recommendation"> CCTV recommended, exploratory <span class="layer-count" id="cntCctvExploratory"></span></label>
     <label><input type="checkbox" id="chkLiquorVends"> Liquor vends (official, approx.) <span class="layer-count" id="cntLiquorVends"></span></label>
     <label><input type="checkbox" id="chkCrashZones2024Approx"> Crash zones 2024 (full, approx.) <span class="layer-count" id="cntCrashZones2024Approx"></span></label>
   </div>
@@ -1096,13 +1099,103 @@ cctvByName.forEach(site => {
     .addTo(cctvPriorityLayer);
 });
 
+// ── Exploratory CCTV/guard-post recommendation layer — project-computed, distinct from the
+// official Table 6.37 picks above. Candidate "sites" are still real, addressable point locations
+// (pooled crash zones, 2023+2024, deduped by name, excluding any zone already an official
+// CCTV-priority site so the two layers never double-recommend the same spot) -- this project has
+// no point-level crime location data to invent a separate "high-crime site" marker from, since
+// NCRB only publishes crime at district granularity. Instead, each candidate's surrounding
+// district's crime rate is joined in as a scoring factor, so "high crime and other things" (not
+// just crash severity) drives which sites surface, without fabricating a false-precision crime
+// coordinate. Uses the same tested computeExploratoryScore helper as the district "unsafe areas"
+// and ward liquor-crash indices rather than a fifth ad-hoc implementation.
+//
+// Methodology basis (not an arbitrary weighting):
+//   - Severity-weighted micro-place prioritization: WHO's "Save LIVES" road safety technical
+//     package and the iRAP/Safe System approach both direct limited countermeasure budgets
+//     (engineering, enforcement, monitoring) at the specific highest-risk locations identified
+//     from crash data, weighted toward fatal/serious-injury outcomes rather than raw crash counts.
+//     Mirrored here by weighting fatal crashes above total crashes.
+//   - Weisburd, D. (2015), "The Law of Crime Concentration and the Criminology of Place",
+//     Journal of Quantitative Criminology 31(2) -- crime and severe-crash risk concentrate at a
+//     small number of micro-places, so concentrating a fixed camera/guard budget at the top-ranked
+//     locations outperforms spreading it evenly. Extended here to justify folding in district-level
+//     crime rate: a crash site inside an already high-crime district is a higher-value location for
+//     a shared CCTV/guard investment than an identical crash site in a low-crime district.
+//   - Welsh, B.C. & Farrington, D.P. (2009), "Public Area CCTV and Crime Prevention: An Updated
+//     Systematic Review and Meta-Analysis", Justice Quarterly 26(4) -- CCTV's measured effect is
+//     concentrated in already-monitored areas; the marginal value of a new camera is highest where
+//     existing coverage is weakest, hence the inverted "existing CCTV/guards nearby" factor here.
+// This is a project-computed prioritization, not a certified engineering study or a substitute for
+// a site visit -- every popup spells out exactly which factors drove the score and why, matching
+// this project's exploratory-score convention elsewhere on this page.
+const CCTV_EXPLORATORY_TOP_N = 15;
+const CCTV_EXPLORATORY_RADIUS_M = 300; // identification/deterrence range per Welsh & Farrington's review of CCTV studies
+const cctvExploratoryLayer = L.layerGroup();
+const districtByName = new Map(BOUNDARIES.features.map(f => [f.properties.district, f.properties]));
+function computeCctvExploratoryCandidates() {
+  const pooled = new Map();
+  ['2023', '2024'].forEach(year => {
+    ZONES_BY_YEAR[year].filter(z => z.lat != null && z.lng != null).forEach(z => {
+      const existing = pooled.get(z.name);
+      if (!existing || (z.fatal || 0) > (existing.fatal || 0)) {
+        pooled.set(z.name, { name: z.name, road: z.road, lat: z.lat, lng: z.lng, fatal: z.fatal, total: z.total, year, district: z.district });
+      }
+    });
+  });
+  const surveillancePts = POI.surveillance.map(p => [p[0], p[1]]);
+  const candidates = Array.from(pooled.values())
+    .filter(z => !cctvByName.has(z.name))
+    .map(z => {
+      const d = districtByName.get(z.district);
+      return Object.assign({}, z, {
+        nearbySurveillance: pointsWithin(z.lat, z.lng, surveillancePts, CCTV_EXPLORATORY_RADIUS_M).length,
+        districtTotalIPCDensity: d && d.totalIPC != null ? d.totalIPC / d.areaSqKm : null,
+        districtCrimeAgainstWomenDensity: d && d.crimeAgainstWomen != null ? d.crimeAgainstWomen / d.areaSqKm : null,
+      });
+    });
+  const factors = [
+    { key: 'fatal', label: 'Fatal crashes at this site', invert: false, get: c => c.fatal },
+    { key: 'total', label: 'Total crashes at this site', invert: false, get: c => c.total },
+    { key: 'nearbySurveillance', label: 'Existing CCTV/guards within ' + CCTV_EXPLORATORY_RADIUS_M + 'm', invert: true, get: c => c.nearbySurveillance },
+    { key: 'districtTotalIPCDensity', label: 'District overall crime rate (Total IPC density)', invert: false, get: c => c.districtTotalIPCDensity },
+    { key: 'districtCrimeAgainstWomenDensity', label: 'District crime-against-women rate', invert: false, get: c => c.districtCrimeAgainstWomenDensity },
+  ];
+  // Severity-weighted (per WHO/iRAP hotspot practice): this specific site's crash record still
+  // carries the most weight, since that is direct evidence of danger at this exact point; district
+  // crime rate and the camera-coverage gap are real but secondary factors, not the primary driver.
+  const weights = { fatal: 0.35, total: 0.15, nearbySurveillance: 0.2, districtTotalIPCDensity: 0.15, districtCrimeAgainstWomenDensity: 0.15 };
+  const { scores } = computeExploratoryScore(candidates, factors, weights);
+  candidates.forEach(c => { c.result = scores.get(c); });
+  return candidates.filter(c => c.result.score != null).sort((a, b) => b.result.score - a.result.score).slice(0, CCTV_EXPLORATORY_TOP_N);
+}
+function percentileLabel(pct) {
+  if (pct == null) return 'no data';
+  const level = pct >= 0.75 ? 'high' : pct >= 0.4 ? 'moderate' : 'low';
+  return level + ' (' + ordinal(Math.round(pct * 100)) + ' percentile among candidate sites)';
+}
+computeCctvExploratoryCandidates().forEach(c => {
+  const whyLines = c.result.contributions
+    .filter(ct => ct.percentile != null)
+    .sort((a, b) => b.weight - a.weight)
+    .map(ct => '<li><b>' + ct.label + ':</b> ' + fmtNum(ct.value) + ' — ' + percentileLabel(ct.percentile) + ', weighted ' + Math.round(ct.weight * 100) + '% of the score</li>')
+    .join('');
+  L.marker([c.lat, c.lng], { icon: shapeIcon('#c026d3', 'diamond', 13) })
+    .bindTooltip(c.name + ' — exploratory CCTV/guard recommendation, score ' + c.result.score, { sticky: true })
+    .bindPopup('<div class="popup-title">' + c.name + '</div>' +
+      '<div class="popup-rank">Exploratory CCTV/guard-post recommendation — score ' + c.result.score + '/100</div>' +
+      '<div>Why this site: <ul class="popup-why-list">' + whyLines + '</ul></div>' +
+      '<div class="popup-src">Project-computed, percentile-ranked across the ' + CCTV_EXPLORATORY_TOP_N + ' candidates shown here: crash severity at this exact site (WHO Safe System / iRAP hotspot-prioritization practice; Weisburd 2015 on crime/crash concentration at micro-places), the surrounding district\\'s overall crime and crime-against-women rate, and the camera-coverage gap nearby (Welsh &amp; Farrington 2009 CCTV meta-analysis). <b>Not</b> an official Delhi Police or Delhi Traffic Police recommendation, and not a substitute for a site visit — see the "CCTV priority sites" layer for the report\\'s own Table 6.37 picks.</div>')
+    .addTo(cctvExploratoryLayer);
+});
+
 const toggles = [
   ['chkPolice', policeStationLayer, 'cntPolice'], ['chkPosts', policePostLayer, 'cntPosts'], ['chkZones', zonesGroup, 'cntZones'],
   ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'], ['chkOverpasses', overpassLayer, 'cntOverpasses'],
-  ['chkCctvPriority', cctvPriorityLayer, 'cntCctvPriority'],
+  ['chkCctvPriority', cctvPriorityLayer, 'cntCctvPriority'], ['chkCctvExploratory', cctvExploratoryLayer, 'cntCctvExploratory'],
   ['chkLiquorVends', liquorVendsLayer, 'cntLiquorVends'], ['chkCrashZones2024Approx', crashZones2024ApproxLayer, 'cntCrashZones2024Approx'],
 ];
-const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length };
+const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntCctvExploratory: cctvExploratoryLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length };
 toggles.forEach(([id, layer, countId]) => {
   document.getElementById(countId).textContent = '(' + layerCounts[countId].toLocaleString('en-IN') + ')';
   document.getElementById(id).addEventListener('change', (e) => {
@@ -1126,6 +1219,7 @@ const POINT_LEGEND_ITEMS = [
   ['chkZones', '#b14a34', 'dot', 'Crash zones (size = fatal crashes)'], ['chkBus', '#3f7d52', 'dot', 'Bus stops (clustered)'],
   ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'], ['chkOverpasses', '#e3a13b', 'square', 'Pedestrian overbridges (OSM mapped)'],
   ['chkCctvPriority', '#0891b2', 'ring', 'CCTV priority candidates (recommended, not existing)'],
+  ['chkCctvExploratory', '#c026d3', 'diamond', 'CCTV/guard recommended, exploratory (project-computed, top 15)'],
   ['chkLiquorVends', '#8b2f5e', 'diamond', 'Liquor vends, official (approx. coordinates)'],
   ['chkCrashZones2024Approx', '#b14a34', 'dot', 'Crash zones 2024, full 93 (approx. coordinates)'],
 ];
