@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-08-06T07:34:02.766Z",
+  "generatedAt": "2026-08-06T09:39:26.671Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -237,6 +237,14 @@
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
       "sha256": "5d923827984546b561953dca1d449133af2dc3a70e9cbd780c0722ae62a860fe",
       "bytes": 379922
+    },
+    {
+      "file": "data/landuse_by_ward.csv",
+      "datasetId": "landuse_by_ward",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "5d9f2656b942e5263f48cb5eaa54a8fd3c3c95ff08c42349a9d23f928ef9d64c",
+      "bytes": 19830
     },
     {
       "file": "data/liquor_crash_proximity_summary_2024.json",

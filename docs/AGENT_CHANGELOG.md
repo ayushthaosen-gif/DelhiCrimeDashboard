@@ -8,6 +8,22 @@
 > the repo; that one is only for numbers a researcher may have already
 > cited.
 
+## [2026-08-06] - Claude (Anthropic) - Ward-Wise Land Use CSV — Checked and Rejected a License-Ambiguous Draft-Plan Source First
+
+### 🗺️ `data/landuse_by_ward.csv` — real polygon-overlap area by category per ward, from OSM, after a genuine source tradeoff surfaced to the user before building anything
+
+User asked for ward-wise land use. Found DDA's only vectorized land-use layer: a community GitHub extraction of the PDF map of the **draft** (not adopted) Master Plan 2041, with `license: null` on the repo and the extracting author's own disclosure of attribute-data loss (sub-categories collapsed to one blob per layer) and geometric distortion in several layers from the PDF's shading style. Rather than silently pick one source or the other, surfaced the tradeoff (draft-not-current, no license, known data loss vs. OSM's sparser-but-current-and-ODbL-licensed `landuse=*` tagging) to the user via `AskUserQuestion` before writing any code. User chose OSM.
+
+1. Checked real tag coverage first (`out count` via Overpass): 11,366 landuse features (9,908 ways, 1,458 relations) in the fetch bbox.
+2. **`scripts/build_landuse_wards_csv.js`** (new): processes the way-tagged subset only (relations need outer/inner ring assembly this script doesn't attempt — excluded rather than approximated with a rough centroid, which would silently bias area sums; this is a stated, visible gap, not a hidden one) into real polygon-overlap area per ward using `@turf/turf` (`turf.intersect` + `turf.area`, bbox-prefiltered for performance — 290 wards × ~9,900 polygons unfiltered would be too slow) — a first real use of the `@turf/turf` dependency in this repo, which until now was declared but unused (every other spatial join here is hand-rolled point-in-polygon).
+3. Grouped OSM's ~70 distinct raw `landuse=*` values (including several individual mappers' free-text errors, e.g. a hotel name typed into the tag) into six readable categories (residential, commercial, industrial, institutional, green_open, other) via an explicit mapping table — anything unrecognized falls into `other` rather than being guessed at.
+4. **Real, load-bearing finding, not hidden**: OSM landuse tagging covers only ~23.4% of ward area on average — most land in Delhi is simply untagged in OSM, not undeveloped. Every row's `mapped_pct` column makes this visible per-ward; documented explicitly in `data/source/README.md` so `100% - mapped_pct` is never misread as "vacant land."
+5. Sanity-checked output against a known real-world fact rather than just eyeballing numbers: Delhi Cantonment (a military zone) correctly shows ~76% of its area landuse-tagged, entirely under `military` → the `other` category, not spuriously spread across residential/commercial/etc.
+
+No map/dashboard code touched, matching the standing "keep this as data" instruction from the road/footway sizes work earlier this session. Wired into `package.json` (`build:landuse-wards`).
+
+Verified: `node --check`; ran the script (290/290 wards processed without a topology-error crash, `turf.intersect` failures on individual degenerate pairs caught and skipped rather than aborting the whole build); spot-checked the Delhi Cantonment row against the known military-zone fact.
+
 ## [2026-08-06] - Claude (Anthropic) - Road and Footway Size CSVs — Real OSM Tags Only, No Official Delhi Width Dataset Found
 
 ### 📏 `data/road_sizes.csv` / `data/footway_sizes.csv` report classification, lane count, and explicit width per segment — not shipped to the map, per user request to keep this as data, not a UI layer
