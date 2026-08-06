@@ -102,13 +102,18 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 .tt-row b { color: var(--text); font-weight: 700; }
 
 .datanote {
-  display: flex; gap: 10px; align-items: flex-start;
   background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--amber);
-  border-radius: 4px; padding: 11px 14px; font-size: 12.5px; color: var(--text-dim); margin-bottom: 22px;
+  border-radius: 6px; font-size: 12.5px; color: var(--text-dim); margin-bottom: 16px;
 }
+.datanote summary { cursor: pointer; list-style: none; padding: 10px 14px; color: var(--text); font-weight: 750; display: flex; align-items: center; gap: 8px; }
+.datanote summary::-webkit-details-marker { display: none; }
+.datanote summary::before { content: '▸'; color: var(--amber); }
+.datanote[open] summary::before { content: '▾'; }
+.datanote[open] summary { border-bottom: 1px solid var(--border); }
+.datanote-body { padding: 10px 14px 12px; }
 .datanote b { color: var(--text); font-weight: 700; }
-.datanote ul { margin: 6px 0 0; padding-left: 18px; }
-.datanote li { margin-bottom: 3px; }
+.datanote ul { margin: 0; padding-left: 18px; }
+.datanote li { margin-bottom: 5px; }
 
 .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 16px; }
 
@@ -165,19 +170,56 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 .metric-tab:hover { color: var(--text); }
 .metric-tab.active { background: var(--night); color: var(--bone); }
 
+.control-bar { display: grid; grid-template-columns: minmax(260px, 1.5fr) minmax(210px, .85fr) minmax(112px, .45fr) auto auto auto; gap: 10px; align-items: end; margin-bottom: 12px; }
+.control-field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.control-label { color: var(--text-dim); font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.control-select { width: 100%; min-height: 38px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--text); font: inherit; font-size: 12.5px; font-weight: 650; padding: 0 34px 0 11px; }
+.control-select:focus-visible, .metric-tab:focus-visible, .compare-btn:focus-visible, .layer-action:focus-visible, .layer-chip:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.control-segment { min-height: 38px; align-items: center; flex-wrap: nowrap; }
+.display-control .metric-tab.active { background: var(--amber); color: var(--night); }
+.primary-action { min-height: 38px; justify-content: center; }
+
 .toggle-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--text-dim); cursor: pointer; user-select: none; }
 .switch { width: 34px; height: 19px; border-radius: 20px; background: var(--border); position: relative; transition: background .15s; flex-shrink: 0; }
 .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 15px; height: 15px; border-radius: 50%; background: var(--surface); transition: transform .15s; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
 .toggle-row.on .switch { background: var(--amber); }
 .toggle-row.on .switch::after { transform: translateX(15px); }
 
-.layer-group { border: 1px solid var(--border); border-radius: 7px; background: var(--surface); margin-bottom: 16px; }
-.layer-group summary { cursor: pointer; padding: 9px 14px; font-size: 12.5px; font-weight: 700; color: var(--text-dim); list-style: none; user-select: none; }
+.layer-group { border: 1px solid var(--border); border-radius: 9px; background: var(--surface); margin-bottom: 10px; }
+.layer-group.active { border-color: var(--amber); }
+.layer-group summary { cursor: pointer; padding: 10px 14px; font-size: 12.5px; font-weight: 750; color: var(--text-dim); list-style: none; user-select: none; display: flex; align-items: center; gap: 8px; }
 .layer-group summary::-webkit-details-marker { display: none; }
 .layer-group summary::before { content: '▸ '; display: inline-block; }
 .layer-group[open] summary::before { content: '▾ '; }
 .layer-group[open] summary { color: var(--text); border-bottom: 1px solid var(--border); }
-.layer-group-body { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 12px 14px; }
+.layer-count-badge { margin-left: auto; color: var(--text-dim); background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; font-size: 10.5px; font-weight: 750; }
+.layer-group-body { padding: 12px 14px; }
+.layer-group-grid { display: grid; grid-template-columns: repeat(3, minmax(180px, 1fr)); gap: 8px 20px; }
+.layer-section { display: grid; gap: 8px; align-content: start; }
+.layer-section-title { color: var(--text-dim); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1px; }
+.layer-footer { display: flex; justify-content: flex-end; border-top: 1px solid var(--border); margin-top: 12px; padding-top: 10px; }
+.layer-action { border: 0; background: transparent; color: var(--rust); font: inherit; font-size: 11.5px; font-weight: 750; cursor: pointer; padding: 5px 7px; border-radius: 5px; }
+.layer-action:disabled { color: var(--text-dim); cursor: default; opacity: .55; }
+.active-layer-strip { display: none; align-items: center; gap: 7px; flex-wrap: wrap; margin: 0 0 14px; }
+.active-layer-strip.on { display: flex; }
+.active-layer-label { color: var(--text-dim); font-size: 11px; font-weight: 750; }
+.layer-chip { border: 1px solid var(--amber); background: var(--surface); color: var(--text); border-radius: 999px; font: inherit; font-size: 11px; font-weight: 650; padding: 5px 9px; cursor: pointer; }
+.layer-chip:hover { background: var(--night); color: var(--bone); }
+
+@media (max-width: 1080px) {
+  .control-bar { grid-template-columns: minmax(260px, 1fr) minmax(210px, 1fr) minmax(110px, .5fr); }
+  .layer-group-grid { grid-template-columns: repeat(2, minmax(180px, 1fr)); }
+}
+@media (max-width: 760px) {
+  .control-bar { grid-template-columns: 1fr 1fr; gap: 9px; }
+  .control-bar .search-container, .control-field.metric-field { grid-column: 1 / -1; }
+  .primary-action, .control-select { min-height: 44px; }
+  .control-segment { min-height: 44px; width: 100%; }
+  .control-segment .metric-tab { flex: 1; min-height: 36px; }
+  .layer-group summary { min-height: 44px; }
+  .layer-group-grid { grid-template-columns: 1fr; gap: 14px; }
+  .toggle-row { min-height: 36px; }
+}
 
 .grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: 20px; align-items: start; }
 @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
@@ -345,7 +387,7 @@ footer a { color: inherit; }
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">Delhi Police &amp; Traffic Police District Data · 2022–2023</div>
+    <div class="eyebrow">Delhi Police &amp; Traffic Police District Data · 2016–2024</div>
     <h1>Delhi Urban Safety Observatory</h1>
     <p class="subhead">Official district-level crime and road-safety figures against real public-infrastructure coverage — streetlights, pedestrian underpasses, mapped pedestrian overbridges, metro station gates, and police infrastructure (stations plus chowkis/outposts) — across Delhi's 15 police districts.</p>
     <a class="compare-btn" href="interactive_map.html" style="margin-top:10px;text-decoration:none;">Open Delhi Safety &amp; Infrastructure Explorer →</a>
@@ -360,70 +402,74 @@ footer a { color: inherit; }
     </div>
   </div>
 
-  <div class="datanote">
-    <div>
-      <b>Multiple infrastructure layers, six outcome metrics, several different coverage levels — read the confidence markers.</b>
+  <details class="datanote">
+    <summary>Data coverage, confidence and comparability notes</summary>
+    <div class="datanote-body">
       <ul>
         <li><b>Streetlights</b> (PAPL survey, ~40k points) and <b>underpasses</b> (PAPL survey, 417 points) share the exact same gap: <b>Dwarka, North-East, North-West, Outer, Outer North and Rohini were never driven through.</b> Zero there means "not surveyed," not "not present."</li>
         <li><b>Pedestrian overbridges</b> (OpenStreetMap/Overpass snapshot, 242 connected mapped bridge groups) are available across all district polygons, but this is a mapped inventory rather than an official completeness register. A zero means no matching OSM feature was mapped, not verified absence.</li>
         <li><b>Metro station gates</b> (OpenStreetMap, 529 points), <b>bus stops</b> (OpenStreetMap, 3,199 points), and <b>ATMs</b> (OpenStreetMap via Overpass API, 666 points) have real, complete coverage across all 15 districts.</li>
         <li><b>Police Infra</b> combines two sources: full <b>police stations</b> (Delhi Police GSDL, official geocoded list, 224 points — complete for all 15 districts) plus <b>chowkis, outposts &amp; booths</b> (OpenStreetMap community mapping, 120 points — no official geocoded chowki dataset exists publicly, confirmed against the same GSDL source). The combined figure is fully trustworthy for 14 of 15 districts; <b>Outer</b> shows 12 real stations but zero mapped chowkis, almost certainly an OSM under-mapping gap, so its combined count is flagged as an undercount.</li>
         <li><b>Road Deaths &amp; Hit-and-Run</b> (Delhi Traffic Police, 2022 Delhi Road Crash Fatalities Report) can be plotted on the map and scatter chart alongside the 2023 crime figures. It's a year older and uses Traffic Police's own <b>11-district reporting geography</b>, not the 15 Delhi Police districts — <b>Outer, Outer North, Rohini and South-West have no separate entry</b> and show hatched on the map, not zero deaths.</li>
-        <li><b>Year comparison</b>: the six NCRB crime metrics (theft, robbery, burglary, total IPC, crime against women, SLL crimes) each have a matching figure for <b>2022, 2023 and 2024</b> from the same NCRB district-wise tables. Use the <b>2022 / 2023 / 2024</b> toggle above the map to switch the map, ranked list, and district detail panel to that year — the road-safety metrics have no equivalent multi-year series, so that toggle is hidden when they're selected. Selecting a year shows the percent change from the previous year in the district detail panel. The 2024 IPC table also switched to the new BNS section numbering alongside the old IPC references — the offence categories carry over, it's the legal citation that changed. All six crime metrics additionally extend back to <b>2017</b> via a separately verified NCRB extract (sourced from the full district-wise offence-category tables and cross-checked by reproducing the official 2022 totals exactly, 45/45, before extending backward), and <b>theft &amp; robbery</b> go one year further back to <b>2016</b>. Burglary, total IPC, crime against women and SLL crime all omit 2016 — an older, non-matching category schema with no 2016-era known-correct total to validate the reconstruction against, so those four rows show "—" in 2016 rather than a number nobody's checked. Infrastructure-correlation text is suppressed for any year before 2022 regardless of metric, since today's streetlight/underpass/police survey data can't be meaningfully compared against a different decade's crime figures. Year-over-year change is hidden wherever the underlying source data isn't comparable across the boundary (e.g. the 2016→2017 burglary definition break, or a district that didn't yet exist as its own reporting zone).</li>
+        <li><b>Year comparison</b>: the six NCRB crime metrics (theft, robbery, burglary, total IPC, crime against women, SLL crimes) each have a matching figure for <b>2022, 2023 and 2024</b> from the same NCRB district-wise tables. Use the <b>Year</b> selector above the map to switch the map, ranked list, and district detail panel to that year — the road-safety metrics have no equivalent multi-year series, so that toggle is hidden when they're selected. Selecting a year shows the percent change from the previous year in the district detail panel. The 2024 IPC table also switched to the new BNS section numbering alongside the old IPC references — the offence categories carry over, it's the legal citation that changed. All six crime metrics additionally extend back to <b>2017</b> via a separately verified NCRB extract (sourced from the full district-wise offence-category tables and cross-checked by reproducing the official 2022 totals exactly, 45/45, before extending backward), and <b>theft &amp; robbery</b> go one year further back to <b>2016</b>. Burglary, total IPC, crime against women and SLL crime all omit 2016 — an older, non-matching category schema with no 2016-era known-correct total to validate the reconstruction against, so those four rows show "—" in 2016 rather than a number nobody's checked. Infrastructure-correlation text is suppressed for any year before 2022 regardless of metric, since today's streetlight/underpass/police survey data can't be meaningfully compared against a different decade's crime figures. Year-over-year change is hidden wherever the underlying source data isn't comparable across the boundary (e.g. the 2016→2017 burglary definition break, or a district that didn't yet exist as its own reporting zone).</li>
       </ul>
     </div>
-  </div>
+  </details>
 
-  <div class="controls">
+  <div class="control-bar" aria-label="Map controls">
     <div class="search-container">
       <div class="search-input-wrap">
         <input type="text" id="districtSearch" class="search-input" placeholder="Search district or police station (e.g. Rohini, Kashmere Gate, Majnu ka Tila, Vasant Kunj)..." autocomplete="off" />
-        <button id="searchClear" class="search-clear">✕</button>
+        <button id="searchClear" class="search-clear" aria-label="Clear search">✕</button>
       </div>
       <div id="searchDropdown" class="search-dropdown"></div>
     </div>
-    <div class="metric-tabs" id="metricTabs"></div>
-    <div class="metric-tabs" id="yearToggle"></div>
-    <div class="metric-tabs" id="rateToggle"></div>
-    <button class="compare-btn" id="compareToggleBtn">Compare Districts</button>
-  </div>
-  <details class="layer-group">
-    <summary>Map layers</summary>
-    <div class="layer-group-body">
-      <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap">
-        <span class="switch"></span>
-        Show streetlight survey heatmap
-      </div>
-      <div class="toggle-row" id="policeToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show police markers">
-        <span class="switch"></span>
-        Show police markers
-      </div>
-      <div class="toggle-row" id="zonesToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show accident-prone zones">
-        <span class="switch"></span>
-        Show accident-prone zones
-      </div>
-      <div class="toggle-row" id="bivariateToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bivariate crime and infrastructure map">
-        <span class="switch"></span>
-        Bivariate map (crime × infrastructure)
-      </div>
-      <div class="toggle-row" id="busStopToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bus stops">
-        <span class="switch"></span>
-        Show bus stops
-      </div>
-      <div class="toggle-row" id="atmToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show ATMs">
-        <span class="switch"></span>
-        Show ATMs
-      </div>
-      <div class="toggle-row" id="alcoholToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show liquor shops">
-        <span class="switch"></span>
-        Show liquor shops
-      </div>
-      <div class="toggle-row" id="surveillanceToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show CCTV and guard posts">
-        <span class="switch"></span>
-        Show CCTV/guard posts
+    <label class="control-field metric-field">
+      <span class="control-label">Metric</span>
+      <select class="control-select" id="metricTabs" aria-label="Select crime or road-safety metric"></select>
+    </label>
+    <label class="control-field year-field" id="yearField">
+      <span class="control-label">Year</span>
+      <select class="control-select" id="yearToggle" aria-label="Select reporting year"></select>
+    </label>
+    <div class="control-field rate-field">
+      <span class="control-label">Calculation</span>
+      <div class="metric-tabs control-segment" id="rateToggle"></div>
+    </div>
+    <div class="control-field display-field">
+      <span class="control-label">Display</span>
+      <div class="metric-tabs control-segment display-control">
+        <button class="metric-tab active" id="choroplethMode" type="button" aria-pressed="true">Choropleth</button>
+        <button class="metric-tab" id="bivariateToggle" type="button" role="switch" tabindex="0" aria-checked="false">Bivariate</button>
       </div>
     </div>
+    <button class="compare-btn primary-action" id="compareToggleBtn">Compare districts</button>
+  </div>
+  <details class="layer-group" id="mapLayersGroup">
+    <summary><span>Map layers</span><span class="layer-count-badge" id="layerCountBadge">0 active</span></summary>
+    <div class="layer-group-body">
+      <div class="layer-group-grid">
+        <div class="layer-section">
+          <div class="layer-section-title">Safety and risk</div>
+          <div class="toggle-row" id="policeToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show police markers"><span class="switch"></span>Police stations and posts</div>
+          <div class="toggle-row" id="zonesToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show accident-prone zones"><span class="switch"></span>Crash-prone zones</div>
+          <div class="toggle-row" id="surveillanceToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show CCTV and guard posts"><span class="switch"></span>CCTV and guard posts</div>
+        </div>
+        <div class="layer-section">
+          <div class="layer-section-title">Public infrastructure</div>
+          <div class="toggle-row" id="busStopToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bus stops"><span class="switch"></span>Bus stops</div>
+          <div class="toggle-row" id="atmToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show ATMs"><span class="switch"></span>ATMs</div>
+          <div class="toggle-row" id="alcoholToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show liquor shops"><span class="switch"></span>Liquor shops</div>
+        </div>
+        <div class="layer-section">
+          <div class="layer-section-title">Survey overlays</div>
+          <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap"><span class="switch"></span>Streetlight survey heatmap</div>
+        </div>
+      </div>
+      <div class="layer-footer"><button class="layer-action" type="button" id="clearLayersBtn" disabled>Clear all layers</button></div>
+    </div>
   </details>
+  <div class="active-layer-strip" id="activeLayerChips" aria-live="polite"></div>
   <div id="compareCard" class="compare-card" style="display:none;"></div>
 
   <div class="grid">
@@ -676,16 +722,16 @@ const METRICS = [
   { key: 'totalSLL', label: 'SLL Crimes', short: 'SLL crime', year: '2023', full: 'Total Cognizable SLL Crimes, 2023', prevKey: 'totalSLL2022', prevYear: '2022', key2024: 'totalSLL2024', title: 'Special & Local Laws (SLL) Crimes', desc: 'Offences registered under special acts (Arms Act, NDPS, Excise, Cyber Crimes, etc.).', source: 'NCRB Crime in India District-Wise Reports', historicalYears: ['2017','2018','2019','2020','2021'], historicalSource: 'NCRB Crime in India, via India Data Portal — summed from the district-wise SLL offence-category CSV, verified against the official 2022 total for all 15 districts; excludes one source record misfiled under Delhi (district_code 553, actually Lakshadweep) which the district-name matcher already skips; 2016 omitted (incompatible older category schema)' },
   { key: 'fatalRoadCrashes2022', label: 'Road Deaths', short: 'fatal road crashes', year: '2022', full: 'Fatal Road Crashes, 2022 (Delhi Traffic Police)', gaps: true, title: 'Fatal Road Crashes (2022)', desc: 'Fatal traffic crashes resulting in deaths recorded by Delhi Traffic Police.', source: 'Delhi Traffic Police 2022 Report' },
   { key: 'hitAndRunCrashes2022', label: 'Hit & Run', short: 'hit-and-run fatal crashes', year: '2022', full: 'Hit-and-Run Fatal Crashes, 2022 (Delhi Traffic Police)', gaps: true, title: 'Hit-and-Run Fatal Crashes (2022)', desc: 'Fatal road crashes where the offending vehicle fled the scene without stopping.', source: 'Delhi Traffic Police 2022 Report' },
-  { key: 'crashProneZones2023', label: 'Crash Zones', short: 'crash-prone zones', year: '2023', full: 'Crash-Prone Zones, 2023 (Delhi Road Crash Report)', title: 'Identified Crash-Prone Zones (2023)', desc: 'Identified accident blackspots and high-risk traffic corridors.', source: 'Delhi Road Crash Report 2023' },
-  { key: 'fatalCrashes2023', label: 'Fatal Crashes', short: 'fatal crashes', year: '2023', full: 'Fatal Crashes, 2023 (Delhi Road Crash Report)', title: 'Fatal Crashes (2023)', desc: 'Fatal traffic crashes recorded specifically within this district\\'s identified crash-prone zones in 2023 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2023' },
-  { key: 'totalCrashes2023', label: 'Total Crashes', short: 'total crashes', year: '2023', full: 'Total Crashes, 2023 (Delhi Road Crash Report)', title: 'Total Road Crashes (2023)', desc: 'Fatal + simple-injury crashes recorded specifically within this district\\'s identified crash-prone zones in 2023 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2023' },
-  { key: 'crashProneZones2024', label: 'Crash Zones \\'24', short: 'crash-prone zones', year: '2024', full: 'Crash-Prone Zones, 2024 (Delhi Road Crash Report)', title: 'Identified Crash-Prone Zones (2024)', desc: 'Identified accident blackspots and high-risk traffic corridors.', source: 'Delhi Road Crash Report 2024, Table 6.31' },
-  { key: 'fatalCrashes2024', label: 'Fatal Crashes \\'24', short: 'fatal crashes (2024)', year: '2024', full: 'Fatal Crashes, 2024 (Delhi Road Crash Report)', title: 'Fatal Crashes (2024)', desc: 'Fatal traffic crashes recorded specifically within this district\\'s identified crash-prone zones in 2024 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2024, Table 6.31' },
-  { key: 'totalCrashes2024', label: 'Total Crashes \\'24', short: 'total crashes (2024)', year: '2024', full: 'Total Crashes, 2024 (Delhi Road Crash Report)', title: 'Total Road Crashes (2024)', desc: 'Fatal + simple-injury crashes recorded specifically within this district\\'s identified crash-prone zones in 2024 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2024, Table 6.31' },
-  { key: 'personsKilled2023', label: 'Persons Killed \\'23', short: 'persons killed in road crashes (2023)', year: '2023', full: 'Persons Killed in Road Crashes, 2023 (Delhi Road Crash Report)', title: 'Persons Killed in Road Crashes (2023)', desc: 'Total persons killed across all road crashes citywide in this district in 2023 (full district total, not limited to crash-prone zones — a wider scope than the Fatal/Total Crashes metrics above).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
-  { key: 'personsKilled2024', label: 'Persons Killed \\'24', short: 'persons killed in road crashes (2024)', year: '2024', full: 'Persons Killed in Road Crashes, 2024 (Delhi Road Crash Report)', title: 'Persons Killed in Road Crashes (2024)', desc: 'Total persons killed across all road crashes citywide in this district in 2024 (full district total, not limited to crash-prone zones — a wider scope than the Fatal/Total Crashes metrics above).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
-  { key: 'personsInjured2023', label: 'Persons Injured \\'23', short: 'persons injured in road crashes (2023)', year: '2023', full: 'Persons Injured in Road Crashes, 2023 (Delhi Road Crash Report)', title: 'Persons Injured in Road Crashes (2023)', desc: 'Total persons injured across all road crashes citywide in this district in 2023 (full district total, not limited to crash-prone zones).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
-  { key: 'personsInjured2024', label: 'Persons Injured \\'24', short: 'persons injured in road crashes (2024)', year: '2024', full: 'Persons Injured in Road Crashes, 2024 (Delhi Road Crash Report)', title: 'Persons Injured in Road Crashes (2024)', desc: 'Total persons injured across all road crashes citywide in this district in 2024 (full district total, not limited to crash-prone zones).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'crashProneZones2023', label: 'Crash Zones', short: 'crash-prone zones', year: '2023', yearVariants: { '2023': 'crashProneZones2023', '2024': 'crashProneZones2024' }, full: 'Crash-Prone Zones, 2023 (Delhi Road Crash Report)', title: 'Identified Crash-Prone Zones (2023)', desc: 'Identified accident blackspots and high-risk traffic corridors.', source: 'Delhi Road Crash Report 2023' },
+  { key: 'fatalCrashes2023', label: 'Fatal Crashes', short: 'fatal crashes', year: '2023', yearVariants: { '2023': 'fatalCrashes2023', '2024': 'fatalCrashes2024' }, full: 'Fatal Crashes, 2023 (Delhi Road Crash Report)', title: 'Fatal Crashes (2023)', desc: 'Fatal traffic crashes recorded specifically within this district\\'s identified crash-prone zones in 2023 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2023' },
+  { key: 'totalCrashes2023', label: 'Total Crashes', short: 'total crashes', year: '2023', yearVariants: { '2023': 'totalCrashes2023', '2024': 'totalCrashes2024' }, full: 'Total Crashes, 2023 (Delhi Road Crash Report)', title: 'Total Road Crashes (2023)', desc: 'Fatal + simple-injury crashes recorded specifically within this district\\'s identified crash-prone zones in 2023 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2023' },
+  { key: 'crashProneZones2024', hiddenFromSelector: true, label: 'Crash Zones \\'24', short: 'crash-prone zones', year: '2024', full: 'Crash-Prone Zones, 2024 (Delhi Road Crash Report)', title: 'Identified Crash-Prone Zones (2024)', desc: 'Identified accident blackspots and high-risk traffic corridors.', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'fatalCrashes2024', hiddenFromSelector: true, label: 'Fatal Crashes \\'24', short: 'fatal crashes (2024)', year: '2024', full: 'Fatal Crashes, 2024 (Delhi Road Crash Report)', title: 'Fatal Crashes (2024)', desc: 'Fatal traffic crashes recorded specifically within this district\\'s identified crash-prone zones in 2024 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'totalCrashes2024', hiddenFromSelector: true, label: 'Total Crashes \\'24', short: 'total crashes (2024)', year: '2024', full: 'Total Crashes, 2024 (Delhi Road Crash Report)', title: 'Total Road Crashes (2024)', desc: 'Fatal + simple-injury crashes recorded specifically within this district\\'s identified crash-prone zones in 2024 — not the district\\'s full citywide crash total (see Persons Killed for the full-district figure).', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'personsKilled2023', label: 'Persons Killed', short: 'persons killed in road crashes (2023)', year: '2023', yearVariants: { '2023': 'personsKilled2023', '2024': 'personsKilled2024' }, full: 'Persons Killed in Road Crashes, 2023 (Delhi Road Crash Report)', title: 'Persons Killed in Road Crashes (2023)', desc: 'Total persons killed across all road crashes citywide in this district in 2023 (full district total, not limited to crash-prone zones — a wider scope than the Fatal/Total Crashes metrics above).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'personsKilled2024', hiddenFromSelector: true, label: 'Persons Killed \\'24', short: 'persons killed in road crashes (2024)', year: '2024', full: 'Persons Killed in Road Crashes, 2024 (Delhi Road Crash Report)', title: 'Persons Killed in Road Crashes (2024)', desc: 'Total persons killed across all road crashes citywide in this district in 2024 (full district total, not limited to crash-prone zones — a wider scope than the Fatal/Total Crashes metrics above).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'personsInjured2023', label: 'Persons Injured', short: 'persons injured in road crashes (2023)', year: '2023', yearVariants: { '2023': 'personsInjured2023', '2024': 'personsInjured2024' }, full: 'Persons Injured in Road Crashes, 2023 (Delhi Road Crash Report)', title: 'Persons Injured in Road Crashes (2023)', desc: 'Total persons injured across all road crashes citywide in this district in 2023 (full district total, not limited to crash-prone zones).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'personsInjured2024', hiddenFromSelector: true, label: 'Persons Injured \\'24', short: 'persons injured in road crashes (2024)', year: '2024', full: 'Persons Injured in Road Crashes, 2024 (Delhi Road Crash Report)', title: 'Persons Injured in Road Crashes (2024)', desc: 'Total persons injured across all road crashes citywide in this district in 2024 (full district total, not limited to crash-prone zones).', source: 'Delhi Road Crash Report 2024, Table 6.2' },
 ];
 
 const INFRA = [
@@ -838,85 +884,102 @@ function findDistrictName(x, y) {
 
 function currentMetric() { return METRICS.find(m => m.key === activeMetric); }
 
-// Field-naming convention across the whole dataset: <metricKey><year>, except the metric's own
-// "current" year (m.year, e.g. '2023') which is stored bare as <metricKey>. This holds for both
-// the original 2022/2024 fields and the 2016-2021 historical extension merged into
-// dashboard_final.json, so one generalized lookup covers every year without special-casing.
+// Field-naming convention for the NCRB series: metricKey + year, except 2023,
+// which uses the bare metric key. Road-safety series declare explicit yearVariants.
 function yearFieldKey(m, year) {
   if (!m.prevKey) return m.key;
   if (year === m.year) return m.key;
   return m.key + year;
 }
 function metricSupportsYear(m, year) {
+  if (m.yearVariants) return !!m.yearVariants[year];
   if (!m.prevKey) return year === m.year;
   if (['2022','2023','2024'].includes(year)) return true;
   return !!(m.historicalYears && m.historicalYears.includes(year));
 }
 
+function metricRawValue(d, m) {
+  return m.yearVariants ? d[m.yearVariants[activeYear]] : (!m.prevKey ? d[m.key] : d[yearFieldKey(m, activeYear)]);
+}
+
 function metricValue(d, m) {
-  const val = !m.prevKey ? d[m.key] : d[yearFieldKey(m, activeYear)];
-  return getRateVal(val, d);
+  return getRateVal(metricRawValue(d, m), d);
 }
 
 function yearFieldVal(d, baseKey) {
   const m = METRICS.find(x => x.key === baseKey);
-  if (!m || !m.prevKey) return d[baseKey];
+  if (!m) return d[baseKey];
+  if (m.yearVariants) return d[m.yearVariants[activeYear]];
+  if (!m.prevKey) return d[baseKey];
   return d[yearFieldKey(m, activeYear)];
 }
 
 function yearLabel(m) {
-  if (!m.prevKey) return m.full;
+  if (!m.prevKey && !m.yearVariants) return m.full;
   return m.full.replace(m.year, activeYear);
 }
 
 function yearSuffix(m) {
-  return m.prevKey ? activeYear : m.year;
+  return (m.prevKey || m.yearVariants) ? activeYear : m.year;
 }
 
 function buildMetricTabs() {
   const el = document.getElementById('metricTabs');
-  el.innerHTML = METRICS.map(m =>
-    '<button class="metric-tab' + (m.key===activeMetric?' active':'') + '" data-key="' + m.key + '" aria-pressed="' + (m.key===activeMetric) + '"' + tt(m.title, m.desc + ' · Source: ' + m.source) + '>' + m.label + '</button>'
-  ).join('');
-  el.querySelectorAll('.metric-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      activeMetric = btn.dataset.key;
-      const m = currentMetric();
-      if (!metricSupportsYear(m, activeYear)) activeYear = '2024';
-      render();
-    });
-  });
+  const visible = METRICS.filter(m => !m.hiddenFromSelector);
+  const crime = visible.filter(m => !!m.prevKey);
+  const road = visible.filter(m => !m.prevKey);
+  const options = group => group.map(m => '<option value="' + m.key + '"' + (m.key === activeMetric ? ' selected' : '') + '>' + m.label + '</option>').join('');
+  el.innerHTML = '<optgroup label="Crime">' + options(crime) + '</optgroup><optgroup label="Road safety">' + options(road) + '</optgroup>';
+  const m = currentMetric();
+  el.title = m.title + ' — ' + m.desc + ' Source: ' + m.source;
+  el.onchange = () => {
+    activeMetric = el.value;
+    const next = currentMetric();
+    if (!metricSupportsYear(next, activeYear)) {
+      const supported = next.yearVariants ? Object.keys(next.yearVariants) : (next.historicalYears ? [...next.historicalYears, '2022', '2023', '2024'] : [next.year]);
+      activeYear = supported[supported.length - 1];
+    }
+    render();
+  };
   buildYearToggle();
   buildRateToggle();
+  updateDisplayControls();
 }
 
 function buildYearToggle() {
   const el = document.getElementById('yearToggle');
+  const field = document.getElementById('yearField');
   const m = currentMetric();
-  if (!m.prevKey) { el.style.display = 'none'; return; }
-  el.style.display = '';
-  const years = m.historicalYears ? [...m.historicalYears, '2022', '2023', '2024'] : ['2022', '2023', '2024'];
-  const opts = years.map(y => [y, y]);
-  el.innerHTML = opts.map(([val, label]) => '<button class="metric-tab' + (activeYear===val?' active':'') + '" data-val="' + val + '" aria-pressed="' + (activeYear===val) + '"' + (m.historicalYears && Number(val) <= 2021 ? tt('Historical extension', m.historicalSource) : '') + '>' + label + '</button>').join('');
-  el.querySelectorAll('.metric-tab').forEach(btn => {
-    btn.addEventListener('click', () => { activeYear = btn.dataset.val; render(); });
-  });
+  if (!m.prevKey && !m.yearVariants) { field.style.display = 'none'; return; }
+  field.style.display = '';
+  const years = m.yearVariants ? Object.keys(m.yearVariants) : (m.historicalYears ? [...m.historicalYears, '2022', '2023', '2024'] : ['2022', '2023', '2024']);
+  el.innerHTML = years.map(y => '<option value="' + y + '"' + (activeYear === y ? ' selected' : '') + '>' + y + '</option>').join('');
+  el.title = m.historicalYears ? m.historicalSource : 'Available reporting years for ' + m.label;
+  el.onchange = () => { activeYear = el.value; render(); };
 }
 
 function buildRateToggle() {
   const el = document.getElementById('rateToggle');
   if (!el) return;
-  const opts = [['density', 'Spatial Density (per km²)'], ['perCapita', 'Per-Capita Rate (per 100k)']];
+  const opts = [['density', 'Per km²'], ['perCapita', 'Per 100k']];
   el.innerHTML = opts.map(([val, label]) => '<button class="metric-tab' + (rateMode===val?' active':'') + '" data-val="' + val + '" aria-pressed="' + (rateMode===val) + '">' + label + '</button>').join('');
   el.querySelectorAll('.metric-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       rateMode = btn.dataset.val;
-      buildRateToggle();
       render();
     });
   });
 }
 
+function updateDisplayControls() {
+  const choropleth = document.getElementById('choroplethMode');
+  const bivariate = document.getElementById('bivariateToggle');
+  if (!choropleth || !bivariate) return;
+  choropleth.classList.toggle('active', !isBivariateMode);
+  choropleth.setAttribute('aria-pressed', String(!isBivariateMode));
+  bivariate.classList.toggle('active', isBivariateMode);
+  bivariate.setAttribute('aria-checked', String(isBivariateMode));
+}
 function currentDomain() {
   const m = currentMetric();
   const vals = DATA.map(d => metricValue(d, m)).filter(v => v != null);
@@ -2063,6 +2126,32 @@ function drawHeat() {
   ctx.putImageData(out,0,0);
 }
 
+const MAP_LAYER_CONTROLS = [
+  ['lightToggle', 'Streetlight heatmap', () => showLights],
+  ['policeToggle', 'Police', () => showPolice],
+  ['zonesToggle', 'Crash zones', () => showZones],
+  ['busStopToggle', 'Bus stops', () => showBusStops],
+  ['atmToggle', 'ATMs', () => showAtms],
+  ['alcoholToggle', 'Liquor shops', () => showAlcohol],
+  ['surveillanceToggle', 'CCTV and guards', () => showSurveillance],
+];
+
+function updateLayerControls() {
+  const active = MAP_LAYER_CONTROLS.filter(([, , getter]) => getter());
+  const badge = document.getElementById('layerCountBadge');
+  const group = document.getElementById('mapLayersGroup');
+  const strip = document.getElementById('activeLayerChips');
+  const clear = document.getElementById('clearLayersBtn');
+  if (badge) badge.textContent = active.length + ' active';
+  if (group) group.classList.toggle('active', active.length > 0);
+  if (clear) clear.disabled = active.length === 0;
+  if (strip) {
+    strip.classList.toggle('on', active.length > 0);
+    strip.innerHTML = active.length ? '<span class="active-layer-label">Active layers</span>' + active.map(([id, label]) => '<button class="layer-chip" type="button" data-layer-id="' + id + '" aria-label="Remove ' + label + '">' + label + ' ×</button>').join('') : '';
+    strip.querySelectorAll('.layer-chip').forEach(chip => chip.addEventListener('click', () => document.getElementById(chip.dataset.layerId).click()));
+  }
+}
+
 function setupToggleControl(id, getter, setter) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -2078,6 +2167,8 @@ function setupToggleControl(id, getter, setter) {
       document.getElementById('heat').classList.toggle('on', newVal);
       if (newVal) drawHeat();
     }
+    updateDisplayControls();
+    updateLayerControls();
     renderMap();
   };
   el.addEventListener('click', toggle);
@@ -2093,10 +2184,18 @@ setupToggleControl('lightToggle', () => showLights, v => { showLights = v; });
 setupToggleControl('policeToggle', () => showPolice, v => { showPolice = v; });
 setupToggleControl('zonesToggle', () => showZones, v => { showZones = v; });
 setupToggleControl('bivariateToggle', () => isBivariateMode, v => { isBivariateMode = v; });
+
+document.getElementById('choroplethMode').addEventListener('click', () => { isBivariateMode = false; updateDisplayControls(); renderMap(); });
 setupToggleControl('busStopToggle', () => showBusStops, v => { showBusStops = v; });
 setupToggleControl('atmToggle', () => showAtms, v => { showAtms = v; });
 setupToggleControl('alcoholToggle', () => showAlcohol, v => { showAlcohol = v; });
 setupToggleControl('surveillanceToggle', () => showSurveillance, v => { showSurveillance = v; });
+
+document.getElementById('clearLayersBtn').addEventListener('click', () => {
+  MAP_LAYER_CONTROLS.forEach(([id, , getter]) => { if (getter()) document.getElementById(id).click(); });
+});
+updateLayerControls();
+updateDisplayControls();
 
 const scatterCanvasEl = document.getElementById('scatterCanvas');
 if (scatterCanvasEl) {
@@ -2557,9 +2656,9 @@ document.getElementById('dlCorrDownload').addEventListener('click', () => {
   const rows = [];
   INFRA.forEach(inf => {
     METRICS.forEach(m => {
-      const covered = DATA.filter(d => infraCovered(d, inf.key) && d[m.key] != null);
+      const covered = DATA.filter(d => infraCovered(d, inf.key) && metricRawValue(d, m) != null);
       const xs = covered.map(d => d[inf.densityKey]);
-      const ys = covered.map(d => d[m.key] / d.areaSqKm);
+      const ys = covered.map(d => metricRawValue(d, m) / d.areaSqKm);
       const r = covered.length >= 2 ? pearson(xs, ys) : null;
       const note = covered.length + ' of 15 districts had usable data for both this infrastructure type and this metric.';
       rows.push([inf.label, m.label, m.year, r == null ? '' : r.toFixed(4), covered.length, note]);
@@ -2613,8 +2712,8 @@ document.getElementById('dlVersusDownload').addEventListener('click', () => {
   const inf = INFRA.find(i => i.key === scatterType);
   const m = METRICS.find(x => x.key === scatterYMetric);
   const headers = ['District', inf.label + ' density (per km²)', m.label + ' density (per km²)', inf.label + ' (count)', m.label + ' (raw count)'];
-  const rows = DATA.filter(d => infraCovered(d, inf.key) && d[m.key] != null)
-    .map(d => [d.district, d[inf.densityKey], Math.round((d[m.key]/d.areaSqKm)*100)/100, d[inf.countKey], d[m.key]]);
+  const rows = DATA.filter(d => infraCovered(d, inf.key) && metricRawValue(d, m) != null)
+    .map(d => [d.district, d[inf.densityKey], Math.round((metricRawValue(d, m)/d.areaSqKm)*100)/100, d[inf.countKey], metricRawValue(d, m)]);
   triggerDownload('gaitway_delhi_' + inf.key + '_vs_' + m.key + '.csv', toCSV(headers, rows));
 });
 
@@ -2649,9 +2748,9 @@ function buildCorrelationSheet() {
   const rows = [];
   INFRA.forEach(inf => {
     METRICS.forEach(m => {
-      const covered = DATA.filter(d => infraCovered(d, inf.key) && d[m.key] != null);
+      const covered = DATA.filter(d => infraCovered(d, inf.key) && metricRawValue(d, m) != null);
       const xs = covered.map(d => d[inf.densityKey]);
-      const ys = covered.map(d => d[m.key] / d.areaSqKm);
+      const ys = covered.map(d => metricRawValue(d, m) / d.areaSqKm);
       const r = covered.length >= 2 ? Math.round(pearson(xs, ys) * 10000) / 10000 : null;
       rows.push([inf.label, m.label, m.year, r, covered.length, covered.length + ' of 15 districts had usable data for both.']);
     });
@@ -2663,8 +2762,8 @@ function buildVersusSheet() {
   const inf = INFRA.find(i => i.key === scatterType);
   const m = METRICS.find(x => x.key === scatterYMetric);
   const headers = ['District', inf.label + ' density (per km²)', m.label + ' density (per km²)', inf.label + ' (count)', m.label + ' (raw count)'];
-  const rows = DATA.filter(d => infraCovered(d, inf.key) && d[m.key] != null)
-    .map(d => [d.district, d[inf.densityKey], Math.round((d[m.key]/d.areaSqKm)*100)/100, d[inf.countKey], d[m.key]]);
+  const rows = DATA.filter(d => infraCovered(d, inf.key) && metricRawValue(d, m) != null)
+    .map(d => [d.district, d[inf.densityKey], Math.round((metricRawValue(d, m)/d.areaSqKm)*100)/100, d[inf.countKey], metricRawValue(d, m)]);
   return xlSheet('Current Comparison (' + inf.label + ' vs ' + m.label + ')', headers, rows, [false,true,true,true,true]);
 }
 

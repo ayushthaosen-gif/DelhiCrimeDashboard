@@ -33,6 +33,8 @@ for how to cite this repository.
 
 ## What's new in this version
 
+- **Cleaner research controls.** The main dashboard now uses grouped metric and year selectors, a separate display-mode control, active-layer counts and removable chips, responsive layer categories, and collapsed coverage notes so optional complexity no longer overwhelms the map.
+
 - **New identity and compact map hero.** The project is now the **Delhi Urban Safety Observatory**; its Leaflet page is the **Delhi Safety & Infrastructure Explorer**. The responsive header uses a shorter map-led safety visualization and a project favicon.
 - **Pedestrian-overbridge coverage.** A reproducible OpenStreetMap/Overpass snapshot is processed into 242 mapped pedestrian bridge groups, district counts/densities, an interactive clustered point layer, nearby-crash-zone context, and reusable exports. It is marked as mapped coverage rather than an official completeness register.
 

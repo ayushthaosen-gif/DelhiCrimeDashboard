@@ -8,6 +8,22 @@
 > the repo; that one is only for numbers a researcher may have already
 > cited.
 
+## [2026-08-06] - Codex (OpenAI) - Main Dashboard Control Hierarchy and Responsive Layer UX
+
+### Primary controls now lead; optional complexity remains visible only when requested
+
+The home dashboard still had two separate clutter problems after its first collapsed-layer commit: the metric strip exposed every year-specific road field as a separate tab, and the long coverage warning occupied a large block before the map. This pass completed the primary-control redesign without removing data or changing calculations.
+
+1. Replaced the 18-button metric strip with one grouped native selector for crime and road-safety outcomes. Consolidated the matching 2023/2024 crash-zone, fatal-crash, total-crash, persons-killed and persons-injured fields behind one metric plus an independent Year selector; map values, rankings, labels and current-comparison exports now follow that year.
+2. Separated visualization mode from overlays: Choropleth/Bivariate is now a dedicated Display control rather than incorrectly appearing as a map layer.
+3. Reorganized seven optional overlays into Safety and risk, Public infrastructure, and Survey overlays. The collapsed Map layers summary shows the active count; enabled layers remain visible as removable chips; Clear all layers removes them through their existing event paths.
+4. Collapsed the long coverage/confidence/comparability explanation by default, preserving every caveat one click away while bringing the analysis controls and map much closer to the top of the page.
+5. Added responsive two-column/mobile layouts, 44px primary touch targets, compact calculation/display segments, visible keyboard focus, and clearer control labels. Existing control IDs and map wiring were preserved.
+6. Corrected the header date span to 2016-2024 and removed redundant year suffixes from the consolidated road-safety metric names.
+
+Verified: `node --check` on `scripts/build.js` and the real generated inline script; `npm run build`; `npm test` 30/30; live desktop (1440x900) and mobile (390x844) browser checks covering crime and road-safety metric/year changes, Choropleth/Bivariate switching, collapsed-layer toggles, active-layer chips, clear/remove behavior, Compare Districts, and zero console errors.
+
+---
 ## [2026-08-06] - Claude (Anthropic) - Combined PAPL + OSM Streetlight Metric, After Clarifying Scope First
 
 ### 💡 A real district-level reconciliation of the two streetlight sources — PAPL where surveyed, OSM only as a fallback, never blended into one unattributed number
