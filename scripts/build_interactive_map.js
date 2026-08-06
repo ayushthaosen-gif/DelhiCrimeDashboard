@@ -136,7 +136,14 @@ body { display: flex; flex-direction: column; }
 #resetMapBtn, #shareUrlBtn, #downloadCsvBtn, #downloadGeoJsonBtn, #mobileFilterToggle { font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
 #resetMapBtn:hover, #shareUrlBtn:hover, #downloadCsvBtn:hover, #downloadGeoJsonBtn:hover, #mobileFilterToggle:hover { border-color: var(--amber); }
 .mobile-only { display: none; }
-.point-toggles-row { flex-basis: 100%; display: flex; gap: 10px; flex-wrap: wrap; }
+.point-toggles-row { flex-basis: 100%; display: flex; gap: 6px; flex-wrap: wrap; align-items: flex-start; }
+.layer-group { border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+.layer-group summary { cursor: pointer; padding: 5px 10px; font-size: 11.5px; font-weight: 700; color: var(--text-dim); list-style: none; user-select: none; }
+.layer-group summary::-webkit-details-marker { display: none; }
+.layer-group summary::before { content: '▸ '; display: inline-block; }
+.layer-group[open] summary::before { content: '▾ '; }
+.layer-group[open] summary { color: var(--text); border-bottom: 1px solid var(--border); }
+.layer-group-body { display: flex; gap: 10px; flex-wrap: wrap; padding: 8px 10px; }
 @media (max-width: 720px) {
   .mobile-only { display: inline-block; }
   #topbar > label, #topbar > .seg, #topbar > div:not(#pointLayerToggles), #analysisBar > label, #analysisBar > .seg, #analysisBar > span, #pointLayerToggles { display: none; }
@@ -207,32 +214,62 @@ body { display: flex; flex-direction: column; }
   <button id="mobileFilterToggle" type="button" class="mobile-only">☰ Filters</button>
   <a class="back" href="delhi_safety_dashboard.html">← Back to dashboard</a>
   <div class="point-toggles-row" id="pointLayerToggles">
-    <label><input type="checkbox" id="chkPolice"> Police stations <span class="layer-count" id="cntPolice"></span></label>
-    <label><input type="checkbox" id="chkPosts"> Chowkis/posts <span class="layer-count" id="cntPosts"></span></label>
-    <label><input type="checkbox" id="chkZones"> Crash zones <span class="layer-count" id="cntZones"></span></label>
-    <label>Zone year: <div class="seg" id="zoneYearToggle"><button class="active" data-year="2023">2023</button><button data-year="2024">2024</button></div></label>
-    <label><input type="checkbox" id="chkBus"> Bus stops <span class="layer-count" id="cntBus"></span></label>
-    <label><input type="checkbox" id="chkAtm"> ATMs <span class="layer-count" id="cntAtm"></span></label>
-    <label><input type="checkbox" id="chkAlcohol"> Liquor shops <span class="layer-count" id="cntAlcohol"></span></label>
-    <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
-    <label><input type="checkbox" id="chkOverpasses"> Pedestrian overbridges <span class="layer-count" id="cntOverpasses"></span></label>
-    <label><input type="checkbox" id="chkTrafficSignals"> Traffic signals <span class="layer-count" id="cntTrafficSignals"></span></label>
-    <label><input type="checkbox" id="chkCrossings"> Pedestrian crossings <span class="layer-count" id="cntCrossings"></span></label>
-    <label><input type="checkbox" id="chkHospitals"> Hospitals <span class="layer-count" id="cntHospitals"></span></label>
-    <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged street lamps — independent of, and not merged with, the PAPL survey Streetlights metric"> Street lamps (OSM) <span class="layer-count" id="cntStreetLamps"></span></label>
-    <label><input type="checkbox" id="chkCctvPriority"> CCTV priority sites <span class="layer-count" id="cntCctvPriority"></span></label>
-    <label><input type="checkbox" id="chkCctvExploratory" title="Project-computed from crash severity, volume, and nearby camera gap — not an official report recommendation"> CCTV recommended, exploratory <span class="layer-count" id="cntCctvExploratory"></span></label>
-    <label><input type="checkbox" id="chkLiquorVends"> Liquor vends (official, approx.) <span class="layer-count" id="cntLiquorVends"></span></label>
-    <label><input type="checkbox" id="chkCrashZones2024Approx"> Crash zones 2024 (full, approx.) <span class="layer-count" id="cntCrashZones2024Approx"></span></label>
-    <label><input type="checkbox" id="chkLanduse" title="OSM-mapped land use — only ~23.4% of Delhi's area is tagged; untagged area is not necessarily vacant"> Land use <span class="layer-count" id="cntLanduse"></span></label>
-    <div id="landuseLegend" class="landuse-legend">
-      <span><i style="background:#e3a13b;"></i>Residential</span>
-      <span><i style="background:#b14a34;"></i>Commercial</span>
-      <span><i style="background:#626b78;"></i>Industrial</span>
-      <span><i style="background:#3d5a99;"></i>Institutional</span>
-      <span><i style="background:#3f7d52;"></i>Green/open</span>
-      <span><i style="background:#8b8b8b;"></i>Other</span>
-    </div>
+    <details class="layer-group" open>
+      <summary>Police &amp; emergency</summary>
+      <div class="layer-group-body">
+        <label><input type="checkbox" id="chkPolice"> Police stations <span class="layer-count" id="cntPolice"></span></label>
+        <label><input type="checkbox" id="chkPosts"> Chowkis/posts <span class="layer-count" id="cntPosts"></span></label>
+        <label><input type="checkbox" id="chkHospitals"> Hospitals <span class="layer-count" id="cntHospitals"></span></label>
+      </div>
+    </details>
+    <details class="layer-group" open>
+      <summary>Crash zones</summary>
+      <div class="layer-group-body">
+        <label><input type="checkbox" id="chkZones"> Crash zones <span class="layer-count" id="cntZones"></span></label>
+        <label>Zone year: <div class="seg" id="zoneYearToggle"><button class="active" data-year="2023">2023</button><button data-year="2024">2024</button></div></label>
+        <label><input type="checkbox" id="chkCrashZones2024Approx"> Crash zones 2024 (full, approx.) <span class="layer-count" id="cntCrashZones2024Approx"></span></label>
+      </div>
+    </details>
+    <details class="layer-group">
+      <summary>Roads &amp; footpaths</summary>
+      <div class="layer-group-body">
+        <label><input type="checkbox" id="chkTrafficSignals"> Traffic signals <span class="layer-count" id="cntTrafficSignals"></span></label>
+        <label><input type="checkbox" id="chkCrossings"> Pedestrian crossings <span class="layer-count" id="cntCrossings"></span></label>
+        <label><input type="checkbox" id="chkOverpasses"> Pedestrian overbridges <span class="layer-count" id="cntOverpasses"></span></label>
+        <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged street lamps — independent of, and not merged with, the PAPL survey Streetlights metric"> Street lamps (OSM) <span class="layer-count" id="cntStreetLamps"></span></label>
+      </div>
+    </details>
+    <details class="layer-group">
+      <summary>Places</summary>
+      <div class="layer-group-body">
+        <label><input type="checkbox" id="chkBus"> Bus stops <span class="layer-count" id="cntBus"></span></label>
+        <label><input type="checkbox" id="chkAtm"> ATMs <span class="layer-count" id="cntAtm"></span></label>
+        <label><input type="checkbox" id="chkAlcohol"> Liquor shops <span class="layer-count" id="cntAlcohol"></span></label>
+        <label><input type="checkbox" id="chkLiquorVends"> Liquor vends (official, approx.) <span class="layer-count" id="cntLiquorVends"></span></label>
+      </div>
+    </details>
+    <details class="layer-group">
+      <summary>Surveillance &amp; CCTV recommendations</summary>
+      <div class="layer-group-body">
+        <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
+        <label><input type="checkbox" id="chkCctvPriority"> CCTV priority sites <span class="layer-count" id="cntCctvPriority"></span></label>
+        <label><input type="checkbox" id="chkCctvExploratory" title="Project-computed from crash severity, volume, and nearby camera gap — not an official report recommendation"> CCTV recommended, exploratory <span class="layer-count" id="cntCctvExploratory"></span></label>
+      </div>
+    </details>
+    <details class="layer-group">
+      <summary>Land use</summary>
+      <div class="layer-group-body">
+        <label><input type="checkbox" id="chkLanduse" title="OSM-mapped land use — only ~23.4% of Delhi's area is tagged; untagged area is not necessarily vacant"> Land use <span class="layer-count" id="cntLanduse"></span></label>
+        <div id="landuseLegend" class="landuse-legend">
+          <span><i style="background:#e3a13b;"></i>Residential</span>
+          <span><i style="background:#b14a34;"></i>Commercial</span>
+          <span><i style="background:#626b78;"></i>Industrial</span>
+          <span><i style="background:#3d5a99;"></i>Institutional</span>
+          <span><i style="background:#3f7d52;"></i>Green/open</span>
+          <span><i style="background:#8b8b8b;"></i>Other</span>
+        </div>
+      </div>
+    </details>
   </div>
 </div>
 <div id="analysisBar">
