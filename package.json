@@ -9,7 +9,9 @@
     "build:ward-infra": "node scripts/build_ward_infra.js",
     "build:overpasses": "node scripts/build_pedestrian_overpasses.js",
     "build:releases": "node scripts/build_yearly_releases.js",
-    "build:interactive-map": "node scripts/build_pedestrian_overpasses.js && node scripts/build_ward_infra.js && node scripts/build_interactive_map.js",
+    "build:infra-extras": "node scripts/build_infra_extras.js",
+    "fetch:infra-extras": "node scripts/fetch_osm_infra_snapshots.js",
+    "build:interactive-map": "node scripts/build_pedestrian_overpasses.js && node scripts/build_ward_infra.js && node scripts/build_infra_extras.js && node scripts/build_interactive_map.js",
     "test": "node --test test/liquor_crash_proximity.test.js test/exploratory_score.test.js test/pedestrian_overpasses.test.js test/yearly_releases.test.js"
   },
   "dependencies": {

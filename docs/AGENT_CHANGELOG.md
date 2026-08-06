@@ -8,6 +8,25 @@
 > the repo; that one is only for numbers a researcher may have already
 > cited.
 
+## [2026-08-06] - Claude (Anthropic) - Added Traffic Signals, Crossings, Hospitals, and Footway Coverage to the Interactive Map
+
+### 🚦 Three new OSM-sourced infrastructure layers, chosen from a user-requested shortlist, plus an exploratory CCTV/guard recommendation layer grounded in cited road-safety research
+
+User asked what more infrastructure data could be added and picked three from the shortlist: traffic signals/pedestrian crossings, hospitals, and footway/sidewalk coverage.
+
+1. **`scripts/fetch_osm_infra_snapshots.js`** (new): reproducible Overpass fetcher, same "committed snapshot, not fetched live" convention as the existing pedestrian-overbridge pipeline. Bounding box matches the dashboard's own district-boundary extent. Footways required splitting into four geographic quadrants and retrying after rate limits/a 504 — Delhi has too many mapped footway/sidewalk ways for the public Overpass instance to return in one request.
+2. **`scripts/build_infra_extras.js`** (new): filters traffic signals (1,016) and pedestrian crossings (1,885) to two point layers; hospitals (652, deduplicated node/way/relation, way/relation centroid via `out center`) to a third. Footway/sidewalk coverage (11,499 raw ways, deduplicated by ID across quadrant-boundary overlaps) is deliberately **not** shipped to the browser as line geometry — computed instead as total length (km) and density (km/km²) per district at build time (`data/delhi_footway_coverage.json`), the same count+density shape every other `INFRA[]` entry already uses, so it plugs into the existing choropleth/bivariate/correlation-matrix machinery with no new UI code. 796.2 km mapped across the 15 districts — a mapped inventory, not an official completeness register, same caveat as every other OSM layer here.
+3. Kept the new footway data out of `data/dashboard_final.json` (the heavily-depended-on core dataset) — it lives in its own file, joined onto boundary properties the same way the core stats already are, so this new, still-exploratory metric can't risk corrupting the file every other build script depends on.
+4. **`scripts/build_interactive_map.js`**: three new toggleable point layers (traffic signals, pedestrian crossings, hospitals — all clustered, matching the existing bus-stop/ATM convention at this density) and `footway` added to `INFRA[]`.
+
+Same turn, also:
+
+5. **New exploratory CCTV/guard-post recommendation layer**, distinct from the existing report-sourced "CCTV priority sites" layer. Ranks the top 15 crash-zone sites by a percentile score blending this site's own fatal/total crash counts, the camera-coverage gap within 300m, and its surrounding district's crime rate (folded in per a follow-up request that it should also account for high crime, not just crash severity) — reuses the existing, tested `computeExploratoryScore` helper rather than a new ad-hoc implementation. Weights and methodology are grounded in and cite: WHO's *Save LIVES* road safety technical package / iRAP Safe System approach (severity-weighted micro-place prioritization), Weisburd (2015) on crime/crash concentration at micro-places, and Welsh & Farrington (2009) on CCTV coverage-gap effectiveness. Every popup shows a "Why this site" breakdown (factor, raw value, percentile, weight) generated from the scoring function's own output, not hand-written text.
+6. Fixed a real layer-accumulation bug found while investigating a user-reported map screenshot: `clearAnalysisHighlight()` removed `weakCoverageLayer` from the map but never called `clearLayers()` on it, so the "weak police coverage" spatial-analysis outlines stacked on every re-run instead of being replaced.
+7. Added hover tooltips to every marker/circle layer that previously only revealed its identity on click, plus `title` attributes on the metric/infra dropdowns.
+
+Verified: `node --check` on the extracted script; live browser checks confirmed all three new point layers load/toggle/count correctly, footway density renders through the existing choropleth path with real per-district values, the CCTV-recommendation layer's popups show a correct factor breakdown, and the layer-leak fix holds steady across repeated triggers instead of accumulating. `npm run build:releases` re-run to pick up the two new `data/` files in the shared manifest inventory. `npm test` — 30/30 pass.
+
 ## [2026-08-05] - Claude (Anthropic) - Sparklines Only Ever Plotted 3 Years, Even Though 8-9 Years of Real Data Already Existed
 
 ### 📈 renderSparkline() was hardcoded to prevKey/key/key2024 and never looked at historicalYears, which every other part of this dashboard already reads

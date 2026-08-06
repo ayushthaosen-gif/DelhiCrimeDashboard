@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-08-05T12:16:10.924Z",
+  "generatedAt": "2026-08-06T07:20:29.985Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -163,8 +163,8 @@
       "datasetId": "delhi_crash_prone_zones_2024_coordinate_audit",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "9a86d95683fdbb6e5ecc4c68a0f484df6ae05afe66c522bbefffd4422e4489ae",
-      "bytes": 14956
+      "sha256": "5c43871f47b96ac12defaf2cff91b9bbb8711863e077bd74e319ed16ef5ee977",
+      "bytes": 15050
     },
     {
       "file": "data/delhi_crash_report_relevant_metrics_2024.json",
@@ -191,6 +191,14 @@
       "bytes": 42565
     },
     {
+      "file": "data/delhi_footway_coverage.json",
+      "datasetId": "delhi_footway_coverage",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "2f8fb02a1dd3e4737634f1b5bb3c31bcef711ec9d4b3eea66fac8e9903fd3a67",
+      "bytes": 2002
+    },
+    {
       "file": "data/delhi_liquor_vends_all_coordinates_approx.geojson",
       "datasetId": "liquor_vends_approximate",
       "provenanceStatus": "source-described-above",
@@ -203,8 +211,8 @@
       "datasetId": "delhi_liquor_vends_coordinate_audit",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "7919071af3d244ae865bc83b4be531d12a7da01464a9c67a4b16a6154e05adfb",
-      "bytes": 132278
+      "sha256": "96705a8d1780dc8bbf1fcfda4ceb1adb1430d3cb3fbe738291f7a9a66e4cd320",
+      "bytes": 132666
     },
     {
       "file": "data/delhi_pedestrian_overpasses_osm.geojson",
@@ -253,6 +261,14 @@
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
       "sha256": "32def029a6b3901d538bfd6bbdd7de56ed99494c8e66c67f708cc752678270ac",
       "bytes": 173352
+    },
+    {
+      "file": "data/poi_markers_infra_extras.json",
+      "datasetId": "poi_markers_infra_extras",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "c12a16a9863382ea05afa3f878928e0b29d90d4441aa3c467e4e2462beff45b0",
+      "bytes": 270388
     },
     {
       "file": "data/poi_markers_latlng.json",

@@ -1,0 +1,92 @@
+[
+  {
+    "district": "Central",
+    "footwayLengthKm": 35.2,
+    "footwayDensityKmPerKm2": 1.266,
+    "footwaySegmentCount": 414
+  },
+  {
+    "district": "Dwarka",
+    "footwayLengthKm": 45.7,
+    "footwayDensityKmPerKm2": 0.167,
+    "footwaySegmentCount": 329
+  },
+  {
+    "district": "East",
+    "footwayLengthKm": 59.2,
+    "footwayDensityKmPerKm2": 1.416,
+    "footwaySegmentCount": 571
+  },
+  {
+    "district": "New Delhi",
+    "footwayLengthKm": 109.6,
+    "footwayDensityKmPerKm2": 3.036,
+    "footwaySegmentCount": 1232
+  },
+  {
+    "district": "North",
+    "footwayLengthKm": 61.1,
+    "footwayDensityKmPerKm2": 0.92,
+    "footwaySegmentCount": 881
+  },
+  {
+    "district": "North-East",
+    "footwayLengthKm": 13.8,
+    "footwayDensityKmPerKm2": 0.277,
+    "footwaySegmentCount": 103
+  },
+  {
+    "district": "North-West",
+    "footwayLengthKm": 75.2,
+    "footwayDensityKmPerKm2": 1.825,
+    "footwaySegmentCount": 1332
+  },
+  {
+    "district": "Outer",
+    "footwayLengthKm": 6.2,
+    "footwayDensityKmPerKm2": 0.075,
+    "footwaySegmentCount": 66
+  },
+  {
+    "district": "Outer North",
+    "footwayLengthKm": 10.9,
+    "footwayDensityKmPerKm2": 0.042,
+    "footwaySegmentCount": 290
+  },
+  {
+    "district": "Rohini",
+    "footwayLengthKm": 28.8,
+    "footwayDensityKmPerKm2": 0.216,
+    "footwaySegmentCount": 296
+  },
+  {
+    "district": "Shahdara",
+    "footwayLengthKm": 20,
+    "footwayDensityKmPerKm2": 0.743,
+    "footwaySegmentCount": 325
+  },
+  {
+    "district": "South",
+    "footwayLengthKm": 79.7,
+    "footwayDensityKmPerKm2": 0.497,
+    "footwaySegmentCount": 927
+  },
+  {
+    "district": "South-East",
+    "footwayLengthKm": 104.4,
+    "footwayDensityKmPerKm2": 1.273,
+    "footwaySegmentCount": 1162
+  },
+  {
+    "district": "South-West",
+    "footwayLengthKm": 97.2,
+    "footwayDensityKmPerKm2": 0.781,
+    "footwaySegmentCount": 1154
+  },
+  {
+    "district": "West",
+    "footwayLengthKm": 49.2,
+    "footwayDensityKmPerKm2": 0.76,
+    "footwaySegmentCount": 628
+  }
+]

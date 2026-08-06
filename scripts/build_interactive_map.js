@@ -13,7 +13,11 @@ const ROOT = path.resolve(__dirname, '..');
 const boundaries = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_boundaries_simplified.geojson'), 'utf8'));
 const dashboardFinal = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_final.json'), 'utf8'));
 const policeMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/police_markers_latlng.json'), 'utf8'));
-const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_latlng.json'), 'utf8'));
+const poiMarkers = Object.assign(
+  JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_latlng.json'), 'utf8')),
+  JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_infra_extras.json'), 'utf8'))
+);
+const footwayCoverage = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_footway_coverage.json'), 'utf8'));
 const crashZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_geocoded.json'), 'utf8'));
 const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2024_geocoded.json'), 'utf8'));
 const wardsInfra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_wards_infra.geojson'), 'utf8'));
@@ -26,6 +30,14 @@ const statsByDistrict = {};
 dashboardFinal.districts.forEach(d => { statsByDistrict[d.district] = d; });
 boundaries.features.forEach(f => {
   Object.assign(f.properties, statsByDistrict[f.properties.district] || {});
+});
+// Footway/sidewalk coverage lives in its own file (not dashboard_final.json) so this new,
+// still-exploratory OSM-derived metric can't accidentally corrupt the core, heavily-depended-on
+// dashboard dataset -- joined on the same district key, same way as the stats above.
+const footwayByDistrict = {};
+footwayCoverage.forEach(r => { footwayByDistrict[r.district] = r; });
+boundaries.features.forEach(f => {
+  Object.assign(f.properties, footwayByDistrict[f.properties.district] || {});
 });
 
 const html = `<!doctype html>
@@ -189,6 +201,9 @@ body { display: flex; flex-direction: column; }
     <label><input type="checkbox" id="chkAlcohol"> Liquor shops <span class="layer-count" id="cntAlcohol"></span></label>
     <label><input type="checkbox" id="chkSurveillance"> CCTV/guards <span class="layer-count" id="cntSurveillance"></span></label>
     <label><input type="checkbox" id="chkOverpasses"> Pedestrian overbridges <span class="layer-count" id="cntOverpasses"></span></label>
+    <label><input type="checkbox" id="chkTrafficSignals"> Traffic signals <span class="layer-count" id="cntTrafficSignals"></span></label>
+    <label><input type="checkbox" id="chkCrossings"> Pedestrian crossings <span class="layer-count" id="cntCrossings"></span></label>
+    <label><input type="checkbox" id="chkHospitals"> Hospitals <span class="layer-count" id="cntHospitals"></span></label>
     <label><input type="checkbox" id="chkCctvPriority"> CCTV priority sites <span class="layer-count" id="cntCctvPriority"></span></label>
     <label><input type="checkbox" id="chkCctvExploratory" title="Project-computed from crash severity, volume, and nearby camera gap — not an official report recommendation"> CCTV recommended, exploratory <span class="layer-count" id="cntCctvExploratory"></span></label>
     <label><input type="checkbox" id="chkLiquorVends"> Liquor vends (official, approx.) <span class="layer-count" id="cntLiquorVends"></span></label>
@@ -273,6 +288,7 @@ const INFRA = [
   { key: 'atm', densityKey: 'atmDensity', countKey: 'atms', label: 'ATMs', source: 'OpenStreetMap (Overpass API)' },
   { key: 'alcoholShop', densityKey: 'alcoholShopDensity', countKey: 'alcoholShops', label: 'Liquor Shops', source: 'OpenStreetMap (Overpass API)' },
   { key: 'surveillance', densityKey: 'surveillanceDensity', countKey: 'surveillanceCameras', label: 'CCTV & Guards', source: 'OpenStreetMap (Overpass API)' },
+  { key: 'footway', densityKey: 'footwayDensityKmPerKm2', countKey: 'footwayLengthKm', label: 'Footpath/Sidewalk Coverage (km)', source: 'OpenStreetMap (Overpass API), mapped footway/sidewalk ways, snapshot 2026-08-06 -- not an official completeness register' },
 ];
 
 // Ward-level metrics available to the bivariate mode, split into two groups so any pairing —
@@ -302,7 +318,7 @@ const WARD_INFRA_BASIS_LABEL = {
 // underpasses. Mirrors build.js's SURVEYED set/infraCovered() exactly.
 const SURVEYED = new Set(['Central','East','New Delhi','North','Shahdara','South','South-East','South-West','West']);
 function infraCovered(d, infraKey) {
-  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance' || infraKey === 'pedestrianOverpass') return true;
+  if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance' || infraKey === 'pedestrianOverpass' || infraKey === 'footway') return true;
   if (infraKey === 'policeInfra') return d.chowkiPosts > 0;
   return SURVEYED.has(d.district) && d[infraKey === 'streetlight' ? 'surveyPoints' : 'underpasses'] >= 10;
 }
@@ -996,6 +1012,9 @@ const busStopLayer = makeClusterLayer(POI.busStops, '#3f7d52', 'Bus Stop');
 const atmLayer = makeClusterLayer(POI.atms, '#d4af37', 'ATM');
 const alcoholLayer = makeShapeLayer(POI.alcoholShops, '#8b2f5e', 'diamond', 12);
 const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11);
+const trafficSignalLayer = makeClusterLayer(POI.trafficSignals, '#1d4ed8', 'Traffic signal');
+const crossingLayer = makeClusterLayer(POI.pedestrianCrossings, '#059669', 'Pedestrian crossing');
+const hospitalLayer = makeClusterLayer(POI.hospitals, '#dc2626', 'Hospital');
 const overpassLayer = L.markerClusterGroup({ maxClusterRadius: 42, spiderfyOnMaxZoom: true });
 PEDESTRIAN_OVERPASSES.features.forEach(f => { const p=f.properties, c=f.geometry.coordinates; L.marker([c[1],c[0]], {icon:shapeIcon('#e3a13b','square',10)}).bindTooltip(p.name, { sticky: true }).bindPopup('<div class="popup-title">'+p.name+'</div><div>'+p.district+' District</div><div>'+(p.crossesMajorRoad ? '<b>Crosses a major road</b> (motorway/trunk/primary/secondary) — a foot-over-bridge in the sense PWD Delhi and press coverage use the term.' : 'Does not cross a major road in this check — likely a footbridge over a drain, canal, or park path rather than live traffic.')+'</div><div class="popup-src">Mapped pedestrian bridge/overpass &middot; OSM snapshot '+p.sourceSnapshot+' &middot; <a href="'+p.osmUrl+'" target="_blank" rel="noopener">OpenStreetMap object</a><br>'+p.coverageNote+'</div>').addTo(overpassLayer); });
 
@@ -1192,10 +1211,11 @@ computeCctvExploratoryCandidates().forEach(c => {
 const toggles = [
   ['chkPolice', policeStationLayer, 'cntPolice'], ['chkPosts', policePostLayer, 'cntPosts'], ['chkZones', zonesGroup, 'cntZones'],
   ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'], ['chkOverpasses', overpassLayer, 'cntOverpasses'],
+  ['chkTrafficSignals', trafficSignalLayer, 'cntTrafficSignals'], ['chkCrossings', crossingLayer, 'cntCrossings'], ['chkHospitals', hospitalLayer, 'cntHospitals'],
   ['chkCctvPriority', cctvPriorityLayer, 'cntCctvPriority'], ['chkCctvExploratory', cctvExploratoryLayer, 'cntCctvExploratory'],
   ['chkLiquorVends', liquorVendsLayer, 'cntLiquorVends'], ['chkCrashZones2024Approx', crashZones2024ApproxLayer, 'cntCrashZones2024Approx'],
 ];
-const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntCctvExploratory: cctvExploratoryLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length };
+const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntTrafficSignals: POI.trafficSignals.length, cntCrossings: POI.pedestrianCrossings.length, cntHospitals: POI.hospitals.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntCctvExploratory: cctvExploratoryLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length };
 toggles.forEach(([id, layer, countId]) => {
   document.getElementById(countId).textContent = '(' + layerCounts[countId].toLocaleString('en-IN') + ')';
   document.getElementById(id).addEventListener('change', (e) => {
@@ -1218,6 +1238,7 @@ const POINT_LEGEND_ITEMS = [
   ['chkPolice', '#3d5a99', 'square', 'Police stations'], ['chkPosts', '#7c3aed', 'triangle', 'Chowkis/posts'],
   ['chkZones', '#b14a34', 'dot', 'Crash zones (size = fatal crashes)'], ['chkBus', '#3f7d52', 'dot', 'Bus stops (clustered)'],
   ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'], ['chkOverpasses', '#e3a13b', 'square', 'Pedestrian overbridges (OSM mapped)'],
+  ['chkTrafficSignals', '#1d4ed8', 'dot', 'Traffic signals (clustered)'], ['chkCrossings', '#059669', 'dot', 'Pedestrian crossings (clustered)'], ['chkHospitals', '#dc2626', 'dot', 'Hospitals (clustered)'],
   ['chkCctvPriority', '#0891b2', 'ring', 'CCTV priority candidates (recommended, not existing)'],
   ['chkCctvExploratory', '#c026d3', 'diamond', 'CCTV/guard recommended, exploratory (project-computed, top 15)'],
   ['chkLiquorVends', '#8b2f5e', 'diamond', 'Liquor vends, official (approx. coordinates)'],
