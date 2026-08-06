@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-08-06T10:14:12.167Z",
+  "generatedAt": "2026-08-06T10:23:56.613Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -341,6 +341,22 @@
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
       "sha256": "1b7e287b8c636a5ba4936e6ed24f7148ed97238c32c92ef2abd12211a1acb683",
       "bytes": 399455
+    },
+    {
+      "file": "data/streetlights_combined_by_district.csv",
+      "datasetId": "streetlights_combined_by_district",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "eacab80e431733f116bf2574e8a293223dd728fea49b2d03ea1dbd9f631153ee",
+      "bytes": 942
+    },
+    {
+      "file": "data/streetlights_combined_by_district.json",
+      "datasetId": "streetlights_combined_by_district",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "492b08b965a59aa60dbcfabe4b74334dd337631b2c8b43fbdf1c20a767a00843",
+      "bytes": 4570
     },
     {
       "file": "data/streetlight_grid.json",

@@ -1,0 +1,16 @@
+district,papl_survey_points,papl_total_lights,papl_density_per_km2,osm_street_lamp_count,osm_density_per_km2,combined_count,combined_density_per_km2,combined_source
+Central,5139,8173,293.5,29,1.043,8173,293.993,PAPL survey
+Dwarka,0,,,18,0.066,18,0.066,OSM (PAPL not surveyed)
+East,746,1703,40.8,267,6.388,1703,40.742,PAPL survey
+New Delhi,5018,8671,240,19,0.526,8671,240.194,PAPL survey
+North,3658,6844,103,339,5.105,6844,103.072,PAPL survey
+North-East,2,,,0,0,,,no data
+North-West,0,,,48,1.165,48,1.165,OSM (PAPL not surveyed)
+Outer,0,,,0,0,,,no data
+Outer North,0,,,0,0,,,no data
+Rohini,0,,,11,0.083,11,0.083,OSM (PAPL not surveyed)
+Shahdara,1523,2380,88.4,6,0.223,2380,88.476,PAPL survey
+South,3957,6941,43.2,450,2.804,6941,43.246,PAPL survey
+South-East,7560,15321,186.8,149,1.817,15321,186.841,PAPL survey
+South-West,10586,22310,179.1,119,0.956,22310,179.197,PAPL survey
+West,778,1106,17.1,2,0.031,1106,17.094,PAPL survey

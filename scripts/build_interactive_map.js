@@ -18,6 +18,7 @@ const poiMarkers = Object.assign(
   JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_infra_extras.json'), 'utf8'))
 );
 const footwayCoverage = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_footway_coverage.json'), 'utf8'));
+const streetlightsCombined = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/streetlights_combined_by_district.json'), 'utf8'));
 const landuse = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_landuse_simplified.geojson'), 'utf8'));
 const crashZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_geocoded.json'), 'utf8'));
 const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2024_geocoded.json'), 'utf8'));
@@ -39,6 +40,15 @@ const footwayByDistrict = {};
 footwayCoverage.forEach(r => { footwayByDistrict[r.district] = r; });
 boundaries.features.forEach(f => {
   Object.assign(f.properties, footwayByDistrict[f.properties.district] || {});
+});
+// Combined PAPL+OSM streetlight figure -- same "own file, not dashboard_final.json" reasoning as
+// footway coverage above. combined_source on every district says whether its number came from the
+// PAPL survey or the OSM fallback, so this can never be mistaken for the PAPL-only "Streetlights"
+// metric already defined in INFRA[] below (kept unchanged, still PAPL-only).
+const streetlightsCombinedByDistrict = {};
+streetlightsCombined.forEach(r => { streetlightsCombinedByDistrict[r.district] = r; });
+boundaries.features.forEach(f => {
+  Object.assign(f.properties, streetlightsCombinedByDistrict[f.properties.district] || {});
 });
 
 const html = `<!doctype html>
@@ -305,6 +315,7 @@ const INFRA = [
   { key: 'alcoholShop', densityKey: 'alcoholShopDensity', countKey: 'alcoholShops', label: 'Liquor Shops', source: 'OpenStreetMap (Overpass API)' },
   { key: 'surveillance', densityKey: 'surveillanceDensity', countKey: 'surveillanceCameras', label: 'CCTV & Guards', source: 'OpenStreetMap (Overpass API)' },
   { key: 'footway', densityKey: 'footwayDensityKmPerKm2', countKey: 'footwayLengthKm', label: 'Footpath/Sidewalk Coverage (km)', source: 'OpenStreetMap (Overpass API), mapped footway/sidewalk ways, snapshot 2026-08-06 -- not an official completeness register' },
+  { key: 'streetlightCombined', densityKey: 'combined_density_per_km2', countKey: 'combined_count', label: 'Streetlights (PAPL + OSM combined)', source: 'PAPL Open Transit Survey where surveyed (9 districts); OpenStreetMap street_lamp count where PAPL has no survey data -- see combined_source per district, never blended into one unattributed number' },
 ];
 
 // Ward-level metrics available to the bivariate mode, split into two groups so any pairing —
@@ -336,6 +347,7 @@ const SURVEYED = new Set(['Central','East','New Delhi','North','Shahdara','South
 function infraCovered(d, infraKey) {
   if (infraKey === 'metroGate' || infraKey === 'busStop' || infraKey === 'atm' || infraKey === 'alcoholShop' || infraKey === 'surveillance' || infraKey === 'pedestrianOverpass' || infraKey === 'footway') return true;
   if (infraKey === 'policeInfra') return d.chowkiPosts > 0;
+  if (infraKey === 'streetlightCombined') return d.combined_count != null; // covered whenever either PAPL or the OSM fallback actually has a number
   return SURVEYED.has(d.district) && d[infraKey === 'streetlight' ? 'surveyPoints' : 'underpasses'] >= 10;
 }
 function pearson(xs, ys) {

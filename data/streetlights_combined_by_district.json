@@ -1,0 +1,167 @@
+[
+  {
+    "district": "Central",
+    "papl_survey_points": 5139,
+    "papl_total_lights": 8173,
+    "papl_density_per_km2": 293.5,
+    "osm_street_lamp_count": 29,
+    "osm_density_per_km2": 1.043,
+    "combined_count": 8173,
+    "combined_density_per_km2": 293.993,
+    "combined_source": "PAPL survey"
+  },
+  {
+    "district": "Dwarka",
+    "papl_survey_points": 0,
+    "papl_total_lights": null,
+    "papl_density_per_km2": null,
+    "osm_street_lamp_count": 18,
+    "osm_density_per_km2": 0.066,
+    "combined_count": 18,
+    "combined_density_per_km2": 0.066,
+    "combined_source": "OSM (PAPL not surveyed)"
+  },
+  {
+    "district": "East",
+    "papl_survey_points": 746,
+    "papl_total_lights": 1703,
+    "papl_density_per_km2": 40.8,
+    "osm_street_lamp_count": 267,
+    "osm_density_per_km2": 6.388,
+    "combined_count": 1703,
+    "combined_density_per_km2": 40.742,
+    "combined_source": "PAPL survey"
+  },
+  {
+    "district": "New Delhi",
+    "papl_survey_points": 5018,
+    "papl_total_lights": 8671,
+    "papl_density_per_km2": 240,
+    "osm_street_lamp_count": 19,
+    "osm_density_per_km2": 0.526,
+    "combined_count": 8671,
+    "combined_density_per_km2": 240.194,
+    "combined_source": "PAPL survey"
+  },
+  {
+    "district": "North",
+    "papl_survey_points": 3658,
+    "papl_total_lights": 6844,
+    "papl_density_per_km2": 103,
+    "osm_street_lamp_count": 339,
+    "osm_density_per_km2": 5.105,
+    "combined_count": 6844,
+    "combined_density_per_km2": 103.072,
+    "combined_source": "PAPL survey"
+  },
+  {
+    "district": "North-East",
+    "papl_survey_points": 2,
+    "papl_total_lights": null,
+    "papl_density_per_km2": null,
+    "osm_street_lamp_count": 0,
+    "osm_density_per_km2": 0,
+    "combined_count": null,
+    "combined_density_per_km2": null,
+    "combined_source": "no data"
+  },
+  {
+    "district": "North-West",
+    "papl_survey_points": 0,
+    "papl_total_lights": null,
+    "papl_density_per_km2": null,
+    "osm_street_lamp_count": 48,
+    "osm_density_per_km2": 1.165,
+    "combined_count": 48,
+    "combined_density_per_km2": 1.165,
+    "combined_source": "OSM (PAPL not surveyed)"
+  },
+  {
+    "district": "Outer",
+    "papl_survey_points": 0,
+    "papl_total_lights": null,
+    "papl_density_per_km2": null,
+    "osm_street_lamp_count": 0,
+    "osm_density_per_km2": 0,
+    "combined_count": null,
+    "combined_density_per_km2": null,
+    "combined_source": "no data"
+  },
+  {
+    "district": "Outer North",
+    "papl_survey_points": 0,
+    "papl_total_lights": null,
+    "papl_density_per_km2": null,
+    "osm_street_lamp_count": 0,
+    "osm_density_per_km2": 0,
+    "combined_count": null,
+    "combined_density_per_km2": null,
+    "combined_source": "no data"
+  },
+  {
+    "district": "Rohini",
+    "papl_survey_points": 0,
+    "papl_total_lights": null,
+    "papl_density_per_km2": null,
+    "osm_street_lamp_count": 11,
+    "osm_density_per_km2": 0.083,
+    "combined_count": 11,
+    "combined_density_per_km2": 0.083,
+    "combined_source": "OSM (PAPL not surveyed)"
+  },
+  {
+    "district": "Shahdara",
+    "papl_survey_points": 1523,
+    "papl_total_lights": 2380,
+    "papl_density_per_km2": 88.4,
+    "osm_street_lamp_count": 6,
+    "osm_density_per_km2": 0.223,
+    "combined_count": 2380,
+    "combined_density_per_km2": 88.476,
+    "combined_source": "PAPL survey"
+  },
+  {
+    "district": "South",
+    "papl_survey_points": 3957,
+    "papl_total_lights": 6941,
+    "papl_density_per_km2": 43.2,
+    "osm_street_lamp_count": 450,
+    "osm_density_per_km2": 2.804,
+    "combined_count": 6941,
+    "combined_density_per_km2": 43.246,
+    "combined_source": "PAPL survey"
+  },
+  {
+    "district": "South-East",
+    "papl_survey_points": 7560,
+    "papl_total_lights": 15321,
+    "papl_density_per_km2": 186.8,
+    "osm_street_lamp_count": 149,
+    "osm_density_per_km2": 1.817,
+    "combined_count": 15321,
+    "combined_density_per_km2": 186.841,
+    "combined_source": "PAPL survey"
+  },
+  {
+    "district": "South-West",
+    "papl_survey_points": 10586,
+    "papl_total_lights": 22310,
+    "papl_density_per_km2": 179.1,
+    "osm_street_lamp_count": 119,
+    "osm_density_per_km2": 0.956,
+    "combined_count": 22310,
+    "combined_density_per_km2": 179.197,
+    "combined_source": "PAPL survey"
+  },
+  {
+    "district": "West",
+    "papl_survey_points": 778,
+    "papl_total_lights": 1106,
+    "papl_density_per_km2": 17.1,
+    "osm_street_lamp_count": 2,
+    "osm_density_per_km2": 0.031,
+    "combined_count": 1106,
+    "combined_density_per_km2": 17.094,
+    "combined_source": "PAPL survey"
+  }
+]

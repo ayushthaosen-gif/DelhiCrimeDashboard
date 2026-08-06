@@ -77,15 +77,14 @@ hospitalsRaw.elements.forEach(e => {
 });
 console.log('Hospitals:', hospitals.length, '(', hospitalsOutside, 'outside district polygons,', hospitalsDuped, 'duplicate elements skipped )');
 
-// ── Street lamps (OSM highway=street_lamp) — an independent, ODbL-licensed supplement to the
-// existing PAPL Open Transit Survey streetlight data already powering the "Streetlights" INFRA
-// metric (data/streetlight_grid.json). Not merged with it: the two are different surveys with
-// different coverage and confidence, and merging them would silently blend a partial 9-district
-// government survey with sparse volunteer OSM tagging under one number. Kept as its own point
-// layer, clearly labeled as OSM-sourced, so a reader can compare the two rather than getting one
-// blended, harder-to-attribute figure.
+// ── Street lamps (OSM highway=street_lamp) — point layer stays independent of the existing PAPL
+// Open Transit Survey streetlight data (data/streetlight_grid.json / the "Streetlights" INFRA
+// metric): OSM only gives point locations, PAPL only gives district-level counts, so there's no
+// point-for-point reconciliation to do. See the district-level COMBINED metric below for the
+// actual PAPL+OSM merge.
 const streetLampsRaw = JSON.parse(fs.readFileSync(path.join(SRC, 'osm_street_lamps_delhi_raw.json'), 'utf8'));
 const streetLamps = [];
+const streetLampCountByDistrict = {};
 let streetLampsOutside = 0;
 streetLampsRaw.elements.forEach(e => {
   if (e.type !== 'node') return;
@@ -94,8 +93,46 @@ streetLampsRaw.elements.forEach(e => {
   const t = e.tags || {};
   const label = 'Street lamp' + (t.lamp_type ? ' (' + t.lamp_type + ')' : '');
   streetLamps.push([e.lat, e.lon, label]);
+  streetLampCountByDistrict[d] = (streetLampCountByDistrict[d] || 0) + 1;
 });
 console.log('Street lamps:', streetLamps.length, '(', streetLampsOutside, 'outside district polygons, dropped)');
+
+// ── Combined PAPL + OSM streetlight metric, per district ──
+// PAPL (data/dashboard_final.json's surveyPoints/totalLights) is a real government-commissioned
+// physical survey, but only covers 9 of 15 districts (surveyPoints >= 10 -- the same SURVEYED
+// gate used everywhere else in this project). OSM's street_lamp tagging covers all 15 districts
+// but far more sparsely (1,457 citywide vs. PAPL's much denser per-district counts where it does
+// cover). Combined here: use PAPL's number where it's actually trustworthy (surveyed, >=10 points)
+// and fall back to the OSM count only where PAPL has nothing at all -- so a district never goes
+// from "no data" to a number just because OSM happened to tag a handful of lamps there, but also
+// never stays blank when a real, if sparser, count exists. `combined_source` on every row says
+// exactly which one was used -- never silently blended into one number.
+const SURVEYED = new Set(['Central', 'East', 'New Delhi', 'North', 'Shahdara', 'South', 'South-East', 'South-West', 'West']);
+const combinedStreetlights = dashboardFinal.districts.map(d => {
+  const paplSurveyed = SURVEYED.has(d.district) && (d.surveyPoints || 0) >= 10;
+  const osmCount = streetLampCountByDistrict[d.district] || 0;
+  const combinedCount = paplSurveyed ? d.totalLights : osmCount;
+  const combinedSource = paplSurveyed ? 'PAPL survey' : (osmCount > 0 ? 'OSM (PAPL not surveyed)' : 'no data');
+  return {
+    district: d.district,
+    papl_survey_points: d.surveyPoints || 0,
+    papl_total_lights: paplSurveyed ? d.totalLights : null,
+    papl_density_per_km2: paplSurveyed ? d.lightDensityPerKm2 : null,
+    osm_street_lamp_count: osmCount,
+    osm_density_per_km2: d.areaSqKm ? Math.round((osmCount / d.areaSqKm) * 1000) / 1000 : null,
+    combined_count: combinedCount || null,
+    combined_density_per_km2: (combinedCount && d.areaSqKm) ? Math.round((combinedCount / d.areaSqKm) * 1000) / 1000 : null,
+    combined_source: combinedSource,
+  };
+});
+function csvEscapeStreetlights(v) { if (v == null) return ''; const s = String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+const slHeaders = Object.keys(combinedStreetlights[0]);
+const slCsv = [slHeaders.join(',')].concat(combinedStreetlights.map(r => slHeaders.map(h => csvEscapeStreetlights(r[h])).join(','))).join('\r\n') + '\r\n';
+fs.writeFileSync(path.join(ROOT, 'data/streetlights_combined_by_district.csv'), slCsv);
+fs.writeFileSync(path.join(ROOT, 'data/streetlights_combined_by_district.json'), JSON.stringify(combinedStreetlights, null, 2));
+const paplCount = combinedStreetlights.filter(r => r.combined_source === 'PAPL survey').length;
+const osmFallbackCount = combinedStreetlights.filter(r => r.combined_source === 'OSM (PAPL not surveyed)').length;
+console.log('Combined streetlights: ' + paplCount + ' districts from PAPL survey, ' + osmFallbackCount + ' districts falling back to OSM (PAPL not surveyed there). Wrote data/streetlights_combined_by_district.csv/.json');
 
 fs.writeFileSync(path.join(ROOT, 'data/poi_markers_infra_extras.json'), JSON.stringify({ trafficSignals, pedestrianCrossings, hospitals, streetLamps }, null, 2));
 console.log('Wrote data/poi_markers_infra_extras.json');

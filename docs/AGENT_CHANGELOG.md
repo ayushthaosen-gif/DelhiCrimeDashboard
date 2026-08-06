@@ -8,6 +8,19 @@
 > the repo; that one is only for numbers a researcher may have already
 > cited.
 
+## [2026-08-06] - Claude (Anthropic) - Combined PAPL + OSM Streetlight Metric, After Clarifying Scope First
+
+### 💡 A real district-level reconciliation of the two streetlight sources — PAPL where surveyed, OSM only as a fallback, never blended into one unattributed number
+
+User asked to "update OSM data with PAPL survey," which is genuinely ambiguous between two very different actions: merging the two datasets inside this repo (safe, reversible), or actually submitting edits to the live public OpenStreetMap database using PAPL survey data (a real-world action affecting a shared resource well beyond this project, not something to do without explicit confirmation it's actually wanted). Asked via `AskUserQuestion` before doing either. User confirmed: merge in-repo only.
+
+Checked what a real merge could actually mean given the data's actual shape before writing code: PAPL (`data/dashboard_final.json`'s `surveyPoints`/`totalLights`) is district-level aggregate only, no point locations; OSM's `street_lamp` tagging is point-level but far sparser. No point-for-point reconciliation is possible between them — the only real merge is district-level.
+
+1. **`scripts/build_infra_extras.js`** extended: for each district, use PAPL's `totalLights` where it's actually surveyed (`surveyPoints >= 10`, the same gate used everywhere else in this project) — 9 districts. Fall back to the OSM street-lamp count only where PAPL has nothing at all — 3 districts (Dwarka, North-West, Rohini). The remaining 3 districts (North-East, Outer, Outer North) have neither and are correctly left `null`, not a fabricated zero. Every row's `combined_source` says which source was actually used. Verified against real numbers, not just "the script ran": Central shows 8,173 (PAPL) vs. only 29 OSM-tagged lamps in the same district — confirms PAPL is genuinely far more complete where it's surveyed, exactly as expected, rather than the merge silently picking the wrong/smaller number.
+2. Output as both `data/streetlights_combined_by_district.csv`/`.json` and a new "Streetlights (PAPL + OSM combined)" choropleth/bivariate option in `build_interactive_map.js`'s `INFRA[]`, joined onto boundary properties from its own file (not `dashboard_final.json`) — the existing PAPL-only "Streetlights" metric is untouched, so a reader can compare both rather than only ever seeing the merged figure.
+
+Verified: `node --check`; live browser check confirmed the new bivariate option renders the correct combined_count/combined_source for a PAPL-surveyed district (Central), an OSM-fallback district (Dwarka), and a genuinely-no-data district (Outer) — matching the CSV exactly. `npm run build:releases` re-run for the two new files; `npm test` 30/30 pass.
+
 ## [2026-08-06] - Claude (Anthropic) - Land Use on the Map, Plus OSM Street Lamps as an Independent Supplement
 
 ### 🗺️ Same land-use data now also a real polygon layer on the interactive map, not just the CSV; new street-lamp point layer kept deliberately separate from the existing PAPL streetlight metric
