@@ -18,6 +18,7 @@ const poiMarkers = Object.assign(
   JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_infra_extras.json'), 'utf8'))
 );
 const footwayCoverage = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_footway_coverage.json'), 'utf8'));
+const landuse = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_landuse_simplified.geojson'), 'utf8'));
 const crashZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_geocoded.json'), 'utf8'));
 const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2024_geocoded.json'), 'utf8'));
 const wardsInfra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_wards_infra.geojson'), 'utf8'));
@@ -141,6 +142,10 @@ body { display: flex; flex-direction: column; }
   .leaflet-control-zoom { margin-top: 10px !important; }
 }
 .layer-count { color: var(--text-dim); font-size: 10.5px; }
+.landuse-legend { display: none; flex-wrap: wrap; gap: 4px 10px; margin: 2px 0 4px 22px; font-size: 10.5px; color: var(--text-dim); }
+.landuse-legend.show { display: flex; }
+.landuse-legend span { display: inline-flex; align-items: center; gap: 4px; }
+.landuse-legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
 .point-legend { position: absolute; bottom: 20px; right: 356px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none; }
 .point-legend.show { display: block; }
 .point-legend .row { display: flex; align-items: center; gap: 7px; padding: 2px 0; }
@@ -204,10 +209,20 @@ body { display: flex; flex-direction: column; }
     <label><input type="checkbox" id="chkTrafficSignals"> Traffic signals <span class="layer-count" id="cntTrafficSignals"></span></label>
     <label><input type="checkbox" id="chkCrossings"> Pedestrian crossings <span class="layer-count" id="cntCrossings"></span></label>
     <label><input type="checkbox" id="chkHospitals"> Hospitals <span class="layer-count" id="cntHospitals"></span></label>
+    <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged street lamps — independent of, and not merged with, the PAPL survey Streetlights metric"> Street lamps (OSM) <span class="layer-count" id="cntStreetLamps"></span></label>
     <label><input type="checkbox" id="chkCctvPriority"> CCTV priority sites <span class="layer-count" id="cntCctvPriority"></span></label>
     <label><input type="checkbox" id="chkCctvExploratory" title="Project-computed from crash severity, volume, and nearby camera gap — not an official report recommendation"> CCTV recommended, exploratory <span class="layer-count" id="cntCctvExploratory"></span></label>
     <label><input type="checkbox" id="chkLiquorVends"> Liquor vends (official, approx.) <span class="layer-count" id="cntLiquorVends"></span></label>
     <label><input type="checkbox" id="chkCrashZones2024Approx"> Crash zones 2024 (full, approx.) <span class="layer-count" id="cntCrashZones2024Approx"></span></label>
+    <label><input type="checkbox" id="chkLanduse" title="OSM-mapped land use — only ~23.4% of Delhi's area is tagged; untagged area is not necessarily vacant"> Land use <span class="layer-count" id="cntLanduse"></span></label>
+    <div id="landuseLegend" class="landuse-legend">
+      <span><i style="background:#e3a13b;"></i>Residential</span>
+      <span><i style="background:#b14a34;"></i>Commercial</span>
+      <span><i style="background:#626b78;"></i>Industrial</span>
+      <span><i style="background:#3d5a99;"></i>Institutional</span>
+      <span><i style="background:#3f7d52;"></i>Green/open</span>
+      <span><i style="background:#8b8b8b;"></i>Other</span>
+    </div>
   </div>
 </div>
 <div id="analysisBar">
@@ -260,6 +275,7 @@ const wardsInfra = ${JSON.stringify(wardsInfra)};
 const LIQUOR_VENDS_APPROX = ${JSON.stringify(liquorVendsApprox)};
 const CRASH_ZONES_2024_APPROX = ${JSON.stringify(crashZones2024Approx)};
 const PEDESTRIAN_OVERPASSES = ${JSON.stringify(pedestrianOverpasses)};
+const landuse = ${JSON.stringify(landuse)};
 
 // Crime/road-safety metrics -- mirrors build.js's METRICS[] (year-aware fields, sources) so
 // this page's popups/colors carry the same year semantics as the main dashboard instead of
@@ -841,7 +857,7 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
 // on every relevant control change. Every value read back from the URL is validated against the
 // actual known option lists below before being applied -- an unrecognized value is silently
 // ignored and the corresponding default is kept, never applied blindly.
-const POINT_LAYER_IDS = ['chkPolice', 'chkPosts', 'chkZones', 'chkBus', 'chkAtm', 'chkAlcohol', 'chkSurveillance', 'chkOverpasses', 'chkCctvPriority', 'chkLiquorVends', 'chkCrashZones2024Approx'];
+const POINT_LAYER_IDS = ['chkPolice', 'chkPosts', 'chkZones', 'chkBus', 'chkAtm', 'chkAlcohol', 'chkSurveillance', 'chkOverpasses', 'chkTrafficSignals', 'chkCrossings', 'chkHospitals', 'chkStreetLamps', 'chkCctvPriority', 'chkCctvExploratory', 'chkLiquorVends', 'chkCrashZones2024Approx', 'chkLanduse'];
 let pendingUrlDistrict = null;
 let pendingUrlState = null; // { heatmap, zoneYear, ward, wx, wy, layers } -- applied once every
                               // relevant section has finished wiring its own event listeners (see
@@ -1015,6 +1031,7 @@ const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11
 const trafficSignalLayer = makeClusterLayer(POI.trafficSignals, '#1d4ed8', 'Traffic signal');
 const crossingLayer = makeClusterLayer(POI.pedestrianCrossings, '#059669', 'Pedestrian crossing');
 const hospitalLayer = makeClusterLayer(POI.hospitals, '#dc2626', 'Hospital');
+const streetLampLayer = makeClusterLayer(POI.streetLamps, '#eab308', 'Street lamp');
 const overpassLayer = L.markerClusterGroup({ maxClusterRadius: 42, spiderfyOnMaxZoom: true });
 PEDESTRIAN_OVERPASSES.features.forEach(f => { const p=f.properties, c=f.geometry.coordinates; L.marker([c[1],c[0]], {icon:shapeIcon('#e3a13b','square',10)}).bindTooltip(p.name, { sticky: true }).bindPopup('<div class="popup-title">'+p.name+'</div><div>'+p.district+' District</div><div>'+(p.crossesMajorRoad ? '<b>Crosses a major road</b> (motorway/trunk/primary/secondary) — a foot-over-bridge in the sense PWD Delhi and press coverage use the term.' : 'Does not cross a major road in this check — likely a footbridge over a drain, canal, or park path rather than live traffic.')+'</div><div class="popup-src">Mapped pedestrian bridge/overpass &middot; OSM snapshot '+p.sourceSnapshot+' &middot; <a href="'+p.osmUrl+'" target="_blank" rel="noopener">OpenStreetMap object</a><br>'+p.coverageNote+'</div>').addTo(overpassLayer); });
 
@@ -1056,6 +1073,25 @@ CRASH_ZONES_2024_APPROX.features.forEach(f => {
       '<div style="font-style:italic;">Approximate coordinate (' + p.coordinate_method + ', ' + p.coordinate_confidence + ' confidence, ±' + fmtNum(p.estimated_accuracy_m) + 'm) — ' + p.coordinate_warning + '</div>' +
       '<div class="popup-src">Source: Delhi Road Crash Report 2024, Delhi Traffic Police. Full 93-zone approximate-coordinate pass — distinct from the 54/93 geocoded subset in the "Crash zones" layer.</div>')
     .addTo(crashZones2024ApproxLayer);
+});
+
+// ── Land use — real OSM landuse=* polygons, grouped into 6 categories and simplified for map
+// rendering (full precision would add ~3.4MB to the page). Only ~23.4% of Delhi's area carries an
+// OSM landuse tag; every popup and the legend both say so, so the untagged remainder is never
+// misread as "vacant land" rather than "not tagged." An official Delhi ward-wise land-use dataset
+// was searched for and deliberately not used -- see data/source/README.md.
+const LANDUSE_LABELS = { residential: 'Residential', commercial: 'Commercial', industrial: 'Industrial', institutional: 'Institutional', green_open: 'Green/open (parks, farmland, forest)', other: 'Other/unclassified' };
+const landuseLayer = L.geoJSON(landuse, {
+  style: f => ({ color: f.properties.color, weight: 0.5, fillColor: f.properties.color, fillOpacity: 0.35 }),
+  onEachFeature: (f, layer) => {
+    const p = f.properties;
+    const areaKm2 = p.area_km2;
+    layer.bindTooltip((LANDUSE_LABELS[p.category] || p.category) + (p.landuse !== p.category ? ' (' + p.landuse + ')' : ''), { sticky: true });
+    layer.bindPopup('<div class="popup-title">' + (LANDUSE_LABELS[p.category] || p.category) + '</div>' +
+      '<div class="popup-rank">OSM tag: landuse=' + p.landuse + '</div>' +
+      '<div>' + (areaKm2 < 0.01 ? Math.round(areaKm2 * 1e6).toLocaleString('en-IN') + ' m²' : areaKm2.toFixed(3) + ' km²') + '</div>' +
+      '<div class="popup-src">OpenStreetMap-mapped land use — only ~23.4% of Delhi\\'s area carries a landuse tag in OSM; the untagged rest is not necessarily vacant, just not tagged. Not an official Delhi land-use survey.</div>');
+  },
 });
 
 // Crash zones support a year toggle (2023/2024) -- rebuildZonesLayer() clears and repopulates
@@ -1211,11 +1247,12 @@ computeCctvExploratoryCandidates().forEach(c => {
 const toggles = [
   ['chkPolice', policeStationLayer, 'cntPolice'], ['chkPosts', policePostLayer, 'cntPosts'], ['chkZones', zonesGroup, 'cntZones'],
   ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'], ['chkOverpasses', overpassLayer, 'cntOverpasses'],
-  ['chkTrafficSignals', trafficSignalLayer, 'cntTrafficSignals'], ['chkCrossings', crossingLayer, 'cntCrossings'], ['chkHospitals', hospitalLayer, 'cntHospitals'],
+  ['chkTrafficSignals', trafficSignalLayer, 'cntTrafficSignals'], ['chkCrossings', crossingLayer, 'cntCrossings'], ['chkHospitals', hospitalLayer, 'cntHospitals'], ['chkStreetLamps', streetLampLayer, 'cntStreetLamps'],
   ['chkCctvPriority', cctvPriorityLayer, 'cntCctvPriority'], ['chkCctvExploratory', cctvExploratoryLayer, 'cntCctvExploratory'],
   ['chkLiquorVends', liquorVendsLayer, 'cntLiquorVends'], ['chkCrashZones2024Approx', crashZones2024ApproxLayer, 'cntCrashZones2024Approx'],
+  ['chkLanduse', landuseLayer, 'cntLanduse'],
 ];
-const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntTrafficSignals: POI.trafficSignals.length, cntCrossings: POI.pedestrianCrossings.length, cntHospitals: POI.hospitals.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntCctvExploratory: cctvExploratoryLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length };
+const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntTrafficSignals: POI.trafficSignals.length, cntCrossings: POI.pedestrianCrossings.length, cntHospitals: POI.hospitals.length, cntStreetLamps: POI.streetLamps.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntCctvExploratory: cctvExploratoryLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length, cntLanduse: landuse.features.length };
 toggles.forEach(([id, layer, countId]) => {
   document.getElementById(countId).textContent = '(' + layerCounts[countId].toLocaleString('en-IN') + ')';
   document.getElementById(id).addEventListener('change', (e) => {
@@ -1223,6 +1260,9 @@ toggles.forEach(([id, layer, countId]) => {
     updatePointLegend();
     updateUrlState();
   });
+});
+document.getElementById('chkLanduse').addEventListener('change', (e) => {
+  document.getElementById('landuseLegend').classList.toggle('show', e.target.checked);
 });
 
 document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(btn => {
@@ -1238,7 +1278,7 @@ const POINT_LEGEND_ITEMS = [
   ['chkPolice', '#3d5a99', 'square', 'Police stations'], ['chkPosts', '#7c3aed', 'triangle', 'Chowkis/posts'],
   ['chkZones', '#b14a34', 'dot', 'Crash zones (size = fatal crashes)'], ['chkBus', '#3f7d52', 'dot', 'Bus stops (clustered)'],
   ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'], ['chkOverpasses', '#e3a13b', 'square', 'Pedestrian overbridges (OSM mapped)'],
-  ['chkTrafficSignals', '#1d4ed8', 'dot', 'Traffic signals (clustered)'], ['chkCrossings', '#059669', 'dot', 'Pedestrian crossings (clustered)'], ['chkHospitals', '#dc2626', 'dot', 'Hospitals (clustered)'],
+  ['chkTrafficSignals', '#1d4ed8', 'dot', 'Traffic signals (clustered)'], ['chkCrossings', '#059669', 'dot', 'Pedestrian crossings (clustered)'], ['chkHospitals', '#dc2626', 'dot', 'Hospitals (clustered)'], ['chkStreetLamps', '#eab308', 'dot', 'Street lamps, OSM (clustered)'],
   ['chkCctvPriority', '#0891b2', 'ring', 'CCTV priority candidates (recommended, not existing)'],
   ['chkCctvExploratory', '#c026d3', 'diamond', 'CCTV/guard recommended, exploratory (project-computed, top 15)'],
   ['chkLiquorVends', '#8b2f5e', 'diamond', 'Liquor vends, official (approx. coordinates)'],

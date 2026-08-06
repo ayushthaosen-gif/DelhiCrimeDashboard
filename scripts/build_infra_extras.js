@@ -1,6 +1,6 @@
-// Processes the three raw OSM/Overpass snapshots from fetch_osm_infra_snapshots.js into
-// dashboard-ready point layers (traffic signals, pedestrian crossings, hospitals) and a
-// district-level footpath/sidewalk coverage metric.
+// Processes raw OSM/Overpass snapshots into dashboard-ready point layers (traffic signals,
+// pedestrian crossings, hospitals, street lamps) and a district-level footpath/sidewalk coverage
+// metric.
 //
 // Footway/sidewalk coverage is intentionally NOT shipped to the browser as raw line geometry --
 // Delhi has 11k+ footway/sidewalk ways in OSM (~5MB of geometry), which would bloat the page and
@@ -77,7 +77,27 @@ hospitalsRaw.elements.forEach(e => {
 });
 console.log('Hospitals:', hospitals.length, '(', hospitalsOutside, 'outside district polygons,', hospitalsDuped, 'duplicate elements skipped )');
 
-fs.writeFileSync(path.join(ROOT, 'data/poi_markers_infra_extras.json'), JSON.stringify({ trafficSignals, pedestrianCrossings, hospitals }, null, 2));
+// ── Street lamps (OSM highway=street_lamp) — an independent, ODbL-licensed supplement to the
+// existing PAPL Open Transit Survey streetlight data already powering the "Streetlights" INFRA
+// metric (data/streetlight_grid.json). Not merged with it: the two are different surveys with
+// different coverage and confidence, and merging them would silently blend a partial 9-district
+// government survey with sparse volunteer OSM tagging under one number. Kept as its own point
+// layer, clearly labeled as OSM-sourced, so a reader can compare the two rather than getting one
+// blended, harder-to-attribute figure.
+const streetLampsRaw = JSON.parse(fs.readFileSync(path.join(SRC, 'osm_street_lamps_delhi_raw.json'), 'utf8'));
+const streetLamps = [];
+let streetLampsOutside = 0;
+streetLampsRaw.elements.forEach(e => {
+  if (e.type !== 'node') return;
+  const d = districtOf(e.lon, e.lat);
+  if (!d) { streetLampsOutside++; return; }
+  const t = e.tags || {};
+  const label = 'Street lamp' + (t.lamp_type ? ' (' + t.lamp_type + ')' : '');
+  streetLamps.push([e.lat, e.lon, label]);
+});
+console.log('Street lamps:', streetLamps.length, '(', streetLampsOutside, 'outside district polygons, dropped)');
+
+fs.writeFileSync(path.join(ROOT, 'data/poi_markers_infra_extras.json'), JSON.stringify({ trafficSignals, pedestrianCrossings, hospitals, streetLamps }, null, 2));
 console.log('Wrote data/poi_markers_infra_extras.json');
 
 // ── Footway/sidewalk coverage ──

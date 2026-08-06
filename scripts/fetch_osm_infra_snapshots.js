@@ -25,6 +25,11 @@ const QUERIES = {
     );
     out body;
   `,
+  osm_street_lamps_delhi_raw: `
+    [out:json][timeout:90];
+    node["highway"="street_lamp"](${BBOX});
+    out body;
+  `,
   osm_hospitals_delhi_raw: `
     [out:json][timeout:120];
     (

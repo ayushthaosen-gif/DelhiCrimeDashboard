@@ -8,6 +8,19 @@
 > the repo; that one is only for numbers a researcher may have already
 > cited.
 
+## [2026-08-06] - Claude (Anthropic) - Land Use on the Map, Plus OSM Street Lamps as an Independent Supplement
+
+### 🗺️ Same land-use data now also a real polygon layer on the interactive map, not just the CSV; new street-lamp point layer kept deliberately separate from the existing PAPL streetlight metric
+
+User asked to also add land use to the map (after the CSV-only version shipped earlier the same day), then separately asked to add street lights from OSM/open data.
+
+1. **Land use on the map**: `scripts/build_landuse_wards_csv.js` now also writes `data/delhi_landuse_simplified.geojson` — the same 9,881 landuse polygons behind the CSV, but coordinates rounded to 5 decimal places and `turf.simplify`d (0.0001° tolerance) so the embedded payload is ~2.8MB instead of the ~3.4MB full-precision version. Rendered as a new toggleable "Land use" polygon layer in `build_interactive_map.js`, styled by the same 6 categories as the CSV, with a static color-key legend and per-polygon popups repeating the same "only ~23.4% of area is tagged" caveat so the map layer can't drift from the CSV's honesty.
+2. **Caught a real bug before it shipped**: the first version of the new code referenced a `landuse` variable inside the page's embedded `<script>` template without ever actually embedding the data (`${JSON.stringify(landuse)}`) — every other dataset on this page follows that pattern, and this one was missed. Caught immediately by comparing `interactive_map.html`'s file size before/after (2417KB, basically unchanged) against the expected +2.8MB, rather than assuming a clean `node --check` and no console errors meant the feature actually worked — a `ReferenceError` on `L.geoJSON(landuse, ...)` would only have surfaced by actually toggling the layer live, which a syntax check alone doesn't catch. Fixed and re-verified against the correct ~5.2MB output size.
+3. **Also found and fixed a real, older gap while touching this code**: `POINT_LAYER_IDS` (the URL-state allowlist for which point-layer checkboxes can be restored from a shared link) had never been updated for `chkTrafficSignals`, `chkCrossings`, `chkHospitals`, or `chkCctvExploratory` from earlier work today — so a shared URL with those layers checked would have silently dropped them. Fixed comprehensively in one pass, including the new `chkLanduse` and `chkStreetLamps`.
+4. **Street lamps**: `node["highway"="street_lamp"]` — 1,529 nodes fetched, 1,457 within district polygons. Added as its own clustered point layer, explicitly kept separate from the existing PAPL Open Transit Survey streetlight data (the source behind the "Streetlights" INFRA metric) rather than merged into it — the two are different surveys with different coverage and confidence, and blending them would produce one harder-to-attribute number instead of two independently comparable ones.
+
+Verified: `node --check`; live browser checks confirmed both new layers toggle on/off, counts match the fetch output, the land-use legend shows/hides in sync with the checkbox (including via the URL-restore path, which dispatches a real `change` event rather than just setting `.checked`), and no console errors on a page now over 5MB. `npm run build:releases` re-run for the new `data/delhi_landuse_simplified.geojson`/`osm_street_lamps_delhi_raw.json` files; `npm test` 30/30 pass.
+
 ## [2026-08-06] - Claude (Anthropic) - Ward-Wise Land Use CSV — Checked and Rejected a License-Ambiguous Draft-Plan Source First
 
 ### 🗺️ `data/landuse_by_ward.csv` — real polygon-overlap area by category per ward, from OSM, after a genuine source tradeoff surfaced to the user before building anything

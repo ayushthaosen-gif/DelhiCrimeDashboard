@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-08-06T09:39:26.671Z",
+  "generatedAt": "2026-08-06T10:14:12.167Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -199,6 +199,14 @@
       "bytes": 2002
     },
     {
+      "file": "data/delhi_landuse_simplified.geojson",
+      "datasetId": "delhi_landuse_simplified",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "b906126eee5aeb2e54f0a104de795ba14503bd4924995d9cad12a6b81887187a",
+      "bytes": 3010173
+    },
+    {
       "file": "data/delhi_liquor_vends_all_coordinates_approx.geojson",
       "datasetId": "liquor_vends_approximate",
       "provenanceStatus": "source-described-above",
@@ -283,8 +291,8 @@
       "datasetId": "poi_markers_infra_extras",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "c12a16a9863382ea05afa3f878928e0b29d90d4441aa3c467e4e2462beff45b0",
-      "bytes": 270388
+      "sha256": "d8f8968cf54bd985aca77a49f838d3e1d1311fcb5be29b4c868a6fc925a19ed6",
+      "bytes": 376664
     },
     {
       "file": "data/poi_markers_latlng.json",

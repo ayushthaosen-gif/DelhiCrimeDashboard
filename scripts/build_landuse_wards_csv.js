@@ -60,6 +60,24 @@ console.log('Landuse polygons:', landuseFeatures.length, '(', skippedDupe, 'quad
 
 function bboxOverlap(a, b) { return !(a[2] < b[0] || b[2] < a[0] || a[3] < b[1] || b[3] < a[1]); }
 
+// ── Simplified GeoJSON for the interactive map ──
+// Full-precision Overpass coordinates (~7 decimal places, ~1cm) are massively overkill for a
+// polygon rendered at city/street zoom; rounding to 5 places (~1.1m) plus turf.simplify cuts the
+// embedded payload from ~3.4MB to a size the page can actually carry without ballooning load time.
+const CATEGORY_COLOR = { residential: '#e3a13b', commercial: '#b14a34', industrial: '#626b78', institutional: '#3d5a99', green_open: '#3f7d52', other: '#8b8b8b' };
+function round5(n) { return Math.round(n * 1e5) / 1e5; }
+const simplifiedFeatures = landuseFeatures.map(f => {
+  const simplified = turf.simplify(f, { tolerance: 0.0001, highQuality: false });
+  const coords = simplified.geometry.coordinates[0].map(c => [round5(c[0]), round5(c[1])]);
+  const category = categoryOf(f.properties.landuse);
+  const areaKm2 = Math.round((turf.area(f) / 1e6) * 1e5) / 1e5; // computed here, not client-side -- turf isn't loaded in the browser bundle
+  return { type: 'Feature', properties: { landuse: f.properties.landuse, category, color: CATEGORY_COLOR[category], area_km2: areaKm2 }, geometry: { type: 'Polygon', coordinates: [coords] } };
+});
+const simplifiedGeojson = { type: 'FeatureCollection', features: simplifiedFeatures };
+fs.writeFileSync(path.join(ROOT, 'data/delhi_landuse_simplified.geojson'), JSON.stringify(simplifiedGeojson));
+const simplifiedSizeMb = (JSON.stringify(simplifiedGeojson).length / 1024 / 1024).toFixed(2);
+console.log('Wrote data/delhi_landuse_simplified.geojson —', simplifiedFeatures.length, 'features,', simplifiedSizeMb, 'MB (map-ready, rounded + simplified).');
+
 // ── Aggregate onto each ward ──
 const CATEGORIES = ['residential', 'commercial', 'industrial', 'institutional', 'green_open', 'other'];
 const rows = [];
