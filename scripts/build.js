@@ -165,11 +165,19 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 .metric-tab:hover { color: var(--text); }
 .metric-tab.active { background: var(--night); color: var(--bone); }
 
-.toggle-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--text-dim); margin-left: auto; cursor: pointer; user-select: none; }
+.toggle-row { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color: var(--text-dim); cursor: pointer; user-select: none; }
 .switch { width: 34px; height: 19px; border-radius: 20px; background: var(--border); position: relative; transition: background .15s; flex-shrink: 0; }
 .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 15px; height: 15px; border-radius: 50%; background: var(--surface); transition: transform .15s; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
 .toggle-row.on .switch { background: var(--amber); }
 .toggle-row.on .switch::after { transform: translateX(15px); }
+
+.layer-group { border: 1px solid var(--border); border-radius: 7px; background: var(--surface); margin-bottom: 16px; }
+.layer-group summary { cursor: pointer; padding: 9px 14px; font-size: 12.5px; font-weight: 700; color: var(--text-dim); list-style: none; user-select: none; }
+.layer-group summary::-webkit-details-marker { display: none; }
+.layer-group summary::before { content: '▸ '; display: inline-block; }
+.layer-group[open] summary::before { content: '▾ '; }
+.layer-group[open] summary { color: var(--text); border-bottom: 1px solid var(--border); }
+.layer-group-body { display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 12px 14px; }
 
 .grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: 20px; align-items: start; }
 @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
@@ -378,39 +386,44 @@ footer a { color: inherit; }
     <div class="metric-tabs" id="yearToggle"></div>
     <div class="metric-tabs" id="rateToggle"></div>
     <button class="compare-btn" id="compareToggleBtn">Compare Districts</button>
-    <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap">
-      <span class="switch"></span>
-      Show streetlight survey heatmap
-    </div>
-    <div class="toggle-row" id="policeToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show police markers">
-      <span class="switch"></span>
-      Show police markers
-    </div>
-    <div class="toggle-row" id="zonesToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show accident-prone zones">
-      <span class="switch"></span>
-      Show accident-prone zones
-    </div>
-    <div class="toggle-row" id="bivariateToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bivariate crime and infrastructure map">
-      <span class="switch"></span>
-      Bivariate map (crime × infrastructure)
-    </div>
-    <div class="toggle-row" id="busStopToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bus stops">
-      <span class="switch"></span>
-      Show bus stops
-    </div>
-    <div class="toggle-row" id="atmToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show ATMs">
-      <span class="switch"></span>
-      Show ATMs
-    </div>
-    <div class="toggle-row" id="alcoholToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show liquor shops">
-      <span class="switch"></span>
-      Show liquor shops
-    </div>
-    <div class="toggle-row" id="surveillanceToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show CCTV and guard posts">
-      <span class="switch"></span>
-      Show CCTV/guard posts
-    </div>
   </div>
+  <details class="layer-group">
+    <summary>Map layers</summary>
+    <div class="layer-group-body">
+      <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap">
+        <span class="switch"></span>
+        Show streetlight survey heatmap
+      </div>
+      <div class="toggle-row" id="policeToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show police markers">
+        <span class="switch"></span>
+        Show police markers
+      </div>
+      <div class="toggle-row" id="zonesToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show accident-prone zones">
+        <span class="switch"></span>
+        Show accident-prone zones
+      </div>
+      <div class="toggle-row" id="bivariateToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bivariate crime and infrastructure map">
+        <span class="switch"></span>
+        Bivariate map (crime × infrastructure)
+      </div>
+      <div class="toggle-row" id="busStopToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show bus stops">
+        <span class="switch"></span>
+        Show bus stops
+      </div>
+      <div class="toggle-row" id="atmToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show ATMs">
+        <span class="switch"></span>
+        Show ATMs
+      </div>
+      <div class="toggle-row" id="alcoholToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show liquor shops">
+        <span class="switch"></span>
+        Show liquor shops
+      </div>
+      <div class="toggle-row" id="surveillanceToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show CCTV and guard posts">
+        <span class="switch"></span>
+        Show CCTV/guard posts
+      </div>
+    </div>
+  </details>
   <div id="compareCard" class="compare-card" style="display:none;"></div>
 
   <div class="grid">
