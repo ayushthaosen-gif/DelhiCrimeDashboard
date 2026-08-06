@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-08-06T07:20:29.985Z",
+  "generatedAt": "2026-08-06T07:34:02.766Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -231,6 +231,14 @@
       "bytes": 782115
     },
     {
+      "file": "data/footway_sizes.csv",
+      "datasetId": "footway_sizes",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "5d923827984546b561953dca1d449133af2dc3a70e9cbd780c0722ae62a860fe",
+      "bytes": 379922
+    },
+    {
       "file": "data/liquor_crash_proximity_summary_2024.json",
       "datasetId": "liquor_crash_proximity_summary_2024",
       "provenanceStatus": "derived-or-compiled-production-file",
@@ -309,6 +317,14 @@
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
       "sha256": "fe58074ae82f039e5fbbb2e2ee141b29c5d83756befb806b43e67b5da1becfa8",
       "bytes": 3157
+    },
+    {
+      "file": "data/road_sizes.csv",
+      "datasetId": "road_sizes",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "1b7e287b8c636a5ba4936e6ed24f7148ed97238c32c92ef2abd12211a1acb683",
+      "bytes": 399455
     },
     {
       "file": "data/streetlight_grid.json",

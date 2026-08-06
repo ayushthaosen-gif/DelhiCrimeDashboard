@@ -8,6 +8,20 @@
 > the repo; that one is only for numbers a researcher may have already
 > cited.
 
+## [2026-08-06] - Claude (Anthropic) - Road and Footway Size CSVs — Real OSM Tags Only, No Official Delhi Width Dataset Found
+
+### 📏 `data/road_sizes.csv` / `data/footway_sizes.csv` report classification, lane count, and explicit width per segment — not shipped to the map, per user request to keep this as data, not a UI layer
+
+User asked to add data on road and footpath sizes, then specified it should stay as CSV rather than a new map layer, and asked to look for an official Delhi open-data source first rather than defaulting to OSM. Searched data.gov.in (found "State/UT wise surfaced length of PWD roads by width" — a state-level aggregate behind an API key, not per-segment Delhi geometry), OpenCity's Government-of-Delhi dataset listing (nothing road/footpath-width related), and PWD Delhi's Urban Roads Manual PDF (dead link). No usable official per-segment width dataset exists that's actually fetchable here.
+
+Checked real coverage before building anything, rather than assuming OSM tagging would be sufficient: `width=*` is on only 0.2% of major-road segments and 0.7% of footway/sidewalk segments — too sparse to report as a metric on its own, but real where present, so kept rather than dropped. `lanes=*` is on 33.7% of major-road segments — a genuine, usable size proxy. `highway=*` classification (motorway/trunk/primary/secondary/.../footway/pedestrian) is tagged on effectively every segment and is the most complete size signal available.
+
+1. **`scripts/build_road_footway_sizes_csv.js`** (new): processes the already-committed `osm_major_roads_delhi_raw.json` (10,934 ways) and `osm_footways_delhi_raw.json` (11,499 ways, deduplicated) into per-segment CSV rows: `osm_way_id, name, highway_class, lanes, width_m, surface, district, length_m` (roads) and the footway equivalent with `footway_tag` instead of `lanes`. District assigned via point-in-polygon on each way's midpoint, same convention as every other spatial join in this project. Missing `lanes`/`width_m` are left as an empty CSV field, never a fabricated or estimated value — this project's standing null policy applied to a new dataset.
+2. Fixed a structural assumption bug while writing this: the major-roads snapshot was originally fetched with Overpass `out geom` (geometry embedded inline per way, same shape as the footways file), not `out body` with separate node elements — the first version of the script assumed the latter and silently produced zero road rows. Caught by checking the actual output count against the known 10,934-way input rather than assuming a >0 row count meant success.
+3. Wired `build:road-footway-sizes` into `package.json`; documented coverage percentages and the official-dataset search dead-ends in `data/source/README.md` and the README's Data & sourcing table, so the next person doesn't repeat the same dead-end searches without knowing they were already tried.
+
+Verified: `node --check`; ran the script and manually inspected output row counts against known input-element counts for both files; spot-checked CSV rows for correct null-handling (blank, not zero, for untagged lanes/width). No map or dashboard code touched, per the user's explicit "keep it in CSV" instruction.
+
 ## [2026-08-06] - Claude (Anthropic) - Added Traffic Signals, Crossings, Hospitals, and Footway Coverage to the Interactive Map
 
 ### 🚦 Three new OSM-sourced infrastructure layers, chosen from a user-requested shortlist, plus an exploratory CCTV/guard recommendation layer grounded in cited road-safety research
