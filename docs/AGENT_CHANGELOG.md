@@ -1,3 +1,10 @@
+## [2026-08-08] - Codex - Restore dynamic-map entry point
+
+- Repaired the main header's missing .header-copy wrapper, which left malformed grid markup and made the dynamic-map link easy to lose.
+- Restyled and renamed the primary action to **Open dynamic interactive map**, linking to interactive_map.html.
+- Made the action a full-width 44px touch target on mobile.
+- Verified desktop and 390px mobile visibility, correct navigation, no horizontal overflow, and zero browser errors.
+
 ## [2026-08-08] - Codex - OSM street-lamp layer on main dashboard
 
 - Added all 1,457 OSM-tagged street lamps inside Delhi police-district polygons as an independent cyan point layer.

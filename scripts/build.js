@@ -87,7 +87,9 @@ body {
 header { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,460px); gap: 24px; align-items: center; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
 .header-copy { min-width: 0; }
 .hero-image { width: 100%; height: 210px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-@media (max-width: 760px) { .wrap { padding: 18px 14px 44px; } header { grid-template-columns: 1fr; gap: 16px; } h1 { font-size: clamp(34px, 11vw, 46px); } .hero-image { height: 160px; } .controls { gap: 9px; } .metric-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; } .metric-tab { flex: 0 0 auto; } .toggle-row { width: 100%; margin-left: 0; } .panel { border-radius: 8px; } .map-panel, .detail, .method-panel, .scatter-panel, .download-panel { padding: 12px; } .detail-head { align-items: flex-start; flex-direction: column; } }
+.dynamic-map-link { margin-top: 14px; padding: 10px 15px; background: var(--amber); border-color: var(--amber); color: var(--night); text-decoration: none; font-size: 13px; }
+.dynamic-map-link:hover { background: var(--amber-dim); color: var(--night); }
+@media (max-width: 760px) { .wrap { padding: 18px 14px 44px; } .dynamic-map-link { width: 100%; justify-content: center; min-height: 44px; } header { grid-template-columns: 1fr; gap: 16px; } h1 { font-size: clamp(34px, 11vw, 46px); } .hero-image { height: 160px; } .controls { gap: 9px; } .metric-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; } .metric-tab { flex: 0 0 auto; } .toggle-row { width: 100%; margin-left: 0; } .panel { border-radius: 8px; } .map-panel, .detail, .method-panel, .scatter-panel, .download-panel { padding: 12px; } .detail-head { align-items: flex-start; flex-direction: column; } }
 .eyebrow { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--amber-dim); }
 h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; font-size: 42px; line-height: 1.02; margin: 2px 0 4px; text-wrap: balance; letter-spacing: -.01em; }
 .subhead { color: var(--text-dim); font-size: 13.5px; max-width: 66ch; }
@@ -396,10 +398,11 @@ footer a { color: inherit; }
 
 <div class="wrap">
   <header>
+    <div class="header-copy">
     <div class="eyebrow">Delhi Police &amp; Traffic Police District Data · 2016–2024</div>
     <h1>Delhi Urban Safety Observatory</h1>
     <p class="subhead">Official district-level crime and road-safety figures against real public-infrastructure coverage — streetlights, pedestrian underpasses, mapped pedestrian overbridges, metro station gates, and police infrastructure (stations plus chowkis/outposts) — across Delhi's 15 police districts.</p>
-    <a class="compare-btn" href="interactive_map.html" style="margin-top:10px;text-decoration:none;">Open Delhi Safety &amp; Infrastructure Explorer →</a>
+    <a class="compare-btn dynamic-map-link" href="interactive_map.html">Open dynamic interactive map →</a>
     </div>
     <img class="hero-image" src="assets/delhi-safety-hero.png" alt="Stylized map of Delhi showing districts, transport corridors, safety-risk circles and public-infrastructure markers">
   </header>
