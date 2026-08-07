@@ -19,6 +19,14 @@ const poiMarkers = Object.assign(
 );
 const footwayCoverage = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_footway_coverage.json'), 'utf8'));
 const streetlightsCombined = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/streetlights_combined_by_district.json'), 'utf8'));
+const streetlightGrid = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/streetlight_grid.json'), 'utf8'));
+const paplStreetlightPoints = streetlightGrid.points.map(([gx, gy, count]) => {
+  const x = gx * streetlightGrid.cell;
+  const y = gy * streetlightGrid.cell;
+  const lon = 76.77599705784841 + x / 1576.2410031459287;
+  const lat = 28.894521166321024 - y / 1795.3134203215425;
+  return [Math.round(lat * 1e6) / 1e6, Math.round(lon * 1e6) / 1e6, 'PAPL survey cell · ' + count.toLocaleString('en-IN') + ' recorded lights'];
+});
 const landuse = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_landuse_simplified.geojson'), 'utf8'));
 const crashZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_geocoded.json'), 'utf8'));
 const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2024_geocoded.json'), 'utf8'));
@@ -243,7 +251,8 @@ body { display: flex; flex-direction: column; }
         <label><input type="checkbox" id="chkTrafficSignals"> Traffic signals <span class="layer-count" id="cntTrafficSignals"></span></label>
         <label><input type="checkbox" id="chkCrossings"> Pedestrian crossings <span class="layer-count" id="cntCrossings"></span></label>
         <label><input type="checkbox" id="chkOverpasses"> Pedestrian overbridges <span class="layer-count" id="cntOverpasses"></span></label>
-        <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged street lamps — independent of, and not merged with, the PAPL survey Streetlights metric"> Street lamps (OSM) <span class="layer-count" id="cntStreetLamps"></span></label>
+        <label><input type="checkbox" id="chkPaplStreetlights" title="PAPL streetlight survey cells; marker labels show recorded light counts"> Streetlights (PAPL survey) <span class="layer-count" id="cntPaplStreetlights"></span></label>
+        <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged individual street lamps; independent of the PAPL survey"> Street lamps (OSM) <span class="layer-count" id="cntStreetLamps"></span></label>
       </div>
     </details>
     <details class="layer-group">
@@ -323,6 +332,7 @@ body { display: flex; flex-direction: column; }
 const BOUNDARIES = ${JSON.stringify(boundaries)};
 const POLICE = ${JSON.stringify(policeMarkers)};
 const POI = ${JSON.stringify(poiMarkers)};
+const PAPL_STREETLIGHT_POINTS = ${JSON.stringify(paplStreetlightPoints)};
 const ZONES_BY_YEAR = { '2023': ${JSON.stringify(crashZones)}, '2024': ${JSON.stringify(crashZones2024)} };
 const ZONES = ZONES_BY_YEAR['2023'];
 const wardsInfra = ${JSON.stringify(wardsInfra)};
@@ -913,7 +923,7 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
 // on every relevant control change. Every value read back from the URL is validated against the
 // actual known option lists below before being applied -- an unrecognized value is silently
 // ignored and the corresponding default is kept, never applied blindly.
-const POINT_LAYER_IDS = ['chkPolice', 'chkPosts', 'chkZones', 'chkBus', 'chkAtm', 'chkAlcohol', 'chkSurveillance', 'chkOverpasses', 'chkTrafficSignals', 'chkCrossings', 'chkHospitals', 'chkStreetLamps', 'chkCctvPriority', 'chkCctvExploratory', 'chkLiquorVends', 'chkCrashZones2024Approx', 'chkLanduse'];
+const POINT_LAYER_IDS = ['chkPolice', 'chkPosts', 'chkZones', 'chkBus', 'chkAtm', 'chkAlcohol', 'chkSurveillance', 'chkOverpasses', 'chkTrafficSignals', 'chkCrossings', 'chkHospitals', 'chkPaplStreetlights', 'chkStreetLamps', 'chkCctvPriority', 'chkCctvExploratory', 'chkLiquorVends', 'chkCrashZones2024Approx', 'chkLanduse'];
 let pendingUrlDistrict = null;
 let pendingUrlState = null; // { heatmap, zoneYear, ward, wx, wy, layers } -- applied once every
                               // relevant section has finished wiring its own event listeners (see
@@ -1100,7 +1110,8 @@ const surveillanceLayer = makeShapeLayer(POI.surveillance, '#0891b2', 'ring', 11
 const trafficSignalLayer = makeClusterLayer(POI.trafficSignals, '#1d4ed8', 'Traffic signal');
 const crossingLayer = makeClusterLayer(POI.pedestrianCrossings, '#059669', 'Pedestrian crossing');
 const hospitalLayer = makeClusterLayer(POI.hospitals, '#dc2626', 'Hospital');
-const streetLampLayer = makeClusterLayer(POI.streetLamps, '#eab308', 'Street lamp');
+const paplStreetlightLayer = makeClusterLayer(PAPL_STREETLIGHT_POINTS, '#eab308', 'PAPL streetlight survey cell');
+const streetLampLayer = makeClusterLayer(POI.streetLamps, '#22b8cf', 'OSM street lamp');
 const overpassLayer = L.markerClusterGroup({ maxClusterRadius: 42, spiderfyOnMaxZoom: true });
 PEDESTRIAN_OVERPASSES.features.forEach(f => { const p=f.properties, c=f.geometry.coordinates; L.marker([c[1],c[0]], {icon:shapeIcon('#e3a13b','square',10)}).bindTooltip(p.name, { sticky: true }).bindPopup('<div class="popup-title">'+p.name+'</div><div>'+p.district+' District</div><div>'+(p.crossesMajorRoad ? '<b>Crosses a major road</b> (motorway/trunk/primary/secondary) — a foot-over-bridge in the sense PWD Delhi and press coverage use the term.' : 'Does not cross a major road in this check — likely a footbridge over a drain, canal, or park path rather than live traffic.')+'</div><div class="popup-src">Mapped pedestrian bridge/overpass &middot; OSM snapshot '+p.sourceSnapshot+' &middot; <a href="'+p.osmUrl+'" target="_blank" rel="noopener">OpenStreetMap object</a><br>'+p.coverageNote+'</div>').addTo(overpassLayer); });
 
@@ -1316,12 +1327,12 @@ computeCctvExploratoryCandidates().forEach(c => {
 const toggles = [
   ['chkPolice', policeStationLayer, 'cntPolice'], ['chkPosts', policePostLayer, 'cntPosts'], ['chkZones', zonesGroup, 'cntZones'],
   ['chkBus', busStopLayer, 'cntBus'], ['chkAtm', atmLayer, 'cntAtm'], ['chkAlcohol', alcoholLayer, 'cntAlcohol'], ['chkSurveillance', surveillanceLayer, 'cntSurveillance'], ['chkOverpasses', overpassLayer, 'cntOverpasses'],
-  ['chkTrafficSignals', trafficSignalLayer, 'cntTrafficSignals'], ['chkCrossings', crossingLayer, 'cntCrossings'], ['chkHospitals', hospitalLayer, 'cntHospitals'], ['chkStreetLamps', streetLampLayer, 'cntStreetLamps'],
+  ['chkTrafficSignals', trafficSignalLayer, 'cntTrafficSignals'], ['chkCrossings', crossingLayer, 'cntCrossings'], ['chkHospitals', hospitalLayer, 'cntHospitals'], ['chkPaplStreetlights', paplStreetlightLayer, 'cntPaplStreetlights'], ['chkStreetLamps', streetLampLayer, 'cntStreetLamps'],
   ['chkCctvPriority', cctvPriorityLayer, 'cntCctvPriority'], ['chkCctvExploratory', cctvExploratoryLayer, 'cntCctvExploratory'],
   ['chkLiquorVends', liquorVendsLayer, 'cntLiquorVends'], ['chkCrashZones2024Approx', crashZones2024ApproxLayer, 'cntCrashZones2024Approx'],
   ['chkLanduse', landuseLayer, 'cntLanduse'],
 ];
-const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntTrafficSignals: POI.trafficSignals.length, cntCrossings: POI.pedestrianCrossings.length, cntHospitals: POI.hospitals.length, cntStreetLamps: POI.streetLamps.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntCctvExploratory: cctvExploratoryLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length, cntLanduse: landuse.features.length };
+const layerCounts = { cntPolice: POLICE.stations.length, cntPosts: POLICE.posts.length, cntZones: zoneMarkers.length, cntBus: POI.busStops.length, cntAtm: POI.atms.length, cntAlcohol: POI.alcoholShops.length, cntSurveillance: POI.surveillance.length, cntOverpasses: PEDESTRIAN_OVERPASSES.features.length, cntTrafficSignals: POI.trafficSignals.length, cntCrossings: POI.pedestrianCrossings.length, cntHospitals: POI.hospitals.length, cntPaplStreetlights: PAPL_STREETLIGHT_POINTS.length, cntStreetLamps: POI.streetLamps.length, cntCctvPriority: cctvPriorityLayer.getLayers().length, cntCctvExploratory: cctvExploratoryLayer.getLayers().length, cntLiquorVends: liquorVendsLayer.getLayers().length, cntCrashZones2024Approx: crashZones2024ApproxLayer.getLayers().length, cntLanduse: landuse.features.length };
 toggles.forEach(([id, layer, countId]) => {
   document.getElementById(countId).textContent = '(' + layerCounts[countId].toLocaleString('en-IN') + ')';
   document.getElementById(id).addEventListener('change', (e) => {
@@ -1347,7 +1358,7 @@ const POINT_LEGEND_ITEMS = [
   ['chkPolice', '#3d5a99', 'square', 'Police stations'], ['chkPosts', '#7c3aed', 'triangle', 'Chowkis/posts'],
   ['chkZones', '#b14a34', 'dot', 'Crash zones (size = fatal crashes)'], ['chkBus', '#3f7d52', 'dot', 'Bus stops (clustered)'],
   ['chkAtm', '#d4af37', 'dot', 'ATMs (clustered)'], ['chkAlcohol', '#8b2f5e', 'diamond', 'Liquor shops'], ['chkSurveillance', '#0891b2', 'ring', 'CCTV/guards'], ['chkOverpasses', '#e3a13b', 'square', 'Pedestrian overbridges (OSM mapped)'],
-  ['chkTrafficSignals', '#1d4ed8', 'dot', 'Traffic signals (clustered)'], ['chkCrossings', '#059669', 'dot', 'Pedestrian crossings (clustered)'], ['chkHospitals', '#dc2626', 'dot', 'Hospitals (clustered)'], ['chkStreetLamps', '#eab308', 'dot', 'Street lamps, OSM (clustered)'],
+  ['chkTrafficSignals', '#1d4ed8', 'dot', 'Traffic signals (clustered)'], ['chkCrossings', '#059669', 'dot', 'Pedestrian crossings (clustered)'], ['chkHospitals', '#dc2626', 'dot', 'Hospitals (clustered)'], ['chkPaplStreetlights', '#eab308', 'dot', 'Streetlights, PAPL survey cells (clustered)'], ['chkStreetLamps', '#22b8cf', 'dot', 'Street lamps, OSM (clustered)'],
   ['chkCctvPriority', '#0891b2', 'ring', 'CCTV priority candidates (recommended, not existing)'],
   ['chkCctvExploratory', '#c026d3', 'diamond', 'CCTV/guard recommended, exploratory (project-computed, top 15)'],
   ['chkLiquorVends', '#8b2f5e', 'diamond', 'Liquor vends, official (approx. coordinates)'],

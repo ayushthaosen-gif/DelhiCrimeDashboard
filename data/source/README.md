@@ -25,7 +25,7 @@ Do not add private, access-controlled, or unlicensed files here.
 
 All four are filtered to the dashboard's 15 district polygons (points/way-midpoints outside every polygon are dropped, same convention as the pedestrian-overbridge snapshot). Footway data is *not* shipped to the browser as line geometry — `build_infra_extras.js` computes total length (km) and density (km per km²) per district at build time instead, written to `data/delhi_footway_coverage.json`. This is a mapped-feature inventory, not an official completeness register; re-fetch with `node scripts/fetch_osm_infra_snapshots.js` then `node scripts/build_infra_extras.js`.
 
-`osm_street_lamps_delhi_raw.json` (`highway=street_lamp`, 1,529 nodes fetched, 1,457 within district polygons) is shown as its own map layer ("Street lamps (OSM)"), kept separate from the existing PAPL Open Transit Survey point layer, since OSM only has point locations and PAPL only publishes district totals — there's no point-for-point reconciliation possible between the two.
+`osm_street_lamps_delhi_raw.json` (`highway=street_lamp`, 1,529 nodes fetched, 1,457 within district polygons) is shown as its own cyan point layer ("Street lamps (OSM)"). `data/streetlight_grid.json` supplies the separate yellow PAPL layer as 3,150 aggregated survey cells whose labels report each cell's recorded-light count. Both sources are available on the main dashboard and dynamic Leaflet map, independently or together. OSM nodes represent individually mapped lamps; PAPL markers are aggregated survey cells, not precise one-marker-per-lamp records, so they must not be reconciled point-for-point.
 
 ## Combined PAPL + OSM streetlight metric (2026-08-06)
 

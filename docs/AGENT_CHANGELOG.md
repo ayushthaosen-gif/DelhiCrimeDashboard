@@ -1,3 +1,10 @@
+## [2026-08-08] - Codex - PAPL and OSM streetlights on both maps
+
+- Added all 3,150 PAPL aggregated streetlight-survey cells to the dynamic Leaflet map as a clustered yellow point layer.
+- Retained all 1,457 OSM-tagged individual street lamps as a separate cyan clustered layer.
+- Both sources can be enabled simultaneously, appear separately in the point legend, persist in shared URLs, and retain distinct source semantics.
+- Renamed the main dashboard group to **Streetlights — two sources** and clarified the PAPL-cell versus OSM-node distinction in the source documentation.
+
 ## [2026-08-08] - Codex - Restore dynamic-map entry point
 
 - Repaired the main header's missing .header-copy wrapper, which left malformed grid markup and made the dynamic-map link easy to lose.

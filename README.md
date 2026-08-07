@@ -6,7 +6,7 @@
 
 A self-contained, single-file dashboard analyzing crime and road-safety data
 across Delhi's 15 police districts (2022-2024) against real public
-infrastructure coverage — streetlights, pedestrian underpasses, mapped pedestrian overbridges, metro station
+infrastructure coverage — PAPL survey-cell and OpenStreetMap street-lamp layers, pedestrian underpasses, mapped pedestrian overbridges, metro station
 gates, and police infrastructure.
 
 Open [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html) directly in
