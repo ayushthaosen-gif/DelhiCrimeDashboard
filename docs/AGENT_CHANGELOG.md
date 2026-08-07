@@ -1,3 +1,10 @@
+## [2026-08-08] - Codex - Make dynamic-map streetlights discoverable
+
+- Confirmed the deployed dynamic map contained both streetlight controls, but they were hidden inside the collapsed **Roads & footpaths** group.
+- Moved them into a dedicated, open-by-default **Streetlights (PAPL + OSM)** filter group.
+- Shortened the visible labels to **PAPL survey cells (3,150)** and **OSM street lamps (1,457)** while retaining full explanatory titles.
+- Verified both controls are visible immediately after opening mobile filters, and the filter sheet still closes correctly.
+
 ## [2026-08-08] - Codex - PAPL and OSM streetlights on both maps
 
 - Added all 3,150 PAPL aggregated streetlight-survey cells to the dynamic Leaflet map as a clustered yellow point layer.

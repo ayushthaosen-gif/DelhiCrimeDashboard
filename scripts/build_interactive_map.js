@@ -251,8 +251,13 @@ body { display: flex; flex-direction: column; }
         <label><input type="checkbox" id="chkTrafficSignals"> Traffic signals <span class="layer-count" id="cntTrafficSignals"></span></label>
         <label><input type="checkbox" id="chkCrossings"> Pedestrian crossings <span class="layer-count" id="cntCrossings"></span></label>
         <label><input type="checkbox" id="chkOverpasses"> Pedestrian overbridges <span class="layer-count" id="cntOverpasses"></span></label>
-        <label><input type="checkbox" id="chkPaplStreetlights" title="PAPL streetlight survey cells; marker labels show recorded light counts"> Streetlights (PAPL survey) <span class="layer-count" id="cntPaplStreetlights"></span></label>
-        <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged individual street lamps; independent of the PAPL survey"> Street lamps (OSM) <span class="layer-count" id="cntStreetLamps"></span></label>
+      </div>
+    </details>
+    <details class="layer-group" open>
+      <summary>Streetlights (PAPL + OSM)</summary>
+      <div class="layer-group-body">
+        <label><input type="checkbox" id="chkPaplStreetlights" title="PAPL streetlight survey cells; marker labels show recorded light counts"> PAPL survey cells <span class="layer-count" id="cntPaplStreetlights"></span></label>
+        <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged individual street lamps; independent of the PAPL survey"> OSM street lamps <span class="layer-count" id="cntStreetLamps"></span></label>
       </div>
     </details>
     <details class="layer-group">
