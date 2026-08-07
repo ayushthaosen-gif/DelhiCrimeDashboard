@@ -1,3 +1,10 @@
+## [2026-08-08] - Codex - OSM street-lamp layer on main dashboard
+
+- Added all 1,457 OSM-tagged street lamps inside Delhi police-district polygons as an independent cyan point layer.
+- Kept OSM lamps separate from the 3,150 yellow PAPL survey cells so their different collection methods and coverage remain visible.
+- Added independent toggles, simultaneous overlay support, active-layer chips, point tooltips, and original OSM/Overpass attribution in the footer.
+- Reused the audited 2026-08-06 OSM snapshot already shipped in the repository; no new or unvalidated data was introduced.
+
 ## [2026-08-08] - Codex - Streetlight survey point layer
 
 - Replaced the main dashboard's streetlight heatmap with 3,150 proportional survey-cell markers.

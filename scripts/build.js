@@ -14,6 +14,12 @@ const accidentZones = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zon
 const accidentZonesMapped = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2023_mapped.json'), 'utf8'));
 const accidentZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/crash_zones_2024_geocoded.json'), 'utf8'));
 const poiMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers.json'), 'utf8'));
+const infraExtraMarkers = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_infra_extras.json'), 'utf8'));
+const osmStreetLampMarkers = infraExtraMarkers.streetLamps.map(([lat, lon, name]) => [
+  Math.round((lon - 76.77599705784841) * 1576.2410031459287 * 10) / 10,
+  Math.round((28.894521166321024 - lat) * 1795.3134203215425 * 10) / 10,
+  name
+]);
 const font600 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders600.woff2')).toString('base64');
 const font800 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders800.woff2')).toString('base64');
 
@@ -244,6 +250,8 @@ path.district:hover { opacity: .82; }
 .poi-marker { cursor: default; pointer-events: auto; }
 .streetlight-survey-point { fill: #f2c94c; stroke: #6b4f00; stroke-width: .6; opacity: .68; cursor: help; pointer-events: auto; }
 .streetlight-survey-point:hover { opacity: 1; stroke-width: 1.2; }
+.poi-osm-lamp { fill: #22b8cf; stroke: #083344; stroke-width: .55; opacity: .78; }
+.poi-osm-lamp:hover { opacity: 1; stroke-width: 1; }
 .poi-bus { fill: var(--good); stroke: white; stroke-width: .5; opacity: .55; }
 .poi-atm { fill: #d4af37; stroke: white; stroke-width: .75; opacity: .8; }
 .poi-alcohol { fill: #8b2f5e; stroke: white; stroke-width: .75; opacity: .85; }
@@ -464,7 +472,8 @@ footer a { color: inherit; }
         </div>
         <div class="layer-section">
           <div class="layer-section-title">Survey data</div>
-          <div class="toggle-row" id="streetlightPointsToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey points"><span class="switch"></span>Streetlight survey points</div>
+          <div class="toggle-row" id="streetlightPointsToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show PAPL streetlight survey points"><span class="switch"></span>PAPL survey points (3,150)</div>
+          <div class="toggle-row" id="osmStreetLampToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show OpenStreetMap street lamps"><span class="switch"></span>OSM street lamps (1,457)</div>
         </div>
       </div>
       <div class="layer-footer"><button class="layer-action" type="button" id="clearLayersBtn" disabled>Clear all layers</button></div>
@@ -694,7 +703,7 @@ footer a { color: inherit; }
   </div>
 
   <footer>
-    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Historical crime data (2016-2021): National Crime Records Bureau, Crime in India, via <a href="https://indiadataportal.com" target="_blank" rel="noopener">India Data Portal</a> — theft &amp; robbery 2016-2021, burglary 2017-2021 (2016 burglary omitted, incompatible source definition); total IPC crime, crime against women &amp; SLL crime reconstructed by summing each metric's full district-wise offence-category table for 2017-2021, verified by exactly reproducing the official 2022 total for all 15 districts before extending backward — 2016 omitted for these three (older, non-matching category schema with no same-schema year available to validate the summation against) · Official licensed liquor vends: Delhi State Civil Supplies Corporation (DSCSC) / DCCWS published list, 374 records citywide (all 374 mapped in the <a href="interactive_map.html">interactive map</a> — as an independent point layer and as a ward-bivariate pairing against 2024 crash zones — using approximate locality/sector-centroid coordinates, not verified vend entrances; only 1 has an exact OSM-matched coordinate) · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2024) and road deaths by mode of travel (2019-2024): Delhi Traffic Police annual road crash data · District-wise crash data and 107/111 crash-prone zones (2023/2024): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a> &amp; <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2024" target="_blank" rel="noopener">2024</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); zone coordinates cross-checked against the source table by rank and fatal-crash count — 105 of 107 (2023) and 54 of 93 named (2024) resolved to real coordinates (2024's remainder are hyper-local names an OSM geocoder can't resolve; flagged unresolved rather than force-placed) · Persons killed/injured, top crash-prone roads, and citywide enforcement stats (hit-and-run share, drink-driving prosecutions, RLVD/OSVD cameras) for 2023/2024: Delhi Road Crash Report 2023 &amp; 2024, Tables 6.2/6.33 and report-level metrics · CCTV priority-candidate sites: Delhi Road Crash Report 2023/2024, Table 6.37 — report-recommended installation sites, not a verified existing-camera inventory · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol, shop=wine, shop=beverages+alcohol tag via Overpass API, 65 points), ODbL · CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 1,596 points, 1,583 within district polygons), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
+    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Historical crime data (2016-2021): National Crime Records Bureau, Crime in India, via <a href="https://indiadataportal.com" target="_blank" rel="noopener">India Data Portal</a> — theft &amp; robbery 2016-2021, burglary 2017-2021 (2016 burglary omitted, incompatible source definition); total IPC crime, crime against women &amp; SLL crime reconstructed by summing each metric's full district-wise offence-category table for 2017-2021, verified by exactly reproducing the official 2022 total for all 15 districts before extending backward — 2016 omitted for these three (older, non-matching category schema with no same-schema year available to validate the summation against) · Official licensed liquor vends: Delhi State Civil Supplies Corporation (DSCSC) / DCCWS published list, 374 records citywide (all 374 mapped in the <a href="interactive_map.html">interactive map</a> — as an independent point layer and as a ward-bivariate pairing against 2024 crash zones — using approximate locality/sector-centroid coordinates, not verified vend entrances; only 1 has an exact OSM-matched coordinate) · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2024) and road deaths by mode of travel (2019-2024): Delhi Traffic Police annual road crash data · District-wise crash data and 107/111 crash-prone zones (2023/2024): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a> &amp; <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2024" target="_blank" rel="noopener">2024</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); zone coordinates cross-checked against the source table by rank and fatal-crash count — 105 of 107 (2023) and 54 of 93 named (2024) resolved to real coordinates (2024's remainder are hyper-local names an OSM geocoder can't resolve; flagged unresolved rather than force-placed) · Persons killed/injured, top crash-prone roads, and citywide enforcement stats (hit-and-run share, drink-driving prosecutions, RLVD/OSVD cameras) for 2023/2024: Delhi Road Crash Report 2023 &amp; 2024, Tables 6.2/6.33 and report-level metrics · CCTV priority-candidate sites: Delhi Road Crash Report 2023/2024, Table 6.37 — report-recommended installation sites, not a verified existing-camera inventory · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · OSM street lamps: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=street_lamp via Overpass API snapshot, 1,529 fetched; 1,457 inside district polygons), ODbL · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol, shop=wine, shop=beverages+alcohol tag via Overpass API, 65 points), ODbL · CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 1,596 points, 1,583 within district polygons), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
     <span>District boundary polygons simplified for display (~165m tolerance) — not survey-grade. IGI Airport unit and non-geographic units (Crime Branch, EOW, Metro, Railway, Vigilance, etc.) excluded from district figures.</span>
   </footer>
 </div>
@@ -702,6 +711,7 @@ footer a { color: inherit; }
 <script>
 const DATA = ${JSON.stringify(data.districts)};
 const GRID = ${JSON.stringify(grid)};
+const OSM_STREET_LAMP_MARKERS = ${JSON.stringify(osmStreetLampMarkers)};
 const CORR = ${JSON.stringify(correlations)};
 const POLICE_MARKERS = ${JSON.stringify(policeMarkers)};
 const AIRPORT_SHAPE = ${JSON.stringify(airportShape)};
@@ -759,6 +769,7 @@ let activeYear = '2024'; // most recent year with complete data for all 15 distr
 let rateMode = 'density'; // 'density' (per km²) or 'perCapita' (per 100k residents)
 let corrCoeffMode = 'pearson'; // 'pearson' (linear) or 'spearman' (rank)
 let showStreetlightPoints = false;
+let showOsmStreetLamps = false;
 let showPolice = false;
 let showZones = false;
 let showBusStops = false;
@@ -1064,6 +1075,7 @@ function initMap() {
     '<g id="policeLayer"></g>',
     '<g id="zonesLayer"></g>',
     '<g id="streetlightSurveyLayer"></g>',
+    '<g id="osmStreetLampLayer"></g>',
     '<g id="busStopLayer"></g>',
     '<g id="atmLayer"></g>',
     '<g id="alcoholLayer"></g>',
@@ -1163,6 +1175,7 @@ function initMap() {
       return '<circle class="' + className + '" cx="' + x + '" cy="' + y + '" r="' + radius + '" data-tt-title="' + esc(name) + '" data-tt-body="' + esc(distName + ' District') + '"></circle>';
     }).join('');
   }
+  poiLayer('osmStreetLampLayer', OSM_STREET_LAMP_MARKERS, 'poi-marker poi-osm-lamp', 1.8);
   poiLayer('busStopLayer', POI_MARKERS.busStops, 'poi-marker poi-bus', 1.6);
   poiLayer('atmLayer', POI_MARKERS.atms, 'poi-marker poi-atm', 2.2);
   poiLayer('alcoholLayer', POI_MARKERS.alcoholShops, 'poi-marker poi-alcohol', 3);
@@ -1249,6 +1262,9 @@ function renderMap() {
 
   const streetlightSurveyLayer = document.getElementById('streetlightSurveyLayer');
   if (streetlightSurveyLayer) streetlightSurveyLayer.style.display = showStreetlightPoints ? 'inline' : 'none';
+
+  const osmStreetLampLayer = document.getElementById('osmStreetLampLayer');
+  if (osmStreetLampLayer) osmStreetLampLayer.style.display = showOsmStreetLamps ? 'inline' : 'none';
 
   const busStopLayer = document.getElementById('busStopLayer');
   if (busStopLayer) busStopLayer.style.display = showBusStops ? 'inline' : 'none';
@@ -2107,7 +2123,8 @@ function render() {
 }
 
 const MAP_LAYER_CONTROLS = [
-  ['streetlightPointsToggle', 'Streetlight survey points', () => showStreetlightPoints],
+  ['streetlightPointsToggle', 'PAPL survey points', () => showStreetlightPoints],
+  ['osmStreetLampToggle', 'OSM street lamps', () => showOsmStreetLamps],
   ['policeToggle', 'Police', () => showPolice],
   ['zonesToggle', 'Crash zones', () => showZones],
   ['busStopToggle', 'Bus stops', () => showBusStops],
@@ -2157,6 +2174,7 @@ function setupToggleControl(id, getter, setter) {
 }
 
 setupToggleControl('streetlightPointsToggle', () => showStreetlightPoints, v => { showStreetlightPoints = v; });
+setupToggleControl('osmStreetLampToggle', () => showOsmStreetLamps, v => { showOsmStreetLamps = v; });
 setupToggleControl('policeToggle', () => showPolice, v => { showPolice = v; });
 setupToggleControl('zonesToggle', () => showZones, v => { showZones = v; });
 setupToggleControl('bivariateToggle', () => isBivariateMode, v => { isBivariateMode = v; });
