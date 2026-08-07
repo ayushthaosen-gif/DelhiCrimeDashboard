@@ -211,8 +211,6 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 .map-panel { padding: 14px; }
 .map-stage { position: relative; width: 100%; }
 .map-stage svg { width: 100%; height: auto; display: block; outline: none; }
-.map-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity .2s; }
-.map-stage canvas.on { opacity: .85; }
 path.district { stroke: var(--surface); stroke-width: 1.6; cursor: pointer; transition: opacity .12s; outline: none !important; }
 path.district:focus, path.district:focus-visible, svg *:focus, svg *:focus-visible { outline: none !important; }
 path.district:hover { opacity: .82; }
@@ -225,6 +223,8 @@ path.district:hover { opacity: .82; }
 .district-center-dot { fill: var(--label-fill); pointer-events: none; }
 .zone-marker { fill: var(--rust); stroke: white; stroke-width: 1; pointer-events: auto; cursor: default; }
 .poi-marker { cursor: default; pointer-events: auto; }
+.streetlight-survey-point { fill: #f2c94c; stroke: #6b4f00; stroke-width: .6; opacity: .68; cursor: help; pointer-events: auto; }
+.streetlight-survey-point:hover { opacity: 1; stroke-width: 1.2; }
 .poi-bus { fill: var(--good); stroke: white; stroke-width: .5; opacity: .55; }
 .poi-atm { fill: #d4af37; stroke: white; stroke-width: .75; opacity: .8; }
 .poi-alcohol { fill: #8b2f5e; stroke: white; stroke-width: .75; opacity: .85; }
@@ -444,8 +444,8 @@ footer a { color: inherit; }
           <div class="toggle-row" id="alcoholToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show liquor shops"><span class="switch"></span>Liquor shops</div>
         </div>
         <div class="layer-section">
-          <div class="layer-section-title">Survey overlays</div>
-          <div class="toggle-row" id="lightToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey heatmap"><span class="switch"></span>Streetlight survey heatmap</div>
+          <div class="layer-section-title">Survey data</div>
+          <div class="toggle-row" id="streetlightPointsToggle" role="switch" tabindex="0" aria-checked="false" aria-label="Show streetlight survey points"><span class="switch"></span>Streetlight survey points</div>
         </div>
       </div>
       <div class="layer-footer"><button class="layer-action" type="button" id="clearLayersBtn" disabled>Clear all layers</button></div>
@@ -458,7 +458,6 @@ footer a { color: inherit; }
     <div class="panel map-panel">
       <div class="map-stage">
         <svg id="map" viewBox="0 0 1000 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Delhi's 15 police districts, shaded by the selected crime or road-safety metric"></svg>
-        <canvas id="heat" width="1000" height="900"></canvas>
         <div id="mapTooltip" class="map-tooltip"></div>
       </div>
       <div class="legend">
@@ -740,7 +739,7 @@ let activeMetric = 'theft';
 let activeYear = '2024'; // most recent year with complete data for all 15 districts on every metric
 let rateMode = 'density'; // 'density' (per km²) or 'perCapita' (per 100k residents)
 let corrCoeffMode = 'pearson'; // 'pearson' (linear) or 'spearman' (rank)
-let showLights = false;
+let showStreetlightPoints = false;
 let showPolice = false;
 let showZones = false;
 let showBusStops = false;
@@ -1045,6 +1044,7 @@ function initMap() {
     '<g id="centerMarkersLayer"></g>',
     '<g id="policeLayer"></g>',
     '<g id="zonesLayer"></g>',
+    '<g id="streetlightSurveyLayer"></g>',
     '<g id="busStopLayer"></g>',
     '<g id="atmLayer"></g>',
     '<g id="alcoholLayer"></g>',
@@ -1119,6 +1119,18 @@ function initMap() {
     zoneParts.push('<path class="zone-marker" style="opacity:' + opacity + '" d="M' + x + ',' + (y - size) + ' L' + (x + size * 0.87) + ',' + (y + size * 0.67) + ' L' + (x - size * 0.87) + ',' + (y + size * 0.67) + ' Z" data-sv-url="' + svUrl + '" data-tt-title="' + esc(z.name + ' (' + z.road + ')') + '" data-tt-body="' + esc(z.district + ' · ' + z.fatal + ' fatal, ' + z.total + ' total crashes, 2023') + ' (Click for 360° Street View)"></path>');
   });
   zonesLayer.innerHTML = zoneParts.join('');
+
+  // PAPL survey observations shown as proportional points rather than a heatmap. Each grid
+  // cell preserves the survey's recorded light count; logarithmic sizing keeps dense cells
+  // visible without allowing the largest observation to obscure nearby locations.
+  const streetlightSurveyLayer = svg.querySelector('#streetlightSurveyLayer');
+  const maxStreetlightCount = Math.max(...GRID.points.map(p => p[2]));
+  streetlightSurveyLayer.innerHTML = GRID.points.map(([gx, gy, count]) => {
+    const x = gx * GRID.cell;
+    const y = gy * GRID.cell;
+    const radius = 1.15 + 3.1 * (Math.log1p(count) / Math.log1p(maxStreetlightCount));
+    return '<circle class="streetlight-survey-point" cx="' + x + '" cy="' + y + '" r="' + radius.toFixed(2) + '" data-tt-title="Streetlight survey observation" data-tt-body="' + fmtNum(count) + ' lights recorded in this survey cell · PAPL / Delhi Transport Stack OTD"></circle>';
+  }).join('');
 
   // POI marker layers — plain point data (no per-item Street View lookup, unlike police/zones
   // above), kept as small low-opacity dots so 3,000+ bus stops don't visually overwhelm the
@@ -1206,7 +1218,7 @@ function renderMap() {
     const v = metricValue(d, m);
     const showHatch = isBivariateMode
       ? (v == null || !infraCovered(d, scatterType))
-      : ((v == null) || (showLights && !d.surveyPoints));
+      : (v == null);
     path.style.display = showHatch ? 'inline' : 'none';
   });
 
@@ -1215,6 +1227,9 @@ function renderMap() {
 
   const zonesLayer = document.getElementById('zonesLayer');
   if (zonesLayer) zonesLayer.style.display = showZones ? 'inline' : 'none';
+
+  const streetlightSurveyLayer = document.getElementById('streetlightSurveyLayer');
+  if (streetlightSurveyLayer) streetlightSurveyLayer.style.display = showStreetlightPoints ? 'inline' : 'none';
 
   const busStopLayer = document.getElementById('busStopLayer');
   if (busStopLayer) busStopLayer.style.display = showBusStops ? 'inline' : 'none';
@@ -2072,44 +2087,8 @@ function render() {
   if (compareMode) renderCompareCard();
 }
 
-function heatColor(t) {
-  return [255, 244, 168, Math.min(0.6, 0.08 + t * 0.52)];
-}
-let heatDrawn = false;
-function drawHeat() {
-  if (heatDrawn) return;
-  heatDrawn = true;
-  const canvas = document.getElementById('heat');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  const off = document.createElement('canvas');
-  off.width = W; off.height = H;
-  const octx = off.getContext('2d');
-  octx.globalCompositeOperation = 'lighter';
-  const maxCount = Math.max(...GRID.points.map(p => p[2]));
-  GRID.points.forEach(([gx, gy, count]) => {
-    const x = gx * GRID.cell, y = gy * GRID.cell;
-    const alpha = Math.min(1, 0.3 + 0.7 * (count / maxCount));
-    const radius = 5 + Math.sqrt(count) * 1.4;
-    const grad = octx.createRadialGradient(x, y, 0, x, y, radius);
-    grad.addColorStop(0, 'rgba(255,0,0,' + alpha + ')');
-    grad.addColorStop(1, 'rgba(255,0,0,0)');
-    octx.fillStyle = grad;
-    octx.beginPath(); octx.arc(x, y, radius, 0, Math.PI*2); octx.fill();
-  });
-  const src = octx.getImageData(0,0,W,H);
-  const out = ctx.createImageData(W,H);
-  for (let i=0;i<src.data.length;i+=4){
-    const density = src.data[i]/255;
-    if (density < 0.02) continue;
-    const [r,g,b,a] = heatColor(Math.min(1,density));
-    out.data[i]=r; out.data[i+1]=g; out.data[i+2]=b; out.data[i+3]=Math.round(a*255);
-  }
-  ctx.putImageData(out,0,0);
-}
-
 const MAP_LAYER_CONTROLS = [
-  ['lightToggle', 'Streetlight heatmap', () => showLights],
+  ['streetlightPointsToggle', 'Streetlight survey points', () => showStreetlightPoints],
   ['policeToggle', 'Police', () => showPolice],
   ['zonesToggle', 'Crash zones', () => showZones],
   ['busStopToggle', 'Bus stops', () => showBusStops],
@@ -2145,10 +2124,6 @@ function setupToggleControl(id, getter, setter) {
     setter(newVal);
     el.classList.toggle('on', newVal);
     el.setAttribute('aria-checked', newVal ? 'true' : 'false');
-    if (id === 'lightToggle') {
-      document.getElementById('heat').classList.toggle('on', newVal);
-      if (newVal) drawHeat();
-    }
     updateDisplayControls();
     updateLayerControls();
     renderMap();
@@ -2162,7 +2137,7 @@ function setupToggleControl(id, getter, setter) {
   });
 }
 
-setupToggleControl('lightToggle', () => showLights, v => { showLights = v; });
+setupToggleControl('streetlightPointsToggle', () => showStreetlightPoints, v => { showStreetlightPoints = v; });
 setupToggleControl('policeToggle', () => showPolice, v => { showPolice = v; });
 setupToggleControl('zonesToggle', () => showZones, v => { showZones = v; });
 setupToggleControl('bivariateToggle', () => isBivariateMode, v => { isBivariateMode = v; });

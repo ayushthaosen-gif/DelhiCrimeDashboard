@@ -1,3 +1,11 @@
+## [2026-08-08] - Codex - Streetlight survey point layer
+
+- Replaced the main dashboard's streetlight heatmap with 3,150 proportional survey-cell markers.
+- Marker size uses a logarithmic scale based on the recorded light count, preserving dense observations without obscuring nearby locations.
+- Added hover details with each cell's recorded count and PAPL / Delhi Transport Stack OTD attribution.
+- Kept survey coverage separate from the crime choropleth: unsurveyed districts are not presented as zero-light areas.
+- Removed the obsolete heatmap canvas and rendering code.
+
 ## [2026-08-08] - Codex - Mobile filter-sheet fix
 
 - Fixed the interactive map's mobile filter panel so the close control remains visible and reliably collapses the sheet.
