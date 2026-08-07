@@ -1,3 +1,10 @@
+## [2026-08-08] - Codex - Mobile filter-sheet fix
+
+- Fixed the interactive map's mobile filter panel so the close control remains visible and reliably collapses the sheet.
+- Separated the filter and spatial-analysis panels to prevent overlap on narrow screens.
+- Forced mobile controls and layer groups into a single scrollable column, eliminating sideways overflow.
+- Added accessible expanded-state labels, Escape-to-close, and automatic closure when returning to desktop width.
+
 # AI Collaboration Log & Changelog
 
 > **Before adding an entry here**: if the change alters the *value* of a

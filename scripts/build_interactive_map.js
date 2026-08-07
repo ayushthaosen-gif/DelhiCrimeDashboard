@@ -148,8 +148,15 @@ body { display: flex; flex-direction: column; }
   .mobile-only { display: inline-block; }
   #topbar > label, #topbar > .seg, #topbar > div:not(#pointLayerToggles), #analysisBar > label, #analysisBar > .seg, #analysisBar > span, #pointLayerToggles { display: none; }
   body.mobile-filters-open #topbar > label, body.mobile-filters-open #topbar > .seg, body.mobile-filters-open #topbar > div:not(#pointLayerToggles), body.mobile-filters-open #analysisBar > label, body.mobile-filters-open #analysisBar > .seg, body.mobile-filters-open #analysisBar > span, body.mobile-filters-open #pointLayerToggles { display: flex; }
-  body.mobile-filters-open #topbar, body.mobile-filters-open #analysisBar { position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 1500; max-height: 70vh; overflow-y: auto; flex-direction: column; align-items: stretch; border-top: 1px solid var(--border); box-shadow: 0 -4px 16px rgba(0,0,0,.2); }
-  body.mobile-filters-open #analysisBar { bottom: 0; }
+  body.mobile-filters-open #topbar, body.mobile-filters-open #analysisBar { position: fixed; left: 0; right: 0; z-index: 1500; overflow-y: auto; flex-direction: column; align-items: stretch; border-top: 1px solid var(--border); box-shadow: 0 -4px 16px rgba(0,0,0,.2); }
+  body.mobile-filters-open #topbar { top: 18vh; bottom: 120px; max-height: none; }
+  body.mobile-filters-open #analysisBar { top: auto; bottom: 0; height: 120px; max-height: 120px; }
+  body.mobile-filters-open #mobileFilterToggle { order: -10; position: sticky; top: 0; z-index: 3; align-self: flex-end; background: var(--surface); border-color: var(--amber); }
+  body.mobile-filters-open #topbar, body.mobile-filters-open #analysisBar { overflow-x: hidden; flex-wrap: nowrap; }
+  body.mobile-filters-open #pointLayerToggles { width: 100%; flex-direction: column; flex-wrap: nowrap; }
+  body.mobile-filters-open .layer-group { width: 100%; min-width: 0; }
+  body.mobile-filters-open .layer-group-body { flex-direction: column; }
+  body.mobile-filters-open .layer-group-body label { width: 100%; white-space: normal; }
   #drawer { top: auto; left: 0; right: 0; width: auto; max-width: none; height: 70vh; bottom: 0; transform: translateY(100%); border-left: none; border-top: 1px solid var(--border); border-radius: 12px 12px 0 0; }
   #drawer.open { transform: translateY(0); }
   .point-legend { right: 10px !important; bottom: 12px; max-width: calc(100vw - 20px); max-height: 34vh; overflow-y: auto; }
@@ -211,7 +218,7 @@ body { display: flex; flex-direction: column; }
   <button id="shareUrlBtn" type="button">🔗 Share view</button>
   <button id="downloadCsvBtn" type="button">⬇ CSV</button>
   <button id="downloadGeoJsonBtn" type="button">⬇ GeoJSON</button>
-  <button id="mobileFilterToggle" type="button" class="mobile-only">☰ Filters</button>
+  <button id="mobileFilterToggle" type="button" class="mobile-only" aria-expanded="false" aria-controls="topbar analysisBar" aria-label="Open map filters">☰ Filters</button>
   <a class="back" href="delhi_safety_dashboard.html">← Back to dashboard</a>
   <div class="point-toggles-row" id="pointLayerToggles">
     <details class="layer-group" open>
@@ -1034,8 +1041,21 @@ document.getElementById('shareUrlBtn').addEventListener('click', () => {
 
 // ── Mobile: filter controls collapse into a bottom sheet below 720px (see the matching
 // @media block in <style>); the district drawer also becomes a bottom sheet on mobile via CSS. ──
-document.getElementById('mobileFilterToggle').addEventListener('click', () => {
-  document.body.classList.toggle('mobile-filters-open');
+const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+function setMobileFiltersOpen(open) {
+  document.body.classList.toggle('mobile-filters-open', open);
+  mobileFilterToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  mobileFilterToggle.setAttribute('aria-label', open ? 'Close map filters' : 'Open map filters');
+  mobileFilterToggle.textContent = open ? '✕ Close filters' : '☰ Filters';
+}
+mobileFilterToggle.addEventListener('click', () => {
+  setMobileFiltersOpen(!document.body.classList.contains('mobile-filters-open'));
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && document.body.classList.contains('mobile-filters-open')) setMobileFiltersOpen(false);
+});
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 720 && document.body.classList.contains('mobile-filters-open')) setMobileFiltersOpen(false);
 });
 
 // ── Point layers, all off by default so the map opens uncluttered ──
