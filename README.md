@@ -1,5 +1,7 @@
 # Delhi Urban Safety Observatory
 
+[![JS build and test](https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/actions/workflows/js-build-test.yml/badge.svg)](https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/actions/workflows/js-build-test.yml)
+
 ## Automated 2025 staging pipeline
 
 `tools/pipeline_2025/` contains the separate, auditable Python 3.12 collection pipeline for official 2025 sources. It stages raw downloads, checksums, provenance, review queues and validation reports without modifying production dashboard data. See [`tools/pipeline_2025/README.md`](tools/pipeline_2025/README.md). Dashboard integration is always a separate human-approved proposal.

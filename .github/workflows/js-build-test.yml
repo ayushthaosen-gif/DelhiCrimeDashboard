@@ -1,0 +1,41 @@
+name: JS build and test
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'data/**'
+      - 'test/**'
+      - '*.html'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/js-build-test.yml'
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - 'data/**'
+      - 'test/**'
+      - '*.html'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/js-build-test.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # The land-use step (build:landuse-wards, inside build:interactive-map) does real polygon
+    # union/difference math per ward to avoid double-counting overlapping OSM landuse tags -- takes
+    # ~4-5 minutes end to end as of 2026-08-08. 15 minutes gives real headroom above that without
+    # letting a genuinely hung job run indefinitely.
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run build:interactive-map
+      - name: Verify generated output is reproducible from source
+        run: git diff --exit-code -- delhi_safety_dashboard.html interactive_map.html data/

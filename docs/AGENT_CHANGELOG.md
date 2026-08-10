@@ -1,3 +1,16 @@
+## [2026-08-08] - Claude (Anthropic) - CI for the JS Build and Test Suite
+
+### 🤖 `.github/workflows/js-build-test.yml` — the biggest standing gap this project had flagged and re-flagged across several turns, finally closed
+
+`npm test` has never run automatically in this repo. `.github/workflows/` only ever covered the Python 2025 pipeline. Today alone landed four new build scripts with real geometric/reconciliation logic (OSM/PAPL streetlight merging, polygon-overlap land-use aggregation) and a real bug (wards over 100% mapped land use) that sat undetected until a human asked for tests. CI is what stops that pattern from recurring the moment nobody happens to run the suite by hand after a change.
+
+1. New workflow triggers on **push to `main`**, not just `pull_request` — checked this repo's actual history first: every commit this whole session (mine and Codex's) has gone directly to `main`, no PRs used, so a PR-only trigger would provide zero real protection here. Path-filtered to `scripts/**`, `data/**`, `test/**`, `*.html`, `package.json`/`package-lock.json` so unrelated doc-only commits don't burn CI minutes.
+2. Job: `npm ci` (uses the existing `package-lock.json`, not `npm install`, for a reproducible install matching what a real CI run should do) → `npm test` → `npm run build` → `npm run build:interactive-map` → `git diff --exit-code` against `delhi_safety_dashboard.html`, `interactive_map.html`, and `data/`. That last step is a reproducibility gate, not just a test gate -- it automates the manual "regenerate and diff" check this project's own convention already relies on by hand (see e.g. the `299f1ac` merge-verification entry earlier in this log), catching the case where someone edits a build script but forgets to regenerate its output, or edits the generated HTML directly instead of its source.
+3. `timeout-minutes: 15` on the job -- the land-use step's overlap-fix union/difference math (added earlier today) takes the full `build:interactive-map` chain to ~4-5 minutes now, so this needed a real number, not the default, without being so generous a genuinely hung job runs forever.
+4. Added a status badge to the top of `README.md` linking to the workflow's Actions page.
+
+Verified by literally running every step of the job locally before trusting it, not just by reading the YAML: `npm ci` (fresh install from the lockfile, 0 vulnerabilities), `npm test` (36/36), `npm run build` (byte-identical), the full `npm run build:interactive-map` chain (~4-5 min, byte-identical), and the exact `git diff --exit-code` command the job runs, which passed clean against the current repo state. YAML syntax validated with `js-yaml`.
+
 ## [2026-08-08] - Codex - Make dynamic-map streetlights discoverable
 
 - Confirmed the deployed dynamic map contained both streetlight controls, but they were hidden inside the collapsed **Roads & footpaths** group.
