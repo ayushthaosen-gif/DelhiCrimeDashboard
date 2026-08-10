@@ -86,14 +86,34 @@ wards.features.forEach(ward => {
   const wardBbox = turf.bbox(ward);
   const wardAreaKm2 = turf.area(ward) / 1e6;
   const areaByCategory = Object.fromEntries(CATEGORIES.map(c => [c, 0]));
-  landuseFeatures.forEach(lf => {
-    if (!bboxOverlap(wardBbox, lf.bbox)) return;
+  // OSM contributors sometimes map landuse polygons that overlap or nest (e.g. a small
+  // "residential" enclave mapped inside a larger "military" cantonment boundary) -- summing each
+  // polygon's intersection area independently double-counts that shared ground, which surfaced as
+  // wards with mapped_pct > 100%. Fixed by processing candidates smallest-area-first (a smaller,
+  // more specific polygon "wins" the area it covers) and tracking a running `covered` union so each
+  // later, larger polygon only contributes the portion of ward area not already claimed.
+  const candidates = landuseFeatures.filter(lf => bboxOverlap(wardBbox, lf.bbox));
+  candidates.sort((a, b) => turf.area(a) - turf.area(b));
+  let covered = null;
+  candidates.forEach(lf => {
     let intersection;
     try { intersection = turf.intersect(turf.featureCollection([ward, lf])); }
     catch (e) { return; } // topology errors between two real-world polygons happen; skip that pair rather than crash the whole build
     if (!intersection) return;
-    const areaKm2 = turf.area(intersection) / 1e6;
+    let claimable = intersection;
+    if (covered) {
+      try { claimable = turf.difference(turf.featureCollection([intersection, covered])); }
+      catch (e) { return; }
+      if (!claimable) return; // fully already claimed by a smaller, higher-priority polygon
+    }
+    const areaKm2 = turf.area(claimable) / 1e6;
     areaByCategory[categoryOf(lf.properties.landuse)] += areaKm2;
+    if (covered) {
+      try { covered = turf.union(turf.featureCollection([covered, intersection])); }
+      catch (e) { /* keep the prior covered geometry if the union itself fails topologically */ }
+    } else {
+      covered = intersection;
+    }
   });
   const mappedKm2 = CATEGORIES.reduce((a, c) => a + areaByCategory[c], 0);
   const row = {
