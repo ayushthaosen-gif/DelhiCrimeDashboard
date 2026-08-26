@@ -166,8 +166,7 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 
 .compare-card { margin-top: 18px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); }
 .compare-card h2 { font-family: 'Big Shoulders', sans-serif; font-size: 22px; font-weight: 800; margin: 0 0 12px; display: flex; justify-content: space-between; align-items: center; }
-.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 14px; }
-@media (max-width: 680px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-grid { margin-top: 14px; max-width: 480px; }
 .compare-col { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
 .compare-col h3 { font-family: 'Big Shoulders', sans-serif; font-size: 24px; margin: 0 0 10px; color: var(--text); }
 
@@ -1629,6 +1628,7 @@ function renderDetail() {
 const INFRA_NOTES = {
   streetlight: 'PAPL survey — 9 of 15 districts covered',
   underpass: 'PAPL survey — same 9 districts',
+  pedestrianOverpass: 'OpenStreetMap (Overpass API snapshot 2026-08-04, 242 mapped bridge groups) — all 15 districts',
   metroGate: 'OpenStreetMap — all 15 districts',
   policeInfra: 'Stations: Delhi Police GSDL, official — all 15. Chowkis/outposts: OpenStreetMap — 14 of 15 (Outer unmapped)',
   busStop: 'OpenStreetMap (highway=bus_stop / public_transport=platform, 3,199 points) — all 15 districts',
@@ -2344,7 +2344,11 @@ function renderCompareCard() {
     '</h2>' +
     '<div class="compare-grid">' +
       '<div class="compare-col">' +
-        '<h3>' + d1.name + ' District</h3>' +
+        '<div class="tt-row" style="padding:6px 0;border-bottom:2px solid var(--border);font-weight:800;">' +
+          '<span style="flex:1;"></span>' +
+          '<span style="width:100px;text-align:right;">' + d1.name + '</span>' +
+          '<span style="width:100px;text-align:right;">' + d2.name + '</span>' +
+        '</div>' +
         compRow('District Area', d1.areaSqKm, d2.areaSqKm, 'km²') +
         compRow('Total IPC Crime (' + year + ')', yearFieldVal(d1,'totalIPC'), yearFieldVal(d2,'totalIPC')) +
         compRow('Theft Offences (' + year + ')', yearFieldVal(d1,'theft'), yearFieldVal(d2,'theft')) +
@@ -2353,19 +2357,7 @@ function renderCompareCard() {
         compRow('Crime Against Women (' + year + ')', yearFieldVal(d1,'crimeAgainstWomen'), yearFieldVal(d2,'crimeAgainstWomen')) +
         compRow('Streetlight Density', d1.lightDensityPerKm2, d2.lightDensityPerKm2, '/km²') +
         compRow('Police Stations & Chowkis', d1.policeInfraCount, d2.policeInfraCount) +
-        compRow('Fatal Crashes (2023)', d1.fatalCrashes2023, d2.fatalCrashes2023) +
-      '</div>' +
-      '<div class="compare-col">' +
-        '<h3>' + d2.name + ' District</h3>' +
-        compRow('District Area', d2.areaSqKm, d1.areaSqKm, 'km²') +
-        compRow('Total IPC Crime (' + year + ')', yearFieldVal(d2,'totalIPC'), yearFieldVal(d1,'totalIPC')) +
-        compRow('Theft Offences (' + year + ')', yearFieldVal(d2,'theft'), yearFieldVal(d1,'theft')) +
-        compRow('Robbery (' + year + ')', yearFieldVal(d2,'robbery'), yearFieldVal(d1,'robbery')) +
-        compRow('Burglary (' + year + ')', yearFieldVal(d2,'burglary'), yearFieldVal(d1,'burglary')) +
-        compRow('Crime Against Women (' + year + ')', yearFieldVal(d2,'crimeAgainstWomen'), yearFieldVal(d1,'crimeAgainstWomen')) +
-        compRow('Streetlight Density', d2.lightDensityPerKm2, d1.lightDensityPerKm2, '/km²') +
-        compRow('Police Stations & Chowkis', d2.policeInfraCount, d1.policeInfraCount) +
-        compRow('Fatal Crashes (2023)', d2.fatalCrashes2023, d1.fatalCrashes2023) +
+        compRow('Fatal Crashes (' + (activeYear === '2024' ? '2024' : '2023') + ')', activeYear === '2024' ? d1.fatalCrashes2024 : d1.fatalCrashes2023, activeYear === '2024' ? d2.fatalCrashes2024 : d2.fatalCrashes2023) +
       '</div>' +
     '</div>';
 
