@@ -21,6 +21,69 @@ const sources = [
     publication_date: null, agency: 'Press Information Bureau / Ministry of Home Affairs',
     reference_period: 'Crime in India 2024', notes: 'Official release-status reference; it is not a district-level extract.', allow_unavailable: true
   },
+  // The district-wise NCRB workbooks are the actual evidence behind every crime figure on the
+  // dashboard. They were previously cited by URL only, so nothing in the repository pinned the
+  // bytes those numbers were read from; NCRB has reshuffled /uploads/ paths before.
+  // The 2024 IPC workbook is titled "Districtwise IPC/BNS Crimes - 2024" and its Delhi block
+  // reproduces the dashboard's totalIPC2024 exactly for all 15 law-and-order districts.
+  {
+    id: 'ncrb_districtwise_ipc_2024', path: 'ncrb/districtwise_ipc_bns_crimes_2024.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise IPC/BNS crimes, 2024',
+    notes: 'Source for theft2024, robbery2024, burglary2024 and totalIPC2024. Excludes the nine non-geographic Delhi rows (Crime Branch, EOW, IGI Airport, Metro, Railway, Spl Cell, SPUWAC, Vigilance) that are not law-and-order districts.'
+  },
+  {
+    id: 'ncrb_districtwise_ipc_2023', path: 'ncrb/districtwise_ipc_crimes_2023.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise IPC crimes, 2023',
+    notes: 'Source for theft, robbery, burglary and totalIPC (the dashboard’s 2023 baseline year).'
+  },
+  {
+    id: 'ncrb_districtwise_ipc_2022', path: 'ncrb/districtwise_ipc_crimes_2022.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise IPC crimes, 2022',
+    notes: 'Source for the 2022 comparison year, and the known-correct totals used to validate the 2017-2021 historical reconstruction.'
+  },
+  {
+    id: 'ncrb_districtwise_sll_2024', path: 'ncrb/districtwise_sll_crimes_2024.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise SLL crimes, 2024', notes: 'Source for totalSLL2024.'
+  },
+  {
+    id: 'ncrb_districtwise_sll_2023', path: 'ncrb/districtwise_sll_crimes_2023.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise SLL crimes, 2023', notes: 'Source for totalSLL.'
+  },
+  {
+    id: 'ncrb_districtwise_sll_2022', path: 'ncrb/districtwise_sll_crimes_2022.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise SLL crimes, 2022',
+    notes: 'Source for totalSLL2022. One record misfiled under Delhi (district_code 553, actually Lakshadweep) is excluded by the district-name matcher.'
+  },
+  {
+    id: 'ncrb_districtwise_caw_2024', path: 'ncrb/districtwise_crime_against_women_2024.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise crime against women, 2024', notes: 'Source for crimeAgainstWomen2024.'
+  },
+  {
+    id: 'ncrb_districtwise_caw_2023', path: 'ncrb/districtwise_crime_against_women_2023.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise crime against women, 2023', notes: 'Source for crimeAgainstWomen.'
+  },
+  {
+    id: 'ncrb_districtwise_caw_2022', path: 'ncrb/districtwise_crime_against_women_2022.xlsx',
+    source_url: 'https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx',
+    publication_date: null, agency: 'National Crime Records Bureau',
+    reference_period: 'Crime in India, district-wise crime against women, 2022', notes: 'Source for crimeAgainstWomen2022.'
+  },
   {
     id: 'delhi_police_newsletters_index', path: 'delhi_police/newsletters_index_2025_2026.html',
     source_url: 'https://delhipolice.gov.in/newsletters', publication_date: null,
