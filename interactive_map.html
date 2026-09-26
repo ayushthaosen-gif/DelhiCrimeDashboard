@@ -295,18 +295,25 @@ const METRICS = [
   { key: 'totalIPC', label: 'Total IPC', full: 'Total Cognizable IPC Crimes', prevKey: 'totalIPC2022', key2024: 'totalIPC2024', source: 'NCRB Crime in India District-Wise Reports' },
   { key: 'crimeAgainstWomen', label: 'Vs. Women', full: 'Total Crime Against Women', prevKey: 'crimeAgainstWomen2022', key2024: 'crimeAgainstWomen2024', source: 'NCRB Crime in India District-Wise Reports' },
   { key: 'totalSLL', label: 'SLL Crimes', full: 'Total Cognizable SLL Crimes', prevKey: 'totalSLL2022', key2024: 'totalSLL2024', source: 'NCRB Crime in India District-Wise Reports' },
-  { key: 'fatalRoadCrashes2022', label: 'Road Deaths (2022)', full: 'Fatal Road Crashes, 2022 — the source report changed format after 2022; for 2023/2024 use Persons Killed instead', fixedYear: '2022', source: 'Delhi Traffic Police 2022 Report' },
-  { key: 'hitAndRunCrashes2022', label: 'Hit & Run (2022)', full: 'Hit-and-Run Fatal Crashes, 2022 — not published in this district-level form after 2022', fixedYear: '2022', source: 'Delhi Traffic Police 2022 Report' },
-  { key: 'crashProneZones2023', label: 'Crash Zones (2023)', full: 'Crash-Prone Zones, 2023', fixedYear: '2023', source: 'Delhi Road Crash Report 2023' },
-  { key: 'fatalCrashes2023', label: 'Fatal Crashes (2023)', full: 'Fatal Crashes, 2023 — within identified crash-prone zones, not the full district total', fixedYear: '2023', source: 'Delhi Road Crash Report 2023' },
-  { key: 'totalCrashes2023', label: 'Total Crashes (2023)', full: 'Total Road Crashes, 2023 — within identified crash-prone zones, not the full district total', fixedYear: '2023', source: 'Delhi Road Crash Report 2023' },
-  { key: 'crashProneZones2024', label: 'Crash Zones (2024)', full: 'Crash-Prone Zones, 2024', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.31' },
-  { key: 'fatalCrashes2024', label: 'Fatal Crashes (2024)', full: 'Fatal Crashes, 2024 — within identified crash-prone zones, not the full district total', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.31' },
-  { key: 'totalCrashes2024', label: 'Total Crashes (2024)', full: 'Total Road Crashes, 2024 — within identified crash-prone zones, not the full district total', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.31' },
-  { key: 'personsKilled2023', label: 'Persons Killed (2023)', full: 'Persons Killed in Road Crashes, 2023 — full-district total, not limited to crash-prone zones', fixedYear: '2023', source: 'Delhi Road Crash Report 2024, Table 6.2' },
-  { key: 'personsKilled2024', label: 'Persons Killed (2024)', full: 'Persons Killed in Road Crashes, 2024 — full-district total, not limited to crash-prone zones', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.2' },
-  { key: 'personsInjured2023', label: 'Persons Injured (2023)', full: 'Persons Injured in Road Crashes, 2023 — full-district total, not limited to crash-prone zones', fixedYear: '2023', source: 'Delhi Road Crash Report 2024, Table 6.2' },
-  { key: 'personsInjured2024', label: 'Persons Injured (2024)', full: 'Persons Injured in Road Crashes, 2024 — full-district total, not limited to crash-prone zones', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  // 2022-only series: the Delhi Traffic Police report changed format after 2022, so these stay
+  // pinned with fixedYear and are NOT folded into the Year selector. Persons Killed is the
+  // full-district successor for 2023/2024.
+  { key: 'fatalRoadCrashes2022', label: 'Road Deaths', year: '2022', full: 'Fatal Road Crashes', note: 'the source report changed format after 2022; for 2023/2024 use Persons Killed instead', fixedYear: '2022', source: 'Delhi Traffic Police 2022 Report' },
+  { key: 'hitAndRunCrashes2022', label: 'Hit & Run', year: '2022', full: 'Hit-and-Run Fatal Crashes', note: 'not published in this district-level form after 2022', fixedYear: '2022', source: 'Delhi Traffic Police 2022 Report' },
+  // Road-safety series published for both 2023 and 2024: one consolidated entry each, driven by
+  // the Year selector through yearVariants, the same way build.js does it. The per-year duplicates
+  // below stay in METRICS (hiddenFromSelector) so already-shared ?crime=...2024 links still resolve.
+  // full/note carry no year of their own -- every display site appends the selected year itself.
+  { key: 'crashProneZones2023', label: 'Crash Zones', year: '2023', yearVariants: { '2023': 'crashProneZones2023', '2024': 'crashProneZones2024' }, full: 'Crash-Prone Zones', source: 'Delhi Road Crash Report 2023', sourceByYear: { '2023': 'Delhi Road Crash Report 2023', '2024': 'Delhi Road Crash Report 2024, Table 6.31' } },
+  { key: 'fatalCrashes2023', label: 'Fatal Crashes', year: '2023', yearVariants: { '2023': 'fatalCrashes2023', '2024': 'fatalCrashes2024' }, full: 'Fatal Crashes', note: 'within identified crash-prone zones, not the full district total', source: 'Delhi Road Crash Report 2023', sourceByYear: { '2023': 'Delhi Road Crash Report 2023', '2024': 'Delhi Road Crash Report 2024, Table 6.31' } },
+  { key: 'totalCrashes2023', label: 'Total Crashes', year: '2023', yearVariants: { '2023': 'totalCrashes2023', '2024': 'totalCrashes2024' }, full: 'Total Road Crashes', note: 'within identified crash-prone zones, not the full district total', source: 'Delhi Road Crash Report 2023', sourceByYear: { '2023': 'Delhi Road Crash Report 2023', '2024': 'Delhi Road Crash Report 2024, Table 6.31' } },
+  { key: 'personsKilled2023', label: 'Persons Killed', year: '2023', yearVariants: { '2023': 'personsKilled2023', '2024': 'personsKilled2024' }, full: 'Persons Killed in Road Crashes', note: 'full-district total, not limited to crash-prone zones', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'personsInjured2023', label: 'Persons Injured', year: '2023', yearVariants: { '2023': 'personsInjured2023', '2024': 'personsInjured2024' }, full: 'Persons Injured in Road Crashes', note: 'full-district total, not limited to crash-prone zones', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'crashProneZones2024', hiddenFromSelector: true, label: 'Crash Zones \'24', year: '2024', full: 'Crash-Prone Zones', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'fatalCrashes2024', hiddenFromSelector: true, label: 'Fatal Crashes \'24', year: '2024', full: 'Fatal Crashes', note: 'within identified crash-prone zones, not the full district total', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'totalCrashes2024', hiddenFromSelector: true, label: 'Total Crashes \'24', year: '2024', full: 'Total Road Crashes', note: 'within identified crash-prone zones, not the full district total', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.31' },
+  { key: 'personsKilled2024', hiddenFromSelector: true, label: 'Persons Killed \'24', year: '2024', full: 'Persons Killed in Road Crashes', note: 'full-district total, not limited to crash-prone zones', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.2' },
+  { key: 'personsInjured2024', hiddenFromSelector: true, label: 'Persons Injured \'24', year: '2024', full: 'Persons Injured in Road Crashes', note: 'full-district total, not limited to crash-prone zones', fixedYear: '2024', source: 'Delhi Road Crash Report 2024, Table 6.2' },
 ];
 
 const INFRA = [
@@ -375,7 +382,21 @@ let unsafeMode = false; // declared here (not near its own module further below)
 let selectedDistrict = null;
 
 const metricSelect = document.getElementById('metricSelect');
-metricSelect.innerHTML = METRICS.map(m => '<option value="' + m.key + '" title="' + (m.full + ' — ' + m.source).replace(/"/g, '&quot;') + '">' + m.label + '</option>').join('');
+// Only consolidated entries are listed; the per-year duplicates stay in METRICS (reachable by
+// URL) but would otherwise list the same series twice, once per year. Grouped Crime / Road safety
+// to match the main dashboard's selector.
+function metricOptionSource(m) {
+  // Year-dependent sources are spelled out in full here, since a single option title has to stay
+  // correct whichever year is selected.
+  return m.sourceByYear ? Object.keys(m.sourceByYear).map(y => y + ': ' + m.sourceByYear[y]).join(' · ') : m.source;
+}
+(function renderMetricOptions() {
+  const visible = METRICS.filter(m => !m.hiddenFromSelector);
+  const opt = m => '<option value="' + m.key + '" title="' + (m.full + metricNote(m) + ' — ' + metricOptionSource(m)).replace(/"/g, '&quot;') + '">' + m.label + '</option>';
+  metricSelect.innerHTML =
+    '<optgroup label="Crime">' + visible.filter(m => m.prevKey).map(opt).join('') + '</optgroup>' +
+    '<optgroup label="Road safety">' + visible.filter(m => !m.prevKey).map(opt).join('') + '</optgroup>';
+})();
 const bivInfraSelect = document.getElementById('bivInfraSelect');
 bivInfraSelect.innerHTML = INFRA.map(i => '<option value="' + i.key + '" title="' + (i.label + ' — Source: ' + i.source).replace(/"/g, '&quot;') + '">' + i.label + '</option>').join('');
 bivInfraSelect.value = bivariateInfra;
@@ -385,13 +406,27 @@ function currentMetric() { return METRICS.find(m => m.key === metricSelect.value
 function currentInfra() { return INFRA.find(i => i.key === bivInfraSelect.value); }
 
 function yearFieldKey(m, year) {
+  // Road-safety series name their per-year fields explicitly. Fall back to the metric's own base
+  // year when the requested year has no variant, so a stale activeYear can never resolve to an
+  // undefined field and silently grey out the whole choropleth.
+  if (m.yearVariants) return m.yearVariants[year] || m.yearVariants[m.year] || m.key;
   if (!m.prevKey) return m.key;
   if (year === '2022') return m.prevKey;
   if (year === '2024') return m.key2024;
   return m.key;
 }
+function metricYears(m) {
+  if (m.yearVariants) return Object.keys(m.yearVariants);
+  if (!m.prevKey) return [m.fixedYear || m.year];
+  return ['2022', '2023', '2024'];
+}
+function metricSupportsYear(m, year) { return metricYears(m).indexOf(year) !== -1; }
 function prevYearOf(year) { return year === '2024' ? '2023' : year === '2023' ? '2022' : null; }
 function effectiveYear(m) { return m.fixedYear || activeYear; }
+// The crash-zone tables are published in a different report per year, so cite the one the
+// selected year actually came from instead of a single fixed string.
+function metricSource(m) { return (m.sourceByYear && m.sourceByYear[effectiveYear(m)]) || m.source; }
+function metricNote(m) { return m.note ? ' — ' + m.note : ''; }
 
 function getRateVal(rawCount, d) {
   if (rawCount == null) return null;
@@ -556,9 +591,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function buildYearToggle() {
   const el = document.getElementById('yearToggle');
   const m = currentMetric();
-  if (!m.prevKey) { el.style.display = 'none'; return; }
+  // Single-year series (the 2022-only Traffic Police metrics) have nothing to switch between.
+  if (!m.prevKey && !m.yearVariants) { el.style.display = 'none'; return; }
   el.style.display = '';
-  el.innerHTML = ['2022','2023','2024'].map(y => '<button class="' + (activeYear===y?'active':'') + '" data-y="' + y + '">' + y + '</button>').join('');
+  el.innerHTML = metricYears(m).map(y => '<button class="' + (activeYear===y?'active':'') + '" data-y="' + y + '">' + y + '</button>').join('');
   el.querySelectorAll('button').forEach(btn => {
     btn.addEventListener('click', () => { activeYear = btn.dataset.y; buildYearToggle(); renderChoropleth(); });
   });
@@ -623,7 +659,8 @@ function renderChoropleth() {
         if (bivariateMode) {
           body += '<div style="margin-top:4px;">' + inf.label + ': <b>' + fmtNum(getInfraVal(d, inf)) + '</b> ' + (rateMode === 'perCapita' ? '/100k' : '/km²') + '</div>';
         }
-        body += '<div class="popup-src">Source: ' + m.source + (bivariateMode ? ' · ' + inf.source : '') + '</div>';
+        if (m.note) body += '<div class="popup-src">' + m.note + '</div>';
+        body += '<div class="popup-src">Source: ' + metricSource(m) + (bivariateMode ? ' · ' + inf.source : '') + '</div>';
       }
 
       layer.bindPopup(body);
@@ -760,7 +797,14 @@ function renderLegend(m, inf, lo, hi) {
   }
 }
 
-metricSelect.addEventListener('change', () => { buildYearToggle(); renderChoropleth(); });
+metricSelect.addEventListener('change', () => {
+  // The crash-zone series only exist for 2023/2024, so switching to one while 2022 is selected
+  // has to snap the year to one that series actually publishes rather than render an empty map.
+  const years = metricYears(currentMetric());
+  if (years.indexOf(activeYear) === -1) activeYear = years[years.length - 1];
+  buildYearToggle();
+  renderChoropleth();
+});
 document.getElementById('chkBivariate').addEventListener('change', (e) => {
   bivariateMode = e.target.checked;
   document.getElementById('bivInfraWrap').style.display = bivariateMode ? '' : 'none';
@@ -886,8 +930,20 @@ function applyUrlStateOnLoad() {
   const bivariate = params.get('bivariate');
   const infra = params.get('infra');
   const district = params.get('district');
-  if (crime && METRICS.some(m => m.key === crime)) metricSelect.value = crime;
-  if (year && ['2022','2023','2024'].includes(year)) activeYear = year;
+  // A ?crime= key naming a per-year duplicate (e.g. personsKilled2024) predates the consolidated
+  // selector and no longer exists as an <option>, so assigning it directly would blank the select.
+  // Resolve it to the consolidated entry plus the year it encoded; an explicit ?year= still wins.
+  if (crime && METRICS.some(m => m.key === crime)) {
+    const owner = METRICS.find(m => !m.hiddenFromSelector && m.yearVariants &&
+      Object.keys(m.yearVariants).some(y => m.yearVariants[y] === crime));
+    if (owner) {
+      metricSelect.value = owner.key;
+      activeYear = Object.keys(owner.yearVariants).find(y => owner.yearVariants[y] === crime);
+    } else if (!METRICS.find(m => m.key === crime).hiddenFromSelector) {
+      metricSelect.value = crime;
+    }
+  }
+  if (year && ['2022','2023','2024'].includes(year) && metricSupportsYear(currentMetric(), year)) activeYear = year;
   if (rate === 'perCapita') rateMode = 'perCapita';
   if (infra && INFRA.some(i => i.key === infra)) { bivariateInfra = infra; bivInfraSelect.value = infra; }
   if (bivariate === '1') {
@@ -975,7 +1031,7 @@ document.getElementById('downloadGeoJsonBtn').addEventListener('click', () => {
   const rank = rankOf(feats.map(f=>f.properties), yearFieldKey(m, activeYear));
   const out = {
     type: 'FeatureCollection',
-    metadata: { metric: m.label, year: effectiveYear(m), rateMode, bivariate: bivariateMode ? inf.label : null, source: m.source },
+    metadata: { metric: m.label, year: effectiveYear(m), rateMode, bivariate: bivariateMode ? inf.label : null, source: metricSource(m) },
     features: feats.map(f => {
       const d = f.properties;
       const props = { district: d.district, value: metricValue(d, m), rank: rank(d) };
