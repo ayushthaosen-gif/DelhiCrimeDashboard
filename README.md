@@ -6,6 +6,12 @@
 
 `tools/pipeline_2025/` contains the separate, auditable Python 3.12 collection pipeline for official 2025 sources. It stages raw downloads, checksums, provenance, review queues and validation reports without modifying production dashboard data. See [`tools/pipeline_2025/README.md`](tools/pipeline_2025/README.md). Dashboard integration is always a separate human-approved proposal.
 
+## Official evidence archive
+
+[`data/raw/source_archive/`](data/raw/source_archive/) is a separate, machine-readable archive of the original official pages and PDFs used to assess newer data. Its [`manifest.json`](data/raw/source_archive/manifest.json) records each source URL, retrieval time, publication date (where supplied by the agency), issuer, reference period, SHA-256 checksum, MIME type, filename and scope note. Refresh it with `node scripts/archive_official_sources.mjs`; use `--offline` to verify retained file checksums without downloading.
+
+This archive is evidence, not automatic dashboard input. The 2025 iRAD/eDAR reports are published for only some administrative areas, and their police-station rows must be reconciled to the 15 police districts using a reviewed crosswalk before a citywide comparison is allowed. The source manifest makes that boundary inspectable rather than hiding it behind a map layer.
+
 A self-contained, single-file dashboard analyzing crime and road-safety data
 across Delhi's 15 police districts (2022-2024) against real public
 infrastructure coverage — PAPL survey-cell and OpenStreetMap street-lamp layers, pedestrian underpasses, mapped pedestrian overbridges, metro station
@@ -239,6 +245,10 @@ These files are **not automatically integrated into the production dashboard**. 
 - [DSCSC liquor-vends page](https://dscsc.delhi.gov.in/dscsc/liquor-vends)
 
 Use the audit manifests - not a copied URL alone - to determine whether a 2025 source was downloaded, validated, review-pending or unavailable.
+
+### Official reference archive (2024-2026)
+
+The evidence archive complements the 2025 staging pipeline with the current official indices, Delhi Police Manual 1 (updated 22 May 2026), the 2022 MCD delimitation notification and the 9 October 2025 Excise preferred-vend circular. See [`data/raw/source_archive/manifest.json`](data/raw/source_archive/manifest.json) for the exact original links and checksums. One source is intentionally recorded as unavailable when retrieval fails (rather than being replaced by a third-party mirror): the PIB page reporting the latest NCRB release returned HTTP 403 during archival. The dashboard continues to use its independently validated annual crime releases, not that blocked capture.
 
 ## Data & sourcing
 
