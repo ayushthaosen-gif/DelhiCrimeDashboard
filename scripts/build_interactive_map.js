@@ -1,5 +1,5 @@
 // Generates interactive_map.html — a separate page from the main dashboard, using Leaflet.js
-// + CARTO's free keyless basemap tiles for a real, zoomable/pannable street map. Kept as its
+// + OpenStreetMap standard tiles for a real, zoomable/pannable street map without a provider API key. Kept as its
 // own page rather than folded into delhi_safety_dashboard.html because it needs external
 // network requests (tiles, the Leaflet CDN bundle) at view-time, which would break the main
 // dashboard's "works from file://, no external requests" design. Run:
@@ -609,10 +609,9 @@ function renderWardLegend(show, xInf, yInf) {
 }
 
 const map = L.map('map', { zoomControl: true }).setView([28.62, 77.21], 11);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   maxZoom: 19,
-  subdomains: 'abcd',
 }).addTo(map);
 
 function buildYearToggle() {

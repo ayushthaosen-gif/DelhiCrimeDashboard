@@ -1,3 +1,8 @@
+## [2026-09-26] - Codex - Interactive map basemap recovery
+
+- Replaced CARTO Voyager tiles with OpenStreetMap standard tiles after CARTO returned an API-key-required watermark across the public map.
+- Preserved Leaflet attribution and removed the now-invalid CARTO attribution/subdomain configuration.
+- Verified the rebuilt page contains no CARTO endpoint and a live OpenStreetMap tile returns HTTP 200 PNG.
 ## [2026-09-26] - Codex - Release-manifest reproducibility audit
 
 - Found that `scripts/build_yearly_releases.js` wrote a fresh `generatedAt` timestamp on every no-op run and calculated text-file checksums from platform-specific bytes. On Windows, Git checkout conversion could therefore change release manifest hashes despite no data change, defeating the CI reproducibility gate.
