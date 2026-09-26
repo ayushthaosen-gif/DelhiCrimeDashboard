@@ -1,3 +1,9 @@
+## [2026-09-26] - Codex - Release-manifest reproducibility audit
+
+- Found that `scripts/build_yearly_releases.js` wrote a fresh `generatedAt` timestamp on every no-op run and calculated text-file checksums from platform-specific bytes. On Windows, Git checkout conversion could therefore change release manifest hashes despite no data change, defeating the CI reproducibility gate.
+- Canonicalized CSV/JSON/GeoJSON/Markdown/HTML bytes to LF before recording checksums and byte counts. Binary files remain byte-for-byte hashed.
+- Preserved an existing manifest timestamp when all other manifest content is unchanged; a timestamp advances only when the manifest’s substantive content changes.
+- Rebuilt the 2016-2024 and shared manifests twice and verified all 11 manifests were byte-identical on the second run. No published dashboard figure changed.
 ## [2026-08-08] - Claude (Anthropic) - UI/UX Audit: Found and Fixed Three Real Bugs, Not Just Style Cleanup
 
 ### 🔍 Live-browser audit of both pages (console errors, "undefined"/NaN text scan, duplicate-ID scan, click-through of every control) instead of a read-only code review

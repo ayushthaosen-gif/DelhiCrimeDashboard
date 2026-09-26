@@ -51,8 +51,22 @@ function write(file, content) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, content);
 }
-function sha256(file) {
-  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+function canonicalBytes(file) {
+  const bytes = fs.readFileSync(file);
+  // Release manifests must not vary when Git changes a text checkout from LF to CRLF.
+  if (/\.(csv|json|geojson|md|html)$/i.test(file)) return Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n'), 'utf8');
+  return bytes;
+}
+function sha256(file) { return crypto.createHash('sha256').update(canonicalBytes(file)).digest('hex'); }
+function canonicalSize(file) { return canonicalBytes(file).length; }
+function stableGeneratedAt(file, manifest) {
+  try {
+    const previous = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const before = { ...previous }; delete before.generatedAt;
+    const after = { ...manifest }; delete after.generatedAt;
+    if (JSON.stringify(before) === JSON.stringify(after) && previous.generatedAt) return previous.generatedAt;
+  } catch (_) { /* First generation or malformed prior manifest. */ }
+  return new Date().toISOString();
 }
 function yearKey(metric, year) {
   if (year === 2023) return metric;
@@ -136,7 +150,7 @@ function normalizeZones(year) {
 }
 function fileEntry(dir, name, datasetId, derivedFrom) {
   const file = path.join(dir, name);
-  return { path: name, datasetId, mediaType: name.endsWith('.csv') ? 'text/csv' : 'application/json', sha256: sha256(file), bytes: fs.statSync(file).size, derivedFrom };
+  return { path: name, datasetId, mediaType: name.endsWith('.csv') ? 'text/csv' : 'application/json', sha256: sha256(file), bytes: canonicalSize(file), derivedFrom };
 }
 function buildYear(year) {
   const dir = path.join(RELEASES, String(year));
@@ -172,8 +186,9 @@ function buildYear(year) {
     outputs.push(fileEntry(dir, 'crash_prone_zones.csv', `delhi_crash_prone_zones_${year}`, [`data/${path.basename(sourceFileForZones(year))}`]));
   }
   const nullCounts = Object.fromEntries(CRIME_FIELDS.map(metric => [metric, crime.filter(row => row[metric === 'totalIPC' ? 'total_ipc_bns' : metric === 'crimeAgainstWomen' ? 'crime_against_women' : metric === 'totalSLL' ? 'total_sll' : metric] == null).length]));
+  const manifestPath = path.join(dir, 'manifest.json');
   const manifest = {
-    schemaVersion: '1.0.0', releaseYear: year, jurisdiction: 'Delhi', geography: '15 current territorial police-district names', joinKey: 'district', generatedBy: 'scripts/build_yearly_releases.js', generatedAt: new Date().toISOString(),
+    schemaVersion: '1.0.0', releaseYear: year, jurisdiction: 'Delhi', geography: '15 current territorial police-district names', joinKey: 'district', generatedBy: 'scripts/build_yearly_releases.js', generatedAt: null,
     productionStatus: 'production dashboard data', nullPolicy: 'Null is unknown, unavailable, incompatible, or not separately reported; never coerce null to zero.',
     comparability: year === 2016 ? 'Burglary and reconstructed totals are deliberately null because source definitions/schemas are incompatible.' : year <= 2018 ? 'Some current districts were not separately reported; inspect row coverage and comparability flags.' : 'Inspect per-metric previous-year comparability flags before calculating change.',
     coverage: { districtRows: crime.length, districtsWithAnyCrimeValue: crime.filter(r => CRIME_FIELDS.some(m => r[m === 'totalIPC' ? 'total_ipc_bns' : m === 'crimeAgainstWomen' ? 'crime_against_women' : m === 'totalSLL' ? 'total_sll' : m] != null)).length, nullCounts },
@@ -181,7 +196,8 @@ function buildYear(year) {
     sources: [...crimeSources(year), ...roadSources(year)], files: outputs,
     sharedData: { manifest: '../shared/manifest.json', warning: 'Infrastructure layers are latest-available snapshots, not measurements for this crime year.' }
   };
-  write(path.join(dir, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
+  manifest.generatedAt = stableGeneratedAt(manifestPath, manifest);
+  write(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
   write(path.join(dir, 'README.md'), `# Delhi research release ${year}\n\nImport-ready production data for ${year}. Start with \`manifest.json\`; it contains source URLs, checksums, coverage and null/comparability rules.\n\nFiles:\n${outputs.map(f => `- \`${f.path}\` - ${f.datasetId}`).join('\n')}\n\nNull values are never zeros. Infrastructure is catalogued in \`../shared/manifest.json\` because it is not a same-year historical measurement.\n`);
   return { year, path: `${year}/manifest.json`, files: outputs.length, districtRows: crime.length };
 }
@@ -196,7 +212,7 @@ function buildShared() {
     ['district_boundaries', 'data/dashboard_boundaries_simplified.geojson', 'Delhi Police GSDL', 'https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac', 'Simplified display geometry; not survey-grade'],
     ['ward_boundaries_and_derived_infrastructure', 'data/delhi_wards_infra.geojson', 'Project spatial join over legacy ward polygons', 'data/source/README.md', 'Derived; 290 legacy wards; inspect basis fields'],
     ['liquor_vends_approximate', 'data/delhi_liquor_vends_all_coordinates_approx.geojson', 'DSCSC / DCCWS published vend list', 'https://dscsc.delhi.gov.in/dscsc/liquor-vends', 'Coordinates are approximate unless explicitly flagged exact']
-  ].map(([id, file, publisher, url, licenseAndCaveat]) => ({ id, file, publisher, url, licenseAndCaveat, sha256: sha256(path.join(ROOT, file)), bytes: fs.statSync(path.join(ROOT, file)).size }));
+  ].map(([id, file, publisher, url, licenseAndCaveat]) => ({ id, file, publisher, url, licenseAndCaveat, sha256: sha256(path.join(ROOT, file)), bytes: canonicalSize(path.join(ROOT, file)) }));
   const knownByFile = Object.fromEntries(datasets.map(d => [d.file, d.id]));
   const productionFileInventory = fs.readdirSync(path.join(ROOT, 'data'), { withFileTypes: true })
     .filter(entry => entry.isFile() && /\.(json|geojson|csv)$/.test(entry.name))
@@ -208,10 +224,13 @@ function buildShared() {
         provenanceStatus: knownByFile[file] ? 'source-described-above' : 'derived-or-compiled-production-file',
         documentation: knownByFile[file] ? null : 'See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.',
         sha256: sha256(path.join(ROOT, file)),
-        bytes: fs.statSync(path.join(ROOT, file)).size
+        bytes: canonicalSize(path.join(ROOT, file))
       };
     });
-  write(path.join(dir, 'manifest.json'), JSON.stringify({ schemaVersion: '1.0.0', scope: 'shared and non-year-specific production datasets', generatedBy: 'scripts/build_yearly_releases.js', generatedAt: new Date().toISOString(), warning: 'Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.', datasets, productionFileInventory }, null, 2) + '\n');
+  const manifestPath = path.join(dir, 'manifest.json');
+  const manifest = { schemaVersion: '1.0.0', scope: 'shared and non-year-specific production datasets', generatedBy: 'scripts/build_yearly_releases.js', generatedAt: null, warning: 'Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.', datasets, productionFileInventory };
+  manifest.generatedAt = stableGeneratedAt(manifestPath, manifest);
+  write(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
   write(path.join(dir, 'README.md'), '# Shared production datasets\n\nMachine-readable provenance for infrastructure, boundaries and approximate-location layers that do not belong to a single crime year. See `manifest.json`.\n');
 }
 

@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-08-10T09:33:40.141Z",
+  "generatedAt": "2026-09-26T07:12:04.933Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -163,8 +163,8 @@
       "datasetId": "delhi_crash_prone_zones_2024_coordinate_audit",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "5c43871f47b96ac12defaf2cff91b9bbb8711863e077bd74e319ed16ef5ee977",
-      "bytes": 15050
+      "sha256": "9a86d95683fdbb6e5ecc4c68a0f484df6ae05afe66c522bbefffd4422e4489ae",
+      "bytes": 14956
     },
     {
       "file": "data/delhi_crash_report_relevant_metrics_2024.json",
@@ -219,8 +219,8 @@
       "datasetId": "delhi_liquor_vends_coordinate_audit",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "96705a8d1780dc8bbf1fcfda4ceb1adb1430d3cb3fbe738291f7a9a66e4cd320",
-      "bytes": 132666
+      "sha256": "7919071af3d244ae865bc83b4be531d12a7da01464a9c67a4b16a6154e05adfb",
+      "bytes": 132278
     },
     {
       "file": "data/delhi_pedestrian_overpasses_osm.geojson",
@@ -243,16 +243,16 @@
       "datasetId": "footway_sizes",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "5d923827984546b561953dca1d449133af2dc3a70e9cbd780c0722ae62a860fe",
-      "bytes": 379922
+      "sha256": "17b159335f4fac82b9413a7264e8dccf8997edfab474d5059f455df9694de5ae",
+      "bytes": 370211
     },
     {
       "file": "data/landuse_by_ward.csv",
       "datasetId": "landuse_by_ward",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "da8ed81f83739014c86f6275e032ecc4ec55d2aac4cdc810cefaef4952e2af44",
-      "bytes": 19805
+      "sha256": "0618a33abdae0f5debc3426d32a5c58181fbc991a86d3212c8c273c60b5b8a84",
+      "bytes": 19514
     },
     {
       "file": "data/liquor_crash_proximity_summary_2024.json",
@@ -339,16 +339,16 @@
       "datasetId": "road_sizes",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "1b7e287b8c636a5ba4936e6ed24f7148ed97238c32c92ef2abd12211a1acb683",
-      "bytes": 399455
+      "sha256": "97aaf84ec67d99b8f545e050ccbcec719097f8bbce5b0a394faeefb51a9302d4",
+      "bytes": 391839
     },
     {
       "file": "data/streetlights_combined_by_district.csv",
       "datasetId": "streetlights_combined_by_district",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "eacab80e431733f116bf2574e8a293223dd728fea49b2d03ea1dbd9f631153ee",
-      "bytes": 942
+      "sha256": "188aec30b16ee240d11e4b299d7c38d2a9302ff6d285c57e9cf2e4355958eff9",
+      "bytes": 926
     },
     {
       "file": "data/streetlights_combined_by_district.json",
