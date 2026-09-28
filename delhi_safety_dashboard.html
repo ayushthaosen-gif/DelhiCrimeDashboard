@@ -98,6 +98,7 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 .datanote b { color: var(--text); font-weight: 700; }
 .datanote ul { margin: 0; padding-left: 18px; }
 .datanote li { margin-bottom: 5px; }
+.data-status-panel { margin: 0 0 16px; border:1px solid var(--border); border-left:3px solid var(--amber); border-radius:8px; background:var(--surface); padding:12px 14px; display:grid; grid-template-columns:minmax(190px,1.2fr) repeat(4,minmax(120px,1fr)); gap:8px 14px; align-items:start; font-size:11.5px; box-shadow:var(--shadow); } .data-status-panel b { font-size:13px; } .data-status-label { display:block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); margin-bottom:2px; } .data-status-value { color:var(--text); line-height:1.35; } .data-status-badge { display:inline-block; border-radius:999px; padding:2px 7px; font-size:10px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; } .data-status-badge.production { background:rgba(63,125,82,.16); color:var(--good); } .data-status-badge.partial { background:rgba(227,161,59,.2); color:#8a5800; } @media (max-width:760px) { .data-status-panel { grid-template-columns:1fr 1fr; } .data-status-panel b { grid-column:1/-1; } }
 
 .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 16px; }
 
@@ -431,6 +432,7 @@ footer a { color: inherit; }
     </div>
     <button class="compare-btn primary-action" id="compareToggleBtn">Compare districts</button>
   </div>
+  <div class="data-status-panel" id="dataStatus" aria-live="polite"></div>
   <details class="layer-group" id="mapLayersGroup">
     <summary><span>Map layers</span><span class="layer-count-badge" id="layerCountBadge">0 active</span></summary>
     <div class="layer-group-body">
@@ -918,6 +920,20 @@ function yearSuffix(m) {
 // report's Table 6.2) carry no sourceByYear and fall through to the fixed source.
 function metricSource(m) {
   return (m.sourceByYear && m.sourceByYear[yearSuffix(m)]) || m.source;
+}
+function dataStatusFor(m) {
+  const year = yearSuffix(m);
+  if (m.prevKey) {
+    if (+year < 2022) return { state: 'production', label: 'Production · verified historical', coverage: '15 police districts where published; intentional early-year nulls', comparable: 'Only adjacent available years in the same series', source: m.source + ' / verified India Data Portal extract' };
+    return { state: 'production', label: 'Production', coverage: 'All 15 Delhi Police districts', comparable: '2022–2024 same district series; 2024 uses BNS-era table numbering', source: metricSource(m) };
+  }
+  if (m.key === 'fatalRoadCrashes2022' || m.key === 'hitAndRunCrashes2022') return { state: 'partial', label: 'Partial coverage', coverage: '11 Traffic Police reporting districts; four police districts not separately reported', comparable: 'Not a 15-district comparison; missing districts are not zero', source: metricSource(m) };
+  if (m.key === 'crashProneZones2023' || m.key === 'fatalCrashes2023' || m.key === 'totalCrashes2023') return { state: 'production', label: 'Production', coverage: 'All 15 police districts; crash-prone-zone scope only', comparable: '2023–2024 within this series, not with full district totals', source: metricSource(m) };
+  return { state: 'production', label: 'Production', coverage: 'All 15 police districts; full district road-crash totals', comparable: '2023–2024 within this series', source: metricSource(m) };
+}
+function renderDataStatus() {
+  const m = currentMetric(), s = dataStatusFor(m), el = document.getElementById('dataStatus');
+  el.innerHTML = '<b>Data status · ' + m.label + ' (' + yearSuffix(m) + ')</b><span><span class="data-status-label">Status</span><span class="data-status-badge ' + s.state + '">' + s.label + '</span></span><span><span class="data-status-label">Coverage</span><span class="data-status-value">' + s.coverage + '</span></span><span><span class="data-status-label">Comparable?</span><span class="data-status-value">' + s.comparable + '</span></span><span><span class="data-status-label">Source</span><span class="data-status-value">' + s.source + '</span></span>';
 }
 
 function buildMetricTabs() {
@@ -2097,6 +2113,7 @@ function renderRoadSummary() {
 
 function render() {
   buildMetricTabs();
+  renderDataStatus();
   renderMap();
   renderList();
   renderDetail();

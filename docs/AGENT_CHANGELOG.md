@@ -1,3 +1,9 @@
+## [2026-09-28] - Codex - Data-status panels and guided interactive-map views
+
+- Added a selection-aware data-status panel to the main dashboard and the interactive map. It reports source, geographic coverage, comparability and a production/partial label for the active year and metric.
+- The 2022 road-death and hit-and-run series now explicitly say that they use 11 Traffic Police reporting districts and cannot be treated as a 15-district comparison. Historical NCRB data and the 2023/2024 crash series state their distinct comparability limits.
+- Added three interactive-map presets: High crime + low lighting, Fatal-crash corridors, and Transit-access gaps. Presets only set documented existing controls and layers; they do not create a new risk score or causal claim.
+- Rebuilt both public HTML pages. No underlying data value changed.
 ## [2026-09-28] - Codex - Reviewed partial 2025 iRAD police-district crosswalk
 
 - Corrected a structural error in the 2025 pipeline: publishing administrative areas from iRAD PDFs were stored as if they were police jurisdictions.

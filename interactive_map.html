@@ -35,6 +35,10 @@ body { display: flex; flex-direction: column; }
 .seg button.active { background: var(--rust); color: #fff; }
 .seg button:hover:not(.active) { background: var(--paper-raised); color: var(--text); }
 #map { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+.status-panel { flex: 1 0 100%; border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 7px; background: var(--bg); padding: 8px 10px; display: grid; grid-template-columns: auto repeat(4, minmax(110px, 1fr)); gap: 6px 14px; align-items: baseline; font-size: 11.5px; }
+.status-panel b { color: var(--text); } .status-label { color: var(--text-dim); font-size: 10px; text-transform: uppercase; font-weight: 800; letter-spacing: .06em; } .status-value { color: var(--text); } .status-badge { border-radius: 999px; padding: 2px 7px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; } .status-badge.production { background: rgba(63,125,82,.16); color: var(--good); } .status-badge.partial { background: rgba(227,161,59,.2); color: #8a5800; } .status-badge.exploratory { background: rgba(177,74,52,.15); color: var(--rust); }
+.guided-views { display:flex; align-items:center; gap:6px; flex-wrap:wrap; } .guided-views > span { font-size:11px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; } .guided-view { font:inherit; font-size:11.5px; padding:5px 8px; border:1px solid var(--border); border-radius:999px; background:var(--bg); color:var(--text); cursor:pointer; } .guided-view:hover,.guided-view.active { background:var(--amber); border-color:var(--amber); color:var(--night); }
+@media (max-width: 720px) { .status-panel { grid-template-columns: 1fr 1fr; } .status-panel > b { grid-column:1/-1; } body.mobile-filters-open .guided-views { display:flex; } }
 #analysisBar { flex: 0 0 auto; }
 #mapRegion { position: relative; flex: 1 1 auto; min-height: 0; }
 #mapWrap { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
@@ -149,6 +153,7 @@ body { display: flex; flex-direction: column; }
   <div class="seg" id="yearToggle"></div>
   <div class="seg" id="rateToggle"></div>
   <div class="seg" id="displayModeToggle"></div>
+  <div class="guided-views" aria-label="Guided map views"><span>Guided views</span><button class="guided-view" type="button" data-view="crime-light">High crime + low lighting</button><button class="guided-view" type="button" data-view="fatal-corridors">Fatal-crash corridors</button><button class="guided-view" type="button" data-view="transit-gaps">Transit-access gaps</button></div>
   <label><input type="checkbox" id="chkBivariate"> Bivariate mode</label>
   <label id="bivInfraWrap" style="display:none">vs. <select id="bivInfraSelect"></select></label>
   <label><input type="checkbox" id="chkHeatmap"> Heatmap (crash zones)</label>
@@ -245,6 +250,7 @@ body { display: flex; flex-direction: column; }
   <span id="unsafeMethodLink" style="display:none; cursor:pointer; text-decoration:underline; color:var(--text-dim); font-size:11.5px;">ⓘ methodology</span>
   <span class="analysis-summary" id="analysisSummary"></span>
 </div>
+<div class="status-panel" id="dataStatus" aria-live="polite"></div>
 <div id="mapRegion">
   <div id="mapWrap"><div id="map"></div></div>
   <div class="leg" id="legend"></div>
@@ -427,6 +433,25 @@ function effectiveYear(m) { return m.fixedYear || activeYear; }
 // selected year actually came from instead of a single fixed string.
 function metricSource(m) { return (m.sourceByYear && m.sourceByYear[effectiveYear(m)]) || m.source; }
 function metricNote(m) { return m.note ? ' — ' + m.note : ''; }
+function dataStatusFor(m) {
+  const year = effectiveYear(m);
+  if (m.prevKey) {
+    if (+year < 2022) return { state: 'production', label: 'Production · verified historical', coverage: '15 police districts where published; some early fields intentionally null', comparable: 'Compare only adjacent available years in the same series', source: m.source + ' / verified India Data Portal extract' };
+    return { state: 'production', label: 'Production', coverage: 'All 15 Delhi Police districts', comparable: '2022–2024 same district series; 2024 uses BNS-era table numbering', source: metricSource(m) };
+  }
+  if (m.key === 'fatalRoadCrashes2022' || m.key === 'hitAndRunCrashes2022') return { state: 'partial', label: 'Partial coverage', coverage: '11 Traffic Police reporting districts; four police districts not separately reported', comparable: 'Do not compare as a 15-district series or infer missing districts as zero', source: metricSource(m) };
+  if (m.key === 'crashProneZones2023' || m.key === 'fatalCrashes2023' || m.key === 'totalCrashes2023') return { state: 'production', label: 'Production', coverage: 'All 15 police districts; crash-prone-zone scope only', comparable: 'Compare 2023–2024 within this same crash-zone series, not with full district crash totals', source: metricSource(m) };
+  return { state: 'production', label: 'Production', coverage: 'All 15 police districts; full district road-crash totals', comparable: 'Compare 2023–2024 within this series', source: metricSource(m) };
+}
+function renderDataStatus() {
+  const s = dataStatusFor(currentMetric());
+  const el = document.getElementById('dataStatus');
+  el.innerHTML = '<b>Data status · ' + currentMetric().label + ' (' + effectiveYear(currentMetric()) + ')</b>' +
+    '<span><span class="status-label">Status</span> <span class="status-badge ' + s.state + '">' + s.label + '</span></span>' +
+    '<span><span class="status-label">Coverage</span> <span class="status-value">' + s.coverage + '</span></span>' +
+    '<span><span class="status-label">Comparable?</span> <span class="status-value">' + s.comparable + '</span></span>' +
+    '<span><span class="status-label">Source</span> <span class="status-value">' + s.source + '</span></span>';
+}
 
 function getRateVal(rawCount, d) {
   if (rawCount == null) return null;
@@ -611,6 +636,7 @@ function buildRateToggle() {
 let geoLayer = null;
 const districtLayers = {};
 function renderChoropleth() {
+  renderDataStatus();
   const m = currentMetric();
   const inf = currentInfra();
   const feats = BOUNDARIES.features;
@@ -1351,6 +1377,28 @@ document.getElementById('chkLanduse').addEventListener('change', (e) => {
   document.getElementById('landuseLegend').classList.toggle('show', e.target.checked);
 });
 
+function setPointLayer(id, on) {
+  const input = document.getElementById(id);
+  if (!input || input.checked === on) return;
+  input.checked = on;
+  input.dispatchEvent(new Event('change'));
+}
+function applyGuidedView(view) {
+  document.querySelectorAll('.guided-view').forEach(btn => btn.classList.toggle('active', btn.dataset.view === view));
+  if (view === 'crime-light') {
+    metricSelect.value = 'totalIPC'; activeYear = '2024'; rateMode = 'density'; bivariateMode = true; bivariateInfra = 'streetlightCombined'; bivInfraSelect.value = bivariateInfra;
+    document.getElementById('chkBivariate').checked = true; document.getElementById('bivInfraWrap').style.display = '';
+    setPointLayer('chkPaplStreetlights', true); setPointLayer('chkStreetLamps', true);
+  } else if (view === 'fatal-corridors') {
+    metricSelect.value = 'fatalCrashes2023'; activeYear = '2024'; bivariateMode = false; document.getElementById('chkBivariate').checked = false; document.getElementById('bivInfraWrap').style.display = 'none';
+    zoneYear = '2024'; document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.year === zoneYear)); rebuildZonesLayer(); setPointLayer('chkZones', true);
+  } else if (view === 'transit-gaps') {
+    metricSelect.value = 'totalIPC'; activeYear = '2024'; rateMode = 'density'; bivariateMode = true; bivariateInfra = 'metroGate'; bivInfraSelect.value = bivariateInfra;
+    document.getElementById('chkBivariate').checked = true; document.getElementById('bivInfraWrap').style.display = ''; setPointLayer('chkBus', true);
+  }
+  buildYearToggle(); buildRateToggle(); renderChoropleth(); updateUrlState();
+}
+document.querySelectorAll('.guided-view').forEach(btn => btn.addEventListener('click', () => applyGuidedView(btn.dataset.view)));
 document.getElementById('zoneYearToggle').querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', () => {
     zoneYear = btn.dataset.year;
