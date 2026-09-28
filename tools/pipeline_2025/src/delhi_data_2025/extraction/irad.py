@@ -135,7 +135,8 @@ def extract_irad_pdf_tables(path: Path, source_id: str) -> list[dict]:
                             "revenue_district": None,
                             "police_station_raw": station,
                             "police_station_normalized": None,
-                            "police_district": source_district,
+                            "reporting_administrative_area": source_district,
+                            "police_district": None,
                             "period_start": "2025-01-01",
                             "period_end": "2025-12-31",
                             "fatal_accidents": _number(cells[3]),
@@ -148,7 +149,7 @@ def extract_irad_pdf_tables(path: Path, source_id: str) -> list[dict]:
                             "persons_injured": persons_injured,
                             "extraction_method": "pdf_geometry_table",
                             "extraction_confidence": 0.98,
-                            "review_status": "source_report_district",
+                            "review_status": "source_report_area",
                             "notes": (
                                 "Blank source cells remain null; minor injury combines the two "
                                 "published minor-injury columns only when both are populated."

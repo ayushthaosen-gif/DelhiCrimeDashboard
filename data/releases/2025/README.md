@@ -1,13 +1,15 @@
 # Delhi data collected for 2025
 
-This folder is a staged research release assembled from official source pages on 4 August 2026. It does not replace the dashboard's production datasets automatically.
+This folder is a staged research release. It does not replace the dashboard's production datasets automatically.
 
-## Validated data
+## Crosswalked crash data (partial)
 
-- `validated/road_crashes_by_police_station_2025.csv`: 50 station records from official annual iRAD PDFs for West, South East, and North West police districts. Table cells were extracted geometrically so blank cells did not shift into adjacent columns.
-- `validated/road_crashes_by_police_district_2025.csv`: aggregates for those three covered police districts only. This is partial coverage, not a Delhi-wide total.
+- `validated/road_crashes_by_police_station_2025.csv`: 50 station rows from official annual iRAD/eDAR PDFs published by the West, South-East and North-West district administrations. 46 rows have an exact, reviewed mapping to a Delhi Police district; four remain unresolved and have a null `police_district`.
+- `validated/road_crashes_by_police_district_2025.csv`: a partial aggregation for six police districts reached through those mapped rows. It is not a Delhi-wide total and must not be ranked against all 15 dashboard districts.
+- `validated/CROSSWALK_COVERAGE_2025.md`: scope, unresolved labels, Manual evidence and temporal caveats.
+- `needs_review/unmapped_police_stations_2025.csv`: the four unresolved labels, retained for follow-up rather than guessed.
 
-The crash files passed structural validation. Police-district assignment comes directly from each official district report, not fuzzy matching. Blank source cells remain blank. In particular, a blank count is not converted to zero.
+The crosswalk comes from *Delhi Police RTI Manual 1*, updated 22 May 2026, master station list, pages 13-22. It is a post-period structural reference for 2025 source rows. Each mapped row keeps the reporting administrative area, Manual evidence page, mapping source and temporal basis.
 
 ## Data requiring review
 
@@ -23,8 +25,8 @@ The crash files passed structural validation. Police-district assignment comes d
 
 ## Audit material
 
-The `audit/` directory contains source discovery, download URLs, SHA-256 checksums, retrieval metadata, provenance, coverage and validation reports. `raw_sources/` contains the exact downloaded official files referenced by those audit records.
+The `audit/` directory contains source discovery, download URLs, SHA-256 checksums, retrieval metadata, the crosswalk and validation reports. `raw_sources/` contains the exact downloaded official files referenced by those audit records.
 
 ## Integration guidance
 
-Use the two crash CSVs only with a visible `partial coverage: 3 of 15 police districts` label. Keep the liquor-vend file in a current/undated snapshot layer unless its effective date is independently confirmed. Do not create `totalIPC2025`, infer missing districts, or substitute blank cells with zero.
+Do not integrate these 2025 crash files into the dashboard. They cover only three publishing administrative areas, map only 46 of 50 station rows, use a post-period Manual reference, and do not contain 2025 NCRB crime data. Keep nulls as null; do not infer districts, assign ambiguous station labels, or create `totalIPC2025`.

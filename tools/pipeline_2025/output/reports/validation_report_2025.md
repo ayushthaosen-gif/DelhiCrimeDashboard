@@ -1,5 +1,9 @@
 # 2025 Validation Report
 
-Issues: 1
+Issues: 5
 
-- **warning / partial_district_coverage**: Resolved data covers 3 police districts, expected exactly 15
+- **warning / unresolved_station**: Station has no reviewed police-district mapping
+- **warning / unresolved_station**: Station has no reviewed police-district mapping
+- **warning / unresolved_station**: Station has no reviewed police-district mapping
+- **warning / unresolved_station**: Station has no reviewed police-district mapping
+- **error / unresolved_station_mappings**: 4 police stations remain unresolved

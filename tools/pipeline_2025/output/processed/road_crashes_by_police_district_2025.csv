@@ -1,4 +1,7 @@
 police_district,fatal_accidents,serious_injury_accidents,minor_injury_accidents,non_injury_accidents,simple_accidents,total_accidents,persons_killed,persons_injured
+Central,,,,,,0,,
+Dwarka,,,,,,0,,
 North West,108,83,162,19,,457,116,446
+Outer,,,,,,0,,
 South East,118,149,66,21,,485,123,508
 West,99,71,121,16,,461,103,466

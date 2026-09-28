@@ -1,3 +1,10 @@
+## [2026-09-28] - Codex - Reviewed partial 2025 iRAD police-district crosswalk
+
+- Corrected a structural error in the 2025 pipeline: publishing administrative areas from iRAD PDFs were stored as if they were police jurisdictions.
+- Added 46 exact station-to-police-district mappings from Delhi Police RTI Manual 1, updated 22 May 2026, appendix master list pages 13-22. Every mapped row retains the report area, Manual page, source and post-period temporal caveat.
+- Left `Madipur`, `Mianwali Nagar`, `PASCHIM VIHAR`, and `MACT Cell NW` unresolved instead of assigning them by similarity. The latter three labels are absent or ambiguous in the Manual’s 15-district list.
+- Regenerated a staged partial release: 50 source rows, 46 mapped, 4 unresolved, six mapped police districts. Dashboard integration stays disabled because the source reports cover only three publishing administrative areas and NCRB crime 2025 remains unavailable.
+- Added crosswalk regression tests and researcher-facing coverage/catalog/audit files. No production dashboard metric or figure changed.
 ## [2026-09-26] - Claude (Anthropic) - Audit follow-up: OSM completeness caveats, and the NCRB workbooks are now archived evidence
 
 A UI/UX and accuracy audit of the whole dashboard. Most of what it checked held up: the crash-zone counts reconcile (2023 sums to exactly 107, 2024 to 111, 54 of 93 named 2024 zones geocoded), the streetlight/underpass coverage gate is applied consistently at all 18 of its call sites, and the historical null pattern matches the documented gaps exactly. Two audit hypotheses were wrong and are recorded here so they are not re-investigated: the 13 extra records in the liquor-vend file are *not* unprovenanced (they carry a separate OSM schema — `record_source`, `osm_id`, ODbL attribution and an explicit `official_match_status: "OSM-only"`), and the official DSCSC vend list is *deliberately* citywide-only rather than district-assigned, because only 1 of its 374 records has a real coordinate. Swapping it into the district-level Liquor Shops layer would have manufactured district counts out of locality centroids. Left alone.
