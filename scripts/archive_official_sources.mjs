@@ -15,6 +15,27 @@ const manifestPath = path.join(archiveRoot, 'manifest.json');
 const retrievedAt = new Date().toISOString();
 
 const sources = [
+  // Master Plan for Delhi 2047. Retained as the authoritative reference for any future
+  // current-vs-plan comparison. Note before using it that way: MPD-2047 is organised by DDA
+  // planning zones (A-P), NOT the 15 police districts this dashboard is built on, and DDA
+  // publishes its zone and land-use plans as PDF/raster drawings rather than vector GIS. There is
+  // no published crosswalk between the two geographies, so plan figures cannot be attributed to a
+  // police district without inventing the mapping.
+  {
+    id: 'dda_mpd_2047_gazette_english', path: 'dda/mpd_2047_gazette_english.pdf',
+    source_url: 'https://dda.gov.in/sites/default/files/planning%20files/mpd-2047_gazette_english.pdf',
+    publication_date: null, agency: 'Delhi Development Authority / Ministry of Housing and Urban Affairs',
+    reference_period: 'Master Plan for Delhi 2047', timeout_ms: 600000, allow_unavailable: true,
+    notes: 'Approved by DDA 2026-08-12 and notified by MoHUA as an extensive modification of MPD-2021. Quantified targets are citywide and land-use oriented (about 4 million housing units, population about 32 million by 2047, roughly 200 sq km land pooling, Metro about 416 km plus about 279 km proposed). Its walkability and road-safety provisions are qualitative -- barrier-free and universally accessible streets -- with no measurable KPI, so they do not map onto any metric this dashboard computes. Marked allow_unavailable because the gazette is a very large PDF and dda.gov.in stalls the transfer: it times out here even at a 600s budget, so it needs fetching by hand and dropping in at the path above, after which the manifest will pick up its checksum on the next run.'
+  },
+  {
+    id: 'dda_mpd_2047_portal', path: 'dda/mpd_2047_portal.html',
+    source_url: 'https://dda.gov.in/master_plan_2047',
+    publication_date: null, agency: 'Delhi Development Authority',
+    reference_period: 'Master Plan for Delhi 2047 document index',
+    notes: 'Index of MPD-2047 documents, including the Land Use Plan 2047 and the GIS spatial-development and land-use viewers. The GIS viewers are interactive web maps, not downloadable vector layers.',
+    allow_unavailable: true
+  },
   {
     id: 'ncrb_pib_latest_report_2024', path: 'ncrb/pib_latest_ncrb_report_2024.html',
     source_url: 'https://www.pib.gov.in/PressReleasePage.aspx?PRID=2287039&lang=1&reg=1',
@@ -156,7 +177,10 @@ async function download(source) {
   await mkdir(path.dirname(destination), { recursive: true });
   const response = await fetch(source.source_url, {
     headers: { 'user-agent': 'DelhiCrimeDashboard-source-archive/1.0 (+https://github.com/ayushthaosen-gif/DelhiCrimeDashboard)' },
-    redirect: 'follow', signal: AbortSignal.timeout(60000)
+    // 60s suits the HTML indexes and the mid-size spreadsheets. A few sources are large PDFs on
+    // slow government hosts (the MPD-2047 gazette is tens of MB) and need longer, so they opt in
+    // per source rather than making every unreachable source hang for the longest case.
+    redirect: 'follow', signal: AbortSignal.timeout(source.timeout_ms || 60000)
   });
   if (!response.ok) throw new Error(`HTTP ${response.status}`);
   const bytes = Buffer.from(await response.arrayBuffer());
