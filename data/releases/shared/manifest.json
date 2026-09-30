@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-09-26T07:12:04.933Z",
+  "generatedAt": "2026-09-30T10:37:19.656Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -269,6 +269,22 @@
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
       "sha256": "4ed1b384abc39bc79b9741598a6212093fb69837181d5bb4aa730e0d03e883c8",
       "bytes": 1010017
+    },
+    {
+      "file": "data/mpd2047_ward_comparison.csv",
+      "datasetId": "mpd2047_ward_comparison",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "3a8f7f3a5c1383f9ac35e56f6a61246f89def4f1c7614849723fb1839a59d534",
+      "bytes": 38437
+    },
+    {
+      "file": "data/mpd2047_ward_comparison.json",
+      "datasetId": "mpd2047_ward_comparison",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "bd3a8c42f6acfd2b7a95390f5399b6063b09cf635924c18148cee978acc75744",
+      "bytes": 252091
     },
     {
       "file": "data/overpass_surveillance_alcohol.json",

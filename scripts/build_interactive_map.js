@@ -34,6 +34,40 @@ const wardsInfra = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_wards_
 const liquorVendsApprox = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_liquor_vends_all_coordinates_approx.geojson'), 'utf8'));
 const crashZones2024Approx = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_crash_prone_zones_2024_all_named_approx.geojson'), 'utf8'));
 const pedestrianOverpasses = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_pedestrian_overpasses_osm.geojson'), 'utf8'));
+const mpd2047 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/mpd2047_ward_comparison.json'), 'utf8'));
+
+// MPD-2047 planned land use versus current OSM-mapped land use, joined onto wards by ward_no.
+// Joined here at build time rather than written into delhi_wards_infra.geojson, so the comparison
+// stays owned by its own script and does not depend on where it sits in the build chain.
+//
+// Each comparable category carries THREE numbers, never just the difference: the planned share,
+// the current share, and both coverage denominators. The plan describes about 65% of Delhi and OSM
+// land-use tagging averages 22.6% of a ward, so a bare delta is not interpretable on its own -- a
+// positive value can mean the plan designates more of something, or simply that OSM has not tagged
+// it yet. Wards thin on either side are flagged rather than dropped.
+(() => {
+  const byWardNo = new Map(mpd2047.wards.map(w => [String(w.ward_no), w]));
+  let joined = 0;
+  for (const f of wardsInfra.features) {
+    const m = byWardNo.get(String(f.properties.Ward_No));
+    if (!m) continue;
+    joined++;
+    f.properties.mpdPlanCoveragePct = m.plan_coverage_pct;
+    f.properties.mpdOsmMappedPct = m.osm_mapped_pct;
+    f.properties.mpdConfidence = m.comparison_confidence;
+    f.properties.mpdGreenBeltKm2 = m.planned_green_belt_km2;
+    f.properties.mpdNotComparableKm2 = m.planned_not_comparable_km2;
+    for (const cat of ['residential', 'industrial', 'green_open']) {
+      f.properties['mpdPlanned_' + cat] = m['planned_' + cat + '_share_pct'];
+      f.properties['mpdCurrent_' + cat] = m['current_' + cat + '_share_pct'];
+      f.properties['mpdDelta_' + cat] = m['delta_' + cat + '_pp'];
+    }
+  }
+  if (joined !== wardsInfra.features.length) {
+    throw new Error('MPD-2047 join covered ' + joined + ' of ' + wardsInfra.features.length
+      + ' wards. Refusing to build a map with a partial plan join.');
+  }
+})();
 
 // Join crime/infra stats onto the boundary features by district name.
 const statsByDistrict = {};
@@ -58,6 +92,42 @@ streetlightsCombined.forEach(r => { streetlightsCombinedByDistrict[r.district] =
 boundaries.features.forEach(f => {
   Object.assign(f.properties, streetlightsCombinedByDistrict[f.properties.district] || {});
 });
+
+// Citywide MPD-2047 vs current summary, rendered at build time so the page does no arithmetic.
+//
+// Only three categories are compared, and the panel says why the rest are not. Deliberately shown
+// in km2 rather than as percentages of Delhi: the plan describes about 65% of the city and OSM
+// land-use tagging far less, so a percentage-of-Delhi figure would invite subtraction between two
+// different denominators. Absolute areas with both totals stated cannot be misread that way.
+function mpd2047CitywidePanelHtml() {
+  const c = mpd2047.citywide;
+  const n = v => (v == null ? '—' : Number(v).toLocaleString('en-IN'));
+  const row = (label, planned, current) => {
+    const delta = (planned != null && current != null) ? planned - current : null;
+    return '<div class="mpd-row"><span>' + label + '</span><span>' + n(planned) + ' km²</span>'
+      + '<span>' + n(current) + ' km²</span>'
+      + '<span>' + (delta == null ? '—' : (delta > 0 ? '+' : '') + n(Math.round(delta * 10) / 10)) + '</span></div>';
+  };
+  return '<div class="mpd-panel">'
+    + '<div class="mpd-row mpd-head"><span>Land use</span><span>Planned 2047</span><span>Mapped now</span><span>Diff</span></div>'
+    + row('Residential', c.planned_residential_km2, c.current_residential_km2)
+    + row('Industrial', c.planned_industrial_km2, c.current_industrial_km2)
+    + row('Parks / green', c.planned_green_open_km2, c.current_green_open_km2)
+    + '<div class="mpd-row mpd-sub"><span>Green Belt (plan only)</span><span>' + n(c.planned_green_belt_km2) + ' km²</span><span>not comparable</span><span>—</span></div>'
+    + '<div class="mpd-row mpd-sub"><span>Other planned designations</span><span>' + n(c.planned_not_comparable_km2) + ' km²</span><span>not comparable</span><span>—</span></div>'
+    + '<div class="mpd-note">'
+    + 'MPD-2047 describes <b>' + n(c.planned_total_km2) + ' km²</b> of the <b>' + n(c.ward_area_total_km2) + ' km²</b> covered by the 290 wards. '
+    + 'The “mapped now” column is OpenStreetMap land-use tagging, which is far less complete — so a difference here is <i>not</i> a measurement of change on the ground. '
+    + '<b>' + n(c.wards_low_confidence) + ' of ' + n(c.wards) + '</b> wards are thin on at least one side and are flagged in their popups.'
+    + '</div>'
+    + '<div class="mpd-note">'
+    + 'Only residential, industrial and parks/green have unambiguous counterparts in both sources. Commercial, public/semi-public, government, transport and utility designations are reported as planned-only area rather than force-matched. '
+    + 'Green Belt (code A1) is a Low Density Area designation whose own attributes include village abadi, so it is not counted as green space. '
+    + 'MPD-2047 sets no road-safety or accessibility target this dashboard can measure against — its walkability provisions are qualitative.'
+    + '</div>'
+    + '<div class="mpd-note">Planned land use: Delhi Development Authority, Master Plan for Delhi 2047 (gis.dda.org.in), ' + mpd2047.wards.length + ' wards intersected. Current land use: OpenStreetMap, ODbL.</div>'
+    + '</div>';
+}
 
 const html = `<!doctype html>
 <html>
@@ -179,6 +249,12 @@ body { display: flex; flex-direction: column; }
 }
 .layer-count { color: var(--text-dim); font-size: 10.5px; }
 .landuse-legend { display: none; flex-wrap: wrap; gap: 4px 10px; margin: 2px 0 4px 22px; font-size: 10.5px; color: var(--text-dim); }
+.mpd-panel { font-size: 11px; }
+.mpd-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr 0.6fr; gap: 4px; padding: 3px 0; border-bottom: 1px solid var(--border); }
+.mpd-row span:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+.mpd-head { font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: .02em; font-size: 9.5px; }
+.mpd-sub { color: var(--text-dim); font-style: italic; }
+.mpd-note { margin-top: 6px; font-size: 10.5px; color: var(--text-dim); line-height: 1.45; }
 .landuse-legend.show { display: flex; }
 .landuse-legend span { display: inline-flex; align-items: center; gap: 4px; }
 .landuse-legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
@@ -294,6 +370,12 @@ body { display: flex; flex-direction: column; }
           <span><i style="background:#3f7d52;"></i>Green/open</span>
           <span><i style="background:#8b8b8b;"></i>Other</span>
         </div>
+      </div>
+    </details>
+    <details class="layer-group">
+      <summary>Master Plan 2047 vs current</summary>
+      <div class="layer-group-body">
+        ${mpd2047CitywidePanelHtml()}
       </div>
     </details>
   </div>
@@ -414,10 +496,17 @@ const WARD_INFRA = [
   { key: 'crashZones2024', densityKey: 'crashZones2024Density', label: 'Crash Zones (2024)', group: 'crime', basis: 'exploratory' },
   { key: 'totalIPCDensity2024Inherited', densityKey: 'totalIPCDensity2024Inherited', label: 'Total IPC Crime Rate (district)', group: 'crime', basis: 'district-inherited' },
   { key: 'crimeAgainstWomenDensity2024Inherited', densityKey: 'crimeAgainstWomenDensity2024Inherited', label: 'Crime vs. Women Rate (district)', group: 'crime', basis: 'district-inherited' },
+  // MPD-2047 planned-versus-current shares. These are percentage-point differences, not densities,
+  // so densityKey deliberately points at the same field: there is nothing to divide by area.
+  { key: 'mpdDelta_residential', densityKey: 'mpdDelta_residential', label: 'Residential: plan − current (pp)', unit: ' pp', group: 'plan', basis: 'plan-vs-mapped' },
+  { key: 'mpdDelta_industrial', densityKey: 'mpdDelta_industrial', label: 'Industrial: plan − current (pp)', unit: ' pp', group: 'plan', basis: 'plan-vs-mapped' },
+  { key: 'mpdDelta_green_open', densityKey: 'mpdDelta_green_open', label: 'Parks/green: plan − current (pp)', unit: ' pp', group: 'plan', basis: 'plan-vs-mapped' },
+  { key: 'mpdPlanCoveragePct', densityKey: 'mpdPlanCoveragePct', label: 'MPD-2047 coverage of ward (%)', unit: '%', group: 'plan', basis: null },
 ];
 const WARD_INFRA_BASIS_LABEL = {
   exploratory: 'exploratory — assigned to this ward from an approximate coordinate, not a verified location',
   'district-inherited': "district-inherited — this is the enclosing district's figure, not ward-specific data",
+  'plan-vs-mapped': 'plan vs mapped — a statutory designation compared against community mapping, not a measurement of change on the ground. A positive value can mean the plan designates more of this, or that OpenStreetMap has not tagged it yet',
 };
 
 // Districts the PAPL survey actually drove through — shared gap for streetlights and
@@ -622,12 +711,43 @@ function getWardBivariateColor(feats, props, xInf, yInf) {
 
 function wardMetricLine(p, inf) {
   const sameKey = inf.key === inf.densityKey;
+  // Most ward fields are densities, so /km² is the default. The MPD-2047 fields are percentage
+  // points and percentages, which /km² would actively misrepresent, so they declare a unit.
+  const unit = inf.unit || '/km²';
   const valueHtml = sameKey
-    ? '<b>' + fmtNum(p[inf.key]) + '</b>/km²'
-    : '<b>' + fmtNum(p[inf.key]) + '</b> (' + fmtNum(p[inf.densityKey]) + '/km²)';
+    ? '<b>' + fmtNum(p[inf.key]) + '</b>' + unit
+    : '<b>' + fmtNum(p[inf.key]) + '</b> (' + fmtNum(p[inf.densityKey]) + unit + ')';
   const caveat = inf.basis ? ' <span style="font-style:italic;">— ' + WARD_INFRA_BASIS_LABEL[inf.basis] + '</span>' : '';
   return '<div>' + inf.label + ': ' + valueHtml + caveat + '</div>';
 }
+// Shown whenever a Master Plan field is on either axis. A plan-minus-current difference is
+// meaningless without knowing how much of the ward each side actually describes, so the two
+// coverage denominators are printed next to the numbers every time -- never the delta alone.
+function mpdComparisonBlock(p, infs) {
+  if (!infs.some(i => i && i.group === 'plan')) return '';
+  const cats = [
+    ['residential', 'Residential'],
+    ['industrial', 'Industrial'],
+    ['green_open', 'Parks / green'],
+  ];
+  const rows = cats.map(([k, label]) => {
+    const planned = p['mpdPlanned_' + k], current = p['mpdCurrent_' + k], delta = p['mpdDelta_' + k];
+    if (planned == null && current == null) return '';
+    return '<div class="unsafe-factor-row"><span>' + label + '</span><span>'
+      + 'plan ' + fmtNum(planned) + '% · now ' + fmtNum(current) + '%'
+      + (delta == null ? '' : ' · <b>' + (delta > 0 ? '+' : '') + fmtNum(delta) + ' pp</b>')
+      + '</span></div>';
+  }).join('');
+  const thin = p.mpdConfidence && p.mpdConfidence !== 'ok';
+  return '<div style="margin-top:6px;"><b>Master Plan 2047 vs current</b></div>'
+    + '<div class="popup-rank">Plan describes ' + fmtNum(p.mpdPlanCoveragePct) + '% of this ward · OpenStreetMap land-use tags cover ' + fmtNum(p.mpdOsmMappedPct) + '%</div>'
+    + rows
+    + (p.mpdGreenBeltKm2 ? '<div class="unsafe-factor-row"><span>Green Belt (plan only)</span><span>' + fmtNum(p.mpdGreenBeltKm2) + ' km²</span></div>' : '')
+    + (p.mpdNotComparableKm2 ? '<div class="unsafe-factor-row"><span>Planned, not comparable</span><span>' + fmtNum(p.mpdNotComparableKm2) + ' km²</span></div>' : '')
+    + (thin ? '<div class="popup-src" style="color:var(--rust);">Thin coverage on at least one side — treat this difference as indicative only.</div>' : '')
+    + '<div class="popup-src">Shares are of each source\\'s own described area, because the plan and OpenStreetMap cover very different fractions of a ward. Only residential, industrial and parks/green are compared; commercial, public/semi-public, government, transport and utility designations have no unambiguous OpenStreetMap counterpart and are reported as planned-only area. Green Belt (A1) is a Low Density Area policy designation that includes village abadi, so it is not counted as green space.</div>';
+}
+
 function renderWardLayer() {
   if (wardLayer) { map.removeLayer(wardLayer); wardLayer = null; }
   if (!wardBivariateMode) { renderWardLegend(false); return; }
@@ -642,6 +762,7 @@ function renderWardLayer() {
         '<div class="popup-rank">Ward — ' + p.areaSqKm + ' km² · enclosing district (approx.): ' + (p.assignedDistrict || 'unassigned') + '</div>' +
         (p.highInjuryNetwork ? '<div style="color:var(--rust);font-weight:700;">⚠ High-Injury Network — #' + p.highInjuryNetworkRank + ' of 18 wards accounting for half of 2024\\'s ward-assigned fatal crashes</div>' : '') +
         wardMetricLine(p, xInf) + wardMetricLine(p, yInf) +
+        mpdComparisonBlock(p, [xInf, yInf]) +
         '<div class="popup-src">Ward boundaries: DataMeet Municipal_Spatial_Data (likely pre-2022 delimitation, used for spatial aggregation only) · ' + WARD_INFRA.filter(w=>[xInf.key,yInf.key].includes(w.key)).map(w=>w.label).join(' & ') + ' — see caveats above</div>';
       layer.bindPopup(body);
       layer.on('mouseover', () => layer.setStyle({ weight: 2.5, color: '#1c2331' }));
@@ -902,7 +1023,7 @@ bivInfraSelect.addEventListener('change', () => { bivariateInfra = bivInfraSelec
 const wardInfraXSelect = document.getElementById('wardInfraXSelect');
 const wardInfraYSelect = document.getElementById('wardInfraYSelect');
 function wardInfraOptionsHtml() {
-  const groups = [['infra', 'Infrastructure'], ['crime', 'Crime / Incidents']];
+  const groups = [['infra', 'Infrastructure'], ['crime', 'Crime / Incidents'], ['plan', 'Master Plan 2047 vs current']];
   return groups.map(([g, label]) =>
     '<optgroup label="' + label + '">' +
     WARD_INFRA.filter(w => w.group === g).map(w => '<option value="' + w.key + '">' + w.label + '</option>').join('') +
