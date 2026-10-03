@@ -1,3 +1,14 @@
+## [2026-10-03] - Claude (Anthropic) - Close two gaps in the CI gate: MPD-2047 outside the chain, and deprecated Node 20 actions
+
+Both came from the "what else can be improved" review after the first green CI run.
+
+1. **MPD-2047 comparison is now inside `build:interactive-map`.** `fetch_mpd2047_layers.js` and `build_mpd2047_ward_comparison.js` appeared only in the test list, never in a build script, so the reproducibility gate could not notice stale MPD outputs and I had to run the comparison by hand during the ward-identity fix. The offline comparison now runs after the land-use step (it reads `delhi_wards_infra.geojson` and `landuse_by_ward.csv`) and before the map build (which reads its JSON). Confirmed deterministic first: two consecutive runs and a diff against the committed files, no timestamps in the output, 23 s. Added `build:mpd2047`. The fetch is `fetch:mpd2047` and is deliberately NOT in the chain because it queries a live service.
+2. **CI actions bumped off Node 20.** GitHub's annotation said `checkout@v4`/`setup-node@v4` were being forced onto Node 24. Now `checkout@v7`, `setup-node@v7`, Node 24 (matches the local toolchain). `timeout-minutes` 15 -> 10 and its comment corrected: the last green run took 185 s, not the 4-5 minutes I had estimated from a Windows run.
+
+**Not changed:** the two Python workflows (`pipeline-2025-*.yml`) still use `checkout@v4`/`setup-python@v5`. They trigger on a schedule and on PRs touching `tools/pipeline_2025/`, so I cannot exercise them from here and did not edit what I cannot test.
+
+Verified by rehearsing the exact CI sequence locally on Node 24.15: `npm ci`, `npm test` 49/49, `npm run build`, the full `build:interactive-map` chain (MPD step confirmed present in its log), then the same `git diff --exit-code` the job runs: no diff. The real test is the Linux run after push, which I will read.
+
 ## [2026-10-03] - Claude (Anthropic) - Ward identity: the two defects the MPD-2047 entry flagged, fixed
 
 The MPD-2047 entry recorded two ward-identity findings and fixed neither. Both are fixed here.
