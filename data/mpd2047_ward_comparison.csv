@@ -1,4 +1,4 @@
-ward,ward_no,district,area_sq_km,plan_covered_km2,plan_coverage_pct,osm_mapped_pct,planned_residential_km2,planned_residential_share_pct,current_residential_km2,current_residential_share_pct,delta_residential_pp,planned_industrial_km2,planned_industrial_share_pct,current_industrial_km2,current_industrial_share_pct,delta_industrial_pp,planned_green_open_km2,planned_green_open_share_pct,current_green_open_km2,current_green_open_share_pct,delta_green_open_pp,planned_not_comparable_km2,planned_green_belt_km2,comparison_confidence
+ward,ward_no,district,area_sq_km,plan_covered_km2,plan_coverage_pct,osm_mapped_pct,planned_residential_km2,planned_residential_share_pct,current_residential_km2,current_residential_share_pct,delta_residential_pp,planned_industrial_km2,planned_industrial_share_pct,current_industrial_km2,current_industrial_share_pct,delta_industrial_pp,planned_green_open_km2,planned_green_open_share_pct,current_green_open_km2,current_green_open_share_pct,delta_green_open_pp,planned_not_comparable_km2,planned_a1_agriculture_km2,comparison_confidence
 DELHI CANTT CHARGE 1,CANT_1,West,1.276,1.21,94.8,76.1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1.21,0,ok
 DELHI CANTT CHARGE 2,CANT_2,West,8.77,8.541,97.4,92.7,0.002,0,0.298,3.7,-3.6,0,0,0.04,0.5,-0.5,0.137,1.6,0.116,1.4,0.2,8.402,0,ok
 DELHI CANTT CHARGE 4,CANT_4,South-West,8.392,7.977,95.1,67.7,0.002,0,0.016,0.3,-0.3,0,0,0.174,3.1,-3.1,1.98,24.8,0.074,1.3,23.5,5.995,0,ok
@@ -28,10 +28,10 @@ JANAK PURI WEST,117,West,2.279,2.06,90.4,62.5,1.799,87.4,1.307,91.8,-4.4,0,0,0,0
 JANAK PURI SOUTH,118,West,2.173,1.999,92,31.6,0.754,37.7,0.525,76.3,-38.6,0,0,0.041,6,-6,0.15,7.5,0.001,0.1,7.4,1.094,0,ok
 MILAP NAGAR,119,Dwarka,1.491,1.366,91.6,16.2,1.366,100,0.241,100,0,0,0,0,0,0,0,0,0,0,0,0,0,ok
 SITA PURI,120,Dwarka,0.781,0.691,88.5,0.5,0.691,100,0.003,75,25,0,0,0,0,0,0,0,0,0,0,0,0,low - thin coverage on at least one side
-CHHAWLA,133,Dwarka,78.026,45.199,57.9,11.2,0,0,0.323,3.7,-3.7,0,0,0.149,1.7,-1.7,0,0,7.366,83.9,-83.9,45.199,42.413,ok
-NANGLI SAKRAVATI,134,Dwarka,22.09,1.281,5.8,27.1,0.35,27.3,0.231,3.9,23.4,0,0,0.001,0,0,0.04,3.1,5.711,95.5,-92.4,0.892,0.004,low - thin coverage on at least one side
+CHHAWLA,133,Dwarka,78.026,45.199,57.9,11.2,0,0,0.323,3.7,-3.7,0,0,0.149,1.7,-1.7,0,0,7.366,83.9,-83.9,2.786,42.413,ok
+NANGLI SAKRAVATI,134,Dwarka,22.09,1.281,5.8,27.1,0.35,27.3,0.231,3.9,23.4,0,0,0.001,0,0,0.04,3.1,5.711,95.5,-92.4,0.888,0.004,low - thin coverage on at least one side
 KAKRAULA,135,Dwarka,9.8,8.164,83.3,26.9,4.553,55.8,1.864,70.6,-14.9,0,0,0.078,3,-3,1.171,14.3,0.038,1.4,12.9,2.439,0,ok
-KHERA,140,Dwarka,77.159,44.601,57.8,21.6,0,0,0.907,5.4,-5.4,0,0,0.051,0.3,-0.3,0.392,0.9,14.849,88.9,-88.1,44.209,43.145,ok
+KHERA,140,Dwarka,77.159,44.601,57.8,21.6,0,0,0.907,5.4,-5.4,0,0,0.051,0.3,-0.3,0.392,0.9,14.849,88.9,-88.1,1.065,43.145,ok
 DILSHAD GARDEN,241,Shahdara,2.153,1.966,91.3,47.2,0.811,41.2,0.322,31.7,9.5,0.102,5.2,0,0,5.2,0.05,2.5,0.005,0.5,2,1.004,0,ok
 NEW SEEMA PURI,242,Shahdara,0.965,0.803,83.2,6.9,0.523,65.2,0,0,65.2,0.014,1.8,0.032,48.5,-46.7,0.101,12.6,0.033,50,-37.4,0.164,0,low - thin coverage on at least one side
 NAND NAGRI,243,North-East,0.619,0.588,95,2.9,0.478,81.3,0,0,81.3,0,0,0.018,100,-100,0.04,6.7,0,0,6.7,0.07,0,low - thin coverage on at least one side
@@ -49,15 +49,15 @@ SUBHASH MOHALLA,257,North-East,0.577,0.546,94.7,0,0.543,99.4,0,,,0,0,0,,,0,0,0,,
 KARDAM PURI,258,North-East,1.474,1.37,92.9,0.1,0.763,55.7,0,0,55.7,0,0,0,0,0,0.178,13,0,0,13,0.429,0,low - thin coverage on at least one side
 JANTA COLONY,259,North-East,0.616,0.608,98.8,1.8,0.576,94.7,0,0,94.7,0,0,0,0,0,0,0,0.011,100,-100,0.032,0,low - thin coverage on at least one side
 BABAR PUR,260,North-East,0.711,0.673,94.6,0,0.641,95.2,0,,,0,0,0,,,0.018,2.7,0,,,0.014,0,low - thin coverage on at least one side
-JIWANPUR,261,North-East,1.652,1.6,96.8,8.6,0.002,0.1,0,0,0.1,0,0,0.143,100,-100,0,0,0,0,0,1.598,1.211,low - thin coverage on at least one side
-GOKALPUR,262,North-East,1.185,1.098,92.7,0,0.245,22.4,0,,,0.024,2.2,0,,,0.018,1.6,0,,,0.811,0.625,low - thin coverage on at least one side
-SABOLI,263,North-East,1.845,1.801,97.6,0,0,0,0,,,0,0,0,,,0.026,1.4,0,,,1.776,1.454,low - thin coverage on at least one side
-HARSH VIHAR,264,North-East,2.538,2.496,98.3,0,0.039,1.6,0.001,100,-98.4,0,0,0,0,0,0.021,0.8,0,0,0.8,2.436,1.506,low - thin coverage on at least one side
-SHIV VIHAR,265,North-East,1.742,1.741,99.9,0,0,0,0,,,0,0,0,,,0,0,0,,,1.741,1.656,low - thin coverage on at least one side
-KARAWAL NAGAR EAST,266,North-East,1.255,1.255,100,0,0,0,0,,,0,0,0,,,0,0,0,,,1.255,1.255,low - thin coverage on at least one side
-MUSTAFABAD,268,North-East,1.29,1.278,99.1,0,0,0,0,,,0,0,0,,,0,0,0,,,1.278,1.262,low - thin coverage on at least one side
-KHAJOORI KHAS,269,North-East,1.127,0.629,55.8,0,0,0,0,,,0,0,0,,,0,0,0,,,0.629,0.616,low - thin coverage on at least one side
-KARAWAL NAGAR WEST,271,North-East,2.086,2.04,97.8,0,0,0,0,,,0,0,0,,,0,0,0,,,2.04,2.015,low - thin coverage on at least one side
+JIWANPUR,261,North-East,1.652,1.6,96.8,8.6,0.002,0.1,0,0,0.1,0,0,0.143,100,-100,0,0,0,0,0,0.386,1.211,low - thin coverage on at least one side
+GOKALPUR,262,North-East,1.185,1.098,92.7,0,0.245,22.4,0,,,0.024,2.2,0,,,0.018,1.6,0,,,0.185,0.625,low - thin coverage on at least one side
+SABOLI,263,North-East,1.845,1.801,97.6,0,0,0,0,,,0,0,0,,,0.026,1.4,0,,,0.322,1.454,low - thin coverage on at least one side
+HARSH VIHAR,264,North-East,2.538,2.496,98.3,0,0.039,1.6,0.001,100,-98.4,0,0,0,0,0,0.021,0.8,0,0,0.8,0.931,1.506,low - thin coverage on at least one side
+SHIV VIHAR,265,North-East,1.742,1.741,99.9,0,0,0,0,,,0,0,0,,,0,0,0,,,0.085,1.656,low - thin coverage on at least one side
+KARAWAL NAGAR EAST,266,North-East,1.255,1.255,100,0,0,0,0,,,0,0,0,,,0,0,0,,,0,1.255,low - thin coverage on at least one side
+MUSTAFABAD,268,North-East,1.29,1.278,99.1,0,0,0,0,,,0,0,0,,,0,0,0,,,0.016,1.262,low - thin coverage on at least one side
+KHAJOORI KHAS,269,North-East,1.127,0.629,55.8,0,0,0,0,,,0,0,0,,,0,0,0,,,0.014,0.616,low - thin coverage on at least one side
+KARAWAL NAGAR WEST,271,North-East,2.086,2.04,97.8,0,0,0,0,,,0,0,0,,,0,0,0,,,0.026,2.015,low - thin coverage on at least one side
 SONIA VIHAR,272,North-East,6.785,2.38,35.1,1.5,0,0,0,0,0,0,0,0.026,26.3,-26.3,0.983,41.3,0,0,41.3,1.397,0,low - thin coverage on at least one side
 NIZAMUDDIN,154,South-East,7.401,6.242,84.3,17.3,1.272,20.4,0.309,24.1,-3.7,0.053,0.9,0.359,28,-27.2,1.032,16.5,0.07,5.5,11.1,3.885,0,ok
 BHOGAL,156,South-East,1.351,1.226,90.8,38,0.907,74,0.5,97.5,-23.5,0.013,1,0,0,1,0.095,7.7,0,0,7.7,0.212,0,ok
@@ -182,8 +182,8 @@ GURU HARKISHAN NAGAR,41,Outer,2.779,2.603,93.7,67.8,1.966,75.5,1.653,87.7,-12.2,
 SULTANPURI  SOUTH,40,Outer,0.856,0.821,95.9,25.3,0.706,85.9,0.217,100,-14.1,0,0,0,0,0,0,0,0,0,0,0.115,0,ok
 SULTANPURI  EAST,37,Outer,0.815,0.771,94.6,0,0.661,85.7,0,,,0,0,0,,,0,0,0,,,0.11,0,low - thin coverage on at least one side
 KIRARI SULEMAN NAGAR,35,Rohini,2.982,2.846,95.4,1.8,2.375,83.5,0.04,75.5,8,0.099,3.5,0,0,3.5,0.166,5.8,0,0,5.8,0.206,0,low - thin coverage on at least one side
-KARALA,29,Rohini,37.788,16.282,43.1,1.2,2.325,14.3,0.217,47.9,-33.6,2.333,14.3,0.003,0.7,13.7,0.539,3.3,0,0,3.3,11.085,10.42,low - thin coverage on at least one side
-BEGUMPUR,27,Rohini,46.619,19.927,42.7,2.5,5.836,29.3,0.691,58.6,-29.3,2.546,12.8,0.048,4.1,8.7,2.175,10.9,0.355,30.1,-19.2,9.37,7.24,low - thin coverage on at least one side
+KARALA,29,Rohini,37.788,16.282,43.1,1.2,2.325,14.3,0.217,47.9,-33.6,2.333,14.3,0.003,0.7,13.7,0.539,3.3,0,0,3.3,0.665,10.42,low - thin coverage on at least one side
+BEGUMPUR,27,Rohini,46.619,19.927,42.7,2.5,5.836,29.3,0.691,58.6,-29.3,2.546,12.8,0.048,4.1,8.7,2.175,10.9,0.355,30.1,-19.2,2.13,7.24,low - thin coverage on at least one side
 POOTH KALAN,25,Rohini,8.478,7.541,88.9,56,6.03,80,4.585,96.5,-16.5,0,0,0,0,0,0.469,6.2,0.06,1.3,5,1.042,0,ok
 VIJAY VIHAR,24,Rohini,2.095,1.965,93.8,59.5,1.533,78,1.247,100,-22,0.015,0.8,0,0,0.8,0.237,12.1,0,0,12.1,0.179,0,ok
 GEETA COLONY,230,Shahdara,1.255,1.13,90,3,0.928,82.1,0.035,92.1,-10,0,0,0,0,0,0.029,2.6,0.003,7.9,-5.3,0.174,0,low - thin coverage on at least one side
@@ -201,28 +201,28 @@ KARAM PURA,100,West,2.246,1.985,88.4,23.2,0.638,32.1,0.296,56.9,-24.8,0.395,19.9
 MAHAVIR ENCLAVE,147,Dwarka,2.322,2.038,87.8,28.5,1.874,91.9,0.651,98.2,-6.3,0,0,0,0,0,0,0,0.003,0.5,-0.5,0.165,0,ok
 SAGARPUR,131,South-West,0.655,0.625,95.4,1.3,0.438,70.1,0.008,100,-29.9,0,0,0,0,0,0.15,24.1,0,0,24.1,0.037,0,low - thin coverage on at least one side
 SAGARPUR WEST,132,South-West,0.631,0.605,96,14.3,0.587,96.9,0.09,100,-3.1,0,0,0,0,0,0,0,0,0,0,0.019,0,ok
-MUNDAKA,30,Outer,53.09,22.883,43.1,20.6,2.05,9,1.392,12.7,-3.8,4.786,20.9,6.888,62.9,-42,0.884,3.9,2.116,19.3,-15.5,15.163,11.454,ok
+MUNDAKA,30,Outer,53.09,22.883,43.1,20.6,2.05,9,1.392,12.7,-3.8,4.786,20.9,6.888,62.9,-42,0.884,3.9,2.116,19.3,-15.5,3.709,11.454,ok
 EAST PATEL NAGAR,95,Central,2.379,2.245,94.4,6.1,1.004,44.7,0.057,39.3,5.4,0.023,1,0,0,1,0.218,9.7,0.001,0.7,9,1.001,0,low - thin coverage on at least one side
 WEST PATEL NAGAR,94,Central,1.061,0.994,93.8,20,0.683,68.7,0,0,68.7,0.102,10.2,0.212,100,-89.8,0.012,1.2,0,0,1.2,0.198,0,ok
 DEV NAGAR,92,Central,0.756,0.723,95.6,33.4,0.444,61.4,0.244,96.4,-35,0,0,0,0,0,0,0,0,0,0,0.279,0,ok
 KAROL BAGH,91,Central,2.285,1.962,85.9,75.4,1.484,75.6,1.537,89.1,-13.5,0,0,0.169,9.8,-9.8,0.151,7.7,0,0,7.7,0.326,0,ok
 MODEL BASTI,90,Central,1.459,1.256,86.1,12.3,0.784,62.4,0.101,56.4,6,0.08,6.4,0.04,22.3,-16,0.103,8.2,0,0,8.2,0.289,0,ok
 RANA PRATAP BAGH,70,North-West,1.373,1.265,92.1,17.8,1.207,95.4,0.235,96.3,-0.9,0,0,0,0,0,0,0,0,0,0,0.058,0,ok
-BAKHTAWAR PUR,4,Outer North,54.009,19.482,36.1,19.9,0.602,3.1,2.279,21.2,-18.1,0.002,0,3.645,33.9,-33.9,1.996,10.2,4.63,43.1,-32.8,16.882,13.551,ok
-ALIPUR,3,Outer North,49.08,20.22,41.2,32.8,5.755,28.5,3.98,24.7,3.8,3.107,15.4,5.617,34.9,-19.5,3.051,15.1,6.459,40.1,-25,8.308,0.829,ok
+BAKHTAWAR PUR,4,Outer North,54.009,19.482,36.1,19.9,0.602,3.1,2.279,21.2,-18.1,0.002,0,3.645,33.9,-33.9,1.996,10.2,4.63,43.1,-32.8,3.332,13.551,ok
+ALIPUR,3,Outer North,49.08,20.22,41.2,32.8,5.755,28.5,3.98,24.7,3.8,3.107,15.4,5.617,34.9,-19.5,3.051,15.1,6.459,40.1,-25,7.479,0.829,ok
 SAHIBABAD DAULAT PUR,26,Outer North,13.218,11.078,83.8,26.9,6.08,54.9,2.4,67.5,-12.6,0.226,2,0.603,17,-14.9,1.241,11.2,0.461,13,-1.8,3.531,0,ok
-BANKNER,2,Outer North,21.158,15.456,73.1,11.8,0.667,4.3,0.605,24.2,-19.9,0.285,1.8,0.525,21,-19.2,0.163,1.1,1.37,54.8,-53.7,14.341,13.543,ok
+BANKNER,2,Outer North,21.158,15.456,73.1,11.8,0.667,4.3,0.605,24.2,-19.9,0.285,1.8,0.525,21,-19.2,0.163,1.1,1.37,54.8,-53.7,0.797,13.543,ok
 MALKAGANJ,9,North,0.993,0.898,90.4,20.9,0.602,67,0.2,96.2,-29.1,0,0,0,0,0,0.236,26.3,0.007,3.4,22.9,0.06,0,ok
 JHARODA,8,North,12.511,3.446,27.5,35.4,0,0,2.036,45.9,-45.9,0,0,0.028,0.6,-0.6,1.339,38.9,2.357,53.2,-14.3,2.107,0,ok
 MUKUND PUR,6,North,5.547,0.141,2.5,4,0,0,0.153,69.2,-69.2,0,0,0,0,0,0.001,0.8,0.04,18.1,-17.3,0.139,0,low - thin coverage on at least one side
-BAWANA,28,Outer North,56.648,29.565,52.2,16.1,1.688,5.7,1.348,14.8,-9.1,2.749,9.3,0.868,9.5,-0.2,0.62,2.1,6.88,75.4,-73.3,24.507,21.795,ok
+BAWANA,28,Outer North,56.648,29.565,52.2,16.1,1.688,5.7,1.348,14.8,-9.1,2.749,9.3,0.868,9.5,-0.2,0.62,2.1,6.88,75.4,-73.3,2.713,21.795,ok
 BHALSWA,19,Outer North,3.579,1.89,52.8,23.6,1.124,59.5,0.425,50.4,9.1,0,0,0.338,40.1,-40.1,0.014,0.8,0.043,5.1,-4.3,0.752,0,ok
 SAMAYPUR BADLI,17,Outer North,3.074,2.725,88.7,25.2,0.541,19.8,0.172,22.3,-2.4,0.629,23.1,0.601,77.7,-54.7,0.484,17.8,0,0,17.8,1.072,0,ok
 JAHANGIRPURI-I,16,North-West,0.589,0.538,91.3,55.7,0.527,97.9,0.307,93.3,4.6,0,0,0,0,0,0,0,0,0,0,0.011,0,ok
 SARAI PIPAL THALA,15,North-West,1.755,1.512,86.1,9.6,0.457,30.2,0.124,73.4,-43.2,0.493,32.6,0.023,13.6,19,0.199,13.1,0.019,11.2,1.9,0.364,0,low - thin coverage on at least one side
 MAHIPALPUR,144,South-West,7.497,3.749,50,30.1,1.555,41.5,1.479,65.4,-24,0,0,0,0,0,0.676,18,0,0,18,1.518,0,ok
-KAPASHERA,143,,21.849,16.59,75.9,16.2,0,0,0.576,16.3,-16.3,0,0,0.836,23.6,-23.6,0.186,1.1,1.961,55.5,-54.3,16.404,4.075,ok
-BIJWASAN,141,Dwarka,22.987,19.56,85.1,16.3,4.918,25.1,1.132,30.3,-5.1,0,0,2.366,63.2,-63.2,1.781,9.1,0.158,4.2,4.9,12.862,6.271,ok
+KAPASHERA,143,,21.849,16.59,75.9,16.2,0,0,0.576,16.3,-16.3,0,0,0.836,23.6,-23.6,0.186,1.1,1.961,55.5,-54.3,12.329,4.075,ok
+BIJWASAN,141,Dwarka,22.987,19.56,85.1,16.3,4.918,25.1,1.132,30.3,-5.1,0,0,2.366,63.2,-63.2,1.781,9.1,0.158,4.2,4.9,6.591,6.271,ok
 ADARASH  NAGAR,14,North-West,1.343,1.207,89.8,58.3,0.874,72.5,0.771,98.3,-25.9,0,0,0.013,1.7,-1.7,0,0,0,0,0,0.332,0,ok
 DHIR PUR,13,North-West,6.954,6.142,88.3,29.2,2.346,38.2,0.327,16.1,22.1,0,0,1.572,77.4,-77.4,1.054,17.2,0.114,5.6,11.5,2.742,0,ok
 G.T.B. NAGAR,12,North-West,2.717,2.47,90.9,18.4,1.614,65.3,0.12,24,41.3,0,0,0.202,40.4,-40.4,0.004,0.2,0.087,17.4,-17.2,0.852,0,ok
@@ -241,12 +241,12 @@ SULTANPUR MAJRA,39,Outer,0.67,0.63,94,2.1,0.63,100,0.014,100,0,0,0,0,0,0,0,0,0,0
 ROHINI NORTH,49,Rohini,3.37,3.129,92.8,53.5,1.663,53.2,1.35,74.8,-21.7,0.424,13.6,0.422,23.4,-9.8,0.125,4,0,0,4,0.917,0,ok
 LIBAS PUR,18,Outer North,6.023,2.934,48.7,20.8,1.433,48.9,0.68,54.1,-5.3,0.282,9.6,0.529,42.1,-32.5,0.231,7.9,0.047,3.7,4.1,0.988,0,ok
 BRAHAM PURI,254,North-East,1.064,1.013,95.2,9.3,0.79,78,0,0,78,0,0,0,0,0,0.21,20.7,0,0,20.7,0.013,0,low - thin coverage on at least one side
-DICHAON KALAN,139,Dwarka,30.87,13.754,44.6,8.1,0,0,0.258,10.3,-10.3,0,0,0.056,2.2,-2.2,0,0,0,0,0,13.754,11.288,low - thin coverage on at least one side
+DICHAON KALAN,139,Dwarka,30.87,13.754,44.6,8.1,0,0,0.258,10.3,-10.3,0,0,0.056,2.2,-2.2,0,0,0,0,0,2.466,11.288,low - thin coverage on at least one side
 MOTI NAGAR,99,West,0.967,0.848,87.7,0.6,0.801,94.4,0,0,94.4,0,0,0,0,0,0,0,0,0,0,0.047,0,low - thin coverage on at least one side
 MANGOLPURI,47,Outer,0.872,0.806,92.4,13.4,0.704,87.4,0.117,100,-12.6,0,0,0,0,0,0.043,5.3,0,0,5.3,0.059,0,ok
 LAJPAT NAGAR,155,South-East,1.733,1.637,94.5,11.6,0.958,58.5,0.153,76.1,-17.6,0,0,0,0,0,0.165,10.1,0.001,0.5,9.6,0.514,0,ok
 PALAM,145,South-West,2.821,2.598,92.1,10.1,2.389,92,0.158,55.8,36.1,0,0,0,0,0,0,0,0.032,11.3,-11.3,0.209,0,ok
-KISHANGARH,172,South-West,22.471,11.697,52.1,4.9,1.953,16.7,0.077,7,9.7,0.015,0.1,0.088,8,-7.9,4.694,40.1,0.111,10.1,30,5.035,4.534,low - thin coverage on at least one side
+KISHANGARH,172,South-West,22.471,11.697,52.1,4.9,1.953,16.7,0.077,7,9.7,0.015,0.1,0.088,8,-7.9,4.694,40.1,0.111,10.1,30,0.5,4.534,low - thin coverage on at least one side
 VISHWASH NAGAR,226,Shahdara,1.205,1.101,91.3,1.6,0.921,83.7,0,0,83.7,0,0,0,0,0,0,0,0,0,0,0.18,0,low - thin coverage on at least one side
 MADIPUR,104,West,0.579,0.519,89.6,7.5,0.485,93.6,0.039,88.6,5,0,0,0.003,6.8,-6.8,0,0,0,0,0,0.033,0,low - thin coverage on at least one side
 RAJENDER NAGAR,149,Central,4.358,3.989,91.5,30.1,2.083,52.2,1.285,97.9,-45.7,0,0,0.011,0.8,-0.8,1.128,28.3,0.002,0.2,28.1,0.778,0,ok
@@ -258,7 +258,7 @@ MANGLAPURI,130,South-West,2.452,2.259,92.1,14,2.201,97.4,0.343,100,-2.6,0,0,0,0,
 MANGOL PURI  NORTH,38,Outer,0.583,0.542,92.9,0,0.513,94.7,0,,,0,0,0,,,0,0,0,,,0.028,0,low - thin coverage on at least one side
 TAGORE GARDEN,106,West,0.825,0.772,93.6,3.7,0.593,76.8,0,0,76.8,0,0,0,0,0,0.031,4,0,0,4,0.149,0,low - thin coverage on at least one side
 LADOSARAI,169,South,6.403,6.039,94.3,6.2,2.431,40.3,0.318,80.3,-40,0,0,0.003,0.8,-0.8,2.168,35.9,0.03,7.6,28.3,1.44,0,low - thin coverage on at least one side
-NARELA,1,Outer North,20.294,17.838,87.9,14.3,5.95,33.4,1.925,66.3,-32.9,1.989,11.2,0.887,30.5,-19.4,1.691,9.5,0.048,1.7,7.8,8.209,5.959,ok
+NARELA,1,Outer North,20.294,17.838,87.9,14.3,5.95,33.4,1.925,66.3,-32.9,1.989,11.2,0.887,30.5,-19.4,1.691,9.5,0.048,1.7,7.8,2.25,5.959,ok
 BHALASWA JAHAGIR PUR,5,Outer North,13.122,2.596,19.8,12.1,0.812,31.3,0.925,58.1,-26.8,0,0,0.462,29,-29,0.421,16.2,0.201,12.6,3.6,1.362,0,ok
 BURARI,7,North,17.349,1.42,8.2,41.5,0.018,1.3,0.161,2.2,-0.9,0.018,1.3,0.131,1.8,-0.5,0.177,12.5,6.907,95.9,-83.5,1.207,0,low - thin coverage on at least one side
 PATPARGANJ,220,East,1.558,1.379,88.5,28.6,1.123,81.5,0.398,89.2,-7.8,0,0,0,0,0,0.128,9.3,0.004,0.9,8.4,0.128,0,ok
@@ -267,14 +267,14 @@ KISHAN KUNJ,221,East,1.374,1.072,78,21.7,0.742,69.2,0,0,69.2,0,0,0,0,0,0.306,28.
 DHARAMPURA,233,Shahdara,1.156,0.905,78.3,7,0.485,53.5,0,0,53.5,0,0,0.01,12.5,-12.5,0.23,25.4,0.022,27.5,-2.1,0.191,0,low - thin coverage on at least one side
 NEW USMANPUR,251,North-East,1.954,1.759,90,30.7,0.851,48.4,0,0,48.4,0,0,0,0,0,0.671,38.2,0.003,0.5,37.7,0.237,0,ok
 BHAJANPURA,253,North-East,1.173,1.036,88.3,16.7,0.708,68.3,0,0,68.3,0,0,0,0,0,0.233,22.5,0,0,22.5,0.096,0,ok
-NEHRU VIHAR,267,North-East,0.142,0.142,100,0,0,0,0,,,0,0,0,,,0,0,0,,,0.142,0.139,low - thin coverage on at least one side
+NEHRU VIHAR,267,North-East,0.142,0.142,100,0,0,0,0,,,0,0,0,,,0,0,0,,,0.003,0.139,low - thin coverage on at least one side
 SAID UL AJAIB,177,South,6.528,5.882,90.1,4.1,0.176,3,0,0,3,0,0,0.057,21.3,-21.3,5.451,92.7,0,0,92.7,0.255,0,low - thin coverage on at least one side
 SANGAM VIHAR,178,South,2.568,2.054,80,0,0.077,3.7,0,,,0,0,0,,,1.972,96,0,,,0.005,0,low - thin coverage on at least one side
 MEHRAULI,170,South,2.982,2.785,93.4,1,0.262,9.4,0.029,96.7,-87.2,0,0,0,0,0,2.44,87.6,0.001,3.3,84.3,0.083,0,low - thin coverage on at least one side
 SANGAM VIHAR WEST,186,South,2.799,2.014,71.9,0.7,0.173,8.6,0,0,8.6,0,0,0,0,0,1.726,85.7,0.02,100,-14.3,0.115,0,low - thin coverage on at least one side
 TIGRI,179,South,2.077,0.407,19.6,0,0.135,33.2,0,,,0,0,0,,,0.209,51.2,0,,,0.064,0,low - thin coverage on at least one side
 ZAKIR NAGAR,205,South-East,2.72,1.018,37.4,6.9,0.635,62.3,0.13,69.1,-6.8,0,0,0,0,0,0.207,20.3,0.014,7.4,12.9,0.176,0,low - thin coverage on at least one side
-NAJAFGARH,138,Dwarka,1.999,0.123,6.2,15.7,0,0,0.243,77.6,-77.6,0,0,0,0,0,0,0,0.037,11.8,-11.8,0.123,0.123,low - thin coverage on at least one side
+NAJAFGARH,138,Dwarka,1.999,0.123,6.2,15.7,0,0,0.243,77.6,-77.6,0,0,0,0,0,0,0,0.037,11.8,-11.8,0,0.123,low - thin coverage on at least one side
 JAHANGIR PURI -II,20,North-West,0.757,0.64,84.5,26.7,0.543,84.9,0.201,99,-14.1,0,0,0.002,1,-1,0.009,1.5,0,0,1.5,0.087,0,ok
 KUNWAR SINGH NAGAR,121,Outer,6.531,1.111,17,7.4,0.188,17,0.48,100,-83,0,0,0,0,0,0.182,16.4,0,0,16.4,0.74,0,low - thin coverage on at least one side
 VIKAS NAGAR,124,West,2.383,2.154,90.4,53.6,1.645,76.4,1.144,89.6,-13.2,0,0,0,0,0,0.232,10.8,0.032,2.5,8.3,0.277,0,ok
@@ -287,5 +287,5 @@ PRATAP VIHAR,36,Rohini,1.108,1.059,95.5,0,0.325,30.7,0,,,0.455,43,0,,,0,0,0,,,0.
 PREM NAGAR,33,Rohini,0.79,0.734,92.9,4.8,0.664,90.5,0,0,90.5,0,0,0,0,0,0.039,5.3,0,0,5.3,0.031,0,low - thin coverage on at least one side
 SHASTRI NAGAR,73,North,1.44,1.325,92,4.2,0.954,72,0.046,76.7,-4.7,0,0,0,0,0,0.203,15.3,0.014,23.3,-8,0.168,0,low - thin coverage on at least one side
 VISHNU GARDEN,107,West,0.483,0.461,95.3,0,0.461,100,0,,,0,0,0,,,0,0,0,,,0,0,low - thin coverage on at least one side
-TUKHMIR PUR,270,North-East,0.481,0.455,94.4,0,0,0,0,,,0,0,0,,,0,0,0,,,0.455,0.45,low - thin coverage on at least one side
+TUKHMIR PUR,270,North-East,0.481,0.455,94.4,0,0,0,0,,,0,0,0,,,0,0,0,,,0.005,0.45,low - thin coverage on at least one side
 RAJ NAGAR,142,,0.235,0.235,100,24.6,0.087,36.9,0,0,36.9,0,0,0,0,0,0,0,0.034,58.6,-58.6,0.148,0,ok

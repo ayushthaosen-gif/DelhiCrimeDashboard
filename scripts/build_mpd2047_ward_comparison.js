@@ -23,9 +23,13 @@
 //     industrial    <-> M1      (M1-INDUSTRIAL)
 //     green_open    <-> P1, P2  (regional park/forest, district park/green)
 // Everything else is reported on the plan side alone, never equated to an OSM category:
-//   * A1 (Green Belt, the second largest category at ~209 km2) is a Low Density Area policy
-//     designation whose own attributes include VILLAGE ABADI settlements. Folding it into
-//     "green/open" would overstate planned green space, so it is its own plan-only line.
+//   * A1 is "Agriculture land" in the gazette's own legend (Table 5.1, land-use category 9). It is
+//     the second largest code at ~209 km2. Checked against DDA's separate Low Density Area layer:
+//     A1 is exactly the GREEN BELT type of that overlay (155 polygons, 209.3 km2, 100% match; the
+//     overlay's other type, LDRA, 72.9 km2, contains no A1). 201.4 km2 of A1 is premises tagged
+//     GREEN BELT and 7.9 km2 VILLAGE ABADI, which the gazette says is residential wherever it sits
+//     (Table 5.1 footnote) -- NOT reclassified here, see the metadata note. Folding A1 into
+//     "green/open" would equate agricultural land with parks, so it is its own plan-only line.
 //   * C1-C3, PS1/PS2, G1-G3, T1-T3, U1-U5 have plausible OSM counterparts but the mappings are
 //     judgement calls, so they stay out of the delta and are reported as planned-only area.
 //   * A2 (river and water body) has no counterpart: OSM tags water as natural=water, which the
@@ -51,7 +55,7 @@ const COMPARABLE = {
   green_open: ['P1', 'P2'],
 };
 const PLAN_ONLY_LABELS = {
-  A1: 'Green Belt / Low Density Area (includes village abadi)',
+  A1: 'Agriculture land (Green Belt portion of the Low Density Area overlay)',
   A2: 'River and water body',
   C1: 'Commercial', C2: 'Commercial', C3: 'Commercial',
   PS1: 'Public and semi-public facilities', PS2: 'Public and semi-public facilities',
@@ -158,12 +162,14 @@ for (const ward of wards.features) {
   }
 
   // Plan-only area, reported but never differenced against OSM.
+  // A1 is reported on its own line, so it is excluded from "other" -- otherwise it is listed twice
+  // and the buckets (comparable + A1 + other) overshoot the plan total.
   let planOnly = 0;
   for (const [code, km2] of Object.entries(plannedByCode)) {
-    if (!comparableCodes.has(code)) planOnly += km2;
+    if (!comparableCodes.has(code) && code !== 'A1') planOnly += km2;
   }
   row.planned_not_comparable_km2 = +planOnly.toFixed(3);
-  row.planned_green_belt_km2 = +(plannedByCode.A1 || 0).toFixed(3);
+  row.planned_a1_agriculture_km2 = +(plannedByCode.A1 || 0).toFixed(3);
 
   const thin = row.plan_coverage_pct < THIN_COVERAGE_PCT
     || row.osm_mapped_pct == null || row.osm_mapped_pct < THIN_COVERAGE_PCT;
@@ -189,7 +195,7 @@ for (const cat of Object.keys(COMPARABLE)) {
   citywide['planned_' + cat + '_km2'] = +rows.reduce((a, r) => a + r['planned_' + cat + '_km2'], 0).toFixed(1);
   citywide['current_' + cat + '_km2'] = +rows.reduce((a, r) => a + (r['current_' + cat + '_km2'] || 0), 0).toFixed(1);
 }
-citywide.planned_green_belt_km2 = +rows.reduce((a, r) => a + r.planned_green_belt_km2, 0).toFixed(1);
+citywide.planned_a1_agriculture_km2 = +rows.reduce((a, r) => a + r.planned_a1_agriculture_km2, 0).toFixed(1);
 citywide.planned_not_comparable_km2 = +rows.reduce((a, r) => a + r.planned_not_comparable_km2, 0).toFixed(1);
 
 fs.writeFileSync(OUT_JSON, JSON.stringify({
@@ -200,12 +206,15 @@ fs.writeFileSync(OUT_JSON, JSON.stringify({
     plan_attribution: (plan.metadata && plan.metadata.attribution) || null,
     plan_legend_field: (plan.metadata && plan.metadata.legend_field) || null,
     plan_legend: planLegend,
+    legend_supplement_from_gazette: { A1: 'Agriculture land (gazette Table 5.1, land-use category 9: Agriculture and Water Body)' },
     codes_present_without_legend_entry: [...CODES].filter(c => c !== '(blank)' && !(c in planLegend)),
     crosswalk: COMPARABLE,
     plan_only_labels: PLAN_ONLY_LABELS,
     thin_coverage_pct: THIN_COVERAGE_PCT,
     method: 'Areal intersection of each ward polygon with MPD-2047 land-use polygons. Shares are computed within each source\'s own described area -- planned shares over plan-covered area, current shares over OSM-tagged area -- because the two sources cover very different fractions of a ward. Both denominators are reported per ward.',
     comparability_caveat: 'A planned-versus-current difference is a difference between a statutory plan and a community-mapped inventory. It is not a measurement of change on the ground, and a positive delta may mean the plan designates more of something OR that OSM has not tagged it.',
+    a1_note: 'A1 = "Agriculture land" (gazette Table 5.1). Verified against DDA FeatureServer layer 9 (LOW DENSITY AREA): A1 equals the GREEN BELT type of that overlay exactly (155 polygons, 209.3 km2). 7.9 km2 of A1 is VILLAGE ABADI premises, which the gazette treats as residential in any use zone; that area is left in A1 here, so planned residential is slightly understated.',
+    buckets_note: 'planned_covered = comparable (residential + industrial + green_open) + planned_a1_agriculture + planned_not_comparable, exactly. planned_not_comparable excludes A1 (changed 2026-10-03; previously it included A1, double-listing it).',
     geometry_failures: skippedGeom,
   },
   citywide,

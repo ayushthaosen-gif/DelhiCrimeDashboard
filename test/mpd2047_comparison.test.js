@@ -77,14 +77,16 @@ test('the land-use codebook comes from the source and undecoded codes stay undec
   assert.ok(!Object.prototype.hasOwnProperty.call(legend, 'A1'));
 });
 
-test('green belt is reported separately and never counted as green space', () => {
+test('A1 (Agriculture land) is reported separately, never counted as green space, never double-listed', () => {
   const c = comparison.citywide;
-  assert.ok(c.planned_green_belt_km2 > 100, 'green belt should be a large plan-only category');
+  assert.ok(c.planned_a1_agriculture_km2 > 100, 'A1 should be a large plan-only category');
   // If A1 had leaked into the comparable parks/green bucket, these would be close together.
-  assert.notStrictEqual(c.planned_green_open_km2, c.planned_green_belt_km2);
+  assert.notStrictEqual(c.planned_green_open_km2, c.planned_a1_agriculture_km2);
   const sumComparable = c.planned_residential_km2 + c.planned_industrial_km2 + c.planned_green_open_km2;
-  assert.ok(sumComparable + c.planned_green_belt_km2 + c.planned_not_comparable_km2 >= c.planned_total_km2 - 1,
-    'planned area must be fully accounted for across comparable, green-belt and not-comparable buckets');
+  // Exact partition (to rounding): comparable + A1 + other must equal the plan total. The old
+  // ">=" form passed while A1 was counted in both the A1 and the "other" buckets.
+  const parts = sumComparable + c.planned_a1_agriculture_km2 + c.planned_not_comparable_km2;
+  assert.ok(Math.abs(parts - c.planned_total_km2) < 1, 'buckets (' + parts.toFixed(1) + ') must equal plan total (' + c.planned_total_km2 + ')');
 });
 
 test('the comparison states what it is not', () => {

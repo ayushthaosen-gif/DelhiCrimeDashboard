@@ -39,6 +39,9 @@
    "A2": "A2 RIVER AND  WATER BODY",
    " ": " "
   },
+  "legend_supplement_from_gazette": {
+   "A1": "Agriculture land (gazette Table 5.1, land-use category 9: Agriculture and Water Body)"
+  },
   "codes_present_without_legend_entry": [
    "A1"
   ],
@@ -55,7 +58,7 @@
    ]
   },
   "plan_only_labels": {
-   "A1": "Green Belt / Low Density Area (includes village abadi)",
+   "A1": "Agriculture land (Green Belt portion of the Low Density Area overlay)",
    "A2": "River and water body",
    "C1": "Commercial",
    "C2": "Commercial",
@@ -83,6 +86,8 @@
   "thin_coverage_pct": 10,
   "method": "Areal intersection of each ward polygon with MPD-2047 land-use polygons. Shares are computed within each source's own described area -- planned shares over plan-covered area, current shares over OSM-tagged area -- because the two sources cover very different fractions of a ward. Both denominators are reported per ward.",
   "comparability_caveat": "A planned-versus-current difference is a difference between a statutory plan and a community-mapped inventory. It is not a measurement of change on the ground, and a positive delta may mean the plan designates more of something OR that OSM has not tagged it.",
+  "a1_note": "A1 = \"Agriculture land\" (gazette Table 5.1). Verified against DDA FeatureServer layer 9 (LOW DENSITY AREA): A1 equals the GREEN BELT type of that overlay exactly (155 polygons, 209.3 km2). 7.9 km2 of A1 is VILLAGE ABADI premises, which the gazette treats as residential in any use zone; that area is left in A1 here, so planned residential is slightly understated.",
+  "buckets_note": "planned_covered = comparable (residential + industrial + green_open) + planned_a1_agriculture + planned_not_comparable, exactly. planned_not_comparable excludes A1 (changed 2026-10-03; previously it included A1, double-listing it).",
   "geometry_failures": 0
  },
  "citywide": {
@@ -96,8 +101,8 @@
   "current_industrial_km2": 51.2,
   "planned_green_open_km2": 175.2,
   "current_green_open_km2": 90.5,
-  "planned_green_belt_km2": 208.8,
-  "planned_not_comparable_km2": 452.7
+  "planned_a1_agriculture_km2": 208.8,
+  "planned_not_comparable_km2": 243.9
  },
  "wards": [
   {
@@ -124,7 +129,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 1.21,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -151,7 +156,7 @@
    "current_green_open_share_pct": 1.4,
    "delta_green_open_pp": 0.2,
    "planned_not_comparable_km2": 8.402,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -178,7 +183,7 @@
    "current_green_open_share_pct": 1.3,
    "delta_green_open_pp": 23.5,
    "planned_not_comparable_km2": 5.995,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -205,7 +210,7 @@
    "current_green_open_share_pct": 5.1,
    "delta_green_open_pp": -5.1,
    "planned_not_comparable_km2": 3.222,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -232,7 +237,7 @@
    "current_green_open_share_pct": 28.9,
    "delta_green_open_pp": -28.9,
    "planned_not_comparable_km2": 14.781,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -259,7 +264,7 @@
    "current_green_open_share_pct": 0.1,
    "delta_green_open_pp": -0.1,
    "planned_not_comparable_km2": 3.853,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -286,7 +291,7 @@
    "current_green_open_share_pct": 3.1,
    "delta_green_open_pp": -3.1,
    "planned_not_comparable_km2": 1.653,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -313,7 +318,7 @@
    "current_green_open_share_pct": 9,
    "delta_green_open_pp": -9,
    "planned_not_comparable_km2": 4.775,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -340,7 +345,7 @@
    "current_green_open_share_pct": 9.8,
    "delta_green_open_pp": -3,
    "planned_not_comparable_km2": 1.615,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -367,7 +372,7 @@
    "current_green_open_share_pct": 0.3,
    "delta_green_open_pp": 1.5,
    "planned_not_comparable_km2": 0.864,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -394,7 +399,7 @@
    "current_green_open_share_pct": 69.9,
    "delta_green_open_pp": -1.7,
    "planned_not_comparable_km2": 1.975,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -421,7 +426,7 @@
    "current_green_open_share_pct": 8.7,
    "delta_green_open_pp": 4.7,
    "planned_not_comparable_km2": 1.649,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -448,7 +453,7 @@
    "current_green_open_share_pct": 5,
    "delta_green_open_pp": 2.2,
    "planned_not_comparable_km2": 1.915,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -475,7 +480,7 @@
    "current_green_open_share_pct": 0.3,
    "delta_green_open_pp": 11.1,
    "planned_not_comparable_km2": 1.221,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -502,7 +507,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.129,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -529,7 +534,7 @@
    "current_green_open_share_pct": 8.9,
    "delta_green_open_pp": 5.4,
    "planned_not_comparable_km2": 5.081,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -556,7 +561,7 @@
    "current_green_open_share_pct": 6.9,
    "delta_green_open_pp": -6.9,
    "planned_not_comparable_km2": 0.286,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -583,7 +588,7 @@
    "current_green_open_share_pct": 2.9,
    "delta_green_open_pp": 31.8,
    "planned_not_comparable_km2": 0.92,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -610,7 +615,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 12.9,
    "planned_not_comparable_km2": 1.38,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -637,7 +642,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -664,7 +669,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.006,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -691,7 +696,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.379,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -718,7 +723,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.222,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -745,7 +750,7 @@
    "current_green_open_share_pct": 1.5,
    "delta_green_open_pp": 11.4,
    "planned_not_comparable_km2": 0.057,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -772,7 +777,7 @@
    "current_green_open_share_pct": 11.4,
    "delta_green_open_pp": -3.3,
    "planned_not_comparable_km2": 0.65,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -799,7 +804,7 @@
    "current_green_open_share_pct": 0.1,
    "delta_green_open_pp": 5.5,
    "planned_not_comparable_km2": 0.145,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -826,7 +831,7 @@
    "current_green_open_share_pct": 0.1,
    "delta_green_open_pp": 7.4,
    "planned_not_comparable_km2": 1.094,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -853,7 +858,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -880,7 +885,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -906,8 +911,8 @@
    "current_green_open_km2": 7.366,
    "current_green_open_share_pct": 83.9,
    "delta_green_open_pp": -83.9,
-   "planned_not_comparable_km2": 45.199,
-   "planned_green_belt_km2": 42.413,
+   "planned_not_comparable_km2": 2.786,
+   "planned_a1_agriculture_km2": 42.413,
    "comparison_confidence": "ok"
   },
   {
@@ -933,8 +938,8 @@
    "current_green_open_km2": 5.711,
    "current_green_open_share_pct": 95.5,
    "delta_green_open_pp": -92.4,
-   "planned_not_comparable_km2": 0.892,
-   "planned_green_belt_km2": 0.004,
+   "planned_not_comparable_km2": 0.888,
+   "planned_a1_agriculture_km2": 0.004,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -961,7 +966,7 @@
    "current_green_open_share_pct": 1.4,
    "delta_green_open_pp": 12.9,
    "planned_not_comparable_km2": 2.439,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -987,8 +992,8 @@
    "current_green_open_km2": 14.849,
    "current_green_open_share_pct": 88.9,
    "delta_green_open_pp": -88.1,
-   "planned_not_comparable_km2": 44.209,
-   "planned_green_belt_km2": 43.145,
+   "planned_not_comparable_km2": 1.065,
+   "planned_a1_agriculture_km2": 43.145,
    "comparison_confidence": "ok"
   },
   {
@@ -1015,7 +1020,7 @@
    "current_green_open_share_pct": 0.5,
    "delta_green_open_pp": 2,
    "planned_not_comparable_km2": 1.004,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -1042,7 +1047,7 @@
    "current_green_open_share_pct": 50,
    "delta_green_open_pp": -37.4,
    "planned_not_comparable_km2": 0.164,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1069,7 +1074,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 6.7,
    "planned_not_comparable_km2": 0.07,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1096,7 +1101,7 @@
    "current_green_open_share_pct": 100,
    "delta_green_open_pp": -83.3,
    "planned_not_comparable_km2": 0.094,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1123,7 +1128,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.065,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1150,7 +1155,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 7.8,
    "planned_not_comparable_km2": 0.075,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1177,7 +1182,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0.4,
    "planned_not_comparable_km2": 0.302,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1204,7 +1209,7 @@
    "current_green_open_share_pct": 100,
    "delta_green_open_pp": -89.4,
    "planned_not_comparable_km2": 0.05,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1231,7 +1236,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.01,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1258,7 +1263,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.012,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1285,7 +1290,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.035,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1312,7 +1317,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1339,7 +1344,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0.5,
    "planned_not_comparable_km2": 0.038,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1366,7 +1371,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.003,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1393,7 +1398,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 13,
    "planned_not_comparable_km2": 0.429,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1420,7 +1425,7 @@
    "current_green_open_share_pct": 100,
    "delta_green_open_pp": -100,
    "planned_not_comparable_km2": 0.032,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1447,7 +1452,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.014,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1473,8 +1478,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
-   "planned_not_comparable_km2": 1.598,
-   "planned_green_belt_km2": 1.211,
+   "planned_not_comparable_km2": 0.386,
+   "planned_a1_agriculture_km2": 1.211,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1500,8 +1505,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 0.811,
-   "planned_green_belt_km2": 0.625,
+   "planned_not_comparable_km2": 0.185,
+   "planned_a1_agriculture_km2": 0.625,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1527,8 +1532,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 1.776,
-   "planned_green_belt_km2": 1.454,
+   "planned_not_comparable_km2": 0.322,
+   "planned_a1_agriculture_km2": 1.454,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1554,8 +1559,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0.8,
-   "planned_not_comparable_km2": 2.436,
-   "planned_green_belt_km2": 1.506,
+   "planned_not_comparable_km2": 0.931,
+   "planned_a1_agriculture_km2": 1.506,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1581,8 +1586,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 1.741,
-   "planned_green_belt_km2": 1.656,
+   "planned_not_comparable_km2": 0.085,
+   "planned_a1_agriculture_km2": 1.656,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1608,8 +1613,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 1.255,
-   "planned_green_belt_km2": 1.255,
+   "planned_not_comparable_km2": 0,
+   "planned_a1_agriculture_km2": 1.255,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1635,8 +1640,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 1.278,
-   "planned_green_belt_km2": 1.262,
+   "planned_not_comparable_km2": 0.016,
+   "planned_a1_agriculture_km2": 1.262,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1662,8 +1667,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 0.629,
-   "planned_green_belt_km2": 0.616,
+   "planned_not_comparable_km2": 0.014,
+   "planned_a1_agriculture_km2": 0.616,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1689,8 +1694,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 2.04,
-   "planned_green_belt_km2": 2.015,
+   "planned_not_comparable_km2": 0.026,
+   "planned_a1_agriculture_km2": 2.015,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1717,7 +1722,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 41.3,
    "planned_not_comparable_km2": 1.397,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1744,7 +1749,7 @@
    "current_green_open_share_pct": 5.5,
    "delta_green_open_pp": 11.1,
    "planned_not_comparable_km2": 3.885,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -1771,7 +1776,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 7.7,
    "planned_not_comparable_km2": 0.212,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -1798,7 +1803,7 @@
    "current_green_open_share_pct": 4.1,
    "delta_green_open_pp": 2,
    "planned_not_comparable_km2": 1.328,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -1825,7 +1830,7 @@
    "current_green_open_share_pct": 24.3,
    "delta_green_open_pp": -22.9,
    "planned_not_comparable_km2": 0.276,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1852,7 +1857,7 @@
    "current_green_open_share_pct": 4.3,
    "delta_green_open_pp": 26,
    "planned_not_comparable_km2": 2.337,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -1879,7 +1884,7 @@
    "current_green_open_share_pct": 8.3,
    "delta_green_open_pp": -2.9,
    "planned_not_comparable_km2": 0.049,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1906,7 +1911,7 @@
    "current_green_open_share_pct": 14.6,
    "delta_green_open_pp": -11,
    "planned_not_comparable_km2": 0.378,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -1933,7 +1938,7 @@
    "current_green_open_share_pct": 0.4,
    "delta_green_open_pp": 30.1,
    "planned_not_comparable_km2": 1.244,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -1960,7 +1965,7 @@
    "current_green_open_share_pct": 0.9,
    "delta_green_open_pp": 6.8,
    "planned_not_comparable_km2": 0.004,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -1987,7 +1992,7 @@
    "current_green_open_share_pct": 1.8,
    "delta_green_open_pp": 4.5,
    "planned_not_comparable_km2": 0.734,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2014,7 +2019,7 @@
    "current_green_open_share_pct": 2,
    "delta_green_open_pp": -1.4,
    "planned_not_comparable_km2": 4.758,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2041,7 +2046,7 @@
    "current_green_open_share_pct": 94.2,
    "delta_green_open_pp": -40,
    "planned_not_comparable_km2": 0.081,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2068,7 +2073,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0.1,
    "planned_not_comparable_km2": 0.504,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2095,7 +2100,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2122,7 +2127,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.035,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2149,7 +2154,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.261,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2176,7 +2181,7 @@
    "current_green_open_share_pct": 41.9,
    "delta_green_open_pp": 4.8,
    "planned_not_comparable_km2": 0.736,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2203,7 +2208,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 97.7,
    "planned_not_comparable_km2": 0.038,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2230,7 +2235,7 @@
    "current_green_open_share_pct": 3,
    "delta_green_open_pp": 76.4,
    "planned_not_comparable_km2": 0.849,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2257,7 +2262,7 @@
    "current_green_open_share_pct": 90,
    "delta_green_open_pp": -64.9,
    "planned_not_comparable_km2": 0.132,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2284,7 +2289,7 @@
    "current_green_open_share_pct": 27.1,
    "delta_green_open_pp": -20.7,
    "planned_not_comparable_km2": 0.053,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2311,7 +2316,7 @@
    "current_green_open_share_pct": 6.5,
    "delta_green_open_pp": 19.9,
    "planned_not_comparable_km2": 0.997,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2338,7 +2343,7 @@
    "current_green_open_share_pct": 4.9,
    "delta_green_open_pp": 17.4,
    "planned_not_comparable_km2": 0.441,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2365,7 +2370,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 5.1,
    "planned_not_comparable_km2": 1.135,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2392,7 +2397,7 @@
    "current_green_open_share_pct": 31.2,
    "delta_green_open_pp": 2.2,
    "planned_not_comparable_km2": 0.334,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2419,7 +2424,7 @@
    "current_green_open_share_pct": 7.6,
    "delta_green_open_pp": -6.7,
    "planned_not_comparable_km2": 0.029,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2446,7 +2451,7 @@
    "current_green_open_share_pct": 2.6,
    "delta_green_open_pp": 2.1,
    "planned_not_comparable_km2": 0.101,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2473,7 +2478,7 @@
    "current_green_open_share_pct": 0.5,
    "delta_green_open_pp": 53.1,
    "planned_not_comparable_km2": 1.72,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2500,7 +2505,7 @@
    "current_green_open_share_pct": 0.8,
    "delta_green_open_pp": 86.3,
    "planned_not_comparable_km2": 0.178,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2527,7 +2532,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 3.9,
    "planned_not_comparable_km2": 1.034,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2554,7 +2559,7 @@
    "current_green_open_share_pct": 14,
    "delta_green_open_pp": -5.7,
    "planned_not_comparable_km2": 0.568,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2581,7 +2586,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 74.5,
    "planned_not_comparable_km2": 0.354,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2608,7 +2613,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.08,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2635,7 +2640,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 16.3,
    "planned_not_comparable_km2": 0.904,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2662,7 +2667,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 44,
    "planned_not_comparable_km2": 0.274,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2689,7 +2694,7 @@
    "current_green_open_share_pct": 3.7,
    "delta_green_open_pp": 14,
    "planned_not_comparable_km2": 1.364,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2716,7 +2721,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.001,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2743,7 +2748,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.02,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2770,7 +2775,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.046,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2797,7 +2802,7 @@
    "current_green_open_share_pct": 2.5,
    "delta_green_open_pp": 4.2,
    "planned_not_comparable_km2": 0.082,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2824,7 +2829,7 @@
    "current_green_open_share_pct": 100,
    "delta_green_open_pp": -100,
    "planned_not_comparable_km2": 0.073,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2851,7 +2856,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.028,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2878,7 +2883,7 @@
    "current_green_open_share_pct": 78.1,
    "delta_green_open_pp": -38.2,
    "planned_not_comparable_km2": 4.981,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -2905,7 +2910,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 5.9,
    "planned_not_comparable_km2": 0.177,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2932,7 +2937,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 7.2,
    "planned_not_comparable_km2": 0.256,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2959,7 +2964,7 @@
    "current_green_open_share_pct": 5.6,
    "delta_green_open_pp": 36.8,
    "planned_not_comparable_km2": 1.125,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -2986,7 +2991,7 @@
    "current_green_open_share_pct": 3.6,
    "delta_green_open_pp": 39.4,
    "planned_not_comparable_km2": 2.034,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3013,7 +3018,7 @@
    "current_green_open_share_pct": 80.9,
    "delta_green_open_pp": 3.9,
    "planned_not_comparable_km2": 0.686,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3040,7 +3045,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 97.7,
    "planned_not_comparable_km2": 0.631,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3067,7 +3072,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 58.1,
    "planned_not_comparable_km2": 1.809,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3094,7 +3099,7 @@
    "current_green_open_share_pct": 3.1,
    "delta_green_open_pp": 20,
    "planned_not_comparable_km2": 2.544,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3121,7 +3126,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.008,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3148,7 +3153,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3175,7 +3180,7 @@
    "current_green_open_share_pct": 100,
    "delta_green_open_pp": -100,
    "planned_not_comparable_km2": 0.035,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3202,7 +3207,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.082,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3229,7 +3234,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 3.9,
    "planned_not_comparable_km2": 0.196,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3256,7 +3261,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.044,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3283,7 +3288,7 @@
    "current_green_open_share_pct": 30.8,
    "delta_green_open_pp": -26,
    "planned_not_comparable_km2": 0.179,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3310,7 +3315,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 8.3,
    "planned_not_comparable_km2": 0.273,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3337,7 +3342,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.01,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3364,7 +3369,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 17.6,
    "planned_not_comparable_km2": 0.309,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3391,7 +3396,7 @@
    "current_green_open_share_pct": 5,
    "delta_green_open_pp": -5,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3418,7 +3423,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0.6,
    "planned_not_comparable_km2": 0.147,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3445,7 +3450,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.052,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3472,7 +3477,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 3.5,
    "planned_not_comparable_km2": 0.278,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3499,7 +3504,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 32.8,
    "planned_not_comparable_km2": 0.193,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3526,7 +3531,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 17.9,
    "planned_not_comparable_km2": 0.479,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3553,7 +3558,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 14.9,
    "planned_not_comparable_km2": 0.494,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3580,7 +3585,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 4.3,
    "planned_not_comparable_km2": 0.488,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3607,7 +3612,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.241,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3634,7 +3639,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.266,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3661,7 +3666,7 @@
    "current_green_open_share_pct": 21.6,
    "delta_green_open_pp": -1.6,
    "planned_not_comparable_km2": 1.462,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3688,7 +3693,7 @@
    "current_green_open_share_pct": 37.3,
    "delta_green_open_pp": -7,
    "planned_not_comparable_km2": 0.779,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3715,7 +3720,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 22.8,
    "planned_not_comparable_km2": 0.092,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3742,7 +3747,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.054,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3769,7 +3774,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 3.1,
    "planned_not_comparable_km2": 0.218,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3796,7 +3801,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 7.6,
    "planned_not_comparable_km2": 0.793,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3823,7 +3828,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.071,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3850,7 +3855,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3877,7 +3882,7 @@
    "current_green_open_share_pct": 36.4,
    "delta_green_open_pp": -36.4,
    "planned_not_comparable_km2": 0.008,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3904,7 +3909,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -3931,7 +3936,7 @@
    "current_green_open_share_pct": 0.6,
    "delta_green_open_pp": 0.2,
    "planned_not_comparable_km2": 0.059,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3958,7 +3963,7 @@
    "current_green_open_share_pct": 4.2,
    "delta_green_open_pp": 14.4,
    "planned_not_comparable_km2": 2.619,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -3985,7 +3990,7 @@
    "current_green_open_share_pct": 16.7,
    "delta_green_open_pp": -16.7,
    "planned_not_comparable_km2": 1.323,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4012,7 +4017,7 @@
    "current_green_open_share_pct": 13.9,
    "delta_green_open_pp": -5.6,
    "planned_not_comparable_km2": 0.312,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4039,7 +4044,7 @@
    "current_green_open_share_pct": 23.6,
    "delta_green_open_pp": -20,
    "planned_not_comparable_km2": 1.526,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4066,7 +4071,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 13.7,
    "planned_not_comparable_km2": 0.012,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -4093,7 +4098,7 @@
    "current_green_open_share_pct": 97.8,
    "delta_green_open_pp": -25.8,
    "planned_not_comparable_km2": 0.647,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4120,7 +4125,7 @@
    "current_green_open_share_pct": 0.3,
    "delta_green_open_pp": 3.6,
    "planned_not_comparable_km2": 0.476,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4147,7 +4152,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.038,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -4174,7 +4179,7 @@
    "current_green_open_share_pct": 3,
    "delta_green_open_pp": -1.3,
    "planned_not_comparable_km2": 2.024,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4201,7 +4206,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 11.6,
    "planned_not_comparable_km2": 0.181,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -4228,7 +4233,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 5.9,
    "planned_not_comparable_km2": 0.664,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -4255,7 +4260,7 @@
    "current_green_open_share_pct": 1,
    "delta_green_open_pp": 9.7,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4282,7 +4287,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 12.9,
    "planned_not_comparable_km2": 0.211,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4309,7 +4314,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 9.2,
    "planned_not_comparable_km2": 0.154,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4336,7 +4341,7 @@
    "current_green_open_share_pct": 0.4,
    "delta_green_open_pp": 24.7,
    "planned_not_comparable_km2": 0.236,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4363,7 +4368,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 26.6,
    "planned_not_comparable_km2": 0.143,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4390,7 +4395,7 @@
    "current_green_open_share_pct": 9,
    "delta_green_open_pp": 6.3,
    "planned_not_comparable_km2": 0.316,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4417,7 +4422,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 5.8,
    "planned_not_comparable_km2": 0.001,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4444,7 +4449,7 @@
    "current_green_open_share_pct": 2.8,
    "delta_green_open_pp": -1.7,
    "planned_not_comparable_km2": 0.449,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4471,7 +4476,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.032,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -4498,7 +4503,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 6,
    "planned_not_comparable_km2": 1.226,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4525,7 +4530,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 9.4,
    "planned_not_comparable_km2": 1.776,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4552,7 +4557,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 6.8,
    "planned_not_comparable_km2": 0.621,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4579,7 +4584,7 @@
    "current_green_open_share_pct": 2.4,
    "delta_green_open_pp": 20.2,
    "planned_not_comparable_km2": 0.308,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4606,7 +4611,7 @@
    "current_green_open_share_pct": 6,
    "delta_green_open_pp": 11.8,
    "planned_not_comparable_km2": 0.121,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4633,7 +4638,7 @@
    "current_green_open_share_pct": 3.9,
    "delta_green_open_pp": 26.6,
    "planned_not_comparable_km2": 0.301,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4660,7 +4665,7 @@
    "current_green_open_share_pct": 23.8,
    "delta_green_open_pp": 4.8,
    "planned_not_comparable_km2": 0.291,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4687,7 +4692,7 @@
    "current_green_open_share_pct": 0.4,
    "delta_green_open_pp": 8.1,
    "planned_not_comparable_km2": 0.321,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4714,7 +4719,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.036,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4741,7 +4746,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0.2,
    "planned_not_comparable_km2": 0.373,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4768,7 +4773,7 @@
    "current_green_open_share_pct": 17.2,
    "delta_green_open_pp": 17.5,
    "planned_not_comparable_km2": 0.394,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4795,7 +4800,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 1.9,
    "planned_not_comparable_km2": 0.199,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4822,7 +4827,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 2,
    "planned_not_comparable_km2": 0.009,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4849,7 +4854,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.486,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4876,7 +4881,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 56.3,
    "planned_not_comparable_km2": 0.72,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -4903,7 +4908,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.253,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -4930,7 +4935,7 @@
    "current_green_open_share_pct": 8.3,
    "delta_green_open_pp": -6.5,
    "planned_not_comparable_km2": 0.204,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4957,7 +4962,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 11.4,
    "planned_not_comparable_km2": 0.339,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -4984,7 +4989,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.115,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5011,7 +5016,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.11,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5038,7 +5043,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 5.8,
    "planned_not_comparable_km2": 0.206,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5064,8 +5069,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 3.3,
-   "planned_not_comparable_km2": 11.085,
-   "planned_green_belt_km2": 10.42,
+   "planned_not_comparable_km2": 0.665,
+   "planned_a1_agriculture_km2": 10.42,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5091,8 +5096,8 @@
    "current_green_open_km2": 0.355,
    "current_green_open_share_pct": 30.1,
    "delta_green_open_pp": -19.2,
-   "planned_not_comparable_km2": 9.37,
-   "planned_green_belt_km2": 7.24,
+   "planned_not_comparable_km2": 2.13,
+   "planned_a1_agriculture_km2": 7.24,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5119,7 +5124,7 @@
    "current_green_open_share_pct": 1.3,
    "delta_green_open_pp": 5,
    "planned_not_comparable_km2": 1.042,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5146,7 +5151,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 12.1,
    "planned_not_comparable_km2": 0.179,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5173,7 +5178,7 @@
    "current_green_open_share_pct": 7.9,
    "delta_green_open_pp": -5.3,
    "planned_not_comparable_km2": 0.174,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5200,7 +5205,7 @@
    "current_green_open_share_pct": 64,
    "delta_green_open_pp": -62.7,
    "planned_not_comparable_km2": 0.158,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5227,7 +5232,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 4.2,
    "planned_not_comparable_km2": 0.784,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5254,7 +5259,7 @@
    "current_green_open_share_pct": 1.1,
    "delta_green_open_pp": 6.2,
    "planned_not_comparable_km2": 1.478,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5281,7 +5286,7 @@
    "current_green_open_share_pct": 1.3,
    "delta_green_open_pp": 4.9,
    "planned_not_comparable_km2": 1.15,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5308,7 +5313,7 @@
    "current_green_open_share_pct": 50.2,
    "delta_green_open_pp": -8.1,
    "planned_not_comparable_km2": 10.761,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5335,7 +5340,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.144,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5362,7 +5367,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5389,7 +5394,7 @@
    "current_green_open_share_pct": 3.1,
    "delta_green_open_pp": -0.2,
    "planned_not_comparable_km2": 0.664,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5416,7 +5421,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 14,
    "planned_not_comparable_km2": 0.554,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5443,7 +5448,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.084,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5470,7 +5475,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 25.4,
    "planned_not_comparable_km2": 0.447,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5497,7 +5502,7 @@
    "current_green_open_share_pct": 0.5,
    "delta_green_open_pp": -0.5,
    "planned_not_comparable_km2": 0.165,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5524,7 +5529,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 24.1,
    "planned_not_comparable_km2": 0.037,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5551,7 +5556,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.019,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5577,8 +5582,8 @@
    "current_green_open_km2": 2.116,
    "current_green_open_share_pct": 19.3,
    "delta_green_open_pp": -15.5,
-   "planned_not_comparable_km2": 15.163,
-   "planned_green_belt_km2": 11.454,
+   "planned_not_comparable_km2": 3.709,
+   "planned_a1_agriculture_km2": 11.454,
    "comparison_confidence": "ok"
   },
   {
@@ -5605,7 +5610,7 @@
    "current_green_open_share_pct": 0.7,
    "delta_green_open_pp": 9,
    "planned_not_comparable_km2": 1.001,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5632,7 +5637,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 1.2,
    "planned_not_comparable_km2": 0.198,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5659,7 +5664,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.279,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5686,7 +5691,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 7.7,
    "planned_not_comparable_km2": 0.326,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5713,7 +5718,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 8.2,
    "planned_not_comparable_km2": 0.289,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5740,7 +5745,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.058,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5766,8 +5771,8 @@
    "current_green_open_km2": 4.63,
    "current_green_open_share_pct": 43.1,
    "delta_green_open_pp": -32.8,
-   "planned_not_comparable_km2": 16.882,
-   "planned_green_belt_km2": 13.551,
+   "planned_not_comparable_km2": 3.332,
+   "planned_a1_agriculture_km2": 13.551,
    "comparison_confidence": "ok"
   },
   {
@@ -5793,8 +5798,8 @@
    "current_green_open_km2": 6.459,
    "current_green_open_share_pct": 40.1,
    "delta_green_open_pp": -25,
-   "planned_not_comparable_km2": 8.308,
-   "planned_green_belt_km2": 0.829,
+   "planned_not_comparable_km2": 7.479,
+   "planned_a1_agriculture_km2": 0.829,
    "comparison_confidence": "ok"
   },
   {
@@ -5821,7 +5826,7 @@
    "current_green_open_share_pct": 13,
    "delta_green_open_pp": -1.8,
    "planned_not_comparable_km2": 3.531,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5847,8 +5852,8 @@
    "current_green_open_km2": 1.37,
    "current_green_open_share_pct": 54.8,
    "delta_green_open_pp": -53.7,
-   "planned_not_comparable_km2": 14.341,
-   "planned_green_belt_km2": 13.543,
+   "planned_not_comparable_km2": 0.797,
+   "planned_a1_agriculture_km2": 13.543,
    "comparison_confidence": "ok"
   },
   {
@@ -5875,7 +5880,7 @@
    "current_green_open_share_pct": 3.4,
    "delta_green_open_pp": 22.9,
    "planned_not_comparable_km2": 0.06,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5902,7 +5907,7 @@
    "current_green_open_share_pct": 53.2,
    "delta_green_open_pp": -14.3,
    "planned_not_comparable_km2": 2.107,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -5929,7 +5934,7 @@
    "current_green_open_share_pct": 18.1,
    "delta_green_open_pp": -17.3,
    "planned_not_comparable_km2": 0.139,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -5955,8 +5960,8 @@
    "current_green_open_km2": 6.88,
    "current_green_open_share_pct": 75.4,
    "delta_green_open_pp": -73.3,
-   "planned_not_comparable_km2": 24.507,
-   "planned_green_belt_km2": 21.795,
+   "planned_not_comparable_km2": 2.713,
+   "planned_a1_agriculture_km2": 21.795,
    "comparison_confidence": "ok"
   },
   {
@@ -5983,7 +5988,7 @@
    "current_green_open_share_pct": 5.1,
    "delta_green_open_pp": -4.3,
    "planned_not_comparable_km2": 0.752,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6010,7 +6015,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 17.8,
    "planned_not_comparable_km2": 1.072,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6037,7 +6042,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.011,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6064,7 +6069,7 @@
    "current_green_open_share_pct": 11.2,
    "delta_green_open_pp": 1.9,
    "planned_not_comparable_km2": 0.364,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6091,7 +6096,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 18,
    "planned_not_comparable_km2": 1.518,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6117,8 +6122,8 @@
    "current_green_open_km2": 1.961,
    "current_green_open_share_pct": 55.5,
    "delta_green_open_pp": -54.3,
-   "planned_not_comparable_km2": 16.404,
-   "planned_green_belt_km2": 4.075,
+   "planned_not_comparable_km2": 12.329,
+   "planned_a1_agriculture_km2": 4.075,
    "comparison_confidence": "ok"
   },
   {
@@ -6144,8 +6149,8 @@
    "current_green_open_km2": 0.158,
    "current_green_open_share_pct": 4.2,
    "delta_green_open_pp": 4.9,
-   "planned_not_comparable_km2": 12.862,
-   "planned_green_belt_km2": 6.271,
+   "planned_not_comparable_km2": 6.591,
+   "planned_a1_agriculture_km2": 6.271,
    "comparison_confidence": "ok"
   },
   {
@@ -6172,7 +6177,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.332,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6199,7 +6204,7 @@
    "current_green_open_share_pct": 5.6,
    "delta_green_open_pp": 11.5,
    "planned_not_comparable_km2": 2.742,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6226,7 +6231,7 @@
    "current_green_open_share_pct": 17.4,
    "delta_green_open_pp": -17.2,
    "planned_not_comparable_km2": 0.852,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6253,7 +6258,7 @@
    "current_green_open_share_pct": 9.3,
    "delta_green_open_pp": 1.5,
    "planned_not_comparable_km2": 2.669,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6280,7 +6285,7 @@
    "current_green_open_share_pct": 0.4,
    "delta_green_open_pp": 8.6,
    "planned_not_comparable_km2": 0.528,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6307,7 +6312,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.1,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6334,7 +6339,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 10.3,
    "planned_not_comparable_km2": 0.054,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6361,7 +6366,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 8,
    "planned_not_comparable_km2": 0.267,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6388,7 +6393,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 12.8,
    "planned_not_comparable_km2": 0.506,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6415,7 +6420,7 @@
    "current_green_open_share_pct": 4,
    "delta_green_open_pp": 10.7,
    "planned_not_comparable_km2": 0.027,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6442,7 +6447,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.008,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6469,7 +6474,7 @@
    "current_green_open_share_pct": 0.2,
    "delta_green_open_pp": 11.2,
    "planned_not_comparable_km2": 0.001,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6496,7 +6501,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 8.7,
    "planned_not_comparable_km2": 0.009,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6523,7 +6528,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 23.1,
    "planned_not_comparable_km2": 0.414,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6550,7 +6555,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6577,7 +6582,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 4,
    "planned_not_comparable_km2": 0.917,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6604,7 +6609,7 @@
    "current_green_open_share_pct": 3.7,
    "delta_green_open_pp": 4.1,
    "planned_not_comparable_km2": 0.988,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6631,7 +6636,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 20.7,
    "planned_not_comparable_km2": 0.013,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6657,8 +6662,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
-   "planned_not_comparable_km2": 13.754,
-   "planned_green_belt_km2": 11.288,
+   "planned_not_comparable_km2": 2.466,
+   "planned_a1_agriculture_km2": 11.288,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6685,7 +6690,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.047,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6712,7 +6717,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 5.3,
    "planned_not_comparable_km2": 0.059,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6739,7 +6744,7 @@
    "current_green_open_share_pct": 0.5,
    "delta_green_open_pp": 9.6,
    "planned_not_comparable_km2": 0.514,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6766,7 +6771,7 @@
    "current_green_open_share_pct": 11.3,
    "delta_green_open_pp": -11.3,
    "planned_not_comparable_km2": 0.209,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6792,8 +6797,8 @@
    "current_green_open_km2": 0.111,
    "current_green_open_share_pct": 10.1,
    "delta_green_open_pp": 30,
-   "planned_not_comparable_km2": 5.035,
-   "planned_green_belt_km2": 4.534,
+   "planned_not_comparable_km2": 0.5,
+   "planned_a1_agriculture_km2": 4.534,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6820,7 +6825,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.18,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6847,7 +6852,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.033,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6874,7 +6879,7 @@
    "current_green_open_share_pct": 0.2,
    "delta_green_open_pp": 28.1,
    "planned_not_comparable_km2": 0.778,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6901,7 +6906,7 @@
    "current_green_open_share_pct": 1.9,
    "delta_green_open_pp": 3.2,
    "planned_not_comparable_km2": 0.632,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6928,7 +6933,7 @@
    "current_green_open_share_pct": 2.7,
    "delta_green_open_pp": 40.7,
    "planned_not_comparable_km2": 0.124,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -6955,7 +6960,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 2.3,
    "planned_not_comparable_km2": 0.296,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -6982,7 +6987,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 3.6,
    "planned_not_comparable_km2": 0.211,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7009,7 +7014,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 1.7,
    "planned_not_comparable_km2": 0.019,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7036,7 +7041,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.028,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7063,7 +7068,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 4,
    "planned_not_comparable_km2": 0.149,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7090,7 +7095,7 @@
    "current_green_open_share_pct": 7.6,
    "delta_green_open_pp": 28.3,
    "planned_not_comparable_km2": 1.44,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7116,8 +7121,8 @@
    "current_green_open_km2": 0.048,
    "current_green_open_share_pct": 1.7,
    "delta_green_open_pp": 7.8,
-   "planned_not_comparable_km2": 8.209,
-   "planned_green_belt_km2": 5.959,
+   "planned_not_comparable_km2": 2.25,
+   "planned_a1_agriculture_km2": 5.959,
    "comparison_confidence": "ok"
   },
   {
@@ -7144,7 +7149,7 @@
    "current_green_open_share_pct": 12.6,
    "delta_green_open_pp": 3.6,
    "planned_not_comparable_km2": 1.362,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7171,7 +7176,7 @@
    "current_green_open_share_pct": 95.9,
    "delta_green_open_pp": -83.5,
    "planned_not_comparable_km2": 1.207,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7198,7 +7203,7 @@
    "current_green_open_share_pct": 0.9,
    "delta_green_open_pp": 8.4,
    "planned_not_comparable_km2": 0.128,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7225,7 +7230,7 @@
    "current_green_open_share_pct": 63.4,
    "delta_green_open_pp": -24.7,
    "planned_not_comparable_km2": 0.249,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7252,7 +7257,7 @@
    "current_green_open_share_pct": 7.4,
    "delta_green_open_pp": 21.2,
    "planned_not_comparable_km2": 0.024,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7279,7 +7284,7 @@
    "current_green_open_share_pct": 27.5,
    "delta_green_open_pp": -2.1,
    "planned_not_comparable_km2": 0.191,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7306,7 +7311,7 @@
    "current_green_open_share_pct": 0.5,
    "delta_green_open_pp": 37.7,
    "planned_not_comparable_km2": 0.237,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7333,7 +7338,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 22.5,
    "planned_not_comparable_km2": 0.096,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7359,8 +7364,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 0.142,
-   "planned_green_belt_km2": 0.139,
+   "planned_not_comparable_km2": 0.003,
+   "planned_a1_agriculture_km2": 0.139,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7387,7 +7392,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 92.7,
    "planned_not_comparable_km2": 0.255,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7414,7 +7419,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.005,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7441,7 +7446,7 @@
    "current_green_open_share_pct": 3.3,
    "delta_green_open_pp": 84.3,
    "planned_not_comparable_km2": 0.083,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7468,7 +7473,7 @@
    "current_green_open_share_pct": 100,
    "delta_green_open_pp": -14.3,
    "planned_not_comparable_km2": 0.115,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7495,7 +7500,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.064,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7522,7 +7527,7 @@
    "current_green_open_share_pct": 7.4,
    "delta_green_open_pp": 12.9,
    "planned_not_comparable_km2": 0.176,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7548,8 +7553,8 @@
    "current_green_open_km2": 0.037,
    "current_green_open_share_pct": 11.8,
    "delta_green_open_pp": -11.8,
-   "planned_not_comparable_km2": 0.123,
-   "planned_green_belt_km2": 0.123,
+   "planned_not_comparable_km2": 0,
+   "planned_a1_agriculture_km2": 0.123,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7576,7 +7581,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 1.5,
    "planned_not_comparable_km2": 0.087,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7603,7 +7608,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 16.4,
    "planned_not_comparable_km2": 0.74,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7630,7 +7635,7 @@
    "current_green_open_share_pct": 2.5,
    "delta_green_open_pp": 8.3,
    "planned_not_comparable_km2": 0.277,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7657,7 +7662,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 20.8,
    "planned_not_comparable_km2": 0.046,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7684,7 +7689,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 6.3,
    "planned_not_comparable_km2": 0.129,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7711,7 +7716,7 @@
    "current_green_open_share_pct": 5.5,
    "delta_green_open_pp": 27.7,
    "planned_not_comparable_km2": 2.226,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7738,7 +7743,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 1.5,
    "planned_not_comparable_km2": 0.028,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7765,7 +7770,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 0,
    "planned_not_comparable_km2": 0.482,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   },
   {
@@ -7792,7 +7797,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0.278,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7819,7 +7824,7 @@
    "current_green_open_share_pct": 0,
    "delta_green_open_pp": 5.3,
    "planned_not_comparable_km2": 0.031,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7846,7 +7851,7 @@
    "current_green_open_share_pct": 23.3,
    "delta_green_open_pp": -8,
    "planned_not_comparable_km2": 0.168,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7873,7 +7878,7 @@
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
    "planned_not_comparable_km2": 0,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7899,8 +7904,8 @@
    "current_green_open_km2": 0,
    "current_green_open_share_pct": null,
    "delta_green_open_pp": null,
-   "planned_not_comparable_km2": 0.455,
-   "planned_green_belt_km2": 0.45,
+   "planned_not_comparable_km2": 0.005,
+   "planned_a1_agriculture_km2": 0.45,
    "comparison_confidence": "low - thin coverage on at least one side"
   },
   {
@@ -7927,7 +7932,7 @@
    "current_green_open_share_pct": 58.6,
    "delta_green_open_pp": -58.6,
    "planned_not_comparable_km2": 0.148,
-   "planned_green_belt_km2": 0,
+   "planned_a1_agriculture_km2": 0,
    "comparison_confidence": "ok"
   }
  ]
