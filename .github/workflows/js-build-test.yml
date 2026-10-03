@@ -38,4 +38,11 @@ jobs:
       - run: npm run build
       - run: npm run build:interactive-map
       - name: Verify generated output is reproducible from source
-        run: git diff --exit-code -- delhi_safety_dashboard.html interactive_map.html data/
+        run: |
+          if ! git diff --exit-code --stat -- delhi_safety_dashboard.html interactive_map.html data/; then
+            echo '--- files that differ from the committed versions:'
+            git diff --name-only -- delhi_safety_dashboard.html interactive_map.html data/
+            echo '--- first differing lines per file (trimmed):'
+            git diff --unified=0 -- delhi_safety_dashboard.html interactive_map.html data/ | cut -c1-200 | head -120
+            exit 1
+          fi

@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-10-03T08:42:21.060Z",
+  "generatedAt": "2026-10-03T09:38:43.269Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -87,6 +87,14 @@
       "bytes": 209
     },
     {
+      "file": "data/crash_zone_liquor_proximity_2024.geojson",
+      "datasetId": "crash_zone_liquor_proximity_2024",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "e8626ec0797240bc5c79e34afbd8e4c243304b022067c57c9c46aac5bc270f89",
+      "bytes": 352354
+    },
+    {
       "file": "data/crash_zones_2023_geocoded.json",
       "datasetId": "crash_zones_2023_geocoded",
       "provenanceStatus": "derived-or-compiled-production-file",
@@ -117,14 +125,6 @@
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
       "sha256": "219b80ecbc40a67752e313e5616304d4c2cc82fc9f4cfe74cc8dfd1d6d2a5e98",
       "bytes": 111557
-    },
-    {
-      "file": "data/crash_zone_liquor_proximity_2024.geojson",
-      "datasetId": "crash_zone_liquor_proximity_2024",
-      "provenanceStatus": "derived-or-compiled-production-file",
-      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "e8626ec0797240bc5c79e34afbd8e4c243304b022067c57c9c46aac5bc270f89",
-      "bytes": 352354
     },
     {
       "file": "data/dashboard_boundaries_simplified.geojson",
@@ -359,6 +359,14 @@
       "bytes": 391839
     },
     {
+      "file": "data/streetlight_grid.json",
+      "datasetId": "streetlights_underpasses",
+      "provenanceStatus": "source-described-above",
+      "documentation": null,
+      "sha256": "1c784dc282ac64ae3dcaa721a98c0d8c6c96e9d378d250ea51fa9eea48ebad3e",
+      "bytes": 38971
+    },
+    {
       "file": "data/streetlights_combined_by_district.csv",
       "datasetId": "streetlights_combined_by_district",
       "provenanceStatus": "derived-or-compiled-production-file",
@@ -373,14 +381,6 @@
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
       "sha256": "492b08b965a59aa60dbcfabe4b74334dd337631b2c8b43fbdf1c20a767a00843",
       "bytes": 4570
-    },
-    {
-      "file": "data/streetlight_grid.json",
-      "datasetId": "streetlights_underpasses",
-      "provenanceStatus": "source-described-above",
-      "documentation": null,
-      "sha256": "1c784dc282ac64ae3dcaa721a98c0d8c6c96e9d378d250ea51fa9eea48ebad3e",
-      "bytes": 38971
     }
   ]
 }

@@ -216,6 +216,9 @@ function buildShared() {
   const knownByFile = Object.fromEntries(datasets.map(d => [d.file, d.id]));
   const productionFileInventory = fs.readdirSync(path.join(ROOT, 'data'), { withFileTypes: true })
     .filter(entry => entry.isFile() && /\.(json|geojson|csv)$/.test(entry.name))
+    // readdirSync order is filesystem-dependent (NTFS alphabetical, ext4 hash order), which made
+    // this manifest differ between a Windows build and the Linux CI runner. Sort for determinism.
+    .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0))
     .map(entry => {
       const file = `data/${entry.name}`;
       return {
