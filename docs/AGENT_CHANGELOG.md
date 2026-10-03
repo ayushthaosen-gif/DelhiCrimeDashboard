@@ -1,3 +1,19 @@
+## [2026-10-03] - Claude (Anthropic) - Ward identity: the two defects the MPD-2047 entry flagged, fixed
+
+The MPD-2047 entry recorded two ward-identity findings and fixed neither. Both are fixed here.
+
+**The null-identity polygon is not a lost ward.** Checked before deciding anything: all 272 numbered wards, all 8 CANT_* and all 9 NDMC_* are already present, so the identity-less polygon is an *extra* 37 km² feature, not a missing ward. It overlaps no other ward, touches about 22 wards on both banks of the Yamuna, and its OSM land use is farmland and floodplain. It also carries real data: 3 crash zones, 11 fatal crashes, High-Injury-Network rank 7, so dropping it would silently remove a top-ten HIN ward. It is now labelled `YAMUNA FLOODPLAIN (UNWARDED)` / `UNWARDED_1`: a description of what the evidence supports, not a guessed MCD ward name. A `wardIdentityBasis` property says the label was assigned at build time.
+
+**RAM NAGAR (87) and RAM NAGAR (247).** Ward_Name is not unique; Ward_No is. Duplicate names now carry their number.
+
+1. **`scripts/lib/ward_identity.js`** applies both rules at load time, because `data/source/` is an immutable input. It throws rather than guesses if more than one polygon lacks identity, or if Ward_No is ever not unique and non-empty. Wired into `build_ward_infra.js` and `build_landuse_wards_csv.js`; `build_mpd2047_ward_comparison.js` reads the fixed infra file.
+2. **Why it mattered beyond cosmetics:** the MPD-2047 script joins land-use rows by `String(Ward_No)`, so a null Ward_No joined as the string "null". The key is now real.
+3. **`test/ward_identity.test.js`** (5 tests): 290 wards with unique non-empty Ward_No and Ward_Name; the unwarded polygon retains its crash data; both RAM NAGARs addressable; landuse and MPD CSVs have no blank keys; the helper refuses to guess.
+
+**No published figure changed.** Semantic diff of `delhi_wards_infra.geojson` against HEAD: exactly five property changes on three wards, zero geometry changes. The landuse and MPD CSVs differ by 3 rows each (the same three names). No `DATA_CHANGELOG.md` entry.
+
+Verified: full rebuild of ward infra, land use, MPD-2047 comparison, interactive map and releases; map script extracted via `indexOf('<script>')`/`lastIndexOf('</script>')` (5,849,252 bytes, 99.5% of file) and `node --check` clean; live browser check shows the HIN rank-7 ward named, no "null"/"undefined"/"NaN" text, no console errors; `npm test` 49/49.
+
 ## [2026-09-28] - Codex - Data-status panels and guided interactive-map views
 
 - Added a selection-aware data-status panel to the main dashboard and the interactive map. It reports source, geographic coverage, comparability and a production/partial label for the active year and metric.

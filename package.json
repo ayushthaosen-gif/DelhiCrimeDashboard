@@ -14,7 +14,7 @@
     "build:landuse-wards": "node scripts/build_landuse_wards_csv.js",
     "fetch:infra-extras": "node scripts/fetch_osm_infra_snapshots.js",
     "build:interactive-map": "node scripts/build_pedestrian_overpasses.js && node scripts/build_ward_infra.js && node scripts/build_infra_extras.js && node scripts/build_landuse_wards_csv.js && node scripts/build_road_footway_sizes_csv.js && node scripts/build_interactive_map.js && node scripts/build_yearly_releases.js",
-    "test": "node --test test/liquor_crash_proximity.test.js test/exploratory_score.test.js test/pedestrian_overpasses.test.js test/yearly_releases.test.js test/infra_data.test.js test/mpd2047_comparison.test.js"
+    "test": "node --test test/liquor_crash_proximity.test.js test/exploratory_score.test.js test/pedestrian_overpasses.test.js test/yearly_releases.test.js test/infra_data.test.js test/mpd2047_comparison.test.js test/ward_identity.test.js"
   },
   "dependencies": {
     "@turf/turf": "^7.3.5"

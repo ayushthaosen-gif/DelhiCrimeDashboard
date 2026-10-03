@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-09-30T10:37:19.656Z",
+  "generatedAt": "2026-10-03T08:42:21.060Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -56,8 +56,8 @@
       "publisher": "Project spatial join over legacy ward polygons",
       "url": "data/source/README.md",
       "licenseAndCaveat": "Derived; 290 legacy wards; inspect basis fields",
-      "sha256": "4ca30ac2c57dd470eea3c6de60d913ef3712347a722d8d63eb4c358917709f54",
-      "bytes": 782115
+      "sha256": "25b5a65559ad978286eb4b37adb4e1cd28d8bce72b67ea4c372c1ab64c4419dd",
+      "bytes": 782255
     },
     {
       "id": "liquor_vends_approximate",
@@ -235,8 +235,8 @@
       "datasetId": "ward_boundaries_and_derived_infrastructure",
       "provenanceStatus": "source-described-above",
       "documentation": null,
-      "sha256": "4ca30ac2c57dd470eea3c6de60d913ef3712347a722d8d63eb4c358917709f54",
-      "bytes": 782115
+      "sha256": "25b5a65559ad978286eb4b37adb4e1cd28d8bce72b67ea4c372c1ab64c4419dd",
+      "bytes": 782255
     },
     {
       "file": "data/footway_sizes.csv",
@@ -251,8 +251,8 @@
       "datasetId": "landuse_by_ward",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "0618a33abdae0f5debc3426d32a5c58181fbc991a86d3212c8c273c60b5b8a84",
-      "bytes": 19514
+      "sha256": "7809aaadbf82de9398bb27868652d86c32ca8201ecf028d863b39e8bc10cf262",
+      "bytes": 19563
     },
     {
       "file": "data/liquor_crash_proximity_summary_2024.json",
@@ -275,16 +275,16 @@
       "datasetId": "mpd2047_ward_comparison",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "3a8f7f3a5c1383f9ac35e56f6a61246f89def4f1c7614849723fb1839a59d534",
-      "bytes": 38437
+      "sha256": "e16b9d1dccd02c968c66b3f66b9d001f895a62b96dd36a4b653ecdfe957b7d48",
+      "bytes": 38485
     },
     {
       "file": "data/mpd2047_ward_comparison.json",
       "datasetId": "mpd2047_ward_comparison",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "bd3a8c42f6acfd2b7a95390f5399b6063b09cf635924c18148cee978acc75744",
-      "bytes": 252091
+      "sha256": "79e3aa8666fd703b229e37040bebb50b205ce9becb6cfc8498ad194fc02e9c31",
+      "bytes": 252095
     },
     {
       "file": "data/overpass_surveillance_alcohol.json",

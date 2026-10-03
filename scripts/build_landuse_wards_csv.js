@@ -24,7 +24,8 @@ const turf = require('@turf/turf');
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, 'data', 'source');
 
-const wards = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/source/delhi_wards_boundaries.geojson'), 'utf8'));
+const { applyWardIdentity } = require('./lib/ward_identity');
+const wards = applyWardIdentity(JSON.parse(fs.readFileSync(path.join(ROOT, 'data/source/delhi_wards_boundaries.geojson'), 'utf8')));
 const landuseRaw = JSON.parse(fs.readFileSync(path.join(SRC, 'osm_landuse_delhi_raw.json'), 'utf8'));
 
 // Standard OSM landuse values grouped into a handful of readable categories; anything not listed

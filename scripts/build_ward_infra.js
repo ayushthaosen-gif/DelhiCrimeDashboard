@@ -26,7 +26,8 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const WARD_BOUNDARIES = process.env.DELHI_WARDS_GEOJSON || path.join(ROOT, 'data/source/delhi_wards_boundaries.geojson');
 
-const wards = JSON.parse(fs.readFileSync(WARD_BOUNDARIES, 'utf8'));
+const { applyWardIdentity } = require('./lib/ward_identity');
+const wards = applyWardIdentity(JSON.parse(fs.readFileSync(WARD_BOUNDARIES, 'utf8')));
 const poi = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/poi_markers_latlng.json'), 'utf8'));
 const liquorVends = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_liquor_vends_all_coordinates_approx.geojson'), 'utf8'));
 const crashZones2024 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/delhi_crash_prone_zones_2024_all_named_approx.geojson'), 'utf8'));
