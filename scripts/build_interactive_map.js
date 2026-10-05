@@ -55,9 +55,8 @@ const mpd2047 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/mpd2047_ward_co
     f.properties.mpdPlanCoveragePct = m.plan_coverage_pct;
     f.properties.mpdOsmMappedPct = m.osm_mapped_pct;
     f.properties.mpdConfidence = m.comparison_confidence;
-    f.properties.mpdA1AgricultureKm2 = m.planned_a1_agriculture_km2;
     f.properties.mpdNotComparableKm2 = m.planned_not_comparable_km2;
-    for (const cat of ['residential', 'industrial', 'green_open']) {
+    for (const cat of ['residential', 'industrial', 'green_open', 'agriculture']) {
       f.properties['mpdPlanned_' + cat] = m['planned_' + cat + '_share_pct'];
       f.properties['mpdCurrent_' + cat] = m['current_' + cat + '_share_pct'];
       f.properties['mpdDelta_' + cat] = m['delta_' + cat + '_pp'];
@@ -112,8 +111,8 @@ function mpd2047CitywidePanelHtml() {
     + '<div class="mpd-row mpd-head"><span>Land use</span><span>Planned 2047</span><span>Mapped now</span><span>Diff</span></div>'
     + row('Residential', c.planned_residential_km2, c.current_residential_km2)
     + row('Industrial', c.planned_industrial_km2, c.current_industrial_km2)
-    + row('Parks / green', c.planned_green_open_km2, c.current_green_open_km2)
-    + '<div class="mpd-row mpd-sub"><span>Agriculture land, A1 (plan only)</span><span>' + n(c.planned_a1_agriculture_km2) + ' km²</span><span>not comparable</span><span>—</span></div>'
+    + row('Parks / green (excl. farmland)', c.planned_green_open_km2, c.current_green_open_km2)
+    + row('Agriculture land (A1)', c.planned_agriculture_km2, c.current_agriculture_km2)
     + '<div class="mpd-row mpd-sub"><span>Other planned designations</span><span>' + n(c.planned_not_comparable_km2) + ' km²</span><span>not comparable</span><span>—</span></div>'
     + '<div class="mpd-note">'
     + 'MPD-2047 describes <b>' + n(c.planned_total_km2) + ' km²</b> of the <b>' + n(c.ward_area_total_km2) + ' km²</b> covered by the 290 wards. '
@@ -121,8 +120,8 @@ function mpd2047CitywidePanelHtml() {
     + '<b>' + n(c.wards_low_confidence) + ' of ' + n(c.wards) + '</b> wards are thin on at least one side and are flagged in their popups.'
     + '</div>'
     + '<div class="mpd-note">'
-    + 'Only residential, industrial and parks/green have unambiguous counterparts in both sources. Commercial, public/semi-public, government, transport and utility designations are reported as planned-only area rather than force-matched. '
-    + 'Agriculture land (code A1, the Green Belt portion of the Low Density Area overlay) is not counted as parks/green. '
+    + 'Only residential, industrial, parks/green and agriculture have counterparts in both sources; parks are compared with parks and farmland with the plan\'s agriculture designation (A1, a zoning category rather than a crop survey). Commercial, public/semi-public, government, transport and utility designations are reported as planned-only area rather than force-matched. '
+    + 'A1 is the Green Belt portion of the Low Density Area overlay. '
     + 'MPD-2047 sets no road-safety or accessibility target this dashboard can measure against — its walkability provisions are qualitative.'
     + '</div>'
     + '<div class="mpd-note">Planned land use: Delhi Development Authority, Master Plan for Delhi 2047 (gis.dda.org.in), ' + mpd2047.wards.length + ' wards intersected. Current land use: OpenStreetMap, ODbL.</div>'
@@ -500,7 +499,8 @@ const WARD_INFRA = [
   // so densityKey deliberately points at the same field: there is nothing to divide by area.
   { key: 'mpdDelta_residential', densityKey: 'mpdDelta_residential', label: 'Residential: plan − current (pp)', unit: ' pp', group: 'plan', basis: 'plan-vs-mapped' },
   { key: 'mpdDelta_industrial', densityKey: 'mpdDelta_industrial', label: 'Industrial: plan − current (pp)', unit: ' pp', group: 'plan', basis: 'plan-vs-mapped' },
-  { key: 'mpdDelta_green_open', densityKey: 'mpdDelta_green_open', label: 'Parks/green: plan − current (pp)', unit: ' pp', group: 'plan', basis: 'plan-vs-mapped' },
+  { key: 'mpdDelta_green_open', densityKey: 'mpdDelta_green_open', label: 'Parks/green (excl. farmland): plan − current (pp)', unit: ' pp', group: 'plan', basis: 'plan-vs-mapped' },
+  { key: 'mpdDelta_agriculture', densityKey: 'mpdDelta_agriculture', label: 'Agriculture (A1): plan − current (pp)', unit: ' pp', group: 'plan', basis: 'plan-vs-mapped' },
   { key: 'mpdPlanCoveragePct', densityKey: 'mpdPlanCoveragePct', label: 'MPD-2047 coverage of ward (%)', unit: '%', group: 'plan', basis: null },
 ];
 const WARD_INFRA_BASIS_LABEL = {
@@ -728,7 +728,8 @@ function mpdComparisonBlock(p, infs) {
   const cats = [
     ['residential', 'Residential'],
     ['industrial', 'Industrial'],
-    ['green_open', 'Parks / green'],
+    ['green_open', 'Parks / green (excl. farmland)'],
+    ['agriculture', 'Agriculture land (A1)'],
   ];
   const rows = cats.map(([k, label]) => {
     const planned = p['mpdPlanned_' + k], current = p['mpdCurrent_' + k], delta = p['mpdDelta_' + k];
@@ -742,7 +743,6 @@ function mpdComparisonBlock(p, infs) {
   return '<div style="margin-top:6px;"><b>Master Plan 2047 vs current</b></div>'
     + '<div class="popup-rank">Plan describes ' + fmtNum(p.mpdPlanCoveragePct) + '% of this ward · OpenStreetMap land-use tags cover ' + fmtNum(p.mpdOsmMappedPct) + '%</div>'
     + rows
-    + (p.mpdA1AgricultureKm2 ? '<div class="unsafe-factor-row"><span>Agriculture land, A1 (plan only)</span><span>' + fmtNum(p.mpdA1AgricultureKm2) + ' km²</span></div>' : '')
     + (p.mpdNotComparableKm2 ? '<div class="unsafe-factor-row"><span>Planned, not comparable</span><span>' + fmtNum(p.mpdNotComparableKm2) + ' km²</span></div>' : '')
     + (thin ? '<div class="popup-src" style="color:var(--rust);">Thin coverage on at least one side — treat this difference as indicative only.</div>' : '')
     + '<div class="popup-src">Shares are of each source\\'s own described area, because the plan and OpenStreetMap cover very different fractions of a ward. Only residential, industrial and parks/green are compared; commercial, public/semi-public, government, transport and utility designations have no unambiguous OpenStreetMap counterpart and are reported as planned-only area. Green Belt (A1) is a Low Density Area policy designation that includes village abadi, so it is not counted as green space.</div>';

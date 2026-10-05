@@ -21,15 +21,22 @@
 // Only unambiguous pairs are compared:
 //     residential   <-> RD      (RD-RESIDENTIAL AREA)
 //     industrial    <-> M1      (M1-INDUSTRIAL)
-//     green_open    <-> P1, P2  (regional park/forest, district park/green)
+//     green_open    <-> P1, P2  (regional park/forest, district park/green)  -- parks only
+//     agriculture   <-> A1      (Agriculture land)
+// "green_open" here means OSM green/open space EXCLUDING agricultural tags, and "agriculture" is the
+// OSM agricultural tags (farmland, farmyard, orchard, plantation, plant nursery, greenhouse
+// horticulture, allotments), taken from the land-use CSV's green_open_agriculture_km2 column. Before
+// 2026-10-03 the OSM side of "parks" included farmland (71% of its area) while the plan side was
+// parks only, so the parks comparison was not like for like.
 // Everything else is reported on the plan side alone, never equated to an OSM category:
 //   * A1 is "Agriculture land" in the gazette's own legend (Table 5.1, land-use category 9). It is
 //     the second largest code at ~209 km2. Checked against DDA's separate Low Density Area layer:
 //     A1 is exactly the GREEN BELT type of that overlay (155 polygons, 209.3 km2, 100% match; the
 //     overlay's other type, LDRA, 72.9 km2, contains no A1). 201.4 km2 of A1 is premises tagged
 //     GREEN BELT and 7.9 km2 VILLAGE ABADI, which the gazette says is residential wherever it sits
-//     (Table 5.1 footnote) -- NOT reclassified here, see the metadata note. Folding A1 into
-//     "green/open" would equate agricultural land with parks, so it is its own plan-only line.
+//     (Table 5.1 footnote) -- NOT reclassified here, see the metadata note. A1 is a zoning
+//     designation, not a crop survey, so agriculture<->A1 is the closest counterpart, not an
+//     identity; it is compared, with that caveat carried in the output metadata.
 //   * C1-C3, PS1/PS2, G1-G3, T1-T3, U1-U5 have plausible OSM counterparts but the mappings are
 //     judgement calls, so they stay out of the delta and are reported as planned-only area.
 //   * A2 (river and water body) has no counterpart: OSM tags water as natural=water, which the
@@ -53,6 +60,7 @@ const COMPARABLE = {
   residential: ['RD'],
   industrial: ['M1'],
   green_open: ['P1', 'P2'],
+  agriculture: ['A1'],
 };
 const PLAN_ONLY_LABELS = {
   A1: 'Agriculture land (Green Belt portion of the Low Density Area overlay)',
@@ -146,7 +154,13 @@ for (const ward of wards.features) {
   // Comparable categories: share of each side's OWN described area, so the two are commensurable.
   for (const [cat, codes] of Object.entries(COMPARABLE)) {
     const plannedKm2 = codes.reduce((a, c) => a + (plannedByCode[c] || 0), 0);
-    const curKm2 = cur ? Number(cur[cat + '_km2']) : null;
+    // OSM side. green_open is net of agriculture; agriculture is the carved-out subset. Both come
+    // from the same overlap-resolved tally, so they cannot double-count each other.
+    const osmAgriKm2 = cur ? Number(cur.green_open_agriculture_km2) : null;
+    const curKm2 = !cur ? null
+      : cat === 'agriculture' ? osmAgriKm2
+      : cat === 'green_open' ? Number(cur.green_open_km2) - osmAgriKm2
+      : Number(cur[cat + '_km2']);
     const curMappedKm2 = cur
       ? ['residential', 'commercial', 'industrial', 'institutional', 'green_open', 'other']
         .reduce((a, c) => a + Number(cur[c + '_km2'] || 0), 0)
@@ -162,14 +176,11 @@ for (const ward of wards.features) {
   }
 
   // Plan-only area, reported but never differenced against OSM.
-  // A1 is reported on its own line, so it is excluded from "other" -- otherwise it is listed twice
-  // and the buckets (comparable + A1 + other) overshoot the plan total.
   let planOnly = 0;
   for (const [code, km2] of Object.entries(plannedByCode)) {
-    if (!comparableCodes.has(code) && code !== 'A1') planOnly += km2;
+    if (!comparableCodes.has(code)) planOnly += km2;
   }
   row.planned_not_comparable_km2 = +planOnly.toFixed(3);
-  row.planned_a1_agriculture_km2 = +(plannedByCode.A1 || 0).toFixed(3);
 
   const thin = row.plan_coverage_pct < THIN_COVERAGE_PCT
     || row.osm_mapped_pct == null || row.osm_mapped_pct < THIN_COVERAGE_PCT;
@@ -195,7 +206,6 @@ for (const cat of Object.keys(COMPARABLE)) {
   citywide['planned_' + cat + '_km2'] = +rows.reduce((a, r) => a + r['planned_' + cat + '_km2'], 0).toFixed(1);
   citywide['current_' + cat + '_km2'] = +rows.reduce((a, r) => a + (r['current_' + cat + '_km2'] || 0), 0).toFixed(1);
 }
-citywide.planned_a1_agriculture_km2 = +rows.reduce((a, r) => a + r.planned_a1_agriculture_km2, 0).toFixed(1);
 citywide.planned_not_comparable_km2 = +rows.reduce((a, r) => a + r.planned_not_comparable_km2, 0).toFixed(1);
 
 fs.writeFileSync(OUT_JSON, JSON.stringify({
@@ -213,8 +223,8 @@ fs.writeFileSync(OUT_JSON, JSON.stringify({
     thin_coverage_pct: THIN_COVERAGE_PCT,
     method: 'Areal intersection of each ward polygon with MPD-2047 land-use polygons. Shares are computed within each source\'s own described area -- planned shares over plan-covered area, current shares over OSM-tagged area -- because the two sources cover very different fractions of a ward. Both denominators are reported per ward.',
     comparability_caveat: 'A planned-versus-current difference is a difference between a statutory plan and a community-mapped inventory. It is not a measurement of change on the ground, and a positive delta may mean the plan designates more of something OR that OSM has not tagged it.',
-    a1_note: 'A1 = "Agriculture land" (gazette Table 5.1). Verified against DDA FeatureServer layer 9 (LOW DENSITY AREA): A1 equals the GREEN BELT type of that overlay exactly (155 polygons, 209.3 km2). 7.9 km2 of A1 is VILLAGE ABADI premises, which the gazette treats as residential in any use zone; that area is left in A1 here, so planned residential is slightly understated.',
-    buckets_note: 'planned_covered = comparable (residential + industrial + green_open) + planned_a1_agriculture + planned_not_comparable, exactly. planned_not_comparable excludes A1 (changed 2026-10-03; previously it included A1, double-listing it).',
+    a1_note: 'A1 = "Agriculture land" (gazette Table 5.1). Verified against DDA FeatureServer layer 9 (LOW DENSITY AREA): A1 equals the GREEN BELT type of that overlay exactly (155 polygons, 209.3 km2). It is compared with OSM agricultural tags as the closest counterpart; A1 is a zoning designation, not a survey of what is grown. 7.9 km2 of A1 is VILLAGE ABADI premises, which the gazette treats as residential in any use zone; that area is left in A1 here, so planned residential is slightly understated and planned agriculture slightly overstated.',
+    buckets_note: 'planned_covered = comparable (residential + industrial + green_open + agriculture) + planned_not_comparable, exactly. green_open is OSM green/open space excluding agricultural tags (compared with plan P1+P2 parks); agriculture is OSM agricultural tags (compared with plan A1). Changed 2026-10-03: previously OSM green_open included farmland, and A1 was plan-only.',
     geometry_failures: skippedGeom,
   },
   citywide,

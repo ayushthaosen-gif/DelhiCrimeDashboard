@@ -32,6 +32,20 @@ Affected releases: data/releases/<years>/...
 
 ---
 
+## 2026-10-05 - mpd2047_ward_comparison / landuse_by_ward - parks and agriculture compared separately
+
+| Field | Old value | New value | Why |
+|---|---|---|---|
+| `current_green_open_km2` (citywide) | 90.5 km² ("parks / green", mapped now) | 22.2 km² | The OSM side included farmland and other agricultural tags (68.3 km², 75% of it after overlap resolution) while the plan side was parks only (P1+P2). Parks are now compared with parks. |
+| Parks gap, planned minus mapped (citywide) | +84.7 km² | +153.0 km² | Direct consequence: farmland had been masking about half of the real gap. |
+| `planned_agriculture_km2`, `current_agriculture_km2`, `delta_agriculture_pp`, `planned_/current_agriculture_share_pct` | did not exist | 208.8 km² planned (A1) vs 68.3 km² mapped | New comparable line: OSM agricultural tags against the plan's A1 "Agriculture land". A1 is a zoning designation, not a crop survey, so this is the closest counterpart rather than an identity. |
+| `planned_a1_agriculture_km2` | 208.8 km² (plan-only) | removed | Superseded by `planned_agriculture_km2` (same values) now that A1 is compared. |
+| `landuse_by_ward.csv` | 16 columns | 18 columns | Added `green_open_agriculture_km2` and `green_open_agriculture_pct`. All 16 original columns are unchanged (0 changed cells across 290 wards); `green_open` still includes agriculture there. |
+
+Per-ward values of the green_open, agriculture and delta fields in the MPD comparison changed for every ward with any mapped farmland. Residential and industrial figures did not change. Plan-side values did not change.
+
+Affected files: `data/mpd2047_ward_comparison.csv`, `data/mpd2047_ward_comparison.json`, `data/landuse_by_ward.csv`.
+
 ## 2026-10-03 - mpd2047_ward_comparison - A1 relabelled "Agriculture land"; "other planned" no longer includes A1
 
 | Field | Old value | New value | Why |

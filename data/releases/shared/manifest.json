@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-10-03T12:48:54.452Z",
+  "generatedAt": "2026-10-05T15:26:33.362Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -251,8 +251,8 @@
       "datasetId": "landuse_by_ward",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "7809aaadbf82de9398bb27868652d86c32ca8201ecf028d863b39e8bc10cf262",
-      "bytes": 19563
+      "sha256": "b49df618236049e829332ad347b446547a144b723e88fdc2da6a17702ce20cb7",
+      "bytes": 21120
     },
     {
       "file": "data/liquor_crash_proximity_summary_2024.json",
@@ -275,16 +275,16 @@
       "datasetId": "mpd2047_ward_comparison",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "ee2e0802b032c64fdd44f653f7790d0fe9cd174f901f06a32b6aca61edfbe462",
-      "bytes": 38470
+      "sha256": "6da4e2b2f32c448f8c131c3c43706b160246ca21e81077859a3ff1985cb0abf8",
+      "bytes": 41277
     },
     {
       "file": "data/mpd2047_ward_comparison.json",
       "datasetId": "mpd2047_ward_comparison",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "d0470415cf9b5ac3770a1c957b5745cdcb2bf77f5da8971edae8ab7ed2ecb764",
-      "bytes": 254031
+      "sha256": "c792403941df7ae00cefa548146c67739fb399441159bcb149a73460ca35a5b7",
+      "bytes": 295088
     },
     {
       "file": "data/overpass_surveillance_alcohol.json",

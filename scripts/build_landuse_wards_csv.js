@@ -40,6 +40,13 @@ const CATEGORY_MAP = {
 };
 function categoryOf(landuseTag) { return CATEGORY_MAP[landuseTag] || 'other'; }
 
+// Tags that are agricultural use rather than parks/open space. They stay inside green_open (so the
+// published green_open columns and the map layer are unchanged) but are tallied separately, because
+// the MPD-2047 comparison must set agriculture against the plan's agriculture designation (A1) and
+// parks against its parks (P1/P2). Without the split, 71% of "green/open" area was farmland and a
+// planned-parks versus mapped-parks-plus-farmland comparison was not like for like.
+const AGRI_TAGS = new Set(['farmland', 'farmyard', 'orchard', 'plantation', 'plant_nursery', 'greenhouse_horticulture', 'allotments']);
+
 // ── Build valid landuse polygon features from the raw way snapshot ──
 const seenIds = new Set();
 const landuseFeatures = [];
@@ -87,6 +94,7 @@ wards.features.forEach(ward => {
   const wardBbox = turf.bbox(ward);
   const wardAreaKm2 = turf.area(ward) / 1e6;
   const areaByCategory = Object.fromEntries(CATEGORIES.map(c => [c, 0]));
+  let agricultureKm2 = 0; // subset of green_open, counted after the same overlap resolution
   // OSM contributors sometimes map landuse polygons that overlap or nest (e.g. a small
   // "residential" enclave mapped inside a larger "military" cantonment boundary) -- summing each
   // polygon's intersection area independently double-counts that shared ground, which surfaced as
@@ -109,6 +117,7 @@ wards.features.forEach(ward => {
     }
     const areaKm2 = turf.area(claimable) / 1e6;
     areaByCategory[categoryOf(lf.properties.landuse)] += areaKm2;
+    if (AGRI_TAGS.has(lf.properties.landuse)) agricultureKm2 += areaKm2;
     if (covered) {
       try { covered = turf.union(turf.featureCollection([covered, intersection])); }
       catch (e) { /* keep the prior covered geometry if the union itself fails topologically */ }
@@ -123,6 +132,8 @@ wards.features.forEach(ward => {
     area_sq_km: Math.round(wardAreaKm2 * 1000) / 1000,
     mapped_pct: wardAreaKm2 > 0 ? Math.round((mappedKm2 / wardAreaKm2) * 1000) / 10 : null,
   };
+  row.green_open_agriculture_km2 = Math.round(agricultureKm2 * 1000) / 1000;
+  row.green_open_agriculture_pct = wardAreaKm2 > 0 ? Math.round((agricultureKm2 / wardAreaKm2) * 1000) / 10 : null;
   CATEGORIES.forEach(c => {
     row[c + '_km2'] = Math.round(areaByCategory[c] * 1000) / 1000;
     row[c + '_pct'] = wardAreaKm2 > 0 ? Math.round((areaByCategory[c] / wardAreaKm2) * 1000) / 10 : null;
@@ -134,7 +145,7 @@ wards.features.forEach(ward => {
 
 function csvEscape(v) { if (v == null) return ''; const s = String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
 function toCsv(headers, dataRows) { return [headers.join(',')].concat(dataRows.map(r => headers.map(h => csvEscape(r[h])).join(','))).join('\r\n') + '\r\n'; }
-const headers = ['ward', 'ward_no', 'area_sq_km', 'mapped_pct', ...CATEGORIES.flatMap(c => [c + '_km2', c + '_pct'])];
+const headers = ['ward', 'ward_no', 'area_sq_km', 'mapped_pct', ...CATEGORIES.flatMap(c => [c + '_km2', c + '_pct']), 'green_open_agriculture_km2', 'green_open_agriculture_pct'];
 fs.writeFileSync(path.join(ROOT, 'data/landuse_by_ward.csv'), toCsv(headers, rows));
 
 const avgMapped = rows.filter(r => r.mapped_pct != null).reduce((a, r) => a + r.mapped_pct, 0) / rows.length;

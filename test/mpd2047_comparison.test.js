@@ -53,9 +53,9 @@ test('coverage denominators are carried on every ward, so a delta is never shown
 
 test('only unambiguous categories are compared, and nulls stay null', () => {
   assert.deepStrictEqual(Object.keys(comparison.metadata.crosswalk).sort(),
-    ['green_open', 'industrial', 'residential']);
+    ['agriculture', 'green_open', 'industrial', 'residential']);
   for (const w of comparison.wards) {
-    for (const cat of ['residential', 'industrial', 'green_open']) {
+    for (const cat of ['residential', 'industrial', 'green_open', 'agriculture']) {
       const d = w['delta_' + cat + '_pp'];
       const p = w['planned_' + cat + '_share_pct'];
       const c = w['current_' + cat + '_share_pct'];
@@ -77,16 +77,34 @@ test('the land-use codebook comes from the source and undecoded codes stay undec
   assert.ok(!Object.prototype.hasOwnProperty.call(legend, 'A1'));
 });
 
-test('A1 (Agriculture land) is reported separately, never counted as green space, never double-listed', () => {
+test('A1 is compared as agriculture, never counted as parks, and every plan area is in exactly one bucket', () => {
   const c = comparison.citywide;
-  assert.ok(c.planned_a1_agriculture_km2 > 100, 'A1 should be a large plan-only category');
-  // If A1 had leaked into the comparable parks/green bucket, these would be close together.
-  assert.notStrictEqual(c.planned_green_open_km2, c.planned_a1_agriculture_km2);
-  const sumComparable = c.planned_residential_km2 + c.planned_industrial_km2 + c.planned_green_open_km2;
-  // Exact partition (to rounding): comparable + A1 + other must equal the plan total. The old
-  // ">=" form passed while A1 was counted in both the A1 and the "other" buckets.
-  const parts = sumComparable + c.planned_a1_agriculture_km2 + c.planned_not_comparable_km2;
-  assert.ok(Math.abs(parts - c.planned_total_km2) < 1, 'buckets (' + parts.toFixed(1) + ') must equal plan total (' + c.planned_total_km2 + ')');
+  assert.ok(c.planned_agriculture_km2 > 100, 'A1 (agriculture) should be a large comparable category');
+  // If A1 had leaked into the parks bucket, these would be close together.
+  assert.notStrictEqual(c.planned_green_open_km2, c.planned_agriculture_km2);
+  const comparable = c.planned_residential_km2 + c.planned_industrial_km2 + c.planned_green_open_km2 + c.planned_agriculture_km2;
+  // Exact partition (to rounding). The old ">=" form let A1 be counted in two buckets unnoticed.
+  assert.ok(Math.abs(comparable + c.planned_not_comparable_km2 - c.planned_total_km2) < 1,
+    'buckets (' + (comparable + c.planned_not_comparable_km2).toFixed(1) + ') must equal plan total (' + c.planned_total_km2 + ')');
+});
+
+test('parks versus farmland: the OSM side is split without losing or double-counting area', () => {
+  // Before 2026-10-03 OSM "green/open" included farmland (71% of it) and was compared with plan
+  // parks only. Now parks = green_open - agriculture, and agriculture is its own comparable line.
+  const lines = fs.readFileSync('data/landuse_by_ward.csv', 'utf8').trim().split(/\r?\n/);
+  const head = lines[0].split(',');
+  const byNo = new Map(lines.slice(1).map(l => { const c = l.split(','); return [c[head.indexOf('ward_no')], { green: Number(c[head.indexOf('green_open_km2')]), agri: Number(c[head.indexOf('green_open_agriculture_km2')]) }]; }));
+  let sumGreen = 0, sumParks = 0, sumAgri = 0;
+  for (const w of comparison.wards) {
+    const src = byNo.get(String(w.ward_no));
+    assert.ok(src, w.ward + ' missing from landuse CSV');
+    assert.ok(src.agri >= 0 && src.agri <= src.green + 0.0005, w.ward + ': agriculture must be a subset of green_open');
+    assert.ok(Math.abs(w.current_green_open_km2 + w.current_agriculture_km2 - src.green) < 0.002, w.ward + ': parks + agriculture must equal OSM green_open');
+    assert.ok(w.current_green_open_km2 >= -0.0005, w.ward + ': parks must not go negative');
+    sumGreen += src.green; sumParks += w.current_green_open_km2; sumAgri += w.current_agriculture_km2;
+  }
+  assert.ok(Math.abs(sumParks + sumAgri - sumGreen) < 1, 'citywide parks + agriculture must equal OSM green_open');
+  assert.ok(sumAgri > sumParks, 'farmland is the larger part of OSM green/open in Delhi (71% of raw area); if not, the split is wrong');
 });
 
 test('the comparison states what it is not', () => {

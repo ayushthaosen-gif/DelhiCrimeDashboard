@@ -1,3 +1,16 @@
+## [2026-10-05] - Claude (Anthropic) - MPD-2047: parks are now compared with parks, and farmland with agriculture
+
+Fixes the like-for-like problem flagged in the previous entry. OSM's "green/open" category is 75% agricultural tags (68.3 of 90.5 km² after overlap resolution; 71% on raw polygons), while the plan side counted only P1/P2 parks and kept A1 (agriculture) separate. So "Parks / green: +84.7 km²" compared planned parks with mapped parks *plus farmland*.
+
+1. **OSM side split without touching what was published.** `build_landuse_wards_csv.js` now tallies agricultural tags (farmland, farmyard, orchard, plantation, plant nursery, greenhouse horticulture, allotments) as a subset of green_open, using the *same* overlap-resolved area each polygon already claims, so parks and agriculture cannot double-count. Two columns appended; all 16 original columns verified unchanged (0 changed cells over 290 wards), and the map's land-use layer is untouched.
+2. **MPD comparison.** Parks = green_open − agriculture, compared with P1+P2. Agriculture is a new comparable line, OSM agricultural tags against plan A1. Buckets still partition the plan total exactly (298.1 + 38.4 + 175.2 + 208.8 + 243.9 = 964.4). The map's panel, ward selector and ward popup gained the Agriculture line; the plan-only A1 row and `planned_a1_agriculture_km2` are gone (same values now live in `planned_agriculture_km2`).
+3. **The result changes the story.** Mapped parks are 22.2 km² against 175.2 km² planned: the gap is **+153.0**, not +84.7. Farmland had been hiding about half of it. Agriculture: 208.8 planned vs 68.3 mapped (+140.5). Neither is a measurement of change; both mostly reflect how little of Delhi OSM tags (the thin-coverage caveat is unchanged and still in the panel).
+4. **Caveats carried in the output metadata and panel text:** A1 is a zoning designation, so agriculture<->A1 is the closest counterpart, not an identity; 7.9 km² of A1 is village abadi, which the gazette treats as residential, so planned agriculture is slightly overstated and planned residential slightly understated. Left as is, noted in `a1_note`.
+
+**Tests:** new test asserts, per ward, that parks + agriculture equals OSM green_open to within 0.002 km², agriculture is a subset, parks never go negative, and citywide the split loses no area; plus the crosswalk and partition tests updated. 50/50 pass. DATA_CHANGELOG entry added (the figures had been public since 2026-09-30).
+
+Verified: land-use CSV, ward comparison, map and manifests rebuilt; map script extracted with `indexOf('<script>')`/`lastIndexOf('</script>')` (5,866,826 bytes, 99.5%) and `node --check` clean; no stale field names in the built script; live browser check of the panel, ward selector options and a ward's values, no console errors, no "undefined"/"NaN".
+
 ## [2026-10-03] - Claude (Anthropic) - MPD-2047: read the actual gazette map, fix the A1 label, and a double-count found on the way
 
 The user asked whether the MPD document itself has a map and how to read it. I had been answering from the GIS layers and my own earlier notes, so I downloaded the 372-page English gazette and read it. **Map 1 (page 369, an A0 sheet) is the Land Use Plan for Delhi**; Maps 2-4 are planning zones, transport, and spatial development policies. Table 5.1 (p.168) defines nine land-use categories and their use-zone codes.
