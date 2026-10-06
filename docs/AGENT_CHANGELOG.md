@@ -1,3 +1,16 @@
+## [2026-10-07] - Claude (Anthropic) - Main dashboard page redesigned as an MVP, with a quality pass
+
+Requested by the user ("redo the main page also, check for all quality check and design make it MVP"). Layout, accessibility and weight only; no data, metric, correlation or export logic changed.
+
+- **First screen**: the map used to start 701px down, below a 243px hero, a 112px banner, a notes bar, the controls, the status card and the layers bar. It now starts about 468px down (about 804px on a phone). The banner and the notes are one collapsed "About this project and data coverage notes" block, and a one-line caveat ("a zero from a survey-based layer can mean not surveyed") stays visible above the controls with a link to it. The data-status card moved under the map, next to the legend it explains.
+- **Navigation**: a sticky top bar with section links (Map, District, Method, Charts, Road safety, Data), a light/dark theme toggle (remembered in `localStorage` inside try/catch; charts re-render because they read their colours at render time) and the interactive-map link. Skip link added.
+- **Document**: the page had no `lang`, no `<head>` around its `<style>`, no `<body>` and no `<main>`. It now has all of them, a meta description and theme-color.
+- **Weight**: the hero image was a 2.9 MB PNG. A 960px WebP (90 KB, lazy, with width and height) is used instead; the PNG is left in `assets/` in case something links to it. It is hidden on phones. Page size is about 779 KB.
+- **Quality**: no text under 11px (it was 9, 10 and 10.5px, including the chart fonts); the accent colour was used as small text on the paper background at roughly 2.6:1, so `--accent-text` (#8a5800 on light) is used for the eyebrow, street-view button and disclosure markers; 44px tap targets on coarse pointers; `prefers-reduced-motion`; `:focus-visible`; static buttons now carry `type="button"`; the district detail is `aria-live`.
+- **Sources**: the footer's single 3,000-character paragraph is now a 16-item list in a collapsed "Sources and licences" disclosure, with the ODbL attributions intact.
+- **Guard**: new `test/dashboard_page.test.js` (in `npm test`, 67 tests now): document shell, id lookups resolve and ids are unique, landmarks and in-page links, no font under 11px, accent-colour rule, switch roles, hero image size, theme persistence, and the source list.
+- **Verified** in the browser pane at 1280x800 and 390x844: no console errors, no horizontal overflow, theme toggle and keyboard switch work. Not checked on real devices, Safari or Firefox. The full `build:interactive-map` chain reproduces cleanly (only the files above changed).
+
 ## [2026-10-07] - Claude (Anthropic) - Interactive map redesigned as an MVP: app bar, control sidebar, phone bottom sheet
 
 Requested by the user ("redo the whole interactive map UI and UX and make it MVP"). Layout and interaction only; no data, metric or layer logic changed.

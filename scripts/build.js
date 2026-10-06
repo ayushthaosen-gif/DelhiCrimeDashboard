@@ -23,7 +23,7 @@ const osmStreetLampMarkers = infraExtraMarkers.streetLamps.map(([lat, lon, name]
 const font600 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders600.woff2')).toString('base64');
 const font800 = fs.readFileSync(path.join(ROOT, 'fonts/bigshoulders800.woff2')).toString('base64');
 
-const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Delhi Urban Safety Observatory</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"></head>
+const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Delhi Urban Safety Observatory</title><meta name="description" content="District-level crime and road-safety figures for Delhi's 15 police districts, 2016-2024, compared with public infrastructure: streetlights, underpasses, overbridges, metro gates and police."><meta name="theme-color" content="#1c2331"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><script>try{var t=localStorage.getItem("ds-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <style>
 @font-face { font-family: 'Big Shoulders'; font-weight: 600; font-style: normal; src: url(data:font/woff2;base64,${font600}) format('woff2'); }
 @font-face { font-family: 'Big Shoulders'; font-weight: 800; font-style: normal; src: url(data:font/woff2;base64,${font800}) format('woff2'); }
@@ -48,6 +48,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   --label-stroke: var(--paper-raised);
   --good: #3f7d52;
   --warn: var(--rust);
+  --accent-text: #8a5800;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -57,9 +58,11 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
     --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 20px rgba(0,0,0,.25);
     --label-fill: #ffffff; --label-stroke: #10131a;
     --good: #7bc492;
+    --accent-text: var(--amber);
   }
 }
 :root[data-theme="dark"] {
+  --accent-text: var(--amber);
   --bg: #14181f; --surface: #1c2331; --border: #303a4c;
   --text: var(--bone); --text-dim: #9aa3b2;
   --map-nodata-stripe: #2c3648;
@@ -68,6 +71,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewp
   --good: #7bc492;
 }
 :root[data-theme="light"] {
+  --accent-text: #8a5800;
   --bg: var(--paper); --surface: var(--paper-raised); --border: #d8d3c6;
   --text: var(--night); --text-dim: var(--slate);
   --map-nodata-stripe: #cac5b6;
@@ -82,15 +86,41 @@ body {
   font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px; line-height: 1.5;
 }
-.wrap { max-width: 1280px; margin: 0 auto; padding: 28px 24px 60px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px 60px; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.skip-link { position: absolute; left: 12px; top: -48px; z-index: 1000; background: var(--night); color: var(--bone); padding: 10px 14px; border-radius: 0 0 8px 8px; font-weight: 700; text-decoration: none; }
+.skip-link:focus { top: 0; }
+.topnav { position: sticky; top: 0; z-index: 500; display: flex; align-items: center; gap: 14px; margin: 0 -24px 14px; padding: 8px 24px; background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: var(--shadow); }
+.topnav .brand { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -.005em; color: var(--text); text-decoration: none; white-space: nowrap; }
+.topnav-links { display: flex; gap: 2px; margin-left: 8px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.topnav-links::-webkit-scrollbar { display: none; }
+.topnav-links a { color: var(--text-dim); text-decoration: none; font-size: 12.5px; font-weight: 650; padding: 7px 10px; border-radius: 6px; white-space: nowrap; }
+.topnav-links a:hover { background: var(--bg); color: var(--text); }
+.theme-btn { font: inherit; font-size: 16px; line-height: 1; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--text); cursor: pointer; }
+.theme-btn:hover { background: var(--bg); }
+.nav-cta { background: var(--amber); color: var(--night); text-decoration: none; font-size: 12.5px; font-weight: 750; padding: 8px 13px; border-radius: 7px; white-space: nowrap; }
+.nav-cta:hover { background: var(--amber-dim); }
+.caveat-line { margin: 8px 0 0; font-size: 12.5px; color: var(--text-dim); max-width: 70ch; }
+.caveat-line b { color: var(--text); }
+.caveat-line a { color: var(--accent-text); font-weight: 650; }
+.about-lede { margin: 0 0 10px; font-size: 13px; color: var(--text); max-width: 76ch; }
+.sources { font-size: 12px; }
+.sources summary { cursor: pointer; font-weight: 700; color: var(--text); padding: 6px 0; }
+.sources ul { margin: 6px 0 0; padding-left: 18px; columns: 2 380px; column-gap: 28px; }
+.sources li { margin-bottom: 6px; break-inside: avoid; }
+.sources a { color: var(--accent-text); }
+main > section, main > div { scroll-margin-top: 64px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+@media (pointer: coarse) { .metric-tab, .compare-btn, .dl-mini-btn, .layer-chip, .layer-action, .search-clear, .street-view-btn, .dl-item button, .topnav-links a { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; } .toggle-row { min-height: 44px; } .search-item { min-height: 44px; } .search-input { min-height: 36px; } .control-select { min-height: 44px; } }
 
-header { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,460px); gap: 24px; align-items: center; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+header.masthead { display: grid; grid-template-columns: minmax(0,1fr) minmax(220px,320px); gap: 20px; align-items: center; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
 .header-copy { min-width: 0; }
-.hero-image { width: 100%; height: 210px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-.dynamic-map-link { margin-top: 14px; padding: 10px 15px; background: var(--amber); border-color: var(--amber); color: var(--night); text-decoration: none; font-size: 13px; }
+.hero-image { width: 100%; height: 150px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+.dynamic-map-link { display: none; margin-top: 14px; padding: 10px 15px; background: var(--amber); border-color: var(--amber); color: var(--night); text-decoration: none; font-size: 13px; }
 .dynamic-map-link:hover { background: var(--amber-dim); color: var(--night); }
-@media (max-width: 760px) { .wrap { padding: 18px 14px 44px; } .dynamic-map-link { width: 100%; justify-content: center; min-height: 44px; } header { grid-template-columns: 1fr; gap: 16px; } h1 { font-size: clamp(34px, 11vw, 46px); } .hero-image { height: 160px; } .controls { gap: 9px; } .metric-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; } .metric-tab { flex: 0 0 auto; } .toggle-row { width: 100%; margin-left: 0; } .panel { border-radius: 8px; } .map-panel, .detail, .method-panel, .scatter-panel, .download-panel { padding: 12px; } .detail-head { align-items: flex-start; flex-direction: column; } }
-.eyebrow { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--amber-dim); }
+@media (max-width: 760px) { .wrap { padding: 0 14px 44px; } .topnav { margin: 0 -14px 12px; padding: 6px 12px; gap: 8px; } .topnav .brand { display: none; } .hero-image { display: none; } header.masthead { grid-template-columns: 1fr; } .dynamic-map-link { width: 100%; justify-content: center; min-height: 44px; } h1 { font-size: clamp(26px, 7.4vw, 36px); } .subhead { font-size: 13px; } .controls { gap: 9px; } .metric-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; } .metric-tab { flex: 0 0 auto; } .toggle-row { width: 100%; margin-left: 0; } .panel { border-radius: 8px; } .map-panel, .detail, .method-panel, .scatter-panel, .download-panel { padding: 12px; } .detail-head { align-items: flex-start; flex-direction: column; } }
+.eyebrow { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); }
 h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; font-size: 42px; line-height: 1.02; margin: 2px 0 4px; text-wrap: balance; letter-spacing: -.01em; }
 .subhead { color: var(--text-dim); font-size: 13.5px; max-width: 66ch; }
 
@@ -116,14 +146,14 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 }
 .datanote summary { cursor: pointer; list-style: none; padding: 10px 14px; color: var(--text); font-weight: 750; display: flex; align-items: center; gap: 8px; }
 .datanote summary::-webkit-details-marker { display: none; }
-.datanote summary::before { content: '▸'; color: var(--amber); }
+.datanote summary::before { content: '▸'; color: var(--accent-text); }
 .datanote[open] summary::before { content: '▾'; }
 .datanote[open] summary { border-bottom: 1px solid var(--border); }
 .datanote-body { padding: 10px 14px 12px; }
 .datanote b { color: var(--text); font-weight: 700; }
 .datanote ul { margin: 0; padding-left: 18px; }
 .datanote li { margin-bottom: 5px; }
-.data-status-panel { margin: 0 0 16px; border:1px solid var(--border); border-left:3px solid var(--amber); border-radius:8px; background:var(--surface); padding:12px 14px; display:grid; grid-template-columns:minmax(190px,1.2fr) repeat(4,minmax(120px,1fr)); gap:8px 14px; align-items:start; font-size:11.5px; box-shadow:var(--shadow); } .data-status-panel b { font-size:13px; } .data-status-label { display:block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); margin-bottom:2px; } .data-status-value { color:var(--text); line-height:1.35; } .data-status-badge { display:inline-block; border-radius:999px; padding:2px 7px; font-size:10px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; } .data-status-badge.production { background:rgba(63,125,82,.16); color:var(--good); } .data-status-badge.partial { background:rgba(227,161,59,.2); color:#8a5800; } @media (max-width:760px) { .data-status-panel { grid-template-columns:1fr 1fr; } .data-status-panel b { grid-column:1/-1; } }
+.data-status-panel { margin: 12px 0 0; border:1px solid var(--border); border-left:3px solid var(--amber); border-radius:8px; background:var(--surface); padding:12px 14px; display:grid; grid-template-columns:minmax(190px,1.2fr) repeat(4,minmax(120px,1fr)); gap:8px 14px; align-items:start; font-size:11.5px; box-shadow:var(--shadow); } .data-status-panel b { font-size:13px; } .data-status-label { display:block; font-size: 11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--text-dim); margin-bottom:2px; } .data-status-value { color:var(--text); line-height:1.35; } .data-status-badge { display:inline-block; border-radius:999px; padding:2px 7px; font-size: 11px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; } .data-status-badge.production { background:rgba(63,125,82,.16); color:var(--good); } .data-status-badge.partial { background:rgba(227,161,59,.2); color:#8a5800; } @media (max-width:760px) { .data-status-panel { grid-template-columns:1fr 1fr; } .data-status-panel b { grid-column:1/-1; } }
 
 .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 16px; }
 
@@ -181,7 +211,7 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 
 .control-bar { display: grid; grid-template-columns: minmax(260px, 1.5fr) minmax(210px, .85fr) minmax(112px, .45fr) auto auto auto; gap: 10px; align-items: end; margin-bottom: 12px; }
 .control-field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-.control-label { color: var(--text-dim); font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.control-label { color: var(--text-dim); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .control-select { width: 100%; min-height: 38px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--text); font: inherit; font-size: 12.5px; font-weight: 650; padding: 0 34px 0 11px; }
 .control-select:focus-visible, .metric-tab:focus-visible, .compare-btn:focus-visible, .layer-action:focus-visible, .layer-chip:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 .control-segment { min-height: 38px; align-items: center; flex-wrap: nowrap; }
@@ -201,11 +231,11 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 .layer-group summary::before { content: '▸ '; display: inline-block; }
 .layer-group[open] summary::before { content: '▾ '; }
 .layer-group[open] summary { color: var(--text); border-bottom: 1px solid var(--border); }
-.layer-count-badge { margin-left: auto; color: var(--text-dim); background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; font-size: 10.5px; font-weight: 750; }
+.layer-count-badge { margin-left: auto; color: var(--text-dim); background: var(--bg); border: 1px solid var(--border); border-radius: 999px; padding: 2px 8px; font-size: 11px; font-weight: 750; }
 .layer-group-body { padding: 12px 14px; }
 .layer-group-grid { display: grid; grid-template-columns: repeat(3, minmax(180px, 1fr)); gap: 8px 20px; }
 .layer-section { display: grid; gap: 8px; align-content: start; }
-.layer-section-title { color: var(--text-dim); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1px; }
+.layer-section-title { color: var(--text-dim); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 1px; }
 .layer-footer { display: flex; justify-content: flex-end; border-top: 1px solid var(--border); margin-top: 12px; padding-top: 10px; }
 .layer-action { border: 0; background: transparent; color: var(--rust); font: inherit; font-size: 11.5px; font-weight: 750; cursor: pointer; padding: 5px 7px; border-radius: 5px; }
 .layer-action:disabled { color: var(--text-dim); cursor: default; opacity: .55; }
@@ -259,10 +289,10 @@ path.district:hover { opacity: .82; }
 .poi-alcohol { fill: #8b2f5e; stroke: white; stroke-width: .75; opacity: .85; }
 .poi-surveillance { fill: #0891b2; stroke: white; stroke-width: .75; opacity: .8; }
 .airport-shape { fill: var(--slate); fill-opacity: .35; stroke: var(--slate); stroke-width: 1.4; stroke-dasharray: 4,3; pointer-events: auto; cursor: help; }
-.airport-label { font-family: 'Big Shoulders', sans-serif; font-weight: 700; font-size: 10.5px; fill: var(--label-fill); paint-order: stroke; stroke: var(--label-stroke); stroke-width: 2.5px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
+.airport-label { font-family: 'Big Shoulders', sans-serif; font-weight: 700; font-size: 11px; fill: var(--label-fill); paint-order: stroke; stroke: var(--label-stroke); stroke-width: 2.5px; stroke-linejoin: round; pointer-events: none; text-anchor: middle; }
 
 .legend { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--text-dim); flex-wrap: wrap; }
-.legend-scale-note { font-size: 10.5px; font-style: italic; opacity: .8; }
+.legend-scale-note { font-size: 11px; font-style: italic; opacity: .8; }
 .map-tooltip { position: fixed; pointer-events: none; z-index: 9999; background: var(--night); color: var(--bone); font-size: 12px; line-height: 1.4; padding: 8px 12px; border-radius: 6px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); opacity: 0; transition: opacity .1s ease; max-width: 260px; white-space: normal; border: 1px solid var(--border); }
 .map-tooltip.on { opacity: 1; }
 .map-tooltip b { display: block; margin-bottom: 3px; font-weight: 700; color: var(--bone); }
@@ -286,13 +316,13 @@ path.district:hover { opacity: .82; }
 
 .street-view-btn {
   font-family: -apple-system, sans-serif;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   padding: 3px 7px;
   border-radius: 4px;
   background: var(--bg);
   border: 1px solid var(--border);
-  color: var(--amber);
+  color: var(--accent-text);
   text-decoration: none;
   white-space: nowrap;
   margin-left: 6px;
@@ -312,7 +342,7 @@ path.district:hover { opacity: .82; }
 .detail-head h2 { font-family: 'Big Shoulders', sans-serif; font-size: 26px; font-weight: 800; margin: 0; }
 .detail-head .area { font-size: 12px; color: var(--text-dim); font-family: "IBM Plex Mono", monospace; }
 .stat { display: flex; flex-direction: column; gap: 2px; }
-.stat-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 700; display: flex; align-items: center; gap: 5px; }
 .stat-val { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace; font-variant-numeric: tabular-nums; font-size: 20px; font-weight: 600; }
 .stat-val.nodata { font-size: 13px; font-style: italic; color: var(--text-dim); font-weight: 400; }
 .stat-sub { font-size: 11px; color: var(--text-dim); font-weight: 400; }
@@ -353,15 +383,15 @@ details.method-detail code { font-family: "IBM Plex Mono", monospace; background
 @media (max-width: 700px) { .scatter-layout { grid-template-columns: 1fr; } }
 .scatter-layout canvas { width: 100%; height: auto; display: block; }
 .scatter-stat { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; }
-.scatter-stat .label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 700; }
+.scatter-stat .label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 700; }
 .scatter-stat .val { font-family: "IBM Plex Mono", monospace; font-size: 22px; font-weight: 700; margin-top: 2px; }
 .scatter-read { font-size: 11.5px; color: var(--text-dim); line-height: 1.5; }
 .zone-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 6px 12px; margin-top: 14px; }
 .zone-item { font-size: 12.5px; color: var(--text); padding: 6px 8px; border-radius: 5px; background: var(--surface); border: 1px solid var(--border); display: flex; gap: 8px; align-items: baseline; }
-.zone-item .zone-num { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--text-dim); flex-shrink: 0; }
+.zone-item .zone-num { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--text-dim); flex-shrink: 0; }
 .zone-item .zone-name { flex: 1; }
 .zone-item .zone-road { color: var(--text-dim); font-size: 11px; }
-.zone-item .zone-severity { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; font-weight: 700; color: var(--rust); flex-shrink: 0; white-space: nowrap; }
+.zone-item .zone-severity { font-family: "IBM Plex Mono", monospace; font-size: 11px; font-weight: 700; color: var(--rust); flex-shrink: 0; white-space: nowrap; }
 .rs-tab-panel { display: none; }
 .rs-tab-panel.active { display: block; }
 
@@ -375,7 +405,7 @@ details.method-detail code { font-family: "IBM Plex Mono", monospace; background
 .dl-item .dl-item-label { flex: 1; }
 .dl-item button { font: inherit; font-size: 11px; font-weight: 700; border: none; background: transparent; color: var(--text-dim); cursor: pointer; padding: 2px 5px; border-radius: 4px; line-height: 1; }
 .dl-item button:hover { background: var(--bg); color: var(--text); }
-.dl-mini-btn { font: inherit; font-size: 10.5px; font-weight: 700; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); cursor: pointer; padding: 3px 8px; border-radius: 12px; text-transform: none; letter-spacing: 0; }
+.dl-mini-btn { font: inherit; font-size: 11px; font-weight: 700; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); cursor: pointer; padding: 3px 8px; border-radius: 12px; text-transform: none; letter-spacing: 0; }
 .dl-mini-btn:hover { color: var(--text); border-color: var(--text-dim); }
 .dl-download-btn { font: inherit; font-size: 13px; font-weight: 700; border: none; background: var(--amber); color: var(--night); cursor: pointer; padding: 10px 18px; border-radius: 7px; transition: background .12s; }
 .dl-download-btn:hover { background: var(--amber-dim); }
@@ -395,28 +425,38 @@ details.method-detail code { font-family: "IBM Plex Mono", monospace; background
 footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--text-dim); display: flex; flex-direction: column; gap: 4px; }
 footer a { color: inherit; }
 </style>
-
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the map</a>
 <div class="wrap">
-  <header>
-    <div class="header-copy">
-    <div class="eyebrow">Delhi Police &amp; Traffic Police District Data · 2016–2024</div>
-    <h1>Delhi Urban Safety Observatory</h1>
-    <p class="subhead">Official district-level crime and road-safety figures against real public-infrastructure coverage — streetlights, pedestrian underpasses, mapped pedestrian overbridges, metro station gates, and police infrastructure (stations plus chowkis/outposts) — across Delhi's 15 police districts.</p>
-    <a class="compare-btn dynamic-map-link" href="interactive_map.html">Open dynamic interactive map →</a>
+  <nav class="topnav" aria-label="Page sections">
+    <a class="brand" href="#main">Delhi Urban Safety Observatory</a>
+    <div class="topnav-links">
+      <a href="#mapSection">Map</a>
+      <a href="#detail">District</a>
+      <a href="#methodSection">Method</a>
+      <a href="#scatterSection">Charts</a>
+      <a href="#roadSection">Road safety</a>
+      <a href="#downloadSection">Data</a>
     </div>
-    <img class="hero-image" src="assets/delhi-safety-hero.png" alt="Stylized map of Delhi showing districts, transport corridors, safety-risk circles and public-infrastructure markers">
+    <button class="theme-btn" id="themeToggle" type="button" aria-label="Switch colour theme">◐</button>
+    <a class="nav-cta" href="interactive_map.html">Interactive map →</a>
+  </nav>
+  <header class="masthead">
+    <div class="header-copy">
+      <div class="eyebrow">Delhi Police &amp; Traffic Police district data · 2016–2024</div>
+      <h1>Delhi Urban Safety Observatory</h1>
+      <p class="subhead">Official crime and road-safety figures for Delhi's 15 police districts, set against real public infrastructure: streetlights, underpasses, pedestrian overbridges, metro gates and police posts.</p>
+      <p class="caveat-line"><b>Read before comparing:</b> a zero from a survey-based layer can mean "not surveyed", and OpenStreetMap layers are community-mapped. <a href="#about" id="aboutLink">See the coverage notes</a>.</p>
+    </div>
+    <img class="hero-image" src="assets/delhi-safety-hero.webp" width="960" height="540" loading="lazy" decoding="async" alt="Stylized map of Delhi showing districts, transport corridors, safety-risk circles and public-infrastructure markers">
   </header>
 
-  <div class="purpose-banner">
-    <div class="purpose-text">
-      <b class="purpose-title">About the Delhi Urban Safety Observatory &amp; Project Rationale</b>
-      <p>This interactive dashboard quantifies public safety, crime density, traffic fatality risks, and municipal security infrastructure across Delhi's 15 police jurisdictions. By integrating official <b>NCRB crime reports (2022–2024)</b>, <b>Delhi Traffic Police accident blackspots</b>, and <b>Open Transit municipal surveys</b>, this platform provides citizens, urban planners, and policy researchers with empirical data on safety patterns, infrastructure equity, and urban walkability across the city.</p>
-    </div>
-  </div>
-
-  <details class="datanote">
-    <summary>Data coverage, confidence and comparability notes</summary>
+  <main id="main">
+  <details class="datanote" id="about">
+    <summary>About this project and data coverage notes</summary>
     <div class="datanote-body">
+      <p class="about-lede">This dashboard puts <b>NCRB crime reports (2016-2024)</b>, <b>Delhi Traffic Police crash data</b> and <b>public-infrastructure counts</b> side by side for Delhi's 15 police districts, so citizens, planners and researchers can see where safety and infrastructure coverage line up, and where they do not. It describes patterns. It does not show cause and effect.</p>
       <ul>
         <li><b>Streetlights</b> (PAPL survey, ~40k points) and <b>underpasses</b> (PAPL survey, 417 points) share the exact same gap: <b>Dwarka, North-East, North-West, Outer, Outer North and Rohini were never driven through.</b> Zero there means "not surveyed," not "not present."</li>
         <li><b>Pedestrian overbridges</b> (OpenStreetMap/Overpass snapshot, 242 connected mapped bridge groups) are available across all district polygons, but this is a mapped inventory rather than an official completeness register. A zero means no matching OSM feature was mapped, not verified absence.</li>
@@ -428,11 +468,11 @@ footer a { color: inherit; }
     </div>
   </details>
 
-  <div class="control-bar" aria-label="Map controls">
+  <section class="control-bar" id="mapSection" aria-label="Map controls">
     <div class="search-container">
       <div class="search-input-wrap">
         <input type="text" id="districtSearch" class="search-input" placeholder="Search district or police station (e.g. Rohini, Kashmere Gate, Majnu ka Tila, Vasant Kunj)..." autocomplete="off" />
-        <button id="searchClear" class="search-clear" aria-label="Clear search">✕</button>
+        <button type="button" id="searchClear" class="search-clear" aria-label="Clear search">✕</button>
       </div>
       <div id="searchDropdown" class="search-dropdown"></div>
     </div>
@@ -455,9 +495,8 @@ footer a { color: inherit; }
         <button class="metric-tab" id="bivariateToggle" type="button" role="switch" tabindex="0" aria-checked="false">Bivariate</button>
       </div>
     </div>
-    <button class="compare-btn primary-action" id="compareToggleBtn">Compare districts</button>
-  </div>
-  <div class="data-status-panel" id="dataStatus" aria-live="polite"></div>
+    <button class="compare-btn primary-action" id="compareToggleBtn" type="button">Compare districts</button>
+  </section>
   <details class="layer-group" id="mapLayersGroup">
     <summary><span>Map layers</span><span class="layer-count-badge" id="layerCountBadge">0 active</span></summary>
     <div class="layer-group-body">
@@ -492,6 +531,7 @@ footer a { color: inherit; }
         <svg id="map" viewBox="${data.viewBox}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Delhi's 15 police districts, shaded by the selected crime or road-safety metric"></svg>
         <div id="mapTooltip" class="map-tooltip"></div>
       </div>
+      <div class="data-status-panel" id="dataStatus" aria-live="polite"></div>
       <div class="legend">
         <div id="singleLegend" style="display:contents;">
           <span id="legendLabel">Theft (Sec. 379 IPC), 2023</span>
@@ -508,9 +548,9 @@ footer a { color: inherit; }
               <div style="background:#e8e8e8;"></div><div style="background:#e4acac;"></div><div style="background:#c85a5a;"></div>
               </div>
             </div>
-            <span id="bivariateYLabel" style="font-size:10.5px;color:var(--text-dim);writing-mode:vertical-rl;transform:rotate(180deg);">Infra →</span>
+            <span id="bivariateYLabel" style="font-size: 11px;color:var(--text-dim);writing-mode:vertical-rl;transform:rotate(180deg);">Infra →</span>
           </div>
-          <span id="bivariateXLabel" style="font-size:10.5px;color:var(--text-dim);">Crime →</span>
+          <span id="bivariateXLabel" style="font-size: 11px;color:var(--text-dim);">Crime →</span>
           <span class="legend-scale-note">(tertiles — low/med/high thirds of covered districts, not fixed cut points)</span>
         </div>
         <span style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
@@ -535,9 +575,9 @@ footer a { color: inherit; }
     </div>
   </div>
 
-  <div class="panel detail" id="detail"></div>
+  <div class="panel detail" id="detail" aria-live="polite"></div>
 
-  <div class="panel method-panel">
+  <div class="panel method-panel" id="methodSection">
     <h2>How this is calculated & Dynamic Correlation Matrix</h2>
     <p class="method-sub">The exact formulas behind every number above, and the real statistical correlations they produce — updated dynamically for the selected metric and year.</p>
     <div class="method-grid" id="methodGrid"></div>
@@ -556,7 +596,7 @@ footer a { color: inherit; }
     </details>
   </div>
 
-  <div class="panel scatter-panel">
+  <div class="panel scatter-panel" id="scatterSection">
     <h2 id="scatterTitle">Infrastructure density vs. theft density</h2>
     <p class="scatter-sub">Each dot is one district. X-axis: infrastructure density (per km²). Y-axis: crime density (per km²), computed live for whichever crime type is selected. The line is a least-squares fit showing the direction of any linear relationship.</p>
     <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
@@ -579,7 +619,7 @@ footer a { color: inherit; }
     </div>
   </div>
 
-  <div class="panel scatter-panel road-safety-panel">
+  <div class="panel scatter-panel road-safety-panel" id="roadSection">
     <h2>Road safety detail</h2>
     <p class="scatter-sub">The district-level 2023 crash-prone-zone and fatal-crash figures (Delhi Road Crash Report 2023) are already selectable in the map/list above — <b>Crash Zones</b>, <b>Fatal Crashes</b>, <b>Total Crashes</b> tabs, all 15 districts covered. The citywide-only figures below (multi-year trends, victim mode breakdown, and the individual named blackspots) aren't broken down by district in their source, so they're kept here rather than folded into the map where that would misleadingly imply per-district precision they don't have.</p>
     <div class="metric-tabs" id="roadSafetyTabs" style="margin-bottom:16px;"></div>
@@ -600,7 +640,7 @@ footer a { color: inherit; }
           <div class="scatter-read" id="trendsRead"></div>
         </div>
       </div>
-      <button class="dl-download-btn" id="dlTrendsDownload" style="margin-top:14px;">⬇ Download CSV — Citywide Road Safety Trends</button>
+      <button type="button" class="dl-download-btn" id="dlTrendsDownload" style="margin-top:14px;">⬇ Download CSV — Citywide Road Safety Trends</button>
     </div>
 
     <div id="rsVictimsPanel" class="rs-tab-panel">
@@ -619,19 +659,19 @@ footer a { color: inherit; }
           <div class="scatter-read" id="victimsRead"></div>
         </div>
       </div>
-      <button class="dl-download-btn" id="dlVictimsDownload" style="margin-top:14px;">⬇ Download CSV — Road Deaths by Mode of Travel</button>
+      <button type="button" class="dl-download-btn" id="dlVictimsDownload" style="margin-top:14px;">⬇ Download CSV — Road Deaths by Mode of Travel</button>
     </div>
 
     <div id="rsZonesPanel" class="rs-tab-panel">
       <p class="scatter-sub">Delhi Traffic Police's official blackspot list from the <b>Delhi Road Crash Report 2023</b> — 107 identified crash-prone zones, each with its actual 2023 crash counts (not just a name), matched to specific coordinates and cross-checked against every zone's rank and fatal-crash count from the source table (all 107 matched exactly). <b>105 of 107</b> fall inside one of the 15 district polygons and are plotted on the map above — toggle "Show accident-prone zones" to see them, sized and shaded by fatal crash count. The remaining 2 sit just outside every simplified district boundary and are listed here with their real severity numbers instead of being force-placed. Sorted fatal-crashes descending, as in the source report.</p>
       <div class="zone-grid" id="zoneGrid"></div>
-      <button class="dl-download-btn" id="dlZonesDownload" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List</button>
+      <button type="button" class="dl-download-btn" id="dlZonesDownload" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List</button>
     </div>
 
     <div id="rsZones2024Panel" class="rs-tab-panel">
       <p class="scatter-sub">Delhi Traffic Police's blackspot list from the <b>Delhi Road Crash Report 2024</b> — 93 named crash-prone zones, each with real 2024 crash counts and (where the report itself flags it) a breakdown by pedestrian/two-wheeler/HTV/hit-and-run and day/night crashes. None of the 2024 report's zones have published coordinates — <b>54 of 93</b> were matched to a coordinate (42 shared a name with an already-geocoded 2023 zone, 12 resolved via OpenStreetMap geocoding) and are plotted on the map above under the 2024 zone-year option; the remaining 39 are hyper-local names a geocoder can't resolve on free text alone, listed here with their real severity numbers rather than force-placed. Sorted fatal-crashes descending, as in the source report.</p>
       <div class="zone-grid" id="zoneGrid2024"></div>
-      <button class="dl-download-btn" id="dlZones2024Download" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List (2024)</button>
+      <button type="button" class="dl-download-btn" id="dlZones2024Download" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List (2024)</button>
     </div>
 
     <div id="rsEnforcementPanel" class="rs-tab-panel">
@@ -642,11 +682,11 @@ footer a { color: inherit; }
     <div id="rsRoadsPanel" class="rs-tab-panel">
       <p class="scatter-sub">Roads with the most identified crash-prone zones, 2023 vs 2024 (Table 6.33) — crashes recorded specifically within those zones on each road, not the road's full crash count. Sorted by 2024 fatal crashes descending.</p>
       <div id="roadSummaryGrid"></div>
-      <button class="dl-download-btn" id="dlRoadsDownload" style="margin-top:14px;">⬇ Download CSV — Top Roads by Crash-Prone Zones</button>
+      <button type="button" class="dl-download-btn" id="dlRoadsDownload" style="margin-top:14px;">⬇ Download CSV — Top Roads by Crash-Prone Zones</button>
     </div>
   </div>
 
-  <div class="panel download-panel">
+  <div class="panel download-panel" id="downloadSection">
     <h2>Download the data</h2>
     <p class="method-sub">Every number on this page, exportable for reuse — plain CSV for scripting, or a full Excel workbook with sources, methodology, and a data dictionary included for citation.</p>
 
@@ -677,21 +717,21 @@ footer a { color: inherit; }
           <div id="dlAvailable" class="dl-list"></div>
         </div>
         <div class="dl-col">
-          <div class="dl-col-head">Selected, in export order <button class="dl-mini-btn" id="dlResetOrder">Reset to default</button></div>
+          <div class="dl-col-head">Selected, in export order <button type="button" class="dl-mini-btn" id="dlResetOrder">Reset to default</button></div>
           <div id="dlSelected" class="dl-list"></div>
         </div>
       </div>
-      <button class="dl-download-btn" id="dlAllDownload">⬇ Download CSV — All District Data</button>
+      <button type="button" class="dl-download-btn" id="dlAllDownload">⬇ Download CSV — All District Data</button>
     </div>
 
     <div id="dlCorrPanel" class="dl-panel" style="display:none;">
       <p class="scatter-read" style="margin-bottom:14px;">Every infrastructure type against every crime/road-safety metric — \${INFRA.length * METRICS.length} combinations, each with its own live-computed r and district count, exactly like the scatter chart above.</p>
-      <button class="dl-download-btn" id="dlCorrDownload">⬇ Download CSV — Full Correlation Matrix</button>
+      <button type="button" class="dl-download-btn" id="dlCorrDownload">⬇ Download CSV — Full Correlation Matrix</button>
     </div>
 
     <div id="dlVersusPanel" class="dl-panel" style="display:none;">
       <p class="scatter-read" style="margin-bottom:14px;">Whatever's currently plotted in the scatter chart above: <b id="dlVersusLabel"></b>. Change the X/Y selection there and this updates to match.</p>
-      <button class="dl-download-btn" id="dlVersusDownload">⬇ Download CSV — Current Comparison</button>
+      <button type="button" class="dl-download-btn" id="dlVersusDownload">⬇ Download CSV — Current Comparison</button>
     </div>
 
     <div id="dlExcelPanel" class="dl-panel" style="display:none;">
@@ -703,12 +743,32 @@ footer a { color: inherit; }
         <li><b>Sources &amp; Methodology</b> — full citations with URLs, retrieval date, formulas used, and every known coverage gap and caveat spelled out in one place — meant to be quoted directly in a methods section.</li>
         <li><b>Current Comparison</b> — whatever's plotted in the scatter chart right now.</li>
       </ul>
-      <button class="dl-download-btn" id="dlExcelDownload">⬇ Download Excel Workbook (.xml, 5 sheets)</button>
+      <button type="button" class="dl-download-btn" id="dlExcelDownload">⬇ Download Excel Workbook (.xml, 5 sheets)</button>
     </div>
-  </div>
+  </main>
 
   <footer>
-    <span><b>Sources:</b> Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a> · Historical crime data (2016-2021): National Crime Records Bureau, Crime in India, via <a href="https://indiadataportal.com" target="_blank" rel="noopener">India Data Portal</a> — theft &amp; robbery 2016-2021, burglary 2017-2021 (2016 burglary omitted, incompatible source definition); total IPC crime, crime against women &amp; SLL crime reconstructed by summing each metric's full district-wise offence-category table for 2017-2021, verified by exactly reproducing the official 2022 total for all 15 districts before extending backward — 2016 omitted for these three (older, non-matching category schema with no same-schema year available to validate the summation against) · Official licensed liquor vends: Delhi State Civil Supplies Corporation (DSCSC) / DCCWS published list, 374 records citywide (all 374 mapped in the <a href="interactive_map.html">interactive map</a> — as an independent point layer and as a ward-bivariate pairing against 2024 crash zones — using approximate locality/sector-centroid coordinates, not verified vend entrances; only 1 has an exact OSM-matched coordinate). The same point layer carries 13 additional standalone OpenStreetMap-mapped shops that could not be tied to an official record — flagged <i>OSM-only</i>, counted separately from the 374, and already part of the 65-point Liquor Shops layer · Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD · Citywide road crash/fatality trends (2014-2024) and road deaths by mode of travel (2019-2024): Delhi Traffic Police annual road crash data · District-wise crash data and 107/111 crash-prone zones (2023/2024): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a> &amp; <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2024" target="_blank" rel="noopener">2024</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); zone coordinates cross-checked against the source table by rank and fatal-crash count — 105 of 107 (2023) and 54 of 93 named (2024) resolved to real coordinates (2024's remainder are hyper-local names an OSM geocoder can't resolve; flagged unresolved rather than force-placed) · Persons killed/injured, top crash-prone roads, and citywide enforcement stats (hit-and-run share, drink-driving prosecutions, RLVD/OSVD cameras) for 2023/2024: Delhi Road Crash Report 2023 &amp; 2024, Tables 6.2/6.33 and report-level metrics · CCTV priority-candidate sites: Delhi Road Crash Report 2023/2024, Table 6.37 — report-recommended installation sites, not a verified existing-camera inventory · Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a> · OSM street lamps: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=street_lamp via Overpass API snapshot, 1,529 fetched; 1,457 inside district polygons), ODbL · Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL · Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL · ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL · Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol, shop=wine, shop=beverages+alcohol tag via Overpass API, 65 points), ODbL · CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 1,596 points, 1,583 within district polygons), ODbL · Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a>.</span>
+    <details class="sources">
+      <summary>Sources and licences (16 entries)</summary>
+      <ul>
+        <li>Crime data (2022, 2023 &amp; 2024) — National Crime Records Bureau, Crime in India, District Wise Reports: <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx" target="_blank" rel="noopener">IPC Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx" target="_blank" rel="noopener">IPC Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx" target="_blank" rel="noopener">IPC Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx" target="_blank" rel="noopener">SLL Crimes 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx" target="_blank" rel="noopener">SLL Crimes 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx" target="_blank" rel="noopener">SLL Crimes 2022</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx" target="_blank" rel="noopener">Crime against Women 2024</a>, <a href="https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx" target="_blank" rel="noopener">Crime against Women 2023</a>, <a href="https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx" target="_blank" rel="noopener">Crime against Women 2022</a></li>
+        <li>Historical crime data (2016-2021): National Crime Records Bureau, Crime in India, via <a href="https://indiadataportal.com" target="_blank" rel="noopener">India Data Portal</a> — theft &amp; robbery 2016-2021, burglary 2017-2021 (2016 burglary omitted, incompatible source definition); total IPC crime, crime against women &amp; SLL crime reconstructed by summing each metric's full district-wise offence-category table for 2017-2021, verified by exactly reproducing the official 2022 total for all 15 districts before extending backward — 2016 omitted for these three (older, non-matching category schema with no same-schema year available to validate the summation against)</li>
+        <li>Official licensed liquor vends: Delhi State Civil Supplies Corporation (DSCSC) / DCCWS published list, 374 records citywide (all 374 mapped in the <a href="interactive_map.html">interactive map</a> — as an independent point layer and as a ward-bivariate pairing against 2024 crash zones — using approximate locality/sector-centroid coordinates, not verified vend entrances; only 1 has an exact OSM-matched coordinate). The same point layer carries 13 additional standalone OpenStreetMap-mapped shops that could not be tied to an official record — flagged <i>OSM-only</i>, counted separately from the 374, and already part of the 65-point Liquor Shops layer</li>
+        <li>Fatal road crashes &amp; hit-and-run: <a href="https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf" target="_blank" rel="noopener">2022 Delhi Road Crash Fatalities Report</a>, Delhi Traffic Police / Transport Dept. GNCTD</li>
+        <li>Citywide road crash/fatality trends (2014-2024) and road deaths by mode of travel (2019-2024): Delhi Traffic Police annual road crash data</li>
+        <li>District-wise crash data and 107/111 crash-prone zones (2023/2024): <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023" target="_blank" rel="noopener">Delhi Road Crash Report 2023</a> &amp; <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2024" target="_blank" rel="noopener">2024</a>, Delhi Traffic Police (all 15 districts, no reporting-geography gap); zone coordinates cross-checked against the source table by rank and fatal-crash count — 105 of 107 (2023) and 54 of 93 named (2024) resolved to real coordinates (2024's remainder are hyper-local names an OSM geocoder can't resolve; flagged unresolved rather than force-placed)</li>
+        <li>Persons killed/injured, top crash-prone roads, and citywide enforcement stats (hit-and-run share, drink-driving prosecutions, RLVD/OSVD cameras) for 2023/2024: Delhi Road Crash Report 2023 &amp; 2024, Tables 6.2/6.33 and report-level metrics</li>
+        <li>CCTV priority-candidate sites: Delhi Road Crash Report 2023/2024, Table 6.37 — report-recommended installation sites, not a verified existing-camera inventory</li>
+        <li>Streetlight &amp; underpass survey: PAPL, via <a href="https://otd.delhi.gov.in/" target="_blank" rel="noopener">Delhi Transport Stack Open Transit Data</a></li>
+        <li>OSM street lamps: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=street_lamp via Overpass API snapshot, 1,529 fetched; 1,457 inside district polygons), ODbL</li>
+        <li>Metro station gates: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (railway=subway_entrance), ODbL</li>
+        <li>Bus stops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (highway=bus_stop / public_transport=platform, 3,199 points), ODbL</li>
+        <li>ATMs: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (amenity=atm via Overpass API, 666 points), ODbL</li>
+        <li>Liquor shops: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (shop=alcohol, shop=wine, shop=beverages+alcohol tag via Overpass API, 65 points), ODbL</li>
+        <li>CCTV &amp; guard posts: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (man_made=surveillance via Overpass API, 1,596 points, 1,583 within district polygons), ODbL</li>
+        <li>Police station locations &amp; district boundaries: Delhi Police GSDL, via <a href="https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac" target="_blank" rel="noopener">community mirror</a></li>
+      </ul>
+    </details>
     <span>District boundary polygons simplified for display (~165m tolerance) — not survey-grade. IGI Airport unit and non-geographic units (Crime Branch, EOW, Metro, Railway, Vigilance, etc.) excluded from district figures.</span>
   </footer>
 </div>
@@ -1686,7 +1746,7 @@ function renderMethod() {
       '<div class="name">' + inf.label + ' (' + (rateMode === 'perCapita' ? 'Per 100k' : 'Per km²') + ')</div>' +
       '<div class="formula">' + inf.unit + ' ÷ ' + (rateMode === 'perCapita' ? 'Population (100k)' : 'District Area (km²)') + '</div>' +
       '<div style="margin:8px 0;padding:8px 10px;background:var(--bg);border-radius:6px;border:1px solid var(--border);">' +
-        '<div style="font-size:10.5px;color:var(--text-dim);text-transform:uppercase;font-weight:700;">' + (corrCoeffMode === 'spearman' ? 'Spearman ρ' : 'Pearson r') + ' vs. ' + esc(m.label) + ' (' + activeYear + ')</div>' +
+        '<div style="font-size: 11px;color:var(--text-dim);text-transform:uppercase;font-weight:700;">' + (corrCoeffMode === 'spearman' ? 'Spearman ρ' : 'Pearson r') + ' vs. ' + esc(m.label) + ' (' + activeYear + ')</div>' +
         '<div style="font-size:16px;font-weight:700;color:' + rColor + ';margin-top:2px;">' + (corrCoeffMode === 'spearman' ? 'ρ' : 'r') + ' = ' + (coeffVal >= 0 ? '+' : '') + coeffVal.toFixed(3) + ' <span style="font-size:11px;font-weight:600;color:var(--text-dim);">' + sigLabel + '</span></div>' +
         '<div style="font-size:11px;color:var(--text-dim);margin-top:2px;">r = ' + (r>=0?'+':'') + r.toFixed(3) + ' · ρ = ' + (rho>=0?'+':'') + rho.toFixed(3) + ' (n=' + n + ')</div>' +
         '<div style="font-size:11px;font-weight:600;color:var(--text-dim);margin-top:2px;">' + interp + '</div>' +
@@ -1722,7 +1782,7 @@ function renderCorrelationMatrix() {
 
       const bg = val >= 0.4 ? 'rgba(231,76,60,0.18)' : val <= -0.4 ? 'rgba(46,204,113,0.18)' : 'rgba(255,255,255,0.04)';
       const color = val >= 0.4 ? 'var(--rust)' : val <= -0.4 ? 'var(--good)' : 'var(--text)';
-      const sigBadge = pObj.isSig ? '<span style="color:var(--amber);margin-left:2px;font-size:11px;">*</span>' : '<span style="color:var(--text-dim);font-size:9px;margin-left:2px;opacity:0.7;">(ns)</span>';
+      const sigBadge = pObj.isSig ? '<span style="color:var(--amber);margin-left:2px;font-size:11px;">*</span>' : '<span style="color:var(--text-dim);font-size:11px;margin-left:2px;">(ns)</span>';
 
       const ttBody = (corrCoeffMode === 'spearman' ? 'Spearman ρ' : 'Pearson r') + ' = ' + (val >= 0 ? '+' : '') + val.toFixed(3) +
         '<br>' + (corrCoeffMode === 'spearman' ? 'Pearson r' : 'Spearman ρ') + ' = ' + (corrCoeffMode === 'spearman' ? (r>=0?'+':'')+r.toFixed(3) : (rho>=0?'+':'')+rho.toFixed(3)) +
@@ -1961,7 +2021,7 @@ function renderTrends() {
   const py = v => H-PAD.b - ((v-yMin)/(yMax-yMin)) * (H-PAD.t-PAD.b);
 
   ctx.strokeStyle = border; ctx.lineWidth = 1;
-  ctx.font = '10px -apple-system, sans-serif';
+  ctx.font = '11px -apple-system, sans-serif';
   ctx.fillStyle = textDim;
   for (let i=0;i<n;i++) {
     const gx = px(i);
@@ -2027,7 +2087,7 @@ function renderVictimsByMode() {
   const py = v => H-PAD.b - (v/maxTotal) * (H-PAD.t-PAD.b);
 
   ctx.strokeStyle = border; ctx.lineWidth = 1;
-  ctx.font = '10px -apple-system, sans-serif';
+  ctx.font = '11px -apple-system, sans-serif';
   ctx.fillStyle = textDim;
   for (let i=0;i<=4;i++) {
     const gy = H-PAD.b - i*(H-PAD.t-PAD.b)/4;
@@ -2050,7 +2110,7 @@ function renderVictimsByMode() {
     const hOther = (otherVal/maxTotal) * (H-PAD.t-PAD.b);
     ctx.fillStyle = textDim;
     ctx.fillRect(cx-barW/2, yTop-hOther, barW, hOther);
-    ctx.fillStyle = text; ctx.font = '10px -apple-system, sans-serif';
+    ctx.fillStyle = text; ctx.font = '11px -apple-system, sans-serif';
     ctx.fillText(v.year, cx-10, H-PAD.b+14);
   });
 
@@ -2058,7 +2118,7 @@ function renderVictimsByMode() {
   [...groups, { key:'other', label:'Slow-moving / animal-driven / other', color: textDim }].forEach(g => {
     ctx.fillStyle = g.color.startsWith('var') ? styles.getPropertyValue(g.color.slice(4,-1)).trim() : g.color;
     ctx.fillRect(W-PAD.r+8, ly, 10, 10);
-    ctx.fillStyle = text; ctx.font = '10px -apple-system, sans-serif';
+    ctx.fillStyle = text; ctx.font = '11px -apple-system, sans-serif';
     ctx.fillText(g.label, W-PAD.r+22, ly+9);
     ly += 18;
   });
@@ -2957,11 +3017,30 @@ function renderDownloadTabs() {
 
 buildScatterTabs();
 renderScatter();
+(function () {
+  const btn = document.getElementById('themeToggle');
+  function isDark() {
+    const t = document.documentElement.getAttribute('data-theme');
+    return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function sync() { btn.setAttribute('aria-pressed', isDark() ? 'true' : 'false'); btn.title = isDark() ? 'Switch to light theme' : 'Switch to dark theme'; }
+  btn.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('ds-theme', next); } catch (e) {}
+    sync();
+    render();
+    renderRoadSafetyTabs();
+  });
+  sync();
+})();
 render();
 renderRoadSafetyTabs();
 renderDownloadTabs();
 renderDownloadFields();
 </script>
+</body>
+</html>
 `;
 
 fs.writeFileSync(path.join(ROOT, 'delhi_safety_dashboard.html'), html);
