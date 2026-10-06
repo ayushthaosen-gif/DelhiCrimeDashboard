@@ -1,3 +1,18 @@
+## [2026-10-06] - Claude (Anthropic) - Interactive map audit: a phone-breaking layout bug, a duplicated detail view, and accessibility gaps
+
+First audit of this page done *visually*: screenshots had been unavailable in earlier sessions, so previous checks were DOM-only and could not see layout. Audited at 1440x900 and 390x844, measuring rather than eyeballing.
+
+**Found and fixed**
+1. **Year, Rate and Display controls were invisible on phones.** In the mobile Filters sheet `#topbar` becomes a column flex container; `.seg` has `overflow:hidden`, so it shrank to **2px tall** (buttons clipped). Users could not change year, per-km²/per-100k or choropleth/circles on a phone. Fixed with `flex-shrink:0` on sheet children; the controls are 30px tall again.
+2. **The mobile "hide until Filters is opened" rule never worked.** `#analysisBar > label` (display:none) lost to a later `#analysisBar label` (display:flex) of equal specificity, purely by source order, so Spatial analysis was always on screen (115px) *and* duplicated inside the open sheet. Raised specificity and hid the whole bar. Together with a data-status panel that now collapses to its title line (tap to expand, `aria-expanded`), the map's share of a 390x844 screen went **56% -> 81%**.
+3. **Duplicated detail view.** Clicking a district opened a map popup *and* the drawer, repeating the same metric, rank and change. The popup is now a hover tooltip; the three things only the popup carried (source line, composite-score breakdown, bivariate infrastructure value) moved into the drawer, so nothing was lost. The two ward popups are untouched: wards have no drawer.
+4. **Accessibility:** no `lang` on `<html>` (now `en`), no landmarks (topbar `banner`, drawer `complementary`), unlabelled map (now a labelled region), and 13 segmented-control buttons that showed state by colour only (now `aria-pressed`, observed on `#topbar` only so it stays off Leaflet's hover path). Added `prefers-reduced-motion`. 34 text elements were under 11px (9.5-10.5px); none are now.
+5. **Layout:** layer groups interleaved open and collapsed boxes, which made the row wrap raggedly; open-by-default groups now come first. "Back to dashboard" sat alone on a wrapped row; it is now "Dashboard" beside the title. Desktop map share 59% -> 63%. Sheet touch targets raised to 40px.
+
+**Checked and left alone:** page load 755 ms locally (5.7 MB; on a real connection this is the lazy-loading item from the earlier review, not a UX bug); no unnamed form controls; Leaflet attribution intact.
+
+Verified: map rebuilt; script extracted with `indexOf('<script>')`/`lastIndexOf('</script>')` (5,868,495 bytes, 99.5%) and `node --check` clean; live at both sizes: heights and shares measured before and after, popup absent and drawer open on district click, drawer content correct in default, composite and bivariate modes, tooltips correct, `aria-pressed` tracks the active year, data-status expands and collapses, no horizontal overflow, no console errors, no "undefined"/"NaN"; `npm test` 50/50. No data changed, so no DATA_CHANGELOG entry. The Firefox/Safari rendering of `<details>`/`summary` was not tested.
+
 ## [2026-10-05] - Claude (Anthropic) - MPD-2047: parks are now compared with parks, and farmland with agriculture
 
 Fixes the like-for-like problem flagged in the previous entry. OSM's "green/open" category is 75% agricultural tags (68.3 of 90.5 km² after overlap resolution; 71% on raw polygons), while the plan side counted only P1/P2 parks and kept A1 (agriculture) separate. So "Parks / green: +84.7 km²" compared planned parks with mapped parks *plus farmland*.

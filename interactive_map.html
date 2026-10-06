@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +25,7 @@ html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family:
 body { display: flex; flex-direction: column; }
 #topbar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; row-gap: 6px; flex: 0 0 auto; }
 #topbar h1 { font-size: 17px; margin: 0; font-weight: 800; margin-right: 6px; white-space: nowrap; }
-#topbar a.back { font-size: 13px; color: var(--text); text-decoration: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; background: var(--bg); margin-left: auto; }
+#topbar a.back { font-size: 13px; color: var(--text); text-decoration: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; background: var(--bg); }
 #topbar a.back:hover { border-color: var(--amber); }
 #topbar select { font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
 #topbar label { font-size: 12.5px; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
@@ -36,7 +36,7 @@ body { display: flex; flex-direction: column; }
 .seg button:hover:not(.active) { background: var(--paper-raised); color: var(--text); }
 #map { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 .status-panel { flex: 0 0 auto; width: 100%; border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 7px; background: var(--bg); padding: 8px 10px; display: grid; grid-template-columns: auto repeat(4, minmax(110px, 1fr)); gap: 6px 14px; align-items: baseline; font-size: 11.5px; }
-.status-panel b { color: var(--text); } .status-label { color: var(--text-dim); font-size: 10px; text-transform: uppercase; font-weight: 800; letter-spacing: .06em; } .status-value { color: var(--text); } .status-badge { border-radius: 999px; padding: 2px 7px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; } .status-badge.production { background: rgba(63,125,82,.16); color: var(--good); } .status-badge.partial { background: rgba(227,161,59,.2); color: #8a5800; } .status-badge.exploratory { background: rgba(177,74,52,.15); color: var(--rust); }
+.status-panel b { color: var(--text); } .status-label { color: var(--text-dim); font-size: 11px; text-transform: uppercase; font-weight: 800; letter-spacing: .06em; } .status-value { color: var(--text); } .status-badge { border-radius: 999px; padding: 2px 7px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; } .status-badge.production { background: rgba(63,125,82,.16); color: var(--good); } .status-badge.partial { background: rgba(227,161,59,.2); color: #8a5800; } .status-badge.exploratory { background: rgba(177,74,52,.15); color: var(--rust); }
 .guided-views { display:flex; align-items:center; gap:6px; flex-wrap:wrap; } .guided-views > span { font-size:11px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; } .guided-view { font:inherit; font-size:11.5px; padding:5px 8px; border:1px solid var(--border); border-radius:999px; background:var(--bg); color:var(--text); cursor:pointer; } .guided-view:hover,.guided-view.active { background:var(--amber); border-color:var(--amber); color:var(--night); }
 @media (max-width: 720px) { .status-panel { grid-template-columns: 1fr 1fr; } .status-panel > b { grid-column:1/-1; } body.mobile-filters-open .guided-views { display:flex; } }
 #analysisBar { flex: 0 0 auto; }
@@ -47,7 +47,7 @@ body { display: flex; flex-direction: column; }
 .leaflet-popup-content { font-size: 12.5px; line-height: 1.5; }
 .popup-title { font-weight: 800; font-size: 13.5px; margin-bottom: 2px; }
 .popup-rank { color: var(--text-dim); font-size: 11.5px; }
-.popup-src { color: var(--text-dim); font-size: 10.5px; margin-top: 6px; border-top: 1px solid var(--border); padding-top: 4px; }
+.popup-src { color: var(--text-dim); font-size: 11px; margin-top: 6px; border-top: 1px solid var(--border); padding-top: 4px; }
 .popup-why-list { margin: 3px 0 0 16px; padding: 0; font-size: 11.5px; }
 .popup-why-list li { margin-bottom: 2px; }
 .yoy { font-weight: 700; }
@@ -59,7 +59,7 @@ body { display: flex; flex-direction: column; }
 .leg-scale span { flex: 1; }
 .leg-biv-grid { display: grid; grid-template-columns: repeat(3, 16px); grid-template-rows: repeat(3, 16px); gap: 2px; margin: 6px 0; }
 .leg-biv-grid div { border-radius: 2px; }
-.leg-biv-axes { display: flex; justify-content: space-between; font-size: 10px; }
+.leg-biv-axes { display: flex; justify-content: space-between; font-size: 11px; }
 #districtSearch { font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); width: 160px; }
 #searchResults { position: absolute; z-index: 1200; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,.2); max-height: 220px; overflow-y: auto; display: none; min-width: 180px; }
 #searchResults div { padding: 6px 12px; font-size: 13px; cursor: pointer; }
@@ -73,8 +73,9 @@ body { display: flex; flex-direction: column; }
 #drawer .drawer-section h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: var(--text-dim); margin: 0 0 8px; font-weight: 700; }
 #drawer .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
 #drawer .stat-row .v { font-weight: 700; }
+#drawer .drawer-note { margin-top: 6px; font-size: 11px; color: var(--text-dim); line-height: 1.45; }
 #drawer .infra-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 12.5px; }
-#drawer .infra-row .badge { font-size: 10px; padding: 1px 6px; border-radius: 8px; }
+#drawer .infra-row .badge { font-size: 11px; padding: 1px 6px; border-radius: 8px; }
 #drawer .badge.covered { background: rgba(63,125,82,0.18); color: var(--good); }
 #drawer .badge.gap { background: rgba(177,74,52,0.18); color: var(--rust); }
 #drawer .corr-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 12px; font-family: monospace; }
@@ -95,19 +96,28 @@ body { display: flex; flex-direction: column; }
 .layer-group[open] summary::before { content: '▾ '; }
 .layer-group[open] summary { color: var(--text); border-bottom: 1px solid var(--border); }
 .layer-group-body { display: flex; gap: 10px; flex-wrap: wrap; padding: 8px 10px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 @media (max-width: 720px) {
   .mobile-only { display: inline-block; }
-  #topbar > label, #topbar > .seg, #topbar > div:not(#pointLayerToggles), #analysisBar > label, #analysisBar > .seg, #analysisBar > span, #pointLayerToggles { display: none; }
+  body #topbar > label, body #topbar > .seg, body #topbar > div:not(#pointLayerToggles), body #analysisBar, body #pointLayerToggles { display: none; }
+  body.mobile-filters-open #analysisBar { display: flex; }
   body.mobile-filters-open #topbar > label, body.mobile-filters-open #topbar > .seg, body.mobile-filters-open #topbar > div:not(#pointLayerToggles), body.mobile-filters-open #analysisBar > label, body.mobile-filters-open #analysisBar > .seg, body.mobile-filters-open #analysisBar > span, body.mobile-filters-open #pointLayerToggles { display: flex; }
   body.mobile-filters-open #topbar, body.mobile-filters-open #analysisBar { position: fixed; left: 0; right: 0; z-index: 1500; overflow-y: auto; flex-direction: column; align-items: stretch; border-top: 1px solid var(--border); box-shadow: 0 -4px 16px rgba(0,0,0,.2); }
   body.mobile-filters-open #topbar { top: 18vh; bottom: 120px; max-height: none; }
   body.mobile-filters-open #analysisBar { top: auto; bottom: 0; height: 120px; max-height: 120px; }
   body.mobile-filters-open #mobileFilterToggle { order: -10; position: sticky; top: 0; z-index: 3; align-self: flex-end; background: var(--surface); border-color: var(--amber); }
   body.mobile-filters-open #topbar, body.mobile-filters-open #analysisBar { overflow-x: hidden; flex-wrap: nowrap; }
+  body.mobile-filters-open #topbar > *, body.mobile-filters-open #analysisBar > * { flex-shrink: 0; }
   body.mobile-filters-open #pointLayerToggles { width: 100%; flex-direction: column; flex-wrap: nowrap; }
   body.mobile-filters-open .layer-group { width: 100%; min-width: 0; }
   body.mobile-filters-open .layer-group-body { flex-direction: column; }
-  body.mobile-filters-open .layer-group-body label { width: 100%; white-space: normal; }
+  body.mobile-filters-open .layer-group-body label { width: 100%; white-space: normal; min-height: 40px; align-items: center; }
+  body.mobile-filters-open .layer-group summary { padding: 12px 10px; }
+  /* Data status is long on a phone; collapse to its title line and expand on tap. */
+  .status-panel { cursor: pointer; }
+  .status-panel:not(.expanded) > :not(b) { display: none; }
+  .status-panel > b::after { content: ' ▾'; color: var(--text-dim); }
+  .status-panel.expanded > b::after { content: ' ▴'; }
   #drawer { top: auto; left: 0; right: 0; width: auto; max-width: none; height: 70vh; bottom: 0; transform: translateY(100%); border-left: none; border-top: 1px solid var(--border); border-radius: 12px 12px 0 0; }
   #drawer.open { transform: translateY(0); }
   .point-legend { right: 10px !important; bottom: 12px; max-width: calc(100vw - 20px); max-height: 34vh; overflow-y: auto; }
@@ -116,14 +126,14 @@ body { display: flex; flex-direction: column; }
   #topbar { padding: 8px 10px; } #analysisBar label { min-width: 0; width: 100%; } #analysisBar select { min-width: 0; max-width: 100%; width: auto; flex: 1; } #topbar h1 { max-width: calc(100vw - 145px); white-space: normal; line-height: 1.1; } #topbar a.back { padding: 6px 8px; }
   .leaflet-control-zoom { margin-top: 10px !important; }
 }
-.layer-count { color: var(--text-dim); font-size: 10.5px; }
-.landuse-legend { display: none; flex-wrap: wrap; gap: 4px 10px; margin: 2px 0 4px 22px; font-size: 10.5px; color: var(--text-dim); }
+.layer-count { color: var(--text-dim); font-size: 11px; }
+.landuse-legend { display: none; flex-wrap: wrap; gap: 4px 10px; margin: 2px 0 4px 22px; font-size: 11px; color: var(--text-dim); }
 .mpd-panel { font-size: 11px; }
 .mpd-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr 0.6fr; gap: 4px; padding: 3px 0; border-bottom: 1px solid var(--border); }
 .mpd-row span:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
-.mpd-head { font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: .02em; font-size: 9.5px; }
+.mpd-head { font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: .02em; font-size: 11px; }
 .mpd-sub { color: var(--text-dim); font-style: italic; }
-.mpd-note { margin-top: 6px; font-size: 10.5px; color: var(--text-dim); line-height: 1.45; }
+.mpd-note { margin-top: 6px; font-size: 11px; color: var(--text-dim); line-height: 1.45; }
 .landuse-legend.show { display: flex; }
 .landuse-legend span { display: inline-flex; align-items: center; gap: 4px; }
 .landuse-legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
@@ -153,8 +163,9 @@ body { display: flex; flex-direction: column; }
 </style>
 </head>
 <body>
-<div id="topbar">
+<div id="topbar" role="banner">
   <h1>Delhi Safety &amp; Infrastructure Explorer</h1>
+  <a class="back" href="delhi_safety_dashboard.html">← Dashboard</a>
   <label>Metric: <select id="metricSelect"></select></label>
   <div class="seg" id="yearToggle"></div>
   <div class="seg" id="rateToggle"></div>
@@ -177,7 +188,6 @@ body { display: flex; flex-direction: column; }
   <button id="downloadCsvBtn" type="button">⬇ CSV</button>
   <button id="downloadGeoJsonBtn" type="button">⬇ GeoJSON</button>
   <button id="mobileFilterToggle" type="button" class="mobile-only" aria-expanded="false" aria-controls="topbar analysisBar" aria-label="Open map filters">☰ Filters</button>
-  <a class="back" href="delhi_safety_dashboard.html">← Back to dashboard</a>
   <div class="point-toggles-row" id="pointLayerToggles">
     <details class="layer-group" open>
       <summary>Police &amp; emergency</summary>
@@ -195,19 +205,19 @@ body { display: flex; flex-direction: column; }
         <label><input type="checkbox" id="chkCrashZones2024Approx"> Crash zones 2024 (full, approx.) <span class="layer-count" id="cntCrashZones2024Approx"></span></label>
       </div>
     </details>
+    <details class="layer-group" open>
+      <summary>Streetlights (PAPL + OSM)</summary>
+      <div class="layer-group-body">
+        <label><input type="checkbox" id="chkPaplStreetlights" title="PAPL streetlight survey cells; marker labels show recorded light counts"> PAPL survey cells <span class="layer-count" id="cntPaplStreetlights"></span></label>
+        <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged individual street lamps; independent of the PAPL survey"> OSM street lamps <span class="layer-count" id="cntStreetLamps"></span></label>
+      </div>
+    </details>
     <details class="layer-group">
       <summary>Roads &amp; footpaths</summary>
       <div class="layer-group-body">
         <label><input type="checkbox" id="chkTrafficSignals"> Traffic signals <span class="layer-count" id="cntTrafficSignals"></span></label>
         <label><input type="checkbox" id="chkCrossings"> Pedestrian crossings <span class="layer-count" id="cntCrossings"></span></label>
         <label><input type="checkbox" id="chkOverpasses"> Pedestrian overbridges <span class="layer-count" id="cntOverpasses"></span></label>
-      </div>
-    </details>
-    <details class="layer-group" open>
-      <summary>Streetlights (PAPL + OSM)</summary>
-      <div class="layer-group-body">
-        <label><input type="checkbox" id="chkPaplStreetlights" title="PAPL streetlight survey cells; marker labels show recorded light counts"> PAPL survey cells <span class="layer-count" id="cntPaplStreetlights"></span></label>
-        <label><input type="checkbox" id="chkStreetLamps" title="OSM-tagged individual street lamps; independent of the PAPL survey"> OSM street lamps <span class="layer-count" id="cntStreetLamps"></span></label>
       </div>
     </details>
     <details class="layer-group">
@@ -264,12 +274,12 @@ body { display: flex; flex-direction: column; }
 </div>
 <div class="status-panel" id="dataStatus" aria-live="polite"></div>
 <div id="mapRegion">
-  <div id="mapWrap"><div id="map"></div></div>
+  <div id="mapWrap"><div id="map" role="region" aria-label="Map of Delhi police districts with selectable data layers"></div></div>
   <div class="leg" id="legend"></div>
   <div class="point-legend" id="pointLegend"></div>
   <div id="wardLegend"></div>
   <div id="nearbyPanel"></div>
-  <div id="drawer">
+  <div id="drawer" role="complementary" aria-label="District details">
     <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
     <div id="drawerBody"></div>
   </div>
@@ -719,29 +729,17 @@ function renderChoropleth() {
       const d = f.properties;
       districtLayers[d.district] = layer;
       const v = metricValue(d, m);
-      const year = effectiveYear(m);
-      const prevYear = prevYearOf(activeYear);
-      const prevRaw = m.prevKey && prevYear ? d[yearFieldKey(m, prevYear)] : null;
-      const prevRate = prevRaw != null ? getRateVal(prevRaw, d) : null;
-
-      let body = '<div class="popup-title">' + d.district + '</div>';
+      // Hover tooltip only. A click opens the district drawer, which is the detail view; the old click
+      // popup repeated the same metric, rank and change next to it. Its unique content (source, composite
+      // score breakdown, bivariate infrastructure value) now lives in the drawer.
+      let tip = '<b>' + d.district + '</b>';
       if (unsafeMode) {
         const us = unsafeScores[d.district];
-        body += '<div class="popup-rank">Composite unsafe score: <b>' + (us.score != null ? (us.score*100).toFixed(0) + '/100' : '—') + '</b> (' + us.coveredFactors + '/' + us.totalFactors + ' factors covered)</div>';
-        body += us.contributions.map(c => '<div class="unsafe-factor-row"><span>' + c.label + '</span><span>' + (c.percentile != null ? (c.percentile*100).toFixed(0) + 'pct' : 'n/a') + '</span></div>').join('');
-        body += '<div class="popup-src">Equal-weight average of percentile ranks — click "ⓘ methodology" for the full writeup.</div>';
+        tip += '<br>Composite unsafe score: ' + (us.score != null ? (us.score * 100).toFixed(0) + '/100' : '—');
       } else {
-        body += '<div class="popup-rank">' + m.full + ', ' + year + ' — rank ' + ordinal(rank(d)) + ' of 15</div>';
-        body += '<div><b>' + fmtNum(v) + '</b> ' + (rateMode === 'perCapita' ? 'per 100k residents' : 'per km²') + '</div>';
-        if (prevRate != null) body += '<div>' + yoyBadge(v, prevRate) + '</div>';
-        if (bivariateMode) {
-          body += '<div style="margin-top:4px;">' + inf.label + ': <b>' + fmtNum(getInfraVal(d, inf)) + '</b> ' + (rateMode === 'perCapita' ? '/100k' : '/km²') + '</div>';
-        }
-        if (m.note) body += '<div class="popup-src">' + m.note + '</div>';
-        body += '<div class="popup-src">Source: ' + metricSource(m) + (bivariateMode ? ' · ' + inf.source : '') + '</div>';
+        tip += '<br>' + fmtNum(v) + (rateMode === 'perCapita' ? ' per 100k' : ' per km²') + ' · rank ' + ordinal(rank(d)) + ' of 15';
       }
-
-      layer.bindPopup(body);
+      layer.bindTooltip(tip, { sticky: true });
       layer.on('mouseover', () => { if (selectedDistrict !== d.district) layer.setStyle({ weight: 3, color: '#1c2331' }); });
       layer.on('mouseout', () => { if (selectedDistrict !== d.district) layer.setStyle({ weight: 1.5, color: '#fff' }); });
       layer.on('click', () => selectDistrict(d.district));
@@ -763,7 +761,6 @@ function selectDistrict(name, opts) {
   // rather than reusing one captured before the rebuild (the old layer object is detached).
   const layer = districtLayers[name];
   if (!opts || opts.fitBounds !== false) map.fitBounds(layer.getBounds(), { maxZoom: 13, animate: false });
-  layer.openPopup();
   document.getElementById('drawer').classList.add('open');
 }
 
@@ -785,6 +782,19 @@ function renderDrawer(name) {
     '<div class="stat-row"><span>Area</span><span class="v">' + props.areaSqKm + ' km²</span></div>' +
     '<div class="stat-row"><span>Population</span><span class="v">' + fmtNum(props.population) + '</span></div>';
 
+  let modeHtml = '';
+  if (unsafeMode) {
+    const us = computeUnsafeScores()[name];
+    modeHtml += '<div class="stat-row"><span>Composite unsafe score</span><span class="v">' + (us.score != null ? (us.score * 100).toFixed(0) + '/100' : '—') + '</span></div>' +
+      us.contributions.map(c => '<div class="stat-row"><span>' + c.label + '</span><span class="v">' + (c.percentile != null ? (c.percentile * 100).toFixed(0) + 'pct' : 'n/a') + '</span></div>').join('') +
+      '<div class="drawer-note">Equal-weight average of percentile ranks (' + us.coveredFactors + '/' + us.totalFactors + ' factors covered).</div>';
+  }
+  if (bivariateMode) {
+    const bi = currentInfra();
+    modeHtml += '<div class="stat-row"><span>' + bi.label + '</span><span class="v">' + fmtNum(getInfraVal(props, bi)) + (rateMode === 'perCapita' ? '/100k' : '/km²') + '</span></div>';
+  }
+  const srcHtml = '<div class="drawer-note">Source: ' + metricSource(m) + (bivariateMode ? ' · ' + currentInfra().source : '') + (m.note ? '<br>' + m.note : '') + '</div>';
+
   const infraHtml = INFRA.map(inf => {
     const covered = infraCovered(props, inf.key);
     const val = getInfraVal(props, inf);
@@ -805,7 +815,7 @@ function renderDrawer(name) {
   document.getElementById('drawerBody').innerHTML =
     '<h2>' + name + '</h2>' +
     '<div class="drawer-sub">District intelligence — ' + effectiveYear(m) + (rateMode==='perCapita' ? ' · per 100k' : ' · per km²') + '</div>' +
-    '<div class="drawer-section"><h3>Selected metric</h3>' + statsHtml + '</div>' +
+    '<div class="drawer-section"><h3>Selected metric</h3>' + statsHtml + modeHtml + srcHtml + '</div>' +
     '<div class="drawer-section"><h3>Infrastructure coverage</h3>' + infraHtml + '</div>' +
     '<div class="drawer-section"><h3>Correlation vs. ' + m.label + ' (citywide, r)</h3>' + corrHtml + '</div>';
 }
@@ -1783,6 +1793,30 @@ function applyDeferredUrlState() {
   }
   updateUrlState();
 }
+// Segmented controls show state only by colour; mirror it into aria-pressed for assistive tech.
+// Observing #topbar only (not the whole page) keeps this off Leaflet's hot hover path.
+let segAriaQueued = false;
+function syncSegAria() {
+  segAriaQueued = false;
+  document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false'));
+}
+new MutationObserver(() => { if (!segAriaQueued) { segAriaQueued = true; requestAnimationFrame(syncSegAria); } })
+  .observe(document.getElementById('topbar'), { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
+syncSegAria();
+// Data status: always open on desktop; on phones CSS collapses it to its title line and a tap expands it.
+(function () {
+  const el = document.getElementById('dataStatus');
+  const phone = window.matchMedia('(max-width: 720px)');
+  function applyMode() {
+    if (phone.matches) { el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.setAttribute('aria-expanded', el.classList.contains('expanded') ? 'true' : 'false'); }
+    else { el.removeAttribute('role'); el.removeAttribute('tabindex'); el.removeAttribute('aria-expanded'); el.classList.remove('expanded'); }
+  }
+  function toggle() { if (!phone.matches) return; const open = el.classList.toggle('expanded'); el.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  el.addEventListener('click', toggle);
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+  phone.addEventListener('change', applyMode);
+  applyMode();
+})();
 applyDeferredUrlState();
 </script>
 </body>
