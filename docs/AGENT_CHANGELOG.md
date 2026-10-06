@@ -1,3 +1,14 @@
+## [2026-10-07] - Claude (Anthropic) - Interactive map redesigned as an MVP: app bar, control sidebar, phone bottom sheet
+
+Requested by the user ("redo the whole interactive map UI and UX and make it MVP"). Layout and interaction only; no data, metric or layer logic changed.
+
+- **Shell**: the stacked top bar and analysis bar are replaced by a slim app bar (title, district search, primary Share, a ⋯ menu for Reset and downloads) and a 340px left sidebar. The map is now full height beside it. On phones (<=720px) the sidebar becomes a bottom sheet behind a ☰ toggle, and the map is about 88% of the screen while it is closed (was 56%).
+- **Panel order**: Show on map (metric, year, calculation, data-status card) -> Quick views (3 cards, now exclusive: each clears the previous view's layers) -> Map layers (7 groups, collapsed by default, with per-group counts, a total and Clear all) -> Advanced (collapsed; display mode, bivariate, heatmap, composite, ward indices, spatial analysis, MPD planned-vs-current) with an "n on" count.
+- **Behaviour**: the ☰ toggle also hides the sidebar on desktop and resizes the map; a ResizeObserver keeps Leaflet sized; the legend shifts left when the district drawer is open (`:has()`); Escape closes the sheet and the menu.
+- **Gotchas for the next editor**: `scripts/build_interactive_map.js` is one template literal, so apostrophes in single-quoted JS strings must be `\'`. Badge refresh uses `setTimeout(...,0)`, not `requestAnimationFrame` (rAF does not fire in a hidden pane, which broke headless checks).
+- **Guard**: new `test/map_page.test.js` (in `npm test`, 57 tests now) checks that every `getElementById` target exists in the markup, the old top bar is gone, landmarks and shell order, layer checkboxes are labelled and groups collapsed, quick views and handlers match, and no font under 11px.
+- **Verified** in the browser pane at 1440x900 and 390x844 (no console errors, no overflow). Not checked on real devices or in Safari/Firefox.
+
 ## [2026-10-06] - Claude (Anthropic) - Interactive map audit: a phone-breaking layout bug, a duplicated detail view, and accessibility gaps
 
 First audit of this page done *visually*: screenshots had been unavailable in earlier sessions, so previous checks were DOM-only and could not see layout. Audited at 1440x900 and 390x844, measuring rather than eyeballing.

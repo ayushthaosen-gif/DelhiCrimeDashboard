@@ -153,24 +153,12 @@ const html = `<!doctype html>
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
 body { display: flex; flex-direction: column; }
-#topbar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; row-gap: 6px; flex: 0 0 auto; }
-#topbar h1 { font-size: 17px; margin: 0; font-weight: 800; margin-right: 6px; white-space: nowrap; }
-#topbar a.back { font-size: 13px; color: var(--text); text-decoration: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; background: var(--bg); }
-#topbar a.back:hover { border-color: var(--amber); }
-#topbar select { font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
-#topbar label { font-size: 12.5px; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
 .seg { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
 .seg button { font: inherit; font-size: 12px; padding: 6px 10px; border: none; background: var(--bg); color: var(--text-dim); cursor: pointer; border-right: 1px solid var(--border); }
 .seg button:last-child { border-right: none; }
 .seg button.active { background: var(--rust); color: #fff; }
 .seg button:hover:not(.active) { background: var(--paper-raised); color: var(--text); }
 #map { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
-.status-panel { flex: 0 0 auto; width: 100%; border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 7px; background: var(--bg); padding: 8px 10px; display: grid; grid-template-columns: auto repeat(4, minmax(110px, 1fr)); gap: 6px 14px; align-items: baseline; font-size: 11.5px; }
-.status-panel b { color: var(--text); } .status-label { color: var(--text-dim); font-size: 11px; text-transform: uppercase; font-weight: 800; letter-spacing: .06em; } .status-value { color: var(--text); } .status-badge { border-radius: 999px; padding: 2px 7px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; } .status-badge.production { background: rgba(63,125,82,.16); color: var(--good); } .status-badge.partial { background: rgba(227,161,59,.2); color: #8a5800; } .status-badge.exploratory { background: rgba(177,74,52,.15); color: var(--rust); }
-.guided-views { display:flex; align-items:center; gap:6px; flex-wrap:wrap; } .guided-views > span { font-size:11px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; } .guided-view { font:inherit; font-size:11.5px; padding:5px 8px; border:1px solid var(--border); border-radius:999px; background:var(--bg); color:var(--text); cursor:pointer; } .guided-view:hover,.guided-view.active { background:var(--amber); border-color:var(--amber); color:var(--night); }
-@media (max-width: 720px) { .status-panel { grid-template-columns: 1fr 1fr; } .status-panel > b { grid-column:1/-1; } body.mobile-filters-open .guided-views { display:flex; } }
-#analysisBar { flex: 0 0 auto; }
-#mapRegion { position: relative; flex: 1 1 auto; min-height: 0; }
 #mapWrap { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 .leaflet-popup-content-wrapper { background: var(--surface); color: var(--text); }
 .leaflet-popup-tip { background: var(--surface); }
@@ -190,7 +178,6 @@ body { display: flex; flex-direction: column; }
 .leg-biv-grid { display: grid; grid-template-columns: repeat(3, 16px); grid-template-rows: repeat(3, 16px); gap: 2px; margin: 6px 0; }
 .leg-biv-grid div { border-radius: 2px; }
 .leg-biv-axes { display: flex; justify-content: space-between; font-size: 11px; }
-#districtSearch { font: inherit; font-size: 13px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); width: 160px; }
 #searchResults { position: absolute; z-index: 1200; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,.2); max-height: 220px; overflow-y: auto; display: none; min-width: 180px; }
 #searchResults div { padding: 6px 12px; font-size: 13px; cursor: pointer; }
 #searchResults div:hover, #searchResults div.active-hl { background: var(--rust); color: #fff; }
@@ -215,45 +202,112 @@ body { display: flex; flex-direction: column; }
 .shape-icon.dia { transform: rotate(45deg); border-radius: 2px; }
 .shape-icon.dot { border-radius: 50%; }
 .shape-icon.ring { border-radius: 50%; box-shadow: inset 0 0 0 2px #fff; }
-#resetMapBtn, #shareUrlBtn, #downloadCsvBtn, #downloadGeoJsonBtn, #mobileFilterToggle { font: inherit; font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; }
-#resetMapBtn:hover, #shareUrlBtn:hover, #downloadCsvBtn:hover, #downloadGeoJsonBtn:hover, #mobileFilterToggle:hover { border-color: var(--amber); }
-.mobile-only { display: none; }
-.point-toggles-row { flex-basis: 100%; display: flex; gap: 6px; flex-wrap: wrap; align-items: flex-start; }
-.layer-group { border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
-.layer-group summary { cursor: pointer; padding: 5px 10px; font-size: 11.5px; font-weight: 700; color: var(--text-dim); list-style: none; user-select: none; }
+/* ── App shell: slim bar + left control panel + map ─────────────────────────────────────────── */
+#appbar { display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: var(--surface); border-bottom: 1px solid var(--border); flex: 0 0 auto; position: relative; z-index: 1600; }
+#appbar h1 { font-size: 16px; margin: 0; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+#appbar a.back { font-size: 13px; color: var(--text); text-decoration: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 8px; background: var(--bg); white-space: nowrap; }
+#appbar a.back:hover { border-color: var(--amber); }
+.search-wrap { position: relative; margin-left: auto; }
+#districtSearch { font: inherit; font-size: 13px; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); width: 230px; }
+#searchResults { top: calc(100% + 4px); left: 0; right: 0; }
+.appbar-actions { display: flex; align-items: center; gap: 8px; }
+.btn, .menu > summary { font: inherit; font-size: 13px; min-height: 34px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; white-space: nowrap; list-style: none; }
+.menu > summary::-webkit-details-marker { display: none; }
+.btn:hover, .menu > summary:hover { border-color: var(--amber); }
+.btn.primary { background: var(--amber); border-color: var(--amber); color: var(--night); font-weight: 700; }
+.menu { position: relative; }
+.menu-pop { position: absolute; right: 0; top: calc(100% + 6px); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.28); padding: 6px; min-width: 200px; display: flex; flex-direction: column; z-index: 2000; }
+.menu-pop button { font: inherit; font-size: 13px; text-align: left; padding: 9px 10px; border: none; border-radius: 6px; background: transparent; color: var(--text); cursor: pointer; }
+.menu-pop button:hover, .menu-link:hover { background: var(--bg); }
+.menu-link { display: none; font-size: 13px; padding: 9px 10px; border-radius: 6px; color: var(--text); text-decoration: none; }
+.t-short { display: none; }
+#appBody { display: flex; flex: 1 1 auto; min-height: 0; }
+#panel { width: 340px; flex: 0 0 340px; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--border); }
+#mapRegion { position: relative; flex: 1 1 auto; min-width: 0; min-height: 0; }
+.p-section { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+.p-section > h2, .p-head h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); margin: 0 0 10px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+.p-head { display: flex; align-items: baseline; justify-content: space-between; }
+.p-head h2 { margin-bottom: 8px; }
+.pill { font-size: 11px; font-weight: 700; letter-spacing: 0; text-transform: none; padding: 1px 8px; border-radius: 999px; background: var(--amber); color: var(--night); }
+.pill:empty { display: none; }
+.link-btn { font: inherit; font-size: 12px; background: none; border: none; color: var(--text-dim); text-decoration: underline; cursor: pointer; padding: 4px; }
+.link-btn:hover { color: var(--text); }
+.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; font-size: 12px; color: var(--text-dim); }
+.field > span { font-weight: 700; }
+#panel select { width: 100%; font: inherit; font-size: 14px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+#panel .seg { width: 100%; }
+#panel .seg button { flex: 1; padding: 8px 6px; font-size: 13px; }
+.check { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; padding: 6px 0; color: var(--text); cursor: pointer; }
+.check input { margin-top: 2px; }
+.indent { margin-left: 26px; display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+.adv-sub { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 800; margin: 14px 0 4px; padding-top: 12px; border-top: 1px solid var(--border); }
+.quick-views { display: grid; gap: 8px; }
+.guided-view { font: inherit; text-align: left; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--text); cursor: pointer; font-size: 13px; }
+.guided-view b { display: block; font-weight: 700; }
+.guided-view small { display: block; color: var(--text-dim); font-size: 11.5px; margin-top: 2px; line-height: 1.35; }
+.guided-view:hover { border-color: var(--amber); }
+.guided-view.active { border-color: var(--amber); box-shadow: inset 3px 0 0 var(--amber); }
+/* data status: compact card, collapsible */
+.status-panel { border: 1px solid var(--border); border-left: 3px solid var(--amber); border-radius: 8px; background: var(--bg); padding: 8px 10px; display: grid; gap: 6px; font-size: 12px; cursor: pointer; }
+.status-panel > b { color: var(--text); font-size: 12.5px; }
+.status-panel > b::after { content: ' ▾'; color: var(--text-dim); }
+.status-panel.expanded > b::after { content: ' ▴'; }
+.status-panel:not(.expanded) > :not(b) { display: none; }
+.status-label { color: var(--text-dim); font-size: 11px; text-transform: uppercase; font-weight: 800; letter-spacing: .06em; }
+.status-value { color: var(--text); }
+.status-badge { border-radius: 999px; padding: 2px 7px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+.status-badge.production { background: rgba(63,125,82,.16); color: var(--good); }
+.status-badge.partial { background: rgba(227,161,59,.2); color: #8a5800; }
+.status-badge.exploratory { background: rgba(177,74,52,.15); color: var(--rust); }
+/* layers: a quiet vertical list */
+.point-toggles-row { display: block; }
+.layer-group { border-bottom: 1px solid var(--border); }
+.layer-group:last-child { border-bottom: none; }
+.layer-group summary { cursor: pointer; padding: 10px 2px; font-size: 13px; font-weight: 700; color: var(--text); list-style: none; user-select: none; display: flex; align-items: center; gap: 8px; }
 .layer-group summary::-webkit-details-marker { display: none; }
-.layer-group summary::before { content: '▸ '; display: inline-block; }
-.layer-group[open] summary::before { content: '▾ '; }
-.layer-group[open] summary { color: var(--text); border-bottom: 1px solid var(--border); }
-.layer-group-body { display: flex; gap: 10px; flex-wrap: wrap; padding: 8px 10px; }
+.layer-group summary::before { content: '▸'; color: var(--text-dim); width: 12px; }
+.layer-group[open] summary::before { content: '▾'; }
+.layer-group summary .grp-count { margin-left: auto; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--amber); color: var(--night); }
+.layer-group summary .grp-count:empty { display: none; }
+.layer-group-body { display: flex; flex-direction: column; gap: 2px; padding: 0 2px 10px 20px; }
+.layer-group-body label { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 5px 0; cursor: pointer; }
+.layer-group-body .seg { width: auto; }
+.layer-group-body .seg button { flex: none; padding: 5px 10px; font-size: 12px; }
+details.adv > summary { cursor: pointer; list-style: none; user-select: none; }
+details.adv > summary::-webkit-details-marker { display: none; }
+details.adv > summary h2 { margin: 0; }
+details.adv > summary h2::before { content: '▸'; width: 12px; }
+details.adv[open] > summary h2::before { content: '▾'; }
+details.adv[open] > summary h2 { margin-bottom: 10px; }
+.adv-body .layer-group { border-top: 1px solid var(--border); border-bottom: none; margin-top: 12px; }
+.adv-body .layer-group-body { padding-left: 2px; }
+/* legends and drawer coexistence on desktop */
+.point-legend { right: 10px; }
+#mapRegion:has(#drawer.open) .point-legend { right: 356px; }
+@media (min-width: 721px) { body.panel-hidden #panel { display: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 @media (max-width: 720px) {
-  .mobile-only { display: inline-block; }
-  body #topbar > label, body #topbar > .seg, body #topbar > div:not(#pointLayerToggles), body #analysisBar, body #pointLayerToggles { display: none; }
-  body.mobile-filters-open #analysisBar { display: flex; }
-  body.mobile-filters-open #topbar > label, body.mobile-filters-open #topbar > .seg, body.mobile-filters-open #topbar > div:not(#pointLayerToggles), body.mobile-filters-open #analysisBar > label, body.mobile-filters-open #analysisBar > .seg, body.mobile-filters-open #analysisBar > span, body.mobile-filters-open #pointLayerToggles { display: flex; }
-  body.mobile-filters-open #topbar, body.mobile-filters-open #analysisBar { position: fixed; left: 0; right: 0; z-index: 1500; overflow-y: auto; flex-direction: column; align-items: stretch; border-top: 1px solid var(--border); box-shadow: 0 -4px 16px rgba(0,0,0,.2); }
-  body.mobile-filters-open #topbar { top: 18vh; bottom: 120px; max-height: none; }
-  body.mobile-filters-open #analysisBar { top: auto; bottom: 0; height: 120px; max-height: 120px; }
-  body.mobile-filters-open #mobileFilterToggle { order: -10; position: sticky; top: 0; z-index: 3; align-self: flex-end; background: var(--surface); border-color: var(--amber); }
-  body.mobile-filters-open #topbar, body.mobile-filters-open #analysisBar { overflow-x: hidden; flex-wrap: nowrap; }
-  body.mobile-filters-open #topbar > *, body.mobile-filters-open #analysisBar > * { flex-shrink: 0; }
-  body.mobile-filters-open #pointLayerToggles { width: 100%; flex-direction: column; flex-wrap: nowrap; }
-  body.mobile-filters-open .layer-group { width: 100%; min-width: 0; }
-  body.mobile-filters-open .layer-group-body { flex-direction: column; }
-  body.mobile-filters-open .layer-group-body label { width: 100%; white-space: normal; min-height: 40px; align-items: center; }
-  body.mobile-filters-open .layer-group summary { padding: 12px 10px; }
-  /* Data status is long on a phone; collapse to its title line and expand on tap. */
-  .status-panel { cursor: pointer; }
-  .status-panel:not(.expanded) > :not(b) { display: none; }
-  .status-panel > b::after { content: ' ▾'; color: var(--text-dim); }
-  .status-panel.expanded > b::after { content: ' ▴'; }
+  #appbar { flex-wrap: wrap; row-gap: 8px; padding: 8px 10px; }
+  #appbar h1 { font-size: 15px; flex: 1 1 0; }
+  .t-long { display: none; } .t-short { display: inline; }
+  #appbar a.back { display: none; }
+  .menu-link { display: block; }
+  #mobileFilterToggle { min-width: 40px; padding: 6px 10px; font-size: 16px; }
+  .appbar-actions { margin-left: 0; }
+  .search-wrap { order: 5; flex: 1 1 100%; margin-left: 0; }
+  #districtSearch { width: 100%; font-size: 16px; }
+  .appbar-actions { margin-left: auto; }
+  .btn, .menu > summary { min-height: 40px; }
+  #panel { position: fixed; left: 0; right: 0; bottom: 0; top: auto; width: auto; flex: none; height: 78vh; z-index: 1500; border-right: none; border-top: 1px solid var(--border); border-radius: 14px 14px 0 0; box-shadow: 0 -8px 24px rgba(0,0,0,.35); transform: translateY(105%); transition: transform .2s ease; visibility: hidden; }
+  body.mobile-filters-open #panel { transform: translateY(0); visibility: visible; }
+  .layer-group summary { padding: 13px 2px; }
+  .layer-group-body label, .check { min-height: 40px; }
+  .guided-view { padding: 12px; }
   #drawer { top: auto; left: 0; right: 0; width: auto; max-width: none; height: 70vh; bottom: 0; transform: translateY(100%); border-left: none; border-top: 1px solid var(--border); border-radius: 12px 12px 0 0; }
   #drawer.open { transform: translateY(0); }
   .point-legend { right: 10px !important; bottom: 12px; max-width: calc(100vw - 20px); max-height: 34vh; overflow-y: auto; }
   .leg { max-width: calc(100vw - 20px); bottom: 12px; }
   #wardLegend { left: 10px; max-width: calc(100vw - 20px); }
-  #topbar { padding: 8px 10px; } #analysisBar label { min-width: 0; width: 100%; } #analysisBar select { min-width: 0; max-width: 100%; width: auto; flex: 1; } #topbar h1 { max-width: calc(100vw - 145px); white-space: normal; line-height: 1.1; } #topbar a.back { padding: 6px 8px; }
   .leaflet-control-zoom { margin-top: 10px !important; }
 }
 .layer-count { color: var(--text-dim); font-size: 11px; }
@@ -267,14 +321,11 @@ body { display: flex; flex-direction: column; }
 .landuse-legend.show { display: flex; }
 .landuse-legend span { display: inline-flex; align-items: center; gap: 4px; }
 .landuse-legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
-.point-legend { position: absolute; bottom: 20px; right: 356px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none; }
+.point-legend { position: absolute; bottom: 20px; right: 10px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 11px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); display: none; }
 .point-legend.show { display: block; }
 .point-legend .row { display: flex; align-items: center; gap: 7px; padding: 2px 0; }
 #wardLegend { position: absolute; bottom: 20px; left: 240px; z-index: 1000; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; font-size: 11.5px; color: var(--text-dim); box-shadow: 0 2px 10px rgba(0,0,0,.15); max-width: 240px; display: none; }
 #wardLegend.show { display: block; }
-#analysisBar { display: flex; align-items: center; gap: 10px; padding: 8px 16px; background: var(--bg); border-bottom: 1px solid var(--border); flex-wrap: wrap; font-size: 12.5px; }
-#analysisBar label { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
-#analysisBar select { font: inherit; font-size: 12.5px; padding: 5px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text); }
 .analysis-summary { font-size: 12px; color: var(--text-dim); }
 .analysis-summary b { color: var(--text); }
 .zone-match-ring { filter: drop-shadow(0 0 3px var(--amber)); }
@@ -293,33 +344,48 @@ body { display: flex; flex-direction: column; }
 </style>
 </head>
 <body>
-<div id="topbar" role="banner">
-  <h1>Delhi Safety &amp; Infrastructure Explorer</h1>
+<header id="appbar" role="banner">
+  <button id="mobileFilterToggle" class="btn" type="button" aria-expanded="true" aria-controls="panel" aria-label="Hide map controls">☰ Controls</button>
+  <h1><span class="t-long">Delhi Safety &amp; Infrastructure Explorer</span><span class="t-short">Delhi Safety Explorer</span></h1>
   <a class="back" href="delhi_safety_dashboard.html">← Dashboard</a>
-  <label>Metric: <select id="metricSelect"></select></label>
-  <div class="seg" id="yearToggle"></div>
-  <div class="seg" id="rateToggle"></div>
-  <div class="seg" id="displayModeToggle"></div>
-  <div class="guided-views" aria-label="Guided map views"><span>Guided views</span><button class="guided-view" type="button" data-view="crime-light">High crime + low lighting</button><button class="guided-view" type="button" data-view="fatal-corridors">Fatal-crash corridors</button><button class="guided-view" type="button" data-view="transit-gaps">Transit-access gaps</button></div>
-  <label><input type="checkbox" id="chkBivariate"> Bivariate mode</label>
-  <label id="bivInfraWrap" style="display:none">vs. <select id="bivInfraSelect"></select></label>
-  <label><input type="checkbox" id="chkHeatmap"> Heatmap (crash zones)</label>
-  <label><input type="checkbox" id="chkWardBivariate"> Ward bivariate (290 wards)</label>
-  <label id="wardInfraWrap" style="display:none">
-    <select id="wardInfraXSelect"></select> × <select id="wardInfraYSelect"></select>
-  </label>
-  <label><input type="checkbox" id="chkWardExploratoryIndex"> Liquor-crash exploratory index (wards)</label>
-  <div style="position:relative;">
-    <input id="districtSearch" type="text" placeholder="Search district…" autocomplete="off">
+  <div class="search-wrap">
+    <input id="districtSearch" type="text" placeholder="Search district…" autocomplete="off" aria-label="Search for a district">
     <div id="searchResults"></div>
   </div>
-  <button id="resetMapBtn" type="button">⟲ Reset map</button>
-  <button id="shareUrlBtn" type="button">🔗 Share view</button>
-  <button id="downloadCsvBtn" type="button">⬇ CSV</button>
-  <button id="downloadGeoJsonBtn" type="button">⬇ GeoJSON</button>
-  <button id="mobileFilterToggle" type="button" class="mobile-only" aria-expanded="false" aria-controls="topbar analysisBar" aria-label="Open map filters">☰ Filters</button>
-  <div class="point-toggles-row" id="pointLayerToggles">
-    <details class="layer-group" open>
+  <div class="appbar-actions">
+    <button id="shareUrlBtn" class="btn primary" type="button">🔗 Share</button>
+    <details id="moreMenu" class="menu">
+      <summary aria-label="More actions">⋯</summary>
+      <div class="menu-pop">
+        <a class="menu-link" href="delhi_safety_dashboard.html">← Back to dashboard</a>
+        <button id="resetMapBtn" type="button">⟲ Reset map</button>
+        <button id="downloadCsvBtn" type="button">⬇ Download CSV</button>
+        <button id="downloadGeoJsonBtn" type="button">⬇ Download GeoJSON</button>
+      </div>
+    </details>
+  </div>
+</header>
+<div id="appBody">
+<aside id="panel" aria-label="Map controls">
+  <section class="p-section" id="secShow">
+    <h2>Show on map</h2>
+    <label class="field"><span>Metric</span><select id="metricSelect"></select></label>
+    <div class="field"><span>Year</span><div class="seg" id="yearToggle"></div></div>
+    <div class="field"><span>Calculation</span><div class="seg" id="rateToggle"></div></div>
+    <div class="status-panel" id="dataStatus" aria-live="polite"></div>
+  </section>
+  <section class="p-section" id="secQuick">
+    <h2>Quick views</h2>
+    <div class="quick-views" aria-label="Guided map views">
+      <button class="guided-view" type="button" data-view="crime-light"><b>High crime + low lighting</b><small>Total IPC crime against combined streetlight coverage</small></button>
+      <button class="guided-view" type="button" data-view="fatal-corridors"><b>Fatal-crash corridors</b><small>Fatal crashes in crash-prone zones, 2024</small></button>
+      <button class="guided-view" type="button" data-view="transit-gaps"><b>Transit-access gaps</b><small>Total IPC crime against metro-gate density, with bus stops</small></button>
+    </div>
+  </section>
+  <section class="p-section" id="secLayers">
+    <div class="p-head"><h2>Map layers <span class="pill" id="layersActive"></span></h2><button id="clearLayersBtn" class="link-btn" type="button">Clear all</button></div>
+    <div class="point-toggles-row" id="pointLayerToggles">
+    <details class="layer-group">
       <summary>Police &amp; emergency</summary>
       <div class="layer-group-body">
         <label><input type="checkbox" id="chkPolice"> Police stations <span class="layer-count" id="cntPolice"></span></label>
@@ -327,7 +393,7 @@ body { display: flex; flex-direction: column; }
         <label><input type="checkbox" id="chkHospitals"> Hospitals <span class="layer-count" id="cntHospitals"></span></label>
       </div>
     </details>
-    <details class="layer-group" open>
+    <details class="layer-group">
       <summary>Crash zones</summary>
       <div class="layer-group-body">
         <label><input type="checkbox" id="chkZones"> Crash zones <span class="layer-count" id="cntZones"></span></label>
@@ -335,7 +401,7 @@ body { display: flex; flex-direction: column; }
         <label><input type="checkbox" id="chkCrashZones2024Approx"> Crash zones 2024 (full, approx.) <span class="layer-count" id="cntCrashZones2024Approx"></span></label>
       </div>
     </details>
-    <details class="layer-group" open>
+    <details class="layer-group">
       <summary>Streetlights (PAPL + OSM)</summary>
       <div class="layer-group-body">
         <label><input type="checkbox" id="chkPaplStreetlights" title="PAPL streetlight survey cells; marker labels show recorded light counts"> PAPL survey cells <span class="layer-count" id="cntPaplStreetlights"></span></label>
@@ -381,28 +447,40 @@ body { display: flex; flex-direction: column; }
         </div>
       </div>
     </details>
+    </div>
+  </section>
+  <details class="p-section adv" id="advanced">
+    <summary><h2>Advanced analysis <span class="pill" id="advActive"></span></h2></summary>
+    <div class="adv-body">
+      <div class="field"><span>Map style</span><div class="seg" id="displayModeToggle"></div></div>
+      <label class="check"><input type="checkbox" id="chkBivariate"> Compare crime with infrastructure (bivariate)</label>
+      <label class="indent" id="bivInfraWrap" style="display:none"><span>Infrastructure</span><select id="bivInfraSelect"></select></label>
+      <label class="check"><input type="checkbox" id="chkHeatmap"> Crash-zone heatmap</label>
+      <label class="check"><input type="checkbox" id="chkUnsafe"> Composite unsafe-areas score</label>
+      <span id="unsafeMethodLink" style="display:none; cursor:pointer; text-decoration:underline; color:var(--text-dim); font-size:12px; margin-left:26px;">ⓘ methodology</span>
+      <div class="adv-sub">Ward level (290 wards)</div>
+      <label class="check"><input type="checkbox" id="chkWardBivariate"> Ward bivariate</label>
+      <label class="indent" id="wardInfraWrap" style="display:none"><span>Compare</span><select id="wardInfraXSelect"></select><span>against</span><select id="wardInfraYSelect"></select></label>
+      <label class="check"><input type="checkbox" id="chkWardExploratoryIndex"> Liquor-crash exploratory index</label>
+      <div class="adv-sub">Spatial analysis</div>
+      <label class="field"><span>Analysis</span><select id="analysisSelect">
+        <option value="none">None</option>
+        <option value="crashesNearLiquor">Crashes near liquor shops</option>
+        <option value="crashesNoSurveillance">Crashes without nearby surveillance</option>
+        <option value="crashesNearBus">Crashes near bus stops</option>
+        <option value="weakPoliceCoverage">High-crime districts, weak police coverage</option>
+      </select></label>
+      <div class="field"><span>Radius</span><div class="seg" id="radiusToggle"></div></div>
+      <div class="analysis-summary" id="analysisSummary"></div>
     <details class="layer-group">
       <summary>Master Plan 2047 vs current</summary>
       <div class="layer-group-body">
         ${mpd2047CitywidePanelHtml()}
       </div>
     </details>
-  </div>
-</div>
-<div id="analysisBar">
-  <label>Spatial analysis: <select id="analysisSelect">
-    <option value="none">None</option>
-    <option value="crashesNearLiquor">Crashes near liquor shops</option>
-    <option value="crashesNoSurveillance">Crashes without nearby surveillance</option>
-    <option value="crashesNearBus">Crashes near bus stops</option>
-    <option value="weakPoliceCoverage">High-crime districts, weak police coverage</option>
-  </select></label>
-  <label>Radius: <div class="seg" id="radiusToggle"></div></label>
-  <label><input type="checkbox" id="chkUnsafe"> Show unsafe areas (composite)</label>
-  <span id="unsafeMethodLink" style="display:none; cursor:pointer; text-decoration:underline; color:var(--text-dim); font-size:11.5px;">ⓘ methodology</span>
-  <span class="analysis-summary" id="analysisSummary"></span>
-</div>
-<div class="status-panel" id="dataStatus" aria-live="polite"></div>
+    </div>
+  </details>
+</aside>
 <div id="mapRegion">
   <div id="mapWrap"><div id="map" role="region" aria-label="Map of Delhi police districts with selectable data layers"></div></div>
   <div class="leg" id="legend"></div>
@@ -413,6 +491,7 @@ body { display: flex; flex-direction: column; }
     <button class="drawer-close" id="drawerClose" aria-label="Close">✕</button>
     <div id="drawerBody"></div>
   </div>
+</div>
 </div>
 <div id="methodOverlay">
   <div id="methodPanel2">
@@ -1273,24 +1352,32 @@ document.getElementById('shareUrlBtn').addEventListener('click', () => {
   setTimeout(() => { btn.textContent = original; }, 1500);
 });
 
-// ── Mobile: filter controls collapse into a bottom sheet below 720px (see the matching
-// @media block in <style>); the district drawer also becomes a bottom sheet on mobile via CSS. ──
+// ── Control panel: a left sidebar on desktop (the toggle hides it for more map), a bottom sheet on
+// phones (see the matching @media block in <style>). The district drawer is also a bottom sheet there. ──
 const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+const phoneQuery = window.matchMedia('(max-width: 720px)');
+function syncPanelToggle() {
+  const phone = phoneQuery.matches;
+  const open = phone ? document.body.classList.contains('mobile-filters-open') : !document.body.classList.contains('panel-hidden');
+  mobileFilterToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  mobileFilterToggle.setAttribute('aria-label', open ? 'Hide map controls' : 'Show map controls');
+  mobileFilterToggle.textContent = phone ? (open ? '✕' : '☰') : '☰ Controls';
+}
 function setMobileFiltersOpen(open) {
   document.body.classList.toggle('mobile-filters-open', open);
-  mobileFilterToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  mobileFilterToggle.setAttribute('aria-label', open ? 'Close map filters' : 'Open map filters');
-  mobileFilterToggle.textContent = open ? '✕ Close filters' : '☰ Filters';
+  syncPanelToggle();
 }
 mobileFilterToggle.addEventListener('click', () => {
-  setMobileFiltersOpen(!document.body.classList.contains('mobile-filters-open'));
+  if (phoneQuery.matches) { setMobileFiltersOpen(!document.body.classList.contains('mobile-filters-open')); return; }
+  document.body.classList.toggle('panel-hidden');
+  syncPanelToggle();
+  map.invalidateSize({ animate: false });
 });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && document.body.classList.contains('mobile-filters-open')) setMobileFiltersOpen(false);
 });
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 720 && document.body.classList.contains('mobile-filters-open')) setMobileFiltersOpen(false);
-});
+phoneQuery.addEventListener('change', () => { document.body.classList.remove('mobile-filters-open'); syncPanelToggle(); });
+syncPanelToggle();
 
 // ── Point layers, all off by default so the map opens uncluttered ──
 // Small colored shape icons (square/triangle/diamond/ring) instead of uniform circles, so
@@ -1577,6 +1664,9 @@ function setPointLayer(id, on) {
 }
 function applyGuidedView(view) {
   document.querySelectorAll('.guided-view').forEach(btn => btn.classList.toggle('active', btn.dataset.view === view));
+  // A quick view is a curated state, not an add-on: start from no point layers so the previous view's
+  // layers do not linger (e.g. streetlights staying on in the fatal-crash view).
+  document.querySelectorAll('#pointLayerToggles input[type=checkbox]:checked').forEach(c => { c.checked = false; c.dispatchEvent(new Event('change')); });
   if (view === 'crime-light') {
     metricSelect.value = 'totalIPC'; activeYear = '2024'; rateMode = 'density'; bivariateMode = true; bivariateInfra = 'streetlightCombined'; bivInfraSelect.value = bivariateInfra;
     document.getElementById('chkBivariate').checked = true; document.getElementById('bivInfraWrap').style.display = '';
@@ -1924,30 +2014,78 @@ function applyDeferredUrlState() {
   updateUrlState();
 }
 // Segmented controls show state only by colour; mirror it into aria-pressed for assistive tech.
-// Observing #topbar only (not the whole page) keeps this off Leaflet's hot hover path.
+// Observing #panel only (not the whole page) keeps this off Leaflet's hot hover path.
 let segAriaQueued = false;
 function syncSegAria() {
   segAriaQueued = false;
   document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false'));
 }
-new MutationObserver(() => { if (!segAriaQueued) { segAriaQueued = true; requestAnimationFrame(syncSegAria); } })
-  .observe(document.getElementById('topbar'), { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
+new MutationObserver(() => { if (!segAriaQueued) { segAriaQueued = true; setTimeout(syncSegAria, 0); } })
+  .observe(document.getElementById('panel'), { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
 syncSegAria();
-// Data status: always open on desktop; on phones CSS collapses it to its title line and a tap expands it.
+// Data status: a compact card in the panel. Open by default on desktop, collapsed on phones; a tap or
+// Enter/Space toggles it. The container persists across re-renders, so the state survives metric changes.
 (function () {
   const el = document.getElementById('dataStatus');
   const phone = window.matchMedia('(max-width: 720px)');
-  function applyMode() {
-    if (phone.matches) { el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.setAttribute('aria-expanded', el.classList.contains('expanded') ? 'true' : 'false'); }
-    else { el.removeAttribute('role'); el.removeAttribute('tabindex'); el.removeAttribute('aria-expanded'); el.classList.remove('expanded'); }
-  }
-  function toggle() { if (!phone.matches) return; const open = el.classList.toggle('expanded'); el.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+  el.setAttribute('role', 'button');
+  el.setAttribute('tabindex', '0');
+  function sync() { el.setAttribute('aria-expanded', el.classList.contains('expanded') ? 'true' : 'false'); }
+  function toggle() { el.classList.toggle('expanded'); sync(); }
+  if (!phone.matches) el.classList.add('expanded');
   el.addEventListener('click', toggle);
   el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
-  phone.addEventListener('change', applyMode);
-  applyMode();
+  sync();
+})();
+// Panel feedback: active counts on each layer group and on Advanced, Clear all, the overflow menu, and
+// keeping the map sized to its container.
+(function () {
+  const groups = Array.from(document.querySelectorAll('#pointLayerToggles .layer-group'));
+  groups.forEach(g => {
+    const badge = document.createElement('span');
+    badge.className = 'grp-count';
+    badge.setAttribute('aria-hidden', 'true');
+    g.querySelector('summary').appendChild(badge);
+  });
+  const pointBoxes = () => Array.from(document.querySelectorAll('#pointLayerToggles input[type=checkbox]'));
+  function refresh() {
+    let total = 0;
+    groups.forEach(g => {
+      const n = g.querySelectorAll('input[type=checkbox]:checked').length;
+      total += n;
+      g.querySelector('.grp-count').textContent = n ? String(n) : '';
+    });
+    document.getElementById('layersActive').textContent = total ? total + ' on' : '';
+    document.getElementById('clearLayersBtn').style.visibility = total ? 'visible' : 'hidden';
+    const advOn = ['chkBivariate', 'chkHeatmap', 'chkUnsafe', 'chkWardBivariate', 'chkWardExploratoryIndex']
+      .filter(id => document.getElementById(id).checked).length
+      + (document.getElementById('analysisSelect').value !== 'none' ? 1 : 0)
+      + (displayMode !== 'choropleth' ? 1 : 0);
+    document.getElementById('advActive').textContent = advOn ? advOn + ' on' : '';
+  }
+  let queued = false;
+  function schedule() {
+    if (queued) return;
+    queued = true;
+    setTimeout(() => { queued = false; refresh(); }, 0);
+  }
+  window.schedulePanelBadges = schedule;
+  document.addEventListener('change', schedule);
+  document.addEventListener('click', schedule);
+  document.getElementById('clearLayersBtn').addEventListener('click', () => {
+    pointBoxes().forEach(chk => { if (chk.checked) { chk.checked = false; chk.dispatchEvent(new Event('change')); } });
+    schedule();
+  });
+  const menu = document.getElementById('moreMenu');
+  document.addEventListener('click', e => {
+    if (menu.open && (!menu.contains(e.target) || e.target.closest('.menu-pop button'))) menu.open = false;
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') menu.open = false; });
+  if (window.ResizeObserver) new ResizeObserver(() => map.invalidateSize({ animate: false })).observe(document.getElementById('mapRegion'));
+  refresh();
 })();
 applyDeferredUrlState();
+if (window.schedulePanelBadges) window.schedulePanelBadges();
 </script>
 </body>
 </html>
