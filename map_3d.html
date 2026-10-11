@@ -96,6 +96,8 @@
   <label for="height">Extrusion height</label>
   <input id="height" type="range" min="0" max="100" value="55">
 
+  <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="bldg" type="checkbox" style="width:auto;min-height:0"> 3D buildings (zoom in past street level; wards fade out)</label>
+
   <div class="row">
     <button id="tilt" type="button">Top-down / 3D</button>
     <button id="north" type="button">North up</button>
@@ -153,7 +155,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var metricSel = $('metric'), basemapSel = $('basemap'), heightEl = $('height'), yearEl = $('year');
   var wards = null, map, popup, touring = false, tourTimer = null, playTimer = null;
-  var metric = METRICS[0], year = 2024, pinned = null, basemapKey = 'osm';
+  var metric = METRICS[0], year = 2024, pinned = null, basemapKey = 'osm', buildingsOn = false;
   var districtArea = {}, crimeByYear = {}; // crimeByYear[year][district] = row
   var yearMax = {};                          // yearMax[metricKey] = max value over all years
   var reducedMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -168,6 +170,7 @@
     document.documentElement.setAttribute('data-theme', t);
     safe(function () { localStorage.setItem('ds-theme', t); });
     if (map && map.getLayer('bg')) map.setPaintProperty('bg', 'background-color', t === 'light' ? '#dfe5ee' : '#10151f');
+    if (map && map.getLayer('buildings-3d')) map.setPaintProperty('buildings-3d', 'fill-extrusion-color', t === 'light' ? '#c9ced8' : '#aab3c5');
   }
   function initialTheme() {
     var t = safe(function () { return localStorage.getItem('ds-theme'); });
@@ -232,7 +235,18 @@
 
   function updateHeight() {
     var scale = Number(heightEl.value) / 100 * MAXH;
-    map.setPaintProperty('wards-3d', 'fill-extrusion-height', ['*', ['get', '_r'], scale]);
+    // With buildings on, wards flatten and fade as you zoom to street level so the buildings show through.
+    map.setPaintProperty('wards-3d', 'fill-extrusion-height', buildingsOn
+      ? ['interpolate', ['linear'], ['zoom'], 12.5, ['*', ['get', '_r'], scale], 14.5, ['*', ['get', '_r'], 0]]
+      : ['*', ['get', '_r'], scale]);
+    map.setPaintProperty('wards-3d', 'fill-extrusion-opacity', buildingsOn
+      ? ['interpolate', ['linear'], ['zoom'], 12.5, 0.88, 14.5, 0.18] : 0.88);
+  }
+
+  function setBuildings(on) {
+    buildingsOn = on; $('bldg').checked = on;
+    map.setLayoutProperty('buildings-3d', 'visibility', on ? 'visible' : 'none');
+    updateHeight();
   }
 
   function setBasemap(key) {
@@ -381,6 +395,7 @@
     var q = new URLSearchParams();
     q.set('m', metric.key); q.set('y', year); q.set('b', basemapKey); q.set('h', heightEl.value);
     q.set('v', [c.lng.toFixed(4), c.lat.toFixed(4), map.getZoom().toFixed(2), map.getPitch().toFixed(0), map.getBearing().toFixed(0)].join(','));
+    if (buildingsOn) q.set('bl', '1');
     if (pinned !== null) q.set('w', pinned);
     safe(function () { history.replaceState(null, '', '#' + q.toString()); });
   }
@@ -390,6 +405,7 @@
     var m = q.get('m'); if (m) { var mi = METRICS.findIndex(function (x) { return x.key === m; }); if (mi >= 0) out.metric = mi; }
     var y = parseInt(q.get('y'), 10); if (YEARS.indexOf(y) >= 0) out.year = y;
     var b = q.get('b'); if (b === 'osm' || b === 'sat' || b === 'none') out.basemap = b;
+    if (q.get('bl') === '1') out.buildings = true;
     var h = parseInt(q.get('h'), 10); if (h >= 0 && h <= 100) out.height = h;
     var v = (q.get('v') || '').split(',').map(Number);
     if (v.length === 5 && v.every(isFinite) && v[0] > 60 && v[0] < 90 && v[1] > 5 && v[1] < 40 && v[2] >= 3 && v[2] <= 19) out.view = v;
@@ -419,11 +435,18 @@
 
     map.once('style.load', function () {
       map.addSource('wards', { type: 'geojson', data: wards });
+      // Building footprints and heights: OpenStreetMap data via OpenFreeMap vector tiles (loaded only when switched on).
+      map.addSource('buildings', { type: 'vector', url: 'https://tiles.openfreemap.org/planet', attribution: '© OpenFreeMap © OpenMapTiles, data from OpenStreetMap' });
+      map.addLayer({ id: 'buildings-3d', type: 'fill-extrusion', source: 'buildings', 'source-layer': 'building', minzoom: 14,
+        layout: { visibility: 'none' },
+        paint: { 'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0], 'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 6],
+          'fill-extrusion-color': document.documentElement.getAttribute('data-theme') === 'light' ? '#c9ced8' : '#aab3c5', 'fill-extrusion-opacity': 0.85 } });
       map.addLayer({ id: 'wards-3d', type: 'fill-extrusion', source: 'wards',
         paint: { 'fill-extrusion-color': ['get', '_color'], 'fill-extrusion-height': 0, 'fill-extrusion-base': 0, 'fill-extrusion-opacity': 0.88, 'fill-extrusion-vertical-gradient': true } });
       map.addLayer({ id: 'wards-outline', type: 'line', source: 'wards', paint: { 'line-color': '#ffffff', 'line-opacity': 0.35, 'line-width': 0.6 } });
       map.addLayer({ id: 'wards-hin', type: 'line', source: 'wards', filter: ['==', ['get', 'highInjuryNetwork'], true], paint: { 'line-color': '#f0a63c', 'line-width': 2.2 } });
       map.addLayer({ id: 'wards-pin', type: 'line', source: 'wards', filter: ['==', ['get', '_id'], -1], paint: { 'line-color': '#ffffff', 'line-width': 3.5 } });
+      if (initial.buildings) { buildingsOn = true; $('bldg').checked = true; map.setLayoutProperty('buildings-3d', 'visibility', 'visible'); }
       applyMetric();
       if (initial.ward !== undefined) pinWard(initial.ward);
 
@@ -450,6 +473,7 @@
   });
   yearEl.addEventListener('input', function () { stopPlay(); setYear(Number(yearEl.value)); });
   $('play').addEventListener('click', function () { if (playTimer) stopPlay(); else startPlay(); });
+  $('bldg').addEventListener('change', function () { setBuildings($('bldg').checked); scheduleUrl(); });
   basemapSel.addEventListener('change', function () { setBasemap(basemapSel.value); scheduleUrl(); });
   heightEl.addEventListener('input', function () { updateHeight(); scheduleUrl(); });
   $('tilt').addEventListener('click', function () { stopTour(); map.easeTo({ pitch: map.getPitch() > 10 ? 0 : HOME.pitch, duration: 700 }); });
