@@ -458,7 +458,7 @@
       (cam && p.cctv_priority_candidate && cam.n250 === 0 ? '<p class="cav" style="color:var(--accent)">The report recommends CCTV here; no mapped camera within 250 m (OpenStreetMap may be incomplete).</p>' : '') +
       '<p style="margin:8px 0 0"><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + c0[1] + ',' + c0[0] + '" target="_blank" rel="noopener" style="color:var(--accent)">Street view near here &#8599;</a></p>' +
       '<button class="more" type="button" data-act="more" aria-expanded="' + ($('caption').classList.contains('open') ? 'true' : 'false') + '">' + ($('caption').classList.contains('open') ? 'Show less' : 'More detail') + '</button>' +
-      '<p class="cav">Delhi Road Crash Report 2024 (Traffic Police), Table 6.29 rank. The map position is an approximate landmark centre, not a surveyed location. The ring shows a 250 m zone. Cameras are points mapped in OpenStreetMap (public or private, not a complete list) and no video is shown.</p>';
+      '<p class="cav">Delhi Road Crash Report 2024 (Traffic Police), Table 6.29 rank. ' + (p._refined ? 'The map position was refined from OpenStreetMap roads and an independent geocode (moved about ' + p._refined.moved_m + ' m from the original estimate, uncertainty about ' + p._refined.uncertainty_m + ' m). It is not a surveyed crash location.' : 'The map position is an approximate landmark centre, not a surveyed location.') + ' The ring shows a 250 m zone. Cameras are points mapped in OpenStreetMap (public or private, not a complete list) and no video is shown.</p>';
   }
 
   function stopTour() {
@@ -709,9 +709,23 @@
     }
     buildSearch();
     init(readUrl());
-    loadJson('data/delhi_crash_prone_zones_2024_all_named_approx.geojson').then(function (g) {
+    // Positions: the original hand-placed estimates, except zones where the OSM audit recommends 'use_refined'
+    // (refined point on a major road, within 300 m of an independent geocode). See docs/CRASH_ZONE_COORDINATES.md.
+    var refinedUrl = 'data/audits/crash_zones_2024/crash_zone_coordinates_refined_2024.json';
+    Promise.all([
+      loadJson('data/delhi_crash_prone_zones_2024_all_named_approx.geojson'),
+      loadJson(refinedUrl).then(function (r) { return r; }, function () { return null; })
+    ]).then(function (res) {
+      var g = res[0], ref = {};
+      ((res[1] && res[1].zones) || []).forEach(function (z) { if (z.recommendation === 'use_refined' && z.refined) ref[z.location_name] = z; });
       crashZones = g.features.filter(function (f) { return f.properties.table_6_29_rank && f.geometry && f.geometry.type === 'Point'; })
-        .sort(function (a, b) { return a.properties.table_6_29_rank - b.properties.table_6_29_rank; }).slice(0, 10);
+        .sort(function (a, b) { return a.properties.table_6_29_rank - b.properties.table_6_29_rank; }).slice(0, 10)
+        .map(function (f) {
+          var r = ref[f.properties.location_name];
+          if (!r) return f;
+          var props = Object.assign({}, f.properties, { _refined: { moved_m: r.moved_m, uncertainty_m: r.uncertainty_m } });
+          return { type: 'Feature', properties: props, geometry: { type: 'Point', coordinates: [r.refined.lng, r.refined.lat] } };
+        });
       if (crashZones.length) $('tour').disabled = false;
     }, function () { $('tour').title = 'Crash zone data could not be loaded'; });
   }).catch(function (e) {
