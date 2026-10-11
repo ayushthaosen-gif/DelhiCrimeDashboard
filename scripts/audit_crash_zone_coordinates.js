@@ -6,12 +6,12 @@
 //   2. Road: distance to the nearest OSM major road whose name or ref matches the report's road name
 //      (local snapshot data/source/osm_major_roads_delhi_raw.json, no network needed).
 //   3. Geocode: distance to what OpenStreetMap Nominatim returns for the zone name (1 request/second,
-//      descriptive User-Agent; results cached in data/crash_zone_geocode_check_2024.json).
+//      descriptive User-Agent; results cached in data/audits/crash_zones_2024/crash_zone_geocode_check_2024.json).
 //
 //   node scripts/audit_crash_zone_coordinates.js            # uses the cache, fetches only missing queries
 //   node scripts/audit_crash_zone_coordinates.js --offline  # cache only, never touches the network
 //
-// Outputs: data/crash_zone_coordinate_audit_2024_review.csv and .json
+// Outputs: data/audits/crash_zones_2024/crash_zone_coordinate_audit_2024_review.csv and .json
 
 const fs = require('fs');
 const path = require('path');
@@ -21,9 +21,9 @@ const OFFLINE = process.argv.includes('--offline');
 const zonesFile = path.join(ROOT, 'data/delhi_crash_prone_zones_2024_all_named_approx.geojson');
 const wardsFile = path.join(ROOT, 'data/delhi_wards_infra.geojson');
 const roadsFile = path.join(ROOT, 'data/source/osm_major_roads_delhi_raw.json');
-const cacheFile = path.join(ROOT, 'data/crash_zone_geocode_check_2024.json');
-const outCsv = path.join(ROOT, 'data/crash_zone_coordinate_audit_2024_review.csv');
-const outJson = path.join(ROOT, 'data/crash_zone_coordinate_audit_2024_review.json');
+const cacheFile = path.join(ROOT, 'data/audits/crash_zones_2024/crash_zone_geocode_check_2024.json');
+const outCsv = path.join(ROOT, 'data/audits/crash_zones_2024/crash_zone_coordinate_audit_2024_review.csv');
+const outJson = path.join(ROOT, 'data/audits/crash_zones_2024/crash_zone_coordinate_audit_2024_review.json');
 
 const BBOX = { minLat: 28.35, maxLat: 28.95, minLng: 76.7, maxLng: 77.45 };
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
