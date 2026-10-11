@@ -34,7 +34,7 @@ test('recommendations follow the documented rules', () => {
     assert.ok(allowed.has(z.recommendation), z.location_name + ': unknown recommendation ' + z.recommendation);
     if (z.recommendation === 'use_refined') {
       assert.ok(z.moved_m >= 150 && z.moved_m <= 1500, z.location_name + ': use_refined must move 150 m to 1.5 km');
-      assert.ok(z.geocode && z.geocode.distance_to_refined_m <= 300, z.location_name + ': use_refined needs an agreeing geocode');
+      assert.ok(z.sources && z.sources.some(x => x.distance_to_refined_m <= 300), z.location_name + ': use_refined needs an agreeing independent source');
       assert.notEqual(z.confidence, 'low');
     }
     if (z.refined) {
@@ -44,11 +44,32 @@ test('recommendations follow the documented rules', () => {
   }
 });
 
-test('validation is reported honestly with its caveat', () => {
-  assert.ok(refined.validation.anchors >= 5);
-  assert.match(refined.validation.caveat, /not true crash positions/);
-  const { stored_point, refined_leave_one_out } = refined.validation.median_error_vs_geocode_m;
-  assert.equal(refined.validation.model_helps, stored_point - refined_leave_one_out >= 15 && refined_leave_one_out <= 0.8 * stored_point);
+test('validation is a leave-one-source-out comparison and is reported honestly', () => {
+  const v = refined.validation;
+  assert.ok(v.anchors >= 5 && v.pairs_tested >= 50);
+  assert.match(v.caveat, /NAMED PLACE/);
+  assert.match(v.caveat, /not where crashes occurred/);
+  const o = v.overall;
+  for (const id of ['layers_1_2', 'layers_1_3', 'layers_1_4']) assert.ok(o[id] && o[id].median_error_m > 0, id + ' missing from the comparison');
+  assert.ok(['layers_1_2', 'layers_1_3', 'layers_1_4'].includes(v.chosen_layer_set));
+  const best = Math.min(...['layers_1_2', 'layers_1_3', 'layers_1_4'].map(id => o[id].median_error_m));
+  assert.equal(o[v.chosen_layer_set].median_error_m, best, 'the chosen layer set must have the lowest median error');
+  assert.equal(v.model_helps, v.anchors >= 5 && o.stored_point_median_m - best >= 15 && best <= 0.8 * o.stored_point_median_m);
+});
+
+test('no automatic move is recommended when validation shows the layers do not beat the stored point', () => {
+  if (!refined.validation.model_helps) assert.equal(refined.zones.filter(z => z.recommendation === 'use_refined').length, 0);
+});
+
+test('every zone reports how well the independent sources agree', () => {
+  const allowed = new Set(['consistent', 'partial', 'conflicting', 'stored_point_only']);
+  for (const z of refined.zones) {
+    if (z.refined === null) continue;
+    assert.ok(allowed.has(z.evidence_agreement), z.location_name + ': ' + z.evidence_agreement);
+    assert.ok(z.evidence_spread_m >= 0);
+    if (z.evidence_agreement === 'consistent') assert.ok(z.evidence_spread_m <= 300);
+    if (z.evidence_agreement === 'conflicting') assert.ok(z.evidence_spread_m > 1000);
+  }
 });
 
 test('audit verdict counts add up', () => {

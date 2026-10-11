@@ -429,12 +429,18 @@
     return pts;
   }
   function num(v) { return v === null || v === undefined ? 'n/a' : v; }
+  function evidenceText(e) {
+    if (!e) return 'not checked';
+    var d = e.spread_m >= 1000 ? (e.spread_m / 1000).toFixed(1) + ' km' : e.spread_m + ' m';
+    return { consistent: 'sources agree (within ' + d + ')', partial: 'sources differ by ~' + d, conflicting: 'sources disagree by ~' + d, stored_point_only: 'unverified estimate' }[e.agreement] || 'not checked';
+  }
   function pair(flagged, f, t) { return flagged ? num(f) + ' / ' + num(t) : 'not flagged'; }
   function tourCaption(z, i, n) {
     var p = z.properties, c0 = z.geometry.coordinates, cam = cameraStats(c0[1], c0[0]);
     var rows = [
       ['Fatal / all crashes', num(p.all_fatal_crashes) + ' / ' + num(p.all_total_crashes)],
       ['Persons killed / injured', num(p.blackspot_persons_killed) + ' / ' + num(p.blackspot_persons_injured)],
+      ['Position evidence', evidenceText(p._evidence)],
       ['Mapped cameras within 250 m / 500 m', cam ? cam.n250 + ' / ' + cam.n500 : 'loading\u2026'],
       ['*Pedestrian fatal / all', pair(p.pedestrian_crash_prone, p.pedestrian_fatal_crashes, p.pedestrian_total_crashes)],
       ['*Two-wheeler fatal / all', pair(p.two_wheeler_crash_prone, p.two_wheeler_fatal_crashes, p.two_wheeler_total_crashes)],
@@ -716,14 +722,18 @@
       loadJson('data/delhi_crash_prone_zones_2024_all_named_approx.geojson'),
       loadJson(refinedUrl).then(function (r) { return r; }, function () { return null; })
     ]).then(function (res) {
-      var g = res[0], ref = {};
-      ((res[1] && res[1].zones) || []).forEach(function (z) { if (z.recommendation === 'use_refined' && z.refined) ref[z.location_name] = z; });
+      var g = res[0], ref = {}, evid = {};
+      ((res[1] && res[1].zones) || []).forEach(function (z) {
+        if (z.recommendation === 'use_refined' && z.refined) ref[z.location_name] = z;
+        if (z.evidence_agreement) evid[z.location_name] = { agreement: z.evidence_agreement, spread_m: z.evidence_spread_m };
+      });
       crashZones = g.features.filter(function (f) { return f.properties.table_6_29_rank && f.geometry && f.geometry.type === 'Point'; })
         .sort(function (a, b) { return a.properties.table_6_29_rank - b.properties.table_6_29_rank; }).slice(0, 10)
         .map(function (f) {
-          var r = ref[f.properties.location_name];
-          if (!r) return f;
-          var props = Object.assign({}, f.properties, { _refined: { moved_m: r.moved_m, uncertainty_m: r.uncertainty_m } });
+          var r = ref[f.properties.location_name], e = evid[f.properties.location_name];
+          var props = Object.assign({}, f.properties, e ? { _evidence: e } : {});
+          if (!r) return { type: 'Feature', properties: props, geometry: f.geometry };
+          props._refined = { moved_m: r.moved_m, uncertainty_m: r.uncertainty_m };
           return { type: 'Feature', properties: props, geometry: { type: 'Point', coordinates: [r.refined.lng, r.refined.lat] } };
         });
       if (crashZones.length) $('tour').disabled = false;
