@@ -80,3 +80,16 @@ test('share-link values are validated against known lists before use', () => {
     assert.ok(read.includes(guard), 'readUrl lost its check: ' + guard);
   }
 });
+
+test('tour reads fields that exist in the crash zone data and has ten ranked points', () => {
+  const g = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'delhi_crash_prone_zones_2024_all_named_approx.geojson'), 'utf8'));
+  assert.ok(script.includes('data/delhi_crash_prone_zones_2024_all_named_approx.geojson'));
+  const pts = g.features.filter(f => f.properties.table_6_29_rank && f.geometry.type === 'Point');
+  assert.ok(pts.length >= 10, 'need at least 10 ranked crash zones with coordinates');
+  const props = pts[0].properties;
+  const used = [...new Set([...script.matchAll(/\bp\.([a-z_0-9]+)/g)].map(m => m[1]))]
+    .filter(k => /crash|killed|injured|location_name|road_name|table_6_29_rank|cctv|zone_radius_m/.test(k));
+  assert.ok(used.length >= 15, 'expected the caption fields, found ' + used.length);
+  for (const k of used) assert.ok(k in props, 'tour caption reads "' + k + '" which is not in the crash zone data');
+  for (const f of pts.slice(0, 10)) assert.equal(f.properties.coordinate_is_approximate, true, 'tour copy says positions are approximate');
+});

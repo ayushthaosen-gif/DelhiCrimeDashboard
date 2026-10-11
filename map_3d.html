@@ -37,7 +37,7 @@
   .ramp span { flex: 1; }
   .ends { display: flex; justify-content: space-between; color: var(--muted); }
   .nodata { display: inline-block; width: 10px; height: 10px; background: #6b7280; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
-  #caption { top: 12px; right: 12px; width: min(300px, calc(100vw - 24px)); display: none; }
+  #caption { top: 12px; right: 12px; width: min(320px, calc(100vw - 24px)); max-height: calc(100vh - 100px); overflow: auto; display: none; }
   #caption b { color: var(--accent); }
   #detail { right: 12px; bottom: 100px; width: min(310px, calc(100vw - 24px)); max-height: 60vh; overflow: auto; display: none; }
   #detail h2 { font-size: 15px; margin: 0 24px 2px 0; }
@@ -52,6 +52,11 @@
   #spark svg { width: 100%; height: 56px; display: block; }
   #note { color: var(--muted); font-size: 11px; margin: 8px 0 0; }
   #err { display: none; position: absolute; z-index: 9; inset: 20% 12px auto 12px; max-width: 520px; margin: 0 auto; }
+  .tbtn { width: auto; min-height: 30px; padding: 2px 9px; font-size: 13px; }
+  #caption table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+  #caption th { text-align: left; font-weight: 400; color: var(--muted); padding: 2px 4px 2px 0; }
+  #caption td { text-align: right; padding: 2px 0; white-space: nowrap; }
+  #caption .cav { color: var(--muted); font-size: 11px; margin: 8px 0 0; }
   .maplibregl-popup-content { background: var(--panel); color: var(--ink); font: 13px/1.4 system-ui, sans-serif; border: 1px solid var(--line); }
   .maplibregl-popup-tip { display: none; }
   @media (max-width: 600px) {
@@ -104,7 +109,7 @@
     <button id="tilt" type="button">Top-down / 3D</button>
     <button id="north" type="button">North up</button>
     <button id="reset" type="button">Reset view</button>
-    <button id="tour" type="button">Tour: deadliest wards</button>
+    <button id="tour" type="button" disabled>Tour: top 10 crash zones</button>
     <button id="copy" type="button">Copy link</button>
     <button id="theme" type="button">Light / dark</button>
   </div>
@@ -246,7 +251,7 @@
       ? ['interpolate', ['linear'], ['zoom'], 12.5, ['*', ['get', '_r'], scale], 14.5, ['*', ['get', '_r'], 0]]
       : ['*', ['get', '_r'], scale]);
     map.setPaintProperty('wards-3d', 'fill-extrusion-opacity', buildingsOn
-      ? ['interpolate', ['linear'], ['zoom'], 12.5, 0.88, 14.5, 0.18] : 0.88);
+      ? ['interpolate', ['linear'], ['zoom'], 12.5, 0.88, 14.5, 0.3, 15.4, 0] : 0.88);
   }
 
   function setBuildings(on) {
@@ -365,31 +370,85 @@
     else map.fitBounds(bbox(inD), { padding: 80, pitch: 58, duration: reducedMotion ? 0 : 1800, maxZoom: 12 });
   }
 
-  // ---------- tour ----------
-  function stopTour() {
-    touring = false; clearTimeout(tourTimer);
-    $('caption').style.display = 'none'; $('tour').textContent = 'Tour: deadliest wards';
+  // ---------- tour: top 10 crash zones on 3D satellite ----------
+  var crashZones = null;                       // top 10 by Delhi Traffic Police Table 6.29 rank (approximate points)
+  var tourIdx = 0, tourSaved = null;
+  var TOUR_MS = 9000;
+
+  function circlePolygon(lng, lat, radiusM) {
+    var pts = [], dLat = radiusM / 111320, dLng = radiusM / (111320 * Math.cos(lat * Math.PI / 180));
+    for (var k = 0; k <= 64; k++) { var a = k / 64 * 2 * Math.PI; pts.push([lng + dLng * Math.cos(a), lat + dLat * Math.sin(a)]); }
+    return pts;
   }
+  function num(v) { return v === null || v === undefined ? 'n/a' : v; }
+  function pair(flagged, f, t) { return flagged ? num(f) + ' / ' + num(t) : 'not flagged'; }
+  function tourCaption(z, i, n) {
+    var p = z.properties;
+    var rows = [
+      ['Fatal / all crashes', num(p.all_fatal_crashes) + ' / ' + num(p.all_total_crashes)],
+      ['Persons killed / injured', num(p.blackspot_persons_killed) + ' / ' + num(p.blackspot_persons_injured)],
+      ['Pedestrian fatal / all', pair(p.pedestrian_crash_prone, p.pedestrian_fatal_crashes, p.pedestrian_total_crashes)],
+      ['Two-wheeler fatal / all', pair(p.two_wheeler_crash_prone, p.two_wheeler_fatal_crashes, p.two_wheeler_total_crashes)],
+      ['Heavy vehicle fatal / all', pair(p.htv_crash_prone, p.htv_fatal_crashes, p.htv_total_crashes)],
+      ['Day fatal / all', num(p.day_time_fatal_crashes) + ' / ' + num(p.day_time_total_crashes)],
+      ['Night fatal / all', num(p.night_time_fatal_crashes) + ' / ' + num(p.night_time_total_crashes)],
+      ['Hit and run fatal / all', pair(p.hit_and_run_crash_prone, p.hit_and_run_fatal_crashes, p.hit_and_run_total_crashes)],
+      ['CCTV priority', p.cctv_priority_candidate ? 'yes' : 'no']
+    ];
+    return '<div style="display:flex;gap:6px;justify-content:space-between;align-items:center;margin-bottom:6px">' +
+      '<span style="color:var(--accent)">Stop ' + (i + 1) + ' of ' + n + '</span>' +
+      '<span><button class="tbtn" data-act="prev" aria-label="Previous stop">&#9664;</button> ' +
+      '<button class="tbtn" data-act="next" aria-label="Next stop">&#9654;</button> ' +
+      '<button class="tbtn" data-act="stop" aria-label="Stop tour">&times;</button></span></div>' +
+      '<b style="font-size:15px">#' + esc(p.table_6_29_rank) + ' ' + esc(p.location_name) + '</b><br>' +
+      '<span style="color:var(--muted)">' + esc(p.road_name || '') + '</span>' +
+      '<table>' + rows.map(function (r) { return '<tr><th scope="row">' + r[0] + '</th><td>' + esc(r[1]) + '</td></tr>'; }).join('') + '</table>' +
+      '<p class="cav">Delhi Road Crash Report 2024 (Traffic Police), Table 6.29 rank. The map position is an approximate landmark centre, not a surveyed location. The ring shows a 250 m zone.</p>';
+  }
+
+  function stopTour() {
+    var was = touring;
+    touring = false; clearTimeout(tourTimer);
+    $('caption').style.display = 'none'; $('tour').textContent = 'Tour: top 10 crash zones';
+    if (map && map.getSource('tour')) map.getSource('tour').setData({ type: 'FeatureCollection', features: [] });
+    if (was && tourSaved) {
+      basemapSel.value = tourSaved.basemap; setBasemap(tourSaved.basemap);
+      setBuildings(tourSaved.buildings);
+      if (tourSaved.panelOpen) $('controls').setAttribute('open', '');
+    }
+    if (was) tourSaved = null;
+  }
+
+  function tourStep(i) {
+    if (!touring) return;
+    clearTimeout(tourTimer);
+    if (i < 0) i = 0;
+    if (i >= crashZones.length) { stopTour(); map.flyTo(Object.assign({ essential: false, duration: reducedMotion ? 0 : 2500 }, HOME)); return; }
+    tourIdx = i;
+    var z = crashZones[i], c = z.geometry.coordinates;
+    $('caption').style.display = 'block';
+    $('caption').innerHTML = tourCaption(z, i, crashZones.length);
+    map.getSource('tour').setData({ type: 'FeatureCollection', features: [
+      { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [circlePolygon(c[0], c[1], z.properties.zone_radius_m || 250)] } },
+      { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: c } }
+    ] });
+    map.flyTo({ center: c, zoom: 16.2, pitch: 64, bearing: -35 + i * 38, duration: reducedMotion ? 0 : 4500, essential: false });
+    tourTimer = setTimeout(function () { tourStep(i + 1); }, TOUR_MS);
+  }
+
   function startTour() {
-    stopPlay();
-    var top = wards.features.filter(function (f) { return f.properties.highInjuryNetworkRank; })
-      .sort(function (a, b) { return a.properties.highInjuryNetworkRank - b.properties.highInjuryNetworkRank; }).slice(0, 5);
-    if (!top.length) return;
+    if (!crashZones || !crashZones.length) return;
+    stopPlay(); unpin();
+    // Reset the map to the full-city view, show the ward picture for context, then go 3D satellite.
+    tourSaved = { basemap: basemapKey, buildings: buildingsOn, panelOpen: $('controls').hasAttribute('open') };
+    $('controls').removeAttribute('open'); // clear the view; reopen from the title when the tour ends
     metricSel.value = 0; metric = METRICS[0]; applyMetric();
+    basemapSel.value = 'sat'; setBasemap('sat'); setBuildings(true);
     touring = true; $('tour').textContent = 'Stop tour';
-    var i = 0;
-    (function step() {
-      if (!touring) return;
-      if (i >= top.length) { stopTour(); map.flyTo(Object.assign({ essential: false, duration: 2500 }, HOME)); return; }
-      var f = top[i], p = f.properties;
-      $('caption').style.display = 'block';
-      $('caption').innerHTML = '<b>#' + p.highInjuryNetworkRank + ' of high-injury network</b><br>' + esc(p.Ward_Name) +
-        ' (' + esc(p.assignedDistrict) + ')<br>' + p.crashZones2024FatalSum + ' fatal crashes in mapped 2024 crash zones' +
-        '<br><span style="color:var(--muted)">Step ' + (i + 1) + ' of ' + top.length + '. Exploratory ward assignment.</span>';
-      map.flyTo({ center: center(f), zoom: 11.6, pitch: 62, bearing: -30 + i * 40, duration: 3500, essential: false });
-      i++;
-      tourTimer = setTimeout(step, 5200);
-    })();
+    $('caption').style.display = 'block';
+    $('caption').innerHTML = '<b>Top 10 crash zones, Delhi 2024</b><br><span style="color:var(--muted)">Resetting the map, then visiting each zone in 3D satellite with its crash data. Use the arrows to skip, Esc to stop.</span>';
+    map.flyTo(Object.assign({ essential: false, duration: reducedMotion ? 0 : 2200 }, HOME));
+    tourTimer = setTimeout(function () { tourStep(0); }, reducedMotion ? 300 : 2800);
   }
 
   // ---------- shareable URL (hash) ----------
@@ -453,6 +512,10 @@
       map.addLayer({ id: 'wards-hin', type: 'line', source: 'wards', filter: ['==', ['get', 'highInjuryNetwork'], true], paint: { 'line-color': '#f0a63c', 'line-width': 2.2 } });
       map.addLayer({ id: 'wards-pin', type: 'line', source: 'wards', filter: ['==', ['get', '_id'], -1], paint: { 'line-color': '#ffffff', 'line-width': 3.5 } });
       if (initial.buildings) { buildingsOn = true; $('bldg').checked = true; map.setLayoutProperty('buildings-3d', 'visibility', 'visible'); }
+      map.addSource('tour', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      map.addLayer({ id: 'tour-zone', type: 'fill', source: 'tour', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': '#f0a63c', 'fill-opacity': 0.18 } });
+      map.addLayer({ id: 'tour-ring', type: 'line', source: 'tour', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'line-color': '#f0a63c', 'line-width': 3 } });
+      map.addLayer({ id: 'tour-pt', type: 'circle', source: 'tour', filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-radius': 7, 'circle-color': '#ffffff', 'circle-stroke-color': '#c4252d', 'circle-stroke-width': 3 } });
       applyMetric();
       if (initial.ward !== undefined) pinWard(initial.ward);
 
@@ -486,6 +549,11 @@
   $('north').addEventListener('click', function () { map.easeTo({ bearing: 0, duration: 600 }); });
   $('reset').addEventListener('click', function () { stopTour(); stopPlay(); map.flyTo(Object.assign({ duration: 1500 }, HOME)); });
   $('tour').addEventListener('click', function () { if (touring) stopTour(); else startTour(); });
+  $('caption').addEventListener('click', function (e) {
+    var act = e.target && e.target.getAttribute && e.target.getAttribute('data-act');
+    if (!touring || !act) return;
+    if (act === 'stop') stopTour(); else tourStep(tourIdx + (act === 'next' ? 1 : -1));
+  });
   $('theme').addEventListener('click', function () {
     applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
@@ -550,6 +618,11 @@
     }
     buildSearch();
     init(readUrl());
+    loadJson('data/delhi_crash_prone_zones_2024_all_named_approx.geojson').then(function (g) {
+      crashZones = g.features.filter(function (f) { return f.properties.table_6_29_rank && f.geometry && f.geometry.type === 'Point'; })
+        .sort(function (a, b) { return a.properties.table_6_29_rank - b.properties.table_6_29_rank; }).slice(0, 10);
+      if (crashZones.length) $('tour').disabled = false;
+    }, function () { $('tour').title = 'Crash zone data could not be loaded'; });
   }).catch(function (e) {
     showError('Could not load ward data (' + e.message + '). This page needs to be served over http, not opened as a file. From the repo folder run: python -m http.server 8000, then open http://localhost:8000/map_3d.html');
   });
