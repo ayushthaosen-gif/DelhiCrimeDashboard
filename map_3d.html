@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delhi 3D Ward Explorer (prototype)</title>
+<meta name="description" content="Prototype 3D view: Delhi wards extruded by crash, infrastructure and crime-density metrics, with a year player, search and shareable links.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+  :root { --bg:#1c2331; --panel:#252d3d; --ink:#e8ecf3; --muted:#9aa5b8; --accent:#f0a63c; --line:#38425a; }
+  :root[data-theme="light"] { --bg:#f4f6fa; --panel:#ffffff; --ink:#1c2331; --muted:#5b6578; --accent:#b8650a; --line:#d5dbe6; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.4 system-ui, sans-serif; }
+  #map { position: absolute; inset: 0; }
+  .panel { position: absolute; z-index: 5; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; box-shadow: 0 4px 18px rgba(0,0,0,.3); }
+  #controls { top: 12px; left: 12px; width: min(310px, calc(100vw - 24px)); max-height: calc(100vh - 100px); overflow: auto; }
+  #controls summary { cursor: pointer; font-weight: 600; font-size: 15px; list-style: none; min-height: 28px; }
+  #controls summary::-webkit-details-marker { display: none; }
+  #controls summary::after { content: " \25BE"; color: var(--muted); }
+  #controls[open] summary::after { content: " \25B4"; }
+  .proto { color: var(--accent); font-size: 11px; font-weight: 400; }
+  .sub { color: var(--muted); font-size: 12px; margin: 4px 0 8px; }
+  label { display: block; font-size: 12px; color: var(--muted); margin: 8px 0 3px; }
+  select, button, input[type=search] { width: 100%; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px; min-height: 40px; }
+  button { cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  input[type=range] { width: 100%; min-height: 28px; }
+  #yearBox[hidden] { display: none; }
+  .yearline { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: center; }
+  .yearline button { width: auto; padding: 8px 14px; }
+  #yearVal { font-weight: 600; color: var(--accent); }
+  #legend { bottom: 12px; left: 12px; width: min(310px, calc(100vw - 24px)); font-size: 12px; }
+  .ramp { display: flex; height: 10px; border-radius: 3px; overflow: hidden; margin: 6px 0 3px; }
+  .ramp span { flex: 1; }
+  .ends { display: flex; justify-content: space-between; color: var(--muted); }
+  .nodata { display: inline-block; width: 10px; height: 10px; background: #6b7280; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+  #caption { top: 12px; right: 12px; width: min(300px, calc(100vw - 24px)); display: none; }
+  #caption b { color: var(--accent); }
+  #detail { right: 12px; bottom: 100px; width: min(310px, calc(100vw - 24px)); max-height: 60vh; overflow: auto; display: none; }
+  #detail h2 { font-size: 15px; margin: 0 24px 2px 0; }
+  #detail .close { position: absolute; top: 6px; right: 6px; width: 32px; min-height: 32px; padding: 0; }
+  #detail table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
+  #detail th { text-align: left; font-weight: 400; color: var(--muted); padding: 3px 4px 3px 0; }
+  #detail td { text-align: right; padding: 3px 0; white-space: nowrap; }
+  #detail td small { color: var(--muted); }
+  #detail .tag { color: var(--accent); font-size: 12px; }
+  #detail .cav { color: var(--muted); font-size: 11px; margin: 8px 0 0; }
+  #spark { margin-top: 8px; }
+  #spark svg { width: 100%; height: 56px; display: block; }
+  #note { color: var(--muted); font-size: 11px; margin: 8px 0 0; }
+  #err { display: none; position: absolute; z-index: 9; inset: 20% 12px auto 12px; max-width: 520px; margin: 0 auto; }
+  .maplibregl-popup-content { background: var(--panel); color: var(--ink); font: 13px/1.4 system-ui, sans-serif; border: 1px solid var(--line); }
+  .maplibregl-popup-tip { display: none; }
+  @media (max-width: 600px) {
+    #legend { bottom: 28px; }
+    body.detail-open #legend { display: none; }
+    #detail { left: 12px; right: 12px; width: auto; bottom: 28px; max-height: 45vh; }
+    #caption { top: auto; bottom: 150px; left: 12px; right: 12px; width: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<div id="map" role="application" aria-label="3D map of Delhi wards. Use the search box and controls to explore."></div>
+
+<details id="controls" class="panel" open>
+  <summary>Delhi 3D Ward Explorer <span class="proto">prototype</span></summary>
+  <p class="sub">Height and colour show the selected metric. Zero wards stay flat.</p>
+
+  <label for="search">Find a ward or district</label>
+  <input id="search" type="search" list="places" placeholder="e.g. Timarpur or Rohini" autocomplete="off">
+  <datalist id="places"></datalist>
+
+  <label for="metric">Metric</label>
+  <select id="metric"></select>
+
+  <div id="yearBox" hidden>
+    <label for="year">Year</label>
+    <div class="yearline">
+      <button id="play" type="button" aria-label="Play years">&#9654; Play</button>
+      <input id="year" type="range" min="2016" max="2024" step="1" value="2024">
+    </div>
+    <div class="sub">Showing <span id="yearVal">2024</span>. Same scale in every year, so heights are comparable over time.</div>
+  </div>
+
+  <label for="basemap">Basemap</label>
+  <select id="basemap">
+    <option value="osm">Streets (OpenStreetMap)</option>
+    <option value="sat">Satellite (Esri)</option>
+    <option value="none">None (data only)</option>
+  </select>
+
+  <label for="height">Extrusion height</label>
+  <input id="height" type="range" min="0" max="100" value="55">
+
+  <div class="row">
+    <button id="tilt" type="button">Top-down / 3D</button>
+    <button id="north" type="button">North up</button>
+    <button id="reset" type="button">Reset view</button>
+    <button id="tour" type="button">Tour: deadliest wards</button>
+    <button id="copy" type="button">Copy link</button>
+    <button id="theme" type="button">Light / dark</button>
+  </div>
+  <p id="note">Ward crash and infrastructure counts are exploratory (approximate coordinates). Crime figures are published per police district only, so every ward shows its district's value.</p>
+</details>
+
+<div id="legend" class="panel" aria-live="polite">
+  <div id="legendTitle"></div>
+  <div class="ramp" id="ramp"></div>
+  <div class="ends"><span>Low</span><span id="nodataKey"></span><span>High</span></div>
+</div>
+
+<div id="caption" class="panel" aria-live="polite"></div>
+<div id="detail" class="panel" role="region" aria-label="Selected ward details" aria-live="polite">
+  <button class="close" type="button" id="detailClose" aria-label="Close ward details">&times;</button>
+  <div id="detailBody"></div>
+</div>
+<div id="err" class="panel" role="alert"></div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+(function () {
+  'use strict';
+  var HOME = { center: [77.15, 28.63], zoom: 9.6, pitch: 58, bearing: -18 };
+  var RAMP = ['#3b4a6b', '#4f7cac', '#6fb1a0', '#e3c567', '#e8743b', '#c4252d'];
+  var NODATA = '#6b7280';
+  var YEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+  var MAXH = 5000; // metres at full slider and top rank
+
+  // kind 'year': a district crime figure per sq km, by year. Otherwise a property on each ward.
+  var METRICS = [
+    { key: 'crashZones2024FatalSum', label: 'Fatal crashes in 2024 crash zones (count)', note: 'exploratory' },
+    { key: 'crashZones2024Density', label: 'Crash zones per sq km (2024)', note: 'exploratory' },
+    { key: 'surveillanceDensity', label: 'Surveillance cameras per sq km' },
+    { key: 'busStopsDensity', label: 'Bus stops per sq km' },
+    { key: 'atmsDensity', label: 'ATMs per sq km' },
+    { key: 'officialLiquorVendsDensity', label: 'Official liquor vends per sq km', note: 'exploratory' },
+    { key: 'totalIPCDensity2024Inherited', label: 'IPC crime density 2024 (district-level)', note: 'district' },
+    { key: 'crimeAgainstWomenDensity2024Inherited', label: 'Crimes against women density 2024 (district-level)', note: 'district' },
+    { key: 'theft', label: 'Theft per sq km, by year (district-level)', kind: 'year', note: 'district' },
+    { key: 'robbery', label: 'Robbery per sq km, by year (district-level)', kind: 'year', note: 'district' },
+    { key: 'burglary', label: 'Burglary per sq km, by year (district-level)', kind: 'year', note: 'district' }
+  ];
+  var BASEMAPS = {
+    osm: { tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], attr: '© OpenStreetMap contributors', max: 19 },
+    sat: { tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'], attr: 'Imagery © Esri and contributors', max: 18 }
+  };
+  var DETAIL_ROWS = [0, 1, 2, 3, 4, 5, 6, 7]; // ward metrics listed in the details panel
+
+  var $ = function (id) { return document.getElementById(id); };
+  var metricSel = $('metric'), basemapSel = $('basemap'), heightEl = $('height'), yearEl = $('year');
+  var wards = null, map, popup, touring = false, tourTimer = null, playTimer = null;
+  var metric = METRICS[0], year = 2024, pinned = null, basemapKey = 'osm';
+  var districtArea = {}, crimeByYear = {}; // crimeByYear[year][district] = row
+  var yearMax = {};                          // yearMax[metricKey] = max value over all years
+  var reducedMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function fmt(v) { return v == null ? 'n/a' : (Math.round(v * 100) / 100).toLocaleString('en-IN'); }
+  function showError(msg) { var e = $('err'); e.textContent = msg; e.style.display = 'block'; }
+  function safe(fn) { try { return fn(); } catch (e) { return null; } }
+
+  // ---------- theme ----------
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    safe(function () { localStorage.setItem('ds-theme', t); });
+    if (map && map.getLayer('bg')) map.setPaintProperty('bg', 'background-color', t === 'light' ? '#dfe5ee' : '#10151f');
+  }
+  function initialTheme() {
+    var t = safe(function () { return localStorage.getItem('ds-theme'); });
+    if (t === 'light' || t === 'dark') return t;
+    return window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  document.documentElement.setAttribute('data-theme', initialTheme());
+
+  // ---------- UI scaffolding ----------
+  METRICS.forEach(function (m, i) {
+    var o = document.createElement('option'); o.value = i; o.textContent = m.label; metricSel.appendChild(o);
+  });
+  $('ramp').innerHTML = RAMP.map(function (c) { return '<span style="background:' + c + '"></span>'; }).join('');
+  if (window.matchMedia && matchMedia('(max-width: 600px)').matches) $('controls').removeAttribute('open');
+
+  // ---------- value model ----------
+  // Returns a number, or null when there is no comparable figure (null is never rendered as zero).
+  function valueOf(f, m) {
+    if (m.kind === 'year') {
+      var d = f.properties.assignedDistrict;
+      var row = crimeByYear[year] && crimeByYear[year][d];
+      var area = districtArea[d];
+      if (!row || !area || row[m.key] == null || row.district_existed_as_separate_reporting_zone === false) return null;
+      return row[m.key] / area;
+    }
+    var v = f.properties[m.key];
+    return v == null ? 0 : Number(v) || 0;
+  }
+
+  function rampColor(r) { return r === 0 ? RAMP[0] : RAMP[Math.min(RAMP.length - 1, 1 + Math.floor(r * (RAMP.length - 1)))]; }
+
+  function applyMetric() {
+    var vals = wards.features.map(function (f) { return valueOf(f, metric); });
+    var r;
+    if (metric.kind === 'year') {
+      // Fixed scale across all years so the animation shows real change.
+      var mx = yearMax[metric.key] || 1;
+      r = function (v) { return v <= 0 ? 0 : 0.1 + 0.9 * Math.sqrt(v / mx); };
+    } else {
+      // Rank among non-zero wards only, so sparse count metrics are not saturated by ties.
+      var sorted = vals.filter(function (v) { return v > 0; }).sort(function (a, b) { return a - b; });
+      r = function (v) {
+        if (v <= 0) return 0;
+        var lo = sorted.indexOf(v), hi = sorted.lastIndexOf(v);
+        return 0.15 + 0.85 * (((lo + hi) / 2 + 1) / sorted.length);
+      };
+    }
+    var anyNull = false;
+    wards.features.forEach(function (f, i) {
+      var v = vals[i], p = f.properties;
+      p._v = v;
+      if (v === null) { anyNull = true; p._r = 0; p._color = NODATA; }
+      else { p._r = r(v); p._color = rampColor(p._r); }
+    });
+    map.getSource('wards').setData(wards);
+    $('legendTitle').textContent = metric.label + (metric.kind === 'year' ? ' – ' + year : '');
+    $('nodataKey').innerHTML = anyNull ? '<span class="nodata"></span>No data' : '';
+    $('yearBox').hidden = metric.kind !== 'year';
+    updateHeight();
+    if (pinned !== null) renderDetail();
+  }
+
+  function updateHeight() {
+    var scale = Number(heightEl.value) / 100 * MAXH;
+    map.setPaintProperty('wards-3d', 'fill-extrusion-height', ['*', ['get', '_r'], scale]);
+  }
+
+  function setBasemap(key) {
+    basemapKey = key;
+    ['osm', 'sat'].forEach(function (k) {
+      map.setLayoutProperty('bm-' + k, 'visibility', k === key ? 'visible' : 'none');
+    });
+  }
+
+  // ---------- geometry helpers ----------
+  function bbox(features) {
+    var x0 = 180, y0 = 90, x1 = -180, y1 = -90;
+    (function walk(c) {
+      if (typeof c[0] === 'number') { if (c[0] < x0) x0 = c[0]; if (c[0] > x1) x1 = c[0]; if (c[1] < y0) y0 = c[1]; if (c[1] > y1) y1 = c[1]; }
+      else c.forEach(walk);
+    })(features.map(function (f) { return f.geometry.coordinates; }));
+    return [[x0, y0], [x1, y1]];
+  }
+  function center(f) { var b = bbox([f]); return [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2]; }
+
+  // ---------- year player ----------
+  function setYear(y) {
+    year = y; yearEl.value = y; $('yearVal').textContent = y;
+    if (metric.kind === 'year') applyMetric();
+    scheduleUrl();
+  }
+  function stopPlay() {
+    if (playTimer) { clearInterval(playTimer); playTimer = null; }
+    $('play').innerHTML = '&#9654; Play'; $('play').setAttribute('aria-label', 'Play years');
+  }
+  function startPlay() {
+    stopTour();
+    if (year >= YEARS[YEARS.length - 1]) setYear(YEARS[0]);
+    $('play').innerHTML = '&#10074;&#10074; Pause'; $('play').setAttribute('aria-label', 'Pause');
+    playTimer = setInterval(function () {
+      if (year >= YEARS[YEARS.length - 1]) { stopPlay(); return; }
+      setYear(year + 1);
+    }, reducedMotion ? 1600 : 1100);
+  }
+
+  // ---------- details panel (click to pin) ----------
+  function wardRank(f, m) {
+    var v = valueOf(f, m);
+    if (!v) return null;
+    var higher = 0, total = 0;
+    wards.features.forEach(function (g) { var u = valueOf(g, m); if (u > 0) { total++; if (u > v) higher++; } });
+    return (higher + 1) + ' of ' + total;
+  }
+  function sparkline(district) {
+    var area = districtArea[district]; if (!area || !Object.keys(crimeByYear).length) return '';
+    var pts = YEARS.map(function (y) {
+      var row = crimeByYear[y] && crimeByYear[y][district];
+      var ok = row && row.theft != null && row.district_existed_as_separate_reporting_zone !== false;
+      return ok ? row.theft / area : null;
+    });
+    var vals = pts.filter(function (v) { return v !== null; });
+    if (vals.length < 2) return '';
+    var mx = Math.max.apply(null, vals), W = 280, H = 56, pad = 6, segs = [], cur = [];
+    pts.forEach(function (v, i) {
+      if (v === null) { if (cur.length) segs.push(cur); cur = []; return; }
+      cur.push((pad + i * (W - 2 * pad) / (YEARS.length - 1)).toFixed(1) + ',' + (H - pad - (v / mx) * (H - 2 * pad)).toFixed(1));
+    });
+    if (cur.length) segs.push(cur);
+    return '<div id="spark"><div class="sub" style="margin:0">Theft per sq km, ' + YEARS[0] + '–' + YEARS[YEARS.length - 1] + ' (' + esc(district) + ' district)</div>' +
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Line chart of theft per square kilometre by year for ' + esc(district) + '">' +
+      segs.map(function (s) { return '<polyline fill="none" stroke="var(--accent)" stroke-width="2" points="' + s.join(' ') + '"/>'; }).join('') +
+      '</svg></div>';
+  }
+  function renderDetail() {
+    var f = wards.features[pinned]; if (!f) return;
+    var p = f.properties;
+    var rows = DETAIL_ROWS.map(function (i) {
+      var m = METRICS[i], rk = wardRank(f, m);
+      return '<tr><th scope="row">' + esc(m.label) + '</th><td>' + fmt(valueOf(f, m)) + (rk ? ' <small>#' + rk + '</small>' : '') + '</td></tr>';
+    }).join('');
+    $('detailBody').innerHTML = '<h2>' + esc(p.Ward_Name) + '</h2>' +
+      '<div class="sub" style="margin:0">' + esc(p.assignedDistrict || 'District unassigned') + ' district &middot; ' + esc(p.areaSqKm) + ' sq km</div>' +
+      (p.highInjuryNetwork === true || p.highInjuryNetwork === 'true' ? '<div class="tag">High-injury network #' + esc(p.highInjuryNetworkRank) + '</div>' : '') +
+      '<table>' + rows + '</table>' + sparkline(p.assignedDistrict) +
+      '<p class="cav">#rank is among wards with a non-zero value. Crash and infrastructure figures are exploratory. Crime figures are district-level, not ward-level.</p>';
+    $('detail').style.display = 'block'; document.body.classList.add('detail-open');
+    map.setFilter('wards-pin', ['==', ['get', '_id'], pinned]);
+  }
+  function pinWard(i) { pinned = i; renderDetail(); scheduleUrl(); }
+  function unpin() {
+    pinned = null; $('detail').style.display = 'none'; document.body.classList.remove('detail-open');
+    if (map.getLayer('wards-pin')) map.setFilter('wards-pin', ['==', ['get', '_id'], -1]);
+    scheduleUrl();
+  }
+
+  // ---------- search ----------
+  function buildSearch() {
+    var dl = $('places'), names = {};
+    wards.features.forEach(function (f) {
+      var p = f.properties;
+      names[p.Ward_Name] = 1; if (p.assignedDistrict) names[p.assignedDistrict + ' (district)'] = 1;
+    });
+    Object.keys(names).sort().forEach(function (n) { var o = document.createElement('option'); o.value = n; dl.appendChild(o); });
+  }
+  function goToSearch() {
+    var q = $('search').value.trim().toLowerCase(); if (!q) return;
+    var dq = q.replace(/\s*\(district\)$/, '');
+    var hit = wards.features.filter(function (f) { return f.properties.Ward_Name.toLowerCase() === q; })[0];
+    stopTour(); stopPlay();
+    if (hit) { map.flyTo({ center: center(hit), zoom: 12.4, pitch: 58, duration: reducedMotion ? 0 : 1800 }); pinWard(hit.properties._id); return; }
+    var inD = wards.features.filter(function (f) { return (f.properties.assignedDistrict || '').toLowerCase() === dq; });
+    if (!inD.length) inD = wards.features.filter(function (f) { return f.properties.Ward_Name.toLowerCase().indexOf(q) !== -1; });
+    if (!inD.length) { var s = $('search'); s.setCustomValidity('No match'); s.reportValidity(); s.setCustomValidity(''); return; }
+    if (inD.length === 1) { map.flyTo({ center: center(inD[0]), zoom: 12.4, duration: reducedMotion ? 0 : 1800 }); pinWard(inD[0].properties._id); }
+    else map.fitBounds(bbox(inD), { padding: 80, pitch: 58, duration: reducedMotion ? 0 : 1800, maxZoom: 12 });
+  }
+
+  // ---------- tour ----------
+  function stopTour() {
+    touring = false; clearTimeout(tourTimer);
+    $('caption').style.display = 'none'; $('tour').textContent = 'Tour: deadliest wards';
+  }
+  function startTour() {
+    stopPlay();
+    var top = wards.features.filter(function (f) { return f.properties.highInjuryNetworkRank; })
+      .sort(function (a, b) { return a.properties.highInjuryNetworkRank - b.properties.highInjuryNetworkRank; }).slice(0, 5);
+    if (!top.length) return;
+    metricSel.value = 0; metric = METRICS[0]; applyMetric();
+    touring = true; $('tour').textContent = 'Stop tour';
+    var i = 0;
+    (function step() {
+      if (!touring) return;
+      if (i >= top.length) { stopTour(); map.flyTo(Object.assign({ essential: false, duration: 2500 }, HOME)); return; }
+      var f = top[i], p = f.properties;
+      $('caption').style.display = 'block';
+      $('caption').innerHTML = '<b>#' + p.highInjuryNetworkRank + ' of high-injury network</b><br>' + esc(p.Ward_Name) +
+        ' (' + esc(p.assignedDistrict) + ')<br>' + p.crashZones2024FatalSum + ' fatal crashes in mapped 2024 crash zones' +
+        '<br><span style="color:var(--muted)">Step ' + (i + 1) + ' of ' + top.length + '. Exploratory ward assignment.</span>';
+      map.flyTo({ center: center(f), zoom: 11.6, pitch: 62, bearing: -30 + i * 40, duration: 3500, essential: false });
+      i++;
+      tourTimer = setTimeout(step, 5200);
+    })();
+  }
+
+  // ---------- shareable URL (hash) ----------
+  var urlTimer = null;
+  function scheduleUrl() { clearTimeout(urlTimer); urlTimer = setTimeout(writeUrl, 250); }
+  function writeUrl() {
+    if (!map) return;
+    var c = map.getCenter();
+    var q = new URLSearchParams();
+    q.set('m', metric.key); q.set('y', year); q.set('b', basemapKey); q.set('h', heightEl.value);
+    q.set('v', [c.lng.toFixed(4), c.lat.toFixed(4), map.getZoom().toFixed(2), map.getPitch().toFixed(0), map.getBearing().toFixed(0)].join(','));
+    if (pinned !== null) q.set('w', pinned);
+    safe(function () { history.replaceState(null, '', '#' + q.toString()); });
+  }
+  // Every value read from the hash is checked against the known lists; anything else is ignored.
+  function readUrl() {
+    var out = {}, q = new URLSearchParams(location.hash.slice(1));
+    var m = q.get('m'); if (m) { var mi = METRICS.findIndex(function (x) { return x.key === m; }); if (mi >= 0) out.metric = mi; }
+    var y = parseInt(q.get('y'), 10); if (YEARS.indexOf(y) >= 0) out.year = y;
+    var b = q.get('b'); if (b === 'osm' || b === 'sat' || b === 'none') out.basemap = b;
+    var h = parseInt(q.get('h'), 10); if (h >= 0 && h <= 100) out.height = h;
+    var v = (q.get('v') || '').split(',').map(Number);
+    if (v.length === 5 && v.every(isFinite) && v[0] > 60 && v[0] < 90 && v[1] > 5 && v[1] < 40 && v[2] >= 3 && v[2] <= 19) out.view = v;
+    var w = parseInt(q.get('w'), 10); if (w >= 0 && wards && w < wards.features.length) out.ward = w;
+    return out;
+  }
+
+  // ---------- map ----------
+  function init(initial) {
+    if (initial.metric !== undefined) { metric = METRICS[initial.metric]; metricSel.value = initial.metric; }
+    if (initial.year) { year = initial.year; yearEl.value = year; $('yearVal').textContent = year; }
+    if (initial.basemap) { basemapKey = initial.basemap; basemapSel.value = basemapKey; }
+    if (initial.height !== undefined) heightEl.value = initial.height;
+    var view = initial.view ? { center: [initial.view[0], initial.view[1]], zoom: initial.view[2], pitch: initial.view[3], bearing: initial.view[4] } : HOME;
+
+    var light = document.documentElement.getAttribute('data-theme') === 'light';
+    var style = { version: 8, sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': light ? '#dfe5ee' : '#10151f' } }] };
+    Object.keys(BASEMAPS).forEach(function (k) {
+      var b = BASEMAPS[k];
+      style.sources['bm-' + k] = { type: 'raster', tiles: b.tiles, tileSize: 256, maxzoom: b.max, attribution: b.attr };
+      style.layers.push({ id: 'bm-' + k, type: 'raster', source: 'bm-' + k, layout: { visibility: k === basemapKey ? 'visible' : 'none' } });
+    });
+    map = new maplibregl.Map({ container: 'map', style: style, center: view.center, zoom: view.zoom, pitch: view.pitch, bearing: view.bearing, maxPitch: 75, attributionControl: { compact: true } });
+    map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
+    map.on('error', function (e) { console.error('maplibre:', e && e.error && e.error.message); });
+    popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12 });
+
+    map.once('style.load', function () {
+      map.addSource('wards', { type: 'geojson', data: wards });
+      map.addLayer({ id: 'wards-3d', type: 'fill-extrusion', source: 'wards',
+        paint: { 'fill-extrusion-color': ['get', '_color'], 'fill-extrusion-height': 0, 'fill-extrusion-base': 0, 'fill-extrusion-opacity': 0.88, 'fill-extrusion-vertical-gradient': true } });
+      map.addLayer({ id: 'wards-outline', type: 'line', source: 'wards', paint: { 'line-color': '#ffffff', 'line-opacity': 0.35, 'line-width': 0.6 } });
+      map.addLayer({ id: 'wards-hin', type: 'line', source: 'wards', filter: ['==', ['get', 'highInjuryNetwork'], true], paint: { 'line-color': '#f0a63c', 'line-width': 2.2 } });
+      map.addLayer({ id: 'wards-pin', type: 'line', source: 'wards', filter: ['==', ['get', '_id'], -1], paint: { 'line-color': '#ffffff', 'line-width': 3.5 } });
+      applyMetric();
+      if (initial.ward !== undefined) pinWard(initial.ward);
+
+      map.on('mousemove', 'wards-3d', function (e) {
+        var p = e.features[0].properties;
+        map.getCanvas().style.cursor = 'pointer';
+        var nv = p._v === null || p._v === 'null' || p._v === undefined;
+        popup.setLngLat(e.lngLat).setHTML('<strong>' + esc(p.Ward_Name) + '</strong><br>' + esc(p.assignedDistrict || 'unassigned') + ' district<br>' +
+          esc(metric.label) + ': <b>' + (nv ? 'no comparable data' : fmt(Number(p._v))) + '</b><br>Click for details').addTo(map);
+      });
+      map.on('mouseleave', 'wards-3d', function () { map.getCanvas().style.cursor = ''; popup.remove(); });
+      map.on('click', function (e) {
+        var hit = map.queryRenderedFeatures(e.point, { layers: ['wards-3d'] })[0];
+        if (hit) pinWard(Number(hit.properties._id)); else unpin();
+      });
+      map.on('moveend', scheduleUrl);
+      writeUrl();
+    });
+  }
+
+  // ---------- events ----------
+  metricSel.addEventListener('change', function () {
+    stopTour(); stopPlay(); metric = METRICS[Number(metricSel.value)]; applyMetric(); scheduleUrl();
+  });
+  yearEl.addEventListener('input', function () { stopPlay(); setYear(Number(yearEl.value)); });
+  $('play').addEventListener('click', function () { if (playTimer) stopPlay(); else startPlay(); });
+  basemapSel.addEventListener('change', function () { setBasemap(basemapSel.value); scheduleUrl(); });
+  heightEl.addEventListener('input', function () { updateHeight(); scheduleUrl(); });
+  $('tilt').addEventListener('click', function () { stopTour(); map.easeTo({ pitch: map.getPitch() > 10 ? 0 : HOME.pitch, duration: 700 }); });
+  $('north').addEventListener('click', function () { map.easeTo({ bearing: 0, duration: 600 }); });
+  $('reset').addEventListener('click', function () { stopTour(); stopPlay(); map.flyTo(Object.assign({ duration: 1500 }, HOME)); });
+  $('tour').addEventListener('click', function () { if (touring) stopTour(); else startTour(); });
+  $('theme').addEventListener('click', function () {
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+  });
+  $('copy').addEventListener('click', function () {
+    writeUrl();
+    var btn = $('copy');
+    function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy link'; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(location.href).then(function () { done('Copied'); }, function () { done('Copy failed'); });
+    else done('Copy from address bar');
+  });
+  $('detailClose').addEventListener('click', unpin);
+  $('search').addEventListener('change', goToSearch);
+  $('search').addEventListener('keydown', function (e) { if (e.key === 'Enter') goToSearch(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { stopTour(); stopPlay(); } });
+
+  // ---------- data ----------
+  function loadJson(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + ' HTTP ' + r.status); return r.json(); }); }
+
+  loadJson('data/delhi_wards_infra.geojson').then(function (g) {
+    wards = g;
+    wards.features.forEach(function (f, i) {
+      f.properties._id = i;
+      var d = f.properties.assignedDistrict;
+      if (d) districtArea[d] = (districtArea[d] || 0) + (Number(f.properties.areaSqKm) || 0);
+    });
+    // Year data is optional: if any year fails to load, the year metrics are removed and the rest still works.
+    return Promise.all(YEARS.map(function (y) {
+      return loadJson('data/releases/' + y + '/district_crime.json').then(function (rows) {
+        crimeByYear[y] = {}; rows.forEach(function (r) { crimeByYear[y][r.district] = r; });
+      }, function () { /* leave this year missing */ });
+    }));
+  }).then(function () {
+    if (Object.keys(crimeByYear).length < YEARS.length) {
+      crimeByYear = {};
+      for (var i = METRICS.length - 1; i >= 0; i--) if (METRICS[i].kind === 'year') { METRICS.splice(i, 1); metricSel.remove(i); }
+    } else {
+      METRICS.forEach(function (m) {
+        if (m.kind !== 'year') return;
+        var mx = 0;
+        YEARS.forEach(function (y) {
+          Object.keys(crimeByYear[y]).forEach(function (d) {
+            var row = crimeByYear[y][d];
+            if (row[m.key] != null && districtArea[d]) mx = Math.max(mx, row[m.key] / districtArea[d]);
+          });
+        });
+        yearMax[m.key] = mx;
+      });
+    }
+    buildSearch();
+    init(readUrl());
+  }).catch(function (e) {
+    showError('Could not load ward data (' + e.message + '). This page needs to be served over http, not opened as a file. From the repo folder run: python -m http.server 8000, then open http://localhost:8000/map_3d.html');
+  });
+})();
+</script>
+</body>
+</html>
