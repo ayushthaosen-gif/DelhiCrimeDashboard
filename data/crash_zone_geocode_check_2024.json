@@ -1,0 +1,844 @@
+{
+ "Azadpur Sabzi Mandi, GTK Road, Delhi, India": [],
+ "Azadpur Sabzi Mandi, Delhi, India": [],
+ "Wazirabad, Outer Ring Road, Delhi, India": [],
+ "Wazirabad, Delhi, India": [
+  {
+   "lat": 28.7297608,
+   "lng": 77.2212803,
+   "name": "Wazirabad, Civil Lines, Delhi, North Delhi, Delhi, 110084, India",
+   "type": "suburb",
+   "cls": "place"
+  }
+ ],
+ "Akshardham Mandir, NH-24, Delhi, India": [],
+ "Akshardham Mandir, Delhi, India": [],
+ "ISBT Kashmiri Gate, Ring Road, Delhi, India": [],
+ "ISBT Kashmiri Gate, Delhi, India": [
+  {
+   "lat": 28.6686522,
+   "lng": 77.2306831,
+   "name": "Inter-State Bus Terminus (ISBT) Kashmiri Gate, Gali Number 2, Kashmere Gate, Sadar Bazar, Old Delhi, City & Sadar, Delhi, Old Delhi, Delhi, 110006, India",
+   "type": "yes",
+   "cls": "building"
+  },
+  {
+   "lat": 28.6695174,
+   "lng": 77.2321699,
+   "name": "Kashmiri Gate ISBT, Mahatma Gandhi Marg, Kashmere Gate, Sadar Bazar, Old Delhi, City & Sadar, Delhi, Old Delhi, Delhi, 110006, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Anand Vihar ISBT, Road No.56, Delhi, India": [
+  {
+   "lat": 28.6467533,
+   "lng": 77.3180037,
+   "name": "Anand Vihar ISBT, Ghazipur Road, Anand Vihar, Indraprastha Extension, Shahdara South, Delhi, East Delhi, Delhi, 110092, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.648984,
+   "lng": 77.3182876,
+   "name": "Anand Vihar ISBT, Ghazipur Road, Anand Vihar, Shahdara South, Delhi, East Delhi, Delhi, 110092, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Anand Vihar ISBT, Delhi, India": [
+  {
+   "lat": 28.648984,
+   "lng": 77.3182876,
+   "name": "Anand Vihar ISBT, Ghazipur Road, Anand Vihar, Shahdara South, Delhi, East Delhi, Delhi, 110092, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.6467533,
+   "lng": 77.3180037,
+   "name": "Anand Vihar ISBT, Ghazipur Road, Anand Vihar, Indraprastha Extension, Shahdara South, Delhi, East Delhi, Delhi, 110092, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "SGT Nagar, GTK Road, Delhi, India": [],
+ "SGT Nagar, Delhi, India": [],
+ "Rajoukari Flyover, NH-8, Delhi, India": [],
+ "Rajoukari Flyover, Delhi, India": [],
+ "Near Yashobhoomi Convention Centre Dwarka, UER II, Delhi, India": [],
+ "Near Yashobhoomi Convention Centre Dwarka, Delhi, India": [],
+ "Bhalswa Chowk, Outer Ring Road, Delhi, India": [],
+ "Bhalswa Chowk, Delhi, India": [],
+ "Libaspur Bus Stand, GTK Road, Delhi, India": [],
+ "Libaspur Bus Stand, Delhi, India": [],
+ "Mukundpur Chowk, Outer Ring Road, Delhi, India": [
+  {
+   "lat": 28.7336566,
+   "lng": 77.1834315,
+   "name": "Hanuman Chowk, Doctor KB Hedgewar Marg, Jahangir Puri, Civil Lines, Delhi, North Delhi, Delhi, 110033, India",
+   "type": "yes",
+   "cls": "junction"
+  }
+ ],
+ "Mukundpur Chowk, Delhi, India": [
+  {
+   "lat": 28.7336566,
+   "lng": 77.1834315,
+   "name": "Hanuman Chowk, Doctor KB Hedgewar Marg, Jahangir Puri, Civil Lines, Delhi, North Delhi, Delhi, 110033, India",
+   "type": "yes",
+   "cls": "junction"
+  }
+ ],
+ "Geeta Colony Flyover, Yamuna Pusta Road, Delhi, India": [],
+ "Geeta Colony Flyover, Delhi, India": [
+  {
+   "lat": 28.6511553,
+   "lng": 77.2500716,
+   "name": "Geeta Colony Road Flyover, City & Sadar, Delhi, Old Delhi, Delhi, 110002, India",
+   "type": "secondary",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.6512811,
+   "lng": 77.2517029,
+   "name": "Geeta Colony Road Flyover, City & Sadar, Delhi, Old Delhi, Delhi, 110031, India",
+   "type": "secondary",
+   "cls": "highway"
+  }
+ ],
+ "Chandgi Ram Akhara, Outer Ring Road, Delhi, India": [],
+ "Chandgi Ram Akhara, Delhi, India": [],
+ "Hanuman Mandir JJ Colony Bawana, Bawana Road, Delhi, India": [],
+ "Hanuman Mandir JJ Colony Bawana, Delhi, India": [],
+ "Seelampur T Point, G.T. Road, Delhi, India": [],
+ "Seelampur T Point, Delhi, India": [],
+ "Singhu Border, GTK Road, Delhi, India": [],
+ "Singhu Border, Delhi, India": [],
+ "Khajoori Chowk, Wazirabad Road, Delhi, India": [],
+ "Khajoori Chowk, Delhi, India": [],
+ "Britannia Chowk, Ring Road, Delhi, India": [],
+ "Britannia Chowk, Delhi, India": [
+  {
+   "lat": 28.6835217,
+   "lng": 77.1329131,
+   "name": "Britannia Chowk, Guru Harkishan Marg, Pitampura, Keshavpuram, Delhi, Central North Delhi, Delhi, 110034, India",
+   "type": "yes",
+   "cls": "junction"
+  }
+ ],
+ "Metro Station Haider Pur, Outer Ring Road, Delhi, India": [],
+ "Metro Station Haider Pur, Delhi, India": [],
+ "Sec-23 Petrol Pump, Qutab Garh Road, Delhi, India": [],
+ "Sec-23 Petrol Pump, Delhi, India": [],
+ "Zakhira Flyover, Rohtak Road, Delhi, India": [],
+ "Zakhira Flyover, Delhi, India": [
+  {
+   "lat": 28.6675241,
+   "lng": 77.1673771,
+   "name": "Zakhira Flyover, Amar Park, Patel Nagar, Karol Bagh, Delhi, Central Delhi, Delhi, 110035, India",
+   "type": "primary",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.6704636,
+   "lng": 77.1606005,
+   "name": "Zakhira Flyover, Amar Park, Punjabi Bagh, Karol Bagh, Delhi, Central Delhi, Delhi, 110035, India",
+   "type": "primary",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.665489,
+   "lng": 77.173812,
+   "name": "Zakhira Flyover, Anand Parbat, City & Sadar, Delhi, Old Delhi, Delhi, 110052, India",
+   "type": "primary",
+   "cls": "highway"
+  }
+ ],
+ "Red Light Pulprahlad Pur, Mehrauli Badarpur Road, Delhi, India": [],
+ "Red Light Pulprahlad Pur, Delhi, India": [],
+ "Prem Bari Pull, Ring Road, Delhi, India": [],
+ "Prem Bari Pull, Delhi, India": [],
+ "Hanuman Mandir Yamuna Bazar, Ring Road, Delhi, India": [],
+ "Hanuman Mandir Yamuna Bazar, Delhi, India": [],
+ "Punjabi Bagh Chowk, Ring Road, Delhi, India": [],
+ "Punjabi Bagh Chowk, Delhi, India": [
+  {
+   "lat": 28.6738499,
+   "lng": 77.1404888,
+   "name": "Punjabi Bagh Chowk, Keshavpuram, Delhi, Central North Delhi, Delhi, 110026, India",
+   "type": "primary",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.6737404,
+   "lng": 77.1396509,
+   "name": "Punjabi Bagh Chowk, West, Delhi, West Delhi, Delhi, 110026, India",
+   "type": "primary",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.6734051,
+   "lng": 77.1399524,
+   "name": "Punjabi Bagh Chowk, Punjabi Bagh, Karol Bagh, Delhi, Central Delhi, Delhi, 110026, India",
+   "type": "primary",
+   "cls": "highway"
+  }
+ ],
+ "Mukarba Chowk, GTK Road, Delhi, India": [],
+ "Mukarba Chowk, Delhi, India": [
+  {
+   "lat": 28.7323054,
+   "lng": 77.1520709,
+   "name": "Mukarba Chowk, Outer Ring Road, Basant Dada Patil Nagar, Bhalswa, Civil Lines, Delhi, North Delhi, Delhi, 110042, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.7349081,
+   "lng": 77.1554817,
+   "name": "Mukarba Chowk, Shaheed Captain Vikram Batra Flyover, Basant Dada Patil Nagar, Bhalswa, Civil Lines, Delhi, North Delhi, Delhi, 110042, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.7348975,
+   "lng": 77.1558934,
+   "name": "Mukarba Chowk, Shaheed Captain Vikram Batra Flyover, Basant Dada Patil Nagar, Bhalswa, Civil Lines, Delhi, North Delhi, Delhi, 110042, India",
+   "type": "yes",
+   "cls": "junction"
+  }
+ ],
+ "Shamshan Ghat Geeta Colony, Yamuna Pusta Road, Delhi, India": [],
+ "Shamshan Ghat Geeta Colony, Delhi, India": [],
+ "Goyla Village Najafgarh, Goyla Dairy Road, Delhi, India": [],
+ "Goyla Village Najafgarh, Delhi, India": [
+  {
+   "lat": 28.585716,
+   "lng": 77.0101945,
+   "name": "Goyla Khurd, Najafgarh, Delhi, South West Delhi, Delhi, India",
+   "type": "administrative",
+   "cls": "boundary"
+  }
+ ],
+ "Gandhi Vihar Bus Stand, Outer Ring Road, Delhi, India": [],
+ "Gandhi Vihar Bus Stand, Delhi, India": [],
+ "Archana Cinema Red Light, Josef Broz Tito Marg, Delhi, India": [],
+ "Archana Cinema Red Light, Delhi, India": [],
+ "Sarai Kale Khan, Ring Road, Delhi, India": [],
+ "Sarai Kale Khan, Delhi, India": [
+  {
+   "lat": 28.5891891,
+   "lng": 77.2580654,
+   "name": "Sarai Kale Khan, Mahatma Gandhi Marg, Central, Delhi, South East Delhi, Delhi, 110013, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.5866263,
+   "lng": 77.2562282,
+   "name": "Sarai Kale Khan, Central, Delhi, South East Delhi, Delhi, India",
+   "type": "administrative",
+   "cls": "boundary"
+  }
+ ],
+ "Kashmiri Gate Chowk Boulevard Road, Boulevard Road, Delhi, India": [],
+ "Kashmiri Gate Chowk Boulevard Road, Delhi, India": [],
+ "Burari Chowk, Outer Ring Road, Delhi, India": [],
+ "Burari Chowk, Delhi, India": [],
+ "Adarsh Nagar, GTK Road, Delhi, India": [],
+ "Adarsh Nagar, Delhi, India": [
+  {
+   "lat": 28.7165805,
+   "lng": 77.1704223,
+   "name": "Adarsh Nagar, Mall Road Extension, Jahangir Puri, Civil Lines, Delhi, North Delhi, Delhi, 110033, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.7144008,
+   "lng": 77.1672884,
+   "name": "Adarsh Nagar, Kela Godam Road, Shalimar Bagh, Keshavpuram, Delhi, Central North Delhi, Delhi, 110088, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.7198544,
+   "lng": 77.1732678,
+   "name": "Adarsh Nagar, Civil Lines, Delhi, North Delhi, Delhi, India",
+   "type": "suburb",
+   "cls": "place"
+  }
+ ],
+ "Chhatra Marg Crossing, Ring Road, Delhi, India": [],
+ "Chhatra Marg Crossing, Delhi, India": [],
+ "Shastri Nagar Metro Station, Vir Banda Bairagi Marg, Delhi, India": [],
+ "Shastri Nagar Metro Station, Delhi, India": [],
+ "Majlis Park Metro Station, Road No.51, Delhi, India": [],
+ "Majlis Park Metro Station, Delhi, India": [],
+ "Keshopur T Point, Outer Ring Road, Delhi, India": [],
+ "Keshopur T Point, Delhi, India": [],
+ "Azad Pur Chowk, GTK Road, Delhi, India": [],
+ "Azad Pur Chowk, Delhi, India": [],
+ "Delhi Gate, N. Subhash Marg, Delhi, India": [],
+ "Delhi Gate, Delhi, India": [
+  {
+   "lat": 28.6392174,
+   "lng": 77.2407795,
+   "name": "Delhi Gate, Bahadur Shah Zafar Marg, City & Sadar, Delhi, Old Delhi, Delhi, 110002, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.6392084,
+   "lng": 77.2407549,
+   "name": "Delhi Gate, Bahadur Shah Zafar Marg, City & Sadar, Delhi, Old Delhi, Delhi, 110002, India",
+   "type": "stop",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.6412051,
+   "lng": 77.2405632,
+   "name": "Delhi Gate, Netaji Subhash Marg, Meena Bazaar, Old Delhi, City & Sadar, Delhi, Old Delhi, Delhi, 110006, India",
+   "type": "yes",
+   "cls": "building"
+  }
+ ],
+ "Siraspur, GTK Road, Delhi, India": [],
+ "Siraspur, Delhi, India": [
+  {
+   "lat": 28.7580543,
+   "lng": 77.1297995,
+   "name": "Siraspur, Civil Lines, Delhi, North Delhi, Delhi, 110089, India",
+   "type": "suburb",
+   "cls": "place"
+  },
+  {
+   "lat": 28.7582031,
+   "lng": 77.1373232,
+   "name": "Siraspur, Civil Lines, Delhi, North Delhi, Delhi, India",
+   "type": "political",
+   "cls": "boundary"
+  }
+ ],
+ "Dhaula Kuan, Ring Road, Delhi, India": [
+  {
+   "lat": 28.5904623,
+   "lng": 77.1683941,
+   "name": "Dhaula Kuan, Mahatma Gandhi Marg, Moti Bagh, South, Delhi, South Delhi, Delhi, 110021, India",
+   "type": "bus_station",
+   "cls": "amenity"
+  },
+  {
+   "lat": 28.5995883,
+   "lng": 77.1624365,
+   "name": "Dhaula Kuan, Mahatma Gandhi Marg, Dhaula Kuan, Delhi Cantonment, New Delhi, Delhi, 110021, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.5907972,
+   "lng": 77.1683456,
+   "name": "Dhaula Kuan, Mahatma Gandhi Marg, Moti Bagh, South, Delhi, South Delhi, Delhi, 110021, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Dhaula Kuan, Delhi, India": [
+  {
+   "lat": 28.5918719,
+   "lng": 77.1617158,
+   "name": "Dhaula Kuan, NH48, Dhaula Kuan, Delhi Cantonment, New Delhi, Delhi, 110021, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.5948845,
+   "lng": 77.162261,
+   "name": "Dhaula Kuan, Delhi Cantonment, New Delhi, Delhi, 110021, India",
+   "type": "suburb",
+   "cls": "place"
+  }
+ ],
+ "Monastery Ring Road, Ring Road, Delhi, India": [],
+ "Monastery Ring Road, Delhi, India": [],
+ "Kingsway Camp Chowk, Ring Road, Delhi, India": [],
+ "Kingsway Camp Chowk, Delhi, India": [
+  {
+   "lat": 28.6988198,
+   "lng": 77.2046864,
+   "name": "Kingsway Camp Chowk, Mahatma Gandhi Marg, Civil Lines, Delhi, North Delhi, Delhi, 110009, India",
+   "type": "yes",
+   "cls": "junction"
+  }
+ ],
+ "Govindpuri Metro Station, Anand Mai Marg, Delhi, India": [],
+ "Govindpuri Metro Station, Delhi, India": [
+  {
+   "lat": 28.545106,
+   "lng": 77.2638852,
+   "name": "Govindpuri Metro Station, Shri Maa Anandamai Marg, Govindpuri, Okhla, Central, Delhi, South East Delhi, Delhi, 110076, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Nangloi Metro Station, Rohtak Road, Delhi, India": [],
+ "Nangloi Metro Station, Delhi, India": [],
+ "Metro Station Madipur, Rohtak Road, Delhi, India": [],
+ "Metro Station Madipur, Delhi, India": [],
+ "Keval Park Road No. 51, Road No. 51, Delhi, India": [],
+ "Keval Park Road No. 51, Delhi, India": [],
+ "Near Triveni Park Nangal Village Delhi Cantt, Pankha Road, Delhi, India": [],
+ "Near Triveni Park Nangal Village Delhi Cantt, Delhi, India": [],
+ "Near SDM Office Geeta Colony, Yamuna Pusta Road, Delhi, India": [],
+ "Near SDM Office Geeta Colony, Delhi, India": [],
+ "Flyover Raja Ram Marg, Raja Ram Kohli Marg, Delhi, India": [],
+ "Flyover Raja Ram Marg, Delhi, India": [],
+ "Telco Gajipur, Road No.56, Delhi, India": [],
+ "Telco Gajipur, Delhi, India": [],
+ "Loni Road Crossing, Wazirabad Road, Delhi, India": [],
+ "Loni Road Crossing, Delhi, India": [],
+ "Metro Station Dilshad Garden, G.T. Road, Delhi, India": [
+  {
+   "lat": 28.6757033,
+   "lng": 77.3125046,
+   "name": "Jhilmil Metro Station, G.T Road, Jeevan Sarita, Shahdara, Dilshad Garden, Shahdara North, Delhi, North East Delhi, Delhi, 110095, India",
+   "type": "transportation",
+   "cls": "building"
+  },
+  {
+   "lat": 28.6753409,
+   "lng": 77.301133,
+   "name": "Mansarovar Park, Mansrovar Park Metro Station, G.T Road, Maharathi Colony, Shahdara, Vivek Vihar, Shahdara North, Delhi, North East Delhi, Delhi, 110095, India",
+   "type": "transportation",
+   "cls": "building"
+  },
+  {
+   "lat": 28.6755821,
+   "lng": 77.3001074,
+   "name": "Mansarovar Park Metro Station, G.T Road, Jwala Nagar, Shahdara, Vivek Vihar, Shahdara North, Delhi, North East Delhi, Delhi, 110095, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Metro Station Dilshad Garden, Delhi, India": [
+  {
+   "lat": 28.6757033,
+   "lng": 77.3125046,
+   "name": "Jhilmil Metro Station, G.T Road, Jeevan Sarita, Shahdara, Dilshad Garden, Shahdara North, Delhi, North East Delhi, Delhi, 110095, India",
+   "type": "transportation",
+   "cls": "building"
+  },
+  {
+   "lat": 28.6753409,
+   "lng": 77.301133,
+   "name": "Mansarovar Park, Mansrovar Park Metro Station, G.T Road, Maharathi Colony, Shahdara, Vivek Vihar, Shahdara North, Delhi, North East Delhi, Delhi, 110095, India",
+   "type": "transportation",
+   "cls": "building"
+  },
+  {
+   "lat": 28.6755821,
+   "lng": 77.3001074,
+   "name": "Mansarovar Park Metro Station, G.T Road, Jwala Nagar, Shahdara, Vivek Vihar, Shahdara North, Delhi, North East Delhi, Delhi, 110095, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Hamdard Nagar Red Light, Mehrauli Badarpur Road, Delhi, India": [],
+ "Hamdard Nagar Red Light, Delhi, India": [],
+ "Uttam Nagar, Najafgarh Road, Delhi, India": [
+  {
+   "lat": 28.6248465,
+   "lng": 77.0652861,
+   "name": "Uttam Nagar East, Shivaji Marg, Nawada, West, Delhi, West Delhi, Delhi, 110059, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.621757,
+   "lng": 77.0557122,
+   "name": "Uttam Nagar West, Shivaji Marg, R Block, Nawada, West, Delhi, West Delhi, Delhi, 110059, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.6248301,
+   "lng": 77.0652972,
+   "name": "Uttam Nagar East, Shivaji Marg, Nawada, West, Delhi, West Delhi, Delhi, 110059, India",
+   "type": "stop",
+   "cls": "railway"
+  }
+ ],
+ "Uttam Nagar, Delhi, India": [
+  {
+   "lat": 28.6215226,
+   "lng": 77.0611064,
+   "name": "Uttam Nagar, West, Delhi, West Delhi, Delhi, 110059, India",
+   "type": "suburb",
+   "cls": "place"
+  }
+ ],
+ "Radisson Hotel, NH-8, Delhi, India": [],
+ "Radisson Hotel, Delhi, India": [
+  {
+   "lat": 28.6339659,
+   "lng": 77.2171659,
+   "name": "Radisson Blu Marina Hotel, 59, Connaught Circus, G Block, Connaught Place, New Delhi, Delhi, 110001, India",
+   "type": "hotel",
+   "cls": "tourism"
+  },
+  {
+   "lat": 28.5431492,
+   "lng": 77.1195279,
+   "name": "Radisson Blu Plaza Hotel,Delhi Airport, Mahipalpur Flyover, Mahipalpur, Najafgarh, Delhi, South West Delhi, Delhi, 110037, India",
+   "type": "hotel",
+   "cls": "tourism"
+  }
+ ],
+ "District Center Janakpuri, Najafgarh Road, Delhi, India": [],
+ "District Center Janakpuri, Delhi, India": [
+  {
+   "lat": 28.6292578,
+   "lng": 77.0804632,
+   "name": "Janakpuri District Center, Janakpuri, West, Delhi, West Delhi, Delhi, India",
+   "type": "commercial",
+   "cls": "landuse"
+  }
+ ],
+ "Udyog Nagar, Rohtak Road, Delhi, India": [
+  {
+   "lat": 28.681103,
+   "lng": 77.0808492,
+   "name": "Udyog Nagar, Rohtak Road, Nangloi, Rohini, Delhi, North West Delhi, Delhi, 110083, India",
+   "type": "station",
+   "cls": "railway"
+  }
+ ],
+ "Udyog Nagar, Delhi, India": [
+  {
+   "lat": 28.681103,
+   "lng": 77.0808492,
+   "name": "Udyog Nagar, Rohtak Road, Nangloi, Rohini, Delhi, North West Delhi, Delhi, 110083, India",
+   "type": "station",
+   "cls": "railway"
+  }
+ ],
+ "Sai Baba Mandir Najafgarh, Najafgarh Road, Delhi, India": [
+  {
+   "lat": 28.6139476,
+   "lng": 76.9999538,
+   "name": "Sai Baba Mandir, Shivaji Marg, Gemini Park, Najafgarh, Delhi, South West Delhi, Delhi, 110043, India",
+   "type": "place_of_worship",
+   "cls": "amenity"
+  },
+  {
+   "lat": 28.6138639,
+   "lng": 77.0005506,
+   "name": "Sai Baba Mandir, Shivaji Marg, Gemini Park, Najafgarh, Delhi, South West Delhi, Delhi, 110043, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Sai Baba Mandir Najafgarh, Delhi, India": [
+  {
+   "lat": 28.6139476,
+   "lng": 76.9999538,
+   "name": "Sai Baba Mandir, Shivaji Marg, Gemini Park, Najafgarh, Delhi, South West Delhi, Delhi, 110043, India",
+   "type": "place_of_worship",
+   "cls": "amenity"
+  },
+  {
+   "lat": 28.6138639,
+   "lng": 77.0005506,
+   "name": "Sai Baba Mandir, Shivaji Marg, Gemini Park, Najafgarh, Delhi, South West Delhi, Delhi, 110043, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Rama Road Crossing, Patel Road, Delhi, India": [],
+ "Rama Road Crossing, Delhi, India": [],
+ "C-1 Janakpuri, Pankha Road, Delhi, India": [],
+ "C-1 Janakpuri, Delhi, India": [
+  {
+   "lat": 28.6171189,
+   "lng": 77.0787538,
+   "name": "C-1 Janakpuri, Bhagwan Mahavir Marg, Asalatpur Gaon, Janakpuri, West, Delhi, West Delhi, Delhi, 110018, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.6181798,
+   "lng": 77.0769923,
+   "name": "C-1, Janakpuri, Bhagwan Mahavir Marg, Asalatpur Gaon, Janakpuri, West, Delhi, West Delhi, Delhi, 110018, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Ghewra More, Rohtak Road, Delhi, India": [],
+ "Ghewra More, Delhi, India": [],
+ "Deepali Chowk, Outer Ring Road, Delhi, India": [
+  {
+   "lat": 28.6981132,
+   "lng": 77.11827,
+   "name": "Deepali Chowk, Outer Ring Road, Rohini, Delhi, North West Delhi, Delhi, 110056, India",
+   "type": "stop",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.6981,
+   "lng": 77.1182795,
+   "name": "Deepali Chowk, Outer Ring Road, Rohini, Delhi, North West Delhi, Delhi, 110056, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.69822,
+   "lng": 77.1190973,
+   "name": "Deepali Chowk, Outer Ring Road, Sector 8, Rohini, Delhi, North West Delhi, Delhi, 110034, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Deepali Chowk, Delhi, India": [
+  {
+   "lat": 28.6981,
+   "lng": 77.1182795,
+   "name": "Deepali Chowk, Outer Ring Road, Rohini, Delhi, North West Delhi, Delhi, 110056, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.6980748,
+   "lng": 77.1182847,
+   "name": "Deepali Chowk, Outer Ring Road, Rohini, Delhi, North West Delhi, Delhi, 110056, India",
+   "type": "stop",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.69822,
+   "lng": 77.1190973,
+   "name": "Deepali Chowk, Outer Ring Road, Sector 8, Rohini, Delhi, North West Delhi, Delhi, 110034, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "CRPF Camp Sonia Vihar, Pusta Road, Delhi, India": [],
+ "CRPF Camp Sonia Vihar, Delhi, India": [],
+ "Budhpur Ganda Nala/Hanuman Mandir Budhpur, GTK Road, Delhi, India": [],
+ "Budhpur Ganda Nala/Hanuman Mandir Budhpur, Delhi, India": [],
+ "Sai Baba Mandir NH-1, GTK Road, Delhi, India": [],
+ "Sai Baba Mandir NH-1, Delhi, India": [],
+ "Khichadi Pur, NH-24, Delhi, India": [],
+ "Khichadi Pur, Delhi, India": [],
+ "Kirari More, Rohtak Road, Delhi, India": [],
+ "Kirari More, Delhi, India": [],
+ "Jharera Village, NH-8, Delhi, India": [],
+ "Jharera Village, Delhi, India": [
+  {
+   "lat": 28.5794187,
+   "lng": 77.1450622,
+   "name": "Jharera Village, Delhi-Gurugram Expressway, Dhaula Kuan, Delhi Cantonment, New Delhi, Delhi, 110057, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Wazir Pur Depot, Ring Road, Delhi, India": [],
+ "Wazir Pur Depot, Delhi, India": [
+  {
+   "lat": 28.7246928,
+   "lng": 77.1518297,
+   "name": "Organic Harvest, wazir pur, Bus Depot,, Sheesh Mahal Apartments, Sheesh Mahal Apartments (DA Block), Shalimar Bagh, Keshavpuram, Delhi, Central North Delhi, Delhi, 110035, India",
+   "type": "supermarket",
+   "cls": "shop"
+  }
+ ],
+ "Under Pass Gajipur, NH-24, Delhi, India": [],
+ "Under Pass Gajipur, Delhi, India": [],
+ "Hilton Hotel, Noida Link Road, Delhi, India": [],
+ "Hilton Hotel, Delhi, India": [
+  {
+   "lat": 28.5279835,
+   "lng": 77.2174969,
+   "name": "Hilton Garden Inn New Delhi Saket, Saket District Centre, Saket, South, New Delhi, South Delhi, Delhi, 110017, India",
+   "type": "hotel",
+   "cls": "tourism"
+  }
+ ],
+ "Ram Charan Aggarwal Chowk, BSZ Marg, Delhi, India": [],
+ "Ram Charan Aggarwal Chowk, Delhi, India": [],
+ "AIIMS, Ring Road, Delhi, India": [],
+ "AIIMS, Delhi, India": [
+  {
+   "lat": 28.5668602,
+   "lng": 77.2078058,
+   "name": "A.I.I.M.S., Aurobindo Marg, Kidwai Nagar, New Delhi, Delhi, 110029, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.5670638,
+   "lng": 77.2080031,
+   "name": "A.I.I.M.S., Aurobindo Marg, Kidwai Nagar, New Delhi, Delhi, 110029, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.566854,
+   "lng": 77.207832,
+   "name": "A.I.I.M.S., Aurobindo Marg, Kidwai Nagar, New Delhi, Delhi, 110029, India",
+   "type": "stop",
+   "cls": "railway"
+  }
+ ],
+ "Tilak Nagar Flyover, Najafgarh Road, Delhi, India": [],
+ "Tilak Nagar Flyover, Delhi, India": [],
+ "Shani Mandir NH-1, GTK Road, Delhi, India": [],
+ "Shani Mandir NH-1, Delhi, India": [],
+ "Tilak Marg Bhagwan Das Marg Crossing, Tilak Marg, Delhi, India": [],
+ "Tilak Marg Bhagwan Das Marg Crossing, Delhi, India": [],
+ "Nirankari Colony, Outer Ring Road, Delhi, India": [],
+ "Nirankari Colony, Delhi, India": [
+  {
+   "lat": 28.7165712,
+   "lng": 77.2064187,
+   "name": "Nirankari Colony, Civil Lines, Delhi, North Delhi, Delhi, India",
+   "type": "administrative",
+   "cls": "boundary"
+  }
+ ],
+ "Satya Niketan Nanakpura, Ring Road, Delhi, India": [],
+ "Satya Niketan Nanakpura, Delhi, India": [],
+ "Near Haldiram Wazirpur, Ring Road, Delhi, India": [],
+ "Near Haldiram Wazirpur, Delhi, India": [],
+ "Raja Harishchander Hospital, DSIDC Narela Road, Delhi, India": [],
+ "Raja Harishchander Hospital, Delhi, India": [],
+ "Shalimar Bagh, Ring Road, Delhi, India": [
+  {
+   "lat": 28.7022144,
+   "lng": 77.1649348,
+   "name": "Shalimar Bagh Metro Station, Mahatma Gandhi Road, Block C5, Ashok Vihar, Shalimar Bagh, Keshavpuram, Delhi, Central North Delhi, Delhi, 110063, India",
+   "type": "station",
+   "cls": "railway"
+  }
+ ],
+ "Shalimar Bagh, Delhi, India": [
+  {
+   "lat": 28.7019574,
+   "lng": 77.1654317,
+   "name": "Shalimar Bagh, Shalimar Bagh Flyover, Jailer Wala Bagh, Ashok Vihar, Shalimar Bagh, Keshavpuram, Delhi, Central North Delhi, Delhi, 110088, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.7081295,
+   "lng": 77.1611881,
+   "name": "Shalimar Bagh, Keshavpuram, Delhi, Central North Delhi, Delhi, 110088, India",
+   "type": "suburb",
+   "cls": "place"
+  },
+  {
+   "lat": 28.7185318,
+   "lng": 77.1506336,
+   "name": "Shalimar Bagh, Keshavpuram, Delhi, Central North Delhi, Delhi, India",
+   "type": "park",
+   "cls": "leisure"
+  }
+ ],
+ "Round About Bhairaon Enclave, Outer Ring Road, Delhi, India": [],
+ "Round About Bhairaon Enclave, Delhi, India": [],
+ "Jeewan Mala Hospital, New Rohtak Road, Delhi, India": [],
+ "Jeewan Mala Hospital, Delhi, India": [],
+ "Tughlaqabad Village Red Light, Mehrauli Badarpur Road, Delhi, India": [],
+ "Tughlaqabad Village Red Light, Delhi, India": [],
+ "Khel Gaon, NH-24, Delhi, India": [
+  {
+   "lat": 28.6113262,
+   "lng": 77.2732298,
+   "name": "Khel Gaon Residential Complex, Commonwealth Games Village, Shahdara South, Delhi, East Delhi, Delhi, India",
+   "type": "residential",
+   "cls": "landuse"
+  }
+ ],
+ "Khel Gaon, Delhi, India": [
+  {
+   "lat": 28.5502342,
+   "lng": 77.2103861,
+   "name": "Khel Gaon, August Kranti Marg, Hauz Khas, South, Delhi, South Delhi, Delhi, 110017, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  },
+  {
+   "lat": 28.6059774,
+   "lng": 77.2748841,
+   "name": "Khel Gaon, Flyover, Mayur Vihar, Shahdara South, Delhi, East Delhi, Delhi, 110091, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Near KV School Naraina, Ring Road, Delhi, India": [],
+ "Near KV School Naraina, Delhi, India": [],
+ "Hanuman Mandir, Delhi, India": [
+  {
+   "lat": 28.5527309,
+   "lng": 77.1297546,
+   "name": "Hanuman Mandir, Aerocity Underpass, Delhi Cantonment, New Delhi, Delhi, 110037, India",
+   "type": "place_of_worship",
+   "cls": "amenity"
+  },
+  {
+   "lat": 28.573394,
+   "lng": 77.1205348,
+   "name": "Hanuman Mandir, Yakshini Chowk Underpass, Delhi Cantonment, New Delhi, Delhi, 110010, India",
+   "type": "place_of_worship",
+   "cls": "amenity"
+  },
+  {
+   "lat": 28.5310584,
+   "lng": 77.2184318,
+   "name": "hanuman Mandir, Khirki Main Road, Khirki, South, Delhi, South Delhi, Delhi, 110017, India",
+   "type": "place_of_worship",
+   "cls": "amenity"
+  }
+ ],
+ "Kabootar Market, Delhi, India": [],
+ "Nangli Poona, Delhi, India": [
+  {
+   "lat": 28.7731719,
+   "lng": 77.1433187,
+   "name": "Nangli Poona, Civil Lines, Delhi, North Delhi, Delhi, India",
+   "type": "political",
+   "cls": "boundary"
+  },
+  {
+   "lat": 28.7746663,
+   "lng": 77.1434462,
+   "name": "Nangli Poona, Grand Trunk Road, Swaroop Nagar, Civil Lines, Delhi, North Delhi, Delhi, 110036, India",
+   "type": "bus_stop",
+   "cls": "highway"
+  }
+ ],
+ "Rajouri Garden, Delhi, India": [
+  {
+   "lat": 28.6490563,
+   "lng": 77.1227198,
+   "name": "Rajouri Garden (Blue Line), Shivaji Marg, Tilak Nagar Industrial Area, Mayapuri, West, Delhi, West Delhi, Delhi, 110027, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.6511896,
+   "lng": 77.1242597,
+   "name": "Rajouri Garden (Pink Line), Ring Road, Rajouri Garden, West, Delhi, West Delhi, Delhi, 110027, India",
+   "type": "station",
+   "cls": "railway"
+  },
+  {
+   "lat": 28.6451121,
+   "lng": 77.1239332,
+   "name": "Rajouri Garden, West, Delhi, West Delhi, Delhi, 110027, India",
+   "type": "administrative",
+   "cls": "boundary"
+  }
+ ],
+ "Shastri Park/IT Park, Delhi, India": []
+}
