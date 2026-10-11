@@ -28,7 +28,7 @@
   button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
   input[type=range] { width: 100%; min-height: 28px; }
-  #yearBox[hidden] { display: none; }
+  #yearBox[hidden], #gapNote[hidden] { display: none; }
   .yearline { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: center; }
   .yearline button { width: auto; padding: 8px 14px; }
   #yearVal { font-weight: 600; color: var(--accent); }
@@ -76,6 +76,8 @@
 
   <label for="metric">Metric</label>
   <select id="metric"></select>
+
+  <p id="gapNote" class="sub" hidden>Gap index = how high the ward's 2024 crash-zone density ranks, times how low its camera density ranks (0 to 1). Wards without a mapped crash zone stay flat. Exploratory: approximate coordinates, and cameras are only one kind of safety infrastructure.</p>
 
   <div id="yearBox" hidden>
     <label for="year">Year</label>
@@ -142,6 +144,7 @@
     { key: 'officialLiquorVendsDensity', label: 'Official liquor vends per sq km', note: 'exploratory' },
     { key: 'totalIPCDensity2024Inherited', label: 'IPC crime density 2024 (district-level)', note: 'district' },
     { key: 'crimeAgainstWomenDensity2024Inherited', label: 'Crimes against women density 2024 (district-level)', note: 'district' },
+    { key: 'gapIndex', label: 'Gap: crash zones with few cameras (exploratory index)', kind: 'gap', note: 'exploratory' },
     { key: 'theft', label: 'Theft per sq km, by year (district-level)', kind: 'year', note: 'district' },
     { key: 'robbery', label: 'Robbery per sq km, by year (district-level)', kind: 'year', note: 'district' },
     { key: 'burglary', label: 'Burglary per sq km, by year (district-level)', kind: 'year', note: 'district' }
@@ -150,12 +153,13 @@
     osm: { tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], attr: '© OpenStreetMap contributors', max: 19 },
     sat: { tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'], attr: 'Imagery © Esri and contributors', max: 18 }
   };
-  var DETAIL_ROWS = [0, 1, 2, 3, 4, 5, 6, 7]; // ward metrics listed in the details panel
+  var DETAIL_ROWS = [0, 1, 2, 3, 4, 5, 6, 7, 8]; // ward metrics listed in the details panel
 
   var $ = function (id) { return document.getElementById(id); };
   var metricSel = $('metric'), basemapSel = $('basemap'), heightEl = $('height'), yearEl = $('year');
   var wards = null, map, popup, touring = false, tourTimer = null, playTimer = null;
   var metric = METRICS[0], year = 2024, pinned = null, basemapKey = 'osm', buildingsOn = false;
+  var gapScore = [];                       // gapScore[wardId] = 0..1
   var districtArea = {}, crimeByYear = {}; // crimeByYear[year][district] = row
   var yearMax = {};                          // yearMax[metricKey] = max value over all years
   var reducedMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -189,6 +193,7 @@
   // ---------- value model ----------
   // Returns a number, or null when there is no comparable figure (null is never rendered as zero).
   function valueOf(f, m) {
+    if (m.kind === 'gap') return gapScore[f.properties._id] || 0;
     if (m.kind === 'year') {
       var d = f.properties.assignedDistrict;
       var row = crimeByYear[year] && crimeByYear[year][d];
@@ -226,6 +231,7 @@
       else { p._r = r(v); p._color = rampColor(p._r); }
     });
     map.getSource('wards').setData(wards);
+    $('gapNote').hidden = metric.kind !== 'gap';
     $('legendTitle').textContent = metric.label + (metric.kind === 'year' ? ' – ' + year : '');
     $('nodataKey').innerHTML = anyNull ? '<span class="nodata"></span>No data' : '';
     $('yearBox').hidden = metric.kind !== 'year';
@@ -504,6 +510,20 @@
       f.properties._id = i;
       var d = f.properties.assignedDistrict;
       if (d) districtArea[d] = (districtArea[d] || 0) + (Number(f.properties.areaSqKm) || 0);
+    });
+    // Gap index = crash-zone density percentile x (1 - camera density percentile), across all wards.
+    // Needs both a crash zone in the ward and a low camera count; 0 where the ward has no crash zone.
+    function percentiles(key) {
+      var v = wards.features.map(function (f) { return Number(f.properties[key]) || 0; });
+      var sorted = v.slice().sort(function (a, b) { return a - b; });
+      return v.map(function (x) {
+        var lo = sorted.indexOf(x), hi = sorted.lastIndexOf(x);
+        return (lo + (hi - lo) / 2) / (sorted.length - 1);
+      });
+    }
+    var need = percentiles('crashZones2024Density'), cover = percentiles('surveillanceDensity');
+    wards.features.forEach(function (f, i) {
+      gapScore[i] = (Number(f.properties.crashZones2024Density) || 0) > 0 ? Math.round(need[i] * (1 - cover[i]) * 1000) / 1000 : 0;
     });
     // Year data is optional: if any year fails to load, the year metrics are removed and the rest still works.
     return Promise.all(YEARS.map(function (y) {
