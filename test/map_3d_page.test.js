@@ -93,3 +93,19 @@ test('tour reads fields that exist in the crash zone data and has ten ranked poi
   for (const k of used) assert.ok(k in props, 'tour caption reads "' + k + '" which is not in the crash zone data');
   for (const f of pts.slice(0, 10)) assert.equal(f.properties.coordinate_is_approximate, true, 'tour copy says positions are approximate');
 });
+
+test('camera layer reads the OSM surveillance points: numeric Delhi coordinates, no video', () => {
+  assert.ok(script.includes('data/poi_markers_latlng.json'));
+  const poi = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'poi_markers_latlng.json'), 'utf8'));
+  assert.ok(Array.isArray(poi.surveillance) && poi.surveillance.length > 1000, 'expected the surveillance point list');
+  for (const [lat, lng] of poi.surveillance) {
+    assert.ok(lat > 28.3 && lat < 29.0 && lng > 76.7 && lng < 77.5, 'camera point outside Delhi: ' + lat + ',' + lng);
+  }
+  assert.ok(!/\.m3u8|<video|\.mjpg|getUserMedia/i.test(script), 'the page must not embed live video or camera streams');
+  assert.ok(html.includes('no video'), 'the camera checkbox must say that no video is shown');
+});
+
+test('tour card links out to street view with an approximate-location label', () => {
+  assert.ok(script.includes('map_action=pano'));
+  assert.ok(script.includes('rel="noopener"'));
+});
