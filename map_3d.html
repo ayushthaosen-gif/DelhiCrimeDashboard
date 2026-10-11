@@ -110,6 +110,8 @@
 
   <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="labels" type="checkbox" checked style="width:auto;min-height:0"> Place and ward names</label>
 
+  <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="cams" type="checkbox" style="width:auto;min-height:0"> Mapped surveillance cameras (OpenStreetMap, no video)</label>
+
   <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="bldg" type="checkbox" style="width:auto;min-height:0"> 3D buildings (zoom in past street level; wards fade out)</label>
 
   <div class="row">
@@ -377,6 +379,45 @@
     else map.fitBounds(bbox(inD), { padding: 80, pitch: 58, duration: reducedMotion ? 0 : 1800, maxZoom: 12 });
   }
 
+  // ---------- mapped surveillance cameras (OpenStreetMap points; locations only, no video) ----------
+  var cameras = null, camsOn = false, camsPromise = null;
+  function loadCameras() {
+    if (cameras) return Promise.resolve(cameras);
+    if (!camsPromise) {
+      camsPromise = loadJson('data/poi_markers_latlng.json').then(function (j) {
+        cameras = (j.surveillance || []).filter(function (c) { return isFinite(c[0]) && isFinite(c[1]); })
+          .map(function (c) { return [Number(c[0]), Number(c[1])]; });
+        if (map && map.getSource('cameras')) {
+          map.getSource('cameras').setData({ type: 'FeatureCollection', features: cameras.map(function (c) {
+            return { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [c[1], c[0]] } };
+          }) });
+        }
+        return cameras;
+      }, function () { camsPromise = null; return null; });
+    }
+    return camsPromise;
+  }
+  function setCameras(on) {
+    camsOn = on; $('cams').checked = on;
+    if (map && map.getLayer('cameras-pt')) map.setLayoutProperty('cameras-pt', 'visibility', on ? 'visible' : 'none');
+    if (on) loadCameras();
+  }
+  function metresBetween(lat1, lng1, lat2, lng2) {
+    var R = 6371000, r = Math.PI / 180, dLat = (lat2 - lat1) * r, dLng = (lng2 - lng1) * r;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.sqrt(a));
+  }
+  function cameraStats(lat, lng) {
+    if (!cameras) return null;
+    var n250 = 0, n500 = 0, nearest = Infinity;
+    cameras.forEach(function (c) {
+      var d = metresBetween(lat, lng, c[0], c[1]);
+      if (d < nearest) nearest = d;
+      if (d <= 500) { n500++; if (d <= 250) n250++; }
+    });
+    return { n250: n250, n500: n500, nearest: nearest };
+  }
+
   // ---------- tour: top 10 crash zones on 3D satellite ----------
   var crashZones = null;                       // top 10 by Delhi Traffic Police Table 6.29 rank (approximate points)
   var tourIdx = 0, tourSaved = null;
@@ -390,10 +431,11 @@
   function num(v) { return v === null || v === undefined ? 'n/a' : v; }
   function pair(flagged, f, t) { return flagged ? num(f) + ' / ' + num(t) : 'not flagged'; }
   function tourCaption(z, i, n) {
-    var p = z.properties;
+    var p = z.properties, c0 = z.geometry.coordinates, cam = cameraStats(c0[1], c0[0]);
     var rows = [
       ['Fatal / all crashes', num(p.all_fatal_crashes) + ' / ' + num(p.all_total_crashes)],
       ['Persons killed / injured', num(p.blackspot_persons_killed) + ' / ' + num(p.blackspot_persons_injured)],
+      ['Mapped cameras within 250 m / 500 m', cam ? cam.n250 + ' / ' + cam.n500 : 'loading\u2026'],
       ['*Pedestrian fatal / all', pair(p.pedestrian_crash_prone, p.pedestrian_fatal_crashes, p.pedestrian_total_crashes)],
       ['*Two-wheeler fatal / all', pair(p.two_wheeler_crash_prone, p.two_wheeler_fatal_crashes, p.two_wheeler_total_crashes)],
       ['*Heavy vehicle fatal / all', pair(p.htv_crash_prone, p.htv_fatal_crashes, p.htv_total_crashes)],
@@ -413,8 +455,10 @@
         var extra = r[0].charAt(0) === '*';
         return '<tr' + (extra ? ' class="x"' : '') + '><th scope="row">' + (extra ? r[0].slice(1) : r[0]) + '</th><td>' + esc(r[1]) + '</td></tr>';
       }).join('') + '</table>' +
+      (cam && p.cctv_priority_candidate && cam.n250 === 0 ? '<p class="cav" style="color:var(--accent)">The report recommends CCTV here; no mapped camera within 250 m (OpenStreetMap may be incomplete).</p>' : '') +
+      '<p style="margin:8px 0 0"><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + c0[1] + ',' + c0[0] + '" target="_blank" rel="noopener" style="color:var(--accent)">Street view near here &#8599;</a></p>' +
       '<button class="more" type="button" data-act="more" aria-expanded="' + ($('caption').classList.contains('open') ? 'true' : 'false') + '">' + ($('caption').classList.contains('open') ? 'Show less' : 'More detail') + '</button>' +
-      '<p class="cav">Delhi Road Crash Report 2024 (Traffic Police), Table 6.29 rank. The map position is an approximate landmark centre, not a surveyed location. The ring shows a 250 m zone.</p>';
+      '<p class="cav">Delhi Road Crash Report 2024 (Traffic Police), Table 6.29 rank. The map position is an approximate landmark centre, not a surveyed location. The ring shows a 250 m zone. Cameras are points mapped in OpenStreetMap (public or private, not a complete list) and no video is shown.</p>';
   }
 
   function stopTour() {
@@ -425,7 +469,7 @@
     if (map && map.getSource('tour')) map.getSource('tour').setData({ type: 'FeatureCollection', features: [] });
     if (was && tourSaved) {
       basemapSel.value = tourSaved.basemap; setBasemap(tourSaved.basemap);
-      setBuildings(tourSaved.buildings);
+      setBuildings(tourSaved.buildings); setCameras(tourSaved.cams);
       if (tourSaved.panelOpen) $('controls').setAttribute('open', '');
     }
     if (was) tourSaved = null;
@@ -448,6 +492,7 @@
     var z = crashZones[i], c = z.geometry.coordinates;
     $('caption').style.display = 'block';
     $('caption').innerHTML = tourCaption(z, i, crashZones.length);
+    if (!cameras) loadCameras().then(function () { if (touring && tourIdx === i) $('caption').innerHTML = tourCaption(z, i, crashZones.length); });
     map.getSource('tour').setData({ type: 'FeatureCollection', features: [
       { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [circlePolygon(c[0], c[1], z.properties.zone_radius_m || 250)] } },
       { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: c } }
@@ -460,10 +505,10 @@
     if (!crashZones || !crashZones.length) return;
     stopPlay(); unpin();
     // Reset the map to the full-city view, show the ward picture for context, then go 3D satellite.
-    tourSaved = { basemap: basemapKey, buildings: buildingsOn, panelOpen: $('controls').hasAttribute('open') };
+    tourSaved = { basemap: basemapKey, buildings: buildingsOn, cams: camsOn, panelOpen: $('controls').hasAttribute('open') };
     $('controls').removeAttribute('open'); // clear the view; reopen from the title when the tour ends
     metricSel.value = 0; metric = METRICS[0]; applyMetric();
-    basemapSel.value = 'sat'; setBasemap('sat'); setBuildings(true);
+    basemapSel.value = 'sat'; setBasemap('sat'); setBuildings(true); setCameras(true);
     touring = true; document.body.classList.add('touring'); $('tour').textContent = 'Stop tour';
     $('caption').style.display = 'block';
     $('caption').innerHTML = '<b>Top 10 crash zones, Delhi 2024</b><br><span style="color:var(--muted)">Resetting the map, then visiting each zone in 3D satellite with its crash data. Use the arrows to skip, Esc to stop.</span>';
@@ -481,6 +526,7 @@
     q.set('m', metric.key); q.set('y', year); q.set('b', basemapKey); q.set('h', heightEl.value);
     q.set('v', [c.lng.toFixed(4), c.lat.toFixed(4), map.getZoom().toFixed(2), map.getPitch().toFixed(0), map.getBearing().toFixed(0)].join(','));
     if (buildingsOn) q.set('bl', '1');
+    if (camsOn) q.set('cam', '1');
     if (pinned !== null) q.set('w', pinned);
     safe(function () { history.replaceState(null, '', '#' + q.toString()); });
   }
@@ -491,6 +537,7 @@
     var y = parseInt(q.get('y'), 10); if (YEARS.indexOf(y) >= 0) out.year = y;
     var b = q.get('b'); if (b === 'osm' || b === 'sat' || b === 'none') out.basemap = b;
     if (q.get('bl') === '1') out.buildings = true;
+    if (q.get('cam') === '1') out.cams = true;
     var h = parseInt(q.get('h'), 10); if (h >= 0 && h <= 100) out.height = h;
     var v = (q.get('v') || '').split(',').map(Number);
     if (v.length === 5 && v.every(isFinite) && v[0] > 60 && v[0] < 90 && v[1] > 5 && v[1] < 40 && v[2] >= 3 && v[2] <= 19) out.view = v;
@@ -541,11 +588,15 @@
       map.addLayer({ id: 'ward-labels', type: 'symbol', source: 'wards', minzoom: 11.2,
         layout: { 'text-field': ['get', 'Ward_Name'], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 11, 10, 16, 13], 'text-max-width': 6, 'text-padding': 4 },
         paint: { 'text-color': '#ffe9b3', 'text-halo-color': 'rgba(10,14,22,0.92)', 'text-halo-width': 1.6 } });
+      map.addSource('cameras', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      map.addLayer({ id: 'cameras-pt', type: 'circle', source: 'cameras', minzoom: 10, layout: { visibility: 'none' },
+        paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 1.6, 14, 3.5, 17, 6], 'circle-color': '#4dd0e1', 'circle-stroke-color': '#0b1220', 'circle-stroke-width': 1, 'circle-opacity': 0.95 } });
       map.addSource('tour', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       map.addLayer({ id: 'tour-zone', type: 'fill', source: 'tour', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': '#f0a63c', 'fill-opacity': 0.18 } });
       map.addLayer({ id: 'tour-ring', type: 'line', source: 'tour', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'line-color': '#f0a63c', 'line-width': 3 } });
       map.addLayer({ id: 'tour-pt', type: 'circle', source: 'tour', filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-radius': 7, 'circle-color': '#ffffff', 'circle-stroke-color': '#c4252d', 'circle-stroke-width': 3 } });
       applyMetric();
+      if (initial.cams) setCameras(true);
       if (initial.ward !== undefined) pinWard(initial.ward);
 
       map.on('mousemove', 'wards-3d', function (e) {
@@ -571,6 +622,7 @@
   });
   yearEl.addEventListener('input', function () { stopPlay(); setYear(Number(yearEl.value)); });
   $('play').addEventListener('click', function () { if (playTimer) stopPlay(); else startPlay(); });
+  $('cams').addEventListener('change', function () { setCameras($('cams').checked); scheduleUrl(); });
   $('labels').addEventListener('change', function () {
     var v = $('labels').checked ? 'visible' : 'none';
     ['place-labels', 'ward-labels'].forEach(function (id) { map.setLayoutProperty(id, 'visibility', v); });
