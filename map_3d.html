@@ -52,6 +52,7 @@
   #spark svg { width: 100%; height: 56px; display: block; }
   #note { color: var(--muted); font-size: 11px; margin: 8px 0 0; }
   #err { display: none; position: absolute; z-index: 9; inset: 20% 12px auto 12px; max-width: 520px; margin: 0 auto; }
+  #caption .more { display: none; width: auto; min-height: 32px; margin-top: 8px; padding: 2px 12px; font-size: 12px; }
   .tbtn { width: auto; min-height: 30px; padding: 2px 9px; font-size: 13px; }
   #caption table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 8px; }
   #caption th { text-align: left; font-weight: 400; color: var(--muted); padding: 2px 4px 2px 0; }
@@ -63,7 +64,11 @@
     #legend { bottom: 28px; }
     body.detail-open #legend { display: none; }
     #detail { left: 12px; right: 12px; width: auto; bottom: 28px; max-height: 45vh; }
-    #caption { top: auto; bottom: 150px; left: 12px; right: 12px; width: auto; }
+    #caption { top: auto; bottom: 12px; left: 12px; right: 12px; width: auto; max-height: 55vh; }
+    body.touring #legend { display: none; }
+    #caption:not(.open) tr.x, #caption:not(.open) .cav { display: none; }
+    .tbtn { min-height: 40px; padding: 4px 14px; }
+    #caption .more { display: inline-block; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; } }
 </style>
@@ -102,6 +107,8 @@
 
   <label for="height">Extrusion height</label>
   <input id="height" type="range" min="0" max="100" value="55">
+
+  <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="labels" type="checkbox" checked style="width:auto;min-height:0"> Place and ward names</label>
 
   <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="bldg" type="checkbox" style="width:auto;min-height:0"> 3D buildings (zoom in past street level; wards fade out)</label>
 
@@ -387,13 +394,13 @@
     var rows = [
       ['Fatal / all crashes', num(p.all_fatal_crashes) + ' / ' + num(p.all_total_crashes)],
       ['Persons killed / injured', num(p.blackspot_persons_killed) + ' / ' + num(p.blackspot_persons_injured)],
-      ['Pedestrian fatal / all', pair(p.pedestrian_crash_prone, p.pedestrian_fatal_crashes, p.pedestrian_total_crashes)],
-      ['Two-wheeler fatal / all', pair(p.two_wheeler_crash_prone, p.two_wheeler_fatal_crashes, p.two_wheeler_total_crashes)],
-      ['Heavy vehicle fatal / all', pair(p.htv_crash_prone, p.htv_fatal_crashes, p.htv_total_crashes)],
-      ['Day fatal / all', num(p.day_time_fatal_crashes) + ' / ' + num(p.day_time_total_crashes)],
-      ['Night fatal / all', num(p.night_time_fatal_crashes) + ' / ' + num(p.night_time_total_crashes)],
-      ['Hit and run fatal / all', pair(p.hit_and_run_crash_prone, p.hit_and_run_fatal_crashes, p.hit_and_run_total_crashes)],
-      ['CCTV priority', p.cctv_priority_candidate ? 'yes' : 'no']
+      ['*Pedestrian fatal / all', pair(p.pedestrian_crash_prone, p.pedestrian_fatal_crashes, p.pedestrian_total_crashes)],
+      ['*Two-wheeler fatal / all', pair(p.two_wheeler_crash_prone, p.two_wheeler_fatal_crashes, p.two_wheeler_total_crashes)],
+      ['*Heavy vehicle fatal / all', pair(p.htv_crash_prone, p.htv_fatal_crashes, p.htv_total_crashes)],
+      ['*Day fatal / all', num(p.day_time_fatal_crashes) + ' / ' + num(p.day_time_total_crashes)],
+      ['*Night fatal / all', num(p.night_time_fatal_crashes) + ' / ' + num(p.night_time_total_crashes)],
+      ['*Hit and run fatal / all', pair(p.hit_and_run_crash_prone, p.hit_and_run_fatal_crashes, p.hit_and_run_total_crashes)],
+      ['*CCTV priority', p.cctv_priority_candidate ? 'yes' : 'no']
     ];
     return '<div style="display:flex;gap:6px;justify-content:space-between;align-items:center;margin-bottom:6px">' +
       '<span style="color:var(--accent)">Stop ' + (i + 1) + ' of ' + n + '</span>' +
@@ -402,14 +409,19 @@
       '<button class="tbtn" data-act="stop" aria-label="Stop tour">&times;</button></span></div>' +
       '<b style="font-size:15px">#' + esc(p.table_6_29_rank) + ' ' + esc(p.location_name) + '</b><br>' +
       '<span style="color:var(--muted)">' + esc(p.road_name || '') + '</span>' +
-      '<table>' + rows.map(function (r) { return '<tr><th scope="row">' + r[0] + '</th><td>' + esc(r[1]) + '</td></tr>'; }).join('') + '</table>' +
+      '<table>' + rows.map(function (r) {
+        var extra = r[0].charAt(0) === '*';
+        return '<tr' + (extra ? ' class="x"' : '') + '><th scope="row">' + (extra ? r[0].slice(1) : r[0]) + '</th><td>' + esc(r[1]) + '</td></tr>';
+      }).join('') + '</table>' +
+      '<button class="more" type="button" data-act="more" aria-expanded="' + ($('caption').classList.contains('open') ? 'true' : 'false') + '">' + ($('caption').classList.contains('open') ? 'Show less' : 'More detail') + '</button>' +
       '<p class="cav">Delhi Road Crash Report 2024 (Traffic Police), Table 6.29 rank. The map position is an approximate landmark centre, not a surveyed location. The ring shows a 250 m zone.</p>';
   }
 
   function stopTour() {
     var was = touring;
-    touring = false; clearTimeout(tourTimer);
-    $('caption').style.display = 'none'; $('tour').textContent = 'Tour: top 10 crash zones';
+    touring = false; clearTimeout(tourTimer); document.body.classList.remove('touring');
+    $('caption').style.display = 'none'; $('caption').classList.remove('open'); $('tour').textContent = 'Tour: top 10 crash zones';
+    if (was && map) map.easeTo({ padding: NOPAD, duration: 0 });
     if (map && map.getSource('tour')) map.getSource('tour').setData({ type: 'FeatureCollection', features: [] });
     if (was && tourSaved) {
       basemapSel.value = tourSaved.basemap; setBasemap(tourSaved.basemap);
@@ -419,11 +431,19 @@
     if (was) tourSaved = null;
   }
 
+  var NOPAD = { top: 0, bottom: 0, left: 0, right: 0 };
+  // Keep the zone in the visible area: above the card on phones, left of it on wider screens.
+  function tourPadding() {
+    var cap = $('caption');
+    if (window.matchMedia && matchMedia('(max-width: 600px)').matches) return { top: 70, bottom: cap.offsetHeight + 20, left: 0, right: 0 };
+    return { top: 0, bottom: 0, left: 0, right: cap.offsetWidth + 24 };
+  }
+
   function tourStep(i) {
     if (!touring) return;
     clearTimeout(tourTimer);
     if (i < 0) i = 0;
-    if (i >= crashZones.length) { stopTour(); map.flyTo(Object.assign({ essential: false, duration: reducedMotion ? 0 : 2500 }, HOME)); return; }
+    if (i >= crashZones.length) { stopTour(); map.flyTo(Object.assign({ essential: false, padding: NOPAD, duration: reducedMotion ? 0 : 2500 }, HOME)); return; }
     tourIdx = i;
     var z = crashZones[i], c = z.geometry.coordinates;
     $('caption').style.display = 'block';
@@ -432,7 +452,7 @@
       { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [circlePolygon(c[0], c[1], z.properties.zone_radius_m || 250)] } },
       { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: c } }
     ] });
-    map.flyTo({ center: c, zoom: 16.2, pitch: 64, bearing: -35 + i * 38, duration: reducedMotion ? 0 : 4500, essential: false });
+    map.flyTo({ center: c, zoom: 16.2, pitch: 64, bearing: -35 + i * 38, padding: tourPadding(), duration: reducedMotion ? 0 : 4500, essential: false });
     tourTimer = setTimeout(function () { tourStep(i + 1); }, TOUR_MS);
   }
 
@@ -444,10 +464,10 @@
     $('controls').removeAttribute('open'); // clear the view; reopen from the title when the tour ends
     metricSel.value = 0; metric = METRICS[0]; applyMetric();
     basemapSel.value = 'sat'; setBasemap('sat'); setBuildings(true);
-    touring = true; $('tour').textContent = 'Stop tour';
+    touring = true; document.body.classList.add('touring'); $('tour').textContent = 'Stop tour';
     $('caption').style.display = 'block';
     $('caption').innerHTML = '<b>Top 10 crash zones, Delhi 2024</b><br><span style="color:var(--muted)">Resetting the map, then visiting each zone in 3D satellite with its crash data. Use the arrows to skip, Esc to stop.</span>';
-    map.flyTo(Object.assign({ essential: false, duration: reducedMotion ? 0 : 2200 }, HOME));
+    map.flyTo(Object.assign({ essential: false, padding: NOPAD, duration: reducedMotion ? 0 : 2200 }, HOME));
     tourTimer = setTimeout(function () { tourStep(0); }, reducedMotion ? 300 : 2800);
   }
 
@@ -487,7 +507,7 @@
     var view = initial.view ? { center: [initial.view[0], initial.view[1]], zoom: initial.view[2], pitch: initial.view[3], bearing: initial.view[4] } : HOME;
 
     var light = document.documentElement.getAttribute('data-theme') === 'light';
-    var style = { version: 8, sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': light ? '#dfe5ee' : '#10151f' } }] };
+    var style = { version: 8, glyphs: 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf', sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': light ? '#dfe5ee' : '#10151f' } }] };
     Object.keys(BASEMAPS).forEach(function (k) {
       var b = BASEMAPS[k];
       style.sources['bm-' + k] = { type: 'raster', tiles: b.tiles, tileSize: 256, maxzoom: b.max, attribution: b.attr };
@@ -512,6 +532,15 @@
       map.addLayer({ id: 'wards-hin', type: 'line', source: 'wards', filter: ['==', ['get', 'highInjuryNetwork'], true], paint: { 'line-color': '#f0a63c', 'line-width': 2.2 } });
       map.addLayer({ id: 'wards-pin', type: 'line', source: 'wards', filter: ['==', ['get', '_id'], -1], paint: { 'line-color': '#ffffff', 'line-width': 3.5 } });
       if (initial.buildings) { buildingsOn = true; $('bldg').checked = true; map.setLayoutProperty('buildings-3d', 'visibility', 'visible'); }
+      // Labels sit above the ward tint: the raster basemap's own labels are dimmed under it.
+      var LABEL_PAINT = { 'text-color': '#ffffff', 'text-halo-color': 'rgba(10,14,22,0.92)', 'text-halo-width': 1.8 };
+      map.addLayer({ id: 'place-labels', type: 'symbol', source: 'buildings', 'source-layer': 'place', minzoom: 8,
+        filter: ['in', ['get', 'class'], ['literal', ['city', 'town', 'suburb', 'quarter', 'neighbourhood', 'village']]],
+        layout: { 'text-field': ['coalesce', ['get', 'name_en'], ['get', 'name']], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 8, 11, 14, 14], 'text-max-width': 8 },
+        paint: LABEL_PAINT });
+      map.addLayer({ id: 'ward-labels', type: 'symbol', source: 'wards', minzoom: 11.2,
+        layout: { 'text-field': ['get', 'Ward_Name'], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 11, 10, 16, 13], 'text-max-width': 6, 'text-padding': 4 },
+        paint: { 'text-color': '#ffe9b3', 'text-halo-color': 'rgba(10,14,22,0.92)', 'text-halo-width': 1.6 } });
       map.addSource('tour', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       map.addLayer({ id: 'tour-zone', type: 'fill', source: 'tour', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': '#f0a63c', 'fill-opacity': 0.18 } });
       map.addLayer({ id: 'tour-ring', type: 'line', source: 'tour', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'line-color': '#f0a63c', 'line-width': 3 } });
@@ -542,6 +571,10 @@
   });
   yearEl.addEventListener('input', function () { stopPlay(); setYear(Number(yearEl.value)); });
   $('play').addEventListener('click', function () { if (playTimer) stopPlay(); else startPlay(); });
+  $('labels').addEventListener('change', function () {
+    var v = $('labels').checked ? 'visible' : 'none';
+    ['place-labels', 'ward-labels'].forEach(function (id) { map.setLayoutProperty(id, 'visibility', v); });
+  });
   $('bldg').addEventListener('change', function () { setBuildings($('bldg').checked); scheduleUrl(); });
   basemapSel.addEventListener('change', function () { setBasemap(basemapSel.value); scheduleUrl(); });
   heightEl.addEventListener('input', function () { updateHeight(); scheduleUrl(); });
@@ -552,6 +585,12 @@
   $('caption').addEventListener('click', function (e) {
     var act = e.target && e.target.getAttribute && e.target.getAttribute('data-act');
     if (!touring || !act) return;
+    if (act === 'more') {
+      var cap = $('caption'); cap.classList.toggle('open');
+      var open = cap.classList.contains('open');
+      e.target.textContent = open ? 'Show less' : 'More detail'; e.target.setAttribute('aria-expanded', open ? 'true' : 'false');
+      return;
+    }
     if (act === 'stop') stopTour(); else tourStep(tourIdx + (act === 'next' ? 1 : -1));
   });
   $('theme').addEventListener('click', function () {
