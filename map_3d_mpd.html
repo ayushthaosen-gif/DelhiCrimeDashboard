@@ -81,6 +81,12 @@
   <summary>Master Plan 2047 comparison <span class="proto">prototype</span></summary>
   <p class="sub">Delhi's wards in 3D: how much of each ward the Master Plan designates for a use, against how much is mapped today. Height and colour show the share of the ward.</p>
 
+  <span class="lbl" id="basisLbl">Compare the plan with</span>
+  <div class="seg two" id="basisBtns" role="group" aria-labelledby="basisLbl">
+    <button type="button" data-basis="sat" aria-pressed="true">Satellite (2021)</button>
+    <button type="button" data-basis="osm" aria-pressed="false">OSM tags</button>
+  </div>
+
   <span class="lbl" id="clsLbl">Land use</span>
   <div class="seg grid2" id="classBtns" role="group" aria-labelledby="clsLbl"></div>
 
@@ -128,12 +134,30 @@
   'use strict';
   var HOME = { center: [77.15, 28.63], zoom: 9.6, pitch: 55, bearing: -15 };
   var MAXH = 4500; // metres at 100% share and full slider
-  var CLASSES = [
-    { key: 'residential', label: 'Residential', color: '#e8a33c' },
-    { key: 'industrial', label: 'Industrial', color: '#a98be0' },
-    { key: 'green_open', label: 'Parks and open space', color: '#4caf7d' },
-    { key: 'agriculture', label: 'Agriculture', color: '#b9c24a' }
-  ];
+  // Two ways to read "current": a satellite land-cover map (complete coverage, sees cover not use) or OpenStreetMap
+  // land-use tags (sees use, but only where volunteers tagged it).
+  var BASES = {
+    sat: {
+      label: 'Satellite land cover (ESA WorldCover 2021)', curTitle: 'Current (satellite, 2021)', curWord: 'seen by satellite',
+      cur: function (k) { return 'satellite_' + k + '_share_pct'; },
+      classes: [
+        { key: 'built', label: 'Built-up', color: '#e8a33c' },
+        { key: 'green_open', label: 'Parks and green space', color: '#4caf7d' },
+        { key: 'agriculture', label: 'Agriculture', color: '#b9c24a' }
+      ]
+    },
+    osm: {
+      label: 'OpenStreetMap land-use tags', curTitle: 'Current (OpenStreetMap-mapped)', curWord: 'mapped today',
+      cur: function (k) { return 'current_' + k + '_share_pct'; },
+      classes: [
+        { key: 'residential', label: 'Residential', color: '#e8a33c' },
+        { key: 'industrial', label: 'Industrial', color: '#a98be0' },
+        { key: 'green_open', label: 'Parks and open space', color: '#4caf7d' },
+        { key: 'agriculture', label: 'Agriculture', color: '#b9c24a' }
+      ]
+    }
+  };
+  var CLASSES = BASES.sat.classes;
   var LOWCOLOR = '#2b3347', NODATA = '#6b7280';
   var BINS = [0, 2, 10, 25, 45, 70]; // share % lower bounds of the six ramp steps
   var BASEMAPS = {
@@ -143,7 +167,7 @@
   var LOW_TEXT = 'low - thin coverage on at least one side';
 
   var $ = function (id) { return document.getElementById(id); };
-  var data = null, meta = null, city = null, geo = null;
+  var data = {}, meta = {}, city = {}, geo = null, basis = 'sat';
   var maps = {}, popups = {}, syncing = false;
   var cls = CLASSES[0], view = 'sbs', basemapKey = 'osm', showLow = true, pinned = null;
   var reducedMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -178,19 +202,23 @@
   function deltaColor(d) { if (d === 0) return '#8a93a6'; return d <= -25 ? DIV[0] : d <= -8 ? DIV[1] : d < 0 ? DIV[2] : d < 8 ? DIV[3] : d < 25 ? DIV[4] : DIV[5]; }
 
   // ---------- data prep ----------
-  function prep(rows, geojson) {
-    var by = {}; rows.forEach(function (r) { by[r.ward_no] = r; });
+  function rowOf(w) { return w.rows[basis] || null; }
+  function isLow(r) { return !r || r.comparison_confidence !== 'ok'; }
+  function prep(rowsByBasis, geojson) {
+    var by = {};
+    Object.keys(rowsByBasis).forEach(function (b) { by[b] = {}; rowsByBasis[b].forEach(function (r) { by[b][r.ward_no] = r; }); });
     return geojson.features.map(function (f, i) {
-      var r = by[f.properties.Ward_No] || null;
-      return { geometry: f.geometry, id: i, name: f.properties.Ward_Name, ward_no: f.properties.Ward_No, row: r, low: r && r.comparison_confidence !== 'ok' ? 1 : 0 };
+      var rows = {};
+      Object.keys(by).forEach(function (b) { rows[b] = by[b][f.properties.Ward_No] || null; });
+      return { geometry: f.geometry, id: i, name: f.properties.Ward_Name, ward_no: f.properties.Ward_No, rows: rows };
     });
   }
   function featureSet(kind) {
     var k = cls.key;
     return { type: 'FeatureCollection', features: geo.map(function (w) {
-      var r = w.row, props = { _id: w.id, low: w.low, name: w.name };
-      if (!r) { props.color = NODATA; props.h = 0; props.low = 1; }
-      else if (kind === 'cur') { var v = r['current_' + k + '_share_pct']; props.color = shareColor(v); props.h = v; }
+      var r = rowOf(w), props = { _id: w.id, low: isLow(r) ? 1 : 0, name: w.name };
+      if (!r) { props.color = NODATA; props.h = 0; }
+      else if (kind === 'cur') { var v = r[BASES[basis].cur(k)]; props.color = shareColor(v); props.h = v; }
       else if (kind === 'plan') { var p = r['planned_' + k + '_share_pct']; props.color = shareColor(p); props.h = p; }
       else { var d = r['delta_' + k + '_pp']; props.color = deltaColor(d); props.h = Math.abs(d); }
       return { type: 'Feature', geometry: w.geometry, properties: props };
@@ -279,54 +307,89 @@
     setTimeout(function () { ['A', 'B'].forEach(function (k) { if (maps[k]) maps[k].resize(); }); }, 30);
     scheduleUrl();
   }
+  function buildClassButtons() {
+    var box = $('classBtns'); box.innerHTML = '';
+    CLASSES.forEach(function (c) {
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-cls', c.key); b.textContent = c.label; b.setAttribute('aria-pressed', c.key === cls.key ? 'true' : 'false');
+      b.addEventListener('click', function () { setClass(c.key); }); box.appendChild(b);
+    });
+  }
   function setClass(key) {
     cls = CLASSES.filter(function (c) { return c.key === key; })[0] || CLASSES[0];
     Array.prototype.forEach.call($('classBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-cls') === cls.key ? 'true' : 'false'); });
     refreshData(); scheduleUrl();
   }
+  function setBasis(b) {
+    if (!data[b]) return;
+    basis = b; CLASSES = BASES[b].classes;
+    cls = CLASSES.filter(function (c) { return c.key === cls.key; })[0] || CLASSES[0];
+    meta = data[b].metadata; city = data[b].citywide;
+    Array.prototype.forEach.call($('basisBtns').children, function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-basis') === b ? 'true' : 'false'); });
+    buildClassButtons(); refreshAbout(); refreshData(); scheduleUrl();
+  }
 
   // ---------- text panels ----------
+  function refreshAbout() {
+    var txt = 'Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: OpenStreetMap contributors. A difference between a plan and a community-mapped inventory is not a measurement of change on the ground.';
+    if (basis === 'sat') txt = 'Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: ESA WorldCover 2021 satellite land cover (CC BY 4.0, contains modified Copernicus Sentinel data). A satellite sees land cover, not use, so all built-up uses are one group, and the plan (2026) is newer than the imagery (2021). A difference is not a measurement of change on the ground.';
+    var ps = (data.osm && data.osm.metadata.plan_status) || (data.sat && data.sat.metadata.plan_status) || '';
+    $('about').textContent = (ps ? ps + ' ' : '') + txt;
+  }
   function refreshTitles() {
-    $('titleA').textContent = view === 'chg' ? 'Planned minus current (' + cls.label.toLowerCase() + ')' : 'Current (OpenStreetMap-mapped)';
+    $('titleA').textContent = view === 'chg' ? 'Planned minus current (' + cls.label.toLowerCase() + ')' : BASES[basis].curTitle;
     $('titleB').textContent = 'Planned (MPD-2047)';
   }
   function refreshStrip() {
-    var k = cls.key, p = city['planned_' + k + '_km2'], c = city['current_' + k + '_km2'];
+    var k = cls.key;
+    if (basis === 'sat') {
+      var m = city.plan_group_by_satellite_group_km2['planned_' + k], tot = 0; Object.keys(m).forEach(function (x) { tot += m[x]; });
+      var same = m['satellite_' + k] / tot * 100, other = k === 'built' ? m.satellite_green_open / tot * 100 : m.satellite_built / tot * 100;
+      $('strip').innerHTML = '<b>' + esc(cls.label) + ', citywide:</b> of ' + km2(tot) + ' the plan designates, the 2021 satellite shows ' + pct(same) + ' as ' + esc(cls.label.toLowerCase()) + ' and ' + pct(other) + (k === 'built' ? ' as trees or grass' : ' as built-up') + '. ' + city.wards_low_confidence + ' of ' + city.wards + ' wards have a small comparable plan area.';
+      return;
+    }
+    var p = city['planned_' + k + '_km2'], c = city['current_' + k + '_km2'];
     $('strip').innerHTML = '<b>' + esc(cls.label) + ', citywide:</b> plan ' + km2(p) + ' vs mapped today ' + km2(c) + '. ' + city.wards_low_confidence + ' of ' + city.wards + ' wards have thin coverage on one side. ' + km2(city.planned_not_comparable_km2) + ' of planned land is in uses with no OpenStreetMap counterpart and is not compared.';
   }
   function refreshLegend() {
-    var low = '<div style="margin-top:6px"><span class="lowkey"></span>Faded = thin coverage, treat with caution</div>';
+    var low = '<div style="margin-top:6px"><span class="lowkey"></span>Faded = ' + (basis === 'sat' ? 'small comparable plan area' : 'thin coverage') + ', treat with caution</div>';
     if (view === 'chg') {
-      $('legend').innerHTML = '<div><b>Planned minus current share of ward, ' + esc(cls.label.toLowerCase()) + '</b></div><div class="ramp">' + DIV.map(function (c) { return '<span style="background:' + c + '"></span>'; }).join('') + '</div>' +
-        '<div class="ends"><span>Plan has less (−25 pp or more)</span><span>Plan has more (+25 pp or more)</span></div>' +
-        '<div class="sub" style="margin:4px 0 0">Height = size of the difference. A positive difference can also mean OSM has not tagged it.</div>' + low;
+      $('legend').innerHTML = '<div><b>Planned minus current share, ' + esc(cls.label.toLowerCase()) + '</b></div><div class="ramp">' + DIV.map(function (c) { return '<span style="background:' + c + '"></span>'; }).join('') + '</div>' +
+        '<div class="ends"><span>Plan has less (\u221225 pp or more)</span><span>Plan has more (+25 pp or more)</span></div>' +
+        '<div class="sub" style="margin:4px 0 0">Height = size of the difference. ' + (basis === 'sat' ? 'The satellite sees cover, not use.' : 'A positive difference can also mean OSM has not tagged it.') + '</div>' + low;
     } else {
       var r = ramp();
-      $('legend').innerHTML = '<div><b>Share of ward that is ' + esc(cls.label.toLowerCase()) + '</b></div><div class="ramp">' + r.map(function (c) { return '<span style="background:' + c + '"></span>'; }).join('') + '</div>' +
+      $('legend').innerHTML = '<div><b>Share of ' + (basis === 'sat' ? 'the compared plan area' : 'the ward') + ' that is ' + esc(cls.label.toLowerCase()) + '</b></div><div class="ramp">' + r.map(function (c) { return '<span style="background:' + c + '"></span>'; }).join('') + '</div>' +
         '<div class="ends"><span>0%</span><span>70%+</span></div><div class="sub" style="margin:4px 0 0">Height and colour both show the share. Same scale on both maps.</div>' + low;
     }
   }
   function popupHtml(id) {
-    var w = geo[id], r = w.row, k = cls.key;
+    var w = geo[id], r = rowOf(w), k = cls.key, cw = BASES[basis].curWord;
     if (!r) return '<strong>' + esc(w.name) + '</strong><br>No comparison data';
-    return '<strong>' + esc(w.name) + '</strong> <span style="color:var(--muted)">' + esc(r.district || '') + '</span><br>' + esc(cls.label) + ': planned <b>' + pct(r['planned_' + k + '_share_pct']) + '</b>, mapped today <b>' + pct(r['current_' + k + '_share_pct']) + '</b><br>' +
-      'Difference ' + (r['delta_' + k + '_pp'] > 0 ? '+' : '') + r['delta_' + k + '_pp'] + ' percentage points' + (w.low ? '<br><span class="warn">Thin coverage: handle with care</span>' : '') + '<br><span style="color:var(--muted)">Click for all uses</span>';
+    return '<strong>' + esc(w.name) + '</strong> <span style="color:var(--muted)">' + esc(r.district || '') + '</span><br>' + esc(cls.label) + ': planned <b>' + pct(r['planned_' + k + '_share_pct']) + '</b>, ' + cw + ' <b>' + pct(r[BASES[basis].cur(k)]) + '</b><br>' +
+      'Difference ' + (r['delta_' + k + '_pp'] > 0 ? '+' : '') + r['delta_' + k + '_pp'] + ' percentage points' + (isLow(r) ? '<br><span class="warn">Thin coverage: handle with care</span>' : '') + '<br><span style="color:var(--muted)">Click for all uses</span>';
   }
   function renderDetail() {
-    var w = geo[pinned]; if (!w) return; var r = w.row;
+    var w = geo[pinned]; if (!w) return; var r = rowOf(w), cw = BASES[basis].curWord;
     var body = '<h3>' + esc(w.name) + '</h3><div class="sub" style="margin:0">' + esc(r ? (r.district || '') : '') + ' district' + (r ? ' &middot; ' + r.area_sq_km + ' sq km' : '') + '</div>';
     if (!r) body += '<p>No comparison data for this ward.</p>';
     else {
       body += '<div class="bars">' + CLASSES.map(function (c) {
-        var p = r['planned_' + c.key + '_share_pct'], cu = r['current_' + c.key + '_share_pct'], d = r['delta_' + c.key + '_pp'];
-        return '<div class="r"><div class="n"><span>' + esc(c.label) + (c.key === cls.key ? ' •' : '') + '</span><span>' + (d > 0 ? '+' : '') + d + ' pp</span></div>' +
+        var p = r['planned_' + c.key + '_share_pct'], cu = r[BASES[basis].cur(c.key)], d = r['delta_' + c.key + '_pp'];
+        return '<div class="r"><div class="n"><span>' + esc(c.label) + (c.key === cls.key ? ' \u2022' : '') + '</span><span>' + (d > 0 ? '+' : '') + d + ' pp</span></div>' +
           '<div class="bar plan" title="planned"><i style="width:' + Math.min(100, p) + '%"></i></div><div class="bar cur" title="current"><i style="width:' + Math.min(100, cu) + '%"></i></div>' +
-          '<div style="color:var(--muted)">planned ' + pct(p) + ' &middot; mapped today ' + pct(cu) + '</div></div>';
-      }).join('') + '</div>' +
-        '<div class="sub">Plan covers ' + pct(r.plan_coverage_pct) + ' of the ward (' + km2(r.planned_not_comparable_km2) + ' in uses not compared). OSM land use is tagged for ' + pct(r.osm_mapped_pct) + ' of it.</div>' +
-        (w.low ? '<div class="warn" style="font-size:12px">' + esc(r.comparison_confidence) + '</div>' : '');
+          '<div style="color:var(--muted)">planned ' + pct(p) + ' &middot; ' + cw + ' ' + pct(cu) + '</div></div>';
+      }).join('') + '</div>';
+      if (basis === 'sat') {
+        body += '<div class="sub">Compared area: ' + km2(r.comparable_km2) + ' of planned built, green and agricultural use (the plan covers ' + pct(r.plan_coverage_pct) + ' of the ward).' +
+          (r.planned_green_open_seen_as_built_pct != null ? '<br>Planned parks that the satellite shows as built-up: <b>' + pct(r.planned_green_open_seen_as_built_pct) + '</b>' : '') +
+          (r.planned_agriculture_seen_as_built_pct != null ? '<br>Planned agriculture shown as built-up: <b>' + pct(r.planned_agriculture_seen_as_built_pct) + '</b>' : '') +
+          (r.planned_built_seen_as_green_or_crop_pct != null ? '<br>Planned built-up shown as trees, grass or crops: <b>' + pct(r.planned_built_seen_as_green_or_crop_pct) + '</b>' : '') + '</div>';
+      } else {
+        body += '<div class="sub">Plan covers ' + pct(r.plan_coverage_pct) + ' of the ward (' + km2(r.planned_not_comparable_km2) + ' in uses not compared). OSM land use is tagged for ' + pct(r.osm_mapped_pct) + ' of it.</div>';
+      }
+      if (isLow(r)) body += '<div class="warn" style="font-size:12px">' + esc(r.comparison_confidence) + '</div>';
     }
-    body += '<p class="cav">Plan (amber bars) vs mapped today (blue bars). ' + esc(meta.comparability_caveat || '') + '</p>';
+    body += '<p class="cav">Plan (amber bars) vs ' + cw + ' (blue bars). ' + esc((basis === 'sat' ? meta.what_it_can_and_cannot_say : meta.comparability_caveat) || '') + '</p>';
     $('detailBody').innerHTML = body; $('detail').style.display = 'block';
     ['A', 'B'].forEach(function (k) { if (maps[k] && maps[k].getLayer('w-pin')) maps[k].setFilter('w-pin', ['==', ['get', '_id'], pinned]); });
   }
@@ -342,14 +405,15 @@
   function scheduleUrl() { clearTimeout(urlTimer); urlTimer = setTimeout(writeUrl, 250); }
   function writeUrl() {
     var m = maps.A; if (!m) return; var c = m.getCenter(), q = new URLSearchParams();
-    q.set('c', cls.key); q.set('v', view); q.set('b', basemapKey); q.set('h', $('height').value); if (!showLow) q.set('lo', '0');
+    q.set('s', basis); q.set('c', cls.key); q.set('v', view); q.set('b', basemapKey); q.set('h', $('height').value); if (!showLow) q.set('lo', '0');
     q.set('p', [c.lng.toFixed(4), c.lat.toFixed(4), m.getZoom().toFixed(2), m.getPitch().toFixed(0), m.getBearing().toFixed(0)].join(','));
     if (pinned !== null) q.set('w', pinned);
     safe(function () { history.replaceState(null, '', '#' + q.toString()); });
   }
   function readUrl() { // every value is checked against the known lists
     var out = {}, q = new URLSearchParams(location.hash.slice(1));
-    var c = q.get('c'); if (CLASSES.some(function (x) { return x.key === c; })) out.cls = c;
+    var sb = q.get('s'); if (sb === 'sat' || sb === 'osm') out.basis = sb;
+    var c = q.get('c'); if (Object.keys(BASES).some(function (b) { return BASES[b].classes.some(function (x) { return x.key === c; }); })) out.cls = c;
     var v = q.get('v'); if (v === 'sbs' || v === 'chg') out.view = v;
     var b = q.get('b'); if (b === 'osm' || b === 'sat' || b === 'none') out.basemap = b;
     var h = parseInt(q.get('h'), 10); if (h >= 10 && h <= 100) out.height = h;
@@ -361,10 +425,7 @@
   }
 
   // ---------- events ----------
-  CLASSES.forEach(function (c) {
-    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-cls', c.key); b.textContent = c.label; b.setAttribute('aria-pressed', c.key === cls.key ? 'true' : 'false');
-    b.addEventListener('click', function () { setClass(c.key); }); $('classBtns').appendChild(b);
-  });
+  Array.prototype.forEach.call($('basisBtns').children, function (b) { b.addEventListener('click', function () { setBasis(b.getAttribute('data-basis')); }); });
   Array.prototype.forEach.call($('viewBtns').children, function (b) { b.addEventListener('click', function () { setView(b.getAttribute('data-view')); }); });
   $('basemap').addEventListener('change', function () { setBasemap($('basemap').value); scheduleUrl(); });
   $('height').addEventListener('input', function () { applyHeight(); scheduleUrl(); });
@@ -383,15 +444,25 @@
 
   // ---------- load ----------
   function loadJson(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + ' HTTP ' + r.status); return r.json(); }); }
-  Promise.all([loadJson('data/delhi_wards_infra.geojson'), loadJson('data/mpd2047_ward_comparison.json')]).then(function (res) {
-    geo = prep(res[1].wards, res[0]); meta = res[1].metadata; city = res[1].citywide;
+  Promise.all([
+    loadJson('data/delhi_wards_infra.geojson'),
+    loadJson('data/mpd2047_ward_comparison.json'),
+    loadJson('data/derived/mpd2047_worldcover_comparison.json').then(function (j) { return j; }, function () { return null; })
+  ]).then(function (res) {
+    data.osm = res[1]; if (res[2]) data.sat = res[2];
+    var rowsBy = { osm: res[1].wards }; if (res[2]) rowsBy.sat = res[2].wards;
+    geo = prep(rowsBy, res[0]);
     var init = readUrl();
-    if (init.cls) cls = CLASSES.filter(function (c) { return c.key === init.cls; })[0];
+    basis = data.sat ? (init.basis || 'sat') : 'osm';
+    if (!data.sat) $('basisBtns').style.display = 'none';
+    CLASSES = BASES[basis].classes; meta = data[basis].metadata; city = data[basis].citywide;
+    cls = CLASSES.filter(function (c) { return c.key === init.cls; })[0] || CLASSES[0];
+    Array.prototype.forEach.call($('basisBtns').children, function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-basis') === basis ? 'true' : 'false'); });
+    buildClassButtons();
     if (init.view) view = init.view;
     if (init.basemap) { basemapKey = init.basemap; $('basemap').value = basemapKey; }
     if (init.height) $('height').value = init.height;
     if (init.low === false) { showLow = false; $('low').checked = false; }
-    Array.prototype.forEach.call($('classBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-cls') === cls.key ? 'true' : 'false'); });
     maps.A = makeMap('A', 'mapA'); maps.B = makeMap('B', 'mapB');
     if (init.view_) { var p = init.view_; maps.A.jumpTo({ center: [p[0], p[1]], zoom: p[2], pitch: p[3], bearing: p[4] }); maps.B.jumpTo({ center: [p[0], p[1]], zoom: p[2], pitch: p[3], bearing: p[4] }); }
     maps.A.once('style.load', function () {
@@ -399,10 +470,9 @@
       if (init.ward !== undefined) pin(init.ward);
     });
     maps.B.once('style.load', function () { refreshData(); });
-    refreshStrip(); refreshLegend(); refreshTitles();
+    refreshStrip(); refreshLegend(); refreshTitles(); refreshAbout();
     if (view === 'chg') document.body.classList.add('chg');
     Array.prototype.forEach.call($('viewBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === view ? 'true' : 'false'); });
-    if (meta.plan_status) $('about').textContent = meta.plan_status + ' ' + $('about').textContent;
   }).catch(function (e) {
     showError('Could not load the comparison data (' + e.message + '). This page needs to be served over http, not opened as a file. From the repo folder run: python -m http.server 8000, then open http://localhost:8000/map_3d_mpd.html');
   });
