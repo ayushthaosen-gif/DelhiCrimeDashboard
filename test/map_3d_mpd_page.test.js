@@ -31,34 +31,64 @@ test('external scripts and styles are pinned to an exact version', () => {
   for (const u of urls) assert.match(u, /@\d+\.\d+\.\d+\//, 'unpinned CDN url: ' + u);
 });
 
-test('every land-use class the page offers has planned, current and delta fields in the comparison data', () => {
-  const keys = [...script.matchAll(/\{ key: '([a-z_]+)', label: '[^']+', color:/g)].map(m => m[1]);
-  assert.deepEqual(keys, ['residential', 'industrial', 'green_open', 'agriculture']);
-  const row = cmp.wards[0];
-  for (const k of keys) {
-    for (const f of ['planned_' + k + '_share_pct', 'current_' + k + '_share_pct', 'delta_' + k + '_pp']) assert.ok(f in row, f + ' missing from the comparison data');
+const sat = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'derived', 'mpd2047_worldcover_comparison.json'), 'utf8'));
+const classesOf = (basis) => {
+  const block = script.slice(script.indexOf('    ' + basis + ': {'), script.indexOf('classes: [', script.indexOf('    ' + basis + ': {')));
+  const from = script.indexOf('classes: [', script.indexOf('    ' + basis + ': {'));
+  const to = script.indexOf(']', from);
+  return [...script.slice(from, to).matchAll(/\{ key: '([a-z_]+)', label: '[^']+', color:/g)].map(m => m[1]);
+};
+
+test('every land-use class the page offers has planned, current and delta fields in its data file', () => {
+  assert.deepEqual(classesOf('sat'), ['built', 'green_open', 'agriculture']);
+  assert.deepEqual(classesOf('osm'), ['residential', 'industrial', 'green_open', 'agriculture']);
+  for (const k of classesOf('osm')) {
+    for (const f of ['planned_' + k + '_share_pct', 'current_' + k + '_share_pct', 'delta_' + k + '_pp']) assert.ok(f in cmp.wards[0], f + ' missing from the OSM comparison');
     assert.ok(('planned_' + k + '_km2') in cmp.citywide && ('current_' + k + '_km2') in cmp.citywide, k + ' citywide totals missing');
   }
-  for (const f of ['plan_coverage_pct', 'osm_mapped_pct', 'planned_not_comparable_km2', 'comparison_confidence', 'district', 'area_sq_km']) assert.ok(f in row, f);
+  for (const k of classesOf('sat')) {
+    for (const f of ['planned_' + k + '_share_pct', 'satellite_' + k + '_share_pct', 'delta_' + k + '_pp']) assert.ok(f in sat.wards[0], f + ' missing from the satellite comparison');
+    assert.ok(('planned_' + k) in sat.citywide.plan_group_by_satellite_group_km2, k + ' confusion row missing');
+  }
+  for (const f of ['plan_coverage_pct', 'comparable_km2', 'comparison_confidence', 'district', 'area_sq_km', 'planned_green_open_seen_as_built_pct', 'planned_agriculture_seen_as_built_pct', 'planned_built_seen_as_green_or_crop_pct']) assert.ok(f in sat.wards[0], f);
+  for (const f of ['plan_coverage_pct', 'osm_mapped_pct', 'planned_not_comparable_km2', 'comparison_confidence', 'district', 'area_sq_km']) assert.ok(f in cmp.wards[0], f);
 });
 
-test('every ward joins to exactly one comparison row, so no ward is silently dropped', () => {
+test('every ward joins to exactly one row in each comparison file, so no ward is silently dropped', () => {
   const ids = wards.features.map(f => f.properties.Ward_No);
   assert.equal(new Set(ids).size, ids.length, 'ward ids must be unique');
-  const rows = new Map(cmp.wards.map(r => [r.ward_no, r]));
-  assert.equal(rows.size, cmp.wards.length);
-  for (const id of ids) assert.ok(rows.has(id), 'no comparison row for ward ' + id);
+  for (const [name, file] of [['osm', cmp], ['satellite', sat]]) {
+    const rows = new Map(file.wards.map(r => [r.ward_no, r]));
+    assert.equal(rows.size, file.wards.length, name + ': duplicate ward rows');
+    for (const id of ids) assert.ok(rows.has(id), name + ': no comparison row for ward ' + id);
+  }
 });
 
 test('thin-coverage wards are flagged from the data, not hard-coded', () => {
-  assert.ok(script.includes("comparison_confidence !== 'ok'"));
-  const low = cmp.wards.filter(r => r.comparison_confidence !== 'ok').length;
-  assert.equal(low, cmp.citywide.wards_low_confidence, 'citywide low-confidence count must match the rows');
+  assert.ok(script.includes("r.comparison_confidence !== 'ok'"));
+  for (const file of [cmp, sat]) assert.equal(file.wards.filter(r => r.comparison_confidence !== 'ok').length, file.citywide.wards_low_confidence);
+});
+
+test('satellite comparison: shares are valid percentages and the confusion matrix covers the comparable area', () => {
+  for (const r of sat.wards) {
+    for (const k of ['built', 'green_open', 'agriculture']) {
+      assert.ok(r['planned_' + k + '_share_pct'] >= 0 && r['planned_' + k + '_share_pct'] <= 100.1, r.ward + ' planned ' + k);
+      assert.ok(r['satellite_' + k + '_share_pct'] >= 0 && r['satellite_' + k + '_share_pct'] <= 100.1, r.ward + ' satellite ' + k);
+    }
+    const planned = r.planned_built_share_pct + r.planned_green_open_share_pct + r.planned_agriculture_share_pct;
+    if (r.comparable_km2 > 0) assert.ok(Math.abs(planned - 100) < 0.5, r.ward + ': planned shares must sum to 100, got ' + planned);
+  }
+  const total = Object.values(sat.citywide.plan_group_by_satellite_group_km2).flatMap(o => Object.values(o)).reduce((a, b) => a + b, 0);
+  assert.ok(Math.abs(total - sat.citywide.comparable_km2) < 1, 'confusion matrix total must equal the comparable area');
+  assert.match(sat.metadata.satellite_source, /CC BY 4\.0/);
+  assert.match(sat.metadata.what_it_can_and_cannot_say, /not what the land is used for/);
 });
 
 test('the page keeps its honesty caveats', () => {
   assert.ok(html.includes('not a measurement of change on the ground'));
   assert.ok(script.includes('comparability_caveat'));
+  assert.ok(script.includes('what_it_can_and_cannot_say'));
+  assert.ok(script.includes('ESA WorldCover 2021'));
   assert.ok(html.includes('Master Plan for Delhi 2047 GIS portal'));
   assert.ok(html.includes('OpenStreetMap contributors'));
   assert.ok(script.includes('has not tagged it'));
@@ -66,5 +96,5 @@ test('the page keeps its honesty caveats', () => {
 
 test('share-link values are validated against known lists before use', () => {
   const read = script.slice(script.indexOf('function readUrl()'), script.indexOf('// ---------- events ----------'));
-  for (const guard of ["x.key === c", "v === 'sbs'", "b === 'osm'", 'p.every(isFinite)']) assert.ok(read.includes(guard), 'readUrl lost its check: ' + guard);
+  for (const guard of ["x.key === c", "sb === 'sat'", "v === 'sbs'", "b === 'osm'", 'p.every(isFinite)']) assert.ok(read.includes(guard), 'readUrl lost its check: ' + guard);
 });
