@@ -39,7 +39,11 @@ PLAN_GROUP = lambda code: 1 if code in PLAN_BUILT else 2 if code in ('P1', 'P2')
 # plan uses for the built-up check, and what the OSM land-use categories mean in the same terms
 PLAN_USE = {'RD': 1, 'RF': 1, 'C1': 2, 'C2': 2, 'C3': 2, 'M1': 3, 'PS1': 4, 'PS1BGCGCE': 4, 'PS1FCO': 4, 'PS2': 4, 'G1': 4, 'G2': 4, 'G3': 4}
 USE_NAME = {1: 'residential', 2: 'commercial', 3: 'industrial', 4: 'public'}
-OSM_USE_LABEL = {0: 'untagged', 1: 'residential', 2: 'commercial', 3: 'industrial', 4: 'public', 5: 'other_tag'}
+OSM_USE_LABEL = {0: 'untagged', 1: 'residential', 2: 'commercial', 3: 'industrial', 4: 'public', 5: 'other_tag', 6: 'dda_settlement'}
+N_TAGS = 7
+# DDA settlement layers (existing Lal Dora villages, PM-UDAY unauthorised colonies, JJ clusters): existing, mostly residential, built-up areas.
+# Used only where OSM has no land-use tag, and kept as its own category so the source stays visible.
+DDA_SETTLEMENT_FILES = ['laldora', 'pm_uday_unauthorised_colony_boundary', 'pm_uday_colonies_1511', 'jj_clusters']
 OSM_LANDUSE_TO_USE = {  # landuse value -> 1 residential, 2 commercial, 3 industrial, 4 public, 5 tagged but not a built use (farm, forest, grass, water...)
     'residential': 1, 'apartments': 1,
     'commercial': 2, 'retail': 2,
@@ -103,10 +107,12 @@ def use_check(m):
         row = {'planned_km2': round(tot * PIXEL_M2 / 1e6, 3), 'built_km2': round(b * PIXEL_M2 / 1e6, 3),
                'built_pct': round(b / tot * 100, 1) if tot else None}
         if b:
-            row['built_tagged_as_pct'] = {OSM_USE_LABEL[k]: round(built[k] / b * 100, 1) for k in range(6)}
+            row['built_tagged_as_pct'] = {OSM_USE_LABEL[k]: round(built[k] / b * 100, 1) for k in range(N_TAGS)}
             row['tagged_pct'] = round(100 - built[0] / b * 100, 1)
             tagged_built = b - built[0]
-            row['tagged_matches_plan_pct'] = round(built[u] / tagged_built * 100, 1) if tagged_built else None
+            # a DDA settlement (village, colony, JJ cluster) is existing residential, so it counts as a match for planned residential
+            matches = built[u] + (built[6] if u == 1 else 0)
+            row['tagged_matches_plan_pct'] = round(matches / tagged_built * 100, 1) if tagged_built else None
         else:
             row['built_tagged_as_pct'] = None; row['tagged_pct'] = None; row['tagged_matches_plan_pct'] = None
         out[name] = row
@@ -205,10 +211,19 @@ def main():
     osm = json.load(open(os.path.join(ROOT, 'data/delhi_landuse_simplified.geojson'), encoding='utf-8'))['features']
     osm_use = rasterize([(f['geometry'], OSM_LANDUSE_TO_USE.get(f['properties'].get('landuse'), 5)) for f in osm if f.get('geometry')],
                         out_shape=sat_g.shape, transform=transform, fill=0, dtype='uint8')
+    dda_shapes = []
+    for name in DDA_SETTLEMENT_FILES:
+        fp = os.path.join(ROOT, 'data/source/dda_settlements', name + '.geojson')
+        if os.path.exists(fp):
+            dda_shapes += [(f['geometry'], 1) for f in json.load(open(fp, encoding='utf-8'))['features'] if f.get('geometry')]
+    if dda_shapes:
+        dda = rasterize(dda_shapes, out_shape=sat_g.shape, transform=transform, fill=0, dtype='uint8')
+        osm_use = np.where((osm_use == 0) & (dda == 1), 6, osm_use).astype(np.uint8)   # OSM tag wins; DDA fills only where OSM is silent
+        del dda
     n = len(wards) + 1
-    use_counts = np.zeros((n, 5, 2, 6), dtype=np.int64)
-    flat_u = (ward_id.astype(np.int32) * 60 + plan_use.astype(np.int32) * 12 + (sat_g == 1).astype(np.int32) * 6 + osm_use.astype(np.int32)).ravel()
-    use_counts += np.bincount(flat_u, minlength=n * 60).reshape(n, 5, 2, 6)
+    use_counts = np.zeros((n, 5, 2, N_TAGS), dtype=np.int64)
+    flat_u = (ward_id.astype(np.int32) * 70 + plan_use.astype(np.int32) * 14 + (sat_g == 1).astype(np.int32) * N_TAGS + osm_use.astype(np.int32)).ravel()
+    use_counts += np.bincount(flat_u, minlength=n * 70).reshape(n, 5, 2, N_TAGS)
     del flat_u
     counts = np.zeros((n, 6, 6), dtype=np.int64)
     flat = (ward_id.astype(np.int32) * 36 + plan_g.astype(np.int32) * 6 + sat_g.astype(np.int32)).ravel()
@@ -232,6 +247,7 @@ def main():
             'crosswalk_plan': {'built': sorted(PLAN_BUILT), 'green_open': ['P1', 'P2'], 'agriculture': ['A1'], 'not_compared': 'water (A2), monuments (P3), sports (P4), utilities (U, U1-U5) and blank codes'},
             'crosswalk_satellite': {'built': [50], 'green_open': [10, 20, 30], 'agriculture': [40], 'bare': [60], 'water': [80, 90, 95]},
             'what_it_can_and_cannot_say': 'A satellite sees what is on the ground, not what the land is used for. The built-up group therefore lumps residential, industrial, commercial and public land together; the use_check section splits it only where OpenStreetMap has a land-use tag (residential and industrial are tagged fairly well, commercial and institutional poorly), and reports the untagged remainder as unknown. Trees inside residential colonies, parks with paved areas, fallow farmland and construction sites (bare) are classified as the satellite sees them. 10 m pixels, 2021 imagery, and the plan is from 2026: a plan-versus-satellite gap can be development that has not happened yet, change since 2021, or classifier error. It is not a measurement of compliance.',
+            'use_check_sources': 'OpenStreetMap land-use tags (data/delhi_landuse_simplified.geojson) where present; otherwise the DDA settlement layers (Lal Dora, PM-UDAY colonies, JJ clusters, from gis.dda.org.in, data/source/dda_settlements/); otherwise unknown. A DDA settlement counts as existing residential.',
             'comparison_confidence_rule': 'ok when the comparable plan area is at least 0.15 km2 and the plan covers at least 10% of the ward',
             'pixel_area_m2': PIXEL_M2,
         },
