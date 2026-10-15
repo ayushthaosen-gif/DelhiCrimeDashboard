@@ -98,3 +98,27 @@ test('share-link values are validated against known lists before use', () => {
   const read = script.slice(script.indexOf('function readUrl()'), script.indexOf('// ---------- events ----------'));
   for (const guard of ["x.key === c", "sb === 'sat'", "v === 'sbs'", "b === 'osm'", 'p.every(isFinite)']) assert.ok(read.includes(guard), 'readUrl lost its check: ' + guard);
 });
+
+test('built-up by planned use: tag shares add up and the page shows unknown instead of guessing', () => {
+  const uses = ['residential', 'commercial', 'industrial', 'public'];
+  for (const u of uses) assert.ok(u in sat.citywide.built_up_by_planned_use, u + ' missing from the citywide use check');
+  for (const r of sat.wards) {
+    assert.ok(r.use_check, r.ward + ': use_check missing');
+    for (const u of uses) {
+      const c = r.use_check[u];
+      if (c.built_tagged_as_pct) {
+        const sum = Object.values(c.built_tagged_as_pct).reduce((a, b) => a + b, 0);
+        assert.ok(Math.abs(sum - 100) < 0.7, r.ward + ' ' + u + ': tag shares must sum to 100, got ' + sum);
+        assert.ok(Math.abs((100 - c.built_tagged_as_pct.untagged) - c.tagged_pct) < 0.2, r.ward + ' ' + u + ': tagged_pct must equal 100 minus untagged');
+      }
+      assert.ok(c.built_km2 <= c.planned_km2 + 1e-6, r.ward + ' ' + u + ': built area cannot exceed planned area');
+    }
+  }
+  assert.ok(script.includes('No use tag (unknown)'), 'the page must label untagged built-up land as unknown');
+  assert.ok(script.includes('use_check') && script.includes('built_up_by_planned_use'));
+  assert.match(sat.metadata.what_it_can_and_cannot_say, /untagged remainder as unknown|remainder as unknown/);
+});
+
+test('satellite comparison: plan coverage never exceeds 100% of a ward', () => {
+  for (const r of sat.wards) assert.ok(r.plan_coverage_pct <= 100.001, r.ward + ': plan coverage ' + r.plan_coverage_pct);
+});
