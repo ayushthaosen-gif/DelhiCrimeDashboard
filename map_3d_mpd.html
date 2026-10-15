@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Master Plan 2047 3D Comparison (prototype)</title>
+<meta name="description" content="Prototype 3D comparison of Master Plan Delhi 2047 planned land use against current OpenStreetMap-mapped land use, by MCD ward.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+  :root { --bg:#1c2331; --panel:#252d3d; --ink:#e8ecf3; --muted:#9aa5b8; --accent:#f0a63c; --line:#38425a; }
+  :root[data-theme="light"] { --bg:#f4f6fa; --panel:#ffffff; --ink:#1c2331; --muted:#5b6578; --accent:#b8650a; --line:#d5dbe6; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.4 system-ui, sans-serif; }
+  #maps { position: absolute; inset: 0; display: flex; }
+  .pane { position: relative; flex: 1 1 0; min-width: 0; min-height: 0; }
+  .pane + .pane { border-left: 2px solid var(--line); }
+  .pane .map { position: absolute; inset: 0; }
+  .pane h2 { position: absolute; z-index: 4; right: 10px; top: 10px; margin: 0; padding: 5px 10px; font-size: 13px; font-weight: 600; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; }
+  body.chg #paneB { display: none; }
+  .panel { position: absolute; z-index: 5; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; box-shadow: 0 4px 18px rgba(0,0,0,.3); }
+  #controls { top: 10px; left: 10px; width: min(320px, calc(100vw - 20px)); max-height: calc(100vh - 90px); overflow: auto; }
+  #controls summary { cursor: pointer; font-weight: 600; font-size: 15px; list-style: none; min-height: 28px; }
+  #controls summary::-webkit-details-marker { display: none; }
+  #controls summary::after { content: " \25BE"; color: var(--muted); }
+  #controls[open] summary::after { content: " \25B4"; }
+  .proto { color: var(--accent); font-size: 11px; font-weight: 400; }
+  .sub { color: var(--muted); font-size: 12px; margin: 4px 0 8px; }
+  .lbl { display: block; font-size: 12px; color: var(--muted); margin: 10px 0 4px; }
+  select, button, .linkbtn { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px; min-height: 40px; }
+  select { width: 100%; }
+  button, .linkbtn { cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+  button:hover, .linkbtn:hover { border-color: var(--accent); }
+  button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible, .linkbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; }
+  .seg.two { grid-template-columns: 1fr 1fr; }
+  .seg.grid2 { grid-auto-flow: row; grid-template-columns: 1fr 1fr; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 600; }
+  input[type=range] { width: 100%; min-height: 28px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .chk { display: flex; gap: 8px; align-items: center; margin-top: 10px; font-size: 13px; }
+  .chk input { width: auto; min-height: 0; }
+  #strip { margin-top: 10px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; font-size: 12px; }
+  #strip b { color: var(--accent); }
+  #legend { left: 10px; bottom: 10px; width: min(320px, calc(100vw - 20px)); font-size: 12px; }
+  .ramp { display: flex; height: 10px; border-radius: 3px; overflow: hidden; margin: 6px 0 3px; }
+  .ramp span { flex: 1; }
+  .ends { display: flex; justify-content: space-between; color: var(--muted); }
+  .lowkey { display: inline-block; width: 10px; height: 10px; background: var(--muted); opacity: .45; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+  #detail { right: 10px; bottom: 10px; width: min(330px, calc(100vw - 20px)); max-height: 62vh; overflow: auto; display: none; z-index: 6; }
+  #detail h3 { font-size: 15px; margin: 0 28px 2px 0; }
+  #detail .close { position: absolute; top: 6px; right: 6px; width: 32px; min-height: 32px; padding: 0; }
+  .bars { margin-top: 8px; font-size: 12px; }
+  .bars .r { margin: 8px 0; }
+  .bars .n { display: flex; justify-content: space-between; margin-bottom: 2px; }
+  .bar { height: 7px; border-radius: 3px; background: var(--line); margin: 2px 0; position: relative; overflow: hidden; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; }
+  .bar.cur i { background: #8ab4f8; } .bar.plan i { background: var(--accent); }
+  .cav { color: var(--muted); font-size: 11px; margin: 8px 0 0; }
+  .warn { color: var(--accent); }
+  #err { display: none; position: absolute; z-index: 9; inset: 20% 12px auto 12px; max-width: 520px; margin: 0 auto; }
+  .maplibregl-popup-content { background: var(--panel); color: var(--ink); font: 13px/1.4 system-ui, sans-serif; border: 1px solid var(--line); }
+  .maplibregl-popup-tip { display: none; }
+  @media (max-width: 760px) {
+    #maps { flex-direction: column; }
+    .pane + .pane { border-left: 0; border-top: 2px solid var(--line); }
+    #legend { display: none; }
+    #detail { left: 10px; right: 10px; width: auto; bottom: 10px; max-height: 45vh; }
+    .pane h2 { top: auto; bottom: 8px; right: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<div id="maps">
+  <div class="pane" id="paneA"><div class="map" id="mapA" role="application" aria-label="3D map, current land use"></div><h2 id="titleA">Current (OpenStreetMap-mapped)</h2></div>
+  <div class="pane" id="paneB"><div class="map" id="mapB" role="application" aria-label="3D map, planned land use"></div><h2 id="titleB">Planned (MPD-2047)</h2></div>
+</div>
+
+<details id="controls" class="panel" open>
+  <summary>Master Plan 2047 comparison <span class="proto">prototype</span></summary>
+  <p class="sub">Delhi's wards in 3D: how much of each ward the Master Plan designates for a use, against how much is mapped today. Height and colour show the share of the ward.</p>
+
+  <span class="lbl" id="clsLbl">Land use</span>
+  <div class="seg grid2" id="classBtns" role="group" aria-labelledby="clsLbl"></div>
+
+  <span class="lbl" id="viewLbl">View</span>
+  <div class="seg two" id="viewBtns" role="group" aria-labelledby="viewLbl">
+    <button type="button" data-view="sbs" aria-pressed="true">Side by side</button>
+    <button type="button" data-view="chg" aria-pressed="false">Change</button>
+  </div>
+
+  <div id="strip" aria-live="polite"></div>
+
+  <label class="lbl" for="basemap">Basemap</label>
+  <select id="basemap">
+    <option value="osm">Streets (OpenStreetMap)</option>
+    <option value="sat">Satellite (Esri)</option>
+    <option value="none">None (data only)</option>
+  </select>
+
+  <label class="lbl" for="height">Extrusion height</label>
+  <input id="height" type="range" min="10" max="100" value="60">
+
+  <label class="chk"><input id="low" type="checkbox" checked> Show wards with thin coverage (faded)</label>
+
+  <div class="row">
+    <button id="reset" type="button">Reset view</button>
+    <button id="tilt" type="button">Top-down / 3D</button>
+    <button id="copy" type="button">Copy link</button>
+    <button id="theme" type="button">Light / dark</button>
+  </div>
+  <p class="row" style="grid-template-columns:1fr"><a class="linkbtn" href="map_3d.html">3D ward explorer (crash data)</a></p>
+  <p class="cav" id="about">Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: OpenStreetMap contributors. A difference between a plan and a community-mapped inventory is not a measurement of change on the ground.</p>
+</details>
+
+<div id="legend" class="panel" aria-live="polite"></div>
+
+<div id="detail" class="panel" role="region" aria-label="Selected ward comparison">
+  <button class="close" type="button" id="detailClose" aria-label="Close ward details">&times;</button>
+  <div id="detailBody"></div>
+</div>
+<div id="err" class="panel" role="alert"></div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+(function () {
+  'use strict';
+  var HOME = { center: [77.15, 28.63], zoom: 9.6, pitch: 55, bearing: -15 };
+  var MAXH = 4500; // metres at 100% share and full slider
+  var CLASSES = [
+    { key: 'residential', label: 'Residential', color: '#e8a33c' },
+    { key: 'industrial', label: 'Industrial', color: '#a98be0' },
+    { key: 'green_open', label: 'Parks and open space', color: '#4caf7d' },
+    { key: 'agriculture', label: 'Agriculture', color: '#b9c24a' }
+  ];
+  var LOWCOLOR = '#2b3347', NODATA = '#6b7280';
+  var BINS = [0, 2, 10, 25, 45, 70]; // share % lower bounds of the six ramp steps
+  var BASEMAPS = {
+    osm: { tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'], attr: '© OpenStreetMap contributors', max: 19 },
+    sat: { tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'], attr: 'Imagery © Esri and contributors', max: 18 }
+  };
+  var LOW_TEXT = 'low - thin coverage on at least one side';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var data = null, meta = null, city = null, geo = null;
+  var maps = {}, popups = {}, syncing = false;
+  var cls = CLASSES[0], view = 'sbs', basemapKey = 'osm', showLow = true, pinned = null;
+  var reducedMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function safe(fn) { try { return fn(); } catch (e) { return null; } }
+  function showError(msg) { var e = $('err'); e.textContent = msg; e.style.display = 'block'; }
+  function pct(v) { return v == null ? 'n/a' : (Math.round(v * 10) / 10) + '%'; }
+  function km2(v) { return v == null ? 'n/a' : (Math.round(v * 10) / 10).toLocaleString('en-IN') + ' km²'; }
+
+  // ---------- theme ----------
+  function applyTheme(t) {
+    document.documentElement.setAttribute('data-theme', t);
+    safe(function () { localStorage.setItem('ds-theme', t); });
+    ['A', 'B'].forEach(function (k) { if (maps[k] && maps[k].getLayer('bg')) maps[k].setPaintProperty('bg', 'background-color', t === 'light' ? '#dfe5ee' : '#10151f'); });
+  }
+  (function () {
+    var t = safe(function () { return localStorage.getItem('ds-theme'); });
+    if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+  if (window.matchMedia && matchMedia('(max-width: 760px)').matches) $('controls').removeAttribute('open');
+
+  // ---------- colour helpers ----------
+  function mix(a, b, t) {
+    var pa = [1, 3, 5].map(function (i) { return parseInt(a.substr(i, 2), 16); }), pb = [1, 3, 5].map(function (i) { return parseInt(b.substr(i, 2), 16); });
+    return '#' + pa.map(function (v, i) { return ('0' + Math.round(v + (pb[i] - v) * t).toString(16)).slice(-2); }).join('');
+  }
+  function ramp() { return BINS.map(function (_, i) { return mix(LOWCOLOR, cls.color, i / (BINS.length - 1)); }); }
+  function shareColor(v) { var r = ramp(), i = 0; BINS.forEach(function (b, k) { if (v >= b && v > 0) i = k; }); return v <= 0 ? r[0] : r[i]; }
+  var DIV = ['#4f7cac', '#7ea3c9', '#a9b4c6', '#e8b48a', '#e8743b', '#c4252d']; // plan gives less ... plan gives more
+  function deltaColor(d) { if (d === 0) return '#8a93a6'; return d <= -25 ? DIV[0] : d <= -8 ? DIV[1] : d < 0 ? DIV[2] : d < 8 ? DIV[3] : d < 25 ? DIV[4] : DIV[5]; }
+
+  // ---------- data prep ----------
+  function prep(rows, geojson) {
+    var by = {}; rows.forEach(function (r) { by[r.ward_no] = r; });
+    return geojson.features.map(function (f, i) {
+      var r = by[f.properties.Ward_No] || null;
+      return { geometry: f.geometry, id: i, name: f.properties.Ward_Name, ward_no: f.properties.Ward_No, row: r, low: r && r.comparison_confidence !== 'ok' ? 1 : 0 };
+    });
+  }
+  function featureSet(kind) {
+    var k = cls.key;
+    return { type: 'FeatureCollection', features: geo.map(function (w) {
+      var r = w.row, props = { _id: w.id, low: w.low, name: w.name };
+      if (!r) { props.color = NODATA; props.h = 0; props.low = 1; }
+      else if (kind === 'cur') { var v = r['current_' + k + '_share_pct']; props.color = shareColor(v); props.h = v; }
+      else if (kind === 'plan') { var p = r['planned_' + k + '_share_pct']; props.color = shareColor(p); props.h = p; }
+      else { var d = r['delta_' + k + '_pp']; props.color = deltaColor(d); props.h = Math.abs(d); }
+      return { type: 'Feature', geometry: w.geometry, properties: props };
+    }) };
+  }
+
+  // ---------- maps ----------
+  function makeMap(key, container) {
+    var light = document.documentElement.getAttribute('data-theme') === 'light';
+    var style = { version: 8, glyphs: 'https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf', sources: {}, layers: [{ id: 'bg', type: 'background', paint: { 'background-color': light ? '#dfe5ee' : '#10151f' } }] };
+    Object.keys(BASEMAPS).forEach(function (k) {
+      var b = BASEMAPS[k];
+      style.sources['bm-' + k] = { type: 'raster', tiles: b.tiles, tileSize: 256, maxzoom: b.max, attribution: b.attr };
+      style.layers.push({ id: 'bm-' + k, type: 'raster', source: 'bm-' + k, layout: { visibility: k === basemapKey ? 'visible' : 'none' } });
+    });
+    var m = new maplibregl.Map({ container: container, style: style, center: HOME.center, zoom: HOME.zoom, pitch: HOME.pitch, bearing: HOME.bearing, maxPitch: 75, attributionControl: { compact: true } });
+    if (key === 'A') m.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'bottom-right');
+    m.on('error', function (e) { console.error('maplibre:', e && e.error && e.error.message); });
+    popups[key] = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12 });
+    m.once('style.load', function () {
+      m.addSource('wards', { type: 'geojson', data: featureSet(key === 'A' ? 'cur' : 'plan') });
+      var common = { 'fill-extrusion-color': ['get', 'color'], 'fill-extrusion-base': 0, 'fill-extrusion-vertical-gradient': true };
+      m.addLayer({ id: 'w-low', type: 'fill-extrusion', source: 'wards', filter: ['==', ['get', 'low'], 1], layout: { visibility: showLow ? 'visible' : 'none' },
+        paint: Object.assign({ 'fill-extrusion-height': 0, 'fill-extrusion-opacity': 0.38 }, common) });
+      m.addLayer({ id: 'w-ok', type: 'fill-extrusion', source: 'wards', filter: ['==', ['get', 'low'], 0], paint: Object.assign({ 'fill-extrusion-height': 0, 'fill-extrusion-opacity': 0.92 }, common) });
+      m.addLayer({ id: 'w-line', type: 'line', source: 'wards', paint: { 'line-color': '#ffffff', 'line-opacity': 0.3, 'line-width': 0.5 } });
+      m.addLayer({ id: 'w-pin', type: 'line', source: 'wards', filter: ['==', ['get', '_id'], -1], paint: { 'line-color': '#ffffff', 'line-width': 3.5 } });
+      m.addSource('osm-vec', { type: 'vector', url: 'https://tiles.openfreemap.org/planet', attribution: '© OpenFreeMap © OpenMapTiles, data from OpenStreetMap' });
+      var LP = { 'text-color': '#ffffff', 'text-halo-color': 'rgba(10,14,22,0.92)', 'text-halo-width': 1.8 };
+      m.addLayer({ id: 'place-labels', type: 'symbol', source: 'osm-vec', 'source-layer': 'place', minzoom: 8,
+        filter: ['in', ['get', 'class'], ['literal', ['city', 'town', 'suburb', 'quarter', 'neighbourhood', 'village']]],
+        layout: { 'text-field': ['coalesce', ['get', 'name_en'], ['get', 'name']], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 8, 11, 14, 14], 'text-max-width': 8 }, paint: LP });
+      m.addLayer({ id: 'ward-labels', type: 'symbol', source: 'wards', minzoom: 11.2,
+        layout: { 'text-field': ['get', 'name'], 'text-font': ['Noto Sans Regular'], 'text-size': ['interpolate', ['linear'], ['zoom'], 11, 10, 16, 13], 'text-max-width': 6, 'text-padding': 4 },
+        paint: { 'text-color': '#ffe9b3', 'text-halo-color': 'rgba(10,14,22,0.92)', 'text-halo-width': 1.6 } });
+      applyHeight();
+      ['w-ok', 'w-low'].forEach(function (id) {
+        m.on('mousemove', id, function (e) {
+          var f = e.features[0]; m.getCanvas().style.cursor = 'pointer';
+          popups[key].setLngLat(e.lngLat).setHTML(popupHtml(Number(f.properties._id))).addTo(m);
+        });
+        m.on('mouseleave', id, function () { m.getCanvas().style.cursor = ''; popups[key].remove(); });
+      });
+      m.on('click', function (e) {
+        var hit = m.queryRenderedFeatures(e.point, { layers: ['w-ok', 'w-low'] })[0];
+        if (hit) pin(Number(hit.properties._id)); else unpin();
+      });
+      m.on('moveend', scheduleUrl);
+    });
+    // keep both maps on the same camera
+    m.on('move', function () {
+      if (syncing) return; syncing = true;
+      Object.keys(maps).forEach(function (k) {
+        if (k !== key && maps[k]) maps[k].jumpTo({ center: m.getCenter(), zoom: m.getZoom(), bearing: m.getBearing(), pitch: m.getPitch() });
+      });
+      syncing = false;
+    });
+    return m;
+  }
+
+  function refreshData() {
+    var set = function (m, kind) { if (m && m.getSource('wards')) m.getSource('wards').setData(featureSet(kind)); };
+    if (view === 'chg') set(maps.A, 'chg'); else { set(maps.A, 'cur'); set(maps.B, 'plan'); }
+    applyHeight(); refreshStrip(); refreshLegend(); refreshTitles();
+    if (pinned !== null) renderDetail();
+  }
+  function applyHeight() {
+    var scale = Number($('height').value) / 100 * MAXH / 100; // metres per percentage point
+    ['A', 'B'].forEach(function (k) {
+      var m = maps[k]; if (!m || !m.getLayer('w-ok')) return;
+      ['w-ok', 'w-low'].forEach(function (id) { m.setPaintProperty(id, 'fill-extrusion-height', ['*', ['get', 'h'], scale]); });
+    });
+  }
+  function setLow(on) {
+    showLow = on;
+    ['A', 'B'].forEach(function (k) { var m = maps[k]; if (m && m.getLayer('w-low')) m.setLayoutProperty('w-low', 'visibility', on ? 'visible' : 'none'); });
+  }
+  function setBasemap(key) {
+    basemapKey = key;
+    ['A', 'B'].forEach(function (mk) { var m = maps[mk]; if (!m || !m.getLayer('bm-osm')) return; ['osm', 'sat'].forEach(function (k) { m.setLayoutProperty('bm-' + k, 'visibility', k === key ? 'visible' : 'none'); }); });
+  }
+  function setView(v) {
+    view = v; document.body.classList.toggle('chg', v === 'chg');
+    Array.prototype.forEach.call($('viewBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === v ? 'true' : 'false'); });
+    refreshData();
+    setTimeout(function () { ['A', 'B'].forEach(function (k) { if (maps[k]) maps[k].resize(); }); }, 30);
+    scheduleUrl();
+  }
+  function setClass(key) {
+    cls = CLASSES.filter(function (c) { return c.key === key; })[0] || CLASSES[0];
+    Array.prototype.forEach.call($('classBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-cls') === cls.key ? 'true' : 'false'); });
+    refreshData(); scheduleUrl();
+  }
+
+  // ---------- text panels ----------
+  function refreshTitles() {
+    $('titleA').textContent = view === 'chg' ? 'Planned minus current (' + cls.label.toLowerCase() + ')' : 'Current (OpenStreetMap-mapped)';
+    $('titleB').textContent = 'Planned (MPD-2047)';
+  }
+  function refreshStrip() {
+    var k = cls.key, p = city['planned_' + k + '_km2'], c = city['current_' + k + '_km2'];
+    $('strip').innerHTML = '<b>' + esc(cls.label) + ', citywide:</b> plan ' + km2(p) + ' vs mapped today ' + km2(c) + '. ' + city.wards_low_confidence + ' of ' + city.wards + ' wards have thin coverage on one side. ' + km2(city.planned_not_comparable_km2) + ' of planned land is in uses with no OpenStreetMap counterpart and is not compared.';
+  }
+  function refreshLegend() {
+    var low = '<div style="margin-top:6px"><span class="lowkey"></span>Faded = thin coverage, treat with caution</div>';
+    if (view === 'chg') {
+      $('legend').innerHTML = '<div><b>Planned minus current share of ward, ' + esc(cls.label.toLowerCase()) + '</b></div><div class="ramp">' + DIV.map(function (c) { return '<span style="background:' + c + '"></span>'; }).join('') + '</div>' +
+        '<div class="ends"><span>Plan has less (−25 pp or more)</span><span>Plan has more (+25 pp or more)</span></div>' +
+        '<div class="sub" style="margin:4px 0 0">Height = size of the difference. A positive difference can also mean OSM has not tagged it.</div>' + low;
+    } else {
+      var r = ramp();
+      $('legend').innerHTML = '<div><b>Share of ward that is ' + esc(cls.label.toLowerCase()) + '</b></div><div class="ramp">' + r.map(function (c) { return '<span style="background:' + c + '"></span>'; }).join('') + '</div>' +
+        '<div class="ends"><span>0%</span><span>70%+</span></div><div class="sub" style="margin:4px 0 0">Height and colour both show the share. Same scale on both maps.</div>' + low;
+    }
+  }
+  function popupHtml(id) {
+    var w = geo[id], r = w.row, k = cls.key;
+    if (!r) return '<strong>' + esc(w.name) + '</strong><br>No comparison data';
+    return '<strong>' + esc(w.name) + '</strong> <span style="color:var(--muted)">' + esc(r.district || '') + '</span><br>' + esc(cls.label) + ': planned <b>' + pct(r['planned_' + k + '_share_pct']) + '</b>, mapped today <b>' + pct(r['current_' + k + '_share_pct']) + '</b><br>' +
+      'Difference ' + (r['delta_' + k + '_pp'] > 0 ? '+' : '') + r['delta_' + k + '_pp'] + ' percentage points' + (w.low ? '<br><span class="warn">Thin coverage: handle with care</span>' : '') + '<br><span style="color:var(--muted)">Click for all uses</span>';
+  }
+  function renderDetail() {
+    var w = geo[pinned]; if (!w) return; var r = w.row;
+    var body = '<h3>' + esc(w.name) + '</h3><div class="sub" style="margin:0">' + esc(r ? (r.district || '') : '') + ' district' + (r ? ' &middot; ' + r.area_sq_km + ' sq km' : '') + '</div>';
+    if (!r) body += '<p>No comparison data for this ward.</p>';
+    else {
+      body += '<div class="bars">' + CLASSES.map(function (c) {
+        var p = r['planned_' + c.key + '_share_pct'], cu = r['current_' + c.key + '_share_pct'], d = r['delta_' + c.key + '_pp'];
+        return '<div class="r"><div class="n"><span>' + esc(c.label) + (c.key === cls.key ? ' •' : '') + '</span><span>' + (d > 0 ? '+' : '') + d + ' pp</span></div>' +
+          '<div class="bar plan" title="planned"><i style="width:' + Math.min(100, p) + '%"></i></div><div class="bar cur" title="current"><i style="width:' + Math.min(100, cu) + '%"></i></div>' +
+          '<div style="color:var(--muted)">planned ' + pct(p) + ' &middot; mapped today ' + pct(cu) + '</div></div>';
+      }).join('') + '</div>' +
+        '<div class="sub">Plan covers ' + pct(r.plan_coverage_pct) + ' of the ward (' + km2(r.planned_not_comparable_km2) + ' in uses not compared). OSM land use is tagged for ' + pct(r.osm_mapped_pct) + ' of it.</div>' +
+        (w.low ? '<div class="warn" style="font-size:12px">' + esc(r.comparison_confidence) + '</div>' : '');
+    }
+    body += '<p class="cav">Plan (amber bars) vs mapped today (blue bars). ' + esc(meta.comparability_caveat || '') + '</p>';
+    $('detailBody').innerHTML = body; $('detail').style.display = 'block';
+    ['A', 'B'].forEach(function (k) { if (maps[k] && maps[k].getLayer('w-pin')) maps[k].setFilter('w-pin', ['==', ['get', '_id'], pinned]); });
+  }
+  function pin(id) { pinned = id; renderDetail(); scheduleUrl(); }
+  function unpin() {
+    pinned = null; $('detail').style.display = 'none';
+    ['A', 'B'].forEach(function (k) { if (maps[k] && maps[k].getLayer('w-pin')) maps[k].setFilter('w-pin', ['==', ['get', '_id'], -1]); });
+    scheduleUrl();
+  }
+
+  // ---------- share link ----------
+  var urlTimer = null;
+  function scheduleUrl() { clearTimeout(urlTimer); urlTimer = setTimeout(writeUrl, 250); }
+  function writeUrl() {
+    var m = maps.A; if (!m) return; var c = m.getCenter(), q = new URLSearchParams();
+    q.set('c', cls.key); q.set('v', view); q.set('b', basemapKey); q.set('h', $('height').value); if (!showLow) q.set('lo', '0');
+    q.set('p', [c.lng.toFixed(4), c.lat.toFixed(4), m.getZoom().toFixed(2), m.getPitch().toFixed(0), m.getBearing().toFixed(0)].join(','));
+    if (pinned !== null) q.set('w', pinned);
+    safe(function () { history.replaceState(null, '', '#' + q.toString()); });
+  }
+  function readUrl() { // every value is checked against the known lists
+    var out = {}, q = new URLSearchParams(location.hash.slice(1));
+    var c = q.get('c'); if (CLASSES.some(function (x) { return x.key === c; })) out.cls = c;
+    var v = q.get('v'); if (v === 'sbs' || v === 'chg') out.view = v;
+    var b = q.get('b'); if (b === 'osm' || b === 'sat' || b === 'none') out.basemap = b;
+    var h = parseInt(q.get('h'), 10); if (h >= 10 && h <= 100) out.height = h;
+    if (q.get('lo') === '0') out.low = false;
+    var p = (q.get('p') || '').split(',').map(Number);
+    if (p.length === 5 && p.every(isFinite) && p[0] > 60 && p[0] < 90 && p[1] > 5 && p[1] < 40 && p[2] >= 3 && p[2] <= 19) out.view_ = p;
+    var w = parseInt(q.get('w'), 10); if (w >= 0 && geo && w < geo.length) out.ward = w;
+    return out;
+  }
+
+  // ---------- events ----------
+  CLASSES.forEach(function (c) {
+    var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-cls', c.key); b.textContent = c.label; b.setAttribute('aria-pressed', c.key === cls.key ? 'true' : 'false');
+    b.addEventListener('click', function () { setClass(c.key); }); $('classBtns').appendChild(b);
+  });
+  Array.prototype.forEach.call($('viewBtns').children, function (b) { b.addEventListener('click', function () { setView(b.getAttribute('data-view')); }); });
+  $('basemap').addEventListener('change', function () { setBasemap($('basemap').value); scheduleUrl(); });
+  $('height').addEventListener('input', function () { applyHeight(); scheduleUrl(); });
+  $('low').addEventListener('change', function () { setLow($('low').checked); scheduleUrl(); });
+  $('reset').addEventListener('click', function () { maps.A.flyTo(Object.assign({ duration: reducedMotion ? 0 : 1500 }, HOME)); });
+  $('tilt').addEventListener('click', function () { maps.A.easeTo({ pitch: maps.A.getPitch() > 10 ? 0 : HOME.pitch, duration: 600 }); });
+  $('theme').addEventListener('click', function () { applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); });
+  $('copy').addEventListener('click', function () {
+    writeUrl(); var btn = $('copy');
+    function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy link'; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(location.href).then(function () { done('Copied'); }, function () { done('Copy failed'); });
+    else done('Copy from address bar');
+  });
+  $('detailClose').addEventListener('click', unpin);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') unpin(); });
+
+  // ---------- load ----------
+  function loadJson(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + ' HTTP ' + r.status); return r.json(); }); }
+  Promise.all([loadJson('data/delhi_wards_infra.geojson'), loadJson('data/mpd2047_ward_comparison.json')]).then(function (res) {
+    geo = prep(res[1].wards, res[0]); meta = res[1].metadata; city = res[1].citywide;
+    var init = readUrl();
+    if (init.cls) cls = CLASSES.filter(function (c) { return c.key === init.cls; })[0];
+    if (init.view) view = init.view;
+    if (init.basemap) { basemapKey = init.basemap; $('basemap').value = basemapKey; }
+    if (init.height) $('height').value = init.height;
+    if (init.low === false) { showLow = false; $('low').checked = false; }
+    Array.prototype.forEach.call($('classBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-cls') === cls.key ? 'true' : 'false'); });
+    maps.A = makeMap('A', 'mapA'); maps.B = makeMap('B', 'mapB');
+    if (init.view_) { var p = init.view_; maps.A.jumpTo({ center: [p[0], p[1]], zoom: p[2], pitch: p[3], bearing: p[4] }); maps.B.jumpTo({ center: [p[0], p[1]], zoom: p[2], pitch: p[3], bearing: p[4] }); }
+    maps.A.once('style.load', function () {
+      if (init.view) setView(view); else { refreshData(); }
+      if (init.ward !== undefined) pin(init.ward);
+    });
+    maps.B.once('style.load', function () { refreshData(); });
+    refreshStrip(); refreshLegend(); refreshTitles();
+    if (view === 'chg') document.body.classList.add('chg');
+    Array.prototype.forEach.call($('viewBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === view ? 'true' : 'false'); });
+    if (meta.plan_status) $('about').textContent = meta.plan_status + ' ' + $('about').textContent;
+  }).catch(function (e) {
+    showError('Could not load the comparison data (' + e.message + '). This page needs to be served over http, not opened as a file. From the repo folder run: python -m http.server 8000, then open http://localhost:8000/map_3d_mpd.html');
+  });
+})();
+</script>
+</body>
+</html>
