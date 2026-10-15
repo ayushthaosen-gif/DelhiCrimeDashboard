@@ -56,6 +56,10 @@
   .bar { height: 7px; border-radius: 3px; background: var(--line); margin: 2px 0; position: relative; overflow: hidden; }
   .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; }
   .bar.cur i { background: #8ab4f8; } .bar.plan i { background: var(--accent); }
+  .stack { display: flex; height: 9px; border-radius: 3px; overflow: hidden; background: var(--line); margin: 3px 0; }
+  .stack i { display: block; height: 100%; }
+  .keys { display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 4px 0 6px; font-size: 11px; color: var(--muted); }
+  .keys span::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; background: var(--c); vertical-align: middle; }
   .cav { color: var(--muted); font-size: 11px; margin: 8px 0 0; }
   .warn { color: var(--accent); }
   #err { display: none; position: absolute; z-index: 9; inset: 20% 12px auto 12px; max-width: 520px; margin: 0 auto; }
@@ -331,7 +335,7 @@
   // ---------- text panels ----------
   function refreshAbout() {
     var txt = 'Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: OpenStreetMap contributors. A difference between a plan and a community-mapped inventory is not a measurement of change on the ground.';
-    if (basis === 'sat') txt = 'Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: ESA WorldCover 2021 satellite land cover (CC BY 4.0, contains modified Copernicus Sentinel data). A satellite sees land cover, not use, so all built-up uses are one group, and the plan (2026) is newer than the imagery (2021). A difference is not a measurement of change on the ground.';
+    if (basis === 'sat') txt = 'Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: ESA WorldCover 2021 satellite land cover (CC BY 4.0, contains modified Copernicus Sentinel data). A satellite sees land cover, not use: built-up is one group on the maps, and the split by use comes from OpenStreetMap land-use tags only where they exist (the rest is shown as unknown). The plan (2026) is newer than the imagery (2021). A difference is not a measurement of change on the ground.';
     var ps = (data.osm && data.osm.metadata.plan_status) || (data.sat && data.sat.metadata.plan_status) || '';
     $('about').textContent = (ps ? ps + ' ' : '') + txt;
   }
@@ -339,12 +343,31 @@
     $('titleA').textContent = view === 'chg' ? 'Planned minus current (' + cls.label.toLowerCase() + ')' : BASES[basis].curTitle;
     $('titleB').textContent = 'Planned (MPD-2047)';
   }
+  var TAGS = [['residential', 'Residential', '#e8a33c'], ['commercial', 'Commercial', '#e07aa8'], ['industrial', 'Industrial', '#a98be0'], ['public', 'Public / institutional', '#6fa8dc'], ['other_tag', 'Other tag', '#8a93a6'], ['untagged', 'No use tag (unknown)', '#3a4358']];
+  var USES = [['residential', 'Residential'], ['commercial', 'Commercial'], ['industrial', 'Industrial'], ['public', 'Public and government']];
+  function useSentence() {
+    var u = city.built_up_by_planned_use; if (!u) return '';
+    return ' <br><b>What kind of built-up land?</b> ' + USES.map(function (x) {
+      var r = u[x[0]]; return x[1].toLowerCase() + ': ' + pct(r.built_pct) + ' of the plan is built; OSM tags a use for ' + pct(r.tagged_pct) + ' of that and ' + pct(r.tagged_matches_plan_pct) + ' of the tagged part matches the plan';
+    }).join('; ') + '.';
+  }
+  function useBars(r) {
+    if (!r.use_check) return '';
+    return '<div class="sub" style="margin-bottom:0"><b>What kind of built-up land?</b> For each planned use: how much is built (satellite), and what OSM tags the built part as.</div>' +
+      '<div class="keys">' + TAGS.map(function (t) { return '<span style="--c:' + t[2] + '">' + t[1] + '</span>'; }).join('') + '</div>' +
+      USES.map(function (x) {
+        var c = r.use_check[x[0]]; if (!c || !c.planned_km2) return '';
+        var bars = c.built_tagged_as_pct ? '<div class="stack" title="how OSM tags the built part">' + TAGS.map(function (t) { return '<i style="width:' + (c.built_tagged_as_pct[t[0]] || 0) + '%;background:' + t[2] + '"></i>'; }).join('') + '</div>' : '';
+        return '<div class="r"><div class="n"><span>Planned ' + x[1].toLowerCase() + ' (' + km2(c.planned_km2) + ')</span><span>' + pct(c.built_pct) + ' built</span></div>' + bars +
+          '<div style="color:var(--muted)">' + (c.tagged_pct == null ? 'nothing built' : 'use tagged for ' + pct(c.tagged_pct) + (c.tagged_matches_plan_pct != null ? ', of which ' + pct(c.tagged_matches_plan_pct) + ' matches the plan' : '')) + '</div></div>';
+      }).join('');
+  }
   function refreshStrip() {
     var k = cls.key;
     if (basis === 'sat') {
       var m = city.plan_group_by_satellite_group_km2['planned_' + k], tot = 0; Object.keys(m).forEach(function (x) { tot += m[x]; });
       var same = m['satellite_' + k] / tot * 100, other = k === 'built' ? m.satellite_green_open / tot * 100 : m.satellite_built / tot * 100;
-      $('strip').innerHTML = '<b>' + esc(cls.label) + ', citywide:</b> of ' + km2(tot) + ' the plan designates, the 2021 satellite shows ' + pct(same) + ' as ' + esc(cls.label.toLowerCase()) + ' and ' + pct(other) + (k === 'built' ? ' as trees or grass' : ' as built-up') + '. ' + city.wards_low_confidence + ' of ' + city.wards + ' wards have a small comparable plan area.';
+      $('strip').innerHTML = '<b>' + esc(cls.label) + ', citywide:</b> of ' + km2(tot) + ' the plan designates, the 2021 satellite shows ' + pct(same) + ' as ' + esc(cls.label.toLowerCase()) + ' and ' + pct(other) + (k === 'built' ? ' as trees or grass' : ' as built-up') + '. ' + city.wards_low_confidence + ' of ' + city.wards + ' wards have a small comparable plan area.' + (k === 'built' ? useSentence() : '');
       return;
     }
     var p = city['planned_' + k + '_km2'], c = city['current_' + k + '_km2'];
@@ -387,6 +410,7 @@
       } else {
         body += '<div class="sub">Plan covers ' + pct(r.plan_coverage_pct) + ' of the ward (' + km2(r.planned_not_comparable_km2) + ' in uses not compared). OSM land use is tagged for ' + pct(r.osm_mapped_pct) + ' of it.</div>';
       }
+      if (basis === 'sat') body += '<div class="bars" style="margin-top:10px">' + useBars(r) + '</div>';
       if (isLow(r)) body += '<div class="warn" style="font-size:12px">' + esc(r.comparison_confidence) + '</div>';
     }
     body += '<p class="cav">Plan (amber bars) vs ' + cw + ' (blue bars). ' + esc((basis === 'sat' ? meta.what_it_can_and_cannot_say : meta.comparability_caveat) || '') + '</p>';
