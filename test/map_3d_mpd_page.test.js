@@ -122,3 +122,17 @@ test('built-up by planned use: tag shares add up and the page shows unknown inst
 test('satellite comparison: plan coverage never exceeds 100% of a ward', () => {
   for (const r of sat.wards) assert.ok(r.plan_coverage_pct <= 100.001, r.ward + ': plan coverage ' + r.plan_coverage_pct);
 });
+
+test('DDA settlement layers are present, used only where OSM is silent, and shown as their own category', () => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'source', 'dda_settlements', 'manifest.json'), 'utf8'));
+  assert.equal(manifest.layers.length, 4);
+  for (const l of manifest.layers) {
+    const gj = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'source', 'dda_settlements', l.name + '.geojson'), 'utf8'));
+    assert.equal(gj.features.length, l.features, l.name + ' feature count must match the manifest');
+    assert.ok(gj.features.length > 100, l.name);
+  }
+  assert.match(sat.metadata.use_check_sources, /DDA settlement layers/);
+  for (const u of ['residential', 'commercial', 'industrial', 'public']) assert.ok('dda_settlement' in sat.citywide.built_up_by_planned_use[u].built_tagged_as_pct, u);
+  assert.ok(script.includes("'dda_settlement'"), 'the page must show DDA settlements as their own category');
+});
+

@@ -335,7 +335,7 @@
   // ---------- text panels ----------
   function refreshAbout() {
     var txt = 'Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: OpenStreetMap contributors. A difference between a plan and a community-mapped inventory is not a measurement of change on the ground.';
-    if (basis === 'sat') txt = 'Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: ESA WorldCover 2021 satellite land cover (CC BY 4.0, contains modified Copernicus Sentinel data). A satellite sees land cover, not use: built-up is one group on the maps, and the split by use comes from OpenStreetMap land-use tags only where they exist (the rest is shown as unknown). The plan (2026) is newer than the imagery (2021). A difference is not a measurement of change on the ground.';
+    if (basis === 'sat') txt = 'Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: ESA WorldCover 2021 satellite land cover (CC BY 4.0, contains modified Copernicus Sentinel data). A satellite sees land cover, not use: built-up is one group on the maps, and the split by use comes from OpenStreetMap land-use tags and the DDA settlement layers (Lal Dora villages, unauthorised colonies, JJ clusters) only where they exist; the rest is shown as unknown. The plan (2026) is newer than the imagery (2021). A difference is not a measurement of change on the ground.';
     var ps = (data.osm && data.osm.metadata.plan_status) || (data.sat && data.sat.metadata.plan_status) || '';
     $('about').textContent = (ps ? ps + ' ' : '') + txt;
   }
@@ -343,23 +343,23 @@
     $('titleA').textContent = view === 'chg' ? 'Planned minus current (' + cls.label.toLowerCase() + ')' : BASES[basis].curTitle;
     $('titleB').textContent = 'Planned (MPD-2047)';
   }
-  var TAGS = [['residential', 'Residential', '#e8a33c'], ['commercial', 'Commercial', '#e07aa8'], ['industrial', 'Industrial', '#a98be0'], ['public', 'Public / institutional', '#6fa8dc'], ['other_tag', 'Other tag', '#8a93a6'], ['untagged', 'No use tag (unknown)', '#3a4358']];
+  var TAGS = [['residential', 'Residential', '#e8a33c'], ['commercial', 'Commercial', '#e07aa8'], ['industrial', 'Industrial', '#a98be0'], ['public', 'Public / institutional', '#6fa8dc'], ['other_tag', 'Other tag', '#8a93a6'], ['dda_settlement', 'Existing settlement (DDA: village, colony, JJ)', '#d9a0a0'], ['untagged', 'No use tag (unknown)', '#3a4358']];
   var USES = [['residential', 'Residential'], ['commercial', 'Commercial'], ['industrial', 'Industrial'], ['public', 'Public and government']];
   function useSentence() {
     var u = city.built_up_by_planned_use; if (!u) return '';
     return ' <br><b>What kind of built-up land?</b> ' + USES.map(function (x) {
-      var r = u[x[0]]; return x[1].toLowerCase() + ': ' + pct(r.built_pct) + ' of the plan is built; OSM tags a use for ' + pct(r.tagged_pct) + ' of that and ' + pct(r.tagged_matches_plan_pct) + ' of the tagged part matches the plan';
+      var r = u[x[0]]; return x[1].toLowerCase() + ': ' + pct(r.built_pct) + ' of the plan is built; a use is known for ' + pct(r.tagged_pct) + ' of that (OSM tag or DDA settlement) and ' + pct(r.tagged_matches_plan_pct) + ' of the known part matches the plan';
     }).join('; ') + '.';
   }
   function useBars(r) {
     if (!r.use_check) return '';
-    return '<div class="sub" style="margin-bottom:0"><b>What kind of built-up land?</b> For each planned use: how much is built (satellite), and what OSM tags the built part as.</div>' +
+    return '<div class="sub" style="margin-bottom:0"><b>What kind of built-up land?</b> For each planned use: how much is built (satellite), and what OSM land-use tags or DDA settlement layers say the built part is.</div>' +
       '<div class="keys">' + TAGS.map(function (t) { return '<span style="--c:' + t[2] + '">' + t[1] + '</span>'; }).join('') + '</div>' +
       USES.map(function (x) {
         var c = r.use_check[x[0]]; if (!c || !c.planned_km2) return '';
         var bars = c.built_tagged_as_pct ? '<div class="stack" title="how OSM tags the built part">' + TAGS.map(function (t) { return '<i style="width:' + (c.built_tagged_as_pct[t[0]] || 0) + '%;background:' + t[2] + '"></i>'; }).join('') + '</div>' : '';
         return '<div class="r"><div class="n"><span>Planned ' + x[1].toLowerCase() + ' (' + km2(c.planned_km2) + ')</span><span>' + pct(c.built_pct) + ' built</span></div>' + bars +
-          '<div style="color:var(--muted)">' + (c.tagged_pct == null ? 'nothing built' : 'use tagged for ' + pct(c.tagged_pct) + (c.tagged_matches_plan_pct != null ? ', of which ' + pct(c.tagged_matches_plan_pct) + ' matches the plan' : '')) + '</div></div>';
+          '<div style="color:var(--muted)">' + (c.tagged_pct == null ? 'nothing built' : 'use known for ' + pct(c.tagged_pct) + (c.tagged_matches_plan_pct != null ? ', of which ' + pct(c.tagged_matches_plan_pct) + ' matches the plan' : '')) + '</div></div>';
       }).join('');
   }
   function refreshStrip() {
