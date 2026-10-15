@@ -1,0 +1,2405 @@
+{
+ "generated": "2026-10-11",
+ "method": "Conditional-logit regression over candidate points on the named OSM road (layer 1 street network, layer 2 OSM-derived traffic-exposure proxy), plus fixed Gaussian evidence from the stored point and the Nominatim geocode. No live or measured traffic data is used.",
+ "weights": {
+  "junction_distance": -0.186,
+  "junction_distance_if_named_junction": -0.105,
+  "traffic_signals_150m": 0.117,
+  "road_exposure_proxy": -0.017,
+  "on_flyover_if_named_flyover": 0,
+  "bus_stops_200m_if_hub": 0.367,
+  "road_name_matches_report": -0.117
+ },
+ "validation": {
+  "anchors": 19,
+  "anchor_zones": [
+   "ISBT Kashmiri Gate",
+   "Anand Vihar ISBT",
+   "Bhalswa Chowk",
+   "Mukundpur Chowk",
+   "Mukarba Chowk",
+   "Sarai Kale Khan",
+   "Adarsh Nagar",
+   "Shastri Nagar Metro Station",
+   "Delhi Gate",
+   "Kingsway Camp Chowk",
+   "Govindpuri Metro Station",
+   "Metro Station Madipur",
+   "Hamdard Nagar Red Light",
+   "District Center Janakpuri",
+   "Deepali Chowk",
+   "Ram Charan Aggarwal Chowk",
+   "AIIMS",
+   "Satya Niketan Nanakpura",
+   "Nangli Poona"
+  ],
+  "median_error_vs_geocode_m": {
+   "stored_point": 198,
+   "refined_leave_one_out": 133
+  },
+  "refined_better_in": "13 of 19",
+  "caveat": "Labels are Nominatim geocodes of the zone names, not true crash positions. This shows whether layers 1 and 2 help recover the landmark position, not whether the refined point is where crashes occurred.",
+  "model_helps": true
+ },
+ "summary": {
+  "review": 51,
+  "use_refined": 26,
+  "keep_original": 16
+ },
+ "zones": [
+  {
+   "rank": 1,
+   "location_name": "Azadpur Sabzi Mandi",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.7098,
+    "lng": 77.1748
+   },
+   "refined": {
+    "lat": 28.719435,
+    "lng": 77.167863,
+    "on_road": "Mall Road Extension"
+   },
+   "moved_m": 1267,
+   "model_spread_68pct_m": 183,
+   "uncertainty_m": 459,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 443,
+   "geocode": {
+    "lat": 28.721893,
+    "lng": 77.164922,
+    "distance_to_original_m": 1654,
+    "distance_to_refined_m": 396
+   },
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 2,
+   "location_name": "Wazirabad",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.714,
+    "lng": 77.229
+   },
+   "refined": {
+    "lat": 28.721587,
+    "lng": 77.218473,
+    "on_road": "Doctor KB Hedgewar Marg"
+   },
+   "moved_m": 1329,
+   "model_spread_68pct_m": 226,
+   "uncertainty_m": 262,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 424,
+   "geocode": {
+    "lat": 28.729761,
+    "lng": 77.22128,
+    "distance_to_original_m": 1907,
+    "distance_to_refined_m": 949
+   },
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from the independent geocode"
+  },
+  {
+   "rank": 3,
+   "location_name": "Akshardham Mandir",
+   "road_name": "NH-24",
+   "original": {
+    "lat": 28.6127,
+    "lng": 77.2773
+   },
+   "refined": {
+    "lat": 28.610385,
+    "lng": 77.279878,
+    "on_road": "NH24 Bypass"
+   },
+   "moved_m": 360,
+   "model_spread_68pct_m": 284,
+   "uncertainty_m": 314,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 653,
+   "geocode": {
+    "lat": 28.612517,
+    "lng": 77.277318,
+    "distance_to_original_m": 20,
+    "distance_to_refined_m": 344
+   },
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 4,
+   "location_name": "ISBT Kashmiri Gate",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.6679,
+    "lng": 77.2295
+   },
+   "refined": {
+    "lat": 28.669794,
+    "lng": 77.231159,
+    "on_road": "Nityanand Marg"
+   },
+   "moved_m": 266,
+   "model_spread_68pct_m": 277,
+   "uncertainty_m": 504,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 675,
+   "geocode": {
+    "lat": 28.668652,
+    "lng": 77.230683,
+    "distance_to_original_m": 143,
+    "distance_to_refined_m": 135
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but overall uncertainty is too large to recommend a move"
+  },
+  {
+   "rank": 5,
+   "location_name": "Anand Vihar ISBT",
+   "road_name": "Road No.56",
+   "original": {
+    "lat": 28.6469,
+    "lng": 77.315
+   },
+   "refined": {
+    "lat": 28.646483,
+    "lng": 77.317476,
+    "on_road": ""
+   },
+   "moved_m": 246,
+   "model_spread_68pct_m": 197,
+   "uncertainty_m": 465,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 160,
+   "geocode": {
+    "lat": 28.646753,
+    "lng": 77.318004,
+    "distance_to_original_m": 294,
+    "distance_to_refined_m": 60
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 6,
+   "location_name": "SGT Nagar",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.748,
+    "lng": 77.139
+   },
+   "refined": {
+    "lat": 28.744509,
+    "lng": 77.138082,
+    "on_road": "Samaypur Underpass"
+   },
+   "moved_m": 398,
+   "model_spread_68pct_m": 1379,
+   "uncertainty_m": 1442,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 321,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 7,
+   "location_name": "Rajoukari Flyover",
+   "road_name": "NH-8",
+   "original": {
+    "lat": 28.513,
+    "lng": 77.116
+   },
+   "refined": {
+    "lat": 28.526283,
+    "lng": 77.101482,
+    "on_road": "Delhi-Gurugram Expressway"
+   },
+   "moved_m": 2048,
+   "model_spread_68pct_m": 1440,
+   "uncertainty_m": 1501,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 222,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 8,
+   "location_name": "Near Yashobhoomi Convention Centre Dwarka",
+   "road_name": "UER II",
+   "original": {
+    "lat": 28.5528,
+    "lng": 77.039
+   },
+   "refined": {
+    "lat": 28.547857,
+    "lng": 77.041293,
+    "on_road": ""
+   },
+   "moved_m": 593,
+   "model_spread_68pct_m": 654,
+   "uncertainty_m": 667,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 568,
+   "geocode": {
+    "lat": 28.551953,
+    "lng": 77.042676,
+    "distance_to_original_m": 371,
+    "distance_to_refined_m": 475
+   },
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 9,
+   "location_name": "Bhalswa Chowk",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.738,
+    "lng": 77.165
+   },
+   "refined": {
+    "lat": 28.737854,
+    "lng": 77.163144,
+    "on_road": "Bhalswa Flyover"
+   },
+   "moved_m": 182,
+   "model_spread_68pct_m": 276,
+   "uncertainty_m": 306,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 388,
+   "geocode": {
+    "lat": 28.737684,
+    "lng": 77.163381,
+    "distance_to_original_m": 162,
+    "distance_to_refined_m": 30
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 10,
+   "location_name": "Libaspur Bus Stand",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.747,
+    "lng": 77.151
+   },
+   "refined": {
+    "lat": 28.750878,
+    "lng": 77.149957,
+    "on_road": ""
+   },
+   "moved_m": 443,
+   "model_spread_68pct_m": 950,
+   "uncertainty_m": 959,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 395,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 11,
+   "location_name": "Mukundpur Chowk",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.732,
+    "lng": 77.181
+   },
+   "refined": {
+    "lat": 28.732405,
+    "lng": 77.183117,
+    "on_road": ""
+   },
+   "moved_m": 211,
+   "model_spread_68pct_m": 153,
+   "uncertainty_m": 203,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 412,
+   "geocode": {
+    "lat": 28.733657,
+    "lng": 77.183431,
+    "distance_to_original_m": 300,
+    "distance_to_refined_m": 143
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 12,
+   "location_name": "Geeta Colony Flyover",
+   "road_name": "Yamuna Pusta Road",
+   "original": {
+    "lat": 28.657,
+    "lng": 77.271
+   },
+   "refined": {
+    "lat": 28.651289,
+    "lng": 77.25218,
+    "on_road": "Geeta Colony Road Flyover"
+   },
+   "moved_m": 1943,
+   "model_spread_68pct_m": 200,
+   "uncertainty_m": 466,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 314,
+   "geocode": {
+    "lat": 28.651155,
+    "lng": 77.250072,
+    "distance_to_original_m": 2143,
+    "distance_to_refined_m": 206
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+  },
+  {
+   "rank": 13,
+   "location_name": "Chandgi Ram Akhara",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.698,
+    "lng": 77.224
+   },
+   "refined": {
+    "lat": 28.696638,
+    "lng": 77.227138,
+    "on_road": "Baba Gopal Das Sahib Talib Marg"
+   },
+   "moved_m": 341,
+   "model_spread_68pct_m": 502,
+   "uncertainty_m": 519,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 389,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 14,
+   "location_name": "Hanuman Mandir JJ Colony Bawana",
+   "road_name": "Bawana Road",
+   "original": {
+    "lat": 28.801,
+    "lng": 77.039
+   },
+   "refined": {
+    "lat": 28.805343,
+    "lng": 77.047412,
+    "on_road": ""
+   },
+   "moved_m": 951,
+   "model_spread_68pct_m": 225,
+   "uncertainty_m": 261,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 483,
+   "geocode": {
+    "lat": 28.805944,
+    "lng": 77.047021,
+    "distance_to_original_m": 956,
+    "distance_to_refined_m": 77
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 15,
+   "location_name": "Seelampur T Point",
+   "road_name": "G.T. Road",
+   "original": {
+    "lat": 28.67,
+    "lng": 77.268
+   },
+   "refined": {
+    "lat": 28.671112,
+    "lng": 77.269013,
+    "on_road": "Jafrabad Main Road"
+   },
+   "moved_m": 158,
+   "model_spread_68pct_m": 413,
+   "uncertainty_m": 590,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 201,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 16,
+   "location_name": "Singhu Border",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.879,
+    "lng": 77.136
+   },
+   "refined": {
+    "lat": 28.874652,
+    "lng": 77.121373,
+    "on_road": "Grand Trunk Road"
+   },
+   "moved_m": 1504,
+   "model_spread_68pct_m": 623,
+   "uncertainty_m": 752,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 211,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 17,
+   "location_name": "Khajoori Chowk",
+   "road_name": "Wazirabad Road",
+   "original": {
+    "lat": 28.71,
+    "lng": 77.259
+   },
+   "refined": {
+    "lat": 28.704829,
+    "lng": 77.25534,
+    "on_road": ""
+   },
+   "moved_m": 677,
+   "model_spread_68pct_m": 166,
+   "uncertainty_m": 213,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 519,
+   "geocode": {
+    "lat": 28.705147,
+    "lng": 77.254462,
+    "distance_to_original_m": 698,
+    "distance_to_refined_m": 93
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 18,
+   "location_name": "Britannia Chowk",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.69,
+    "lng": 77.17
+   },
+   "refined": {
+    "lat": 28.688103,
+    "lng": 77.174403,
+    "on_road": "Ashok Vihar Road"
+   },
+   "moved_m": 479,
+   "model_spread_68pct_m": 243,
+   "uncertainty_m": 486,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 137,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 19,
+   "location_name": "Metro Station Haider Pur",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.73,
+    "lng": 77.149
+   },
+   "refined": {
+    "lat": 28.729436,
+    "lng": 77.147851,
+    "on_road": "Outer Ring Road"
+   },
+   "moved_m": 128,
+   "model_spread_68pct_m": 259,
+   "uncertainty_m": 292,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 418,
+   "geocode": null,
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 20,
+   "location_name": "Sec-23 Petrol Pump",
+   "road_name": "Qutab Garh Road",
+   "original": {
+    "lat": 28.718,
+    "lng": 77.082
+   },
+   "refined": {
+    "lat": 28.713271,
+    "lng": 77.07942,
+    "on_road": "Kanjhawala road"
+   },
+   "moved_m": 583,
+   "model_spread_68pct_m": 179,
+   "uncertainty_m": 458,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 43,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 21,
+   "location_name": "Zakhira Flyover",
+   "road_name": "Rohtak Road",
+   "original": {
+    "lat": 28.669,
+    "lng": 77.158
+   },
+   "refined": {
+    "lat": 28.668642,
+    "lng": 77.165093,
+    "on_road": ""
+   },
+   "moved_m": 693,
+   "model_spread_68pct_m": 221,
+   "uncertainty_m": 258,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 496,
+   "geocode": {
+    "lat": 28.667524,
+    "lng": 77.167377,
+    "distance_to_original_m": 929,
+    "distance_to_refined_m": 255
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 22,
+   "location_name": "Red Light Pulprahlad Pur",
+   "road_name": "Mehrauli Badarpur Road",
+   "original": {
+    "lat": 28.499,
+    "lng": 77.294
+   },
+   "refined": {
+    "lat": 28.501472,
+    "lng": 77.290789,
+    "on_road": "Surajkund Road"
+   },
+   "moved_m": 417,
+   "model_spread_68pct_m": 928,
+   "uncertainty_m": 938,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 502,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 23,
+   "location_name": "Prem Bari Pull",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.699,
+    "lng": 77.168
+   },
+   "refined": {
+    "lat": 28.700294,
+    "lng": 77.158734,
+    "on_road": "Shalimar Bagh Flyover"
+   },
+   "moved_m": 915,
+   "model_spread_68pct_m": 286,
+   "uncertainty_m": 509,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 166,
+   "geocode": {
+    "lat": 28.700005,
+    "lng": 77.158544,
+    "distance_to_original_m": 929,
+    "distance_to_refined_m": 37
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but overall uncertainty is too large to recommend a move"
+  },
+  {
+   "rank": 24,
+   "location_name": "Hanuman Mandir Yamuna Bazar",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.665,
+    "lng": 77.232
+   },
+   "refined": {
+    "lat": 28.662224,
+    "lng": 77.238781,
+    "on_road": "Mahatma Gandhi Marg"
+   },
+   "moved_m": 730,
+   "model_spread_68pct_m": 323,
+   "uncertainty_m": 350,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 730,
+   "geocode": {
+    "lat": 28.662005,
+    "lng": 77.239381,
+    "distance_to_original_m": 793,
+    "distance_to_refined_m": 63
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 25,
+   "location_name": "Punjabi Bagh Chowk",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.668,
+    "lng": 77.132
+   },
+   "refined": {
+    "lat": 28.672336,
+    "lng": 77.139337,
+    "on_road": ""
+   },
+   "moved_m": 863,
+   "model_spread_68pct_m": 221,
+   "uncertainty_m": 258,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 610,
+   "geocode": {
+    "lat": 28.67385,
+    "lng": 77.140489,
+    "distance_to_original_m": 1053,
+    "distance_to_refined_m": 202
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 26,
+   "location_name": "Mukarba Chowk",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.733,
+    "lng": 77.155
+   },
+   "refined": {
+    "lat": 28.73271,
+    "lng": 77.152573,
+    "on_road": "Outer Ring Road"
+   },
+   "moved_m": 239,
+   "model_spread_68pct_m": 295,
+   "uncertainty_m": 323,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 454,
+   "geocode": {
+    "lat": 28.732305,
+    "lng": 77.152071,
+    "distance_to_original_m": 296,
+    "distance_to_refined_m": 67
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 27,
+   "location_name": "Shamshan Ghat Geeta Colony",
+   "road_name": "Yamuna Pusta Road",
+   "original": {
+    "lat": 28.657,
+    "lng": 77.274
+   },
+   "refined": null,
+   "mode": "none",
+   "recommendation": "keep_original",
+   "reason": "no OSM road candidates found"
+  },
+  {
+   "rank": 28,
+   "location_name": "Goyla Village Najafgarh",
+   "road_name": "Goyla Dairy Road",
+   "original": {
+    "lat": 28.609,
+    "lng": 77.025
+   },
+   "refined": {
+    "lat": 28.587416,
+    "lng": 77.008176,
+    "on_road": "Urban Extension Road-II"
+   },
+   "moved_m": 2908,
+   "model_spread_68pct_m": 175,
+   "uncertainty_m": 456,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 65,
+   "geocode": {
+    "lat": 28.585716,
+    "lng": 77.010194,
+    "distance_to_original_m": 2965,
+    "distance_to_refined_m": 273
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+  },
+  {
+   "rank": 29,
+   "location_name": "Gandhi Vihar Bus Stand",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.711,
+    "lng": 77.226
+   },
+   "refined": {
+    "lat": 28.710212,
+    "lng": 77.227227,
+    "on_road": "Wazirabad Flyover"
+   },
+   "moved_m": 148,
+   "model_spread_68pct_m": 482,
+   "uncertainty_m": 500,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 558,
+   "geocode": null,
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 30,
+   "location_name": "Archana Cinema Red Light",
+   "road_name": "Josef Broz Tito Marg",
+   "original": {
+    "lat": 28.553,
+    "lng": 77.235
+   },
+   "refined": {
+    "lat": 28.553476,
+    "lng": 77.228269,
+    "on_road": ""
+   },
+   "moved_m": 660,
+   "model_spread_68pct_m": 849,
+   "uncertainty_m": 859,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 200,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 31,
+   "location_name": "Sarai Kale Khan",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.588,
+    "lng": 77.255
+   },
+   "refined": {
+    "lat": 28.588938,
+    "lng": 77.25853,
+    "on_road": ""
+   },
+   "moved_m": 360,
+   "model_spread_68pct_m": 225,
+   "uncertainty_m": 478,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 246,
+   "geocode": {
+    "lat": 28.589189,
+    "lng": 77.258065,
+    "distance_to_original_m": 327,
+    "distance_to_refined_m": 53
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 32,
+   "location_name": "Kashmiri Gate Chowk Boulevard Road",
+   "road_name": "Boulevard Road",
+   "original": {
+    "lat": 28.667,
+    "lng": 77.229
+   },
+   "refined": {
+    "lat": 28.668776,
+    "lng": 77.227414,
+    "on_road": "Lothiyan Road"
+   },
+   "moved_m": 251,
+   "model_spread_68pct_m": 485,
+   "uncertainty_m": 503,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 536,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 33,
+   "location_name": "Burari Chowk",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.745,
+    "lng": 77.199
+   },
+   "refined": {
+    "lat": 28.745179,
+    "lng": 77.198191,
+    "on_road": "Burari road"
+   },
+   "moved_m": 81,
+   "model_spread_68pct_m": 530,
+   "uncertainty_m": 677,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 215,
+   "geocode": null,
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 34,
+   "location_name": "Adarsh Nagar",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.716,
+    "lng": 77.17
+   },
+   "refined": {
+    "lat": 28.717547,
+    "lng": 77.169452,
+    "on_road": ""
+   },
+   "moved_m": 180,
+   "model_spread_68pct_m": 222,
+   "uncertainty_m": 476,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 133,
+   "geocode": {
+    "lat": 28.71658,
+    "lng": 77.170422,
+    "distance_to_original_m": 77,
+    "distance_to_refined_m": 143
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 35,
+   "location_name": "Chhatra Marg Crossing",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.688,
+    "lng": 77.208
+   },
+   "refined": {
+    "lat": 28.683793,
+    "lng": 77.229008,
+    "on_road": "Doctor KB Hedgewar Marg"
+   },
+   "moved_m": 2102,
+   "model_spread_68pct_m": 354,
+   "uncertainty_m": 550,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 139,
+   "geocode": {
+    "lat": 28.682621,
+    "lng": 77.208712,
+    "distance_to_original_m": 602,
+    "distance_to_refined_m": 1984
+   },
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from the independent geocode"
+  },
+  {
+   "rank": 36,
+   "location_name": "Shastri Nagar Metro Station",
+   "road_name": "Vir Banda Bairagi Marg",
+   "original": {
+    "lat": 28.67,
+    "lng": 77.181
+   },
+   "refined": {
+    "lat": 28.669978,
+    "lng": 77.181892,
+    "on_road": "Road Number 40"
+   },
+   "moved_m": 87,
+   "model_spread_68pct_m": 174,
+   "uncertainty_m": 219,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 268,
+   "geocode": {
+    "lat": 28.670088,
+    "lng": 77.181859,
+    "distance_to_original_m": 84,
+    "distance_to_refined_m": 13
+   },
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 37,
+   "location_name": "Majlis Park Metro Station",
+   "road_name": "Road No.51",
+   "original": {
+    "lat": 28.7246,
+    "lng": 77.1817
+   },
+   "refined": {
+    "lat": 28.723854,
+    "lng": 77.182535,
+    "on_road": "Arihant Marg"
+   },
+   "moved_m": 116,
+   "model_spread_68pct_m": 252,
+   "uncertainty_m": 491,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 80,
+   "geocode": null,
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 38,
+   "location_name": "Keshopur T Point",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.653,
+    "lng": 77.082
+   },
+   "refined": {
+    "lat": 28.651267,
+    "lng": 77.086374,
+    "on_road": "Outer Ring Road"
+   },
+   "moved_m": 468,
+   "model_spread_68pct_m": 748,
+   "uncertainty_m": 759,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 286,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 39,
+   "location_name": "Azad Pur Chowk",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.706,
+    "lng": 77.175
+   },
+   "refined": {
+    "lat": 28.706003,
+    "lng": 77.172657,
+    "on_road": "Shalimar Bagh Flyover"
+   },
+   "moved_m": 228,
+   "model_spread_68pct_m": 606,
+   "uncertainty_m": 738,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 386,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 40,
+   "location_name": "Delhi Gate",
+   "road_name": "N. Subhash Marg",
+   "original": {
+    "lat": 28.64,
+    "lng": 77.24
+   },
+   "refined": {
+    "lat": 28.63912,
+    "lng": 77.241057,
+    "on_road": ""
+   },
+   "moved_m": 142,
+   "model_spread_68pct_m": 188,
+   "uncertainty_m": 230,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 369,
+   "geocode": {
+    "lat": 28.639217,
+    "lng": 77.24078,
+    "distance_to_original_m": 116,
+    "distance_to_refined_m": 29
+   },
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 41,
+   "location_name": "Siraspur",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.759,
+    "lng": 77.119
+   },
+   "refined": null,
+   "mode": "none",
+   "recommendation": "keep_original",
+   "reason": "no OSM road candidates found"
+  },
+  {
+   "rank": 42,
+   "location_name": "Dhaula Kuan",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.592,
+    "lng": 77.162
+   },
+   "refined": {
+    "lat": 28.59122,
+    "lng": 77.168104,
+    "on_road": ""
+   },
+   "moved_m": 602,
+   "model_spread_68pct_m": 319,
+   "uncertainty_m": 345,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 728,
+   "geocode": {
+    "lat": 28.590462,
+    "lng": 77.168394,
+    "distance_to_original_m": 647,
+    "distance_to_refined_m": 89
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 43,
+   "location_name": "Monastery Ring Road",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.702,
+    "lng": 77.228
+   },
+   "refined": {
+    "lat": 28.703198,
+    "lng": 77.227428,
+    "on_road": "Wazirabad Flyover"
+   },
+   "moved_m": 144,
+   "model_spread_68pct_m": 525,
+   "uncertainty_m": 541,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 533,
+   "geocode": null,
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 44,
+   "location_name": "Kingsway Camp Chowk",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.7,
+    "lng": 77.206
+   },
+   "refined": {
+    "lat": 28.698923,
+    "lng": 77.20467,
+    "on_road": "Om Mandir marg"
+   },
+   "moved_m": 177,
+   "model_spread_68pct_m": 223,
+   "uncertainty_m": 477,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 296,
+   "geocode": {
+    "lat": 28.69882,
+    "lng": 77.204686,
+    "distance_to_original_m": 183,
+    "distance_to_refined_m": 12
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 45,
+   "location_name": "Govindpuri Metro Station",
+   "road_name": "Anand Mai Marg",
+   "original": {
+    "lat": 28.544,
+    "lng": 77.264
+   },
+   "refined": {
+    "lat": 28.543926,
+    "lng": 77.264409,
+    "on_road": ""
+   },
+   "moved_m": 41,
+   "model_spread_68pct_m": 120,
+   "uncertainty_m": 179,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 350,
+   "geocode": {
+    "lat": 28.545106,
+    "lng": 77.263885,
+    "distance_to_original_m": 123,
+    "distance_to_refined_m": 141
+   },
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 46,
+   "location_name": "Nangloi Metro Station",
+   "road_name": "Rohtak Road",
+   "original": {
+    "lat": 28.682,
+    "lng": 77.063
+   },
+   "refined": {
+    "lat": 28.682145,
+    "lng": 77.059701,
+    "on_road": "Rohtak Road"
+   },
+   "moved_m": 322,
+   "model_spread_68pct_m": 171,
+   "uncertainty_m": 216,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 317,
+   "geocode": {
+    "lat": 28.682201,
+    "lng": 77.056246,
+    "distance_to_original_m": 659,
+    "distance_to_refined_m": 337
+   },
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 47,
+   "location_name": "Metro Station Madipur",
+   "road_name": "Rohtak Road",
+   "original": {
+    "lat": 28.676,
+    "lng": 77.119
+   },
+   "refined": {
+    "lat": 28.676378,
+    "lng": 77.119235,
+    "on_road": ""
+   },
+   "moved_m": 48,
+   "model_spread_68pct_m": 135,
+   "uncertainty_m": 190,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 322,
+   "geocode": {
+    "lat": 28.676475,
+    "lng": 77.11936,
+    "distance_to_original_m": 63,
+    "distance_to_refined_m": 16
+   },
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 48,
+   "location_name": "Keval Park Road No. 51",
+   "road_name": "Road No. 51",
+   "original": {
+    "lat": 28.717,
+    "lng": 77.178
+   },
+   "refined": {
+    "lat": 28.721659,
+    "lng": 77.182384,
+    "on_road": "Arihant Marg"
+   },
+   "moved_m": 672,
+   "model_spread_68pct_m": 114,
+   "uncertainty_m": 437,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 163,
+   "geocode": {
+    "lat": 28.726089,
+    "lng": 77.173598,
+    "distance_to_original_m": 1098,
+    "distance_to_refined_m": 988
+   },
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from the independent geocode"
+  },
+  {
+   "rank": 49,
+   "location_name": "Near Triveni Park Nangal Village Delhi Cantt",
+   "road_name": "Pankha Road",
+   "original": {
+    "lat": 28.609,
+    "lng": 77.11
+   },
+   "refined": {
+    "lat": 28.612002,
+    "lng": 77.111271,
+    "on_road": "Shaheed Bhagat Singh Marg"
+   },
+   "moved_m": 356,
+   "model_spread_68pct_m": 912,
+   "uncertainty_m": 922,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 350,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 50,
+   "location_name": "Near SDM Office Geeta Colony",
+   "road_name": "Yamuna Pusta Road",
+   "original": {
+    "lat": 28.651,
+    "lng": 77.274
+   },
+   "refined": {
+    "lat": 28.648798,
+    "lng": 77.268602,
+    "on_road": "Delhi-Dehradun Expressway"
+   },
+   "moved_m": 581,
+   "model_spread_68pct_m": 235,
+   "uncertainty_m": 483,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 118,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 51,
+   "location_name": "Flyover Raja Ram Marg",
+   "road_name": "Raja Ram Kohli Marg",
+   "original": {
+    "lat": 28.653,
+    "lng": 77.279
+   },
+   "refined": {
+    "lat": 28.643363,
+    "lng": 77.281487,
+    "on_road": "Maharaja Ajmeedh Marg"
+   },
+   "moved_m": 1099,
+   "model_spread_68pct_m": 1324,
+   "uncertainty_m": 1389,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 172,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 52,
+   "location_name": "Telco Gajipur",
+   "road_name": "Road No.56",
+   "original": {
+    "lat": 28.629,
+    "lng": 77.322
+   },
+   "refined": {
+    "lat": 28.628614,
+    "lng": 77.322135,
+    "on_road": "National Highway 24 Bypass"
+   },
+   "moved_m": 45,
+   "model_spread_68pct_m": 490,
+   "uncertainty_m": 646,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 303,
+   "geocode": null,
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 53,
+   "location_name": "Loni Road Crossing",
+   "road_name": "Wazirabad Road",
+   "original": {
+    "lat": 28.686,
+    "lng": 77.295
+   },
+   "refined": {
+    "lat": 28.700526,
+    "lng": 77.294903,
+    "on_road": "Delhi Loni Road Flyover"
+   },
+   "moved_m": 1615,
+   "model_spread_68pct_m": 298,
+   "uncertainty_m": 516,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 443,
+   "geocode": {
+    "lat": 28.700585,
+    "lng": 77.295681,
+    "distance_to_original_m": 1623,
+    "distance_to_refined_m": 76
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+  },
+  {
+   "rank": 54,
+   "location_name": "Metro Station Dilshad Garden",
+   "road_name": "G.T. Road",
+   "original": {
+    "lat": 28.675,
+    "lng": 77.321
+   },
+   "refined": {
+    "lat": 28.676096,
+    "lng": 77.315763,
+    "on_road": "GT Road"
+   },
+   "moved_m": 525,
+   "model_spread_68pct_m": 154,
+   "uncertainty_m": 449,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 349,
+   "geocode": {
+    "lat": 28.675703,
+    "lng": 77.312505,
+    "distance_to_original_m": 832,
+    "distance_to_refined_m": 321
+   },
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 55,
+   "location_name": "Hamdard Nagar Red Light",
+   "road_name": "Mehrauli Badarpur Road",
+   "original": {
+    "lat": 28.515,
+    "lng": 77.25
+   },
+   "refined": {
+    "lat": 28.51197,
+    "lng": 77.251038,
+    "on_road": ""
+   },
+   "moved_m": 352,
+   "model_spread_68pct_m": 228,
+   "uncertainty_m": 264,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 382,
+   "geocode": {
+    "lat": 28.511864,
+    "lng": 77.249681,
+    "distance_to_original_m": 350,
+    "distance_to_refined_m": 133
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 56,
+   "location_name": "Uttam Nagar",
+   "road_name": "Najafgarh Road",
+   "original": {
+    "lat": 28.621,
+    "lng": 77.056
+   },
+   "refined": {
+    "lat": 28.625465,
+    "lng": 77.06717,
+    "on_road": ""
+   },
+   "moved_m": 1198,
+   "model_spread_68pct_m": 225,
+   "uncertainty_m": 261,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 456,
+   "geocode": {
+    "lat": 28.624847,
+    "lng": 77.065286,
+    "distance_to_original_m": 1002,
+    "distance_to_refined_m": 196
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 57,
+   "location_name": "Radisson Hotel",
+   "road_name": "NH-8",
+   "original": {
+    "lat": 28.544,
+    "lng": 77.119
+   },
+   "refined": {
+    "lat": 28.54322,
+    "lng": 77.118629,
+    "on_road": ""
+   },
+   "moved_m": 94,
+   "model_spread_68pct_m": 532,
+   "uncertainty_m": 549,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 805,
+   "geocode": null,
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 58,
+   "location_name": "District Center Janakpuri",
+   "road_name": "Najafgarh Road",
+   "original": {
+    "lat": 28.629,
+    "lng": 77.081
+   },
+   "refined": {
+    "lat": 28.63038,
+    "lng": 77.079109,
+    "on_road": "Shivaji Marg Flyover"
+   },
+   "moved_m": 240,
+   "model_spread_68pct_m": 276,
+   "uncertainty_m": 307,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 409,
+   "geocode": {
+    "lat": 28.629258,
+    "lng": 77.080463,
+    "distance_to_original_m": 60,
+    "distance_to_refined_m": 182
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 59,
+   "location_name": "Udyog Nagar",
+   "road_name": "Rohtak Road",
+   "original": {
+    "lat": 28.681,
+    "lng": 77.094
+   },
+   "refined": {
+    "lat": 28.680686,
+    "lng": 77.083167,
+    "on_road": ""
+   },
+   "moved_m": 1057,
+   "model_spread_68pct_m": 235,
+   "uncertainty_m": 270,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 439,
+   "geocode": {
+    "lat": 28.681103,
+    "lng": 77.080849,
+    "distance_to_original_m": 1283,
+    "distance_to_refined_m": 231
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 60,
+   "location_name": "Sai Baba Mandir Najafgarh",
+   "road_name": "Najafgarh Road",
+   "original": {
+    "lat": 28.61,
+    "lng": 76.985
+   },
+   "refined": {
+    "lat": 28.613728,
+    "lng": 76.998612,
+    "on_road": "Urban Extension Road-II"
+   },
+   "moved_m": 1392,
+   "model_spread_68pct_m": 247,
+   "uncertainty_m": 281,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 504,
+   "geocode": {
+    "lat": 28.613948,
+    "lng": 76.999954,
+    "distance_to_original_m": 1524,
+    "distance_to_refined_m": 133
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 61,
+   "location_name": "Rama Road Crossing",
+   "road_name": "Patel Road",
+   "original": {
+    "lat": 28.661,
+    "lng": 77.147
+   },
+   "refined": {
+    "lat": 28.646471,
+    "lng": 77.167034,
+    "on_road": "Patel Road"
+   },
+   "moved_m": 2536,
+   "model_spread_68pct_m": 218,
+   "uncertainty_m": 256,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 395,
+   "geocode": {
+    "lat": 28.645013,
+    "lng": 77.169282,
+    "distance_to_original_m": 2808,
+    "distance_to_refined_m": 273
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+  },
+  {
+   "rank": 62,
+   "location_name": "C-1 Janakpuri",
+   "road_name": "Pankha Road",
+   "original": {
+    "lat": 28.618,
+    "lng": 77.087
+   },
+   "refined": {
+    "lat": 28.617034,
+    "lng": 77.079233,
+    "on_road": "Bhagwan Mahavir Marg"
+   },
+   "moved_m": 766,
+   "model_spread_68pct_m": 215,
+   "uncertainty_m": 253,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 360,
+   "geocode": {
+    "lat": 28.617119,
+    "lng": 77.078754,
+    "distance_to_original_m": 811,
+    "distance_to_refined_m": 48
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 63,
+   "location_name": "Ghewra More",
+   "road_name": "Rohtak Road",
+   "original": {
+    "lat": 28.685,
+    "lng": 76.996
+   },
+   "refined": {
+    "lat": 28.685571,
+    "lng": 76.992318,
+    "on_road": ""
+   },
+   "moved_m": 365,
+   "model_spread_68pct_m": 271,
+   "uncertainty_m": 302,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 329,
+   "geocode": {
+    "lat": 28.688087,
+    "lng": 76.990708,
+    "distance_to_original_m": 620,
+    "distance_to_refined_m": 321
+   },
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 64,
+   "location_name": "Deepali Chowk",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.698,
+    "lng": 77.121
+   },
+   "refined": {
+    "lat": 28.698231,
+    "lng": 77.119379,
+    "on_road": ""
+   },
+   "moved_m": 160,
+   "model_spread_68pct_m": 208,
+   "uncertainty_m": 247,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 460,
+   "geocode": {
+    "lat": 28.698113,
+    "lng": 77.11827,
+    "distance_to_original_m": 267,
+    "distance_to_refined_m": 109
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 65,
+   "location_name": "CRPF Camp Sonia Vihar",
+   "road_name": "Pusta Road",
+   "original": {
+    "lat": 28.733,
+    "lng": 77.248
+   },
+   "refined": null,
+   "mode": "none",
+   "recommendation": "keep_original",
+   "reason": "no OSM road candidates found"
+  },
+  {
+   "rank": 66,
+   "location_name": "Budhpur Ganda Nala/Hanuman Mandir Budhpur",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.776,
+    "lng": 77.134
+   },
+   "refined": {
+    "lat": 28.766219,
+    "lng": 77.145213,
+    "on_road": "Grand Trunk Road"
+   },
+   "moved_m": 1542,
+   "model_spread_68pct_m": 1827,
+   "uncertainty_m": 1875,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 237,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 67,
+   "location_name": "Sai Baba Mandir NH-1",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.771,
+    "lng": 77.139
+   },
+   "refined": {
+    "lat": 28.766219,
+    "lng": 77.145213,
+    "on_road": "Grand Trunk Road"
+   },
+   "moved_m": 806,
+   "model_spread_68pct_m": 1307,
+   "uncertainty_m": 1313,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 309,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 68,
+   "location_name": "Khichadi Pur",
+   "road_name": "NH-24",
+   "original": {
+    "lat": 28.62,
+    "lng": 77.318
+   },
+   "refined": {
+    "lat": 28.615507,
+    "lng": 77.319339,
+    "on_road": "Khichripur Road"
+   },
+   "moved_m": 516,
+   "model_spread_68pct_m": 1441,
+   "uncertainty_m": 1447,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 537,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 69,
+   "location_name": "Kirari More",
+   "road_name": "Rohtak Road",
+   "original": {
+    "lat": 28.706,
+    "lng": 77.052
+   },
+   "refined": null,
+   "mode": "none",
+   "recommendation": "keep_original",
+   "reason": "no OSM road candidates found"
+  },
+  {
+   "rank": 70,
+   "location_name": "Jharera Village",
+   "road_name": "NH-8",
+   "original": {
+    "lat": 28.581,
+    "lng": 77.124
+   },
+   "refined": {
+    "lat": 28.579334,
+    "lng": 77.1449,
+    "on_road": ""
+   },
+   "moved_m": 2049,
+   "model_spread_68pct_m": 331,
+   "uncertainty_m": 536,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 298,
+   "geocode": {
+    "lat": 28.579419,
+    "lng": 77.145062,
+    "distance_to_original_m": 2064,
+    "distance_to_refined_m": 18
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+  },
+  {
+   "rank": 71,
+   "location_name": "Wazir Pur Depot",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.699,
+    "lng": 77.167
+   },
+   "refined": {
+    "lat": 28.701538,
+    "lng": 77.163595,
+    "on_road": "Shalimar Bagh Flyover"
+   },
+   "moved_m": 436,
+   "model_spread_68pct_m": 434,
+   "uncertainty_m": 605,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 82,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 72,
+   "location_name": "Under Pass Gajipur",
+   "road_name": "NH-24",
+   "original": {
+    "lat": 28.624,
+    "lng": 77.323
+   },
+   "refined": {
+    "lat": 28.62547,
+    "lng": 77.318843,
+    "on_road": ""
+   },
+   "moved_m": 437,
+   "model_spread_68pct_m": 647,
+   "uncertainty_m": 661,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 536,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 73,
+   "location_name": "Hilton Hotel",
+   "road_name": "Noida Link Road",
+   "original": {
+    "lat": 28.606,
+    "lng": 77.298
+   },
+   "refined": {
+    "lat": 28.616066,
+    "lng": 77.281188,
+    "on_road": "Noida Link Road"
+   },
+   "moved_m": 1986,
+   "model_spread_68pct_m": 3905,
+   "uncertainty_m": 3928,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 44,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 74,
+   "location_name": "Ram Charan Aggarwal Chowk",
+   "road_name": "BSZ Marg",
+   "original": {
+    "lat": 28.63,
+    "lng": 77.244
+   },
+   "refined": {
+    "lat": 28.628249,
+    "lng": 77.241394,
+    "on_road": ""
+   },
+   "moved_m": 320,
+   "model_spread_68pct_m": 258,
+   "uncertainty_m": 494,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 551,
+   "geocode": {
+    "lat": 28.629015,
+    "lng": 77.241147,
+    "distance_to_original_m": 299,
+    "distance_to_refined_m": 89
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 75,
+   "location_name": "AIIMS",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.567,
+    "lng": 77.21
+   },
+   "refined": {
+    "lat": 28.566912,
+    "lng": 77.207859,
+    "on_road": ""
+   },
+   "moved_m": 209,
+   "model_spread_68pct_m": 320,
+   "uncertainty_m": 529,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 573,
+   "geocode": {
+    "lat": 28.56686,
+    "lng": 77.207806,
+    "distance_to_original_m": 215,
+    "distance_to_refined_m": 8
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but overall uncertainty is too large to recommend a move"
+  },
+  {
+   "rank": 76,
+   "location_name": "Tilak Nagar Flyover",
+   "road_name": "Najafgarh Road",
+   "original": {
+    "lat": 28.639,
+    "lng": 77.097
+   },
+   "refined": {
+    "lat": 28.641404,
+    "lng": 77.107131,
+    "on_road": ""
+   },
+   "moved_m": 1024,
+   "model_spread_68pct_m": 146,
+   "uncertainty_m": 197,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 373,
+   "geocode": {
+    "lat": 28.641747,
+    "lng": 77.107959,
+    "distance_to_original_m": 1112,
+    "distance_to_refined_m": 89
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 77,
+   "location_name": "Shani Mandir NH-1",
+   "road_name": "GTK Road",
+   "original": {
+    "lat": 28.811,
+    "lng": 77.144
+   },
+   "refined": {
+    "lat": 28.807186,
+    "lng": 77.139791,
+    "on_road": ""
+   },
+   "moved_m": 590,
+   "model_spread_68pct_m": 1211,
+   "uncertainty_m": 1218,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 316,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 78,
+   "location_name": "Tilak Marg Bhagwan Das Marg Crossing",
+   "road_name": "Tilak Marg",
+   "original": {
+    "lat": 28.622,
+    "lng": 77.234
+   },
+   "refined": {
+    "lat": 28.620778,
+    "lng": 77.236911,
+    "on_road": "Bhagwan Das Road"
+   },
+   "moved_m": 315,
+   "model_spread_68pct_m": 678,
+   "uncertainty_m": 691,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 405,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 79,
+   "location_name": "Nirankari Colony",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.716,
+    "lng": 77.225
+   },
+   "refined": {
+    "lat": 28.715277,
+    "lng": 77.204068,
+    "on_road": "Om Mandir marg"
+   },
+   "moved_m": 2043,
+   "model_spread_68pct_m": 113,
+   "uncertainty_m": 174,
+   "confidence": "high",
+   "mode": "matched_road",
+   "candidates": 471,
+   "geocode": {
+    "lat": 28.716571,
+    "lng": 77.206419,
+    "distance_to_original_m": 1813,
+    "distance_to_refined_m": 271
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+  },
+  {
+   "rank": 80,
+   "location_name": "Satya Niketan Nanakpura",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.588,
+    "lng": 77.17
+   },
+   "refined": {
+    "lat": 28.588323,
+    "lng": 77.167996,
+    "on_road": "Benito Juarez Marg Underpass"
+   },
+   "moved_m": 199,
+   "model_spread_68pct_m": 281,
+   "uncertainty_m": 310,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 410,
+   "geocode": {
+    "lat": 28.587352,
+    "lng": 77.168107,
+    "distance_to_original_m": 198,
+    "distance_to_refined_m": 109
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 81,
+   "location_name": "Near Haldiram Wazirpur",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.699,
+    "lng": 77.167
+   },
+   "refined": {
+    "lat": 28.701667,
+    "lng": 77.163982,
+    "on_road": "Shalimar Bagh Flyover"
+   },
+   "moved_m": 418,
+   "model_spread_68pct_m": 549,
+   "uncertainty_m": 692,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 82,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 82,
+   "location_name": "Raja Harishchander Hospital",
+   "road_name": "DSIDC Narela Road",
+   "original": {
+    "lat": 28.852,
+    "lng": 77.096
+   },
+   "refined": {
+    "lat": 28.837991,
+    "lng": 77.09968,
+    "on_road": "Narela Bawana Flyover"
+   },
+   "moved_m": 1598,
+   "model_spread_68pct_m": 345,
+   "uncertainty_m": 544,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 98,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": 83,
+   "location_name": "Shalimar Bagh",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.716,
+    "lng": 77.157
+   },
+   "refined": {
+    "lat": 28.70175,
+    "lng": 77.163947,
+    "on_road": "Shalimar Bagh Flyover"
+   },
+   "moved_m": 1723,
+   "model_spread_68pct_m": 237,
+   "uncertainty_m": 484,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 462,
+   "geocode": {
+    "lat": 28.702214,
+    "lng": 77.164935,
+    "distance_to_original_m": 1717,
+    "distance_to_refined_m": 109
+   },
+   "recommendation": "review",
+   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+  },
+  {
+   "rank": 84,
+   "location_name": "Round About Bhairaon Enclave",
+   "road_name": "Outer Ring Road",
+   "original": {
+    "lat": 28.674,
+    "lng": 77.087
+   },
+   "refined": {
+    "lat": 28.672619,
+    "lng": 77.093728,
+    "on_road": ""
+   },
+   "moved_m": 674,
+   "model_spread_68pct_m": 810,
+   "uncertainty_m": 821,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 405,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 85,
+   "location_name": "Jeewan Mala Hospital",
+   "road_name": "New Rohtak Road",
+   "original": {
+    "lat": 28.659,
+    "lng": 77.19
+   },
+   "refined": {
+    "lat": 28.659428,
+    "lng": 77.190176,
+    "on_road": "New Rohtak Road"
+   },
+   "moved_m": 51,
+   "model_spread_68pct_m": 972,
+   "uncertainty_m": 981,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 260,
+   "geocode": null,
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
+  },
+  {
+   "rank": 86,
+   "location_name": "Tughlaqabad Village Red Light",
+   "road_name": "Mehrauli Badarpur Road",
+   "original": {
+    "lat": 28.511,
+    "lng": 77.276
+   },
+   "refined": {
+    "lat": 28.509042,
+    "lng": 77.265715,
+    "on_road": "Mehrauli Badarpur Road"
+   },
+   "moved_m": 1028,
+   "model_spread_68pct_m": 305,
+   "uncertainty_m": 333,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 401,
+   "geocode": {
+    "lat": 28.510086,
+    "lng": 77.265743,
+    "distance_to_original_m": 1007,
+    "distance_to_refined_m": 116
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": 87,
+   "location_name": "Khel Gaon",
+   "road_name": "NH-24",
+   "original": {
+    "lat": 28.611,
+    "lng": 77.272
+   },
+   "refined": {
+    "lat": 28.607392,
+    "lng": 77.276425,
+    "on_road": "Flyover"
+   },
+   "moved_m": 589,
+   "model_spread_68pct_m": 304,
+   "uncertainty_m": 332,
+   "confidence": "medium",
+   "mode": "matched_road",
+   "candidates": 509,
+   "geocode": {
+    "lat": 28.611326,
+    "lng": 77.27323,
+    "distance_to_original_m": 125,
+    "distance_to_refined_m": 537
+   },
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": 88,
+   "location_name": "Near KV School Naraina",
+   "road_name": "Ring Road",
+   "original": {
+    "lat": 28.6295,
+    "lng": 77.1375
+   },
+   "refined": {
+    "lat": 28.626527,
+    "lng": 77.13439,
+    "on_road": "Girdhari Lal Goswami Marg"
+   },
+   "moved_m": 449,
+   "model_spread_68pct_m": 834,
+   "uncertainty_m": 844,
+   "confidence": "low",
+   "mode": "matched_road",
+   "candidates": 485,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent geocode confirms it"
+  },
+  {
+   "rank": null,
+   "location_name": "Hanuman Mandir",
+   "road_name": "",
+   "original": {
+    "lat": 28.63,
+    "lng": 77.212
+   },
+   "refined": {
+    "lat": 28.627188,
+    "lng": 77.215591,
+    "on_road": ""
+   },
+   "moved_m": 470,
+   "model_spread_68pct_m": 684,
+   "uncertainty_m": 803,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 384,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": null,
+   "location_name": "Kabootar Market",
+   "road_name": "",
+   "original": {
+    "lat": 28.652,
+    "lng": 77.234
+   },
+   "refined": {
+    "lat": 28.650278,
+    "lng": 77.23885,
+    "on_road": ""
+   },
+   "moved_m": 511,
+   "model_spread_68pct_m": 355,
+   "uncertainty_m": 551,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 81,
+   "geocode": null,
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  },
+  {
+   "rank": null,
+   "location_name": "Nangli Poona",
+   "road_name": "",
+   "original": {
+    "lat": 28.77,
+    "lng": 77.147
+   },
+   "refined": {
+    "lat": 28.773081,
+    "lng": 77.143658,
+    "on_road": ""
+   },
+   "moved_m": 473,
+   "model_spread_68pct_m": 227,
+   "uncertainty_m": 479,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 159,
+   "geocode": {
+    "lat": 28.773172,
+    "lng": 77.143319,
+    "distance_to_original_m": 503,
+    "distance_to_refined_m": 35
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": null,
+   "location_name": "Rajouri Garden",
+   "road_name": "",
+   "original": {
+    "lat": 28.642,
+    "lng": 77.12
+   },
+   "refined": {
+    "lat": 28.649653,
+    "lng": 77.124113,
+    "on_road": "Shivaji Marg"
+   },
+   "moved_m": 941,
+   "model_spread_68pct_m": 183,
+   "uncertainty_m": 460,
+   "confidence": "medium",
+   "mode": "unmatched_nearby",
+   "candidates": 197,
+   "geocode": {
+    "lat": 28.649056,
+    "lng": 77.12272,
+    "distance_to_original_m": 828,
+    "distance_to_refined_m": 151
+   },
+   "recommendation": "use_refined",
+   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+  },
+  {
+   "rank": null,
+   "location_name": "Shastri Park/IT Park",
+   "road_name": "",
+   "original": {
+    "lat": 28.668,
+    "lng": 77.25
+   },
+   "refined": {
+    "lat": 28.668534,
+    "lng": 77.255266,
+    "on_road": "Delhi–Dehradun Expressway"
+   },
+   "moved_m": 517,
+   "model_spread_68pct_m": 505,
+   "uncertainty_m": 658,
+   "confidence": "low",
+   "mode": "unmatched_nearby",
+   "candidates": 167,
+   "geocode": {
+    "lat": 28.668434,
+    "lng": 77.25053,
+    "distance_to_original_m": 71,
+    "distance_to_refined_m": 462
+   },
+   "recommendation": "review",
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+  }
+ ]
+}
