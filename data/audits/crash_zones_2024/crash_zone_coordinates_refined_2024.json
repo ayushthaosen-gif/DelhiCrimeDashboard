@@ -1,16 +1,50 @@
 {
  "generated": "2026-10-11",
- "method": "Conditional-logit regression over candidate points on the named OSM road (layer 1 street network, layer 2 OSM-derived traffic-exposure proxy), plus fixed Gaussian evidence from the stored point and the Nominatim geocode. No live or measured traffic data is used.",
+ "method": "Conditional-logit regression over candidate points on major OSM roads. Layer 1 street network, layer 2 OSM-derived traffic-exposure proxy (no measured traffic), layer 3 crash-type compatibility, layer 4 independent coordinate sources (OSM geocoders, GeoNames, Wikidata, 2023 report placements) with data-estimated spreads. The best layer set is chosen by leave-one-source-out validation.",
+ "layers": {
+  "1": "street network",
+  "2": "traffic-exposure proxy",
+  "3": "crash-type compatibility",
+  "4": "independent coordinate sources"
+ },
+ "source_reliability": {
+  "geonames": {
+   "zones_with_source": 14,
+   "pairs_with_osm_geocoder": 11,
+   "median_distance_to_osm_geocoder_m": 1018,
+   "sigma_m": 800
+  },
+  "wikidata": {
+   "zones_with_source": 1,
+   "pairs_with_osm_geocoder": 1,
+   "median_distance_to_osm_geocoder_m": 2294,
+   "sigma_m": 500
+  },
+  "report_2023_placement": {
+   "zones_with_source": 37,
+   "pairs_with_osm_geocoder": 28,
+   "median_distance_to_osm_geocoder_m": 489,
+   "sigma_m": 734
+  },
+  "osm_geocoder": {
+   "zones_with_source": 53,
+   "sigma_m": 250
+  }
+ },
  "weights": {
-  "junction_distance": -0.186,
+  "junction_distance": -0.19,
   "junction_distance_if_named_junction": -0.105,
-  "traffic_signals_150m": 0.117,
-  "road_exposure_proxy": -0.017,
+  "traffic_signals_150m": 0.121,
+  "road_exposure_proxy": -0.016,
   "on_flyover_if_named_flyover": 0,
-  "bus_stops_200m_if_hub": 0.367,
-  "road_name_matches_report": -0.117
+  "bus_stops_200m_if_hub": 0.365,
+  "road_name_matches_report": -0.11,
+  "pedestrian_crossings_footbridges_if_pedestrian_prone": 0,
+  "industrial_commercial_if_heavy_vehicle_prone": 0,
+  "street_lamps_150m_if_night_prone": 0
  },
  "validation": {
+  "method": "Leave-one-source-out: one independent coordinate source is hidden, the position is estimated from the stored point, the layers and the remaining sources, and the distance to the hidden source is measured. Weights are re-fitted without the zone when it is a training anchor.",
   "anchors": 19,
   "anchor_zones": [
    "ISBT Kashmiri Gate",
@@ -33,18 +67,104 @@
    "Satya Niketan Nanakpura",
    "Nangli Poona"
   ],
-  "median_error_vs_geocode_m": {
-   "stored_point": 198,
-   "refined_leave_one_out": 133
+  "pairs_tested": 101,
+  "overall": {
+   "pairs": 101,
+   "stored_point_median_m": 602,
+   "layers_1_2": {
+    "median_error_m": 578,
+    "better_than_stored": "50 of 101"
+   },
+   "layers_1_3": {
+    "median_error_m": 578,
+    "better_than_stored": "50 of 101"
+   },
+   "layers_1_4": {
+    "median_error_m": 602,
+    "better_than_stored": "43 of 101"
+   }
   },
-  "refined_better_in": "13 of 19",
-  "caveat": "Labels are Nominatim geocodes of the zone names, not true crash positions. This shows whether layers 1 and 2 help recover the landmark position, not whether the refined point is where crashes occurred.",
-  "model_helps": true
+  "by_hidden_source": {
+   "osm_geocoder": {
+    "pairs": 51,
+    "stored_point_median_m": 647,
+    "layers_1_2": {
+     "median_error_m": 566,
+     "better_than_stored": "27 of 51"
+    },
+    "layers_1_3": {
+     "median_error_m": 566,
+     "better_than_stored": "27 of 51"
+    },
+    "layers_1_4": {
+     "median_error_m": 522,
+     "better_than_stored": "25 of 51"
+    }
+   },
+   "geonames": {
+    "pairs": 13,
+    "stored_point_median_m": 618,
+    "layers_1_2": {
+     "median_error_m": 588,
+     "better_than_stored": "5 of 13"
+    },
+    "layers_1_3": {
+     "median_error_m": 588,
+     "better_than_stored": "5 of 13"
+    },
+    "layers_1_4": {
+     "median_error_m": 886,
+     "better_than_stored": "3 of 13"
+    }
+   },
+   "report_2023_placement": {
+    "pairs": 36,
+    "stored_point_median_m": 589,
+    "layers_1_2": {
+     "median_error_m": 574,
+     "better_than_stored": "18 of 36"
+    },
+    "layers_1_3": {
+     "median_error_m": 574,
+     "better_than_stored": "18 of 36"
+    },
+    "layers_1_4": {
+     "median_error_m": 717,
+     "better_than_stored": "15 of 36"
+    }
+   },
+   "wikidata": {
+    "pairs": 1,
+    "stored_point_median_m": 577,
+    "layers_1_2": {
+     "median_error_m": 2297,
+     "better_than_stored": "0 of 1"
+    },
+    "layers_1_3": {
+     "median_error_m": 2297,
+     "better_than_stored": "0 of 1"
+    },
+    "layers_1_4": {
+     "median_error_m": 2298,
+     "better_than_stored": "0 of 1"
+    }
+   }
+  },
+  "chosen_layer_set": "layers_1_2",
+  "chosen_layer_set_label": "Layers 1-2 (street network + traffic proxy)",
+  "model_helps": false,
+  "caveat": "The hidden sources are coordinates of the NAMED PLACE (geocoders, gazetteers, the 2023 placements), not true crash positions, and the OSM-based sources are not fully independent of the OSM road layer. This shows which layers help recover the named place, not where crashes occurred."
  },
  "summary": {
-  "review": 51,
-  "use_refined": 26,
-  "keep_original": 16
+  "keep_original": 22,
+  "review": 71
+ },
+ "evidence_agreement_counts": {
+  "conflicting": 28,
+  "consistent": 12,
+  "stored_point_only": 29,
+  "partial": 20,
+  "no_road_candidates": 4
  },
  "zones": [
   {
@@ -55,25 +175,44 @@
     "lat": 28.7098,
     "lng": 77.1748
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2161,
    "refined": {
-    "lat": 28.719435,
-    "lng": 77.167863,
-    "on_road": "Mall Road Extension"
+    "lat": 28.709771,
+    "lng": 77.175434,
+    "on_road": ""
    },
-   "moved_m": 1267,
-   "model_spread_68pct_m": 183,
-   "uncertainty_m": 459,
-   "confidence": "medium",
+   "moved_m": 62,
+   "model_spread_68pct_m": 277,
+   "uncertainty_m": 755,
+   "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 443,
-   "geocode": {
-    "lat": 28.721893,
-    "lng": 77.164922,
-    "distance_to_original_m": 1654,
-    "distance_to_refined_m": 396
-   },
-   "recommendation": "review",
-   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+   "candidates": 461,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.721893,
+     "lng": 77.164922,
+     "distance_to_original_m": 1654,
+     "distance_to_refined_m": 1693
+    },
+    {
+     "source": "geonames",
+     "lat": 28.70663,
+     "lng": 77.17864,
+     "distance_to_original_m": 514,
+     "distance_to_refined_m": 469
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.712,
+     "lng": 77.174,
+     "distance_to_original_m": 257,
+     "distance_to_refined_m": 285
+    }
+   ],
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
   },
   {
    "rank": 2,
@@ -83,25 +222,37 @@
     "lat": 28.714,
     "lng": 77.229
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2159,
    "refined": {
-    "lat": 28.721587,
-    "lng": 77.218473,
-    "on_road": "Doctor KB Hedgewar Marg"
+    "lat": 28.710296,
+    "lng": 77.227288,
+    "on_road": ""
    },
-   "moved_m": 1329,
-   "model_spread_68pct_m": 226,
-   "uncertainty_m": 262,
+   "moved_m": 444,
+   "model_spread_68pct_m": 408,
+   "uncertainty_m": 707,
    "confidence": "low",
    "mode": "matched_road",
-   "candidates": 424,
-   "geocode": {
-    "lat": 28.729761,
-    "lng": 77.22128,
-    "distance_to_original_m": 1907,
-    "distance_to_refined_m": 949
-   },
+   "candidates": 431,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.729761,
+     "lng": 77.22128,
+     "distance_to_original_m": 1907,
+     "distance_to_refined_m": 2242
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.711,
+     "lng": 77.227,
+     "distance_to_original_m": 386,
+     "distance_to_refined_m": 83
+    }
+   ],
    "recommendation": "review",
-   "reason": "the refined point is more than 600 m from the independent geocode"
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 3,
@@ -111,25 +262,37 @@
     "lat": 28.6127,
     "lng": 77.2773
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 83,
    "refined": {
-    "lat": 28.610385,
-    "lng": 77.279878,
-    "on_road": "NH24 Bypass"
+    "lat": 28.611398,
+    "lng": 77.281068,
+    "on_road": ""
    },
-   "moved_m": 360,
-   "model_spread_68pct_m": 284,
-   "uncertainty_m": 314,
-   "confidence": "medium",
+   "moved_m": 395,
+   "model_spread_68pct_m": 395,
+   "uncertainty_m": 700,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 653,
-   "geocode": {
-    "lat": 28.612517,
-    "lng": 77.277318,
-    "distance_to_original_m": 20,
-    "distance_to_refined_m": 344
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.612517,
+     "lng": 77.277318,
+     "distance_to_original_m": 20,
+     "distance_to_refined_m": 387
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.612,
+     "lng": 77.277,
+     "distance_to_original_m": 83,
+     "distance_to_refined_m": 403
+    }
+   ],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 4,
@@ -139,25 +302,37 @@
     "lat": 28.6679,
     "lng": 77.2295
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 238,
    "refined": {
     "lat": 28.669794,
     "lng": 77.231159,
     "on_road": "Nityanand Marg"
    },
    "moved_m": 266,
-   "model_spread_68pct_m": 277,
-   "uncertainty_m": 504,
+   "model_spread_68pct_m": 380,
+   "uncertainty_m": 799,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 675,
-   "geocode": {
-    "lat": 28.668652,
-    "lng": 77.230683,
-    "distance_to_original_m": 143,
-    "distance_to_refined_m": 135
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.668652,
+     "lng": 77.230683,
+     "distance_to_original_m": 143,
+     "distance_to_refined_m": 135
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.6679,
+     "lng": 77.2284,
+     "distance_to_original_m": 107,
+     "distance_to_refined_m": 342
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but overall uncertainty is too large to recommend a move"
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 5,
@@ -167,25 +342,37 @@
     "lat": 28.6469,
     "lng": 77.315
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 294,
    "refined": {
     "lat": 28.646483,
     "lng": 77.317476,
     "on_road": ""
    },
    "moved_m": 246,
-   "model_spread_68pct_m": 197,
-   "uncertainty_m": 465,
-   "confidence": "medium",
+   "model_spread_68pct_m": 265,
+   "uncertainty_m": 751,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 160,
-   "geocode": {
-    "lat": 28.646753,
-    "lng": 77.318004,
-    "distance_to_original_m": 294,
-    "distance_to_refined_m": 60
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.646753,
+     "lng": 77.318004,
+     "distance_to_original_m": 294,
+     "distance_to_refined_m": 60
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.6465,
+     "lng": 77.316,
+     "distance_to_original_m": 107,
+     "distance_to_refined_m": 144
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 6,
@@ -195,20 +382,30 @@
     "lat": 28.748,
     "lng": 77.139
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1123,
    "refined": {
     "lat": 28.744509,
     "lng": 77.138082,
     "on_road": "Samaypur Underpass"
    },
    "moved_m": 398,
-   "model_spread_68pct_m": 1379,
-   "uncertainty_m": 1442,
+   "model_spread_68pct_m": 1377,
+   "uncertainty_m": 1546,
    "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 321,
-   "geocode": null,
+   "candidates": 383,
+   "sources": [
+    {
+     "source": "report_2023_placement",
+     "lat": 28.745,
+     "lng": 77.15,
+     "distance_to_original_m": 1123,
+     "distance_to_refined_m": 1163
+    }
+   ],
    "recommendation": "review",
-   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 7,
@@ -218,18 +415,20 @@
     "lat": 28.513,
     "lng": 77.116
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.526283,
     "lng": 77.101482,
     "on_road": "Delhi-Gurugram Expressway"
    },
    "moved_m": 2048,
-   "model_spread_68pct_m": 1440,
-   "uncertainty_m": 1501,
+   "model_spread_68pct_m": 1468,
+   "uncertainty_m": 1628,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 222,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -241,25 +440,30 @@
     "lat": 28.5528,
     "lng": 77.039
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 371,
    "refined": {
-    "lat": 28.547857,
-    "lng": 77.041293,
+    "lat": 28.556594,
+    "lng": 77.042614,
     "on_road": ""
    },
-   "moved_m": 593,
-   "model_spread_68pct_m": 654,
-   "uncertainty_m": 667,
+   "moved_m": 550,
+   "model_spread_68pct_m": 966,
+   "uncertainty_m": 1126,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 568,
-   "geocode": {
-    "lat": 28.551953,
-    "lng": 77.042676,
-    "distance_to_original_m": 371,
-    "distance_to_refined_m": 475
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.551953,
+     "lng": 77.042676,
+     "distance_to_original_m": 371,
+     "distance_to_refined_m": 516
+    }
+   ],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 9,
@@ -269,25 +473,44 @@
     "lat": 28.738,
     "lng": 77.165
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 672,
    "refined": {
     "lat": 28.737854,
     "lng": 77.163144,
     "on_road": "Bhalswa Flyover"
    },
    "moved_m": 182,
-   "model_spread_68pct_m": 276,
-   "uncertainty_m": 306,
-   "confidence": "medium",
+   "model_spread_68pct_m": 583,
+   "uncertainty_m": 821,
+   "confidence": "low",
    "mode": "matched_road",
-   "candidates": 388,
-   "geocode": {
-    "lat": 28.737684,
-    "lng": 77.163381,
-    "distance_to_original_m": 162,
-    "distance_to_refined_m": 30
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 397,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.737684,
+     "lng": 77.163381,
+     "distance_to_original_m": 162,
+     "distance_to_refined_m": 30
+    },
+    {
+     "source": "geonames",
+     "lat": 28.73558,
+     "lng": 77.16682,
+     "distance_to_original_m": 322,
+     "distance_to_refined_m": 439
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.736,
+     "lng": 77.17,
+     "distance_to_original_m": 536,
+     "distance_to_refined_m": 700
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 10,
@@ -297,20 +520,37 @@
     "lat": 28.747,
     "lng": 77.151
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1176,
    "refined": {
     "lat": 28.750878,
     "lng": 77.149957,
     "on_road": ""
    },
    "moved_m": 443,
-   "model_spread_68pct_m": 950,
-   "uncertainty_m": 959,
+   "model_spread_68pct_m": 1042,
+   "uncertainty_m": 1191,
    "confidence": "low",
    "mode": "matched_road",
-   "candidates": 395,
-   "geocode": null,
+   "candidates": 442,
+   "sources": [
+    {
+     "source": "geonames",
+     "lat": 28.75089,
+     "lng": 77.14647,
+     "distance_to_original_m": 618,
+     "distance_to_refined_m": 340
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.742,
+     "lng": 77.153,
+     "distance_to_original_m": 589,
+     "distance_to_refined_m": 1031
+    }
+   ],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 11,
@@ -320,25 +560,37 @@
     "lat": 28.732,
     "lng": 77.181
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 449,
    "refined": {
-    "lat": 28.732405,
-    "lng": 77.183117,
+    "lat": 28.731361,
+    "lng": 77.183014,
     "on_road": ""
    },
-   "moved_m": 211,
-   "model_spread_68pct_m": 153,
-   "uncertainty_m": 203,
-   "confidence": "high",
+   "moved_m": 209,
+   "model_spread_68pct_m": 361,
+   "uncertainty_m": 681,
+   "confidence": "low",
    "mode": "matched_road",
-   "candidates": 412,
-   "geocode": {
-    "lat": 28.733657,
-    "lng": 77.183431,
-    "distance_to_original_m": 300,
-    "distance_to_refined_m": 143
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 418,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.733657,
+     "lng": 77.183431,
+     "distance_to_original_m": 300,
+     "distance_to_refined_m": 258
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.73,
+     "lng": 77.185,
+     "distance_to_original_m": 449,
+     "distance_to_refined_m": 246
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 12,
@@ -348,25 +600,44 @@
     "lat": 28.657,
     "lng": 77.271
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2569,
    "refined": {
-    "lat": 28.651289,
-    "lng": 77.25218,
-    "on_road": "Geeta Colony Road Flyover"
+    "lat": 28.654301,
+    "lng": 77.265003,
+    "on_road": "Delhi–Dehradun Expressway"
    },
-   "moved_m": 1943,
-   "model_spread_68pct_m": 200,
-   "uncertainty_m": 466,
-   "confidence": "medium",
+   "moved_m": 658,
+   "model_spread_68pct_m": 253,
+   "uncertainty_m": 747,
+   "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 314,
-   "geocode": {
-    "lat": 28.651155,
-    "lng": 77.250072,
-    "distance_to_original_m": 2143,
-    "distance_to_refined_m": 206
-   },
+   "candidates": 369,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.651155,
+     "lng": 77.250072,
+     "distance_to_original_m": 2143,
+     "distance_to_refined_m": 1498
+    },
+    {
+     "source": "geonames",
+     "lat": 28.65066,
+     "lng": 77.27639,
+     "distance_to_original_m": 880,
+     "distance_to_refined_m": 1183
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.645,
+     "lng": 77.26,
+     "distance_to_original_m": 1712,
+     "distance_to_refined_m": 1144
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 13,
@@ -376,6 +647,8 @@
     "lat": 28.698,
     "lng": 77.224
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.696638,
     "lng": 77.227138,
@@ -383,13 +656,13 @@
    },
    "moved_m": 341,
    "model_spread_68pct_m": 502,
-   "uncertainty_m": 519,
+   "uncertainty_m": 766,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 389,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 14,
@@ -399,25 +672,30 @@
     "lat": 28.801,
     "lng": 77.039
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 956,
    "refined": {
-    "lat": 28.805343,
-    "lng": 77.047412,
-    "on_road": ""
+    "lat": 28.800071,
+    "lng": 77.03555,
+    "on_road": "Delhi Road"
    },
-   "moved_m": 951,
-   "model_spread_68pct_m": 225,
-   "uncertainty_m": 261,
-   "confidence": "medium",
+   "moved_m": 352,
+   "model_spread_68pct_m": 816,
+   "uncertainty_m": 1000,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 483,
-   "geocode": {
-    "lat": 28.805944,
-    "lng": 77.047021,
-    "distance_to_original_m": 956,
-    "distance_to_refined_m": 77
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.805944,
+     "lng": 77.047021,
+     "distance_to_original_m": 956,
+     "distance_to_refined_m": 1294
+    }
+   ],
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 15,
@@ -427,18 +705,35 @@
     "lat": 28.67,
     "lng": 77.268
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 600,
    "refined": {
     "lat": 28.671112,
     "lng": 77.269013,
     "on_road": "Jafrabad Main Road"
    },
    "moved_m": 158,
-   "model_spread_68pct_m": 413,
-   "uncertainty_m": 590,
+   "model_spread_68pct_m": 417,
+   "uncertainty_m": 818,
    "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 201,
-   "geocode": null,
+   "candidates": 205,
+   "sources": [
+    {
+     "source": "geonames",
+     "lat": 28.67082,
+     "lng": 77.27208,
+     "distance_to_original_m": 408,
+     "distance_to_refined_m": 301
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.67,
+     "lng": 77.266,
+     "distance_to_original_m": 195,
+     "distance_to_refined_m": 319
+    }
+   ],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -450,6 +745,8 @@
     "lat": 28.879,
     "lng": 77.136
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.874652,
     "lng": 77.121373,
@@ -457,11 +754,11 @@
    },
    "moved_m": 1504,
    "model_spread_68pct_m": 623,
-   "uncertainty_m": 752,
+   "uncertainty_m": 939,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 211,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -473,25 +770,44 @@
     "lat": 28.71,
     "lng": 77.259
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1059,
    "refined": {
-    "lat": 28.704829,
-    "lng": 77.25534,
+    "lat": 28.704584,
+    "lng": 77.257058,
     "on_road": ""
    },
-   "moved_m": 677,
-   "model_spread_68pct_m": 166,
-   "uncertainty_m": 213,
-   "confidence": "high",
+   "moved_m": 631,
+   "model_spread_68pct_m": 484,
+   "uncertainty_m": 754,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 519,
-   "geocode": {
-    "lat": 28.705147,
-    "lng": 77.254462,
-    "distance_to_original_m": 698,
-    "distance_to_refined_m": 93
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.705147,
+     "lng": 77.254462,
+     "distance_to_original_m": 698,
+     "distance_to_refined_m": 261
+    },
+    {
+     "source": "geonames",
+     "lat": 28.70958,
+     "lng": 77.2587,
+     "distance_to_original_m": 55,
+     "distance_to_refined_m": 578
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.712,
+     "lng": 77.262,
+     "distance_to_original_m": 367,
+     "distance_to_refined_m": 955
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 18,
@@ -501,6 +817,8 @@
     "lat": 28.69,
     "lng": 77.17
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.688103,
     "lng": 77.174403,
@@ -508,11 +826,11 @@
    },
    "moved_m": 479,
    "model_spread_68pct_m": 243,
-   "uncertainty_m": 486,
-   "confidence": "medium",
+   "uncertainty_m": 744,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 137,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -524,6 +842,8 @@
     "lat": 28.73,
     "lng": 77.149
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1735,
    "refined": {
     "lat": 28.729436,
     "lng": 77.147851,
@@ -531,11 +851,19 @@
    },
    "moved_m": 128,
    "model_spread_68pct_m": 259,
-   "uncertainty_m": 292,
-   "confidence": "medium",
+   "uncertainty_m": 634,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 418,
-   "geocode": null,
+   "sources": [
+    {
+     "source": "report_2023_placement",
+     "lat": 28.7145,
+     "lng": 77.147,
+     "distance_to_original_m": 1735,
+     "distance_to_refined_m": 1663
+    }
+   ],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -547,6 +875,8 @@
     "lat": 28.718,
     "lng": 77.082
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.713271,
     "lng": 77.07942,
@@ -554,11 +884,11 @@
    },
    "moved_m": 583,
    "model_spread_68pct_m": 179,
-   "uncertainty_m": 458,
-   "confidence": "medium",
+   "uncertainty_m": 725,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 43,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -570,25 +900,37 @@
     "lat": 28.669,
     "lng": 77.158
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 929,
    "refined": {
-    "lat": 28.668642,
-    "lng": 77.165093,
-    "on_road": ""
+    "lat": 28.670772,
+    "lng": 77.159551,
+    "on_road": "Rohtak Road"
    },
-   "moved_m": 693,
-   "model_spread_68pct_m": 221,
-   "uncertainty_m": 258,
-   "confidence": "medium",
+   "moved_m": 248,
+   "model_spread_68pct_m": 607,
+   "uncertainty_m": 838,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 496,
-   "geocode": {
-    "lat": 28.667524,
-    "lng": 77.167377,
-    "distance_to_original_m": 929,
-    "distance_to_refined_m": 255
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.667524,
+     "lng": 77.167377,
+     "distance_to_original_m": 929,
+     "distance_to_refined_m": 845
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.665,
+     "lng": 77.159,
+     "distance_to_original_m": 455,
+     "distance_to_refined_m": 644
+    }
+   ],
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 22,
@@ -598,20 +940,22 @@
     "lat": 28.499,
     "lng": 77.294
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.501472,
     "lng": 77.290789,
     "on_road": "Surajkund Road"
    },
    "moved_m": 417,
-   "model_spread_68pct_m": 928,
-   "uncertainty_m": 938,
+   "model_spread_68pct_m": 927,
+   "uncertainty_m": 1093,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 502,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 23,
@@ -621,25 +965,30 @@
     "lat": 28.699,
     "lng": 77.168
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 929,
    "refined": {
-    "lat": 28.700294,
-    "lng": 77.158734,
+    "lat": 28.703593,
+    "lng": 77.169148,
     "on_road": "Shalimar Bagh Flyover"
    },
-   "moved_m": 915,
-   "model_spread_68pct_m": 286,
-   "uncertainty_m": 509,
+   "moved_m": 523,
+   "model_spread_68pct_m": 1212,
+   "uncertainty_m": 1401,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 166,
-   "geocode": {
-    "lat": 28.700005,
-    "lng": 77.158544,
-    "distance_to_original_m": 929,
-    "distance_to_refined_m": 37
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.700005,
+     "lng": 77.158544,
+     "distance_to_original_m": 929,
+     "distance_to_refined_m": 1108
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but overall uncertainty is too large to recommend a move"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 24,
@@ -649,25 +998,30 @@
     "lat": 28.665,
     "lng": 77.232
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 793,
    "refined": {
-    "lat": 28.662224,
-    "lng": 77.238781,
-    "on_road": "Mahatma Gandhi Marg"
+    "lat": 28.662492,
+    "lng": 77.233611,
+    "on_road": "Lothiyan Road"
    },
-   "moved_m": 730,
-   "model_spread_68pct_m": 323,
-   "uncertainty_m": 350,
-   "confidence": "medium",
+   "moved_m": 320,
+   "model_spread_68pct_m": 783,
+   "uncertainty_m": 973,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 730,
-   "geocode": {
-    "lat": 28.662005,
-    "lng": 77.239381,
-    "distance_to_original_m": 793,
-    "distance_to_refined_m": 63
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.662005,
+     "lng": 77.239381,
+     "distance_to_original_m": 793,
+     "distance_to_refined_m": 566
+    }
+   ],
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 25,
@@ -677,25 +1031,44 @@
     "lat": 28.668,
     "lng": 77.132
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1678,
    "refined": {
-    "lat": 28.672336,
-    "lng": 77.139337,
-    "on_road": ""
+    "lat": 28.66577,
+    "lng": 77.133416,
+    "on_road": "Mahatma Gandhi Marg"
    },
-   "moved_m": 863,
-   "model_spread_68pct_m": 221,
-   "uncertainty_m": 258,
-   "confidence": "medium",
+   "moved_m": 284,
+   "model_spread_68pct_m": 486,
+   "uncertainty_m": 755,
+   "confidence": "low",
    "mode": "matched_road",
-   "candidates": 610,
-   "geocode": {
-    "lat": 28.67385,
-    "lng": 77.140489,
-    "distance_to_original_m": 1053,
-    "distance_to_refined_m": 202
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 640,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.67385,
+     "lng": 77.140489,
+     "distance_to_original_m": 1053,
+     "distance_to_refined_m": 1133
+    },
+    {
+     "source": "geonames",
+     "lat": 28.66448,
+     "lng": 77.12701,
+     "distance_to_original_m": 625,
+     "distance_to_refined_m": 641
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.672,
+     "lng": 77.132,
+     "distance_to_original_m": 445,
+     "distance_to_refined_m": 706
+    }
+   ],
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 26,
@@ -705,25 +1078,37 @@
     "lat": 28.733,
     "lng": 77.155
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 936,
    "refined": {
-    "lat": 28.73271,
-    "lng": 77.152573,
-    "on_road": "Outer Ring Road"
+    "lat": 28.732473,
+    "lng": 77.157708,
+    "on_road": "Mall Road Extension"
    },
-   "moved_m": 239,
-   "model_spread_68pct_m": 295,
-   "uncertainty_m": 323,
-   "confidence": "medium",
+   "moved_m": 270,
+   "model_spread_68pct_m": 489,
+   "uncertainty_m": 757,
+   "confidence": "low",
    "mode": "matched_road",
-   "candidates": 454,
-   "geocode": {
-    "lat": 28.732305,
-    "lng": 77.152071,
-    "distance_to_original_m": 296,
-    "distance_to_refined_m": 67
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 494,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.732305,
+     "lng": 77.152071,
+     "distance_to_original_m": 296,
+     "distance_to_refined_m": 550
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.7373,
+     "lng": 77.1598,
+     "distance_to_original_m": 669,
+     "distance_to_refined_m": 574
+    }
+   ],
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 27,
@@ -746,25 +1131,30 @@
     "lat": 28.609,
     "lng": 77.025
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2965,
    "refined": {
-    "lat": 28.587416,
-    "lng": 77.008176,
-    "on_road": "Urban Extension Road-II"
+    "lat": 28.604437,
+    "lng": 77.024153,
+    "on_road": ""
    },
-   "moved_m": 2908,
-   "model_spread_68pct_m": 175,
-   "uncertainty_m": 456,
-   "confidence": "medium",
+   "moved_m": 514,
+   "model_spread_68pct_m": 48,
+   "uncertainty_m": 705,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 65,
-   "geocode": {
-    "lat": 28.585716,
-    "lng": 77.010194,
-    "distance_to_original_m": 2965,
-    "distance_to_refined_m": 273
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.585716,
+     "lng": 77.010194,
+     "distance_to_original_m": 2965,
+     "distance_to_refined_m": 2488
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 29,
@@ -774,18 +1164,28 @@
     "lat": 28.711,
     "lng": 77.226
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2100,
    "refined": {
     "lat": 28.710212,
     "lng": 77.227227,
     "on_road": "Wazirabad Flyover"
    },
    "moved_m": 148,
-   "model_spread_68pct_m": 482,
-   "uncertainty_m": 500,
-   "confidence": "medium",
+   "model_spread_68pct_m": 483,
+   "uncertainty_m": 753,
+   "confidence": "low",
    "mode": "matched_road",
-   "candidates": 558,
-   "geocode": null,
+   "candidates": 587,
+   "sources": [
+    {
+     "source": "report_2023_placement",
+     "lat": 28.718,
+     "lng": 77.206,
+     "distance_to_original_m": 2100,
+     "distance_to_refined_m": 2244
+    }
+   ],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -797,6 +1197,8 @@
     "lat": 28.553,
     "lng": 77.235
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.553476,
     "lng": 77.228269,
@@ -804,13 +1206,13 @@
    },
    "moved_m": 660,
    "model_spread_68pct_m": 849,
-   "uncertainty_m": 859,
+   "uncertainty_m": 1027,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 200,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 31,
@@ -820,25 +1222,37 @@
     "lat": 28.588,
     "lng": 77.255
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 596,
    "refined": {
     "lat": 28.588938,
     "lng": 77.25853,
     "on_road": ""
    },
    "moved_m": 360,
-   "model_spread_68pct_m": 225,
-   "uncertainty_m": 478,
-   "confidence": "medium",
+   "model_spread_68pct_m": 694,
+   "uncertainty_m": 988,
+   "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 246,
-   "geocode": {
-    "lat": 28.589189,
-    "lng": 77.258065,
-    "distance_to_original_m": 327,
-    "distance_to_refined_m": 53
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 258,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.589189,
+     "lng": 77.258065,
+     "distance_to_original_m": 327,
+     "distance_to_refined_m": 53
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.587,
+     "lng": 77.261,
+     "distance_to_original_m": 596,
+     "distance_to_refined_m": 323
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 32,
@@ -848,6 +1262,8 @@
     "lat": 28.667,
     "lng": 77.229
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.668776,
     "lng": 77.227414,
@@ -855,13 +1271,13 @@
    },
    "moved_m": 251,
    "model_spread_68pct_m": 485,
-   "uncertainty_m": 503,
+   "uncertainty_m": 754,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 536,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 33,
@@ -871,18 +1287,35 @@
     "lat": 28.745,
     "lng": 77.199
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1798,
    "refined": {
     "lat": 28.745179,
     "lng": 77.198191,
     "on_road": "Burari road"
    },
    "moved_m": 81,
-   "model_spread_68pct_m": 530,
-   "uncertainty_m": 677,
+   "model_spread_68pct_m": 756,
+   "uncertainty_m": 1032,
    "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 215,
-   "geocode": null,
+   "candidates": 285,
+   "sources": [
+    {
+     "source": "geonames",
+     "lat": 28.7557,
+     "lng": 77.19941,
+     "distance_to_original_m": 1190,
+     "distance_to_refined_m": 1176
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.74,
+     "lng": 77.195,
+     "distance_to_original_m": 679,
+     "distance_to_refined_m": 655
+    }
+   ],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -894,25 +1327,37 @@
     "lat": 28.716,
     "lng": 77.17
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 195,
    "refined": {
     "lat": 28.717547,
     "lng": 77.169452,
     "on_road": ""
    },
    "moved_m": 180,
-   "model_spread_68pct_m": 222,
-   "uncertainty_m": 476,
-   "confidence": "medium",
+   "model_spread_68pct_m": 567,
+   "uncertainty_m": 903,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 133,
-   "geocode": {
-    "lat": 28.71658,
-    "lng": 77.170422,
-    "distance_to_original_m": 77,
-    "distance_to_refined_m": 143
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.71658,
+     "lng": 77.170422,
+     "distance_to_original_m": 77,
+     "distance_to_refined_m": 143
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.716,
+     "lng": 77.172,
+     "distance_to_original_m": 195,
+     "distance_to_refined_m": 302
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 35,
@@ -922,25 +1367,30 @@
     "lat": 28.688,
     "lng": 77.208
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 602,
    "refined": {
-    "lat": 28.683793,
-    "lng": 77.229008,
+    "lat": 28.691543,
+    "lng": 77.227703,
     "on_road": "Doctor KB Hedgewar Marg"
    },
-   "moved_m": 2102,
-   "model_spread_68pct_m": 354,
-   "uncertainty_m": 550,
+   "moved_m": 1962,
+   "model_spread_68pct_m": 600,
+   "uncertainty_m": 924,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 139,
-   "geocode": {
-    "lat": 28.682621,
-    "lng": 77.208712,
-    "distance_to_original_m": 602,
-    "distance_to_refined_m": 1984
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.682621,
+     "lng": 77.208712,
+     "distance_to_original_m": 602,
+     "distance_to_refined_m": 2101
+    }
+   ],
    "recommendation": "review",
-   "reason": "the refined point is more than 600 m from the independent geocode"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 36,
@@ -950,25 +1400,30 @@
     "lat": 28.67,
     "lng": 77.181
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 84,
    "refined": {
-    "lat": 28.669978,
-    "lng": 77.181892,
+    "lat": 28.669927,
+    "lng": 77.182596,
     "on_road": "Road Number 40"
    },
-   "moved_m": 87,
-   "model_spread_68pct_m": 174,
-   "uncertainty_m": 219,
-   "confidence": "high",
+   "moved_m": 156,
+   "model_spread_68pct_m": 197,
+   "uncertainty_m": 611,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 268,
-   "geocode": {
-    "lat": 28.670088,
-    "lng": 77.181859,
-    "distance_to_original_m": 84,
-    "distance_to_refined_m": 13
-   },
-   "recommendation": "keep_original",
-   "reason": "moved less than 150 m"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.670088,
+     "lng": 77.181859,
+     "distance_to_original_m": 84,
+     "distance_to_refined_m": 74
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 37,
@@ -978,6 +1433,8 @@
     "lat": 28.7246,
     "lng": 77.1817
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.723854,
     "lng": 77.182535,
@@ -985,11 +1442,11 @@
    },
    "moved_m": 116,
    "model_spread_68pct_m": 252,
-   "uncertainty_m": 491,
-   "confidence": "medium",
+   "uncertainty_m": 747,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 80,
-   "geocode": null,
+   "sources": [],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -1001,6 +1458,8 @@
     "lat": 28.653,
     "lng": 77.082
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1112,
    "refined": {
     "lat": 28.651267,
     "lng": 77.086374,
@@ -1008,13 +1467,21 @@
    },
    "moved_m": 468,
    "model_spread_68pct_m": 748,
-   "uncertainty_m": 759,
+   "uncertainty_m": 945,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 286,
-   "geocode": null,
+   "sources": [
+    {
+     "source": "report_2023_placement",
+     "lat": 28.643,
+     "lng": 77.082,
+     "distance_to_original_m": 1112,
+     "distance_to_refined_m": 1014
+    }
+   ],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 39,
@@ -1024,6 +1491,8 @@
     "lat": 28.706,
     "lng": 77.175
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.706003,
     "lng": 77.172657,
@@ -1031,11 +1500,11 @@
    },
    "moved_m": 228,
    "model_spread_68pct_m": 606,
-   "uncertainty_m": 738,
+   "uncertainty_m": 928,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 386,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -1047,23 +1516,28 @@
     "lat": 28.64,
     "lng": 77.24
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 116,
    "refined": {
-    "lat": 28.63912,
-    "lng": 77.241057,
+    "lat": 28.640206,
+    "lng": 77.24009,
     "on_road": ""
    },
-   "moved_m": 142,
-   "model_spread_68pct_m": 188,
-   "uncertainty_m": 230,
-   "confidence": "high",
+   "moved_m": 25,
+   "model_spread_68pct_m": 306,
+   "uncertainty_m": 654,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 369,
-   "geocode": {
-    "lat": 28.639217,
-    "lng": 77.24078,
-    "distance_to_original_m": 116,
-    "distance_to_refined_m": 29
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.639217,
+     "lng": 77.24078,
+     "distance_to_original_m": 116,
+     "distance_to_refined_m": 129
+    }
+   ],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -1088,25 +1562,37 @@
     "lat": 28.592,
     "lng": 77.162
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 647,
    "refined": {
-    "lat": 28.59122,
-    "lng": 77.168104,
-    "on_road": ""
+    "lat": 28.592752,
+    "lng": 77.162327,
+    "on_road": "NH48"
    },
-   "moved_m": 602,
-   "model_spread_68pct_m": 319,
-   "uncertainty_m": 345,
-   "confidence": "medium",
+   "moved_m": 90,
+   "model_spread_68pct_m": 560,
+   "uncertainty_m": 805,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 728,
-   "geocode": {
-    "lat": 28.590462,
-    "lng": 77.168394,
-    "distance_to_original_m": 647,
-    "distance_to_refined_m": 89
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.590462,
+     "lng": 77.168394,
+     "distance_to_original_m": 647,
+     "distance_to_refined_m": 645
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.592,
+     "lng": 77.162,
+     "distance_to_original_m": 0,
+     "distance_to_refined_m": 90
+    }
+   ],
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
   },
   {
    "rank": 43,
@@ -1116,6 +1602,8 @@
     "lat": 28.702,
     "lng": 77.228
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.703198,
     "lng": 77.227428,
@@ -1123,11 +1611,11 @@
    },
    "moved_m": 144,
    "model_spread_68pct_m": 525,
-   "uncertainty_m": 541,
+   "uncertainty_m": 781,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 533,
-   "geocode": null,
+   "sources": [],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -1139,25 +1627,37 @@
     "lat": 28.7,
     "lng": 77.206
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 626,
    "refined": {
     "lat": 28.698923,
     "lng": 77.20467,
     "on_road": "Om Mandir marg"
    },
    "moved_m": 177,
-   "model_spread_68pct_m": 223,
-   "uncertainty_m": 477,
-   "confidence": "medium",
+   "model_spread_68pct_m": 446,
+   "uncertainty_m": 833,
+   "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 296,
-   "geocode": {
-    "lat": 28.69882,
-    "lng": 77.204686,
-    "distance_to_original_m": 183,
-    "distance_to_refined_m": 12
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 300,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.69882,
+     "lng": 77.204686,
+     "distance_to_original_m": 183,
+     "distance_to_refined_m": 12
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.698,
+     "lng": 77.2,
+     "distance_to_original_m": 626,
+     "distance_to_refined_m": 467
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 45,
@@ -1167,23 +1667,35 @@
     "lat": 28.544,
     "lng": 77.264
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1018,
    "refined": {
     "lat": 28.543926,
     "lng": 77.264409,
     "on_road": ""
    },
    "moved_m": 41,
-   "model_spread_68pct_m": 120,
-   "uncertainty_m": 179,
-   "confidence": "high",
+   "model_spread_68pct_m": 163,
+   "uncertainty_m": 600,
+   "confidence": "low",
    "mode": "matched_road",
-   "candidates": 350,
-   "geocode": {
-    "lat": 28.545106,
-    "lng": 77.263885,
-    "distance_to_original_m": 123,
-    "distance_to_refined_m": 141
-   },
+   "candidates": 379,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.545106,
+     "lng": 77.263885,
+     "distance_to_original_m": 123,
+     "distance_to_refined_m": 141
+    },
+    {
+     "source": "geonames",
+     "lat": 28.53596,
+     "lng": 77.26429,
+     "distance_to_original_m": 894,
+     "distance_to_refined_m": 886
+    }
+   ],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -1195,25 +1707,37 @@
     "lat": 28.682,
     "lng": 77.063
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1182,
    "refined": {
-    "lat": 28.682145,
-    "lng": 77.059701,
-    "on_road": "Rohtak Road"
+    "lat": 28.682095,
+    "lng": 77.062694,
+    "on_road": "Nangloi Flyover"
    },
-   "moved_m": 322,
-   "model_spread_68pct_m": 171,
-   "uncertainty_m": 216,
-   "confidence": "high",
+   "moved_m": 32,
+   "model_spread_68pct_m": 405,
+   "uncertainty_m": 706,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 317,
-   "geocode": {
-    "lat": 28.682201,
-    "lng": 77.056246,
-    "distance_to_original_m": 659,
-    "distance_to_refined_m": 337
-   },
-   "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.682201,
+     "lng": 77.056246,
+     "distance_to_original_m": 659,
+     "distance_to_refined_m": 629
+    },
+    {
+     "source": "geonames",
+     "lat": 28.67957,
+     "lng": 77.06799,
+     "distance_to_original_m": 557,
+     "distance_to_refined_m": 588
+    }
+   ],
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
   },
   {
    "rank": 47,
@@ -1223,23 +1747,42 @@
     "lat": 28.676,
     "lng": 77.119
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 732,
    "refined": {
     "lat": 28.676378,
     "lng": 77.119235,
     "on_road": ""
    },
    "moved_m": 48,
-   "model_spread_68pct_m": 135,
-   "uncertainty_m": 190,
-   "confidence": "high",
+   "model_spread_68pct_m": 239,
+   "uncertainty_m": 625,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 322,
-   "geocode": {
-    "lat": 28.676475,
-    "lng": 77.11936,
-    "distance_to_original_m": 63,
-    "distance_to_refined_m": 16
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.676475,
+     "lng": 77.11936,
+     "distance_to_original_m": 63,
+     "distance_to_refined_m": 16
+    },
+    {
+     "source": "geonames",
+     "lat": 28.67318,
+     "lng": 77.1215,
+     "distance_to_original_m": 397,
+     "distance_to_refined_m": 419
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.679,
+     "lng": 77.118,
+     "distance_to_original_m": 348,
+     "distance_to_refined_m": 316
+    }
+   ],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -1251,25 +1794,30 @@
     "lat": 28.717,
     "lng": 77.178
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1098,
    "refined": {
-    "lat": 28.721659,
-    "lng": 77.182384,
-    "on_road": "Arihant Marg"
+    "lat": 28.712737,
+    "lng": 77.174011,
+    "on_road": ""
    },
-   "moved_m": 672,
-   "model_spread_68pct_m": 114,
-   "uncertainty_m": 437,
+   "moved_m": 613,
+   "model_spread_68pct_m": 603,
+   "uncertainty_m": 926,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 163,
-   "geocode": {
-    "lat": 28.726089,
-    "lng": 77.173598,
-    "distance_to_original_m": 1098,
-    "distance_to_refined_m": 988
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.726089,
+     "lng": 77.173598,
+     "distance_to_original_m": 1098,
+     "distance_to_refined_m": 1485
+    }
+   ],
    "recommendation": "review",
-   "reason": "the refined point is more than 600 m from the independent geocode"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 49,
@@ -1279,6 +1827,8 @@
     "lat": 28.609,
     "lng": 77.11
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.612002,
     "lng": 77.111271,
@@ -1286,13 +1836,13 @@
    },
    "moved_m": 356,
    "model_spread_68pct_m": 912,
-   "uncertainty_m": 922,
+   "uncertainty_m": 1080,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 350,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 50,
@@ -1302,6 +1852,8 @@
     "lat": 28.651,
     "lng": 77.274
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.648798,
     "lng": 77.268602,
@@ -1309,11 +1861,11 @@
    },
    "moved_m": 581,
    "model_spread_68pct_m": 235,
-   "uncertainty_m": 483,
-   "confidence": "medium",
+   "uncertainty_m": 741,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 118,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -1325,6 +1877,8 @@
     "lat": 28.653,
     "lng": 77.279
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.643363,
     "lng": 77.281487,
@@ -1332,11 +1886,11 @@
    },
    "moved_m": 1099,
    "model_spread_68pct_m": 1324,
-   "uncertainty_m": 1389,
+   "uncertainty_m": 1499,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 172,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -1348,6 +1902,8 @@
     "lat": 28.629,
     "lng": 77.322
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.628614,
     "lng": 77.322135,
@@ -1355,11 +1911,11 @@
    },
    "moved_m": 45,
    "model_spread_68pct_m": 490,
-   "uncertainty_m": 646,
+   "uncertainty_m": 857,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 303,
-   "geocode": null,
+   "sources": [],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -1371,25 +1927,37 @@
     "lat": 28.686,
     "lng": 77.295
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2220,
    "refined": {
-    "lat": 28.700526,
-    "lng": 77.294903,
-    "on_road": "Delhi Loni Road Flyover"
+    "lat": 28.68928,
+    "lng": 77.292036,
+    "on_road": "100 Feet Road"
    },
-   "moved_m": 1615,
-   "model_spread_68pct_m": 298,
-   "uncertainty_m": 516,
+   "moved_m": 465,
+   "model_spread_68pct_m": 378,
+   "uncertainty_m": 798,
    "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 443,
-   "geocode": {
-    "lat": 28.700585,
-    "lng": 77.295681,
-    "distance_to_original_m": 1623,
-    "distance_to_refined_m": 76
-   },
+   "candidates": 466,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.700585,
+     "lng": 77.295681,
+     "distance_to_original_m": 1623,
+     "distance_to_refined_m": 1306
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.705,
+     "lng": 77.288,
+     "distance_to_original_m": 2220,
+     "distance_to_refined_m": 1792
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 54,
@@ -1399,25 +1967,30 @@
     "lat": 28.675,
     "lng": 77.321
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 832,
    "refined": {
-    "lat": 28.676096,
-    "lng": 77.315763,
+    "lat": 28.676163,
+    "lng": 77.322538,
     "on_road": "GT Road"
    },
-   "moved_m": 525,
-   "model_spread_68pct_m": 154,
-   "uncertainty_m": 449,
-   "confidence": "medium",
+   "moved_m": 198,
+   "model_spread_68pct_m": 160,
+   "uncertainty_m": 721,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 349,
-   "geocode": {
-    "lat": 28.675703,
-    "lng": 77.312505,
-    "distance_to_original_m": 832,
-    "distance_to_refined_m": 321
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.675703,
+     "lng": 77.312505,
+     "distance_to_original_m": 832,
+     "distance_to_refined_m": 980
+    }
+   ],
    "recommendation": "review",
-   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 55,
@@ -1427,25 +2000,30 @@
     "lat": 28.515,
     "lng": 77.25
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 350,
    "refined": {
     "lat": 28.51197,
     "lng": 77.251038,
     "on_road": ""
    },
    "moved_m": 352,
-   "model_spread_68pct_m": 228,
-   "uncertainty_m": 264,
-   "confidence": "medium",
+   "model_spread_68pct_m": 674,
+   "uncertainty_m": 888,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 382,
-   "geocode": {
-    "lat": 28.511864,
-    "lng": 77.249681,
-    "distance_to_original_m": 350,
-    "distance_to_refined_m": 133
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.511864,
+     "lng": 77.249681,
+     "distance_to_original_m": 350,
+     "distance_to_refined_m": 133
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 56,
@@ -1455,25 +2033,37 @@
     "lat": 28.621,
     "lng": 77.056
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1002,
    "refined": {
-    "lat": 28.625465,
-    "lng": 77.06717,
+    "lat": 28.621394,
+    "lng": 77.053169,
     "on_road": ""
    },
-   "moved_m": 1198,
-   "model_spread_68pct_m": 225,
-   "uncertainty_m": 261,
-   "confidence": "medium",
+   "moved_m": 280,
+   "model_spread_68pct_m": 1654,
+   "uncertainty_m": 1752,
+   "confidence": "low",
    "mode": "matched_road",
-   "candidates": 456,
-   "geocode": {
-    "lat": 28.624847,
-    "lng": 77.065286,
-    "distance_to_original_m": 1002,
-    "distance_to_refined_m": 196
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 457,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.624847,
+     "lng": 77.065286,
+     "distance_to_original_m": 1002,
+     "distance_to_refined_m": 1243
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.621,
+     "lng": 77.065,
+     "distance_to_original_m": 878,
+     "distance_to_refined_m": 1156
+    }
+   ],
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 57,
@@ -1483,6 +2073,8 @@
     "lat": 28.544,
     "lng": 77.119
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.54322,
     "lng": 77.118629,
@@ -1490,11 +2082,11 @@
    },
    "moved_m": 94,
    "model_spread_68pct_m": 532,
-   "uncertainty_m": 549,
+   "uncertainty_m": 786,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 805,
-   "geocode": null,
+   "sources": [],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -1506,25 +2098,37 @@
     "lat": 28.629,
     "lng": 77.081
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 293,
    "refined": {
-    "lat": 28.63038,
-    "lng": 77.079109,
-    "on_road": "Shivaji Marg Flyover"
+    "lat": 28.631001,
+    "lng": 77.081324,
+    "on_road": ""
    },
-   "moved_m": 240,
-   "model_spread_68pct_m": 276,
-   "uncertainty_m": 307,
-   "confidence": "medium",
+   "moved_m": 225,
+   "model_spread_68pct_m": 343,
+   "uncertainty_m": 672,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 409,
-   "geocode": {
-    "lat": 28.629258,
-    "lng": 77.080463,
-    "distance_to_original_m": 60,
-    "distance_to_refined_m": 182
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.629258,
+     "lng": 77.080463,
+     "distance_to_original_m": 60,
+     "distance_to_refined_m": 211
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.629,
+     "lng": 77.078,
+     "distance_to_original_m": 293,
+     "distance_to_refined_m": 393
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 59,
@@ -1534,25 +2138,37 @@
     "lat": 28.681,
     "lng": 77.094
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1370,
    "refined": {
-    "lat": 28.680686,
-    "lng": 77.083167,
+    "lat": 28.680168,
+    "lng": 77.094894,
     "on_road": ""
    },
-   "moved_m": 1057,
-   "model_spread_68pct_m": 235,
-   "uncertainty_m": 270,
-   "confidence": "medium",
+   "moved_m": 127,
+   "model_spread_68pct_m": 443,
+   "uncertainty_m": 729,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 439,
-   "geocode": {
-    "lat": 28.681103,
-    "lng": 77.080849,
-    "distance_to_original_m": 1283,
-    "distance_to_refined_m": 231
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.681103,
+     "lng": 77.080849,
+     "distance_to_original_m": 1283,
+     "distance_to_refined_m": 1374
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.682,
+     "lng": 77.08,
+     "distance_to_original_m": 1370,
+     "distance_to_refined_m": 1467
+    }
+   ],
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
   },
   {
    "rank": 60,
@@ -1562,25 +2178,30 @@
     "lat": 28.61,
     "lng": 76.985
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1524,
    "refined": {
-    "lat": 28.613728,
-    "lng": 76.998612,
-    "on_road": "Urban Extension Road-II"
+    "lat": 28.608966,
+    "lng": 76.9854,
+    "on_road": "Thana Road"
    },
-   "moved_m": 1392,
-   "model_spread_68pct_m": 247,
-   "uncertainty_m": 281,
-   "confidence": "medium",
+   "moved_m": 121,
+   "model_spread_68pct_m": 1423,
+   "uncertainty_m": 1536,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 504,
-   "geocode": {
-    "lat": 28.613948,
-    "lng": 76.999954,
-    "distance_to_original_m": 1524,
-    "distance_to_refined_m": 133
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.613948,
+     "lng": 76.999954,
+     "distance_to_original_m": 1524,
+     "distance_to_refined_m": 1525
+    }
+   ],
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
   },
   {
    "rank": 61,
@@ -1590,25 +2211,30 @@
     "lat": 28.661,
     "lng": 77.147
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2808,
    "refined": {
-    "lat": 28.646471,
-    "lng": 77.167034,
-    "on_road": "Patel Road"
+    "lat": 28.659609,
+    "lng": 77.146052,
+    "on_road": "Shivaji Marg"
    },
-   "moved_m": 2536,
-   "model_spread_68pct_m": 218,
-   "uncertainty_m": 256,
-   "confidence": "medium",
+   "moved_m": 180,
+   "model_spread_68pct_m": 338,
+   "uncertainty_m": 670,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 395,
-   "geocode": {
-    "lat": 28.645013,
-    "lng": 77.169282,
-    "distance_to_original_m": 2808,
-    "distance_to_refined_m": 273
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.645013,
+     "lng": 77.169282,
+     "distance_to_original_m": 2808,
+     "distance_to_refined_m": 2788
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 62,
@@ -1618,25 +2244,30 @@
     "lat": 28.618,
     "lng": 77.087
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 811,
    "refined": {
-    "lat": 28.617034,
-    "lng": 77.079233,
-    "on_road": "Bhagwan Mahavir Marg"
+    "lat": 28.61516,
+    "lng": 77.083267,
+    "on_road": ""
    },
-   "moved_m": 766,
-   "model_spread_68pct_m": 215,
-   "uncertainty_m": 253,
-   "confidence": "medium",
+   "moved_m": 482,
+   "model_spread_68pct_m": 506,
+   "uncertainty_m": 768,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 360,
-   "geocode": {
-    "lat": 28.617119,
-    "lng": 77.078754,
-    "distance_to_original_m": 811,
-    "distance_to_refined_m": 48
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.617119,
+     "lng": 77.078754,
+     "distance_to_original_m": 811,
+     "distance_to_refined_m": 491
+    }
+   ],
+   "recommendation": "review",
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 63,
@@ -1646,25 +2277,30 @@
     "lat": 28.685,
     "lng": 76.996
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 620,
    "refined": {
-    "lat": 28.685571,
-    "lng": 76.992318,
+    "lat": 28.685227,
+    "lng": 76.994952,
     "on_road": ""
    },
-   "moved_m": 365,
-   "model_spread_68pct_m": 271,
-   "uncertainty_m": 302,
-   "confidence": "medium",
+   "moved_m": 105,
+   "model_spread_68pct_m": 517,
+   "uncertainty_m": 776,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 329,
-   "geocode": {
-    "lat": 28.688087,
-    "lng": 76.990708,
-    "distance_to_original_m": 620,
-    "distance_to_refined_m": 321
-   },
-   "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.688087,
+     "lng": 76.990708,
+     "distance_to_original_m": 620,
+     "distance_to_refined_m": 522
+    }
+   ],
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
   },
   {
    "rank": 64,
@@ -1674,25 +2310,37 @@
     "lat": 28.698,
     "lng": 77.121
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 267,
    "refined": {
     "lat": 28.698231,
     "lng": 77.119379,
     "on_road": ""
    },
    "moved_m": 160,
-   "model_spread_68pct_m": 208,
-   "uncertainty_m": 247,
-   "confidence": "high",
+   "model_spread_68pct_m": 494,
+   "uncertainty_m": 761,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 460,
-   "geocode": {
-    "lat": 28.698113,
-    "lng": 77.11827,
-    "distance_to_original_m": 267,
-    "distance_to_refined_m": 109
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.698113,
+     "lng": 77.11827,
+     "distance_to_original_m": 267,
+     "distance_to_refined_m": 109
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.698,
+     "lng": 77.121,
+     "distance_to_original_m": 0,
+     "distance_to_refined_m": 160
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 65,
@@ -1715,6 +2363,8 @@
     "lat": 28.776,
     "lng": 77.134
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.766219,
     "lng": 77.145213,
@@ -1722,11 +2372,11 @@
    },
    "moved_m": 1542,
    "model_spread_68pct_m": 1827,
-   "uncertainty_m": 1875,
+   "uncertainty_m": 1958,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 237,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -1738,6 +2388,8 @@
     "lat": 28.771,
     "lng": 77.139
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.766219,
     "lng": 77.145213,
@@ -1745,13 +2397,13 @@
    },
    "moved_m": 806,
    "model_spread_68pct_m": 1307,
-   "uncertainty_m": 1313,
+   "uncertainty_m": 1429,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 309,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 68,
@@ -1761,6 +2413,8 @@
     "lat": 28.62,
     "lng": 77.318
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.615507,
     "lng": 77.319339,
@@ -1768,13 +2422,13 @@
    },
    "moved_m": 516,
    "model_spread_68pct_m": 1441,
-   "uncertainty_m": 1447,
+   "uncertainty_m": 1552,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 537,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 69,
@@ -1797,25 +2451,30 @@
     "lat": 28.581,
     "lng": 77.124
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2064,
    "refined": {
-    "lat": 28.579334,
-    "lng": 77.1449,
-    "on_road": ""
+    "lat": 28.571636,
+    "lng": 77.136215,
+    "on_road": "Delhi-Gurugram Expressway"
    },
-   "moved_m": 2049,
-   "model_spread_68pct_m": 331,
-   "uncertainty_m": 536,
+   "moved_m": 1583,
+   "model_spread_68pct_m": 1305,
+   "uncertainty_m": 1482,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 298,
-   "geocode": {
-    "lat": 28.579419,
-    "lng": 77.145062,
-    "distance_to_original_m": 2064,
-    "distance_to_refined_m": 18
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.579419,
+     "lng": 77.145062,
+     "distance_to_original_m": 2064,
+     "distance_to_refined_m": 1223
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 71,
@@ -1825,20 +2484,30 @@
     "lat": 28.699,
     "lng": 77.167
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1608,
    "refined": {
     "lat": 28.701538,
     "lng": 77.163595,
     "on_road": "Shalimar Bagh Flyover"
    },
    "moved_m": 436,
-   "model_spread_68pct_m": 434,
-   "uncertainty_m": 605,
+   "model_spread_68pct_m": 473,
+   "uncertainty_m": 847,
    "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 82,
-   "geocode": null,
+   "candidates": 237,
+   "sources": [
+    {
+     "source": "report_2023_placement",
+     "lat": 28.693,
+     "lng": 77.152,
+     "distance_to_original_m": 1608,
+     "distance_to_refined_m": 1477
+    }
+   ],
    "recommendation": "review",
-   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 72,
@@ -1848,6 +2517,8 @@
     "lat": 28.624,
     "lng": 77.323
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.62547,
     "lng": 77.318843,
@@ -1855,13 +2526,13 @@
    },
    "moved_m": 437,
    "model_spread_68pct_m": 647,
-   "uncertainty_m": 661,
+   "uncertainty_m": 868,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 536,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 73,
@@ -1871,6 +2542,8 @@
     "lat": 28.606,
     "lng": 77.298
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.616066,
     "lng": 77.281188,
@@ -1878,11 +2551,11 @@
    },
    "moved_m": 1986,
    "model_spread_68pct_m": 3905,
-   "uncertainty_m": 3928,
+   "uncertainty_m": 3968,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 44,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -1894,25 +2567,30 @@
     "lat": 28.63,
     "lng": 77.244
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 299,
    "refined": {
-    "lat": 28.628249,
-    "lng": 77.241394,
-    "on_road": ""
+    "lat": 28.627908,
+    "lng": 77.241908,
+    "on_road": "Indraprastha Marg"
    },
-   "moved_m": 320,
-   "model_spread_68pct_m": 258,
-   "uncertainty_m": 494,
-   "confidence": "medium",
+   "moved_m": 310,
+   "model_spread_68pct_m": 587,
+   "uncertainty_m": 916,
+   "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 551,
-   "geocode": {
-    "lat": 28.629015,
-    "lng": 77.241147,
-    "distance_to_original_m": 299,
-    "distance_to_refined_m": 89
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.629015,
+     "lng": 77.241147,
+     "distance_to_original_m": 299,
+     "distance_to_refined_m": 144
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 75,
@@ -1922,25 +2600,30 @@
     "lat": 28.567,
     "lng": 77.21
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 215,
    "refined": {
     "lat": 28.566912,
     "lng": 77.207859,
     "on_road": ""
    },
    "moved_m": 209,
-   "model_spread_68pct_m": 320,
-   "uncertainty_m": 529,
+   "model_spread_68pct_m": 386,
+   "uncertainty_m": 802,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 573,
-   "geocode": {
-    "lat": 28.56686,
-    "lng": 77.207806,
-    "distance_to_original_m": 215,
-    "distance_to_refined_m": 8
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.56686,
+     "lng": 77.207806,
+     "distance_to_original_m": 215,
+     "distance_to_refined_m": 8
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but overall uncertainty is too large to recommend a move"
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 76,
@@ -1950,25 +2633,44 @@
     "lat": 28.639,
     "lng": 77.097
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1919,
    "refined": {
-    "lat": 28.641404,
-    "lng": 77.107131,
-    "on_road": ""
+    "lat": 28.636686,
+    "lng": 77.096928,
+    "on_road": "Tilak Nagar Round About"
    },
-   "moved_m": 1024,
-   "model_spread_68pct_m": 146,
-   "uncertainty_m": 197,
-   "confidence": "high",
+   "moved_m": 257,
+   "model_spread_68pct_m": 437,
+   "uncertainty_m": 725,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 373,
-   "geocode": {
-    "lat": 28.641747,
-    "lng": 77.107959,
-    "distance_to_original_m": 1112,
-    "distance_to_refined_m": 89
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.641747,
+     "lng": 77.107959,
+     "distance_to_original_m": 1112,
+     "distance_to_refined_m": 1215
+    },
+    {
+     "source": "geonames",
+     "lat": 28.63956,
+     "lng": 77.08845,
+     "distance_to_original_m": 837,
+     "distance_to_refined_m": 887
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.636,
+     "lng": 77.096,
+     "distance_to_original_m": 348,
+     "distance_to_refined_m": 118
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": 77,
@@ -1978,6 +2680,8 @@
     "lat": 28.811,
     "lng": 77.144
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.807186,
     "lng": 77.139791,
@@ -1985,13 +2689,13 @@
    },
    "moved_m": 590,
    "model_spread_68pct_m": 1211,
-   "uncertainty_m": 1218,
+   "uncertainty_m": 1342,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 316,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 78,
@@ -2001,6 +2705,8 @@
     "lat": 28.622,
     "lng": 77.234
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.620778,
     "lng": 77.236911,
@@ -2008,13 +2714,13 @@
    },
    "moved_m": 315,
    "model_spread_68pct_m": 678,
-   "uncertainty_m": 691,
+   "uncertainty_m": 891,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 405,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 79,
@@ -2024,25 +2730,37 @@
     "lat": 28.716,
     "lng": 77.225
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1904,
    "refined": {
-    "lat": 28.715277,
-    "lng": 77.204068,
-    "on_road": "Om Mandir marg"
+    "lat": 28.711434,
+    "lng": 77.226933,
+    "on_road": ""
    },
-   "moved_m": 2043,
-   "model_spread_68pct_m": 113,
-   "uncertainty_m": 174,
-   "confidence": "high",
+   "moved_m": 542,
+   "model_spread_68pct_m": 1087,
+   "uncertainty_m": 1231,
+   "confidence": "low",
    "mode": "matched_road",
-   "candidates": 471,
-   "geocode": {
-    "lat": 28.716571,
-    "lng": 77.206419,
-    "distance_to_original_m": 1813,
-    "distance_to_refined_m": 271
-   },
+   "candidates": 510,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.716571,
+     "lng": 77.206419,
+     "distance_to_original_m": 1813,
+     "distance_to_refined_m": 2081
+    },
+    {
+     "source": "geonames",
+     "lat": 28.71206,
+     "lng": 77.206,
+     "distance_to_original_m": 1904,
+     "distance_to_refined_m": 2043
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 80,
@@ -2052,25 +2770,30 @@
     "lat": 28.588,
     "lng": 77.17
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 198,
    "refined": {
-    "lat": 28.588323,
-    "lng": 77.167996,
-    "on_road": "Benito Juarez Marg Underpass"
+    "lat": 28.587591,
+    "lng": 77.170578,
+    "on_road": ""
    },
-   "moved_m": 199,
-   "model_spread_68pct_m": 281,
-   "uncertainty_m": 310,
-   "confidence": "medium",
+   "moved_m": 73,
+   "model_spread_68pct_m": 600,
+   "uncertainty_m": 833,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 410,
-   "geocode": {
-    "lat": 28.587352,
-    "lng": 77.168107,
-    "distance_to_original_m": 198,
-    "distance_to_refined_m": 109
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.587352,
+     "lng": 77.168107,
+     "distance_to_original_m": 198,
+     "distance_to_refined_m": 243
+    }
+   ],
+   "recommendation": "keep_original",
+   "reason": "moved less than 150 m"
   },
   {
    "rank": 81,
@@ -2080,20 +2803,30 @@
     "lat": 28.699,
     "lng": 77.167
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1882,
    "refined": {
-    "lat": 28.701667,
-    "lng": 77.163982,
+    "lat": 28.701538,
+    "lng": 77.163595,
     "on_road": "Shalimar Bagh Flyover"
    },
-   "moved_m": 418,
-   "model_spread_68pct_m": 549,
-   "uncertainty_m": 692,
+   "moved_m": 436,
+   "model_spread_68pct_m": 627,
+   "uncertainty_m": 942,
    "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 82,
-   "geocode": null,
+   "candidates": 153,
+   "sources": [
+    {
+     "source": "report_2023_placement",
+     "lat": 28.691,
+     "lng": 77.15,
+     "distance_to_original_m": 1882,
+     "distance_to_refined_m": 1770
+    }
+   ],
    "recommendation": "review",
-   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 82,
@@ -2103,6 +2836,8 @@
     "lat": 28.852,
     "lng": 77.096
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.837991,
     "lng": 77.09968,
@@ -2110,11 +2845,11 @@
    },
    "moved_m": 1598,
    "model_spread_68pct_m": 345,
-   "uncertainty_m": 544,
+   "uncertainty_m": 783,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 98,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -2126,25 +2861,44 @@
     "lat": 28.716,
     "lng": 77.157
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 2294,
    "refined": {
-    "lat": 28.70175,
-    "lng": 77.163947,
+    "lat": 28.700294,
+    "lng": 77.158734,
     "on_road": "Shalimar Bagh Flyover"
    },
-   "moved_m": 1723,
-   "model_spread_68pct_m": 237,
-   "uncertainty_m": 484,
-   "confidence": "medium",
+   "moved_m": 1755,
+   "model_spread_68pct_m": 3207,
+   "uncertainty_m": 3283,
+   "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 462,
-   "geocode": {
-    "lat": 28.702214,
-    "lng": 77.164935,
-    "distance_to_original_m": 1717,
-    "distance_to_refined_m": 109
-   },
+   "candidates": 473,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.702214,
+     "lng": 77.164935,
+     "distance_to_original_m": 1717,
+     "distance_to_refined_m": 641
+    },
+    {
+     "source": "wikidata",
+     "lat": 28.720556,
+     "lng": 77.154167,
+     "distance_to_original_m": 577,
+     "distance_to_refined_m": 2297
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.703,
+     "lng": 77.16,
+     "distance_to_original_m": 1475,
+     "distance_to_refined_m": 325
+    }
+   ],
    "recommendation": "review",
-   "reason": "agrees with the geocode but moves the point more than 1.5 km, so a person should look first"
+   "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
   {
    "rank": 84,
@@ -2154,6 +2908,8 @@
     "lat": 28.674,
     "lng": 77.087
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.672619,
     "lng": 77.093728,
@@ -2161,13 +2917,13 @@
    },
    "moved_m": 674,
    "model_spread_68pct_m": 810,
-   "uncertainty_m": 821,
+   "uncertainty_m": 995,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 405,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 85,
@@ -2177,6 +2933,8 @@
     "lat": 28.659,
     "lng": 77.19
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.659428,
     "lng": 77.190176,
@@ -2184,11 +2942,11 @@
    },
    "moved_m": 51,
    "model_spread_68pct_m": 972,
-   "uncertainty_m": 981,
+   "uncertainty_m": 1131,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 260,
-   "geocode": null,
+   "sources": [],
    "recommendation": "keep_original",
    "reason": "moved less than 150 m"
   },
@@ -2200,25 +2958,30 @@
     "lat": 28.511,
     "lng": 77.276
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1007,
    "refined": {
-    "lat": 28.509042,
-    "lng": 77.265715,
-    "on_road": "Mehrauli Badarpur Road"
+    "lat": 28.505044,
+    "lng": 77.277726,
+    "on_road": "Ma Anandmayee Marg"
    },
-   "moved_m": 1028,
-   "model_spread_68pct_m": 305,
-   "uncertainty_m": 333,
-   "confidence": "medium",
+   "moved_m": 683,
+   "model_spread_68pct_m": 999,
+   "uncertainty_m": 1154,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 401,
-   "geocode": {
-    "lat": 28.510086,
-    "lng": 77.265743,
-    "distance_to_original_m": 1007,
-    "distance_to_refined_m": 116
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.510086,
+     "lng": 77.265743,
+     "distance_to_original_m": 1007,
+     "distance_to_refined_m": 1298
+    }
+   ],
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": 87,
@@ -2228,25 +2991,30 @@
     "lat": 28.611,
     "lng": 77.272
    },
+   "evidence_agreement": "consistent",
+   "evidence_spread_m": 125,
    "refined": {
-    "lat": 28.607392,
-    "lng": 77.276425,
-    "on_road": "Flyover"
+    "lat": 28.608998,
+    "lng": 77.278581,
+    "on_road": "NH24 Bypass"
    },
-   "moved_m": 589,
-   "model_spread_68pct_m": 304,
-   "uncertainty_m": 332,
-   "confidence": "medium",
+   "moved_m": 680,
+   "model_spread_68pct_m": 1034,
+   "uncertainty_m": 1185,
+   "confidence": "low",
    "mode": "matched_road",
    "candidates": 509,
-   "geocode": {
-    "lat": 28.611326,
-    "lng": 77.27323,
-    "distance_to_original_m": 125,
-    "distance_to_refined_m": 537
-   },
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.611326,
+     "lng": 77.27323,
+     "distance_to_original_m": 125,
+     "distance_to_refined_m": 583
+    }
+   ],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": 88,
@@ -2256,6 +3024,8 @@
     "lat": 28.6295,
     "lng": 77.1375
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.626527,
     "lng": 77.13439,
@@ -2263,13 +3033,13 @@
    },
    "moved_m": 449,
    "model_spread_68pct_m": 834,
-   "uncertainty_m": 844,
+   "uncertainty_m": 1015,
    "confidence": "low",
    "mode": "matched_road",
    "candidates": 485,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
-   "reason": "moves along the named road but no independent geocode confirms it"
+   "reason": "moves along the named road but no independent source confirms it"
   },
   {
    "rank": null,
@@ -2279,6 +3049,8 @@
     "lat": 28.63,
     "lng": 77.212
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.627188,
     "lng": 77.215591,
@@ -2286,11 +3058,11 @@
    },
    "moved_m": 470,
    "model_spread_68pct_m": 684,
-   "uncertainty_m": 803,
+   "uncertainty_m": 981,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 384,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -2302,6 +3074,8 @@
     "lat": 28.652,
     "lng": 77.234
    },
+   "evidence_agreement": "stored_point_only",
+   "evidence_spread_m": 0,
    "refined": {
     "lat": 28.650278,
     "lng": 77.23885,
@@ -2309,11 +3083,11 @@
    },
    "moved_m": 511,
    "model_spread_68pct_m": 355,
-   "uncertainty_m": 551,
+   "uncertainty_m": 787,
    "confidence": "low",
    "mode": "unmatched_nearby",
    "candidates": 81,
-   "geocode": null,
+   "sources": [],
    "recommendation": "review",
    "reason": "no OSM road with the reported name nearby; position stays uncertain"
   },
@@ -2325,25 +3099,37 @@
     "lat": 28.77,
     "lng": 77.147
    },
+   "evidence_agreement": "conflicting",
+   "evidence_spread_m": 1354,
    "refined": {
-    "lat": 28.773081,
-    "lng": 77.143658,
+    "lat": 28.766219,
+    "lng": 77.145213,
     "on_road": ""
    },
-   "moved_m": 473,
-   "model_spread_68pct_m": 227,
-   "uncertainty_m": 479,
-   "confidence": "medium",
+   "moved_m": 455,
+   "model_spread_68pct_m": 605,
+   "uncertainty_m": 927,
+   "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 159,
-   "geocode": {
-    "lat": 28.773172,
-    "lng": 77.143319,
-    "distance_to_original_m": 503,
-    "distance_to_refined_m": 35
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 182,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.773172,
+     "lng": 77.143319,
+     "distance_to_original_m": 503,
+     "distance_to_refined_m": 795
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.761,
+     "lng": 77.143,
+     "distance_to_original_m": 1074,
+     "distance_to_refined_m": 619
+    }
+   ],
+   "recommendation": "review",
+   "reason": "the refined point is more than 600 m from every independent source"
   },
   {
    "rank": null,
@@ -2353,25 +3139,37 @@
     "lat": 28.642,
     "lng": 77.12
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 832,
    "refined": {
-    "lat": 28.649653,
-    "lng": 77.124113,
-    "on_road": "Shivaji Marg"
+    "lat": 28.649202,
+    "lng": 77.125328,
+    "on_road": ""
    },
-   "moved_m": 941,
-   "model_spread_68pct_m": 183,
-   "uncertainty_m": 460,
-   "confidence": "medium",
+   "moved_m": 955,
+   "model_spread_68pct_m": 314,
+   "uncertainty_m": 770,
+   "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 197,
-   "geocode": {
-    "lat": 28.649056,
-    "lng": 77.12272,
-    "distance_to_original_m": 828,
-    "distance_to_refined_m": 151
-   },
-   "recommendation": "use_refined",
-   "reason": "refined point is on a major road and within 300 m of an independent geocode"
+   "candidates": 204,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.649056,
+     "lng": 77.12272,
+     "distance_to_original_m": 828,
+     "distance_to_refined_m": 255
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.649,
+     "lng": 77.123,
+     "distance_to_original_m": 832,
+     "distance_to_refined_m": 228
+    }
+   ],
+   "recommendation": "review",
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   },
   {
    "rank": null,
@@ -2381,25 +3179,37 @@
     "lat": 28.668,
     "lng": 77.25
    },
+   "evidence_agreement": "partial",
+   "evidence_spread_m": 537,
    "refined": {
-    "lat": 28.668534,
-    "lng": 77.255266,
-    "on_road": "Delhi–Dehradun Expressway"
+    "lat": 28.673224,
+    "lng": 77.251946,
+    "on_road": ""
    },
-   "moved_m": 517,
-   "model_spread_68pct_m": 505,
-   "uncertainty_m": 658,
+   "moved_m": 611,
+   "model_spread_68pct_m": 420,
+   "uncertainty_m": 819,
    "confidence": "low",
    "mode": "unmatched_nearby",
-   "candidates": 167,
-   "geocode": {
-    "lat": 28.668434,
-    "lng": 77.25053,
-    "distance_to_original_m": 71,
-    "distance_to_refined_m": 462
-   },
+   "candidates": 261,
+   "sources": [
+    {
+     "source": "osm_geocoder",
+     "lat": 28.668434,
+     "lng": 77.25053,
+     "distance_to_original_m": 71,
+     "distance_to_refined_m": 550
+    },
+    {
+     "source": "report_2023_placement",
+     "lat": 28.6725,
+     "lng": 77.252,
+     "distance_to_original_m": 537,
+     "distance_to_refined_m": 81
+    }
+   ],
    "recommendation": "review",
-   "reason": "no OSM road with the reported name nearby; position stays uncertain"
+   "reason": "agrees with an independent source but overall uncertainty is too large to recommend a move"
   }
  ]
 }

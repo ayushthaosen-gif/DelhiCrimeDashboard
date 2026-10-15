@@ -1,0 +1,479 @@
+{
+ "note": "Coordinates of the NAMED PLACE from GeoNames (via Open-Meteo) and Wikidata. Not crash locations.",
+ "zones": {
+  "Azadpur Sabzi Mandi": {
+   "geonames": {
+    "query": "Azadpur",
+    "lat": 28.70663,
+    "lng": 77.17864,
+    "name": "Āzādpur",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Wazirabad": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Akshardham Mandir": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "ISBT Kashmiri Gate": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Anand Vihar ISBT": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "SGT Nagar": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Rajoukari Flyover": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Near Yashobhoomi Convention Centre Dwarka": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Bhalswa Chowk": {
+   "geonames": {
+    "query": "Bhalswa",
+    "lat": 28.73558,
+    "lng": 77.16682,
+    "name": "Bhālswa Jahangirpur",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Libaspur Bus Stand": {
+   "geonames": {
+    "query": "Libaspur",
+    "lat": 28.75089,
+    "lng": 77.14647,
+    "name": "Libāspur",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Mukundpur Chowk": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Geeta Colony Flyover": {
+   "geonames": {
+    "query": "Geeta Colony",
+    "lat": 28.65066,
+    "lng": 77.27639,
+    "name": "Geeta Colony",
+    "feature_code": "PPLX"
+   },
+   "wikidata": null
+  },
+  "Chandgi Ram Akhara": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Hanuman Mandir JJ Colony Bawana": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Seelampur T Point": {
+   "geonames": {
+    "query": "Seelampur",
+    "lat": 28.67082,
+    "lng": 77.27208,
+    "name": "Seelampur",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Singhu Border": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Khajoori Chowk": {
+   "geonames": {
+    "query": "Khajoori",
+    "lat": 28.70958,
+    "lng": 77.2587,
+    "name": "Khajoori Khas",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Britannia Chowk": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Metro Station Haider Pur": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Sec-23 Petrol Pump": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Zakhira Flyover": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Red Light Pulprahlad Pur": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Prem Bari Pull": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Hanuman Mandir Yamuna Bazar": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Punjabi Bagh Chowk": {
+   "geonames": {
+    "query": "Punjabi Bagh",
+    "lat": 28.66448,
+    "lng": 77.12701,
+    "name": "Punjābi Bāgh",
+    "feature_code": "PPLX"
+   },
+   "wikidata": null
+  },
+  "Mukarba Chowk": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Shamshan Ghat Geeta Colony": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Goyla Village Najafgarh": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Gandhi Vihar Bus Stand": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Archana Cinema Red Light": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Sarai Kale Khan": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Kashmiri Gate Chowk Boulevard Road": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Burari Chowk": {
+   "geonames": {
+    "query": "Burari",
+    "lat": 28.7557,
+    "lng": 77.19941,
+    "name": "Burāri",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Adarsh Nagar": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Chhatra Marg Crossing": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Shastri Nagar Metro Station": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Majlis Park Metro Station": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Keshopur T Point": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Azad Pur Chowk": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Delhi Gate": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Siraspur": {
+   "geonames": {
+    "query": "Siraspur",
+    "lat": 28.75815,
+    "lng": 77.13087,
+    "name": "Siraspur",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Dhaula Kuan": {
+   "geonames": {
+    "query": "Dhaula Kuan",
+    "lat": 28.75517,
+    "lng": 77.14853,
+    "name": "Dhaula Kuān",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Monastery Ring Road": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Kingsway Camp Chowk": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Govindpuri Metro Station": {
+   "geonames": {
+    "query": "Govindpuri",
+    "lat": 28.53596,
+    "lng": 77.26429,
+    "name": "Govindpuri",
+    "feature_code": "PPLX"
+   },
+   "wikidata": null
+  },
+  "Nangloi Metro Station": {
+   "geonames": {
+    "query": "Nangloi",
+    "lat": 28.67957,
+    "lng": 77.06799,
+    "name": "Nāngloi Jāt",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Metro Station Madipur": {
+   "geonames": {
+    "query": "Madipur",
+    "lat": 28.67318,
+    "lng": 77.1215,
+    "name": "Mādipur",
+    "feature_code": "PPL"
+   },
+   "wikidata": null
+  },
+  "Keval Park Road No. 51": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Near Triveni Park Nangal Village Delhi Cantt": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Near SDM Office Geeta Colony": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Flyover Raja Ram Marg": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Telco Gajipur": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Loni Road Crossing": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Metro Station Dilshad Garden": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Hamdard Nagar Red Light": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Uttam Nagar": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Radisson Hotel": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "District Center Janakpuri": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Udyog Nagar": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Sai Baba Mandir Najafgarh": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Rama Road Crossing": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "C-1 Janakpuri": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Ghewra More": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Deepali Chowk": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "CRPF Camp Sonia Vihar": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Budhpur Ganda Nala/Hanuman Mandir Budhpur": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Sai Baba Mandir NH-1": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Khichadi Pur": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Kirari More": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Jharera Village": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Wazir Pur Depot": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Under Pass Gajipur": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Hilton Hotel": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Ram Charan Aggarwal Chowk": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "AIIMS": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Tilak Nagar Flyover": {
+   "geonames": {
+    "query": "Tilak Nagar",
+    "lat": 28.63956,
+    "lng": 77.08845,
+    "name": "Tilak Nagar",
+    "feature_code": "PPLX"
+   },
+   "wikidata": null
+  },
+  "Shani Mandir NH-1": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Tilak Marg Bhagwan Das Marg Crossing": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Nirankari Colony": {
+   "geonames": {
+    "query": "Nirankari Colony",
+    "lat": 28.71206,
+    "lng": 77.206,
+    "name": "Nirankāri Colony",
+    "feature_code": "PPLX"
+   },
+   "wikidata": null
+  },
+  "Satya Niketan Nanakpura": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Near Haldiram Wazirpur": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Raja Harishchander Hospital": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Shalimar Bagh": {
+   "geonames": null,
+   "wikidata": {
+    "id": "Q107366356",
+    "lat": 28.720555555555553,
+    "lng": 77.15416666666667,
+    "label": "Shalimar Bagh Delhi",
+    "description": "mughal garden in Delhi"
+   }
+  },
+  "Round About Bhairaon Enclave": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Jeewan Mala Hospital": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Tughlaqabad Village Red Light": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Khel Gaon": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Near KV School Naraina": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Hanuman Mandir": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Kabootar Market": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Nangli Poona": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Rajouri Garden": {
+   "geonames": null,
+   "wikidata": null
+  },
+  "Shastri Park/IT Park": {
+   "geonames": {
+    "query": "Shastri",
+    "lat": 28.6432,
+    "lng": 77.27768,
+    "name": "Shāstrīnagar",
+    "feature_code": "PPLX"
+   },
+   "wikidata": null
+  }
+ }
+}

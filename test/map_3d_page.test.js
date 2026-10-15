@@ -120,3 +120,8 @@ test('tour uses refined crash-zone positions only where the audit recommends use
   }
   assert.ok(script.includes('refined from OpenStreetMap roads'), 'a refined stop must say it is refined and not surveyed');
 });
+
+test('tour shows how well independent sources agree on each position', () => {
+  assert.ok(script.includes('Position evidence'));
+  for (const label of ['sources agree', 'sources differ', 'sources disagree', 'unverified estimate']) assert.ok(script.includes(label), label);
+});
