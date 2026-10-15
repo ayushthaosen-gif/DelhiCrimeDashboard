@@ -109,3 +109,14 @@ test('tour card links out to street view with an approximate-location label', ()
   assert.ok(script.includes('map_action=pano'));
   assert.ok(script.includes('rel="noopener"'));
 });
+
+test('tour uses refined crash-zone positions only where the audit recommends use_refined', () => {
+  const file = 'data/audits/crash_zones_2024/crash_zone_coordinates_refined_2024.json';
+  assert.ok(script.includes(file), 'tour must read the refinement review file');
+  assert.ok(script.includes("z.recommendation === 'use_refined'"), 'only use_refined positions may replace the originals');
+  const refined = JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
+  for (const z of refined.zones.filter(r => r.recommendation === 'use_refined')) {
+    assert.ok(z.refined.lat > 28.3 && z.refined.lat < 29 && z.refined.lng > 76.7 && z.refined.lng < 77.5, z.location_name);
+  }
+  assert.ok(script.includes('refined from OpenStreetMap roads'), 'a refined stop must say it is refined and not surveyed');
+});
