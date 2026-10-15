@@ -1,6 +1,7 @@
-"""Trial: can building footprint shape and size predict land use (residential / commercial / industrial / public)?
+"""NEGATIVE-RESULT EXPERIMENT (see docs/MPD_BUILT_UP_USE_TRIAL.md). Trial: can building footprint shape and size predict land use (residential / commercial / industrial / public)?
 Labels come from OSM land-use polygons, so this only tests whether footprints reproduce OSM's use tags, and where they
-generalise to unseen blocks. Scratch script, not part of the repo."""
+generalise to unseen blocks. Needs: pip install duckdb numpy shapely scikit-learn. Reads Overture Maps buildings over S3 for a ~10 km x 10 km area.
+The WorldCover window cache comes from: python scripts/build_mpd_worldcover_comparison.py --cache $SCRATCH/wc_cache"""
 import json, os, sys, time
 import numpy as np
 import duckdb
@@ -11,8 +12,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GroupKFold
 from sklearn.metrics import classification_report, confusion_matrix, f1_score, accuracy_score
 
-SP = os.path.dirname(os.path.abspath(__file__))
-REPO = r'C:\Users\ayush\DelhiCrimeDashboard'
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+SP = os.environ.get('SCRATCH', os.path.join(REPO, 'scratch'))  # cache dir: trial_buildings.parquet and wc_cache/worldcover_delhi_window.npz
+os.makedirs(SP, exist_ok=True)
 REL = '2026-09-23.1'
 W, S, E, N = 77.10, 28.60, 77.20, 28.69
 CELL = 100.0
