@@ -162,6 +162,20 @@ test('a Home button leads back to the dashboard home page', () => {
   assert.ok(fs.existsSync(path.join(ROOT, 'delhi_safety_dashboard.html')));
 });
 
+test('guided stories: four stories whose wards come from the data and each has real wards to visit', () => {
+  const ids = [...script.matchAll(/\{ id: '([a-z-]+)', title: '[^']+', cls: '([a-z_]+)'/g)].map(m => m[1]);
+  assert.deepEqual(ids, ['green-more', 'green-less', 'farm-built', 'built-green']);
+  const ok = sat.wards.filter(r => r.comparison_confidence === 'ok' && r.comparable_km2 >= 0.3);
+  const km = {
+    'green-more': ok.map(r => r.delta_green_open_pp / 100 * r.comparable_km2).filter(v => v > 0),
+    'green-less': ok.map(r => r.delta_green_open_pp / 100 * r.comparable_km2).filter(v => v < 0),
+    'farm-built': ok.map(r => r.planned_agriculture_share_pct / 100 * r.comparable_km2 * (r.planned_agriculture_seen_as_built_pct || 0) / 100).filter(v => v >= 0.3),
+    'built-green': ok.map(r => r.planned_built_share_pct / 100 * r.comparable_km2 * (r.planned_built_seen_as_green_or_crop_pct || 0) / 100).filter(v => v >= 0.3)
+  };
+  for (const id of ids) assert.ok(km[id].length >= 5, id + ': needs at least five wards, has ' + km[id].length);
+  assert.ok(script.includes('is not proof of a violation'), 'every story card must carry the caveat');
+  assert.ok(script.includes("data-act=\"stop\"") && script.includes("'Escape'"), 'a story must be stoppable by button and Escape');
+
 test('the view class is set on the page before the maps are created, and the maps are resized after layout', () => {
   const classAt = script.indexOf("document.body.classList.toggle('swipe', view === 'swipe')");
   const mapsAt = script.indexOf("maps.A = makeMap('A', 'mapA')");
