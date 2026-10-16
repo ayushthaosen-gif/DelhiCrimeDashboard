@@ -442,7 +442,7 @@ footer a { color: inherit; }
     <button class="theme-btn" id="themeToggle" type="button" aria-label="Switch colour theme">◐</button>
     <a class="nav-cta" href="interactive_map.html">Interactive map →</a>
     <a class="nav-cta" href="map_3d.html" title="Prototype 3D ward view">3D view (prototype)</a>
-    <a class="nav-cta" href="for_reporters.html" title="What you can and cannot say">For reporters</a>
+    <a class="nav-cta" href="for_reporters.html" title="What you can and cannot say">Reporters &amp; researchers</a>
   </nav>
   <header class="masthead">
     <div class="header-copy">
