@@ -242,7 +242,7 @@ def main():
             problems = arithmetic(v)
             row = {'district': h['district'] or site, 'year': int(h['from'][:4]), 'month': mi + 1, 'month_name': m, **{c: v.get(c) or 0 for c in MONTH_COLS},
                    'local_body_pending': h['local_body_pending'] if h['from'][:7] == h['to'][:7] else None, 'report_period_from': h['from'], 'report_period_to': h['to'],
-                   'generated': h['generated'], 'source_file': rec['file'], 'sha256': sha, 'check': '; '.join(problems) or 'ok'}
+                   'generated': h['generated'], 'extraction_method': 'pdf_table', 'source_file': rec['file'], 'sha256': sha, 'check': '; '.join(problems) or 'ok'}
             if problems:
                 issues['arithmetic'].append({k: row[k] for k in ('district', 'year', 'month_name', 'source_file', 'check')})
             key = (row['district'], row['year'], row['month'])
@@ -270,9 +270,29 @@ def main():
                     continue
             station_best[key] = row
 
+    # Scanned (image-only) PDFs: values transcribed from the page images, used only when the staged file still has the same checksum and only where
+    # no text-layer row exists for that district and month. Each transcription already passed the arithmetic and printed-total checks.
+    tpath = os.path.join(OUT, 'transcribed_image_tables.json')
+    if os.path.exists(tpath):
+        tr = json.load(open(tpath, encoding='utf-8'))
+        staged = {f['sha256']: f for f in manifest}
+        for t in tr['files']:
+            if t['sha256'] not in staged:
+                issues['conflicts'].append({'table': 'transcription', 'file': t['file'], 'problem': 'staged PDF is missing or changed (checksum differs), so its transcription was not used'})
+                continue
+            for mi, m in enumerate(MONTHS):
+                v = t['months'][m]
+                key = (tr['district'], t['year'], mi + 1)
+                if key in month_best:
+                    continue
+                problems = arithmetic(v)
+                month_best[key] = {'district': tr['district'], 'year': t['year'], 'month': mi + 1, 'month_name': m, **{c: v.get(c) or 0 for c in MONTH_COLS},
+                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': None,
+                                   'extraction_method': 'image_transcription', 'source_file': t['file'], 'sha256': t['sha256'], 'check': '; '.join(problems) or 'ok'}
+
     mrows = sorted(month_best.values(), key=lambda r: (r['district'], r['year'], r['month']))
     srows = sorted(station_best.values(), key=lambda r: (r['district'], r['period_from'] or '', r['period_to'] or '', r['code']))
-    mfields = ['district', 'year', 'month', 'month_name'] + MONTH_COLS + ['local_body_pending', 'report_period_from', 'report_period_to', 'generated', 'source_file', 'sha256', 'check']
+    mfields = ['district', 'year', 'month', 'month_name'] + MONTH_COLS + ['local_body_pending', 'report_period_from', 'report_period_to', 'generated', 'extraction_method', 'source_file', 'sha256', 'check']
     sfields = ['district', 'period_from', 'period_to', 'generated', 's_no', 'code', 'police_station'] + STATION_COLS + ['source_file', 'sha256', 'check']
     for name, fields, rows in (('irad_monthly_by_district.csv', mfields, mrows), ('irad_station_by_period.csv', sfields, srows)):
         with open(os.path.join(OUT, name), 'w', newline='', encoding='utf-8') as fh:

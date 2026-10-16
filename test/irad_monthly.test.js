@@ -28,7 +28,7 @@ const n = (v) => Number(v || 0);
 const DISTRICTS = new Set(['Central', 'East', 'New Delhi', 'North', 'North East', 'North West', 'South', 'South East', 'South West', 'West', 'Shahdara']);
 
 test('month-wise rows satisfy the report arithmetic, with unique district-month keys', () => {
-  assert.ok(months.length >= 90);
+  assert.ok(months.length >= 140);
   const seen = new Set();
   for (const r of months) {
     assert.ok(DISTRICTS.has(r.district), 'unknown district ' + r.district);
@@ -74,3 +74,22 @@ test('Central Delhi 2025: monthly reports add up to 226 accidents, 49 fatal and 
   assert.equal(sum('fatal'), 49);
   assert.equal(sum('killed'), 51);
 });
+
+test('New Delhi 2022 to 2025 come from scanned PDFs and are labelled as transcribed, with totals matching the printed TOTAL rows', () => {
+  const expected = { 2022: [233, 54, 58], 2023: [201, 33, 34], 2024: [229, 37, 37], 2025: [238, 37, 41] };
+  for (const [year, [acc, fatal, killed]] of Object.entries(expected)) {
+    const rows = months.filter(r => r.district === 'New Delhi' && r.year === year);
+    assert.equal(rows.length, 12, year);
+    for (const r of rows) assert.equal(r.extraction_method, 'image_transcription');
+    const sum = (k) => rows.reduce((a, r) => a + n(r[k]), 0);
+    assert.equal(sum('total_accidents'), acc); assert.equal(sum('fatal'), fatal); assert.equal(sum('killed'), killed);
+  }
+  const t = JSON.parse(fs.readFileSync(path.join(DIR, 'transcribed_image_tables.json'), 'utf8'));
+  assert.match(t.note, /should still spot-check/);
+  for (const f of t.files) {
+    const cols = Object.keys(f.printed_total_row);
+    for (const c of cols) assert.equal(Object.values(f.months).reduce((a, m) => a + m[c], 0), f.printed_total_row[c], f.file + ' ' + c);
+  }
+  for (const r of months.filter(r => r.extraction_method !== 'image_transcription')) assert.equal(r.extraction_method, 'pdf_table');
+});
+

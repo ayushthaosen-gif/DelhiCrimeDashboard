@@ -12,15 +12,6 @@
    ]
   },
   {
-   "file": "North_West__17659568465531.pdf",
-   "listed_on": "North West",
-   "report_says": "South East",
-   "period": [
-    "2025-02-01",
-    "2025-02-28"
-   ]
-  },
-  {
    "file": "North_West__17659566344197.pdf",
    "listed_on": "North West",
    "report_says": "South East",
@@ -54,6 +45,15 @@
    "period": [
     "2025-10-01",
     "2025-10-31"
+   ]
+  },
+  {
+   "file": "North_West__17659568465531.pdf",
+   "listed_on": "North West",
+   "report_says": "South East",
+   "period": [
+    "2025-02-01",
+    "2025-02-28"
    ]
   },
   {
