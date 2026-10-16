@@ -1,0 +1,1237 @@
+{
+ "generated": "2026-10-16",
+ "source": "Delhi Road Crash Report 2024 (Delhi Traffic Police), Map 6.1 Road Crash Prone Zones-2024 (111), PDF page 116",
+ "georeference": {
+  "mean_boundary_distance_px": 6.63,
+  "iou_with_delhi_outline": 0.844,
+  "metres_per_pixel": 152.8,
+  "rotation_deg": 0.89
+ },
+ "dots_detected": 72,
+ "dots_in_report": 111,
+ "caveat": "Kilometre-scale check only. The map is a low-resolution raster; 39 of the 111 dots could not be separated from clusters, so a zone near the crowded centre may match a hidden dot. \"no_dot_within_2500m\" means \"look at this point\", not \"wrong\".",
+ "stored_point_to_nearest_dot_m": {
+  "median": 974,
+  "p90": 2852
+ },
+ "random_point_in_delhi_to_nearest_dot_m": {
+  "median": 1601,
+  "p90": 3578,
+  "method": "centroids of the 290 wards"
+ },
+ "counts": {
+  "near_a_dot": 69,
+  "far_from_dots": 8,
+  "no_dot_within_2500m": 16
+ },
+ "zones": [
+  {
+   "rank": 1,
+   "location_name": "Azadpur Sabzi Mandi",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 560,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 638
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 537
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 791
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 2,
+   "location_name": "Wazirabad",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 513,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 2119
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 138
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 3,
+   "location_name": "Akshardham Mandir",
+   "road_name": "NH-24",
+   "nearest_dot_m": 1531,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1512
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1475
+    }
+   ],
+   "map_check": "far_from_dots"
+  },
+  {
+   "rank": 4,
+   "location_name": "ISBT Kashmiri Gate",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 840,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 711
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 945
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 5,
+   "location_name": "Anand Vihar ISBT",
+   "road_name": "Road No.56",
+   "nearest_dot_m": 2128,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1958
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 2036
+    }
+   ],
+   "map_check": "far_from_dots"
+  },
+  {
+   "rank": 6,
+   "location_name": "SGT Nagar",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 1214,
+   "source_nearest_dot_m": [
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 553
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 7,
+   "location_name": "Rajoukari Flyover",
+   "road_name": "NH-8",
+   "nearest_dot_m": 2684,
+   "source_nearest_dot_m": [],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 8,
+   "location_name": "Near Yashobhoomi Convention Centre Dwarka",
+   "road_name": "UER II",
+   "nearest_dot_m": 5160,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 5481
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 9,
+   "location_name": "Bhalswa Chowk",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 969,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 808
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 1150
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1192
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 10,
+   "location_name": "Libaspur Bus Stand",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 319,
+   "source_nearest_dot_m": [
+    {
+     "source": "geonames",
+     "dot_distance_m": 479
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 595
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 11,
+   "location_name": "Mukundpur Chowk",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 1290,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1589
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1489
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 12,
+   "location_name": "Geeta Colony Flyover",
+   "road_name": "Yamuna Pusta Road",
+   "nearest_dot_m": 819,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 250
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 869
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 198
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 13,
+   "location_name": "Chandgi Ram Akhara",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 1219,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 14,
+   "location_name": "Hanuman Mandir JJ Colony Bawana",
+   "road_name": "Bawana Road",
+   "nearest_dot_m": 1340,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1509
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 15,
+   "location_name": "Seelampur T Point",
+   "road_name": "G.T. Road",
+   "nearest_dot_m": 859,
+   "source_nearest_dot_m": [
+    {
+     "source": "geonames",
+     "dot_distance_m": 1119
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 824
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 16,
+   "location_name": "Singhu Border",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 4855,
+   "source_nearest_dot_m": [],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 17,
+   "location_name": "Khajoori Chowk",
+   "road_name": "Wazirabad Road",
+   "nearest_dot_m": 1113,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1291
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 1105
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1101
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 18,
+   "location_name": "Britannia Chowk",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 566,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 19,
+   "location_name": "Metro Station Haider Pur",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 977,
+   "source_nearest_dot_m": [
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 144
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 20,
+   "location_name": "Sec-23 Petrol Pump",
+   "road_name": "Qutab Garh Road",
+   "nearest_dot_m": 1342,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 21,
+   "location_name": "Zakhira Flyover",
+   "road_name": "Rohtak Road",
+   "nearest_dot_m": 974,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 695
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1251
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 22,
+   "location_name": "Red Light Pulprahlad Pur",
+   "road_name": "Mehrauli Badarpur Road",
+   "nearest_dot_m": 611,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 23,
+   "location_name": "Prem Bari Pull",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 771,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1036
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 24,
+   "location_name": "Hanuman Mandir Yamuna Bazar",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 503,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 531
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 25,
+   "location_name": "Punjabi Bagh Chowk",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 926,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1022
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 616
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1007
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 26,
+   "location_name": "Mukarba Chowk",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 439,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 597
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 456
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 27,
+   "location_name": "Shamshan Ghat Geeta Colony",
+   "road_name": "Yamuna Pusta Road",
+   "nearest_dot_m": 1036,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 28,
+   "location_name": "Goyla Village Najafgarh",
+   "road_name": "Goyla Dairy Road",
+   "nearest_dot_m": 3349,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 778
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 29,
+   "location_name": "Gandhi Vihar Bus Stand",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 80,
+   "source_nearest_dot_m": [
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 188
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 30,
+   "location_name": "Archana Cinema Red Light",
+   "road_name": "Josef Broz Tito Marg",
+   "nearest_dot_m": 161,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 31,
+   "location_name": "Sarai Kale Khan",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 1241,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1055
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 680
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 32,
+   "location_name": "Kashmiri Gate Chowk Boulevard Road",
+   "road_name": "Boulevard Road",
+   "nearest_dot_m": 844,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 33,
+   "location_name": "Burari Chowk",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 3242,
+   "source_nearest_dot_m": [
+    {
+     "source": "geonames",
+     "dot_distance_m": 4400
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 2623
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 34,
+   "location_name": "Adarsh Nagar",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 1020,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 955
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1034
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 35,
+   "location_name": "Chhatra Marg Crossing",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 601,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 663
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 36,
+   "location_name": "Shastri Nagar Metro Station",
+   "road_name": "Vir Banda Bairagi Marg",
+   "nearest_dot_m": 1190,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1157
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 37,
+   "location_name": "Majlis Park Metro Station",
+   "road_name": "Road No.51",
+   "nearest_dot_m": 1090,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 38,
+   "location_name": "Keshopur T Point",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 896,
+   "source_nearest_dot_m": [
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 452
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 39,
+   "location_name": "Azad Pur Chowk",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 192,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 40,
+   "location_name": "Delhi Gate",
+   "road_name": "N. Subhash Marg",
+   "nearest_dot_m": 913,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 818
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 41,
+   "location_name": "Siraspur",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 2759,
+   "source_nearest_dot_m": [],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 42,
+   "location_name": "Dhaula Kuan",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 538,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 126
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 538
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 43,
+   "location_name": "Monastery Ring Road",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 647,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 44,
+   "location_name": "Kingsway Camp Chowk",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 1683,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1635
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1615
+    }
+   ],
+   "map_check": "far_from_dots"
+  },
+  {
+   "rank": 45,
+   "location_name": "Govindpuri Metro Station",
+   "road_name": "Anand Mai Marg",
+   "nearest_dot_m": 861,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 925
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 949
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 46,
+   "location_name": "Nangloi Metro Station",
+   "road_name": "Rohtak Road",
+   "nearest_dot_m": 929,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 855
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 1089
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 47,
+   "location_name": "Metro Station Madipur",
+   "road_name": "Rohtak Road",
+   "nearest_dot_m": 908,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 945
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 538
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1253
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 48,
+   "location_name": "Keval Park Road No. 51",
+   "road_name": "Road No. 51",
+   "nearest_dot_m": 1047,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 340
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 49,
+   "location_name": "Near Triveni Park Nangal Village Delhi Cantt",
+   "road_name": "Pankha Road",
+   "nearest_dot_m": 1241,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 50,
+   "location_name": "Near SDM Office Geeta Colony",
+   "road_name": "Yamuna Pusta Road",
+   "nearest_dot_m": 931,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 51,
+   "location_name": "Flyover Raja Ram Marg",
+   "road_name": "Raja Ram Kohli Marg",
+   "nearest_dot_m": 1142,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 52,
+   "location_name": "Telco Gajipur",
+   "road_name": "Road No.56",
+   "nearest_dot_m": 603,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 53,
+   "location_name": "Loni Road Crossing",
+   "road_name": "Wazirabad Road",
+   "nearest_dot_m": 612,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1357
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 2010
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 54,
+   "location_name": "Metro Station Dilshad Garden",
+   "road_name": "G.T. Road",
+   "nearest_dot_m": 2550,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1895
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 55,
+   "location_name": "Hamdard Nagar Red Light",
+   "road_name": "Mehrauli Badarpur Road",
+   "nearest_dot_m": 907,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 876
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 56,
+   "location_name": "Uttam Nagar",
+   "road_name": "Najafgarh Road",
+   "nearest_dot_m": 1862,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1334
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1067
+    }
+   ],
+   "map_check": "far_from_dots"
+  },
+  {
+   "rank": 57,
+   "location_name": "Radisson Hotel",
+   "road_name": "NH-8",
+   "nearest_dot_m": 409,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 58,
+   "location_name": "District Center Janakpuri",
+   "road_name": "Najafgarh Road",
+   "nearest_dot_m": 1631,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1636
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1532
+    }
+   ],
+   "map_check": "far_from_dots"
+  },
+  {
+   "rank": 59,
+   "location_name": "Udyog Nagar",
+   "road_name": "Rohtak Road",
+   "nearest_dot_m": 1178,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1255
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1384
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 60,
+   "location_name": "Sai Baba Mandir Najafgarh",
+   "road_name": "Najafgarh Road",
+   "nearest_dot_m": 3113,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 3062
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 61,
+   "location_name": "Rama Road Crossing",
+   "road_name": "Patel Road",
+   "nearest_dot_m": 570,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 959
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 62,
+   "location_name": "C-1 Janakpuri",
+   "road_name": "Pankha Road",
+   "nearest_dot_m": 1293,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 490
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 63,
+   "location_name": "Ghewra More",
+   "road_name": "Rohtak Road",
+   "nearest_dot_m": 6193,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 6768
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 64,
+   "location_name": "Deepali Chowk",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 3271,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 3312
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 3271
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 65,
+   "location_name": "CRPF Camp Sonia Vihar",
+   "road_name": "Pusta Road",
+   "nearest_dot_m": 3315,
+   "source_nearest_dot_m": [],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 66,
+   "location_name": "Budhpur Ganda Nala/Hanuman Mandir Budhpur",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 1264,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 67,
+   "location_name": "Sai Baba Mandir NH-1",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 704,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 68,
+   "location_name": "Khichadi Pur",
+   "road_name": "NH-24",
+   "nearest_dot_m": 517,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 69,
+   "location_name": "Kirari More",
+   "road_name": "Rohtak Road",
+   "nearest_dot_m": 1882,
+   "source_nearest_dot_m": [],
+   "map_check": "far_from_dots"
+  },
+  {
+   "rank": 70,
+   "location_name": "Jharera Village",
+   "road_name": "NH-8",
+   "nearest_dot_m": 2602,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 2466
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 71,
+   "location_name": "Wazir Pur Depot",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 739,
+   "source_nearest_dot_m": [
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1098
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 72,
+   "location_name": "Under Pass Gajipur",
+   "road_name": "NH-24",
+   "nearest_dot_m": 470,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 73,
+   "location_name": "Hilton Hotel",
+   "road_name": "Noida Link Road",
+   "nearest_dot_m": 1503,
+   "source_nearest_dot_m": [],
+   "map_check": "far_from_dots"
+  },
+  {
+   "rank": 74,
+   "location_name": "Ram Charan Aggarwal Chowk",
+   "road_name": "BSZ Marg",
+   "nearest_dot_m": 555,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 705
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 75,
+   "location_name": "AIIMS",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 2852,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 3020
+    }
+   ],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 76,
+   "location_name": "Tilak Nagar Flyover",
+   "road_name": "Najafgarh Road",
+   "nearest_dot_m": 690,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1292
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 718
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 446
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 77,
+   "location_name": "Shani Mandir NH-1",
+   "road_name": "GTK Road",
+   "nearest_dot_m": 2755,
+   "source_nearest_dot_m": [],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 78,
+   "location_name": "Tilak Marg Bhagwan Das Marg Crossing",
+   "road_name": "Tilak Marg",
+   "nearest_dot_m": 1215,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 79,
+   "location_name": "Nirankari Colony",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 637,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 64
+    },
+    {
+     "source": "geonames",
+     "dot_distance_m": 470
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 80,
+   "location_name": "Satya Niketan Nanakpura",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 374,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 333
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 81,
+   "location_name": "Near Haldiram Wazirpur",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 739,
+   "source_nearest_dot_m": [
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1166
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 82,
+   "location_name": "Raja Harishchander Hospital",
+   "road_name": "DSIDC Narela Road",
+   "nearest_dot_m": 3403,
+   "source_nearest_dot_m": [],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": 83,
+   "location_name": "Shalimar Bagh",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 652,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 888
+    },
+    {
+     "source": "wikidata",
+     "dot_distance_m": 384
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1253
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 84,
+   "location_name": "Round About Bhairaon Enclave",
+   "road_name": "Outer Ring Road",
+   "nearest_dot_m": 273,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 85,
+   "location_name": "Jeewan Mala Hospital",
+   "road_name": "New Rohtak Road",
+   "nearest_dot_m": 328,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 86,
+   "location_name": "Tughlaqabad Village Red Light",
+   "road_name": "Mehrauli Badarpur Road",
+   "nearest_dot_m": 448,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 564
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": 87,
+   "location_name": "Khel Gaon",
+   "road_name": "NH-24",
+   "nearest_dot_m": 1677,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1622
+    }
+   ],
+   "map_check": "far_from_dots"
+  },
+  {
+   "rank": 88,
+   "location_name": "Near KV School Naraina",
+   "road_name": "Ring Road",
+   "nearest_dot_m": 1417,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": null,
+   "location_name": "Hanuman Mandir",
+   "road_name": "",
+   "nearest_dot_m": 2523,
+   "source_nearest_dot_m": [],
+   "map_check": "no_dot_within_2500m"
+  },
+  {
+   "rank": null,
+   "location_name": "Kabootar Market",
+   "road_name": "",
+   "nearest_dot_m": 979,
+   "source_nearest_dot_m": [],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": null,
+   "location_name": "Nangli Poona",
+   "road_name": "",
+   "nearest_dot_m": 236,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 303
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 433
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": null,
+   "location_name": "Rajouri Garden",
+   "road_name": "",
+   "nearest_dot_m": 823,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1221
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1205
+    }
+   ],
+   "map_check": "near_a_dot"
+  },
+  {
+   "rank": null,
+   "location_name": "Shastri Park/IT Park",
+   "road_name": "",
+   "nearest_dot_m": 1194,
+   "source_nearest_dot_m": [
+    {
+     "source": "osm_geocoder",
+     "dot_distance_m": 1240
+    },
+    {
+     "source": "report_2023_placement",
+     "dot_distance_m": 1417
+    }
+   ],
+   "map_check": "near_a_dot"
+  }
+ ]
+}

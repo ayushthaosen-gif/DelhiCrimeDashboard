@@ -55,3 +55,28 @@ Re-run: `node scripts/audit_crash_zone_coordinates.js`, `node scripts/fetch_cras
 
 Only real crash geotags. The report says its spots were geotagged internally, so a Right to Information request to Delhi Traffic
 Police for the 111 zone coordinates would replace all of this.
+
+## 5. What the report itself says (checked against the PDF, 2026-10)
+
+- **Zone definition.** Section 6.8 (report page 94): a crash-prone zone is *three or more fatal crashes within the diameter of 500 meters or ten or more total
+  accidents in the same region*. So a zone is a **500 m diameter (250 m radius)**; the 250 m ring in the 3D tour is correct. (News coverage that described a
+  "500 m radius" was wrong.) 111 zones; the ten with the most fatal crashes are black spots (Table 6.41).
+- **Geotags.** "All crash spots are geo-tagged and marked on GIS map." The report publishes no coordinates and no police-station, chainage or other per-zone
+  location text beyond the zone name and road, so there is nothing more to extract from the tables. The supplied structured extract is identical to the data
+  already in this repo (93 named zones, null geometry); only the road summary (Table 6.33) was new and is in `data/source/crash_report_2024/`.
+- **88 of 111 zones are named.** Table 6.29 names 88 (plus 5 more from the other category tables = 93); 18 zones are unnamed in any table. Their positions exist only
+  as dots on Map 6.1.
+
+### The report's own map (Map 6.1, page 99)
+
+Map 6.1 draws all 111 zones as dots over the Delhi outline. `scripts/georeference_report_map.py` registers that raster to the Delhi outline and reads the dots
+back as coordinates (`crash_zone_report_map_dots_2024.json`); `scripts/check_zones_against_report_map.js` compares the stored points with them.
+
+**It is too coarse to place a zone.** The page is a 96 ppi raster: about 150 m per pixel, dots about 1 km wide, and the printed outline differs from the
+real boundary by roughly 1 km, so dot positions are good to about a kilometre. 72 of the 111 dots could be separated; the rest sit inside clusters in the centre.
+- Stored points sit a median **0.97 km** from the nearest dot (90th percentile 2.9 km); ward centroids, as a stand-in for arbitrary points, sit 1.6 km
+  (3.6 km). So the map confirms the stored points are in the right neighbourhoods, but only weakly.
+- 69 of 93 points are within 1.5 km of a dot, 8 are 1.5-2.5 km away, and **16 have no dot within 2.5 km** (for example Near Yashobhoomi Convention Centre Dwarka,
+  Singhu Border, Ghewra More, Goyla Village, Raja Harishchander Hospital). That is a list of points to look at first, not proof they are wrong (their dots may be
+  hidden in clusters).
+- Result: the map is a **kilometre-scale sanity check** and is shown in the tour as "Report map dot". It cannot decide between sources that differ by 500-1000 m.

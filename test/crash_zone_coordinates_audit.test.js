@@ -76,3 +76,35 @@ test('audit verdict counts add up', () => {
   const total = Object.values(audit.counts).reduce((a, b) => a + b, 0);
   assert.equal(total, zones.length);
 });
+
+const mapCheck = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/audits/crash_zones_2024/crash_zone_report_map_check_2024.json'), 'utf8'));
+
+test('report map check covers every zone, states its limits, and the counts add up', () => {
+  assert.deepEqual(mapCheck.zones.map(z => z.location_name), zones.map(f => f.properties.location_name));
+  assert.equal(Object.values(mapCheck.counts).reduce((a, b) => a + b, 0), zones.length);
+  assert.ok(mapCheck.dots_detected >= 60 && mapCheck.dots_detected <= 111, 'dots detected ' + mapCheck.dots_detected);
+  assert.ok(mapCheck.georeference.metres_per_pixel > 100 && mapCheck.georeference.metres_per_pixel < 250);
+  assert.match(mapCheck.caveat, /Kilometre-scale check only/);
+  for (const z of mapCheck.zones) {
+    if (z.nearest_dot_m <= 1500) assert.equal(z.map_check, 'near_a_dot');
+    else if (z.nearest_dot_m <= 2500) assert.equal(z.map_check, 'far_from_dots');
+    else assert.equal(z.map_check, 'no_dot_within_2500m');
+  }
+});
+
+test('the zone definition matches what the report says: a 500 m diameter, so a 250 m radius', () => {
+  for (const f of zones) assert.equal(f.properties.zone_radius_m, 250);
+  const readme = fs.readFileSync(path.join(ROOT, 'data/source/crash_report_2024/README.md'), 'utf8');
+  assert.match(readme, /diameter of 500 meters/);
+});
+
+test('road summary (Table 6.33) is consistent with the 111 zones in the report', () => {
+  const csv = fs.readFileSync(path.join(ROOT, 'data/source/crash_report_2024/delhi_crash_road_summary_2024.csv'), 'utf8');
+  const rows = csv.trim().split(String.fromCharCode(10)).slice(1)
+    .map(l => l.match(/^(\d+),(.+?),(\d+),(\d+),(\d+),(\d+),/)).filter(Boolean);
+  assert.ok(rows.length >= 8);
+  const zonesOnTopRoads = rows.reduce((a, m) => a + Number(m[3]), 0);
+  assert.ok(zonesOnTopRoads <= 111, 'zones on the listed roads cannot exceed the 111 total: ' + zonesOnTopRoads);
+  for (const m of rows) assert.equal(Number(m[4]) + Number(m[5]), Number(m[6]), m[2] + ': simple + fatal must equal total');
+});
+
