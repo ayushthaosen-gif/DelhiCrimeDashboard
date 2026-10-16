@@ -38,6 +38,17 @@ for how to cite this repository.
 
 - [Delhi Urban Safety Observatory](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/)
 - [Delhi Safety & Infrastructure Explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/interactive_map.html)
+- Prototypes (new, not linked from the main navigation except the first):
+  - [3D crash-zone and ward explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d.html) (`map_3d.html`): extruded wards, a top-10 crash-zone tour, and toggles for 3D buildings, mapped cameras, police stations and posts (OpenStreetMap), and liquor vends (official lists, approximate positions). View is saved in the link.
+  - [Master Plan 2047 3D comparison](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d_mpd.html) (`map_3d_mpd.html`): plan vs 2021 satellite land cover by ward (swipe, side by side, change), with four guided stories.
+  - [District iRAD reports](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/irad_stations.html) (`irad_stations.html`): monthly trends by district and police-station tables from the staged iRAD data. Scanned-PDF rows are tagged and need a human spot-check.
+
+## Recent additions (2026-10)
+
+- **3D explorers**: `map_3d.html` and `map_3d_mpd.html` (MapLibre GL JS 4.7.1), with phone layout fixes and a Home link. Tests: `test/map_3d_page.test.js`, `test/map_3d_mpd_page.test.js`.
+- **Master Plan 2047 vs satellite**: ESA WorldCover 2021 (10 m) rasterised against plan polygons by `scripts/build_mpd_worldcover_comparison.py` into `data/derived/mpd2047_worldcover_comparison.json`; DDA settlement layers (Lal Dora, PM-UDAY colonies, JJ clusters) in `data/source/dda_settlements/`. A trial of splitting built-up land by use is written up, with its negative result, in [`docs/MPD_BUILT_UP_USE_TRIAL.md`](docs/MPD_BUILT_UP_USE_TRIAL.md). Satellite sees cover, not use.
+- **Crash-zone coordinate audit**: `data/audits/crash_zones_2024/` and [`docs/CRASH_ZONE_COORDINATES.md`](docs/CRASH_ZONE_COORDINATES.md). Public sources cannot place zones better than roughly 500 to 1000 m; production coordinates were not changed. A draft RTI for police geotags is in [`docs/RTI_REQUEST_DRAFT.md`](docs/RTI_REQUEST_DRAFT.md) (two more RTI drafts for DDA and MCD land use sit beside it). Nothing has been filed.
+- **District iRAD data (staged, not in the dashboard)**: `data/derived/irad_monthly/` (141 monthly district rows, 589 police-station rows, manifest, issues, scanned-table transcriptions), built by `scripts/collect_irad_monthly.py` (needs pdfplumber). See [`docs/IRAD_DISTRICT_REPORTS.md`](docs/IRAD_DISTRICT_REPORTS.md). iRAD is a different series from the Delhi Traffic Police crash report; do not mix them.
 
 ## What's new in this version
 
