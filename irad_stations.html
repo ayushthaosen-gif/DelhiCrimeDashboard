@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>District iRAD Reports Explorer (prototype)</title>
+<meta name="description" content="Prototype explorer for the district iRAD road-accident reports staged from Delhi's district administration sites: monthly trends by district and police-station tables.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+  :root { --bg:#1c2331; --panel:#252d3d; --ink:#e8ecf3; --muted:#9aa5b8; --accent:#f0a63c; --line:#38425a; --c1:#f0a63c; --c2:#6fa8dc; --c3:#7bd88f; --c4:#e07aa8; --c5:#b79cf0; }
+  :root[data-theme="light"] { --bg:#f4f6fa; --panel:#ffffff; --ink:#1c2331; --muted:#5b6578; --accent:#b8650a; --line:#d5dbe6; --c1:#b8650a; --c2:#2b6cb0; --c3:#2f855a; --c4:#b83280; --c5:#6b46c1; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, sans-serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 14px 16px 60px; }
+  .homebtn { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 999px; font-weight: 600; font-size: 13px; text-decoration: none; }
+  .homebtn:hover { border-color: var(--accent); }
+  a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  h1 { font-size: 22px; margin: 14px 0 4px; }
+  h2 { font-size: 17px; margin: 0 0 4px; }
+  .proto { color: var(--accent); font-size: 12px; font-weight: 400; }
+  .sub { color: var(--muted); font-size: 13px; margin: 2px 0 8px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 14px 0; }
+  .warn { border-left: 4px solid var(--accent); }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin: 8px 0 10px; }
+  label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+  select, input[type=search] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px; min-height: 40px; min-width: 150px; }
+  .seg { display: inline-flex; gap: 4px; }
+  .seg button { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; min-height: 40px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 600; }
+  svg { width: 100%; height: auto; display: block; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; color: var(--muted); font-weight: 400; padding: 4px 6px 4px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 5px 6px 5px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  td.n, th.n { text-align: right; white-space: nowrap; }
+  .bar { height: 8px; background: var(--line); border-radius: 3px; min-width: 80px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--accent); }
+  tr.pick { cursor: pointer; }
+  tr.pick:hover td, tr.pick.on td { background: rgba(240,166,60,.12); }
+  .tag { font-size: 11px; color: var(--accent); }
+  .note { color: var(--muted); font-size: 12px; }
+  .err { color: var(--accent); }
+  @media (max-width: 600px) { .wrap { padding: 10px 12px 50px; } select, input[type=search] { min-width: 0; flex: 1 1 140px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="homebtn" href="delhi_safety_dashboard.html" aria-label="Back to the Delhi Urban Safety Observatory home page">&larr; Home</a>
+  <h1>District iRAD reports <span class="proto">prototype</span></h1>
+  <p class="sub">Road-accident counts from the Integrated Road Accident Database reports that Delhi's district administrations post, staged for review in <code>data/derived/irad_monthly/</code>. Monthly tables by district and police-station tables where published.</p>
+
+  <div class="panel warn" id="caveat">
+    <b>Read before comparing.</b> iRAD counts come from records with minimal information and are a different series from the Delhi Traffic Police Road Crash Report used elsewhere on this site. Coverage differs by district (see below), the earlier months of a year can be undercounts, and several revenue districts are not comparable with the 15 police districts. Rows marked <span class="tag">scan</span> were read from scanned PDFs by Claude and need a human spot-check.
+  </div>
+
+  <section class="panel" aria-labelledby="h-months">
+    <h2 id="h-months">Monthly trend by district</h2>
+    <p class="sub" id="monthsSub"></p>
+    <div class="row">
+      <div><label for="dSel">District</label><select id="dSel"></select></div>
+      <div><label id="mLbl">Measure</label>
+        <div class="seg" id="mSeg" role="group" aria-labelledby="mLbl">
+          <button type="button" data-k="total_accidents" aria-pressed="true">Accidents</button>
+          <button type="button" data-k="fatal" aria-pressed="false">Fatal accidents</button>
+          <button type="button" data-k="killed" aria-pressed="false">People killed</button>
+        </div>
+      </div>
+    </div>
+    <div id="chart" role="img" aria-label="Line chart of monthly counts for the selected district, one line per year"></div>
+    <div class="legend" id="chartLegend"></div>
+    <p class="note" id="monthsNote"></p>
+  </section>
+
+  <section class="panel" aria-labelledby="h-stations">
+    <h2 id="h-stations">Police stations</h2>
+    <p class="sub" id="stationsSub"></p>
+    <div class="row">
+      <div><label for="sdSel">District</label><select id="sdSel"></select></div>
+      <div><label for="spSel">Period</label><select id="spSel"></select></div>
+      <div><label for="sSort">Rank by</label><select id="sSort"><option value="total_accidents">Accidents</option><option value="fatal">Fatal accidents</option><option value="killed">People killed</option></select></div>
+      <div><label for="sFind">Find a station</label><input id="sFind" type="search" placeholder="e.g. Hari Nagar" autocomplete="off"></div>
+    </div>
+    <table id="stTable"><thead><tr><th>Station</th><th class="n">Accidents</th><th class="n">Fatal</th><th class="n">Killed</th><th></th></tr></thead><tbody></tbody></table>
+    <p class="note" id="stNote"></p>
+    <div id="stTrend" style="margin-top:12px"></div>
+  </section>
+
+  <p class="note">Source: district administration websites of the Government of NCT of Delhi (iRAD/eDAR pages). Files and checksums: <a href="data/derived/irad_monthly/manifest.json" style="color:var(--accent)">manifest.json</a>. Data: <a href="data/derived/irad_monthly/irad_monthly_by_district.csv" style="color:var(--accent)">monthly CSV</a>, <a href="data/derived/irad_monthly/irad_station_by_period.csv" style="color:var(--accent)">police-station CSV</a>. Not an official statistic.</p>
+  <p class="err" id="err" role="alert" hidden></p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var COLORS = ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)'];
+  var months = [], stations = [], measure = 'total_accidents', pickedStation = null;
+  var MEASURE_LABEL = { total_accidents: 'accidents', fatal: 'fatal accidents', killed: 'people killed' };
+  try { var t = localStorage.getItem('ds-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function parseCsv(text) {
+    var rows = [], row = [], cur = '', q = false;
+    for (var i = 0; i < text.length; i++) {
+      var ch = text[i];
+      if (q) { if (ch === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; } else cur += ch; }
+      else if (ch === '"') q = true;
+      else if (ch === ',') { row.push(cur); cur = ''; }
+      else if (ch === '\n' || ch === '\r') { if (ch === '\r' && text[i + 1] === '\n') i++; row.push(cur); cur = ''; if (row.length > 1 || row[0] !== '') rows.push(row); row = []; }
+      else cur += ch;
+    }
+    if (cur !== '' || row.length) { row.push(cur); rows.push(row); }
+    var head = rows.shift();
+    return rows.map(function (r) { var o = {}; head.forEach(function (h, i) { o[h] = r[i]; }); return o; });
+  }
+  function load(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + ' HTTP ' + r.status); return r.text(); }).then(parseCsv); }
+  function n(v) { return Number(v || 0); }
+  function uniq(a) { return a.filter(function (v, i) { return a.indexOf(v) === i; }); }
+
+  // ---------- monthly chart ----------
+  function drawMonths() {
+    var d = $('dSel').value, rows = months.filter(function (r) { return r.district === d; });
+    var years = uniq(rows.map(function (r) { return r.year; })).sort();
+    var W = 720, H = 260, L = 40, R = 12, T = 14, B = 28;
+    var max = Math.max.apply(null, rows.map(function (r) { return n(r[measure]); }).concat([1]));
+    var top = Math.ceil(max / 5) * 5 || 5;
+    var x = function (m) { return L + (W - L - R) * (m - 1) / 11; }, y = function (v) { return T + (H - T - B) * (1 - v / top); };
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true">';
+    for (var g = 0; g <= 4; g++) {
+      var gv = top * g / 4;
+      svg += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(gv) + '" y2="' + y(gv) + '" stroke="var(--line)" stroke-width="1"/><text x="' + (L - 6) + '" y="' + (y(gv) + 4) + '" text-anchor="end" font-size="11" fill="var(--muted)">' + Math.round(gv) + '</text>';
+    }
+    MONTHS.forEach(function (m, i) { svg += '<text x="' + x(i + 1) + '" y="' + (H - 8) + '" text-anchor="middle" font-size="11" fill="var(--muted)">' + m + '</text>'; });
+    var legend = '';
+    years.forEach(function (yr, k) {
+      var pts = rows.filter(function (r) { return r.year === yr; }).sort(function (a, b) { return n(a.month) - n(b.month); });
+      var col = COLORS[k % COLORS.length];
+      svg += '<polyline fill="none" stroke="' + col + '" stroke-width="2.2" points="' + pts.map(function (r) { return x(n(r.month)) + ',' + y(n(r[measure])); }).join(' ') + '"/>';
+      pts.forEach(function (r) { svg += '<circle cx="' + x(n(r.month)) + '" cy="' + y(n(r[measure])) + '" r="3" fill="' + col + '"><title>' + esc(d) + ' ' + yr + ' ' + MONTHS[n(r.month) - 1] + ': ' + n(r[measure]) + ' ' + MEASURE_LABEL[measure] + '</title></circle>'; });
+      var tot = pts.reduce(function (a, r) { return a + n(r[measure]); }, 0);
+      var scan = pts.some(function (r) { return r.extraction_method === 'image_transcription'; });
+      legend += '<span><i style="background:' + col + '"></i>' + yr + ' (' + pts.length + ' months, total ' + tot + ')' + (scan ? ' <span class="tag">scan</span>' : '') + '</span>';
+    });
+    $('chart').innerHTML = svg + '</svg>';
+    $('chartLegend').innerHTML = legend;
+    var last = rows.slice().sort(function (a, b) { return (b.report_period_to || '').localeCompare(a.report_period_to || ''); })[0];
+    $('monthsNote').textContent = 'A year with fewer than 12 points is partial (' + (last ? 'latest data to ' + last.report_period_to : '') + '). Each point is the report’s own monthly figure; files generated on different dates can differ for late-entered accidents.';
+  }
+
+  // ---------- police stations ----------
+  function periodLabel(p) {
+    var a = p.split('|')[0], b = p.split('|')[1];
+    if (!a || a === 'null' || !b || b === 'null') return 'period not stated in the file';
+    return a.slice(0, 7) === b.slice(0, 7) ? new Date(a + 'T00:00:00').toLocaleString('en-GB', { month: 'long', year: 'numeric' }) : a + ' to ' + b;
+  }
+  function stationPeriods(d) {
+    return uniq(stations.filter(function (r) { return r.district === d; }).map(function (r) { return r.period_from + '|' + r.period_to; })).sort();
+  }
+  function fillPeriods() {
+    var d = $('sdSel').value, ps = stationPeriods(d);
+    $('spSel').innerHTML = ps.map(function (p) { return '<option value="' + esc(p) + '">' + esc(periodLabel(p)) + '</option>'; }).join('');
+    $('spSel').value = ps[ps.length - 1];
+    drawStations();
+  }
+  function drawStations() {
+    var d = $('sdSel').value, p = $('spSel').value, key = $('sSort').value, find = $('sFind').value.trim().toLowerCase();
+    var rows = stations.filter(function (r) { return r.district === d && r.period_from + '|' + r.period_to === p; })
+      .filter(function (r) { return !find || r.police_station.toLowerCase().indexOf(find) !== -1; })
+      .sort(function (a, b) { return n(b[key]) - n(a[key]) || a.police_station.localeCompare(b.police_station); });
+    var max = Math.max.apply(null, rows.map(function (r) { return n(r[key]); }).concat([1]));
+    var multi = p.split('|')[0] && p.split('|')[0].slice(0, 7) !== p.split('|')[1].slice(0, 7);
+    $('stTable').querySelector('tbody').innerHTML = rows.map(function (r) {
+      return '<tr class="pick' + (pickedStation === r.police_station ? ' on' : '') + '" tabindex="0" data-st="' + esc(r.police_station) + '"><td>' + esc(r.police_station) + '</td><td class="n">' + n(r.total_accidents) + '</td><td class="n">' + n(r.fatal) + '</td><td class="n">' + n(r.killed) +
+        '</td><td><div class="bar" aria-hidden="true"><i style="width:' + (n(r[key]) / max * 100) + '%"></i></div></td></tr>';
+    }).join('') || '<tr><td colspan="5" class="note">No station matches.</td></tr>';
+    var tot = rows.reduce(function (a, r) { return a + n(r.total_accidents); }, 0);
+    $('stNote').textContent = rows.length + ' stations, ' + tot + ' accidents in ' + periodLabel(p) + (multi ? '. This is a multi-year or cumulative period, not one month.' : '.') + ' Station names are as printed in the report.';
+    drawTrend();
+  }
+  function drawTrend() {
+    var box = $('stTrend'); if (!pickedStation) { box.innerHTML = '<p class="note">Click a station to see its monthly counts where the district has monthly station tables.</p>'; return; }
+    var d = $('sdSel').value;
+    var rows = stations.filter(function (r) { return r.district === d && r.police_station === pickedStation && r.period_from && r.period_from.slice(0, 7) === (r.period_to || '').slice(0, 7); })
+      .sort(function (a, b) { return a.period_from.localeCompare(b.period_from); });
+    if (rows.length < 3) { box.innerHTML = '<p class="note"><b>' + esc(pickedStation) + '</b>: fewer than three monthly tables for this district, so no trend is shown.</p>'; return; }
+    var max = Math.max.apply(null, rows.map(function (r) { return n(r[measure === 'killed' ? 'killed' : $('sSort').value]); }).concat([1]));
+    var key = $('sSort').value;
+    var bars = rows.map(function (r) { var v = n(r[key]); return '<div style="flex:1;min-width:14px;text-align:center"><div style="height:60px;display:flex;align-items:end"><div title="' + esc(periodLabel(r.period_from + '|' + r.period_to)) + ': ' + v + '" style="width:100%;height:' + Math.max(2, v / max * 60) + 'px;background:var(--accent);border-radius:2px 2px 0 0"></div></div><div class="note" style="font-size:10px">' + r.period_from.slice(5, 7) + '/' + r.period_from.slice(2, 4) + '</div></div>'; }).join('');
+    box.innerHTML = '<h2 style="font-size:15px">' + esc(pickedStation) + ': monthly ' + MEASURE_LABEL[key] + '</h2><div style="display:flex;gap:3px;align-items:end">' + bars + '</div>';
+  }
+
+  function init() {
+    var dm = uniq(months.map(function (r) { return r.district; })).sort();
+    $('dSel').innerHTML = dm.map(function (d) { return '<option>' + esc(d) + '</option>'; }).join('');
+    $('dSel').value = dm.indexOf('Central') >= 0 ? 'Central' : dm[0];
+    $('monthsSub').textContent = 'Districts with a published month-wise table: ' + dm.join(', ') + '.';
+    var ds = uniq(stations.map(function (r) { return r.district; })).sort();
+    $('sdSel').innerHTML = ds.map(function (d) { return '<option>' + esc(d) + '</option>'; }).join('');
+    $('sdSel').value = ds.indexOf('South East') >= 0 ? 'South East' : ds[0];
+    $('stationsSub').textContent = 'Districts with police-station tables: ' + ds.join(', ') + '. Coverage and periods differ by district; East and North East publish one cumulative table.';
+    drawMonths(); fillPeriods();
+  }
+
+  $('dSel').addEventListener('change', drawMonths);
+  Array.prototype.forEach.call($('mSeg').children, function (b) { b.addEventListener('click', function () {
+    measure = b.getAttribute('data-k');
+    Array.prototype.forEach.call($('mSeg').children, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    drawMonths();
+  }); });
+  $('sdSel').addEventListener('change', function () { pickedStation = null; fillPeriods(); });
+  $('spSel').addEventListener('change', drawStations);
+  $('sSort').addEventListener('change', drawStations);
+  $('sFind').addEventListener('input', drawStations);
+  function pick(e) { var tr = e.target.closest && e.target.closest('tr[data-st]'); if (!tr) return; pickedStation = tr.getAttribute('data-st'); drawStations(); }
+  $('stTable').addEventListener('click', pick);
+  $('stTable').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(e); } });
+
+  Promise.all([load('data/derived/irad_monthly/irad_monthly_by_district.csv'), load('data/derived/irad_monthly/irad_station_by_period.csv')]).then(function (res) {
+    months = res[0]; stations = res[1]; init();
+  }).catch(function (e) {
+    var el = $('err'); el.hidden = false;
+    el.textContent = 'Could not load the data (' + e.message + '). This page needs to be served over http, not opened as a file: run python -m http.server 8000 in the repo folder and open http://localhost:8000/irad_stations.html';
+  });
+})();
+</script>
+</body>
+</html>
