@@ -132,3 +132,8 @@ test('tour shows the report map check and states the zone definition', () => {
   assert.ok(script.includes('500 m diameter'));
 });
 
+
+test('a Home button leads back to the dashboard home page', () => {
+  assert.match(html, /<a class="homebtn" href="delhi_safety_dashboard\.html"[^>]*>[^<]*Home<\/a>/);
+  assert.ok(fs.existsSync(path.join(ROOT, 'delhi_safety_dashboard.html')));
+});

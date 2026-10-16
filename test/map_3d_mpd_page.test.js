@@ -156,3 +156,8 @@ test('ranked list: biggest gaps by area, thin-coverage and tiny wards excluded, 
   }
 });
 
+
+test('a Home button leads back to the dashboard home page', () => {
+  assert.match(html, /<a class="homebtn" href="delhi_safety_dashboard\.html"[^>]*>[^<]*Home<\/a>/);
+  assert.ok(fs.existsSync(path.join(ROOT, 'delhi_safety_dashboard.html')));
+});
