@@ -87,6 +87,13 @@
   .bar { height: 7px; border-radius: 3px; background: var(--line); margin: 2px 0; position: relative; overflow: hidden; }
   .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; }
   .bar.cur i { background: #8ab4f8; } .bar.plan i { background: var(--accent); }
+  #story { right: 10px; bottom: 10px; width: min(340px, calc(100vw - 20px)); max-height: 62vh; overflow: auto; display: none; z-index: 7; }
+  #story h3 { font-size: 15px; margin: 0 0 2px; }
+  #story .top { display: flex; gap: 6px; justify-content: space-between; align-items: center; margin-bottom: 6px; color: var(--accent); }
+  #story .sbtn { width: auto; min-height: 36px; padding: 2px 12px; }
+  #story .nums { margin: 8px 0 0; padding: 8px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; }
+  body.storying #detail { display: none !important; }
+  #storyBtns button { width: 100%; text-align: left; margin-top: 4px; line-height: 1.3; }
   .stack { display: flex; height: 9px; border-radius: 3px; overflow: hidden; background: var(--line); margin: 3px 0; }
   .stack i { display: block; height: 100%; }
   .keys { display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 4px 0 6px; font-size: 11px; color: var(--muted); }
@@ -102,6 +109,7 @@
     #legend { display: none; }
     #detail { left: 10px; right: 10px; width: auto; bottom: 10px; max-height: 45vh; }
     .pane h2 { top: auto; bottom: 8px; right: 8px; }
+    #story { left: 10px; right: 10px; width: auto; max-height: 48vh; }
     #ranked { left: 10px; right: 10px; width: auto; top: 110px; max-height: 45vh; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; } }
@@ -137,6 +145,9 @@
 
   <div id="strip" aria-live="polite"></div>
 
+  <span class="lbl" id="storyLbl">Guided stories (satellite basis)</span>
+  <div id="storyBtns" role="group" aria-labelledby="storyLbl"></div>
+
   <label class="lbl" for="basemap">Basemap</label>
   <select id="basemap">
     <option value="osm">Streets (OpenStreetMap)</option>
@@ -158,6 +169,8 @@
   <p class="row" style="grid-template-columns:1fr"><a class="linkbtn" href="map_3d.html">3D ward explorer (crash data)</a></p>
   <p class="cav" id="about">Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: OpenStreetMap contributors. A difference between a plan and a community-mapped inventory is not a measurement of change on the ground.</p>
 </details>
+
+<div id="story" class="panel" role="region" aria-label="Guided story" aria-live="polite"></div>
 
 <details id="ranked" class="panel" open>
   <summary>Biggest gaps: top 10 wards</summary>
@@ -501,6 +514,78 @@
     scheduleUrl();
   }
 
+  // ---------- guided stories: short tours through the wards where the plan and the satellite differ in one specific way ----------
+  // Wards and numbers are computed from the satellite comparison file at run time, so nothing here is typed in by hand.
+  var story = null;
+  function satRows() {
+    return geo.filter(function (w) { var r = w.rows.sat; return r && r.comparison_confidence === 'ok' && r.comparable_km2 >= 0.3; })
+      .map(function (w) { return { w: w, r: w.rows.sat }; });
+  }
+  var STORIES = [
+    { id: 'green-more', title: 'Parks the plan adds', cls: 'green_open',
+      intro: 'Wards where the plan designates much more parkland and green space than the 2021 satellite shows as green. Often land the plan reserves for a park that has not been laid out yet.',
+      steps: function () {
+        return satRows().map(function (x) { x.km = x.r.delta_green_open_pp / 100 * x.r.comparable_km2; return x; }).filter(function (x) { return x.km > 0; })
+          .sort(function (a, b) { return b.km - a.km; }).slice(0, 5);
+      },
+      line: function (x) { return 'The plan designates <b>' + pct(x.r.planned_green_open_share_pct) + '</b> of the compared area as parks and green space; the satellite shows <b>' + pct(x.r.satellite_green_open_share_pct) + '</b> as green. Gap about <b>' + (Math.round(x.km * 10) / 10) + ' km²</b>.'; } },
+    { id: 'green-less', title: 'Green land the plan puts to other uses', cls: 'green_open',
+      intro: 'Wards where the satellite sees much more green than the plan designates as parks. This is often forest, ridge, farmland or open land that the plan allots to another use, or tree cover inside built areas.',
+      steps: function () {
+        return satRows().map(function (x) { x.km = x.r.delta_green_open_pp / 100 * x.r.comparable_km2; return x; }).filter(function (x) { return x.km < 0; })
+          .sort(function (a, b) { return a.km - b.km; }).slice(0, 5);
+      },
+      line: function (x) { return 'The plan designates <b>' + pct(x.r.planned_green_open_share_pct) + '</b> as parks and green space; the satellite shows <b>' + pct(x.r.satellite_green_open_share_pct) + '</b> as green. About <b>' + (Math.round(-x.km * 10) / 10) + ' km²</b> more green than planned.'; } },
+    { id: 'farm-built', title: 'Planned farmland that looks built-up', cls: 'agriculture',
+      intro: 'Land the plan designates as agriculture (the green belt) that the 2021 satellite already shows as built-up. Villages and unauthorised colonies inside the green belt are a likely reason; a plan designation does not stop building.',
+      steps: function () {
+        return satRows().map(function (x) { x.km = (x.r.planned_agriculture_share_pct / 100 * x.r.comparable_km2) * ((x.r.planned_agriculture_seen_as_built_pct || 0) / 100); return x; })
+          .filter(function (x) { return x.km >= 0.3; }).sort(function (a, b) { return b.km - a.km; }).slice(0, 5);
+      },
+      line: function (x) { return '<b>' + pct(x.r.planned_agriculture_seen_as_built_pct) + '</b> of the land planned as agriculture shows as built-up: about <b>' + (Math.round(x.km * 10) / 10) + ' km²</b>.'; } },
+    { id: 'built-green', title: 'Planned built-up that still looks green', cls: 'built',
+      intro: 'Land the plan designates for built uses (residential, commercial, industrial, public, transport) that the satellite shows as trees, grass or crops. Possibly not yet developed, or tree cover inside built areas.',
+      steps: function () {
+        return satRows().map(function (x) { x.km = (x.r.planned_built_share_pct / 100 * x.r.comparable_km2) * ((x.r.planned_built_seen_as_green_or_crop_pct || 0) / 100); return x; })
+          .filter(function (x) { return x.km >= 0.3; }).sort(function (a, b) { return b.km - a.km; }).slice(0, 5);
+      },
+      line: function (x) { return '<b>' + pct(x.r.planned_built_seen_as_green_or_crop_pct) + '</b> of the land planned for built uses shows as trees, grass or crops: about <b>' + (Math.round(x.km * 10) / 10) + ' km²</b>.'; } }
+  ];
+  function showStep() {
+    var def = story.def, x = story.steps[story.i], n = story.steps.length;
+    if (basis !== 'sat') setBasis('sat');
+    setClass(def.cls);
+    if (view === 'chg') setView('swipe');
+    ['A', 'B'].forEach(function (k) { if (maps[k] && maps[k].getLayer('w-pin')) maps[k].setFilter('w-pin', ['==', ['get', '_id'], x.w.id]); });
+    maps.A.flyTo({ center: wardCenter(x.w.id), zoom: 12, pitch: 55, bearing: -15, duration: reducedMotion ? 0 : 1800, essential: false });
+    $('story').innerHTML = '<div class="top"><span>' + esc(def.title) + ' &middot; ' + (story.i + 1) + ' of ' + n + '</span><span>' +
+      '<button class="sbtn" type="button" data-act="prev" aria-label="Previous ward">&#9664;</button> <button class="sbtn" type="button" data-act="next" aria-label="Next ward">&#9654;</button> ' +
+      '<button class="sbtn" type="button" data-act="stop" aria-label="Stop the story">&times;</button></span></div>' +
+      '<h3>' + esc(x.w.name) + '</h3><div class="sub" style="margin:0">' + esc(x.r.district || '') + ' district</div>' +
+      '<div class="nums">' + def.line(x) + '</div>' +
+      (story.i === 0 ? '<p class="sub" style="margin-top:8px">' + esc(def.intro) + '</p>' : '') +
+      '<p class="cav">Satellite 2021 land cover vs the 2026 plan: a gap is not proof of a violation or of change on the ground. The satellite sees cover, not use.</p>';
+    $('story').style.display = 'block'; document.body.classList.add('storying');
+  }
+  function startStory(id) {
+    var def = STORIES.filter(function (d) { return d.id === id; })[0]; if (!def || !data.sat) return;
+    var steps = def.steps(); if (!steps.length) return;
+    story = { def: def, steps: steps, i: 0 }; unpin(); showStep();
+  }
+  function stopStory() {
+    if (!story) return; story = null;
+    $('story').style.display = 'none'; document.body.classList.remove('storying');
+    ['A', 'B'].forEach(function (k) { if (maps[k] && maps[k].getLayer('w-pin')) maps[k].setFilter('w-pin', ['==', ['get', '_id'], -1]); });
+  }
+  function buildStoryButtons() {
+    var box = $('storyBtns'); box.innerHTML = '';
+    if (!data.sat) { $('storyLbl').style.display = 'none'; return; }
+    STORIES.forEach(function (d) {
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = d.title;
+      b.addEventListener('click', function () { startStory(d.id); }); box.appendChild(b);
+    });
+  }
+
   // ---------- share link ----------
   var urlTimer = null;
   function scheduleUrl() { clearTimeout(urlTimer); urlTimer = setTimeout(writeUrl, 250); }
@@ -559,7 +644,12 @@
     else done('Copy from address bar');
   });
   $('detailClose').addEventListener('click', unpin);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') unpin(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { unpin(); stopStory(); } });
+  $('story').addEventListener('click', function (e) {
+    var act = e.target && e.target.getAttribute && e.target.getAttribute('data-act'); if (!act || !story) return;
+    if (act === 'stop') { stopStory(); return; }
+    story.i = (story.i + (act === 'next' ? 1 : -1) + story.steps.length) % story.steps.length; showStep();
+  });
 
   // ---------- load ----------
   function loadJson(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + ' HTTP ' + r.status); return r.json(); }); }
@@ -577,7 +667,7 @@
     CLASSES = BASES[basis].classes; meta = data[basis].metadata; city = data[basis].citywide;
     cls = CLASSES.filter(function (c) { return c.key === init.cls; })[0] || CLASSES[0];
     Array.prototype.forEach.call($('basisBtns').children, function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-basis') === basis ? 'true' : 'false'); });
-    buildClassButtons();
+    buildClassButtons(); buildStoryButtons();
     if (init.view) view = init.view;
     if (init.basemap) { basemapKey = init.basemap; $('basemap').value = basemapKey; }
     if (init.height) $('height').value = init.height;
