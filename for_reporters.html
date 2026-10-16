@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For reporters: what you can and cannot say</title>
+<meta name="description" content="A plain guide for journalists using the Delhi Urban Safety Observatory: which figures are solid, which are leads only, and how to cite them.">
+<style>
+  :root { --bg:#f4f6fa; --panel:#fff; --ink:#1c2331; --muted:#4f5a6e; --accent:#8a5800; --line:#d5dbe6; --ok:#1e6b3a; --warn:#8a5800; --no:#a1261b; }
+  :root[data-theme="dark"] { --bg:#1c2331; --panel:#252d3d; --ink:#e8ecf3; --muted:#a8b2c4; --accent:#f0a63c; --line:#38425a; --ok:#7bd88f; --warn:#f0a63c; --no:#ff8f85; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#1c2331; --panel:#252d3d; --ink:#e8ecf3; --muted:#a8b2c4; --accent:#f0a63c; --line:#38425a; --ok:#7bd88f; --warn:#f0a63c; --no:#ff8f85; } }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 14px 16px 60px; }
+  a { color: var(--accent); }
+  .homebtn { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; font-weight: 600; font-size: 13px; text-decoration: none; color: var(--ink); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  h1 { font-size: 24px; margin: 16px 0 6px; }
+  h2 { font-size: 18px; margin: 0 0 6px; }
+  .lead { color: var(--muted); }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin: 14px 0; border-left-width: 5px; }
+  section.ok { border-left-color: var(--ok); } section.warn { border-left-color: var(--warn); } section.no { border-left-color: var(--no); }
+  .badge { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .ok .badge { color: var(--ok); } .warn .badge { color: var(--warn); } .no .badge { color: var(--no); }
+  ul { margin: 6px 0 0; padding-left: 20px; }
+  li { margin: 4px 0; }
+  .say { font-size: 14px; color: var(--muted); }
+  code { font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="homebtn" href="delhi_safety_dashboard.html" aria-label="Back to the Delhi Urban Safety Observatory home page">&larr; Home</a>
+  <h1>For reporters: what you can and cannot say</h1>
+  <p class="lead">This site is a compilation, not a primary source. For any figure you publish, cite the original agency report (named in each dataset's manifest and in the README's "Data &amp; sourcing" section) and, if you wish, link here for the traceable copy. This page grades each part of the site so you know how far to trust it.</p>
+
+  <section class="ok" aria-labelledby="g1">
+    <span class="badge">Solid: cite the original report</span>
+    <h2 id="g1">District crime and road-safety figures, 2016&ndash;2024</h2>
+    <ul>
+      <li>Come from NCRB and the Delhi Traffic Police crash reports, checked against the sources, with manifests and a data changelog of every revision.</li>
+      <li>Crash-prone zone <b>rankings and counts</b> (2024) are copied from the Delhi Road Crash Report tables.</li>
+      <li>A zero for a survey-based layer can mean &ldquo;not surveyed&rdquo;. Check the coverage note before saying a district has none.</li>
+    </ul>
+    <p class="say">Safe wording: &ldquo;According to the Delhi Road Crash Report 2024, &hellip;&rdquo;</p>
+  </section>
+
+  <section class="warn" aria-labelledby="g2">
+    <span class="badge">Leads only: verify before publishing</span>
+    <h2 id="g2">Locations, land use and mapped infrastructure</h2>
+    <ul>
+      <li><b>Crash-zone map positions</b> are landmark-centre guesses, off by roughly 250 m to 1 km. They are not police geotags. Say &ldquo;in the area of&rdquo;, never &ldquo;at this spot&rdquo;. (<a href="docs/CRASH_ZONE_COORDINATES.md">audit</a>)</li>
+      <li><b>Master Plan 2047 vs satellite</b> compares plan designations with 2021 land cover. The satellite sees cover, not use, so a gap is a place to investigate, not evidence of illegal construction. (<a href="docs/MPD_BUILT_UP_USE_TRIAL.md">what was tried</a>)</li>
+      <li><b>Cameras, police stations, footways, crossings</b> come from OpenStreetMap volunteers and are not complete. Absence on the map is not absence on the ground.</li>
+      <li><b>Liquor vends</b>: official lists, positions mostly approximate, list incomplete. Counts near a zone are indicative only.</li>
+    </ul>
+    <p class="say">Safe wording: &ldquo;Mapped data suggests&hellip;; the figures are approximate and unconfirmed.&rdquo;</p>
+  </section>
+
+  <section class="no" aria-labelledby="g3">
+    <span class="badge">Do not publish as findings</span>
+    <h2 id="g3">Prototypes and unverified data</h2>
+    <ul>
+      <li><b>District iRAD page</b>: a prototype. Rows read from scanned PDFs need a human check against the PDFs. iRAD is a different series from the traffic police report; do not mix them, and not every district is covered.</li>
+      <li><b>2025 crime counts</b> in the repo are news reports of Delhi Police data with no police table behind them. Cite the original news story, or ask Delhi Police for the table. There is no district-wise 2025 data and no full-year 2025 IPC/BNS total. NCRB's 2025 report is not out.</li>
+      <li><b>Sidewalk coverage near crash zones</b> measures how little is tagged in OpenStreetMap. Do not report "no sidewalks near crash zones". Essentially no sidewalk tags exist, which says nothing about real pavements.</li>
+      <li><b>3D pages</b> are exploration tools and carry a prototype label.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="g4">
+    <h2 id="g4">Before you publish</h2>
+    <ul>
+      <li>Open the dataset's <code>manifest.json</code> to find the original source and its date.</li>
+      <li>Check <a href="docs/DATA_CHANGELOG.md">the data changelog</a> for revisions to the figure you are using.</li>
+      <li>Do not compare series that count different things (traffic police crashes, iRAD, news-reported totals).</li>
+      <li>Found an error? Open an issue on the repository; corrections are logged in the changelog.</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
