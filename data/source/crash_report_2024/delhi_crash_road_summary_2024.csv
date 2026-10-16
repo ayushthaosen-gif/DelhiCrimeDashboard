@@ -1,0 +1,36 @@
+rank,road_name,number_of_crash_prone_zones,simple_crashes,fatal_crashes,total_crashes,source,source_pdf_page
+1,Ring Road,19,123,70,193,"Delhi Road Crash Report 2024, Table 6.33",119
+2,GTK Road,13,85,61,146,"Delhi Road Crash Report 2024, Table 6.33",119
+3,Outer Ring Road,13,83,58,141,"Delhi Road Crash Report 2024, Table 6.33",119
+4,Rohtak Road,6,27,22,49,"Delhi Road Crash Report 2024, Table 6.33",119
+5,NH-8,5,22,19,41,"Delhi Road Crash Report 2024, Table 6.33",119
+6,Grand Trunk Road,4,48,11,59,"Delhi Road Crash Report 2024, Table 6.33",119
+7,Mehrauli Badarpur Road,4,14,14,28,"Delhi Road Crash Report 2024, Table 6.33",119
+8,Najafgarh Road,4,22,12,34,"Delhi Road Crash Report 2024, Table 6.33",119
+9,NH-24,4,21,17,38,"Delhi Road Crash Report 2024, Table 6.33",119
+10,Yamuna Pusta Road,4,10,18,28,"Delhi Road Crash Report 2024, Table 6.33",119
+11,Pankha Road,3,9,10,19,"Delhi Road Crash Report 2024, Table 6.33",119
+12,Wazirabad Road,3,25,10,35,"Delhi Road Crash Report 2024, Table 6.33",119
+13,Bawana Road,2,15,8,23,"Delhi Road Crash Report 2024, Table 6.33",119
+14,N. Subhash Marg,2,7,7,14,"Delhi Road Crash Report 2024, Table 6.33",119
+15,Patel Road,2,14,5,19,"Delhi Road Crash Report 2024, Table 6.33",119
+16,Road No.56,2,17,11,28,"Delhi Road Crash Report 2024, Table 6.33",119
+17,UER II,2,16,9,25,"Delhi Road Crash Report 2024, Table 6.33",119
+18,Vir Banda Bairagi Marg,2,18,6,24,"Delhi Road Crash Report 2024, Table 6.33",119
+19,Anand Mai Marg,1,4,4,8,"Delhi Road Crash Report 2024, Table 6.33",119
+20,Boulevard Road,1,14,4,18,"Delhi Road Crash Report 2024, Table 6.33",119
+21,BSZ Marg,1,3,3,6,"Delhi Road Crash Report 2024, Table 6.33",119
+22,DSIDC Narela Road,1,3,3,6,"Delhi Road Crash Report 2024, Table 6.33",119
+23,Goyla Dairy Road,1,2,5,7,"Delhi Road Crash Report 2024, Table 6.33",119
+24,Josef Broz Tito Marg,1,2,5,7,"Delhi Road Crash Report 2024, Table 6.33",119
+25,New Rohtak Road,1,2,3,5,"Delhi Road Crash Report 2024, Table 6.33",119
+26,Noida Link Road,1,3,3,6,"Delhi Road Crash Report 2024, Table 6.33",119
+27,Pusta Road,1,5,3,8,"Delhi Road Crash Report 2024, Table 6.33",119
+28,Qutab Garh Road,1,7,5,12,"Delhi Road Crash Report 2024, Table 6.33",119
+29,Raja Ram Kohli Marg,1,1,4,5,"Delhi Road Crash Report 2024, Table 6.33",119
+30,Road No. 13A,1,9,2,11,"Delhi Road Crash Report 2024, Table 6.33",119
+31,Road No. 57,1,9,2,11,"Delhi Road Crash Report 2024, Table 6.33",119
+32,Road No. 51,1,2,4,6,"Delhi Road Crash Report 2024, Table 6.33",119
+33,Road No.51,1,7,4,11,"Delhi Road Crash Report 2024, Table 6.33",119
+34,Sardar Patel Marg,1,9,2,11,"Delhi Road Crash Report 2024, Table 6.33",119
+35,Tilak Marg,1,3,3,6,"Delhi Road Crash Report 2024, Table 6.33",119

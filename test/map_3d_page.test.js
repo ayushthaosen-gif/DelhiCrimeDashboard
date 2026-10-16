@@ -125,3 +125,10 @@ test('tour shows how well independent sources agree on each position', () => {
   assert.ok(script.includes('Position evidence'));
   for (const label of ['sources agree', 'sources differ', 'sources disagree', 'unverified estimate']) assert.ok(script.includes(label), label);
 });
+
+test('tour shows the report map check and states the zone definition', () => {
+  assert.ok(script.includes('crash_zone_report_map_check_2024.json'));
+  assert.ok(script.includes('Report map dot'));
+  assert.ok(script.includes('500 m diameter'));
+});
+
