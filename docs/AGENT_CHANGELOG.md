@@ -1,3 +1,13 @@
+## [2026-10-16] - Claude (Anthropic) - Prototype pages, audits and staged iRAD data documented
+
+Documentation only (README, `docs/STRUCTURE.md`); no data or code changed. Summarises work since the last notes:
+
+- `map_3d.html`: top-10 crash tour, buildings/cameras toggles, police stations and posts, liquor vends (positions approximate, list incomplete), share links via `location.hash`, Home pill.
+- `map_3d_mpd.html`: plan vs 2021 satellite comparison, four guided stories computed from the data at run time, a phone viewport fix (map filled only the top part of the screen), Home pill.
+- `irad_stations.html`: new monthly and police-station explorer over `data/derived/irad_monthly/`.
+- Crash-zone coordinate audit and RTI drafts; WorldCover and DDA settlement data; iRAD district collection with scanned tables transcribed and checked against printed totals.
+- `npm test` covers the new pages and scripts (118 passing at the last full run).
+
 ## [2026-10-07] - Claude (Anthropic) - Main dashboard page redesigned as an MVP, with a quality pass
 
 Requested by the user ("redo the main page also, check for all quality check and design make it MVP"). Layout, accessibility and weight only; no data, metric, correlation or export logic changed.
