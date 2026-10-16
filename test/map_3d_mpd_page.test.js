@@ -161,3 +161,10 @@ test('a Home button leads back to the dashboard home page', () => {
   assert.match(html, /<a class="homebtn" href="delhi_safety_dashboard\.html"[^>]*>[^<]*Home<\/a>/);
   assert.ok(fs.existsSync(path.join(ROOT, 'delhi_safety_dashboard.html')));
 });
+
+test('the view class is set on the page before the maps are created, and the maps are resized after layout', () => {
+  const classAt = script.indexOf("document.body.classList.toggle('swipe', view === 'swipe')");
+  const mapsAt = script.indexOf("maps.A = makeMap('A', 'mapA')");
+  assert.ok(classAt > 0 && mapsAt > 0 && classAt < mapsAt, 'body view class must be set before makeMap, or phones size the maps for the stacked layout');
+  assert.ok(script.includes('maps.A.resize()') && script.includes('visualViewport'));
+});
