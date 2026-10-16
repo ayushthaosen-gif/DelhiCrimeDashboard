@@ -1,0 +1,94 @@
+feature_id,location_name,rank,pedestrian_fatal_crashes,pedestrian_total_crashes,all_fatal_crashes,coordinate_confidence,estimated_accuracy_m,road_km_250m,road_sidewalk_km_250m,road_separate_km_250m,road_none_km_250m,road_untagged_km_250m,footway_km_250m,crossings_250m,signals_250m,road_with_pedestrian_mapping_pct_250m,road_km_500m,road_sidewalk_km_500m,road_separate_km_500m,road_none_km_500m,road_untagged_km_500m,footway_km_500m,crossings_500m,signals_500m,road_with_pedestrian_mapping_pct_500m
+crash-zone-azadpur-sabzi-mandi,Azadpur Sabzi Mandi,1,7,11,11,high,250,5.95,0,0,0.621,5.33,0.326,0,4,0,18.1,0,0,1.02,17.08,1.596,1,7,0
+crash-zone-wazirabad,Wazirabad,2,,,9,medium,700,1.846,0,0,0,1.846,0.027,1,0,0,8.038,0,0,0,8.038,0.92,2,3,0
+crash-zone-akshardham-mandir,Akshardham Mandir,3,,,8,high,200,0,0,0,0,0,2.776,0,0,,3.474,0,0,0,3.474,6.01,0,0,0
+crash-zone-isbt-kashmiri-gate,ISBT Kashmiri Gate,4,7,12,8,high,250,4.193,0,0,0,4.193,0.949,2,0,0,12.778,0.311,0,0.633,11.835,5.383,7,0,2.4
+crash-zone-anand-vihar-isbt,Anand Vihar ISBT,5,7,12,8,high,300,0.197,0,0,0,0.197,1.327,0,0,0,8.743,0,0,0,8.743,1.923,0,1,0
+crash-zone-sgt-nagar,SGT Nagar,6,,,7,medium,700,5.502,0,0,0,5.502,0.202,0,0,0,17.057,0,0,0,17.057,0.789,0,0,0
+crash-zone-rajoukari-flyover,Rajoukari Flyover,7,,,7,medium,600,2.806,0,0,0,2.806,0.047,0,0,0,10.209,0,0,0,10.209,0.047,0,0,0
+crash-zone-near-yashobhoomi-convention-centre-dwarka,Near Yashobhoomi Convention Centre Dwarka,8,,,7,high,300,0.469,0,0,0,0.469,0,0,0,0,3.648,0,0,0,3.648,0,0,0,0
+crash-zone-bhalswa-chowk,Bhalswa Chowk,9,,,6,medium,500,4.71,0,0,0,4.71,0,0,0,0,16.954,0,0,0,16.954,2.906,0,3,0
+crash-zone-libaspur-bus-stand,Libaspur Bus Stand,10,3,9,6,medium,500,6.717,0,0,2.423,4.294,0,0,0,0,17.211,0,0,2.423,14.788,0.038,0,0,0
+crash-zone-mukundpur-chowk,Mukundpur Chowk,11,3,6,6,medium,500,3.73,0,0,0,3.73,0,0,0,0,11.99,0,0,0,11.99,0.435,0,0,0
+crash-zone-geeta-colony-flyover,Geeta Colony Flyover,12,,,6,medium,500,4.651,0,0,0,4.651,0,0,0,0,19.958,0,0,0,19.958,0,0,0,0
+crash-zone-chandgi-ram-akhara,Chandgi Ram Akhara,13,,,6,high,300,3.377,0,0,0,3.377,0.082,0,0,0,13.422,0,0,0,13.422,0.425,4,3,0
+crash-zone-hanuman-mandir-jj-colony-bawana,Hanuman Mandir JJ Colony Bawana,14,1,11,5,medium,800,6.766,0,0,0,6.766,0,0,0,0,23.144,0,0,0,23.144,0,0,0,0
+crash-zone-seelampur-t-point,Seelampur T Point,15,,,5,medium,450,4.869,0,0,0,4.869,0.087,0,0,0,23.095,0,0,0,23.095,0.496,0,0,0
+crash-zone-singhu-border,Singhu Border,16,,,5,high,400,0,0,0,0,0,0,0,0,,2.308,0,0,0,2.308,0,0,0,0
+crash-zone-khajoori-chowk,Khajoori Chowk,17,,,5,medium,450,4.868,0,0,0,4.868,0,0,0,0,25.797,0,0,0,25.797,0,0,0,0
+crash-zone-britannia-chowk,Britannia Chowk,18,3,6,5,medium,450,5.474,0,0,0,5.474,2.317,0,0,0,22.407,0,0,0,22.407,4.509,3,0,0
+crash-zone-metro-station-haider-pur,Metro Station Haider Pur,19,,,5,high,150,3.117,0,0,0,3.117,0.733,0,0,0,12.416,0,0,0,12.416,1.026,2,0,0
+crash-zone-sec-23-petrol-pump,Sec-23 Petrol Pump,20,3,3,5,low,1800,7.095,0,0,0,7.095,0,0,0,0,27.915,0,0,0,27.915,0,0,0,0
+crash-zone-zakhira-flyover,Zakhira Flyover,21,,,5,medium,400,0.414,0,0,0,0.414,2.088,0,0,0,7.336,0,0,0,7.336,6.235,0,0,0
+crash-zone-red-light-pulprahlad-pur,Red Light Pulprahlad Pur,22,,,5,medium,500,9.214,0,0,0,9.214,0,0,3,0,24.133,0,0,0,24.133,0.032,0,7,0
+crash-zone-prem-bari-pull,Prem Bari Pull,23,3,3,5,medium,500,5.007,0,0,0,5.007,0,0,0,0,18.053,0,0,0,18.053,0,1,1,0
+crash-zone-hanuman-mandir-yamuna-bazar,Hanuman Mandir Yamuna Bazar,24,,,5,medium,500,3.162,0,0,0.036,3.127,0,0,0,0,10.75,0,0,0.734,10.017,0.671,2,1,0
+crash-zone-punjabi-bagh-chowk,Punjabi Bagh Chowk,25,,,5,high,300,2.238,0,0,0.154,2.084,0,0,0,0,15.766,0,0,0.71,15.056,1.122,1,5,0
+crash-zone-mukarba-chowk,Mukarba Chowk,26,,,5,high,300,3.492,0,0,0.661,2.831,0,0,0,0,9.589,0,0,1.736,7.854,0.789,2,1,0
+crash-zone-shamshan-ghat-geeta-colony,Shamshan Ghat Geeta Colony,27,3,6,5,medium,600,5.069,0,0,0,5.069,0,0,0,0,24.125,0,0,0,24.125,0,0,0,0
+crash-zone-goyla-village-najafgarh,Goyla Village Najafgarh,28,,,5,medium,900,9.064,0,0,0,9.064,0,0,0,0,27.527,0,0,0,27.527,0,0,0,0
+crash-zone-gandhi-vihar-bus-stand,Gandhi Vihar Bus Stand,29,,,5,medium,600,4.066,0,0,0,4.066,1.53,0,5,0,12.564,0,0,0,12.564,2.438,2,5,0
+crash-zone-archana-cinema-red-light,Archana Cinema Red Light,30,,,5,high,300,3.764,0,0,0,3.764,1.324,0,0,0,17.587,0,0,0,17.587,2.623,9,0,0
+crash-zone-sarai-kale-khan,Sarai Kale Khan,31,2,10,4,high,350,2.505,0,0,0,2.505,1.986,2,0,0,16.142,0,0,0,16.142,5.011,2,0,0
+crash-zone-kashmiri-gate-chowk-boulevard-road,Kashmiri Gate Chowk Boulevard Road,32,4,12,4,high,300,2.961,0,0,0.109,2.852,0.461,2,0,0,12.397,0,0,0.863,11.534,4.82,6,0,0
+crash-zone-burari-chowk,Burari Chowk,33,,,4,medium,550,5.358,0,0,0,5.358,0,0,0,0,26.003,0,0,0,26.003,0,0,0,0
+crash-zone-adarsh-nagar,Adarsh Nagar,34,4,10,4,medium,650,5.972,0,0,0.903,5.069,0.393,4,0,0,19.641,0,0,2.07,17.57,0.856,6,3,0
+crash-zone-chhatra-marg-crossing,Chhatra Marg Crossing,35,2,10,4,medium,500,1.207,0.027,0.015,0,1.165,4.503,11,8,3.5,7.064,0.585,0.67,0,5.809,13.369,23,12,17.8
+crash-zone-shastri-nagar-metro-station,Shastri Nagar Metro Station,36,3,8,4,high,150,7.275,0,0,0,7.275,0,0,0,0,25.409,0,0,0,25.409,0,0,0,0
+crash-zone-majlis-park-metro-station,Majlis Park Metro Station,37,,,4,high,150,3.103,0,0,0,3.103,0.239,0,0,0,9.089,0,0,0,9.089,0.764,2,0,0
+crash-zone-keshopur-t-point,Keshopur T Point,38,,,4,medium,500,0.062,0,0,0,0.062,0,0,0,0,4.212,0,0,0,4.212,0,0,1,0
+crash-zone-azad-pur-chowk,Azad Pur Chowk,39,3,9,4,high,300,3.337,0,0,0,3.337,0.101,0,0,0,17.85,0,0,0.161,17.689,1.929,0,3,0
+crash-zone-delhi-gate,Delhi Gate,40,,,4,high,300,3.416,0.581,0,0,2.835,0.328,7,4,17,11.854,2.184,0,0,9.669,1.131,9,6,18.4
+crash-zone-siraspur,Siraspur,41,,,4,medium,800,0,0,0,0,0,0,0,0,,0.615,0,0,0,0.615,0,0,0,0
+crash-zone-dhaula-kuan,Dhaula Kuan,42,,,4,high,350,1.373,0,0,0,1.373,1.645,0,0,0,5.135,0,0,0,5.135,3.31,0,0,0
+crash-zone-monastery-ring-road,Monastery Ring Road,43,4,9,4,medium,550,2.686,0,0,0,2.686,0.954,0,0,0,10.329,0,0,0,10.329,1.071,0,0,0
+crash-zone-kingsway-camp-chowk,Kingsway Camp Chowk,44,,,4,medium,450,5.19,0.36,0,0,4.829,0.37,8,4,6.9,16.194,1.064,0,0,15.13,0.744,10,7,6.6
+crash-zone-govindpuri-metro-station,Govindpuri Metro Station,45,,,4,high,150,3.116,0,0,0,3.116,0,0,0,0,10.824,0,0,0,10.824,0,0,0,0
+crash-zone-nangloi-metro-station,Nangloi Metro Station,46,,,4,high,150,10.084,0,0,0,10.084,0,0,0,0,28.172,0,0,0,28.172,0,0,0,0
+crash-zone-metro-station-madipur,Metro Station Madipur,47,3,6,4,high,150,3.702,0,0,0,3.702,0.047,3,2,0,13.683,0,0,0,13.683,0.047,5,3,0
+crash-zone-keval-park-road-no-51,Keval Park Road No. 51,48,,,4,medium,700,6.145,0,0,0,6.145,0.119,0,0,0,25.729,0,0,0,25.729,0.585,0,0,0
+crash-zone-near-triveni-park-nangal-village-delhi-cantt,Near Triveni Park Nangal Village Delhi Cantt,49,,,4,medium,800,3.9,0,0,0,3.9,0,0,0,0,18.18,0,0,0,18.18,0.047,4,0,0
+crash-zone-near-sdm-office-geeta-colony,Near SDM Office Geeta Colony,50,,,4,medium,500,7.952,0,0,0,7.952,0,0,0,0,25.307,0,0,0,25.307,0.057,0,0,0
+crash-zone-flyover-raja-ram-marg,Flyover Raja Ram Marg,51,,,4,medium,500,6.917,0,0,0,6.917,0,0,0,0,26.573,0,0,0,26.573,0,0,0,0
+crash-zone-telco-gajipur,Telco Gajipur,52,,,3,medium,700,2.897,0,0,0,2.897,0.086,0,0,0,14.747,0,0,0,14.747,0.086,0,0,0
+crash-zone-loni-road-crossing,Loni Road Crossing,53,,,3,medium,500,6.747,0,0,0,6.747,0,0,0,0,27.785,0,0,0,27.785,1.955,1,4,0
+crash-zone-metro-station-dilshad-garden,Metro Station Dilshad Garden,54,,,3,high,150,3.996,0,0,0,3.996,0,0,0,0,17.365,0.217,0,0,17.148,0.557,0,3,1.2
+crash-zone-hamdard-nagar-red-light,Hamdard Nagar Red Light,55,,,3,medium,600,0,0,0,0,0,0,0,0,,3.736,0,0,0,3.736,0.139,10,4,0
+crash-zone-uttam-nagar,Uttam Nagar,56,,,3,medium,900,7.487,0,0,0,7.487,0.166,0,0,0,36.279,0,0,0,36.279,0.166,0,0,0
+crash-zone-radisson-hotel,Radisson Hotel,57,,,3,medium,500,3.369,0,0,0,3.369,0.633,0,0,0,13.244,0,0,0,13.244,0.633,0,0,0
+crash-zone-district-center-janakpuri,District Center Janakpuri,58,,,3,high,300,2.615,0,0,0,2.615,0.406,0,0,0,16.372,0,0,0,16.372,1.912,0,0,0
+crash-zone-udyog-nagar,Udyog Nagar,59,,,3,medium,500,3.79,0,0,0,3.79,0,6,4,0,14.512,0,0,0,14.512,0,6,5,0
+crash-zone-sai-baba-mandir-najafgarh,Sai Baba Mandir Najafgarh,60,,,3,low,1200,4.635,0,0,0,4.635,0.066,0,0,0,18.701,0,0,0,18.701,0.142,0,0,0
+crash-zone-rama-road-crossing,Rama Road Crossing,61,,,3,medium,500,5.547,0,0,0,5.547,0,0,2,0,20.709,0,0,0,20.709,0.88,0,4,0
+crash-zone-c-1-janakpuri,C-1 Janakpuri,62,,,3,medium,500,4.805,0,0,0,4.805,0.108,0,0,0,23.54,0,0,0,23.54,0.258,0,5,0
+crash-zone-ghewra-more,Ghewra More,63,3,3,3,medium,500,2.036,0,0,0,2.036,0,0,0,0,4.307,0,0,0,4.307,0,0,0,0
+crash-zone-deepali-chowk,Deepali Chowk,64,,,3,medium,450,6.159,0,0,0,6.159,0,2,0,0,22.908,0,0,0,22.908,0.532,2,0,0
+crash-zone-crpf-camp-sonia-vihar,CRPF Camp Sonia Vihar,65,,,3,medium,900,5.344,0,0,0,5.344,0,0,0,0,15.882,0,0,0,15.882,0,0,0,0
+crash-zone-budhpur-ganda-nala-hanuman-mandir-budhpur,Budhpur Ganda Nala/Hanuman Mandir Budhpur,66,,,3,low,1200,0.382,0,0,0,0.382,0,0,0,0,2.238,0,0,0,2.238,0,0,0,0
+crash-zone-sai-baba-mandir-nh-1,Sai Baba Mandir NH-1,67,,,3,low,1600,1.015,0,0,0,1.015,0,0,0,0,3.135,0,0,0.307,2.828,0,0,0,0
+crash-zone-khichadi-pur,Khichadi Pur,68,,,3,medium,700,8.107,0,0,0,8.107,0,0,0,0,22.733,0,0,0,22.733,0,0,0,0
+crash-zone-kirari-more,Kirari More,69,,,3,medium,600,7.543,0,0,0,7.543,0.023,0,0,0,27.214,0,0,0,27.214,0.023,0,0,0
+crash-zone-jharera-village,Jharera Village,70,,,3,medium,900,1.789,0,0,0,1.789,0.991,2,0,0,5.641,0,0,0,5.641,2.021,3,0,0
+crash-zone-wazir-pur-depot,Wazir Pur Depot,71,,,3,high,300,4.959,0,0,0,4.959,0,0,0,0,18.127,0,0,0,18.127,0.05,0,2,0
+crash-zone-under-pass-gajipur,Under Pass Gajipur,72,,,3,medium,500,3.285,0,0,0,3.285,0,0,0,0,10.3,0,0,0,10.3,0,0,0,0
+crash-zone-hilton-hotel,Hilton Hotel,73,,,3,medium,800,8.655,0,0,0.078,8.577,0,0,1,0,25.582,0,0,0.34,25.243,0.277,0,1,0
+crash-zone-ram-charan-aggarwal-chowk,Ram Charan Aggarwal Chowk,74,,,3,medium,600,0.416,0,0,0,0.416,0.894,1,0,0,9.66,1.282,0,0,8.378,2.716,16,4,13.3
+crash-zone-aiims,AIIMS,75,,,3,high,250,1.589,0,0,0.083,1.506,0.082,0,0,0,12.87,0.714,0,1.446,10.709,0.972,1,0,5.5
+crash-zone-tilak-nagar-flyover,Tilak Nagar Flyover,76,,,3,medium,450,6.893,0,0,0,6.893,0.072,0,0,0,34.321,0,0,0,34.321,2.461,0,0,0
+crash-zone-shani-mandir-nh-1,Shani Mandir NH-1,77,,,3,low,1800,0.18,0,0,0,0.18,0,0,0,0,3.923,0,0,0,3.923,0,0,0,0
+crash-zone-tilak-marg-bhagwan-das-marg-crossing,Tilak Marg Bhagwan Das Marg Crossing,78,,,3,high,300,2.066,0,0,0,2.066,0.419,0,0,0,10.721,0,0,0,10.721,4.473,19,0,0
+crash-zone-nirankari-colony,Nirankari Colony,79,,,3,medium,800,3.137,0,0,0,3.137,0,0,0,0,10.905,0,0,0,10.905,0.716,0,0,0
+crash-zone-satya-niketan-nanakpura,Satya Niketan Nanakpura,80,,,3,medium,600,5.748,0,0,0.138,5.61,2.184,0,0,0,13.382,0,0,0.492,12.891,4.336,0,0,0
+crash-zone-near-haldiram-wazirpur,Near Haldiram Wazirpur,81,,,3,medium,500,4.959,0,0,0,4.959,0,0,0,0,18.127,0,0,0,18.127,0.05,0,2,0
+crash-zone-raja-harishchander-hospital,Raja Harishchander Hospital,82,,,3,high,300,6.021,0,0,0,6.021,0,0,0,0,22.942,0,0,0,22.942,0,0,0,0
+crash-zone-shalimar-bagh,Shalimar Bagh,83,,,3,medium,800,7.033,0,0,0,7.033,0.322,0,0,0,19.705,0,0,0,19.705,0.669,0,0,0
+crash-zone-round-about-bhairaon-enclave,Round About Bhairaon Enclave,84,,,3,medium,650,4.356,0,0,0,4.356,0,0,0,0,21.52,0,0,0,21.52,0,0,0,0
+crash-zone-jeewan-mala-hospital,Jeewan Mala Hospital,85,,,3,medium,600,5.477,0,0,0,5.477,0,0,3,0,17.643,0,0,0,17.643,0.218,7,3,0
+crash-zone-tughlaqabad-village-red-light,Tughlaqabad Village Red Light,86,,,3,medium,650,0.536,0,0,0,0.536,0,0,0,0,3.562,0,0,0,3.562,0,0,0,0
+crash-zone-khel-gaon,Khel Gaon,87,,,3,medium,600,3.019,0,0,0,3.019,0.126,0,0,0,5.819,0,0,0,5.819,1.002,0,0,0
+crash-zone-near-kv-school-naraina,Near KV School Naraina,88,,,3,medium,650,3.596,0,0,0,3.596,0,0,0,0,13.498,0,0,0,13.498,0,0,3,0
+crash-zone-hanuman-mandir,Hanuman Mandir,,,,,very_low,5000,4.141,0,0,0,4.141,0.407,0,0,0,14.43,0,0,0,14.43,2.03,24,8,0
+crash-zone-kabootar-market,Kabootar Market,,3,3,,low,1200,2.485,0,0,0,2.485,1.286,0,0,0,13.285,1.532,0,0.631,11.123,4.604,4,0,11.5
+crash-zone-nangli-poona,Nangli Poona,,,,,medium,900,4.402,0,0,0,4.402,0,0,0,0,12.789,0,0,1.314,11.475,0,0,0,0
+crash-zone-rajouri-garden,Rajouri Garden,,,,,medium,700,7.608,0,0,0,7.608,0,0,0,0,25.402,0,0,0,25.402,0,0,0,0
+crash-zone-shastri-park-it-park,Shastri Park/IT Park,,,,,medium,600,0.346,0,0,0,0.346,0.707,0,0,0,4.723,0,0,0,4.723,1.633,0,0,0
