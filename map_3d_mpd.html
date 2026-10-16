@@ -672,7 +672,13 @@
     if (init.basemap) { basemapKey = init.basemap; $('basemap').value = basemapKey; }
     if (init.height) $('height').value = init.height;
     if (init.low === false) { showLow = false; $('low').checked = false; }
+    // The view class must be on <body> BEFORE the maps are created: on phones the page is a stacked layout until the class is set, so a map created first
+    // is sized to half the screen and stays that size (a bug seen on a real phone: the map filled only the top part of the screen).
+    document.body.classList.toggle('chg', view === 'chg'); document.body.classList.toggle('swipe', view === 'swipe');
     maps.A = makeMap('A', 'mapA'); maps.B = makeMap('B', 'mapB');
+    requestAnimationFrame(function () { maps.A.resize(); maps.B.resize(); });
+    window.addEventListener('orientationchange', function () { setTimeout(function () { maps.A.resize(); maps.B.resize(); }, 250); });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { maps.A.resize(); maps.B.resize(); });   // phone browser toolbars show and hide
     if (init.view_) { var p = init.view_; maps.A.jumpTo({ center: [p[0], p[1]], zoom: p[2], pitch: p[3], bearing: p[4] }); maps.B.jumpTo({ center: [p[0], p[1]], zoom: p[2], pitch: p[3], bearing: p[4] }); }
     maps.A.once('style.load', function () {
       if (init.view) setView(view); else { refreshData(); }

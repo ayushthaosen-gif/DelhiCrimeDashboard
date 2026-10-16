@@ -116,6 +116,10 @@
 
   <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="cams" type="checkbox" style="width:auto;min-height:0"> Mapped surveillance cameras (OpenStreetMap, no video)</label>
 
+  <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="pol" type="checkbox" style="width:auto;min-height:0"> Police stations and posts (OpenStreetMap)</label>
+
+  <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="liq" type="checkbox" style="width:auto;min-height:0"> Liquor vends (official lists; positions mostly approximate, list incomplete)</label>
+
   <label style="display:flex;gap:8px;align-items:center;margin-top:10px"><input id="bldg" type="checkbox" style="width:auto;min-height:0"> 3D buildings (zoom in past street level; wards fade out)</label>
 
   <div class="row">
@@ -423,6 +427,59 @@
     return { n250: n250, n500: n500, nearest: nearest };
   }
 
+  // ---------- police stations and posts (OpenStreetMap) and liquor vends (official lists, approximate positions) ----------
+  var police = null, policePromise = null, policeOn = false, liquor = null, liquorPromise = null, liquorOn = false;
+  function pointsFC(list) {
+    return { type: 'FeatureCollection', features: list.map(function (c) { return { type: 'Feature', properties: { name: c.name, kind: c.kind || '' }, geometry: { type: 'Point', coordinates: [c.lng, c.lat] } }; }) };
+  }
+  function loadPolice() {
+    if (police) return Promise.resolve(police);
+    if (!policePromise) {
+      policePromise = loadJson('data/police_markers_latlng.json').then(function (j) {
+        var take = function (arr, kind) { return (arr || []).filter(function (c) { return isFinite(c[0]) && isFinite(c[1]); }).map(function (c) { return { lat: Number(c[0]), lng: Number(c[1]), name: String(c[2] || ''), kind: kind }; }); };
+        police = take(j.stations, 'station').concat(take(j.posts, 'post'));
+        if (map && map.getSource('police')) map.getSource('police').setData(pointsFC(police));
+        return police;
+      }, function () { policePromise = null; return null; });
+    }
+    return policePromise;
+  }
+  function loadLiquor() {
+    if (liquor) return Promise.resolve(liquor);
+    if (!liquorPromise) {
+      liquorPromise = loadJson('data/delhi_liquor_vends_all_coordinates_approx.geojson').then(function (j) {
+        liquor = j.features.filter(function (f) { return f.geometry && f.geometry.type === 'Point'; })
+          .map(function (f) { return { lat: f.geometry.coordinates[1], lng: f.geometry.coordinates[0], name: String(f.properties.name || ''), kind: 'vend' }; })
+          .filter(function (c) { return isFinite(c.lat) && isFinite(c.lng); });
+        if (map && map.getSource('liquor')) map.getSource('liquor').setData(pointsFC(liquor));
+        return liquor;
+      }, function () { liquorPromise = null; return null; });
+    }
+    return liquorPromise;
+  }
+  function setPolice(on) {
+    policeOn = on; $('pol').checked = on;
+    if (map && map.getLayer('police-pt')) map.setLayoutProperty('police-pt', 'visibility', on ? 'visible' : 'none');
+    if (on) loadPolice();
+  }
+  function setLiquor(on) {
+    liquorOn = on; $('liq').checked = on;
+    if (map && map.getLayer('liquor-pt')) map.setLayoutProperty('liquor-pt', 'visibility', on ? 'visible' : 'none');
+    if (on) loadLiquor();
+  }
+  function policeStats(lat, lng) {
+    if (!police) return null;
+    var best = null;
+    police.forEach(function (c) { if (c.kind !== 'station') return; var d = metresBetween(lat, lng, c.lat, c.lng); if (!best || d < best.d) best = { d: d, name: c.name }; });
+    return best;
+  }
+  function liquorStats(lat, lng) {
+    if (!liquor) return null;
+    var n250 = 0, n500 = 0;
+    liquor.forEach(function (c) { var d = metresBetween(lat, lng, c.lat, c.lng); if (d <= 500) { n500++; if (d <= 250) n250++; } });
+    return { n250: n250, n500: n500 };
+  }
+
   // ---------- tour: top 10 crash zones on 3D satellite ----------
   var crashZones = null;                       // top 10 by Delhi Traffic Police Table 6.29 rank (approximate points)
   var tourIdx = 0, tourSaved = null;
@@ -446,12 +503,14 @@
   }
   function pair(flagged, f, t) { return flagged ? num(f) + ' / ' + num(t) : 'not flagged'; }
   function tourCaption(z, i, n) {
-    var p = z.properties, c0 = z.geometry.coordinates, cam = cameraStats(c0[1], c0[0]);
+    var p = z.properties, c0 = z.geometry.coordinates, cam = cameraStats(c0[1], c0[0]), pol = policeStats(c0[1], c0[0]), liq = liquorStats(c0[1], c0[0]);
     var rows = [
       ['Fatal / all crashes', num(p.all_fatal_crashes) + ' / ' + num(p.all_total_crashes)],
       ['Persons killed / injured', num(p.blackspot_persons_killed) + ' / ' + num(p.blackspot_persons_injured)],
       ['Position evidence', evidenceText(p._evidence)],
       ['Mapped cameras within 250 m / 500 m', cam ? cam.n250 + ' / ' + cam.n500 : 'loading\u2026'],
+      ['Nearest police station', pol ? pol.name.replace(/^PS /i, '') + ', ' + (pol.d >= 1000 ? (pol.d / 1000).toFixed(1) + ' km' : Math.round(pol.d) + ' m') : 'loading\u2026'],
+      ['*Liquor vends within 250 m / 500 m (approximate)', liq ? liq.n250 + ' / ' + liq.n500 : 'loading\u2026'],
       ['*Report map dot (about 1 km resolution)', mapCheckText(p._mapcheck)],
       ['*Pedestrian fatal / all', pair(p.pedestrian_crash_prone, p.pedestrian_fatal_crashes, p.pedestrian_total_crashes)],
       ['*Two-wheeler fatal / all', pair(p.two_wheeler_crash_prone, p.two_wheeler_fatal_crashes, p.two_wheeler_total_crashes)],
@@ -486,7 +545,7 @@
     if (map && map.getSource('tour')) map.getSource('tour').setData({ type: 'FeatureCollection', features: [] });
     if (was && tourSaved) {
       basemapSel.value = tourSaved.basemap; setBasemap(tourSaved.basemap);
-      setBuildings(tourSaved.buildings); setCameras(tourSaved.cams);
+      setBuildings(tourSaved.buildings); setCameras(tourSaved.cams); setPolice(tourSaved.pol); setLiquor(tourSaved.liq);
       if (tourSaved.panelOpen) $('controls').setAttribute('open', '');
     }
     if (was) tourSaved = null;
@@ -509,7 +568,7 @@
     var z = crashZones[i], c = z.geometry.coordinates;
     $('caption').style.display = 'block';
     $('caption').innerHTML = tourCaption(z, i, crashZones.length);
-    if (!cameras) loadCameras().then(function () { if (touring && tourIdx === i) $('caption').innerHTML = tourCaption(z, i, crashZones.length); });
+    if (!cameras || !police || !liquor) Promise.all([loadCameras(), loadPolice(), loadLiquor()]).then(function () { if (touring && tourIdx === i) $('caption').innerHTML = tourCaption(z, i, crashZones.length); });
     map.getSource('tour').setData({ type: 'FeatureCollection', features: [
       { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [circlePolygon(c[0], c[1], z.properties.zone_radius_m || 250)] } },
       { type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: c } }
@@ -522,10 +581,10 @@
     if (!crashZones || !crashZones.length) return;
     stopPlay(); unpin();
     // Reset the map to the full-city view, show the ward picture for context, then go 3D satellite.
-    tourSaved = { basemap: basemapKey, buildings: buildingsOn, cams: camsOn, panelOpen: $('controls').hasAttribute('open') };
+    tourSaved = { basemap: basemapKey, buildings: buildingsOn, cams: camsOn, pol: policeOn, liq: liquorOn, panelOpen: $('controls').hasAttribute('open') };
     $('controls').removeAttribute('open'); // clear the view; reopen from the title when the tour ends
     metricSel.value = 0; metric = METRICS[0]; applyMetric();
-    basemapSel.value = 'sat'; setBasemap('sat'); setBuildings(true); setCameras(true);
+    basemapSel.value = 'sat'; setBasemap('sat'); setBuildings(true); setCameras(true); setPolice(true); setLiquor(true);
     touring = true; document.body.classList.add('touring'); $('tour').textContent = 'Stop tour';
     $('caption').style.display = 'block';
     $('caption').innerHTML = '<b>Top 10 crash zones, Delhi 2024</b><br><span style="color:var(--muted)">Resetting the map, then visiting each zone in 3D satellite with its crash data. Use the arrows to skip, Esc to stop.</span>';
@@ -544,6 +603,8 @@
     q.set('v', [c.lng.toFixed(4), c.lat.toFixed(4), map.getZoom().toFixed(2), map.getPitch().toFixed(0), map.getBearing().toFixed(0)].join(','));
     if (buildingsOn) q.set('bl', '1');
     if (camsOn) q.set('cam', '1');
+    if (policeOn) q.set('pol', '1');
+    if (liquorOn) q.set('liq', '1');
     if (pinned !== null) q.set('w', pinned);
     safe(function () { history.replaceState(null, '', '#' + q.toString()); });
   }
@@ -555,6 +616,8 @@
     var b = q.get('b'); if (b === 'osm' || b === 'sat' || b === 'none') out.basemap = b;
     if (q.get('bl') === '1') out.buildings = true;
     if (q.get('cam') === '1') out.cams = true;
+    if (q.get('pol') === '1') out.pol = true;
+    if (q.get('liq') === '1') out.liq = true;
     var h = parseInt(q.get('h'), 10); if (h >= 0 && h <= 100) out.height = h;
     var v = (q.get('v') || '').split(',').map(Number);
     if (v.length === 5 && v.every(isFinite) && v[0] > 60 && v[0] < 90 && v[1] > 5 && v[1] < 40 && v[2] >= 3 && v[2] <= 19) out.view = v;
@@ -608,12 +671,21 @@
       map.addSource('cameras', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       map.addLayer({ id: 'cameras-pt', type: 'circle', source: 'cameras', minzoom: 10, layout: { visibility: 'none' },
         paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 1.6, 14, 3.5, 17, 6], 'circle-color': '#4dd0e1', 'circle-stroke-color': '#0b1220', 'circle-stroke-width': 1, 'circle-opacity': 0.95 } });
+      map.addSource('police', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      map.addLayer({ id: 'police-pt', type: 'circle', source: 'police', minzoom: 9, layout: { visibility: 'none' },
+        paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 9, 2.5, 14, ['match', ['get', 'kind'], 'station', 7, 4.5], 17, ['match', ['get', 'kind'], 'station', 10, 6]],
+          'circle-color': ['match', ['get', 'kind'], 'station', '#6fa8dc', '#b7d3ee'], 'circle-stroke-color': '#0b1220', 'circle-stroke-width': 1.2, 'circle-opacity': 0.95 } });
+      map.addSource('liquor', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      map.addLayer({ id: 'liquor-pt', type: 'circle', source: 'liquor', minzoom: 10, layout: { visibility: 'none' },
+        paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 2, 14, 4, 17, 6.5], 'circle-color': '#c77dff', 'circle-stroke-color': '#0b1220', 'circle-stroke-width': 1, 'circle-opacity': 0.9 } });
       map.addSource('tour', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       map.addLayer({ id: 'tour-zone', type: 'fill', source: 'tour', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': '#f0a63c', 'fill-opacity': 0.18 } });
       map.addLayer({ id: 'tour-ring', type: 'line', source: 'tour', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'line-color': '#f0a63c', 'line-width': 3 } });
       map.addLayer({ id: 'tour-pt', type: 'circle', source: 'tour', filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-radius': 7, 'circle-color': '#ffffff', 'circle-stroke-color': '#c4252d', 'circle-stroke-width': 3 } });
       applyMetric();
       if (initial.cams) setCameras(true);
+      if (initial.pol) setPolice(true);
+      if (initial.liq) setLiquor(true);
       if (initial.ward !== undefined) pinWard(initial.ward);
 
       map.on('mousemove', 'wards-3d', function (e) {
@@ -640,6 +712,8 @@
   yearEl.addEventListener('input', function () { stopPlay(); setYear(Number(yearEl.value)); });
   $('play').addEventListener('click', function () { if (playTimer) stopPlay(); else startPlay(); });
   $('cams').addEventListener('change', function () { setCameras($('cams').checked); scheduleUrl(); });
+  $('pol').addEventListener('change', function () { setPolice($('pol').checked); scheduleUrl(); });
+  $('liq').addEventListener('change', function () { setLiquor($('liq').checked); scheduleUrl(); });
   $('labels').addEventListener('change', function () {
     var v = $('labels').checked ? 'visible' : 'none';
     ['place-labels', 'ward-labels'].forEach(function (id) { map.setLayoutProperty(id, 'visibility', v); });

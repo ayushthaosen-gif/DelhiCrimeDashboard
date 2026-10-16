@@ -137,3 +137,16 @@ test('a Home button leads back to the dashboard home page', () => {
   assert.match(html, /<a class="homebtn" href="delhi_safety_dashboard\.html"[^>]*>[^<]*Home<\/a>/);
   assert.ok(fs.existsSync(path.join(ROOT, 'delhi_safety_dashboard.html')));
 });
+
+test('police stations and liquor vends: data files exist with usable points, and the page is honest about the liquor list', () => {
+  const police = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'police_markers_latlng.json'), 'utf8'));
+  assert.ok(police.stations.length >= 100 && police.posts.length >= 50);
+  for (const [lat, lng] of police.stations.concat(police.posts)) assert.ok(lat > 28.3 && lat < 29 && lng > 76.7 && lng < 77.5, 'police point outside Delhi');
+  const liq = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'delhi_liquor_vends_all_coordinates_approx.geojson'), 'utf8'));
+  assert.ok(liq.features.length >= 300);
+  assert.ok(liq.features.filter(f => f.properties.coordinate_is_approximate === true).length / liq.features.length > 0.9, 'almost every liquor vend position is approximate (the rest are exact OSM points)');
+  assert.ok(script.includes('data/police_markers_latlng.json') && script.includes('data/delhi_liquor_vends_all_coordinates_approx.geojson'));
+  assert.ok(html.includes('positions mostly approximate, list incomplete'));
+  assert.ok(script.includes('Liquor vends within 250 m / 500 m (approximate)') && script.includes('Nearest police station'));
+  for (const id of ['pol', 'liq']) assert.ok(html.includes('id="' + id + '"'));
+});
