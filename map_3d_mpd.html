@@ -18,6 +18,32 @@
   .pane .map { position: absolute; inset: 0; }
   .pane h2 { position: absolute; z-index: 4; right: 10px; top: 10px; margin: 0; padding: 5px 10px; font-size: 13px; font-weight: 600; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; }
   body.chg #paneB { display: none; }
+  /* swipe: both maps full size on top of each other, the planned map clipped to the right of a draggable divider */
+  body.swipe #maps { display: block; }
+  body.swipe .pane { position: absolute; inset: 0; }
+  body.swipe .pane + .pane { border: 0; clip-path: inset(0 0 0 var(--split, 50%)); }
+  #swipe { display: none; position: absolute; z-index: 6; top: 0; bottom: 0; left: var(--split, 50%); width: 36px; margin-left: -18px; cursor: ew-resize; touch-action: none; }
+  body.swipe #swipe { display: block; }
+  #swipe::before { content: ''; position: absolute; left: 17px; width: 2px; top: 0; bottom: 0; background: var(--accent); }
+  #swipe i { position: absolute; left: 3px; top: 50%; margin-top: -18px; width: 30px; height: 36px; border-radius: 18px; background: var(--accent); color: #111; display: grid; place-items: center; font-style: normal; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,.4); }
+  #swipe:focus-visible i { outline: 3px solid var(--ink); outline-offset: 2px; }
+  body.swipe .pane h2 { top: auto; bottom: 26px; }
+  body.swipe #titleA { right: calc(100% - var(--split, 50%) + 22px); }
+  body.swipe #titleB { left: calc(var(--split, 50%) + 22px); right: auto; }
+  body.swipe .pane h2 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  body.swipe #titleA { max-width: calc(var(--split, 50%) - 34px); }
+  body.swipe #titleB { max-width: calc(100% - var(--split, 50%) - 34px); }
+  #ranked { top: 54px; right: 10px; width: min(320px, calc(100vw - 20px)); max-height: calc(100vh - 150px); overflow: auto; padding: 10px 12px; }
+  #ranked summary { cursor: pointer; font-weight: 600; font-size: 14px; list-style: none; min-height: 28px; }
+  #ranked summary::-webkit-details-marker { display: none; }
+  #ranked summary::after { content: " \25BE"; color: var(--muted); }
+  #ranked[open] summary::after { content: " \25B4"; }
+  #rankedList { list-style: none; margin: 6px 0 0; padding: 0; }
+  #rankedList li + li { margin-top: 4px; }
+  #rankedList button { width: 100%; display: block; text-align: left; padding: 6px 8px; min-height: 44px; line-height: 1.3; }
+  #rankedList .nm { font-weight: 600; }
+  #rankedList .gap { font-size: 12px; color: var(--muted); }
+  #rankedList .more { color: #e8743b; } #rankedList .less { color: #7ea3c9; }
   .panel { position: absolute; z-index: 5; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; box-shadow: 0 4px 18px rgba(0,0,0,.3); }
   #controls { top: 10px; left: 10px; width: min(320px, calc(100vw - 20px)); max-height: calc(100vh - 90px); overflow: auto; }
   #controls summary { cursor: pointer; font-weight: 600; font-size: 15px; list-style: none; min-height: 28px; }
@@ -34,6 +60,8 @@
   button:focus-visible, select:focus-visible, input:focus-visible, summary:focus-visible, .linkbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; }
   .seg.two { grid-template-columns: 1fr 1fr; }
+  .seg.three { grid-template-columns: 1fr 1fr 1fr; }
+  .seg.three button { padding: 8px 4px; font-size: 13px; }
   .seg.grid2 { grid-auto-flow: row; grid-template-columns: 1fr 1fr; }
   .seg button[aria-pressed="true"] { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 600; }
   input[type=range] { width: 100%; min-height: 28px; }
@@ -71,6 +99,7 @@
     #legend { display: none; }
     #detail { left: 10px; right: 10px; width: auto; bottom: 10px; max-height: 45vh; }
     .pane h2 { top: auto; bottom: 8px; right: 8px; }
+    #ranked { left: 10px; right: 10px; width: auto; top: 66px; max-height: 50vh; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; } }
 </style>
@@ -79,6 +108,7 @@
 <div id="maps">
   <div class="pane" id="paneA"><div class="map" id="mapA" role="application" aria-label="3D map, current land use"></div><h2 id="titleA">Current (OpenStreetMap-mapped)</h2></div>
   <div class="pane" id="paneB"><div class="map" id="mapB" role="application" aria-label="3D map, planned land use"></div><h2 id="titleB">Planned (MPD-2047)</h2></div>
+  <div id="swipe" role="slider" tabindex="0" aria-label="Drag to compare the current map (left) with the plan (right)" aria-valuemin="5" aria-valuemax="95" aria-valuenow="50"><i aria-hidden="true">&#8596;</i></div>
 </div>
 
 <details id="controls" class="panel" open>
@@ -95,8 +125,9 @@
   <div class="seg grid2" id="classBtns" role="group" aria-labelledby="clsLbl"></div>
 
   <span class="lbl" id="viewLbl">View</span>
-  <div class="seg two" id="viewBtns" role="group" aria-labelledby="viewLbl">
-    <button type="button" data-view="sbs" aria-pressed="true">Side by side</button>
+  <div class="seg three" id="viewBtns" role="group" aria-labelledby="viewLbl">
+    <button type="button" data-view="swipe" aria-pressed="true">Swipe</button>
+    <button type="button" data-view="sbs" aria-pressed="false">Side by side</button>
     <button type="button" data-view="chg" aria-pressed="false">Change</button>
   </div>
 
@@ -122,6 +153,12 @@
   </div>
   <p class="row" style="grid-template-columns:1fr"><a class="linkbtn" href="map_3d.html">3D ward explorer (crash data)</a></p>
   <p class="cav" id="about">Plan: Delhi Development Authority, Master Plan for Delhi 2047 GIS portal. Current: OpenStreetMap contributors. A difference between a plan and a community-mapped inventory is not a measurement of change on the ground.</p>
+</details>
+
+<details id="ranked" class="panel" open>
+  <summary>Biggest gaps: top 10 wards</summary>
+  <div class="sub" id="rankedSub"></div>
+  <ol id="rankedList"></ol>
 </details>
 
 <div id="legend" class="panel" aria-live="polite"></div>
@@ -173,7 +210,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var data = {}, meta = {}, city = {}, geo = null, basis = 'sat';
   var maps = {}, popups = {}, syncing = false;
-  var cls = CLASSES[0], view = 'sbs', basemapKey = 'osm', showLow = true, pinned = null;
+  var cls = CLASSES[0], view = 'swipe', split = 50, basemapKey = 'osm', showLow = true, pinned = null;
   var reducedMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -193,7 +230,7 @@
     if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', t);
   })();
-  if (window.matchMedia && matchMedia('(max-width: 760px)').matches) $('controls').removeAttribute('open');
+  if (window.matchMedia && matchMedia('(max-width: 760px)').matches) { $('controls').removeAttribute('open'); $('ranked').removeAttribute('open'); }
 
   // ---------- colour helpers ----------
   function mix(a, b, t) {
@@ -286,7 +323,7 @@
   function refreshData() {
     var set = function (m, kind) { if (m && m.getSource('wards')) m.getSource('wards').setData(featureSet(kind)); };
     if (view === 'chg') set(maps.A, 'chg'); else { set(maps.A, 'cur'); set(maps.B, 'plan'); }
-    applyHeight(); refreshStrip(); refreshLegend(); refreshTitles();
+    applyHeight(); refreshStrip(); refreshLegend(); refreshTitles(); renderRanked();
     if (pinned !== null) renderDetail();
   }
   function applyHeight() {
@@ -304,8 +341,44 @@
     basemapKey = key;
     ['A', 'B'].forEach(function (mk) { var m = maps[mk]; if (!m || !m.getLayer('bm-osm')) return; ['osm', 'sat'].forEach(function (k) { m.setLayoutProperty('bm-' + k, 'visibility', k === key ? 'visible' : 'none'); }); });
   }
+  function setSplit(pct) {
+    split = Math.max(5, Math.min(95, pct));
+    $('maps').style.setProperty('--split', split + '%');
+    $('swipe').setAttribute('aria-valuenow', String(Math.round(split)));
+    scheduleUrl();
+  }
+  function wardCenter(id) {
+    var x0 = 180, y0 = 90, x1 = -180, y1 = -90;
+    (function walk(c) { if (typeof c[0] === 'number') { x0 = Math.min(x0, c[0]); x1 = Math.max(x1, c[0]); y0 = Math.min(y0, c[1]); y1 = Math.max(y1, c[1]); } else c.forEach(walk); })(geo[id].geometry.coordinates);
+    return [(x0 + x1) / 2, (y0 + y1) / 2];
+  }
+  // ---------- ranked list: where the plan and the current picture differ most, by area ----------
+  function gapRows() {
+    var k = cls.key, out = [];
+    geo.forEach(function (w) {
+      var r = rowOf(w); if (!r || isLow(r)) return;                 // thin-coverage wards are left out, not ranked
+      var area = basis === 'sat' ? r.comparable_km2 : r.plan_covered_km2;
+      if (!(area >= 0.3)) return;                                    // tiny wards would dominate by percentage points
+      var d = r['delta_' + k + '_pp']; out.push({ w: w, r: r, d: d, km: d / 100 * area });
+    });
+    out.sort(function (a, b) { return Math.abs(b.km) - Math.abs(a.km); });
+    return out.slice(0, 10);
+  }
+  function renderRanked() {
+    var k = cls.key, cw = BASES[basis].curWord, rows = gapRows();
+    $('rankedSub').textContent = 'Wards where the plan and the ' + (basis === 'sat' ? 'satellite' : 'OSM tags') + ' differ most in ' + cls.label.toLowerCase() + ', by area. Thin-coverage wards are left out. Click to fly there.';
+    $('rankedList').innerHTML = rows.map(function (x, i) {
+      var more = x.d > 0;
+      return '<li><button type="button" data-id="' + x.w.id + '"><span class="nm">' + (i + 1) + '. ' + esc(x.w.name) + '</span> <span class="gap">' + esc(x.r.district || '') + '</span><br>' +
+        '<span class="gap">plan ' + pct(x.r['planned_' + k + '_share_pct']) + ' vs ' + cw + ' ' + pct(x.r[BASES[basis].cur(k)]) + '</span> <span class="' + (more ? 'more' : 'less') + '">' + (more ? 'plan has more' : 'plan has less') + ', ' + (Math.round(Math.abs(x.km) * 10) / 10) + ' km\u00b2</span></button></li>';
+    }).join('');
+  }
+  function flyToWard(id) {
+    maps.A.flyTo({ center: wardCenter(id), zoom: 12.2, pitch: 55, bearing: -15, duration: reducedMotion ? 0 : 1600, essential: false });
+    pin(id);
+  }
   function setView(v) {
-    view = v; document.body.classList.toggle('chg', v === 'chg');
+    view = v; document.body.classList.toggle('chg', v === 'chg'); document.body.classList.toggle('swipe', v === 'swipe');
     Array.prototype.forEach.call($('viewBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === v ? 'true' : 'false'); });
     refreshData();
     setTimeout(function () { ['A', 'B'].forEach(function (k) { if (maps[k]) maps[k].resize(); }); }, 30);
@@ -429,7 +502,7 @@
   function scheduleUrl() { clearTimeout(urlTimer); urlTimer = setTimeout(writeUrl, 250); }
   function writeUrl() {
     var m = maps.A; if (!m) return; var c = m.getCenter(), q = new URLSearchParams();
-    q.set('s', basis); q.set('c', cls.key); q.set('v', view); q.set('b', basemapKey); q.set('h', $('height').value); if (!showLow) q.set('lo', '0');
+    q.set('s', basis); q.set('c', cls.key); q.set('v', view); if (view === 'swipe') q.set('x', Math.round(split)); q.set('b', basemapKey); q.set('h', $('height').value); if (!showLow) q.set('lo', '0');
     q.set('p', [c.lng.toFixed(4), c.lat.toFixed(4), m.getZoom().toFixed(2), m.getPitch().toFixed(0), m.getBearing().toFixed(0)].join(','));
     if (pinned !== null) q.set('w', pinned);
     safe(function () { history.replaceState(null, '', '#' + q.toString()); });
@@ -438,7 +511,8 @@
     var out = {}, q = new URLSearchParams(location.hash.slice(1));
     var sb = q.get('s'); if (sb === 'sat' || sb === 'osm') out.basis = sb;
     var c = q.get('c'); if (Object.keys(BASES).some(function (b) { return BASES[b].classes.some(function (x) { return x.key === c; }); })) out.cls = c;
-    var v = q.get('v'); if (v === 'sbs' || v === 'chg') out.view = v;
+    var v = q.get('v'); if (v === 'swipe' || v === 'sbs' || v === 'chg') out.view = v;
+    var xs = parseFloat(q.get('x')); if (xs >= 5 && xs <= 95) out.split = xs;
     var b = q.get('b'); if (b === 'osm' || b === 'sat' || b === 'none') out.basemap = b;
     var h = parseInt(q.get('h'), 10); if (h >= 10 && h <= 100) out.height = h;
     if (q.get('lo') === '0') out.low = false;
@@ -450,6 +524,23 @@
 
   // ---------- events ----------
   Array.prototype.forEach.call($('basisBtns').children, function (b) { b.addEventListener('click', function () { setBasis(b.getAttribute('data-basis')); }); });
+  (function () {
+    var h = $('swipe'), dragging = false;
+    function at(e) { var r = $('maps').getBoundingClientRect(); setSplit((e.clientX - r.left) / r.width * 100); }
+    h.addEventListener('pointerdown', function (e) { dragging = true; h.setPointerCapture(e.pointerId); at(e); e.preventDefault(); });
+    h.addEventListener('pointermove', function (e) { if (dragging) at(e); });
+    h.addEventListener('pointerup', function () { dragging = false; });
+    h.addEventListener('pointercancel', function () { dragging = false; });
+    h.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { setSplit(split - 2); e.preventDefault(); }
+      else if (e.key === 'ArrowRight') { setSplit(split + 2); e.preventDefault(); }
+      else if (e.key === 'Home') { setSplit(5); e.preventDefault(); }
+      else if (e.key === 'End') { setSplit(95); e.preventDefault(); }
+    });
+  })();
+  $('rankedList').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button[data-id]'); if (b) flyToWard(Number(b.getAttribute('data-id')));
+  });
   Array.prototype.forEach.call($('viewBtns').children, function (b) { b.addEventListener('click', function () { setView(b.getAttribute('data-view')); }); });
   $('basemap').addEventListener('change', function () { setBasemap($('basemap').value); scheduleUrl(); });
   $('height').addEventListener('input', function () { applyHeight(); scheduleUrl(); });
@@ -495,7 +586,8 @@
     });
     maps.B.once('style.load', function () { refreshData(); });
     refreshStrip(); refreshLegend(); refreshTitles(); refreshAbout();
-    if (view === 'chg') document.body.classList.add('chg');
+    document.body.classList.toggle('chg', view === 'chg'); document.body.classList.toggle('swipe', view === 'swipe');
+    if (init.split) setSplit(init.split);
     Array.prototype.forEach.call($('viewBtns').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === view ? 'true' : 'false'); });
   }).catch(function (e) {
     showError('Could not load the comparison data (' + e.message + '). This page needs to be served over http, not opened as a file. From the repo folder run: python -m http.server 8000, then open http://localhost:8000/map_3d_mpd.html');
