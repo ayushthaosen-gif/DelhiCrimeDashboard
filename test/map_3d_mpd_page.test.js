@@ -175,6 +175,7 @@ test('guided stories: four stories whose wards come from the data and each has r
   for (const id of ids) assert.ok(km[id].length >= 5, id + ': needs at least five wards, has ' + km[id].length);
   assert.ok(script.includes('is not proof of a violation'), 'every story card must carry the caveat');
   assert.ok(script.includes("data-act=\"stop\"") && script.includes("'Escape'"), 'a story must be stoppable by button and Escape');
+});
 
 test('the view class is set on the page before the maps are created, and the maps are resized after layout', () => {
   const classAt = script.indexOf("document.body.classList.toggle('swipe', view === 'swipe')");
