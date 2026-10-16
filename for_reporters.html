@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>For reporters: what you can and cannot say</title>
-<meta name="description" content="A plain guide for journalists using the Delhi Urban Safety Observatory: which figures are solid, which are leads only, and how to cite them.">
+<title>For reporters and researchers</title>
+<meta name="description" content="A plain guide for journalists and researchers using the Delhi Urban Safety Observatory: which figures are solid, which are leads only, and how to cite and reuse them.">
 <style>
   :root { --bg:#f4f6fa; --panel:#fff; --ink:#1c2331; --muted:#4f5a6e; --accent:#8a5800; --line:#d5dbe6; --ok:#1e6b3a; --warn:#8a5800; --no:#a1261b; }
   :root[data-theme="dark"] { --bg:#1c2331; --panel:#252d3d; --ink:#e8ecf3; --muted:#a8b2c4; --accent:#f0a63c; --line:#38425a; --ok:#7bd88f; --warn:#f0a63c; --no:#ff8f85; }
@@ -31,40 +31,56 @@
 <body>
 <div class="wrap">
   <a class="homebtn" href="delhi_safety_dashboard.html" aria-label="Back to the Delhi Urban Safety Observatory home page">&larr; Home</a>
-  <h1>For reporters: what you can and cannot say</h1>
-  <p class="lead">This site is a compilation, not a primary source. For any figure you publish, cite the original agency report (named in each dataset's manifest and in the README's "Data &amp; sourcing" section) and, if you wish, link here for the traceable copy. This page grades each part of the site so you know how far to trust it.</p>
+  <h1>For reporters and researchers: what you can and cannot say</h1>
+  <p class="lead">Every number on this site started as a person: someone who didn't come home from a crossing, a market, a bus stop. I built this to make those numbers easier to find and harder to ignore. I also know that a careless sentence built on them can do harm, to families, to neighbourhoods, and to the argument for fixing these roads. So here, plainly, is how far you can trust each part.</p>
+  <p class="lead">This site is a compilation. It is not a primary source. Whatever you publish, please name the original agency report (each dataset's manifest says which one) and link here only as the copy you can trace.</p>
 
   <section class="ok" aria-labelledby="g1">
     <span class="badge">Solid: cite the original report</span>
     <h2 id="g1">District crime and road-safety figures, 2016&ndash;2024</h2>
     <ul>
-      <li>Come from NCRB and the Delhi Traffic Police crash reports, checked against the sources, with manifests and a data changelog of every revision.</li>
-      <li>Crash-prone zone <b>rankings and counts</b> (2024) are copied from the Delhi Road Crash Report tables.</li>
-      <li>A zero for a survey-based layer can mean &ldquo;not surveyed&rdquo;. Check the coverage note before saying a district has none.</li>
+      <li>These come from NCRB and the Delhi Traffic Police crash reports. I checked them against the sources, and every revision is written down in the data changelog.</li>
+      <li>The 2024 crash-prone zone <b>rankings and counts</b> are copied from the Delhi Road Crash Report tables, row for row.</li>
+      <li>A zero in a survey-based layer can simply mean nobody surveyed there. Read the coverage note before you write that a district has none.</li>
     </ul>
-    <p class="say">Safe wording: &ldquo;According to the Delhi Road Crash Report 2024, &hellip;&rdquo;</p>
+    <p class="say">A safe way to say it: &ldquo;According to the Delhi Road Crash Report 2024, &hellip;&rdquo;</p>
   </section>
 
   <section class="warn" aria-labelledby="g2">
     <span class="badge">Leads only: verify before publishing</span>
     <h2 id="g2">Locations, land use and mapped infrastructure</h2>
     <ul>
-      <li><b>Crash-zone map positions</b> are landmark-centre guesses, off by roughly 250 m to 1 km. They are not police geotags. Say &ldquo;in the area of&rdquo;, never &ldquo;at this spot&rdquo;. (<a href="docs/CRASH_ZONE_COORDINATES.md">audit</a>)</li>
-      <li><b>Master Plan 2047 vs satellite</b> compares plan designations with 2021 land cover. The satellite sees cover, not use, so a gap is a place to investigate, not evidence of illegal construction. (<a href="docs/MPD_BUILT_UP_USE_TRIAL.md">what was tried</a>)</li>
-      <li><b>Cameras, police stations, footways, crossings</b> come from OpenStreetMap volunteers and are not complete. Absence on the map is not absence on the ground.</li>
-      <li><b>Liquor vends</b>: official lists, positions mostly approximate, list incomplete. Counts near a zone are indicative only.</li>
+      <li><b>Where a crash zone sits on the map</b> is my best guess from its name, and it can be 250 m to a kilometre out. These are not police geotags. Please write &ldquo;in the area of&rdquo;, never &ldquo;at this spot&rdquo;. A family may live at that spot. (<a href="docs/CRASH_ZONE_COORDINATES.md">how I checked</a>)</li>
+      <li><b>Master Plan 2047 against the satellite</b> shows where the plan and the 2021 land cover disagree. A satellite sees what covers the ground, not what the building is used for, so a gap is a place to go and ask questions. It is not evidence of illegal construction. (<a href="docs/MPD_BUILT_UP_USE_TRIAL.md">what I tried</a>)</li>
+      <li><b>Cameras, police stations, footways, crossings</b> were mapped by OpenStreetMap volunteers. They are generous but incomplete. If it isn't on the map, it may still be on the street.</li>
+      <li><b>Liquor vends</b> come from official lists, mostly with approximate positions, and the lists are incomplete. Counts near a zone are a hint, not a finding.</li>
     </ul>
-    <p class="say">Safe wording: &ldquo;Mapped data suggests&hellip;; the figures are approximate and unconfirmed.&rdquo;</p>
+    <p class="say">A safe way to say it: &ldquo;Mapped data suggests&hellip; but the figures are approximate and unconfirmed.&rdquo;</p>
   </section>
 
   <section class="no" aria-labelledby="g3">
     <span class="badge">Do not publish as findings</span>
     <h2 id="g3">Prototypes and unverified data</h2>
     <ul>
-      <li><b>District iRAD page</b>: a prototype. Rows read from scanned PDFs need a human check against the PDFs. iRAD is a different series from the traffic police report; do not mix them, and not every district is covered.</li>
-      <li><b>2025 crime counts</b> in the repo are news reports of Delhi Police data with no police table behind them. Cite the original news story, or ask Delhi Police for the table. There is no district-wise 2025 data and no full-year 2025 IPC/BNS total. NCRB's 2025 report is not out.</li>
-      <li><b>Sidewalk coverage near crash zones</b> measures how little is tagged in OpenStreetMap. Do not report "no sidewalks near crash zones". Essentially no sidewalk tags exist, which says nothing about real pavements.</li>
-      <li><b>3D pages</b> are exploration tools and carry a prototype label.</li>
+      <li><b>The district iRAD page</b> is unfinished. Some rows were read from scanned PDFs and nobody has checked them against the originals yet. iRAD also counts differently from the traffic police report, and only some districts publish it. Please don't set the two side by side.</li>
+      <li><b>The 2025 crime counts</b> in the repository come from news reports of Delhi Police data, and I found no police table behind them. There is no district-wise 2025 data and no full-year 2025 IPC/BNS total, and NCRB's 2025 report isn't out. If you need 2025, cite the original news story or ask Delhi Police for the table.</li>
+      <li><b>Sidewalk coverage near crash zones</b> only shows how little has been tagged on OpenStreetMap. Please don't write that there are "no sidewalks near crash zones". Nobody has measured that, and the data cannot tell you.</li>
+      <li><b>The 3D pages</b> are for exploring and getting curious. They are not for quoting.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="g5">
+    <h2 id="g5">If you are a researcher</h2>
+    <p>You are exactly who I hoped would find this. Here is where to start and where to be careful.</p>
+    <ul>
+      <li><b>Start with the yearly releases.</b> <a href="data/releases/README.md">data/releases/</a> has one folder per year (2016&ndash;2024), each with normalised CSV and JSON and a manifest that names the source agency and page. The code is MIT-licensed and the data keeps its original licence. Please read the licence note before reusing a layer.</li>
+      <li><b>Cite it properly.</b> <a href="CITATION.cff">CITATION.cff</a> says how to cite the repository. For any single figure, cite the agency report as well, because this repository is a copy, not the source.</li>
+      <li><b>Check the revisions.</b> <a href="docs/DATA_CHANGELOG.md">The data changelog</a> lists every figure I have corrected, with the old value, the new value and why. If you worked from an earlier version, look there first.</li>
+      <li><b>Reproduce it.</b> Every derived file has a script in <code>scripts/</code> and a test. The <a href="README.md">README</a> explains the pipeline and the example notebook in <code>notebooks/</code> shows one way in. If you can't reproduce a number, I want to know.</li>
+      <li><b>Staged, not published.</b> Material under <code>data/releases/2025/</code> and <code>data/derived/irad_monthly/</code> is there for review. It has known gaps (<a href="docs/IRAD_DISTRICT_REPORTS.md">iRAD notes</a>). Treat it as raw material, never as a finished dataset.</li>
+      <li><b>Mind the limits of the units.</b> Fifteen police districts hide very large differences between neighbourhoods, and small counts swing a lot from year to year. Zone coordinates are approximate, so any spatial join to a zone inherits an error of up to a kilometre. Mapped infrastructure measures mapping effort as much as the street.</li>
+      <li><b>Missing data is not zero.</b> Where a value is null, it is null for a reason written in the manifest. Please don't fill it in quietly.</li>
+      <li><b>Tell me what you find.</b> If you spot an error, or you publish something that used this, open an issue. Corrections are logged, and I would like to learn from them.</li>
     </ul>
   </section>
 
@@ -72,9 +88,9 @@
     <h2 id="g4">Before you publish</h2>
     <ul>
       <li>Open the dataset's <code>manifest.json</code> to find the original source and its date.</li>
-      <li>Check <a href="docs/DATA_CHANGELOG.md">the data changelog</a> for revisions to the figure you are using.</li>
-      <li>Do not compare series that count different things (traffic police crashes, iRAD, news-reported totals).</li>
-      <li>Found an error? Open an issue on the repository; corrections are logged in the changelog.</li>
+      <li>Look at <a href="docs/DATA_CHANGELOG.md">the data changelog</a> for any revision to the figure you are using.</li>
+      <li>Don't compare series that count different things: traffic police crashes, iRAD, and news-reported totals.</li>
+      <li>Found an error? Open an issue on the repository. Corrections are logged in the changelog.</li>
     </ul>
   </section>
 </div>
