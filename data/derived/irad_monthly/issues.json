@@ -1,0 +1,69 @@
+{
+ "arithmetic": [],
+ "conflicts": [],
+ "listed_under_wrong_district": [
+  {
+   "file": "North_West__17659564847373.pdf",
+   "listed_on": "North West",
+   "report_says": "South East",
+   "period": [
+    "2025-01-01",
+    "2025-01-31"
+   ]
+  },
+  {
+   "file": "North_West__17659566344197.pdf",
+   "listed_on": "North West",
+   "report_says": "South East",
+   "period": [
+    "2025-05-01",
+    "2025-05-31"
+   ]
+  },
+  {
+   "file": "North_West__17659566916898.pdf",
+   "listed_on": "North West",
+   "report_says": "South East",
+   "period": [
+    "2025-07-01",
+    "2025-07-31"
+   ]
+  },
+  {
+   "file": "North_West__17659567362040.pdf",
+   "listed_on": "North West",
+   "report_says": "South East",
+   "period": [
+    "2025-09-01",
+    "2025-09-30"
+   ]
+  },
+  {
+   "file": "North_West__17659567553072.pdf",
+   "listed_on": "North West",
+   "report_says": "South East",
+   "period": [
+    "2025-10-01",
+    "2025-10-31"
+   ]
+  },
+  {
+   "file": "North_West__17659568465531.pdf",
+   "listed_on": "North West",
+   "report_says": "South East",
+   "period": [
+    "2025-02-01",
+    "2025-02-28"
+   ]
+  },
+  {
+   "file": "North_West__17676879156890.pdf",
+   "listed_on": "North West",
+   "report_says": "South East",
+   "period": [
+    "2025-12-01",
+    "2025-12-31"
+   ]
+  }
+ ]
+}
