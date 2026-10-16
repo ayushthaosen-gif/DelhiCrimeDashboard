@@ -14,7 +14,10 @@
   html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.4 system-ui, sans-serif; }
   #map { position: absolute; inset: 0; }
   .panel { position: absolute; z-index: 5; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; box-shadow: 0 4px 18px rgba(0,0,0,.3); }
-  #controls { top: 12px; left: 12px; width: min(310px, calc(100vw - 24px)); max-height: calc(100vh - 100px); overflow: auto; }
+  .homebtn { position: absolute; z-index: 6; top: 12px; left: 12px; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 14px; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 999px; font-weight: 600; font-size: 13px; text-decoration: none; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
+  .homebtn:hover { border-color: var(--accent); }
+  .homebtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #controls { top: 56px; left: 12px; width: min(310px, calc(100vw - 24px)); max-height: calc(100vh - 144px); overflow: auto; }
   #controls summary { cursor: pointer; font-weight: 600; font-size: 15px; list-style: none; min-height: 28px; }
   #controls summary::-webkit-details-marker { display: none; }
   #controls summary::after { content: " \25BE"; color: var(--muted); }
@@ -76,6 +79,7 @@
 <body>
 <div id="map" role="application" aria-label="3D map of Delhi wards. Use the search box and controls to explore."></div>
 
+<a class="homebtn" href="delhi_safety_dashboard.html" aria-label="Back to the Delhi Urban Safety Observatory home page">&larr; Home</a>
 <details id="controls" class="panel" open>
   <summary>Delhi 3D Ward Explorer <span class="proto">prototype</span></summary>
   <p class="sub">Height and colour show the selected metric. Zero wards stay flat.</p>
