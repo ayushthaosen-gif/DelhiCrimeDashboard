@@ -136,3 +136,23 @@ test('DDA settlement layers are present, used only where OSM is silent, and show
   assert.ok(script.includes("'dda_settlement'"), 'the page must show DDA settlements as their own category');
 });
 
+test('swipe slider is keyboard accessible and its position is validated from the share link', () => {
+  assert.ok(html.includes('role="slider"') && html.includes('aria-valuenow'));
+  for (const key of ['ArrowLeft', 'ArrowRight', 'Home', 'End']) assert.ok(script.includes("'" + key + "'"), 'swipe lost keyboard key ' + key);
+  assert.ok(script.includes('xs >= 5 && xs <= 95'), 'the swipe position from the URL must be range-checked');
+  assert.ok(script.includes('clip-path') || html.includes('clip-path'), 'the planned map is clipped to the right of the divider');
+});
+
+test('ranked list: biggest gaps by area, thin-coverage and tiny wards excluded, and the list is derived from the data', () => {
+  assert.ok(script.includes('function gapRows()') && script.includes('isLow(r)') && script.includes('area >= 0.3'));
+  assert.ok(script.includes('r.comparable_km2') && script.includes('r.plan_covered_km2'));
+  // same rule applied here: the page must be able to produce ten ranked wards from the satellite file for every class
+  for (const k of ['built', 'green_open', 'agriculture']) {
+    const rows = sat.wards.filter(r => r.comparison_confidence === 'ok' && r.comparable_km2 >= 0.3)
+      .map(r => ({ r, km: r['delta_' + k + '_pp'] / 100 * r.comparable_km2 })).sort((a, b) => Math.abs(b.km) - Math.abs(a.km)).slice(0, 10);
+    assert.equal(rows.length, 10, k + ': expected ten ranked wards');
+    assert.ok(Math.abs(rows[0].km) >= Math.abs(rows[9].km));
+    assert.ok(Math.abs(rows[0].km) > 0.5, k + ': the top gap should be a real area');
+  }
+});
+
