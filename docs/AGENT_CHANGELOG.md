@@ -1,3 +1,13 @@
+## [2026-10-18] - Claude (Anthropic) - iRAD: the 112 missed reports are now loaded
+
+The 113 published accident reports found by the second independent check were downloaded (every SHA-256 matched), and 112 are now staged. `data/derived/irad_monthly/` grew from 141 to 295 monthly rows and from 589 to 1,275 station rows, and now covers East, North East, South, South West and Dwarka (new) as well as the earlier districts. Staged review data only; nothing on the dashboard changed.
+
+- The collector now reads three station layouts and two month-wise layouts by column count, leaves columns an older layout does not print empty, takes only months inside a report's stated range (stray months in reporting-date reports no longer create false conflicts), stages year-only reports as `period_inferred`, matches the longest known district name (adds Dwarka), and checks month-wise sums against the printed TOTAL as well as station sums.
+- New columns: `schema`, `scope` (FIR-registered accidents only), `period_inferred`, `persons_injured` (oldest East layout), `report_year` (station tables that print only a year).
+- Checks: 0 arithmetic failures, 0 total mismatches. One documented source disagreement (East January 2023, two snapshots).
+- Not loaded: East's March 2023 scan. Not checked: the 112 new tables cell by cell against their PDFs (they reconcile to their printed totals and identities, which the first 62 also did before being audited); a third independent check of them is the sensible next step.
+- The iRAD page shows the new districts, year-only periods and scope notes.
+
 ## [2026-10-18] - Claude (Anthropic) - iRAD: round 2 independent check recorded (links, unstaged reports, source disagreements)
 
 A second independent check (Codex, with internet access to the official district pages) was run on the corrected iRAD staging. Only staged review data and docs changed.

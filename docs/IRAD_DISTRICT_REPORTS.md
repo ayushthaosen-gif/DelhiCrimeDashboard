@@ -10,28 +10,38 @@ dashboard** (the 2025 pipeline's rule stands: integration is a separate, human-a
 | `irad_station_by_period.csv` | "Accidents Classified by Stations": one row per police station and reporting period |
 | `manifest.json` | each PDF: public URL, page, link text, SHA-256, report district, period, generation date, date basis |
 | `source_links.json` | public links recovered on 2026-10-18 by matching each file's SHA-256 to the currently published official PDF |
-| `unstaged_published_reports.csv` | 113 further accident reports that the district pages publish but this staging does not contain (URL, SHA-256, size, period) |
+| `unstaged_published_reports.csv` | published accident reports that are not loaded (now just one scanned East table), with the reason |
 | `issues.json` | arithmetic failures (none), disagreeing duplicates (none), files listed under the wrong district, station sums that differ from the printed TOTAL (none), reports naming an unknown district (none) |
 
-## Coverage found (2026-10)
+## Coverage staged (after loading the second discovery, 18 Oct 2026)
+
+"Month-wise" is the district table by month; "stations" is the police-station table. Some reports print only a year, so their dates are not stated (marked `period_inferred`).
 
 | District | Month-wise table | Police-station tables |
 |---|---|---|
 | Central | Jan to 10 Dec 2025 (12 months: 226 accidents, 49 fatal, 51 killed) | cumulative 2022 to 8 Apr 2025 |
+| East | 2022 (year taken from the generation date) and Jan to Feb 2023 (the older 11-column layout) | cumulative 2022 to 2024, plus monthly Apr 2023 to Dec 2025 (34 periods, older layouts for 2023) |
+| New Delhi | Jan 2022 to Dec 2025 (from scans, transcribed) and Jan to May 2026 | cumulative 2022 to 2024, Year 2025 (no dates, FIR-registered accidents only), Jan to May 2026 |
+| North East | Jan 2022 to Dec 2025 (48 months) | cumulative 2022 to Mar 2025 and monthly Jan to Aug 2026 |
+| North West | none | one file with Year 2025 but no dates |
+| Rohini | none | one file (`North_West__2025041579.pdf`, listed on the North West page; its header says ROHINI), Year 2025, no dates |
+| North | nothing linked on its page | nothing linked |
+| South | Jan to Dec 2025 (12 monthly reports) | Year 2022, 2023 and 2024, no dates |
 | South East | Jan 2022 to Dec 2024 (36 months) | 21 periods, monthly 2025 and 2026 to July, and yearly |
+| South West | Jan 2022 to Apr 2025 (40 months; FIR-registered accidents only) | one undated report, and 1 May to 31 Dec 2025 |
+| Dwarka | Jan 2022 to Apr 2025 (40 months), listed on the South West page | one undated report, and 1 May to 31 Dec 2025 |
 | West | Jan 2022 to Apr 2025 (40 months) | 8 monthly periods (May to Dec 2025) and one yearly 2025 period |
-| New Delhi | Jan 2022 to Dec 2025 (from scans, transcribed) and Jan to May 2026 | none readable |
-| East | none staged (4 published) | cumulative 2022 to 2024 staged; 33 monthly station reports published, not staged |
-| North East | none staged (38 published) | cumulative 2022 to Mar 2025 staged; 8 monthly 2026 station reports published, not staged |
-| North West | none | one file (North West Delhi) with Year 2025 but no dates in its header |
-| Rohini | none | one file (`North_West__2025041579.pdf`, listed on the North West page; its header says ROHINI) with Year 2025 but no dates |
-| North | none | nothing linked on its page |
-| South | none staged | 15 published, not staged (12 monthly 2025 reports and station tables for 2022, 2023, 2024) |
-| South West and Dwarka | none staged | 12 published, not staged |
 | Shahdara | site not reached | none. The old address does not resolve; the iRAD page on its successor site (Central North) has headings but no downloads |
 
-## Published but not staged (found by the second independent check, 18 Oct 2026)
-The district pages publish **113 accident reports that this staging does not hold**: East 37, North East 46, South 15, South West and Dwarka 12, New Delhi 3 (station tables). They are listed with URL, size, SHA-256 and period in `unstaged_published_reports.csv`. All are under the 1.5 MB size limit, so the limit is not why they are missing: the collector only read each district's main page, not its month-wise sub-pages, and some older East tables use fewer columns than the current schema. They have **not been cell-checked or loaded**; treat the inventory as a to-do list, not as data. So the totals in this folder describe what was staged, not everything published.
+## Loaded from the second discovery, and what is still not loaded
+A second independent check (Codex, online) found 113 accident reports on the district pages that the first collection missed: East 37, North East 46, South 15, South West and Dwarka 12, New Delhi 3. All were downloaded, matched to the published SHA-256 and loaded, **except one**: `East__2023040532.pdf`, an image-only scan of East's March 2023 table (16 accidents, read visually by the check), which is listed in `unstaged_published_reports.csv` with the reason. Every other table passes the report arithmetic and adds up to the TOTAL row printed in its own PDF.
+
+Things this loading had to handle:
+- **Different layouts.** Older reports print fewer columns: East's 2022 and early 2023 month-wise tables have 11 columns (one combined "injured" figure, no person classes or animals); East's early 2023 station tables have 17 or 21 columns (no vehicle or animal counts, and no MACT column). The collector reads each by its own column map. Columns a layout does not print are empty in the CSV (`schema` says which layout), never 0.
+- **Stray months.** Reporting-date reports (notably North East's 2023 and 2024 files) show a few accidents in months outside the report's stated range. Only months inside the stated range are used; a total that includes the strays still equals the printed TOTAL.
+- **Year-only reports** (South, Dwarka, South West, New Delhi 2025 stations): the year is taken from the header, months with no accidents are not staged, and rows are marked `period_inferred`. A missing month there is not a zero.
+- **Scope.** Some South West and New Delhi tables count FIR-registered accidents only (`scope` column); do not compare them with tables that do not say so.
+- **One known disagreement.** East's January 2023 appears in two snapshots (7 Feb and 3 Mar 2023) with the same accidents, fatal and killed but 22 vs 21 injured; the later one is kept and the difference is in `issues.json`.
 
 ## Things to know
 - **District comes from each report's header, not the website that links it.** North West's page links seven South East reports; they are staged once, under South East, and flagged.
@@ -41,7 +51,7 @@ The district pages publish **113 accident reports that this staging does not hol
   (Central, 05-03-2025) is a road-safety committee meeting notice, not data. Overview slide decks (about 3 MB) and two 6 MB North West files were skipped by a size limit (`MAX_BYTES`).
 - **FIR counts.** The FIR column is printed `count(percentage)` in most reports but `percentage(count)` in the 2026 South East reports; the header says which ("FIR Filed (%)" or "FIR Filed % (count)") and the script reads it. An independent audit on 18 Oct 2026 found 56 wrong values from this and 10 rows labelled North West that are Rohini; both are fixed and covered by tests.
 - **Reporting basis.** Some reports date accidents by reporting date and time, others by accident date and time. The `date_basis` column records which, and the two should not be treated as the same series.
-- **Checks.** Every row must satisfy fatal + non-fatal = total accidents, the four injury classes = non-fatal, and killed + injured classes = persons total. All 141 month rows and 589
+- **Checks.** Every row must satisfy fatal + non-fatal = total accidents, the four injury classes = non-fatal, and killed + injured classes = persons total. All 295 month rows and 1,275
   station rows pass, FIR filed never exceeds accidents, and each report's stations add up to its printed TOTAL. Central 2025 was also checked by hand against the monthly PDFs.
 - **Source reports that disagree.** South East's 2025 annual station table has 485 accidents, 118 fatal, 123 killed; its twelve monthly tables add up to 486, 119, 124 for the same reporting-date window, with larger gaps in pending and completed cases. Each file matches its own PDF, so this is a disagreement inside the sources. West's annual 2025 table (461 accidents) cannot be reconciled with its monthly tables because January to April are not published. Station lists change: West lists 23 labels against 12 territorial stations in the Delhi Police directory, and South East's 2022 to 2024 table includes four stations (Ambedkar Nagar, Chitranjan Park, Greater Kailash, Sangam Vihar) that are absent from its later tables.
 - **Exact dates.** The New Delhi 2025 scan prints Year 2025 and twelve month rows but no From/To dates, so its full-year bounds are inferred (`period_inferred` in the manifest). All four scans print Accident Date & Time. North West, Rohini, South, South West and Dwarka station reports print a year or nothing, not exact dates.

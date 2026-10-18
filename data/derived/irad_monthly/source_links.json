@@ -1,5 +1,5 @@
 {
- "note": "Public links recovered 2026-10-18 by an independent check (Codex). Each file was matched to the currently published official PDF by identical SHA-256. This proves the same bytes are published now, not which URL the original collection used.",
+ "note": "Public links recovered 2026-10-18 by an independent check (Codex). Each file was matched to the currently published official PDF by identical SHA-256. This proves the same bytes are published now, not which URL the original collection used. Entries for files added after the second check come from its inventory of published reports.",
  "files": {
   "Central__05-03-2025.pdf": {
    "sha256": "38519d3aa5135a7f957c6e6fb9327b9de67aa5e02444686e1fa77013141aecd0",
@@ -494,6 +494,902 @@
    "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676874414987.pdf",
    "page_url": "https://dmwest.delhi.gov.in/document/month-of-dec/",
    "link_text": "View (125 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025041786.pdf": {
+   "sha256": "e97c75cf8b4b5f5c32cc27da782a01286507e29c739d06aa4e90135d38b6dcb7",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025041786.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/police-station-wise-accident-cases/",
+   "link_text": "Police station wise Accident Cases Dwarka",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025042150.pdf": {
+   "sha256": "6f800d07b4ca0ce64d1c2c00534dda89554a3b9c6ec3b361077e64743f95295f",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042150.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+   "link_text": "1. Jan. 2022 to Dec. 2022 12-01-2023 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025042112-1.pdf": {
+   "sha256": "4beab54a40ff70013240a8e9e06f941b3f8daee0ed1a83e500e6ed942ed1d06e",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042112-1.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+   "link_text": "2. Jan. 2023 to Dec. 2023 10-01-2024 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025042179-1.pdf": {
+   "sha256": "8eb0f03cd801b7123a9f508d9ebcd433347d868ae21137fd1faac3a37fd4aa83",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042179-1.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+   "link_text": "3. Jan. 2024 to Dec. 2024 09-01-2025 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025042138.pdf": {
+   "sha256": "850504109667680020246e33495f257ed3132cb16ab1da6606b27ca7956a6020",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042138.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+   "link_text": "4. Jan. 2025 to April. 2025 17-04-2025 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__17676951078366.pdf": {
+   "sha256": "f66ae060b0f7914e4de847c617cd325315546468ffe03159478d096a9e116120",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2026/01/17676951078366.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+   "link_text": "5. May 2025 to Dec. 2025 06-01-2026 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2022122645.pdf": {
+   "sha256": "3014f04a83b5bcd3ce0f6c1fe6ac70a7d4fbc5372821d3ad22c22116472965ed",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2022/12/2022122645.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "1. Jan to Dec 2022 26/12/2022 download pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2023020720.pdf": {
+   "sha256": "871886d7283817237dd6102d357d1602e66bfc964e7df8a8fb8855ac72d40e32",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/02/2023020720.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "2. Jan 2023 07/02/2023 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2023031456.pdf": {
+   "sha256": "93ff2c572fc6d2ada2735f02d32d3b0d7edb67a56d3597852ad1df109fb7be20",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/03/2023031456.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "3. Feb-2023 14/03/2023 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2023050171.pdf": {
+   "sha256": "61a386e034b3a07d56d834ed0d2ac4378b54a226270720641b9f089ffe0b55af",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/05/2023050171.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "5. April 2023 01/05/2023 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2023092148.pdf": {
+   "sha256": "b9820626127913d72f123496554a15fd8a5118618ad37e5bf48877f2624fc776",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/09/2023092148.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "6. May 2023 21/09/2023 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2023092187.pdf": {
+   "sha256": "18c96f9733b860316e5a8cb6bebf5658905cbac323ce9181aaf276e5bd4a9829",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/09/2023092187.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "7. June 2023 21/09/2023 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2023092181.pdf": {
+   "sha256": "1f8104722150c5f466a1cb085e7f9ed53217d63d68da05e24289fa7b659c4254",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/09/2023092181.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "8. July 2023 21/09/2023 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2023092190.pdf": {
+   "sha256": "1f0455d9e26bbf67ce0528347ce9ffaa3762176e7553ffdea09c895e2f479948",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/09/2023092190.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "9. August 2023 21/09/2023 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024020719.pdf": {
+   "sha256": "df8db1fe1b4e40272ca07cc8658f61bb93c639cc381e54658fb04aed5bc6d5a1",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2020/02/2024020719.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "10. September 2023 07/02/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024020772.pdf": {
+   "sha256": "2f90528b9cb0f94769167d978609e9b15595fa867d649a91e4f777bc6a363dc7",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2020/02/2024020772.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "11. October 2023 07/02/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024020730.pdf": {
+   "sha256": "b292cd8ca97b5561ca8f1e3c0391fc5daed5334a5d999dec90077f3b375c3586",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2020/02/2024020730.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "12. November 2023 07/02/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024020710.pdf": {
+   "sha256": "55b0e6c894020fbbcd231014c135953e653a3a2cf3fee21477065f221871efcf",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2020/02/2024020710.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "13. December 2023 07/02/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024080262.pdf": {
+   "sha256": "12e75778b42739ce9c73bfb5e4ce3b50e11bfd397e2d166deaba96b940fc52dd",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080262.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "14. Jan 2024 02/08/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024080219.pdf": {
+   "sha256": "53e0255745f21158227e8fb6dc65de956c77652fff2611a9fb827fc6614cc748",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080219.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "15. Feb 2024 02/08/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024080233.pdf": {
+   "sha256": "9945c716287f262551ab9a3226659b35093409f95a557a9bf26e227dd1166bf8",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080233.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "16. March 2024 02/08/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024080266.pdf": {
+   "sha256": "abf814b0e3f256ee21f35dd402806d2085453b9a4782644c3d1ae6e9c2234936",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080266.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "17. April 2024 02/08/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024080227.pdf": {
+   "sha256": "54b16ae0239303ca85f7f1628e0352a9f1d9164ff3932827c144838305bee4d2",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080227.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "18. May 2024 02/08/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024080255.pdf": {
+   "sha256": "afba0ec2cef893a228df026809b558c31aca49381333185db64673555b609958",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080255.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "19. June 2024 02/08/2024 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024121390.pdf": {
+   "sha256": "083bb182a228cb5c85a9d695703774b046dfac7942bd1b199a2d728784a9f236",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/2024121390.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "20. July 2024 13/12/2024 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024121358.pdf": {
+   "sha256": "4f65890fc34f5ffc31428863ed3717ae438c72242708e736c366128167d3c43f",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/2024121358.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "21. August 2024 13/12/2024 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__20241213100.pdf": {
+   "sha256": "355f0ad5863fc602e059c8bb4fb77862cd0a300b525f2247b88aafbb704f4149",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/20241213100.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "22. Sept 2024 13/12/2024 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024121329.pdf": {
+   "sha256": "135de0a9c888d6202d2416e1acffcacbd5da71da4fb24b0b1f573694b18cbeac",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/2024121329.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "23. Oct 2024 13/12/2024 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2024121384.pdf": {
+   "sha256": "e03350727958391faa49ca3a6ef72839e9e8244943aae5035e8be4a66df85109",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/2024121384.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "24. Nov 2024 13/12/2024 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2025032039.pdf": {
+   "sha256": "5ec23a56e2aa88e54cb74f75878d46a96d3ba573b317075459496e1175c17c22",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/03/2025032039.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "25. Dec 2024 20/03/2025 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2025032074.pdf": {
+   "sha256": "85c221b32618102cf4d4a1176c0992b66f0c4ed848edaba30333bd3566f12716",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/03/2025032074.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "26. Jan 2025 20/03/2025 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2025032070.pdf": {
+   "sha256": "1feedfca4a431d8f7cfba4c3ef34b3a3852381a70e2a815b7f9299666b7d5e99",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/03/2025032070.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "27. Feb 2025 20/03/2025 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2025050526.pdf": {
+   "sha256": "c4f8ad20cf118e41282efd066e88d481e91f61e855b81cee67f1c5393b1bc715",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/05/2025050526.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "28. March 2025 05/05/2025 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2025050513.pdf": {
+   "sha256": "24493ff94a0f86efcdaca9c396b2e62782f996c72bf0a96a3f3ad95a3b954185",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/05/2025050513.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "29. April 2025 05/05/2025 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__17525703177377.pdf": {
+   "sha256": "b5c85e39f3939919fbc616d2e8496c0c3337dd31c4ee5e40ad3cff17f33b5a05",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/07/17525703177377.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "30. May 2025 15/07/2025 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__17525703164640.pdf": {
+   "sha256": "94c4cbbb753b4c709253fb66814b01840bc3c9debcec60599beaee71027f47de",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/07/17525703164640.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "31. June 2025 15/07/2025 download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__17676901966990.pdf": {
+   "sha256": "fa3af737a69b90c012590ea94b85b9c0918e170f831f9517523c3d24e6d16868",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901966990.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "32. July 2025 06/01/2026 Download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__17676901943293.pdf": {
+   "sha256": "2f13b83a52f0c1becc70d5bc857ad85575101b5d8c8629a5a9655a50e30e2160",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901943293.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "33. August 2025 06/01/2026 Download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__17676902009883.pdf": {
+   "sha256": "592fa590da3397469e6432c2f44cb4adaebbb07fa69d04b09f6d1a03cbe2f557",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676902009883.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "34. September 2025 06/01/2026 Download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__17676901999252.pdf": {
+   "sha256": "568295f29451f4165fcfa8ff2151d8cd37540a6a23585ebbd8f9ea11c8abe6a7",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901999252.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "35. October 2025 06/01/2026 Download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__17676901978544.pdf": {
+   "sha256": "33bfdb9dbeaa26e5162884771ecf72d942ecfeb7bb0921680d94281eaa9ca5ff",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901978544.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "36. November 2025 06/01/2026 Download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__17676901956137.pdf": {
+   "sha256": "57c3a6be51d36e5a5ca4dea756a2747f239a98bd7fc8b0fd760bef04fa6d4c44",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901956137.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "37. December 2025 06/01/2026 Download link",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "New_Delhi__17809021792316.pdf": {
+   "sha256": "17e99cee75673f4bafca58114fc4357fd671581ed9fe9d64b58b83fdd4662f01",
+   "public_url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809021792316.pdf",
+   "page_url": "https://dmnewdelhi.delhi.gov.in/police-station-wise-accident-cases/",
+   "link_text": "2. 1st Jan,2025 to 31st Dec,2025 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "New_Delhi__2025070442.pdf": {
+   "sha256": "01cd73fa656439e8ccf66ff3aecf13de4915a4999913e6fc02b75667cd4f6439",
+   "public_url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/07/2025070442.pdf",
+   "page_url": "https://dmnewdelhi.delhi.gov.in/police-station-wise-accident-cases/",
+   "link_text": "1. 1st Jan,2022 to 31st December,2024 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "New_Delhi__17809023682823.pdf": {
+   "sha256": "4ff46d462f822e98bdedf2ec6854ab0d7561de2d7422394d1b09ffb72d3f140f",
+   "public_url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809023682823.pdf",
+   "page_url": "https://dmnewdelhi.delhi.gov.in/police-station-wise-accident-cases/",
+   "link_text": "3. 1st Jan,2026 to 31st May,2026 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040910.pdf": {
+   "sha256": "94e16ed12a186a6b9344a6f4819bbb9d77cfa82dedc36336d8e6eb7e71a32d6d",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040910.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "1. Jan to Dec 2022 08/04/2025 download pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040921.pdf": {
+   "sha256": "d29ab6059a73cf0e32601dd8b7f9f72d4a26791880a827a2256d43617d8fb54e",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040921.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "2. Jan 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040977.pdf": {
+   "sha256": "ed4a167c734d0f7ab2145fdef9dc01a179b559a15437d8792186d273d396f004",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040977.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "3. Feb-2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040994.pdf": {
+   "sha256": "04ebb37f9e19d46ae0cca6b9a3db3b4270dc8ed576608ad673527dfab1bff0f7",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040994.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "4. March 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040934-1.pdf": {
+   "sha256": "fc92c8e19cd76940cabe4db99b9e36a4eccccefc047c1e8670590314ff35caaf",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040934-1.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "5. April 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040912.pdf": {
+   "sha256": "a4ac7577949fbbd1d20d58abce185b4adc578fd52897b8e92adfef5d27d57b9c",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040912.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "6. May 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040912-1.pdf": {
+   "sha256": "1fc166bfada2d17f4c05fad87fc9d17445a298d6a9ad514c61ba97c4396860a7",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040912-1.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "7. June 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040945.pdf": {
+   "sha256": "4623e7b5338745f74663a52456d0c2d50bbaea2b59553f082e0437f2528fef27",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040945.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "8. July 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040936.pdf": {
+   "sha256": "3ac6584f076eea2870bc047b6e8ae2bc574619b9d503a248f87a03d9113431ca",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040936.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "9. August 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040996.pdf": {
+   "sha256": "ac4a5f96a8bfeff36e235031703cf0200a39cfd21be8116705101209ec9209fd",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040996.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "10. September 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040930-1.pdf": {
+   "sha256": "167cf98ef1f6139befe2ce33e21adbc4a581cb2efdc9bba2a489dbda4c74692c",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040930-1.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "11. October 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040913.pdf": {
+   "sha256": "13f105e274dd6248d30c0159f48f56fdc963f7ee2b3234af85acc13151f799ed",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040913.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "12. November 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040956.pdf": {
+   "sha256": "ffbaf5475a55a0d49a4a8fa7d5ae2ca741da28198486f648382d800e171df344",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040956.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "13. December 2023 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040953.pdf": {
+   "sha256": "8117dd37afe47c66aa2a15e29105f44aa4f2d44e92df347b1b6c2af38ffe013e",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040953.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "14. Jan 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040984-1.pdf": {
+   "sha256": "dcc9e830f00d224d652a414650aa9b4442167bce19e6d6989ed98e40b01dbeb1",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040984-1.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "15. Feb 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040988.pdf": {
+   "sha256": "22e3cc42872419ac348bb6499d70c4a00348a53dc77a418606e6691686383a59",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040988.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "16. March 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040962.pdf": {
+   "sha256": "604cd2ae7507e45d26a4716806ef234327116a55916ae80bd25b2026137ee1f9",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040962.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "17. April 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040961-1.pdf": {
+   "sha256": "8c9e0f9bca886542078bb1aea0a0386fbdef4900c333deb49c6a4d9f2d8b8a1c",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040961-1.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "18. May 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040922.pdf": {
+   "sha256": "2874cd50a811f9a11e8a6e6fb1180ddfce132b528404fa34b1c10a7e3c9d5938",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040922.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "19. June 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040947.pdf": {
+   "sha256": "6061b8e4ed85f7f224c8dc8408979646173a45649efae5e80a6796da85bc6bec",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040947.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "20. July 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040962-1.pdf": {
+   "sha256": "bd8fb78ace7ef1780f1eb9e9e92d30cc8a3d5af865e20dfaf38dcd2abfa013d7",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040962-1.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "21. August 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040992.pdf": {
+   "sha256": "42cd2ae53bff094960a4443f72d497b5b6514a6e350432afcd03a087002505cb",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040992.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "22. Sept 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040963.pdf": {
+   "sha256": "2f8a1cb8d5e1f7f1d8bbb95ac10800f98dc550a4bf977387e132a4ee8e4886d7",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040963.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "23. Oct 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040925.pdf": {
+   "sha256": "80b1f3a9c88c4ad7ca3089c153384f404ec82934ad91119039ae236cb483f6bc",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040925.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "24. Nov 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040912-2.pdf": {
+   "sha256": "e0e9e6a42be7737608f0515419bb6a6b4629e8a849d3d4c22c11d6a39b4a1dd1",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040912-2.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "25. Dec 2024 08/04/2025 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679408182812.pdf": {
+   "sha256": "ede269e883c3b95146d7fa811831bc7bedb851cc7027d040bacaa1f3793b497e",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679408182812.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "27. Jan-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679419374958.pdf": {
+   "sha256": "b63d55c40a565fcd682d67dd2456eee70097eff4f76f6d3a18fb9347f2f82128",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679419374958.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "26. Jan-2025 to Dec-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679409635243.pdf": {
+   "sha256": "e1b564073fb1e5063a35390b6a89cbd2311227a8d857c81aeeb4adc427b8d9d1",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679409635243.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "28. Feb-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679410229820.pdf": {
+   "sha256": "679130e185f266f573b7c6ee7d2cead2953cfb9020608986766ec02923b4e2c0",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679410229820.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "29. Mar-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679410575440.pdf": {
+   "sha256": "801cd350a8bbc3eb0199ecad0ad062603550bdebdfde48ed88f1fd30252c69fb",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679410575440.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "30. Apr-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679410826703.pdf": {
+   "sha256": "7194a840202f99627bc9dad1c1fa4e26908b24b42226b43db1d7d9e43c916818",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679410826703.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "31. May-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679411147347.pdf": {
+   "sha256": "6a8252554ea4d071689935013701fcdaa348a53898148798d301e660e958d075",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679411147347.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "32. Jun-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679411382592.pdf": {
+   "sha256": "5d03f8b847e9667e4b3336b06cd8c7fce4840ee401d46c926f6cb0e4f686c0dc",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679411382592.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "33. Jul-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679411637692.pdf": {
+   "sha256": "d54cd7e72dc671d5c6acacee11f4ffe7873ff67a8c061a5364f5abd68eb070f3",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679411637692.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "34. Aug-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679411871717.pdf": {
+   "sha256": "994e866ac4b72f1c7991e352664a1586d79e1ba0195ef905cccd12dd3e273a67",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679411871717.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "35. Sep-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679412089215.pdf": {
+   "sha256": "517a5d731d2636824fb4da2774d8b81507bdb34b7aeafeceaeb3178c6cac0579",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679412089215.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "36. Oct-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679414545238.pdf": {
+   "sha256": "6a4828ee5643d865d47e9550447fe5ef83f2003d89e30b1ffc1a8567f33948fd",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679414545238.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "37. Nov-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17679414742910.pdf": {
+   "sha256": "909a1271ee1bbbcea9288bb68e99237e67513e45279b280a547753905823911f",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679414742910.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "38. Dec-2025 09-01-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17882586097454.pdf": {
+   "sha256": "a6e072711c3a5435163a704838fa5766c27b1f4e244f78356944dfb4657af374",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882586097454.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "39. Jan-2026 01-09-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17882586513230.pdf": {
+   "sha256": "2d1f7681c1538c6bd94372057e6c62cd431986b25418d74747b41f932e57c325",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882586513230.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "40. Feb-2026 01-09-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17882586838653.pdf": {
+   "sha256": "e1d1060a039e5240ef6d08cb129dbabd3f0e907e27a841ee419e86909946c084",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882586838653.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "41. March-2026 01-09-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17882587114432.pdf": {
+   "sha256": "0168998fbf397d56c30a9e0629fdfaf6be95b72d6863cddf5721d69517e3388b",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882587114432.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "42. April-2026 01-09-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17882587381004.pdf": {
+   "sha256": "ddc0a10412b0437de77cd79790e92b5235bd9442f12f79a67972e2d87b51f17a",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882587381004.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "43. May-2026 01-09-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17882588027052.pdf": {
+   "sha256": "683f621459bcf209672d437f29e8214cb14931292cd575fb1853780a0ebf710b",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882588027052.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "44. June-2026 01-09-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17882588594316.pdf": {
+   "sha256": "d8f01590581fad68277442d815aeaddc0013af725c016f657679c197e7532f1f",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882588594316.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "45. July-2026 01-09-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__17882588892072.pdf": {
+   "sha256": "f4aea00f799d0f1463bd2c788deb7ce10d98f58f8a4b079006871352b48a86a5",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882588892072.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "46. Aug-2026 01-09-2026 Download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__2025041559.pdf": {
+   "sha256": "aaed88237c309424ed1f48a6588d2050b5d57001d884be694ef11ffd1955e8eb",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2025/04/2025041559.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/police-station-wise-accident-cases-2/",
+   "link_text": "Police Station Wise Accident Cases 01/01/2022 View (102 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__2025041584-1.pdf": {
+   "sha256": "59baa7cb57fdf838b78718b873f39b75e84e705d3ea032e5c13e2d26dfe17ab2",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2025/04/2025041584-1.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/police-station-wise-accident-cases/",
+   "link_text": "Police Station Wise Accident Cases 01/01/2023 View (102 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__2025041566.pdf": {
+   "sha256": "960f75af04a936a2efa4df3fb82ad954731fd4d005435de2383f100789d2f614",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2025/04/2025041566.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/police-station-wise-accident-cases-3/",
+   "link_text": "Police Station Wise Accident Cases 01/01/2024 View (102 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676984562540.pdf": {
+   "sha256": "7ab4585ca5b4533234414f68feb97d7a7bedc3319389f26bcf5bf9c4cd393b3d",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676984562540.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/january-2025/",
+   "link_text": "January 2025 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676992399750.pdf": {
+   "sha256": "a07384a5d630ea81de46a962de5059eff66b7c35705f83c87c39cf98328dc480",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676992399750.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/february/",
+   "link_text": "february 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676993008951.pdf": {
+   "sha256": "65f096ed795f865362b09e290ad5cba69b68877c874d66f36179ec8de98d7b92",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676993008951.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/march-2025/",
+   "link_text": "March 2025 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676995869932.pdf": {
+   "sha256": "40cc36f51b701a5df0e6e676398df80b023b1d1e52d754fc2b233b05f10d5903",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676995869932.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/april/",
+   "link_text": "April 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676997411236.pdf": {
+   "sha256": "4b59bfa751483c9ba5ed6281e846cefc3907481d16db124077a6980dccd54d8d",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676997411236.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/may/",
+   "link_text": "May 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676997926574.pdf": {
+   "sha256": "b75ec1bc75b8bc2870fe8c12bd7cbf7816ba3797e036852d02a9ae0e87c2f4d8",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676997926574.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/june-2025/",
+   "link_text": "June 2025 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676998256483.pdf": {
+   "sha256": "a8ae4e2a0f0925a031c65ab9cb5005286b89129f99de4f1d0e1a931bda9d0d1f",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676998256483.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/july-2025/",
+   "link_text": "july 2025 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676998727892.pdf": {
+   "sha256": "30ad6ba937fbd890b21b3dcce59a6fe4b82607721f2ff7c6dabe8ead9d66234f",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676998727892.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/august/",
+   "link_text": "August 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17676999089166.pdf": {
+   "sha256": "c9c141ea344a7f2d961c90dd336d3fae024cf52e64d5a61b4b3af5ada5389707",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676999089166.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/september/",
+   "link_text": "September 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17677005771490.pdf": {
+   "sha256": "816e1dc6a46bb3daad4df7d3ca378aa679e46f3245b75a382a07cbcff25b8be0",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17677005771490.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/october-2025/",
+   "link_text": "october 2025 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17677006107212.pdf": {
+   "sha256": "031994956b23a6259b586ed5a2bf07aa8b85fbad8583764151e8596872c26710",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17677006107212.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/november-2025/",
+   "link_text": "November 2025 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South__17677006496518.pdf": {
+   "sha256": "3605d4f11f12d4a81b31ba4c2bf837fed39a24844de3d830316f77a3fd83b2a7",
+   "public_url": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17677006496518.pdf",
+   "page_url": "https://dmsouth.delhi.gov.in/document/december/",
+   "link_text": "December 06/01/2026 View (132 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025041749.pdf": {
+   "sha256": "34731a392eb2b99dce1e96b20f7230149b4d8ab66d65c0c10ffb7ebe4804ef41",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025041749.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/police-station-wise-accident-cases/",
+   "link_text": "Police station wise Accident Cases south west",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025042155.pdf": {
+   "sha256": "c44e8bb2ee823db8051b11c8935f539ab7abce240e9efec0ee48c12f91ace791",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042155.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+   "link_text": "1. Jan. 2022 to Dec. 2022 12-01-2023 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025042191.pdf": {
+   "sha256": "1e7f6b3598dc1260c45434918e3ebc21689a20c432ca337db023b61ea2f7c3c0",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042191.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+   "link_text": "2. Jan. 2023 to Dec. 2023 10-01-2024 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025042112.pdf": {
+   "sha256": "686c2cd765e97a4e98b7d7456f9d743e4a72204c1287a35955b88a3dda4d5a43",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042112.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+   "link_text": "3. Jan. 2024 to Dec. 2024 09-01-2025 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__2025042179.pdf": {
+   "sha256": "4296b24e6f4300a4d0d6630bef08dd72eb430d87975162fe73b80b0930f7430d",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042179.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+   "link_text": "4. Jan. 2025 to April. 2025 17-04-2025 Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_West__17676949639850.pdf": {
+   "sha256": "3e473991f6e69e0d58ff266184ac32611e52104805d9000725f1b6d3df483930",
+   "public_url": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2026/01/17676949639850.pdf",
+   "page_url": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+   "link_text": "5. May 2025 to Dec. 2025 06-01-2026 Click to View/Download",
    "retrieved_on": "2026-10-18",
    "matched": "yes"
   }

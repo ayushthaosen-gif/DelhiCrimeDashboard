@@ -64,6 +64,21 @@ STATION_COLS = ['fatal', 'grievous', 'minor_hospitalised', 'minor_non_hospitalis
                 'persons_total', 'vehicle_count', 'animals_killed', 'animals_injured']
 
 
+# The same iRAD report has been printed with different column sets over time. The number of table columns identifies the layout; columns a layout does not
+# print are left empty (None) in the output, never filled with 0.
+STATION_LAYOUTS = {
+    22: ('current', STATION_COLS),
+    21: ('legacy_21', [c for c in STATION_COLS if c != 'proceeded_mact']),
+    17: ('legacy_17', ['fatal', 'grievous', 'minor_hospitalised', 'minor_non_hospitalised', 'no_injury', 'total_non_fatal', 'total_accidents',
+                       'fir_filed', 'pending', 'completed', 'killed', 'persons_grievous', 'persons_minor', 'persons_total']),
+}
+MONTH_LAYOUTS = {
+    15: ('current', MONTH_COLS),
+    11: ('east_legacy_11', ['fatal', 'grievous', 'minor_hospitalised', 'minor_non_hospitalised', 'no_injury', 'total_non_fatal', 'total_accidents',
+                            'killed', 'persons_injured', 'persons_total']),
+}
+
+
 def http(url, binary=False):
     req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=60) as r:
@@ -103,7 +118,7 @@ def discover(page):
 
 
 DISTRICTS = {'CENTRAL': 'Central', 'EAST': 'East', 'NEWDELHI': 'New Delhi', 'NORTH': 'North', 'NORTHEAST': 'North East', 'NORTHWEST': 'North West',
-             'SOUTH': 'South', 'SOUTHEAST': 'South East', 'SOUTHWEST': 'South West', 'WEST': 'West', 'SHAHDARA': 'Shahdara', 'ROHINI': 'Rohini'}
+             'SOUTH': 'South', 'SOUTHEAST': 'South East', 'SOUTHWEST': 'South West', 'WEST': 'West', 'SHAHDARA': 'Shahdara', 'ROHINI': 'Rohini', 'DWARKA': 'Dwarka'}
 
 
 def district_name(raw):
@@ -124,16 +139,19 @@ def to_iso(s):
 def header(text):
     compact = re.sub(r'\s+', '', text)               # some PDFs extract with no spaces between words, others with extra ones
     head = compact[:2500]
-    d = re.search(r'District:([A-Za-z]+?)/', head)
+    d = re.search(r'District:([A-Za-z]{3,40})', head)         # the text after "District:" runs on into other words, so match the longest known name at its start
+    year = re.search(r'Year:(\d{4})', head)
     per = re.search(r'From(\d\d-[A-Za-z]{3}-\d{4})to(\d\d-[A-Za-z]{3}-\d{4})', head)
     gen = re.search(r'DateofGeneration(\d\d-[A-Za-z]{3}-\d{4})(\d\d:\d\d:\d\d)', compact)
     kind = 'month_wise' if re.search(r'AccidentsClassifiedAccordingtoMonth-wise', head, re.I) else \
         'by_station' if re.search(r'ClassifiedbyStations', head, re.I) else 'other'
     pend = re.search(r'Outof(\d+)\(TotalAccidents\),(\d+)isLocalBodyPending', compact)
     basis = re.search(r'Date&Time:(Accident|Reporting)Date&Time', head)
-    return {'district': district_name(d.group(1)) if d else None, 'from': to_iso(per.group(1)) if per else None, 'to': to_iso(per.group(2)) if per else None,
+    known = next((DISTRICTS[k] for k in sorted(DISTRICTS, key=len, reverse=True) if d and d.group(1).upper().startswith(k)), None)
+    return {'district': known, 'from': to_iso(per.group(1)) if per else None, 'to': to_iso(per.group(2)) if per else None,
             'generated': datetime.strptime(gen.group(1) + ' ' + gen.group(2), '%d-%b-%Y %H:%M:%S').isoformat() if gen else None, 'kind': kind,
-            'local_body_pending': int(pend.group(2)) if pend else None, 'date_basis': basis.group(1).lower() if basis else None}
+            'local_body_pending': int(pend.group(2)) if pend else None, 'date_basis': basis.group(1).lower() if basis else None,
+            'year': int(year.group(1)) if year else None, 'scope': 'fir_registered_only' if 'FIRregisteredAccidentsonly' in head else ''}
 
 
 def num(c):
@@ -157,15 +175,22 @@ def fir_is_percent_first(table):
 
 
 def arithmetic(v, persons=True):
-    """The report's own identities. Blank cells count as 0."""
+    """The report's own identities. Blank cells count as 0; columns the layout does not print (None) are skipped."""
     g = lambda k: v.get(k) or 0
     problems = []
     if g('fatal') + g('total_non_fatal') != g('total_accidents'):
         problems.append('fatal + non-fatal != total accidents')
     if g('grievous') + g('minor_hospitalised') + g('minor_non_hospitalised') + g('no_injury') != g('total_non_fatal'):
         problems.append('injury classes != total non-fatal')
-    if persons and g('killed') + g('persons_grievous') + g('persons_minor') + g('persons_no_injury') != g('persons_total'):
-        problems.append('person classes != persons total')
+    if persons:
+        if v.get('persons_injured') is not None:
+            if g('killed') + g('persons_injured') != g('persons_total'):
+                problems.append('killed + injured != persons total')
+        elif 'persons_no_injury' in v and v['persons_no_injury'] is None and v.get('persons_total') is not None and 'persons_grievous' in v:
+            if g('killed') + g('persons_grievous') + g('persons_minor') != g('persons_total'):
+                problems.append('person classes != persons total')
+        elif g('killed') + g('persons_grievous') + g('persons_minor') + g('persons_no_injury') != g('persons_total'):
+            problems.append('person classes != persons total')
     if 'fir_filed' in v and g('fir_filed') > g('total_accidents'):
         problems.append('FIR filed > total accidents')
     return problems
@@ -177,11 +202,13 @@ def read_pdf(path):
         first = doc.pages[0]
         h = header((first.extract_text() or '') + '\n' + '\n'.join((p.extract_text() or '')[-300:] for p in doc.pages))
         months, stations = {}, []
+        h['schema'] = None
         if h['kind'] == 'month_wise':
             tables = first.extract_tables()
             for row in (tables[0] if tables else []):
-                if row and row[0] in MONTHS + ['TOTAL'] and len(row) >= 15 and row[0] not in months:
-                    months[row[0]] = {c: num(row[i + 1]) for i, c in enumerate(MONTH_COLS)}
+                if row and row[0] in MONTHS + ['TOTAL'] and len(row) in MONTH_LAYOUTS and row[0] not in months:
+                    h['schema'], cols = MONTH_LAYOUTS[len(row)]
+                    months[row[0]] = {c: num(row[i + 1]) for i, c in enumerate(cols)}
         elif h['kind'] == 'by_station':
             pct_first = None        # decided from the first FIR header seen; later pages repeat no header
             for page in doc.pages:
@@ -190,14 +217,18 @@ def read_pdf(path):
                     if mode is not None:
                         pct_first = mode
                     for row in table:
-                        if len(row) >= 22 and str(row[0] or '').strip().isdigit():
+                        if len(row) not in STATION_LAYOUTS:
+                            continue
+                        h['schema'], cols = STATION_LAYOUTS[len(row)]
+                        fir = cols.index('fir_filed') + 3
+                        if str(row[0] or '').strip().isdigit():
                             name = ' '.join(str(row[2] or '').split())
-                            vals = {c: num(row[i + 3]) for i, c in enumerate(STATION_COLS)}
-                            vals['fir_filed'] = num_paren(row[10]) if pct_first else num(row[10])
+                            vals = {c: num(row[i + 3]) for i, c in enumerate(cols)}
+                            vals['fir_filed'] = num_paren(row[fir]) if pct_first else num(row[fir])
                             stations.append({'s_no': int(row[0]), 'code': (row[1] or '').strip(), 'police_station': name, **vals})
-                        elif len(row) >= 22 and str(row[0] or '').strip().upper() == 'TOTAL':
-                            totals = {c: num(row[i + 3]) for i, c in enumerate(STATION_COLS)}
-                            totals['fir_filed'] = num_paren(row[10]) if pct_first else num(row[10])
+                        elif str(row[0] or '').strip().upper() == 'TOTAL':
+                            totals = {c: num(row[i + 3]) for i, c in enumerate(cols)}
+                            totals['fir_filed'] = num_paren(row[fir]) if pct_first else num(row[fir])
                             h['printed_total'] = totals
             h['fir_format'] = None if pct_first is None else ('percentage(count)' if pct_first else 'count(percentage)')
     return h, months, stations
@@ -253,7 +284,7 @@ def main():
             print('  unreadable', local, e, file=sys.stderr); continue
         rec = {'listed_on_site': site, 'source_url': url, 'source_page': page, 'link_text': text, 'file': os.path.basename(local), 'bytes': len(raw), 'sha256': sha,
                'report_district': h['district'], 'period_from': h['from'], 'period_to': h['to'], 'generated': h['generated'], 'kind': h['kind'],
-               'date_basis': h['date_basis'], 'fir_format': h.get('fir_format'),
+               'date_basis': h['date_basis'], 'fir_format': h.get('fir_format'), 'report_year': h['year'], 'scope': h['scope'], 'schema': h['schema'],
                'rows': len(stations) if h['kind'] == 'by_station' else sum(1 for k, m in months.items() if k in MONTHS and m['total_accidents'])}
         site = district_name(site) or site
         if site and h['district'] and site != h['district']:
@@ -262,22 +293,36 @@ def main():
         if h['kind'] in ('month_wise', 'by_station') and not h['district']:
             issues['unknown_district'].append({'file': rec['file'], 'note': 'report header names a district this script does not know; the listing site was used instead'})
         if h['kind'] == 'by_station' and h.get('printed_total') and stations:
-            for c in STATION_COLS:
+            for c in h['printed_total']:
                 got, want = sum(st.get(c) or 0 for st in stations), h['printed_total'].get(c) or 0
                 if got != want:
                     issues['station_totals'].append({'file': rec['file'], 'column': c, 'station_sum': got, 'printed_total': want})
+        if h['kind'] == 'month_wise' and months.get('TOTAL'):
+            for c, want in months['TOTAL'].items():
+                got = sum((months[m].get(c) or 0) for m in MONTHS if m in months)
+                if got != (want or 0):
+                    issues['station_totals'].append({'file': rec['file'], 'column': c, 'month_sum': got, 'printed_total': want or 0})
         if sha in by_sha:
             rec['duplicate_of'] = by_sha[sha]; manifest.append(rec); continue          # identical file listed on two pages
         by_sha[sha] = rec['file']
         manifest.append(rec)
+        gen_year = int(h['generated'][:4]) if h['generated'] else None
+        year = int(h['from'][:4]) if h['from'] else (h['year'] or (gen_year if h['kind'] == 'month_wise' else None))
+        inferred = not h['from']
+        if h['kind'] == 'month_wise' and months and year is None:
+            issues['arithmetic'].append({'file': rec['file'], 'check': 'month-wise report states no year or dates; not staged'})
         for mi, m in enumerate(MONTHS):
             v = months.get(m)
-            if not v or not (v.get('total_accidents') or 0) or not h['from']:
+            if not v or not (v.get('total_accidents') or 0) or year is None:
                 continue
+            if h['from'] and not ((int(h['from'][:4]) * 12 + int(h['from'][5:7])) <= year * 12 + mi + 1 <= (int(h['to'][:4]) * 12 + int(h['to'][5:7]))):
+                continue       # a month outside the report's own stated range (reporting-date reports show strays there); not part of this report's period
             problems = arithmetic(v)
-            row = {'district': h['district'] or site, 'year': int(h['from'][:4]), 'month': mi + 1, 'month_name': m, **{c: v.get(c) or 0 for c in MONTH_COLS},
-                   'local_body_pending': h['local_body_pending'] if h['from'][:7] == h['to'][:7] else None, 'report_period_from': h['from'], 'report_period_to': h['to'],
-                   'generated': h['generated'], 'date_basis': h['date_basis'], 'extraction_method': 'pdf_table', 'source_file': rec['file'], 'sha256': sha, 'check': '; '.join(problems) or 'ok'}
+            row = {'district': h['district'] or site, 'year': year, 'month': mi + 1, 'month_name': m,
+                   **{c: (v.get(c) or 0) if c in v else None for c in MONTH_COLS}, 'persons_injured': v.get('persons_injured'),
+                   'local_body_pending': h['local_body_pending'] if h['from'] and h['from'][:7] == h['to'][:7] else None, 'report_period_from': h['from'], 'report_period_to': h['to'],
+                   'generated': h['generated'], 'date_basis': h['date_basis'], 'scope': h['scope'], 'period_inferred': 'true' if inferred else '', 'schema': h['schema'],
+                   'extraction_method': 'pdf_table', 'source_file': rec['file'], 'sha256': sha, 'check': '; '.join(problems) or 'ok'}
             if problems:
                 issues['arithmetic'].append({k: row[k] for k in ('district', 'year', 'month_name', 'source_file', 'check')})
             key = (row['district'], row['year'], row['month'])
@@ -291,11 +336,13 @@ def main():
             month_best[key] = row
         for st in stations:
             problems = arithmetic(st)
-            row = {'district': h['district'] or site, 'period_from': h['from'], 'period_to': h['to'], 'generated': h['generated'], 'date_basis': h['date_basis'], **st,
+            row = {'district': h['district'] or site, 'period_from': h['from'], 'period_to': h['to'], 'report_year': h['year'], 'generated': h['generated'], 'date_basis': h['date_basis'],
+                   **{c: st.get(c) for c in ['s_no', 'code', 'police_station']}, **{c: (st.get(c) or 0) if c in st else None for c in STATION_COLS},
+                   'scope': h['scope'], 'period_inferred': 'true' if not h['from'] else '', 'schema': h['schema'],
                    'source_file': rec['file'], 'sha256': sha, 'check': '; '.join(problems) or 'ok'}
             if problems:
                 issues['arithmetic'].append({'district': row['district'], 'period': row['period_from'], 'station': st['police_station'], 'source_file': rec['file'], 'check': row['check']})
-            key = (row['district'], row['period_from'], row['period_to'], st['code'], st['police_station'])
+            key = (row['district'], row['period_from'], row['period_to'], row['report_year'], st['code'], st['police_station'])
             old = station_best.get(key)
             if old:
                 if any(old[c] != row[c] for c in STATION_COLS):
@@ -325,7 +372,7 @@ def main():
                     continue
                 problems = arithmetic(v)
                 month_best[key] = {'district': tr['district'], 'year': t['year'], 'month': mi + 1, 'month_name': m, **{c: v.get(c) or 0 for c in MONTH_COLS},
-                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': None, 'date_basis': t.get('date_basis'),
+                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': None, 'date_basis': t.get('date_basis'), 'scope': '', 'period_inferred': 'true' if t.get('period_inferred') else '', 'schema': 'scan', 'persons_injured': None,
                                    'extraction_method': 'image_transcription', 'source_file': t['file'], 'sha256': t['sha256'], 'check': '; '.join(problems) or 'ok'}
 
     # Public links recovered later by matching each file's SHA-256 to the currently published official PDF (source_links.json).
@@ -339,9 +386,9 @@ def main():
                             'source_recovered_on': L['retrieved_on'], 'source_note': 'identical bytes are published at this URL now; the original download URL may differ'})
 
     mrows = sorted(month_best.values(), key=lambda r: (r['district'], r['year'], r['month']))
-    srows = sorted(station_best.values(), key=lambda r: (r['district'], r['period_from'] or '', r['period_to'] or '', r['code']))
-    mfields = ['district', 'year', 'month', 'month_name'] + MONTH_COLS + ['local_body_pending', 'report_period_from', 'report_period_to', 'generated', 'date_basis', 'extraction_method', 'source_file', 'sha256', 'check']
-    sfields = ['district', 'period_from', 'period_to', 'generated', 'date_basis', 's_no', 'code', 'police_station'] + STATION_COLS + ['source_file', 'sha256', 'check']
+    srows = sorted(station_best.values(), key=lambda r: (r['district'], r['period_from'] or '', r['period_to'] or '', r['report_year'] or 0, r['code']))
+    mfields = ['district', 'year', 'month', 'month_name'] + MONTH_COLS + ['persons_injured', 'local_body_pending', 'report_period_from', 'report_period_to', 'generated', 'date_basis', 'scope', 'period_inferred', 'schema', 'extraction_method', 'source_file', 'sha256', 'check']
+    sfields = ['district', 'period_from', 'period_to', 'report_year', 'generated', 'date_basis', 's_no', 'code', 'police_station'] + STATION_COLS + ['scope', 'period_inferred', 'schema', 'source_file', 'sha256', 'check']
     for name, fields, rows in (('irad_monthly_by_district.csv', mfields, mrows), ('irad_station_by_period.csv', sfields, srows)):
         with open(os.path.join(OUT, name), 'w', newline='', encoding='utf-8') as fh:
             w = csv.DictWriter(fh, fieldnames=fields); w.writeheader(); w.writerows(rows)

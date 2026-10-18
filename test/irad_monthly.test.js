@@ -25,7 +25,7 @@ function readCsv(file) {
 const months = readCsv('irad_monthly_by_district.csv');
 const stations = readCsv('irad_station_by_period.csv');
 const n = (v) => Number(v || 0);
-const DISTRICTS = new Set(['Central', 'East', 'New Delhi', 'North', 'North East', 'North West', 'South', 'South East', 'South West', 'West', 'Shahdara', 'Rohini']);
+const DISTRICTS = new Set(['Central', 'East', 'New Delhi', 'North', 'North East', 'North West', 'South', 'South East', 'South West', 'West', 'Shahdara', 'Rohini', 'Dwarka']);
 
 test('month-wise rows satisfy the report arithmetic, with unique district-month keys', () => {
   assert.ok(months.length >= 140);
@@ -35,7 +35,8 @@ test('month-wise rows satisfy the report arithmetic, with unique district-month 
     assert.equal(r.check, 'ok', r.district + ' ' + r.year + '-' + r.month + ': ' + r.check);
     assert.equal(n(r.fatal) + n(r.total_non_fatal), n(r.total_accidents));
     assert.equal(n(r.grievous) + n(r.minor_hospitalised) + n(r.minor_non_hospitalised) + n(r.no_injury), n(r.total_non_fatal));
-    assert.equal(n(r.killed) + n(r.persons_grievous) + n(r.persons_minor) + n(r.persons_no_injury), n(r.persons_total));
+    if (r.persons_injured !== '') assert.equal(n(r.killed) + n(r.persons_injured), n(r.persons_total));   // oldest East layout prints one 'injured' column
+    else assert.equal(n(r.killed) + n(r.persons_grievous) + n(r.persons_minor) + n(r.persons_no_injury), n(r.persons_total));
     const key = r.district + '|' + r.year + '|' + r.month;
     assert.ok(!seen.has(key), 'duplicate ' + key); seen.add(key);
   }
@@ -47,7 +48,7 @@ test('station rows satisfy the arithmetic and are unique per station and period'
   for (const r of stations) {
     assert.ok(DISTRICTS.has(r.district), 'unknown district ' + r.district);
     assert.equal(r.check, 'ok', r.district + ' ' + r.police_station + ': ' + r.check);
-    const key = [r.district, r.period_from, r.period_to, r.code, r.police_station].join('|');
+    const key = [r.district, r.period_from, r.period_to, r.report_year, r.code, r.police_station].join('|');
     assert.ok(!seen.has(key), 'duplicate ' + key); seen.add(key);
   }
 });
@@ -56,7 +57,8 @@ test('every row traces to a staged PDF by checksum, and no arithmetic issues or 
   const hashes = new Set(manifest.map(f => f.sha256));
   for (const r of months.concat(stations)) assert.ok(hashes.has(r.sha256), r.source_file + ' is not in the manifest');
   assert.equal(issues.arithmetic.length, 0);
-  assert.equal(issues.conflicts.length, 0, 'files that disagree must be reviewed: ' + JSON.stringify(issues.conflicts).slice(0, 300));
+  // The only known disagreement: East's January 2023 appears in two snapshots (7 Feb and 3 Mar 2023) with the same accidents, fatal and killed but 22 vs 21 injured; the later one is kept.
+  assert.deepEqual(issues.conflicts.map(c => c.table + ' ' + c.district + ' ' + c.period), ['month East 2023-01'], 'files that disagree must be reviewed: ' + JSON.stringify(issues.conflicts).slice(0, 300));
   for (const f of manifest) assert.match(f.sha256, /^[0-9a-f]{64}$/);
 });
 
@@ -124,15 +126,14 @@ test('scanned New Delhi files carry their transcribed metadata in the manifest, 
   assert.equal(manifest.find(f => f.file === 'Central__jan_2025.pdf').rows, 1);
 });
 
-test('every staged PDF has a recovered public link, and the unstaged-report inventory is complete and unique', () => {
-  for (const f of manifest) {
+test('every staged PDF with data has a recovered public link, and the one unloaded published report is listed', () => {
+  for (const f of manifest.filter(f => f.rows > 0 || f.kind !== 'other')) {
     assert.match(f.source_url, /^https:\/\/(cdn\.s3waas\.gov\.in|[a-z]+\.delhi\.gov\.in)\//, f.file + ' has no public URL');
     assert.ok(f.source_page && f.source_note, f.file);
   }
   const inv = readCsv('unstaged_published_reports.csv');
-  assert.equal(inv.length, 113);
-  assert.equal(new Set(inv.map(r => r.sha256)).size, 113);
-  const have = new Set(manifest.map(f => f.sha256));
+  assert.deepEqual(inv.map(r => r.public_url.split('/').pop()), ['2023040532.pdf']);   // the only published report not loaded: an image-only East scan
+  const have = new Set(manifest.filter(f => f.rows > 0).map(f => f.sha256));
   for (const r of inv) { assert.match(r.sha256, /^[0-9a-f]{64}$/); assert.ok(!have.has(r.sha256), r.ref + ' is actually staged'); assert.match(r.public_url, /^https:\/\//); }
 });
 
@@ -142,4 +143,32 @@ test('scanned New Delhi rows record that the header prints accident date, and th
   assert.ok(scans.every(r => r.date_basis === 'accident'));
   assert.equal(manifest.find(f => f.file === 'New_Delhi__17809011041267.pdf').period_inferred, true);
   assert.equal(manifest.find(f => f.file === 'New_Delhi__2025041582.pdf').period_inferred, false);
+});
+
+test('older report layouts are read by their own column map, and columns they do not print stay empty, not 0', () => {
+  const g = stations.find(r => r.source_file === 'East__2023050171.pdf' && r.police_station === 'GAZIPUR');      // 17-column layout, FIR printed 3(100)
+  assert.equal(g.schema, 'legacy_17');
+  assert.deepEqual([g.minor_hospitalised, g.total_accidents, g.fir_filed, g.completed, g.persons_minor, g.persons_total], ['3', '3', '3', '3', '5', '5']);
+  assert.equal(g.vehicle_count, ''); assert.equal(g.persons_no_injury, ''); assert.equal(g.proceeded_mact, '');
+  const jan22 = months.find(r => r.district === 'East' && r.year === '2022' && r.month === '1');                   // 11-column layout, year only from the generation date
+  assert.equal(jan22.schema, 'east_legacy_11');
+  assert.deepEqual([jan22.fatal, jan22.total_accidents, jan22.killed, jan22.persons_injured, jan22.persons_total], ['9', '29', '9', '19', '28']);
+  assert.equal(jan22.persons_grievous, ''); assert.equal(jan22.period_inferred, 'true');
+});
+
+test('month rows come only from the months a report states, and year-only reports are marked as inferred', () => {
+  for (const r of months.filter(r => r.report_period_from)) {
+    const ym = Number(r.year) * 12 + Number(r.month);
+    assert.ok(ym >= Number(r.report_period_from.slice(0, 4)) * 12 + Number(r.report_period_from.slice(5, 7)) && ym <= Number(r.report_period_to.slice(0, 4)) * 12 + Number(r.report_period_to.slice(5, 7)), r.source_file + ' ' + r.year + '-' + r.month);
+  }
+  for (const r of months.filter(r => !r.report_period_from && r.extraction_method === 'pdf_table')) assert.equal(r.period_inferred, 'true', r.source_file);
+  for (const d of ['Dwarka', 'South West']) assert.equal(months.filter(r => r.district === d).length, 40, d);   // Jan 2022 to Apr 2025
+  assert.equal(months.filter(r => r.district === 'North East').length, 48);
+});
+
+test('the districts now loaded from the second discovery are present with their station tables', () => {
+  const by = d => new Set(stations.filter(r => r.district === d).map(r => r.report_year + '|' + r.period_from + '|' + r.period_to));
+  assert.equal(by('South').size, 3);              // Year 2022, 2023, 2024; no dates printed
+  assert.ok(by('East').size >= 30 && by('North East').size >= 9);
+  assert.ok(stations.some(r => r.district === 'Dwarka') && stations.some(r => r.district === 'New Delhi'));
 });

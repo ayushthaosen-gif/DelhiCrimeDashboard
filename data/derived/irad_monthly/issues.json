@@ -1,6 +1,28 @@
 {
  "arithmetic": [],
- "conflicts": [],
+ "conflicts": [
+  {
+   "table": "month",
+   "district": "East",
+   "period": "2023-01",
+   "values": [
+    {
+     "file": "East__2023020720.pdf",
+     "generated": "2023-02-07T12:16:49",
+     "accidents": 27,
+     "fatal": 5,
+     "killed": 5
+    },
+    {
+     "file": "East__2023031456.pdf",
+     "generated": "2023-03-03T09:57:35",
+     "accidents": 27,
+     "fatal": 5,
+     "killed": 5
+    }
+   ]
+  }
+ ],
  "listed_under_wrong_district": [
   {
    "file": "North_West__17659564847373.pdf",
@@ -69,6 +91,60 @@
    "file": "North_West__2025041579.pdf",
    "listed_on": "North West",
    "report_says": "Rohini",
+   "period": [
+    null,
+    null
+   ]
+  },
+  {
+   "file": "South_West__17676951078366.pdf",
+   "listed_on": "South West",
+   "report_says": "Dwarka",
+   "period": [
+    "2025-05-01",
+    "2025-12-31"
+   ]
+  },
+  {
+   "file": "South_West__2025041786.pdf",
+   "listed_on": "South West",
+   "report_says": "Dwarka",
+   "period": [
+    null,
+    null
+   ]
+  },
+  {
+   "file": "South_West__2025042112-1.pdf",
+   "listed_on": "South West",
+   "report_says": "Dwarka",
+   "period": [
+    null,
+    null
+   ]
+  },
+  {
+   "file": "South_West__2025042138.pdf",
+   "listed_on": "South West",
+   "report_says": "Dwarka",
+   "period": [
+    null,
+    null
+   ]
+  },
+  {
+   "file": "South_West__2025042150.pdf",
+   "listed_on": "South West",
+   "report_says": "Dwarka",
+   "period": [
+    null,
+    null
+   ]
+  },
+  {
+   "file": "South_West__2025042179-1.pdf",
+   "listed_on": "South West",
+   "report_says": "Dwarka",
    "period": [
     null,
     null
