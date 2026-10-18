@@ -146,7 +146,7 @@
     $('chart').innerHTML = svg + '</svg>';
     $('chartLegend').innerHTML = legend;
     var last = rows.slice().sort(function (a, b) { return (b.report_period_to || '').localeCompare(a.report_period_to || ''); })[0];
-    $('monthsNote').textContent = 'A year with fewer than 12 points is partial' + (last && last.report_period_to ? ' (latest data to ' + last.report_period_to + ')' : '') + '. Each point is the report’s own monthly figure; files generated on different dates can differ for late-entered accidents.' + (rows.some(function (r) { return r.scope === 'fir_registered_only'; }) ? ' These tables count FIR-registered accidents only.' : '') + (rows.some(function (r) { return r.period_inferred === 'true'; }) ? ' For reports that print only a year, months with no accidents are not shown, and a missing month may be unreported rather than zero.' : '');
+    $('monthsNote').textContent = 'A year with fewer than 12 points is partial' + (last && last.report_period_to ? ' (latest data to ' + last.report_period_to + ')' : '') + '. Each point is the report’s own monthly figure; files generated on different dates can differ for late-entered accidents.' + (rows.some(function (r) { return r.scope === 'fir_registered_only'; }) ? ' These tables count FIR-registered accidents only.' : '') + (d === 'North East' ? ' North East 2023 and 2024 figures are the months inside each reporting-date report\u2019s stated period; the reports\u2019 own totals also count a few accidents printed in other months.' : '') + (rows.some(function (r) { return r.period_inferred === 'true'; }) ? ' For reports that print only a year, months with no accidents are not shown, and a missing month may be unreported rather than zero.' : '');
   }
 
   // ---------- police stations ----------

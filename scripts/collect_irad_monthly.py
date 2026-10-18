@@ -234,6 +234,11 @@ def read_pdf(path):
     return h, months, stations
 
 
+def differing(old, new, cols):
+    """{column: [old value, new value]} for the columns two snapshots disagree on."""
+    return {c: [old[c], new[c]] for c in cols if old[c] != new[c]}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--offline', action='store_true')
@@ -311,11 +316,16 @@ def main():
         inferred = not h['from']
         if h['kind'] == 'month_wise' and months and year is None:
             issues['arithmetic'].append({'file': rec['file'], 'check': 'month-wise report states no year or dates; not staged'})
+        if months.get('TOTAL'):
+            rec['printed_total'] = months['TOTAL']
+        elif h.get('printed_total'):
+            rec['printed_total'] = h['printed_total']
         for mi, m in enumerate(MONTHS):
             v = months.get(m)
             if not v or not (v.get('total_accidents') or 0) or year is None:
                 continue
             if h['from'] and not ((int(h['from'][:4]) * 12 + int(h['from'][5:7])) <= year * 12 + mi + 1 <= (int(h['to'][:4]) * 12 + int(h['to'][5:7]))):
+                rec.setdefault('out_of_range_months', {})[m] = v      # in the report's printed TOTAL, but not in its stated period
                 continue       # a month outside the report's own stated range (reporting-date reports show strays there); not part of this report's period
             problems = arithmetic(v)
             row = {'district': h['district'] or site, 'year': year, 'month': mi + 1, 'month_name': m,
@@ -330,6 +340,7 @@ def main():
             if old:
                 if any(old[c] != row[c] for c in MONTH_COLS):
                     issues['conflicts'].append({'table': 'month', 'district': row['district'], 'period': '%d-%02d' % (row['year'], row['month']),
+                                                'differing_columns': differing(old, row, MONTH_COLS + ['persons_injured']),
                                                 'values': [{'file': x['source_file'], 'generated': x['generated'], 'accidents': x['total_accidents'], 'fatal': x['fatal'], 'killed': x['killed']} for x in (old, row)]})
                 if (row['generated'] or '') <= (old['generated'] or ''):
                     continue
@@ -347,6 +358,7 @@ def main():
             if old:
                 if any(old[c] != row[c] for c in STATION_COLS):
                     issues['conflicts'].append({'table': 'station', 'district': row['district'], 'station': st['police_station'], 'period': [row['period_from'], row['period_to']],
+                                                'differing_columns': differing(old, row, STATION_COLS),
                                                 'values': [{'file': x['source_file'], 'generated': x['generated'], 'accidents': x['total_accidents'], 'fatal': x['fatal'], 'killed': x['killed']} for x in (old, row)]})
                 if (row['generated'] or '') <= (old['generated'] or ''):
                     continue
@@ -362,17 +374,20 @@ def main():
             if t['sha256'] not in staged:
                 issues['conflicts'].append({'table': 'transcription', 'file': t['file'], 'problem': 'staged PDF is missing or changed (checksum differs), so its transcription was not used'})
                 continue
-            staged[t['sha256']].update({'kind': 'month_wise', 'report_district': tr['district'], 'period_from': t['period_from'], 'period_to': t['period_to'],
-                                        'rows': 12, 'extraction_method': 'image_transcription', 'date_basis': t.get('date_basis'),
-                                        'period_inferred': bool(t.get('period_inferred'))})
+            dist = t.get('district', tr['district'])
+            staged[t['sha256']].update({'kind': 'month_wise', 'report_district': dist, 'period_from': t['period_from'], 'period_to': t['period_to'],
+                                        'rows': len(t['months']), 'extraction_method': 'image_transcription', 'date_basis': t.get('date_basis'),
+                                        'period_inferred': bool(t.get('period_inferred')), 'generated': t.get('generated'), 'printed_total': t.get('printed_total_row')})
             for mi, m in enumerate(MONTHS):
+                if m not in t['months']:
+                    continue
                 v = t['months'][m]
-                key = (tr['district'], t['year'], mi + 1)
+                key = (dist, t['year'], mi + 1)
                 if key in month_best:
                     continue
                 problems = arithmetic(v)
-                month_best[key] = {'district': tr['district'], 'year': t['year'], 'month': mi + 1, 'month_name': m, **{c: v.get(c) or 0 for c in MONTH_COLS},
-                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': None, 'date_basis': t.get('date_basis'), 'scope': '', 'period_inferred': 'true' if t.get('period_inferred') else '', 'schema': 'scan', 'persons_injured': None,
+                month_best[key] = {'district': dist, 'year': t['year'], 'month': mi + 1, 'month_name': m, **{c: (v.get(c) or 0) if c in v else None for c in MONTH_COLS},
+                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': t.get('generated'), 'date_basis': t.get('date_basis'), 'scope': '', 'period_inferred': 'true' if t.get('period_inferred') else '', 'schema': 'scan', 'persons_injured': None,
                                    'extraction_method': 'image_transcription', 'source_file': t['file'], 'sha256': t['sha256'], 'check': '; '.join(problems) or 'ok'}
 
     # Public links recovered later by matching each file's SHA-256 to the currently published official PDF (source_links.json).
