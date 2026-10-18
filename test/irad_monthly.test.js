@@ -123,3 +123,23 @@ test('scanned New Delhi files carry their transcribed metadata in the manifest, 
   assert.equal(manifest.find(f => f.file === 'West__2025041795.pdf').rows, 12);
   assert.equal(manifest.find(f => f.file === 'Central__jan_2025.pdf').rows, 1);
 });
+
+test('every staged PDF has a recovered public link, and the unstaged-report inventory is complete and unique', () => {
+  for (const f of manifest) {
+    assert.match(f.source_url, /^https:\/\/(cdn\.s3waas\.gov\.in|[a-z]+\.delhi\.gov\.in)\//, f.file + ' has no public URL');
+    assert.ok(f.source_page && f.source_note, f.file);
+  }
+  const inv = readCsv('unstaged_published_reports.csv');
+  assert.equal(inv.length, 113);
+  assert.equal(new Set(inv.map(r => r.sha256)).size, 113);
+  const have = new Set(manifest.map(f => f.sha256));
+  for (const r of inv) { assert.match(r.sha256, /^[0-9a-f]{64}$/); assert.ok(!have.has(r.sha256), r.ref + ' is actually staged'); assert.match(r.public_url, /^https:\/\//); }
+});
+
+test('scanned New Delhi rows record that the header prints accident date, and the 2025 interval is marked as inferred', () => {
+  const scans = months.filter(r => r.extraction_method === 'image_transcription');
+  assert.ok(scans.length >= 48);
+  assert.ok(scans.every(r => r.date_basis === 'accident'));
+  assert.equal(manifest.find(f => f.file === 'New_Delhi__17809011041267.pdf').period_inferred, true);
+  assert.equal(manifest.find(f => f.file === 'New_Delhi__2025041582.pdf').period_inferred, false);
+});

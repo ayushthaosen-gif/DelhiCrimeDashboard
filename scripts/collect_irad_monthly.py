@@ -316,7 +316,8 @@ def main():
                 issues['conflicts'].append({'table': 'transcription', 'file': t['file'], 'problem': 'staged PDF is missing or changed (checksum differs), so its transcription was not used'})
                 continue
             staged[t['sha256']].update({'kind': 'month_wise', 'report_district': tr['district'], 'period_from': t['period_from'], 'period_to': t['period_to'],
-                                        'rows': 12, 'extraction_method': 'image_transcription'})
+                                        'rows': 12, 'extraction_method': 'image_transcription', 'date_basis': t.get('date_basis'),
+                                        'period_inferred': bool(t.get('period_inferred'))})
             for mi, m in enumerate(MONTHS):
                 v = t['months'][m]
                 key = (tr['district'], t['year'], mi + 1)
@@ -324,8 +325,18 @@ def main():
                     continue
                 problems = arithmetic(v)
                 month_best[key] = {'district': tr['district'], 'year': t['year'], 'month': mi + 1, 'month_name': m, **{c: v.get(c) or 0 for c in MONTH_COLS},
-                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': None, 'date_basis': None,
+                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': None, 'date_basis': t.get('date_basis'),
                                    'extraction_method': 'image_transcription', 'source_file': t['file'], 'sha256': t['sha256'], 'check': '; '.join(problems) or 'ok'}
+
+    # Public links recovered later by matching each file's SHA-256 to the currently published official PDF (source_links.json).
+    lpath = os.path.join(OUT, 'source_links.json')
+    if os.path.exists(lpath):
+        links_by_file = json.load(open(lpath, encoding='utf-8'))['files']
+        for rec in manifest:
+            L = links_by_file.get(rec['file'])
+            if L and L['sha256'] == rec['sha256']:
+                rec.update({'source_url_before': rec['source_url'], 'source_url': L['public_url'], 'source_page': L['page_url'], 'link_text': L['link_text'],
+                            'source_recovered_on': L['retrieved_on'], 'source_note': 'identical bytes are published at this URL now; the original download URL may differ'})
 
     mrows = sorted(month_best.values(), key=lambda r: (r['district'], r['year'], r['month']))
     srows = sorted(station_best.values(), key=lambda r: (r['district'], r['period_from'] or '', r['period_to'] or '', r['code']))

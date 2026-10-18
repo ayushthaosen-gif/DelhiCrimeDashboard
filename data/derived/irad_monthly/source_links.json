@@ -1,0 +1,501 @@
+{
+ "note": "Public links recovered 2026-10-18 by an independent check (Codex). Each file was matched to the currently published official PDF by identical SHA-256. This proves the same bytes are published now, not which URL the original collection used.",
+ "files": {
+  "Central__05-03-2025.pdf": {
+   "sha256": "38519d3aa5135a7f957c6e6fb9327b9de67aa5e02444686e1fa77013141aecd0",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/05-03-2025.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "Central__police_station_wise_accident_cases.pdf": {
+   "sha256": "407fa6cdca2a889d4358ff0696fcb143e06d2205c4bbfc46788bf037934a1b8a",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/police_station_wise_accident_cases.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "Central__jan_2025.pdf": {
+   "sha256": "3c51640f9f42ad3389da94b3fd226076fb17bf82b51dc0e9efa5ca0c64798a7b",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/jan_2025.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "Central__feb_2025.pdf": {
+   "sha256": "561db9c8046c01e267fabc7231e0ad65d301bd525b3d0d45d416a90536e9dfc7",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/feb_2025.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "Central__march_2025.pdf": {
+   "sha256": "fa12d310ee7a627d0452b52ed2b83afad0cb93b072c8820ed9b57f6dc9b1345c",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/march_2025.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "Central__april_2025.pdf": {
+   "sha256": "8d558514114085ba69dd799379a8e9956986abc6987c0912d5391dce962327d7",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/april_2025.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "Central__may_2025.pdf": {
+   "sha256": "fba52de7fa844016f33991477dfeceddc856e3c733a1ec02621eb36b8549034f",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/may_2025.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "Central__june_2025.pdf": {
+   "sha256": "90caa029482f1ad594ad6c4176e349979bcaff88763a5ea1a75305bf7bb59890",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/june_2025.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "Central__iRAD Report1(1. Accidents Classified According to Month-wise).pdf": {
+   "sha256": "9748cd13fc18d0d3bb6c4b062f9c55f28bb9398c46aba78f6ce6d434e12ab103",
+   "public_url": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/iRAD%20Report1%281.%20Accidents%20Classified%20According%20to%20Month-wise%29.pdf",
+   "page_url": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+   "link_text": "Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "East__2025032010.pdf": {
+   "sha256": "ab883ed2ee14be511ab5ae9924f12b1ea278cd27851837a26199ffb1f4a10f43",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/03/2025032010.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/departments/irad-edar-east-delhi/",
+   "link_text": "Police Station wise Accident Cases",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "New_Delhi__2025041582.pdf": {
+   "sha256": "a1ce99c44d6226cfb02a347978b26fb37f2c1e736dd199871b3f1c47dbad854a",
+   "public_url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041582.pdf",
+   "page_url": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "New_Delhi__2025041520.pdf": {
+   "sha256": "5ce556cef0cb01ce01a978fb00b71601904c5a6409ce3f7782ccf0f205c569b1",
+   "public_url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041520.pdf",
+   "page_url": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "New_Delhi__2025041533.pdf": {
+   "sha256": "d9fd6c3bf5e2d6acee22a95953a8368def0827260f45b3927284ad0bba6aec0b",
+   "public_url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041533.pdf",
+   "page_url": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "New_Delhi__17809011041267.pdf": {
+   "sha256": "8f870fe8e5ed8c82ad6d7887fd6584673d92ee89ef4f50cde5c73a513cccf888",
+   "public_url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809011041267.pdf",
+   "page_url": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "New_Delhi__17809016931369.pdf": {
+   "sha256": "055077cc63569c234aa08727fba6b9c927351b0e8774813235256cd949716db0",
+   "public_url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809016931369.pdf",
+   "page_url": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "Click to View/Download",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_East__2025040993.pdf": {
+   "sha256": "2b3aa3b0b2d113c231f341bd414de075fcf554ab3ab459e0962947dde923693c",
+   "public_url": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040993.pdf",
+   "page_url": "https://dmnortheast.delhi.gov.in/irad-edar-north-east-delhi/",
+   "link_text": "download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__17676911964560.pdf": {
+   "sha256": "abb430424c6c2c444d183f904f24efbfb42554f6b91d4ff9bf62dfe4a783d7c5",
+   "public_url": "https://cdn.s3waas.gov.in/s3b1eec33c726a60554bc78518d5f9b32c/uploads/2026/01/17676911964560.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "iRAD (Accidents Classified According 01 Jan 2025 to 31 Dec 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__2025041579.pdf": {
+   "sha256": "196cf30e14ededd5eb16061035c64005609837d27115fae9282a346b435c0d7f",
+   "public_url": "https://cdn.s3waas.gov.in/s3b1eec33c726a60554bc78518d5f9b32c/uploads/2025/04/2025041579.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "Police Station wise Accident Cases",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__2025042124.pdf": {
+   "sha256": "16f337d55b199718280e682bc5d599b8aa59a0697db446047dfd131cc8755bd9",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042124.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "Police Station Wise Accident Cases (2022 to 2024)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__2025042136.pdf": {
+   "sha256": "8d5277807a5f4f69eeb7117da1da6a224d7a78f256c634f482dfa7363ccca927",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042136.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified According by year 01 Jan 2022 to 31 Dec 2022)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__2025042158.pdf": {
+   "sha256": "ef0013169bed3250ed7015d9c65972a2d7f1cd03761047d05c7900cb1f007af9",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042158.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified According By year 01 Jan 2023 to 31 Dec 2023)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__2025042163.pdf": {
+   "sha256": "541cc34845ff7edcf52a8ce0999417b306319ea59eb7d72c18a7146791010f2d",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042163.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified According By year 01 Jan 2024 to 31 Dec 2024)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__17659564847373.pdf": {
+   "sha256": "cdc22d7ae750ef8ba61407c5d75fafeac94fd34002e93af56e47cd9bb5c13c39",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659564847373.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Jan 2025 to 31 Jan 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659564847373.pdf": {
+   "sha256": "cdc22d7ae750ef8ba61407c5d75fafeac94fd34002e93af56e47cd9bb5c13c39",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659564847373.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Jan 2025 to 31 Jan 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17676880854501.pdf": {
+   "sha256": "8f1a2abb5caf2b50fbbaa377a846b3664f7cc02be2896cb5801cbc7edab5e63f",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676880854501.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified According By Year 01 Jan 2025 to 31 Dec 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__17659568465531.pdf": {
+   "sha256": "8e99ce15c1ba2918e59d7da0837b195ee7235ad31b340e2d5678de2eef4bb5f3",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659568465531.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Feb 2025 to 28 Feb 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659568465531.pdf": {
+   "sha256": "8e99ce15c1ba2918e59d7da0837b195ee7235ad31b340e2d5678de2eef4bb5f3",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659568465531.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Feb 2025 to 28 Feb 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659565245947.pdf": {
+   "sha256": "858dc5d05233971fd49d3ff41af1fba804d4527368cb0c729372e1cd6a5a8687",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659565245947.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Mar 2025 to 31 Mar 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659565856136.pdf": {
+   "sha256": "69323b6749caa2f932892b9522a3032e06bb1dbdb8e11593a6103c28857e6ea7",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659565856136.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Apr 2025 to 30 Apr 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__17659566344197.pdf": {
+   "sha256": "159ae26d8ebe8079ed50297fdf4c6b7a9ad5c50335f1cec8062a7a1972492a8f",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566344197.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 May 2025 to 31 May 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659566344197.pdf": {
+   "sha256": "159ae26d8ebe8079ed50297fdf4c6b7a9ad5c50335f1cec8062a7a1972492a8f",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566344197.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 May 2025 to 31 May 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659566625570.pdf": {
+   "sha256": "60f93d08353f65a3dda7cf25762f6713e16fefbbdb68b4a445863ae4d83a0deb",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566625570.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Jun 2025 to 30 Jun 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__17659566916898.pdf": {
+   "sha256": "417cb372514cec51f00129be647092960ad39081c01be238f389e7dac4e73538",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566916898.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Jul 2025 to 31 Jul 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659566916898.pdf": {
+   "sha256": "417cb372514cec51f00129be647092960ad39081c01be238f389e7dac4e73538",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566916898.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Jul 2025 to 31 Jul 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659567106223.pdf": {
+   "sha256": "8f89701e3c5361a20c60f785af9ab23cdc0e8f7c89d849bd2f5388c59a3f94df",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567106223.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Aug 2025 to 31 Aug 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__17659567362040.pdf": {
+   "sha256": "615c311008d5d8c5a78b740f6f7e00fa708e7cff4505cb2deb3bc2c6aa332722",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567362040.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Sep 2025 to 30 Sep 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659567362040.pdf": {
+   "sha256": "615c311008d5d8c5a78b740f6f7e00fa708e7cff4505cb2deb3bc2c6aa332722",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567362040.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Sep 2025 to 30 Sep 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__17659567553072.pdf": {
+   "sha256": "8e7804aa0841eac1b7856215834fbafc6e081ce6c46573a7f36d96038940b017",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567553072.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Oct 2025 to 31 Oct 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659567553072.pdf": {
+   "sha256": "8e7804aa0841eac1b7856215834fbafc6e081ce6c46573a7f36d96038940b017",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567553072.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Oct 2025 to 31 Oct 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17659567676014.pdf": {
+   "sha256": "9f37c5d8c8e9a4949b27ef1e65a7ceb5177fb188aa6e567ab03ce5208fcb4bdb",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567676014.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Nov 2025 to 30 Nov 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "North_West__17676879156890.pdf": {
+   "sha256": "b7c9cc16cf222913991df95eaa62326d75628aeb5f89a401e2e01791d38624e4",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676879156890.pdf",
+   "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Dec 2025 to 31 Dec 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17676879156890.pdf": {
+   "sha256": "b7c9cc16cf222913991df95eaa62326d75628aeb5f89a401e2e01791d38624e4",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676879156890.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Dec 2025 to 31 Dec 2025)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17881699603394.pdf": {
+   "sha256": "fe74c0071f3ff8ebfda591d260c643c475ff236ac490b43d98edb059bcc685a0",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881699603394.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Jan 2026 to 31 Jan 2026)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17881705845681.pdf": {
+   "sha256": "76ec1dd0dfabe103e9b423635dfddbe239162440349a399efb7f5172c93d34e0",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881705845681.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Feb 2026 to 28 Feb 2026)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17881706119872.pdf": {
+   "sha256": "f75edfe5477112b61019973bbf88a83fd505154d583c7c5182b96ac7a6e9ff33",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706119872.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Mar 2026 to 31 Mar 2026)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17881706318178.pdf": {
+   "sha256": "47d7f34620ab811e0ea86aeb2cd9912adfd68b59c26fd33ad24a502e867e7f0c",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706318178.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Apr 2026 to 30 Apr 2026)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17881706536659.pdf": {
+   "sha256": "8ff67ef26d9879a9a87a32728564b5a294d58b91b1370e4fc2ce904d1c1822d8",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706536659.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 May 2026 to 31 May 2026)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17881706749283.pdf": {
+   "sha256": "586d225289aee1535fbec48066bb46b5fb065f3f800fb751c858c63cd915d002",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706749283.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Jun 2026 to 30 Jun 2026)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "South_East__17881706927042.pdf": {
+   "sha256": "4957e2faaf2ac10c08b30893dc27e8ae23ac66b3f292a46a27055a1ad3a60848",
+   "public_url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706927042.pdf",
+   "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+   "link_text": "iRAD (Accidents Classified by Month Wise 01 Jul 2026 to 31 Jul 2026)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__2025041795.pdf": {
+   "sha256": "fe9e36720d97891b3d91c968b0ecec59f9ebfb2455a13a69136c810ac449ddcc",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/04/2025041795.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/jan-2022-to-dec-2022/",
+   "link_text": "View (135 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__20250417100.pdf": {
+   "sha256": "3fd446d82a9e8ae164cb5ae5e441f4cb28205a17f4fed3dbb088ae2024a1cd86",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/04/20250417100.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/from-01-jan-2023-to-31-dec-2023/",
+   "link_text": "View (135 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__2025041743.pdf": {
+   "sha256": "c53ef37d6c5a06afb20bd7e75b0d4753707ab5e753e133c7a18df927199610ba",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/04/2025041743.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/from-01-jan-2024-to-31-dec-2024/",
+   "link_text": "View (135 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__17676875811215.pdf": {
+   "sha256": "8327f3d6f5619cef73faff240ffc2dc5641d378062414e2f2cb3408004024263",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676875811215.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+   "link_text": "View (125 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__2025070449.pdf": {
+   "sha256": "2dfdd5b6e7bd5d6768b7b857ffa44704f792016ed34feca2a4eecda3a231b414",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/07/2025070449.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/from-1-jan-2025-to-30-april-2025/",
+   "link_text": "View (133 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__2025070423.pdf": {
+   "sha256": "bb911af31533f23ff01b240e7676520bb002360c1076722ab0158d67f80c9b8d",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/07/2025070423.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/month-of-may-2025/",
+   "link_text": "View (98 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__2025070441.pdf": {
+   "sha256": "78c26ccb658a955a8f9629ab6d68cc45f69279e9bac63a51a11131db0d12bd9d",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/07/2025070441.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/month-of-june-2025/",
+   "link_text": "View (98 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__17676869538318.pdf": {
+   "sha256": "e79369f4815bed1bc59a9a25a4d8e61606b3f5040646b8909b1ca8be612e5b5f",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676869538318.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/month-of-july/",
+   "link_text": "View (125 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__17676870979027.pdf": {
+   "sha256": "dadad575cc06f1f1e4a1ea39039eeb65e7e5382ad0d58f81f7c481db5cfba427",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676870979027.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/month-of-august/",
+   "link_text": "View (125 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__17676873471505.pdf": {
+   "sha256": "9be84ce7578aa44b78ced79677eb7489ffda36f58989f104e91c2e615c77fa7f",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676873471505.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/month-of-sep/",
+   "link_text": "View (124 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__17676873839212.pdf": {
+   "sha256": "526701b1ba2637ec2dab3773e9eb3811a4712c48fa9ac17f5a29c6224b433620",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676873839212.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/month-of-oct/",
+   "link_text": "View (125 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__17676874124105.pdf": {
+   "sha256": "ccd04dec3c60de98c05d56f2b0223587aa5b2441ca2a5c96b6753ada8d03ff3d",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676874124105.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/month-of-nov/",
+   "link_text": "View (125 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  },
+  "West__17676874414987.pdf": {
+   "sha256": "51b36da1965d5ef35cc5f134b010a3bdb60aae1cd118c3a773204c66da7cd2b4",
+   "public_url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676874414987.pdf",
+   "page_url": "https://dmwest.delhi.gov.in/document/month-of-dec/",
+   "link_text": "View (125 KB)",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
+  }
+ }
+}
