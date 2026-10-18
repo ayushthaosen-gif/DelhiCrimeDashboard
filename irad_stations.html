@@ -51,7 +51,7 @@
   <p class="sub">Road-accident counts from the Integrated Road Accident Database reports that Delhi's district administrations post, staged for review in <code>data/derived/irad_monthly/</code>. Monthly tables by district and police-station tables where published.</p>
 
   <div class="panel warn" id="caveat">
-    <b>Read before comparing.</b> iRAD counts come from records with minimal information and are a different series from the Delhi Traffic Police Road Crash Report used elsewhere on this site. <b>This page shows only what has been loaded here, not everything published:</b> the district sites list 113 further reports (East, North East, South, South West, Dwarka and New Delhi station tables) that are not loaded yet. Coverage also differs by district (see below), the earlier months of a year can be undercounts, and several revenue districts are not comparable with the 15 police districts. Rows marked <span class="tag">scan</span> were read from scanned PDFs by Claude and need a human spot-check.
+    <b>Read before comparing.</b> iRAD counts come from records with minimal information and are a different series from the Delhi Traffic Police Road Crash Report used elsewhere on this site. <b>Coverage differs by district.</b> Only districts whose sites publish iRAD reports appear (North and Shahdara have none online), one scanned East table is not loaded, and periods differ (see below). Older East reports print fewer columns, so some counts there are blank, not zero. Tables that print only a year have inferred months. Also, the earlier months of a year can be undercounts, and several revenue districts are not comparable with the 15 police districts. Rows marked <span class="tag">scan</span> were read from scanned PDFs by Claude and need a human spot-check.
   </div>
 
   <section class="panel" aria-labelledby="h-months">
@@ -146,17 +146,17 @@
     $('chart').innerHTML = svg + '</svg>';
     $('chartLegend').innerHTML = legend;
     var last = rows.slice().sort(function (a, b) { return (b.report_period_to || '').localeCompare(a.report_period_to || ''); })[0];
-    $('monthsNote').textContent = 'A year with fewer than 12 points is partial (' + (last ? 'latest data to ' + last.report_period_to : '') + '). Each point is the report’s own monthly figure; files generated on different dates can differ for late-entered accidents.';
+    $('monthsNote').textContent = 'A year with fewer than 12 points is partial' + (last && last.report_period_to ? ' (latest data to ' + last.report_period_to + ')' : '') + '. Each point is the report’s own monthly figure; files generated on different dates can differ for late-entered accidents.' + (rows.some(function (r) { return r.scope === 'fir_registered_only'; }) ? ' These tables count FIR-registered accidents only.' : '') + (rows.some(function (r) { return r.period_inferred === 'true'; }) ? ' For reports that print only a year, months with no accidents are not shown, and a missing month may be unreported rather than zero.' : '');
   }
 
   // ---------- police stations ----------
   function periodLabel(p) {
-    var a = p.split('|')[0], b = p.split('|')[1];
-    if (!a || a === 'null' || !b || b === 'null') return 'period not stated in the file';
+    var a = p.split('|')[0], b = p.split('|')[1], y = p.split('|')[2];
+    if (!a || a === 'null' || !b || b === 'null') return y ? 'Year ' + y + ' (exact dates not stated in the file)' : 'period not stated in the file';
     return a.slice(0, 7) === b.slice(0, 7) ? new Date(a + 'T00:00:00').toLocaleString('en-GB', { month: 'long', year: 'numeric' }) : a + ' to ' + b;
   }
   function stationPeriods(d) {
-    return uniq(stations.filter(function (r) { return r.district === d; }).map(function (r) { return r.period_from + '|' + r.period_to; })).sort();
+    return uniq(stations.filter(function (r) { return r.district === d; }).map(function (r) { return r.period_from + '|' + r.period_to + '|' + r.report_year; })).sort();
   }
   function fillPeriods() {
     var d = $('sdSel').value, ps = stationPeriods(d);
@@ -166,7 +166,7 @@
   }
   function drawStations() {
     var d = $('sdSel').value, p = $('spSel').value, key = $('sSort').value, find = $('sFind').value.trim().toLowerCase();
-    var rows = stations.filter(function (r) { return r.district === d && r.period_from + '|' + r.period_to === p; })
+    var rows = stations.filter(function (r) { return r.district === d && r.period_from + '|' + r.period_to + '|' + r.report_year === p; })
       .filter(function (r) { return !find || r.police_station.toLowerCase().indexOf(find) !== -1; })
       .sort(function (a, b) { return n(b[key]) - n(a[key]) || a.police_station.localeCompare(b.police_station); });
     var max = Math.max.apply(null, rows.map(function (r) { return n(r[key]); }).concat([1]));
@@ -199,7 +199,7 @@
     var ds = uniq(stations.map(function (r) { return r.district; })).sort();
     $('sdSel').innerHTML = ds.map(function (d) { return '<option>' + esc(d) + '</option>'; }).join('');
     $('sdSel').value = ds.indexOf('South East') >= 0 ? 'South East' : ds[0];
-    $('stationsSub').textContent = 'Districts with police-station tables: ' + ds.join(', ') + '. Coverage and periods differ by district; East and North East publish one cumulative table.';
+    $('stationsSub').textContent = 'Districts with police-station tables: ' + ds.join(', ') + '. Coverage and periods differ by district; some districts publish cumulative tables, others monthly ones, and a few print only a year.';
     drawMonths(); fillPeriods();
   }
 
