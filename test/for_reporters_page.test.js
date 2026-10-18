@@ -21,3 +21,9 @@ test('the dashboard build and its output link to the page', () => {
   assert.ok(fs.readFileSync(path.join(ROOT, 'scripts', 'build.js'), 'utf8').includes('href="for_reporters.html"'));
   assert.ok(fs.readFileSync(path.join(ROOT, 'delhi_safety_dashboard.html'), 'utf8').includes('href="for_reporters.html"'));
 });
+
+test('the dashboard and the map link to the iRAD page, which exists', () => {
+  assert.ok(fs.existsSync(path.join(ROOT, 'irad_stations.html')));
+  for (const f of ['delhi_safety_dashboard.html', 'interactive_map.html']) assert.ok(fs.readFileSync(path.join(ROOT, f), 'utf8').includes('href="irad_stations.html"'), f);
+  for (const f of ['build.js', 'build_interactive_map.js']) assert.ok(fs.readFileSync(path.join(ROOT, 'scripts', f), 'utf8').includes('href="irad_stations.html"'), f + ' would lose the link on rebuild');
+});
