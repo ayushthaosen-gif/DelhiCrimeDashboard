@@ -103,7 +103,7 @@ def discover(page):
 
 
 DISTRICTS = {'CENTRAL': 'Central', 'EAST': 'East', 'NEWDELHI': 'New Delhi', 'NORTH': 'North', 'NORTHEAST': 'North East', 'NORTHWEST': 'North West',
-             'SOUTH': 'South', 'SOUTHEAST': 'South East', 'SOUTHWEST': 'South West', 'WEST': 'West', 'SHAHDARA': 'Shahdara'}
+             'SOUTH': 'South', 'SOUTHEAST': 'South East', 'SOUTHWEST': 'South West', 'WEST': 'West', 'SHAHDARA': 'Shahdara', 'ROHINI': 'Rohini'}
 
 
 def district_name(raw):
@@ -130,15 +130,30 @@ def header(text):
     kind = 'month_wise' if re.search(r'AccidentsClassifiedAccordingtoMonth-wise', head, re.I) else \
         'by_station' if re.search(r'ClassifiedbyStations', head, re.I) else 'other'
     pend = re.search(r'Outof(\d+)\(TotalAccidents\),(\d+)isLocalBodyPending', compact)
+    basis = re.search(r'Date&Time:(Accident|Reporting)Date&Time', head)
     return {'district': district_name(d.group(1)) if d else None, 'from': to_iso(per.group(1)) if per else None, 'to': to_iso(per.group(2)) if per else None,
             'generated': datetime.strptime(gen.group(1) + ' ' + gen.group(2), '%d-%b-%Y %H:%M:%S').isoformat() if gen else None, 'kind': kind,
-            'local_body_pending': int(pend.group(2)) if pend else None}
+            'local_body_pending': int(pend.group(2)) if pend else None, 'date_basis': basis.group(1).lower() if basis else None}
 
 
 def num(c):
-    c = (c or '').strip()
+    c = (c or '').strip().replace(',', '')           # thousands separators: '1,888' -> 1888
     m = re.match(r'^(\d+)', c)                      # "3(100)" -> 3
     return int(m.group(1)) if m else None
+
+
+def num_paren(c):
+    """'71.4(5)' -> 5: the count inside the brackets, for a column printed as percentage(count)."""
+    m = re.search(r'\((\d+)\)\s*$', (c or '').strip())
+    return int(m.group(1)) if m else num(c)
+
+
+def fir_is_percent_first(table):
+    """The FIR column header says which way round its cells are printed: 'FIR Filed (%)' means count(percentage), 'FIR Filed % (count)' means percentage(count)."""
+    for row in table:
+        if len(row) > 10 and row[10] and 'FIR' in row[10].upper():
+            return bool(re.search(r'%\s*\(\s*count\s*\)', re.sub(r'\s+', ' ', row[10]), re.I))
+    return None
 
 
 def arithmetic(v, persons=True):
@@ -151,6 +166,8 @@ def arithmetic(v, persons=True):
         problems.append('injury classes != total non-fatal')
     if persons and g('killed') + g('persons_grievous') + g('persons_minor') + g('persons_no_injury') != g('persons_total'):
         problems.append('person classes != persons total')
+    if 'fir_filed' in v and g('fir_filed') > g('total_accidents'):
+        problems.append('FIR filed > total accidents')
     return problems
 
 
@@ -166,13 +183,23 @@ def read_pdf(path):
                 if row and row[0] in MONTHS + ['TOTAL'] and len(row) >= 15 and row[0] not in months:
                     months[row[0]] = {c: num(row[i + 1]) for i, c in enumerate(MONTH_COLS)}
         elif h['kind'] == 'by_station':
+            pct_first = None        # decided from the first FIR header seen; later pages repeat no header
             for page in doc.pages:
                 for table in page.extract_tables():
+                    mode = fir_is_percent_first(table)
+                    if mode is not None:
+                        pct_first = mode
                     for row in table:
                         if len(row) >= 22 and str(row[0] or '').strip().isdigit():
                             name = ' '.join(str(row[2] or '').split())
-                            stations.append({'s_no': int(row[0]), 'code': (row[1] or '').strip(), 'police_station': name,
-                                             **{c: num(row[i + 3]) for i, c in enumerate(STATION_COLS)}})
+                            vals = {c: num(row[i + 3]) for i, c in enumerate(STATION_COLS)}
+                            vals['fir_filed'] = num_paren(row[10]) if pct_first else num(row[10])
+                            stations.append({'s_no': int(row[0]), 'code': (row[1] or '').strip(), 'police_station': name, **vals})
+                        elif len(row) >= 22 and str(row[0] or '').strip().upper() == 'TOTAL':
+                            totals = {c: num(row[i + 3]) for i, c in enumerate(STATION_COLS)}
+                            totals['fir_filed'] = num_paren(row[10]) if pct_first else num(row[10])
+                            h['printed_total'] = totals
+            h['fir_format'] = None if pct_first is None else ('percentage(count)' if pct_first else 'count(percentage)')
     return h, months, stations
 
 
@@ -212,7 +239,7 @@ def main():
     for path, dist in zip(args.extra, args.extra_district + [None] * len(args.extra)):
         entries.append((dist, '(supplied by the project owner)', '(local file) ' + os.path.basename(path), '', path))
 
-    manifest, issues = [], {'arithmetic': [], 'conflicts': [], 'listed_under_wrong_district': []}
+    manifest, issues = [], {'arithmetic': [], 'conflicts': [], 'listed_under_wrong_district': [], 'station_totals': [], 'unknown_district': []}
     by_sha = {}
     month_best, station_best = {}, {}
     for site, page, url, text, local in entries:
@@ -226,11 +253,19 @@ def main():
             print('  unreadable', local, e, file=sys.stderr); continue
         rec = {'listed_on_site': site, 'source_url': url, 'source_page': page, 'link_text': text, 'file': os.path.basename(local), 'bytes': len(raw), 'sha256': sha,
                'report_district': h['district'], 'period_from': h['from'], 'period_to': h['to'], 'generated': h['generated'], 'kind': h['kind'],
-               'rows': len(stations) if h['kind'] == 'by_station' else sum(1 for m in months.values() if m['total_accidents'])}
+               'date_basis': h['date_basis'], 'fir_format': h.get('fir_format'),
+               'rows': len(stations) if h['kind'] == 'by_station' else sum(1 for k, m in months.items() if k in MONTHS and m['total_accidents'])}
         site = district_name(site) or site
         if site and h['district'] and site != h['district']:
             rec['listed_under_wrong_district'] = True
             issues['listed_under_wrong_district'].append({'file': rec['file'], 'listed_on': site, 'report_says': h['district'], 'period': [h['from'], h['to']]})
+        if h['kind'] in ('month_wise', 'by_station') and not h['district']:
+            issues['unknown_district'].append({'file': rec['file'], 'note': 'report header names a district this script does not know; the listing site was used instead'})
+        if h['kind'] == 'by_station' and h.get('printed_total') and stations:
+            for c in STATION_COLS:
+                got, want = sum(st.get(c) or 0 for st in stations), h['printed_total'].get(c) or 0
+                if got != want:
+                    issues['station_totals'].append({'file': rec['file'], 'column': c, 'station_sum': got, 'printed_total': want})
         if sha in by_sha:
             rec['duplicate_of'] = by_sha[sha]; manifest.append(rec); continue          # identical file listed on two pages
         by_sha[sha] = rec['file']
@@ -242,13 +277,13 @@ def main():
             problems = arithmetic(v)
             row = {'district': h['district'] or site, 'year': int(h['from'][:4]), 'month': mi + 1, 'month_name': m, **{c: v.get(c) or 0 for c in MONTH_COLS},
                    'local_body_pending': h['local_body_pending'] if h['from'][:7] == h['to'][:7] else None, 'report_period_from': h['from'], 'report_period_to': h['to'],
-                   'generated': h['generated'], 'extraction_method': 'pdf_table', 'source_file': rec['file'], 'sha256': sha, 'check': '; '.join(problems) or 'ok'}
+                   'generated': h['generated'], 'date_basis': h['date_basis'], 'extraction_method': 'pdf_table', 'source_file': rec['file'], 'sha256': sha, 'check': '; '.join(problems) or 'ok'}
             if problems:
                 issues['arithmetic'].append({k: row[k] for k in ('district', 'year', 'month_name', 'source_file', 'check')})
             key = (row['district'], row['year'], row['month'])
             old = month_best.get(key)
             if old:
-                if any(old[c] != row[c] for c in ('total_accidents', 'fatal', 'killed')):
+                if any(old[c] != row[c] for c in MONTH_COLS):
                     issues['conflicts'].append({'table': 'month', 'district': row['district'], 'period': '%d-%02d' % (row['year'], row['month']),
                                                 'values': [{'file': x['source_file'], 'generated': x['generated'], 'accidents': x['total_accidents'], 'fatal': x['fatal'], 'killed': x['killed']} for x in (old, row)]})
                 if (row['generated'] or '') <= (old['generated'] or ''):
@@ -256,14 +291,14 @@ def main():
             month_best[key] = row
         for st in stations:
             problems = arithmetic(st)
-            row = {'district': h['district'] or site, 'period_from': h['from'], 'period_to': h['to'], 'generated': h['generated'], **st,
+            row = {'district': h['district'] or site, 'period_from': h['from'], 'period_to': h['to'], 'generated': h['generated'], 'date_basis': h['date_basis'], **st,
                    'source_file': rec['file'], 'sha256': sha, 'check': '; '.join(problems) or 'ok'}
             if problems:
                 issues['arithmetic'].append({'district': row['district'], 'period': row['period_from'], 'station': st['police_station'], 'source_file': rec['file'], 'check': row['check']})
             key = (row['district'], row['period_from'], row['period_to'], st['code'], st['police_station'])
             old = station_best.get(key)
             if old:
-                if any(old[c] != row[c] for c in ('total_accidents', 'fatal', 'killed')):
+                if any(old[c] != row[c] for c in STATION_COLS):
                     issues['conflicts'].append({'table': 'station', 'district': row['district'], 'station': st['police_station'], 'period': [row['period_from'], row['period_to']],
                                                 'values': [{'file': x['source_file'], 'generated': x['generated'], 'accidents': x['total_accidents'], 'fatal': x['fatal'], 'killed': x['killed']} for x in (old, row)]})
                 if (row['generated'] or '') <= (old['generated'] or ''):
@@ -280,6 +315,8 @@ def main():
             if t['sha256'] not in staged:
                 issues['conflicts'].append({'table': 'transcription', 'file': t['file'], 'problem': 'staged PDF is missing or changed (checksum differs), so its transcription was not used'})
                 continue
+            staged[t['sha256']].update({'kind': 'month_wise', 'report_district': tr['district'], 'period_from': t['period_from'], 'period_to': t['period_to'],
+                                        'rows': 12, 'extraction_method': 'image_transcription'})
             for mi, m in enumerate(MONTHS):
                 v = t['months'][m]
                 key = (tr['district'], t['year'], mi + 1)
@@ -287,13 +324,13 @@ def main():
                     continue
                 problems = arithmetic(v)
                 month_best[key] = {'district': tr['district'], 'year': t['year'], 'month': mi + 1, 'month_name': m, **{c: v.get(c) or 0 for c in MONTH_COLS},
-                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': None,
+                                   'local_body_pending': None, 'report_period_from': t['period_from'], 'report_period_to': t['period_to'], 'generated': None, 'date_basis': None,
                                    'extraction_method': 'image_transcription', 'source_file': t['file'], 'sha256': t['sha256'], 'check': '; '.join(problems) or 'ok'}
 
     mrows = sorted(month_best.values(), key=lambda r: (r['district'], r['year'], r['month']))
     srows = sorted(station_best.values(), key=lambda r: (r['district'], r['period_from'] or '', r['period_to'] or '', r['code']))
-    mfields = ['district', 'year', 'month', 'month_name'] + MONTH_COLS + ['local_body_pending', 'report_period_from', 'report_period_to', 'generated', 'extraction_method', 'source_file', 'sha256', 'check']
-    sfields = ['district', 'period_from', 'period_to', 'generated', 's_no', 'code', 'police_station'] + STATION_COLS + ['source_file', 'sha256', 'check']
+    mfields = ['district', 'year', 'month', 'month_name'] + MONTH_COLS + ['local_body_pending', 'report_period_from', 'report_period_to', 'generated', 'date_basis', 'extraction_method', 'source_file', 'sha256', 'check']
+    sfields = ['district', 'period_from', 'period_to', 'generated', 'date_basis', 's_no', 'code', 'police_station'] + STATION_COLS + ['source_file', 'sha256', 'check']
     for name, fields, rows in (('irad_monthly_by_district.csv', mfields, mrows), ('irad_station_by_period.csv', sfields, srows)):
         with open(os.path.join(OUT, name), 'w', newline='', encoding='utf-8') as fh:
             w = csv.DictWriter(fh, fieldnames=fields); w.writeheader(); w.writerows(rows)

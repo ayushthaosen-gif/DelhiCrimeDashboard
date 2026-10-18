@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-16T09:57:18+00:00",
+ "generated": "2026-10-18T09:23:52+00:00",
  "note": "Review data staged from district iRAD reports; not integrated into the dashboard.",
  "files": [
   {
@@ -15,82 +15,9 @@
    "period_to": null,
    "generated": null,
    "kind": "other",
+   "date_basis": null,
+   "fir_format": null,
    "rows": 0
-  },
-  {
-   "listed_on_site": "New Delhi",
-   "source_url": "(cache) New_Delhi__17809011041267.pdf",
-   "source_page": "",
-   "link_text": "",
-   "file": "New_Delhi__17809011041267.pdf",
-   "bytes": 127518,
-   "sha256": "8f870fe8e5ed8c82ad6d7887fd6584673d92ee89ef4f50cde5c73a513cccf888",
-   "report_district": null,
-   "period_from": null,
-   "period_to": null,
-   "generated": null,
-   "kind": "other",
-   "rows": 0
-  },
-  {
-   "listed_on_site": "New Delhi",
-   "source_url": "(cache) New_Delhi__2025041520.pdf",
-   "source_page": "",
-   "link_text": "",
-   "file": "New_Delhi__2025041520.pdf",
-   "bytes": 120867,
-   "sha256": "5ce556cef0cb01ce01a978fb00b71601904c5a6409ce3f7782ccf0f205c569b1",
-   "report_district": null,
-   "period_from": null,
-   "period_to": null,
-   "generated": null,
-   "kind": "other",
-   "rows": 0
-  },
-  {
-   "listed_on_site": "New Delhi",
-   "source_url": "(cache) New_Delhi__2025041533.pdf",
-   "source_page": "",
-   "link_text": "",
-   "file": "New_Delhi__2025041533.pdf",
-   "bytes": 122146,
-   "sha256": "d9fd6c3bf5e2d6acee22a95953a8368def0827260f45b3927284ad0bba6aec0b",
-   "report_district": null,
-   "period_from": null,
-   "period_to": null,
-   "generated": null,
-   "kind": "other",
-   "rows": 0
-  },
-  {
-   "listed_on_site": "New Delhi",
-   "source_url": "(cache) New_Delhi__2025041582.pdf",
-   "source_page": "",
-   "link_text": "",
-   "file": "New_Delhi__2025041582.pdf",
-   "bytes": 144526,
-   "sha256": "a1ce99c44d6226cfb02a347978b26fb37f2c1e736dd199871b3f1c47dbad854a",
-   "report_district": null,
-   "period_from": null,
-   "period_to": null,
-   "generated": null,
-   "kind": "other",
-   "rows": 0
-  },
-  {
-   "listed_on_site": "North West",
-   "source_url": "(cache) North_West__2025041579.pdf",
-   "source_page": "",
-   "link_text": "",
-   "file": "North_West__2025041579.pdf",
-   "bytes": 95565,
-   "sha256": "196cf30e14ededd5eb16061035c64005609837d27115fae9282a346b435c0d7f",
-   "report_district": null,
-   "period_from": null,
-   "period_to": null,
-   "generated": "2025-04-15T16:48:50",
-   "kind": "by_station",
-   "rows": 10
   },
   {
    "listed_on_site": "Central",
@@ -105,6 +32,8 @@
    "period_to": "2025-04-08",
    "generated": "2025-04-08T13:16:03",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "count(percentage)",
    "rows": 15
   },
   {
@@ -120,7 +49,9 @@
    "period_to": "2025-01-31",
    "generated": "2025-04-08T10:53:28",
    "kind": "month_wise",
-   "rows": 2
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 1
   },
   {
    "listed_on_site": "Central",
@@ -135,7 +66,9 @@
    "period_to": "2025-02-28",
    "generated": "2025-04-08T11:47:26",
    "kind": "month_wise",
-   "rows": 2
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 1
   },
   {
    "listed_on_site": "Central",
@@ -150,7 +83,9 @@
    "period_to": "2025-03-31",
    "generated": "2025-04-08T11:48:26",
    "kind": "month_wise",
-   "rows": 2
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 1
   },
   {
    "listed_on_site": "Central",
@@ -165,7 +100,9 @@
    "period_to": "2025-04-30",
    "generated": "2025-05-05T14:47:26",
    "kind": "month_wise",
-   "rows": 2
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 1
   },
   {
    "listed_on_site": "Central",
@@ -180,7 +117,9 @@
    "period_to": "2025-05-31",
    "generated": "2025-07-04T11:17:03",
    "kind": "month_wise",
-   "rows": 2
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 1
   },
   {
    "listed_on_site": "Central",
@@ -195,7 +134,9 @@
    "period_to": "2025-06-30",
    "generated": "2025-07-04T11:41:29",
    "kind": "month_wise",
-   "rows": 2
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 1
   },
   {
    "listed_on_site": "Central",
@@ -210,23 +151,9 @@
    "period_to": "2025-12-10",
    "generated": "2025-12-10T14:02:33",
    "kind": "month_wise",
-   "rows": 7
-  },
-  {
-   "listed_on_site": "Central",
-   "source_url": "(local file) iRAD Report1(1. Accidents Classified According to Month-wise).pdf",
-   "source_page": "(supplied by the project owner)",
-   "link_text": "",
-   "file": "iRAD Report1(1. Accidents Classified According to Month-wise).pdf",
-   "bytes": 313631,
-   "sha256": "9748cd13fc18d0d3bb6c4b062f9c55f28bb9398c46aba78f6ce6d434e12ab103",
-   "report_district": "Central",
-   "period_from": "2025-07-01",
-   "period_to": "2025-12-10",
-   "generated": "2025-12-10T14:02:33",
-   "kind": "month_wise",
-   "rows": 7,
-   "duplicate_of": "Central__iRAD Report1(1. Accidents Classified According to Month-wise).pdf"
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 6
   },
   {
    "listed_on_site": "East",
@@ -241,7 +168,81 @@
    "period_to": "2024-12-31",
    "generated": "2025-03-20T11:47:06",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "count(percentage)",
    "rows": 12
+  },
+  {
+   "listed_on_site": "New Delhi",
+   "source_url": "(cache) New_Delhi__2025041582.pdf",
+   "source_page": "",
+   "link_text": "",
+   "file": "New_Delhi__2025041582.pdf",
+   "bytes": 144526,
+   "sha256": "a1ce99c44d6226cfb02a347978b26fb37f2c1e736dd199871b3f1c47dbad854a",
+   "report_district": "New Delhi",
+   "period_from": "2022-01-01",
+   "period_to": "2022-12-31",
+   "generated": null,
+   "kind": "month_wise",
+   "date_basis": null,
+   "fir_format": null,
+   "rows": 12,
+   "extraction_method": "image_transcription"
+  },
+  {
+   "listed_on_site": "New Delhi",
+   "source_url": "(cache) New_Delhi__2025041520.pdf",
+   "source_page": "",
+   "link_text": "",
+   "file": "New_Delhi__2025041520.pdf",
+   "bytes": 120867,
+   "sha256": "5ce556cef0cb01ce01a978fb00b71601904c5a6409ce3f7782ccf0f205c569b1",
+   "report_district": "New Delhi",
+   "period_from": "2023-01-01",
+   "period_to": "2023-12-31",
+   "generated": null,
+   "kind": "month_wise",
+   "date_basis": null,
+   "fir_format": null,
+   "rows": 12,
+   "extraction_method": "image_transcription"
+  },
+  {
+   "listed_on_site": "New Delhi",
+   "source_url": "(cache) New_Delhi__2025041533.pdf",
+   "source_page": "",
+   "link_text": "",
+   "file": "New_Delhi__2025041533.pdf",
+   "bytes": 122146,
+   "sha256": "d9fd6c3bf5e2d6acee22a95953a8368def0827260f45b3927284ad0bba6aec0b",
+   "report_district": "New Delhi",
+   "period_from": "2024-01-01",
+   "period_to": "2024-12-31",
+   "generated": null,
+   "kind": "month_wise",
+   "date_basis": null,
+   "fir_format": null,
+   "rows": 12,
+   "extraction_method": "image_transcription"
+  },
+  {
+   "listed_on_site": "New Delhi",
+   "source_url": "(cache) New_Delhi__17809011041267.pdf",
+   "source_page": "",
+   "link_text": "",
+   "file": "New_Delhi__17809011041267.pdf",
+   "bytes": 127518,
+   "sha256": "8f870fe8e5ed8c82ad6d7887fd6584673d92ee89ef4f50cde5c73a513cccf888",
+   "report_district": "New Delhi",
+   "period_from": "2025-01-01",
+   "period_to": "2025-12-31",
+   "generated": null,
+   "kind": "month_wise",
+   "date_basis": null,
+   "fir_format": null,
+   "rows": 12,
+   "extraction_method": "image_transcription"
   },
   {
    "listed_on_site": "New Delhi",
@@ -256,7 +257,9 @@
    "period_to": "2026-05-31",
    "generated": "2026-06-08T12:23:28",
    "kind": "month_wise",
-   "rows": 6
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 5
   },
   {
    "listed_on_site": "North East",
@@ -271,6 +274,8 @@
    "period_to": "2025-03-31",
    "generated": "2025-04-09T17:16:10",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 14
   },
   {
@@ -286,7 +291,27 @@
    "period_to": null,
    "generated": "2026-01-06T14:16:45",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "count(percentage)",
    "rows": 12
+  },
+  {
+   "listed_on_site": "North West",
+   "source_url": "(cache) North_West__2025041579.pdf",
+   "source_page": "",
+   "link_text": "",
+   "file": "North_West__2025041579.pdf",
+   "bytes": 95565,
+   "sha256": "196cf30e14ededd5eb16061035c64005609837d27115fae9282a346b435c0d7f",
+   "report_district": "Rohini",
+   "period_from": null,
+   "period_to": null,
+   "generated": "2025-04-15T16:48:50",
+   "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "count(percentage)",
+   "rows": 10,
+   "listed_under_wrong_district": true
   },
   {
    "listed_on_site": "South East",
@@ -301,6 +326,8 @@
    "period_to": "2024-12-31",
    "generated": "2025-04-15T13:35:51",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "count(percentage)",
    "rows": 19
   },
   {
@@ -316,7 +343,9 @@
    "period_to": "2022-12-31",
    "generated": null,
    "kind": "month_wise",
-   "rows": 13
+   "date_basis": "reporting",
+   "fir_format": null,
+   "rows": 12
   },
   {
    "listed_on_site": "South East",
@@ -331,7 +360,9 @@
    "period_to": "2023-12-31",
    "generated": null,
    "kind": "month_wise",
-   "rows": 13
+   "date_basis": "reporting",
+   "fir_format": null,
+   "rows": 12
   },
   {
    "listed_on_site": "South East",
@@ -346,7 +377,9 @@
    "period_to": "2024-12-31",
    "generated": null,
    "kind": "month_wise",
-   "rows": 13
+   "date_basis": "reporting",
+   "fir_format": null,
+   "rows": 12
   },
   {
    "listed_on_site": "North West",
@@ -361,6 +394,8 @@
    "period_to": "2025-01-31",
    "generated": "2025-12-17T12:44:39",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "listed_under_wrong_district": true
   },
@@ -377,6 +412,8 @@
    "period_to": "2025-01-31",
    "generated": "2025-12-17T12:44:39",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "duplicate_of": "North_West__17659564847373.pdf"
   },
@@ -393,6 +430,8 @@
    "period_to": "2025-12-31",
    "generated": "2026-01-06T13:56:30",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15
   },
   {
@@ -408,6 +447,8 @@
    "period_to": "2025-02-28",
    "generated": "2025-12-17T12:43:18",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "listed_under_wrong_district": true
   },
@@ -424,6 +465,8 @@
    "period_to": "2025-02-28",
    "generated": "2025-12-17T12:43:18",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "duplicate_of": "North_West__17659568465531.pdf"
   },
@@ -440,6 +483,8 @@
    "period_to": "2025-03-31",
    "generated": "2025-12-17T12:42:17",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15
   },
   {
@@ -455,6 +500,8 @@
    "period_to": "2025-04-30",
    "generated": "2025-12-17T12:36:48",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15
   },
   {
@@ -470,6 +517,8 @@
    "period_to": "2025-05-31",
    "generated": "2025-12-17T12:49:50",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "listed_under_wrong_district": true
   },
@@ -486,6 +535,8 @@
    "period_to": "2025-05-31",
    "generated": "2025-12-17T12:49:50",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "duplicate_of": "North_West__17659566344197.pdf"
   },
@@ -502,6 +553,8 @@
    "period_to": "2025-06-30",
    "generated": "2025-12-17T12:52:18",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15
   },
   {
@@ -517,6 +570,8 @@
    "period_to": "2025-07-31",
    "generated": "2025-12-17T12:53:16",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "listed_under_wrong_district": true
   },
@@ -533,6 +588,8 @@
    "period_to": "2025-07-31",
    "generated": "2025-12-17T12:53:16",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "duplicate_of": "North_West__17659566916898.pdf"
   },
@@ -549,6 +606,8 @@
    "period_to": "2025-08-31",
    "generated": "2025-12-17T12:54:00",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15
   },
   {
@@ -564,6 +623,8 @@
    "period_to": "2025-09-30",
    "generated": "2025-12-17T12:55:06",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "listed_under_wrong_district": true
   },
@@ -580,6 +641,8 @@
    "period_to": "2025-09-30",
    "generated": "2025-12-17T12:55:06",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "duplicate_of": "North_West__17659567362040.pdf"
   },
@@ -596,6 +659,8 @@
    "period_to": "2025-10-31",
    "generated": "2025-12-17T12:55:53",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "listed_under_wrong_district": true
   },
@@ -612,6 +677,8 @@
    "period_to": "2025-10-31",
    "generated": "2025-12-17T12:55:53",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "duplicate_of": "North_West__17659567553072.pdf"
   },
@@ -628,6 +695,8 @@
    "period_to": "2025-11-30",
    "generated": "2025-12-17T12:56:53",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15
   },
   {
@@ -643,6 +712,8 @@
    "period_to": "2025-12-31",
    "generated": "2026-01-06T13:53:56",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "listed_under_wrong_district": true
   },
@@ -659,6 +730,8 @@
    "period_to": "2025-12-31",
    "generated": "2026-01-06T13:53:56",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 15,
    "duplicate_of": "North_West__17676879156890.pdf"
   },
@@ -675,6 +748,8 @@
    "period_to": "2026-01-31",
    "generated": "2026-08-31T15:15:40",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "percentage(count)",
    "rows": 15
   },
   {
@@ -690,6 +765,8 @@
    "period_to": "2026-02-28",
    "generated": "2026-08-31T15:26:00",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "percentage(count)",
    "rows": 15
   },
   {
@@ -705,6 +782,8 @@
    "period_to": "2026-03-31",
    "generated": "2026-08-31T15:27:45",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "percentage(count)",
    "rows": 15
   },
   {
@@ -720,6 +799,8 @@
    "period_to": "2026-04-30",
    "generated": "2026-08-31T15:28:44",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "percentage(count)",
    "rows": 15
   },
   {
@@ -735,6 +816,8 @@
    "period_to": "2026-05-31",
    "generated": "2026-08-31T15:29:47",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "percentage(count)",
    "rows": 15
   },
   {
@@ -750,6 +833,8 @@
    "period_to": "2026-06-30",
    "generated": "2026-08-31T15:30:48",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "percentage(count)",
    "rows": 15
   },
   {
@@ -765,6 +850,8 @@
    "period_to": "2026-07-31",
    "generated": "2026-08-31T15:31:29",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "percentage(count)",
    "rows": 15
   },
   {
@@ -780,7 +867,9 @@
    "period_to": "2022-12-31",
    "generated": "2025-04-08T12:54:35",
    "kind": "month_wise",
-   "rows": 13
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 12
   },
   {
    "listed_on_site": "West",
@@ -795,7 +884,9 @@
    "period_to": "2023-12-31",
    "generated": "2025-04-17T14:36:46",
    "kind": "month_wise",
-   "rows": 13
+   "date_basis": "reporting",
+   "fir_format": null,
+   "rows": 12
   },
   {
    "listed_on_site": "West",
@@ -810,7 +901,9 @@
    "period_to": "2024-12-31",
    "generated": "2025-04-17T14:37:41",
    "kind": "month_wise",
-   "rows": 13
+   "date_basis": "reporting",
+   "fir_format": null,
+   "rows": 12
   },
   {
    "listed_on_site": "West",
@@ -825,6 +918,8 @@
    "period_to": "2025-12-31",
    "generated": "2026-01-06T13:00:22",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 23
   },
   {
@@ -840,7 +935,9 @@
    "period_to": "2025-04-30",
    "generated": "2025-07-04T12:51:38",
    "kind": "month_wise",
-   "rows": 5
+   "date_basis": "accident",
+   "fir_format": null,
+   "rows": 4
   },
   {
    "listed_on_site": "West",
@@ -855,6 +952,8 @@
    "period_to": "2025-05-31",
    "generated": "2025-07-04T12:28:29",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "count(percentage)",
    "rows": 23
   },
   {
@@ -870,6 +969,8 @@
    "period_to": "2025-06-30",
    "generated": "2025-07-04T12:28:50",
    "kind": "by_station",
+   "date_basis": "accident",
+   "fir_format": "count(percentage)",
    "rows": 23
   },
   {
@@ -885,6 +986,8 @@
    "period_to": "2025-07-31",
    "generated": "2026-01-06T12:56:01",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 23
   },
   {
@@ -900,6 +1003,8 @@
    "period_to": "2025-08-31",
    "generated": "2026-01-06T12:56:22",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 23
   },
   {
@@ -915,6 +1020,8 @@
    "period_to": "2025-09-30",
    "generated": "2026-01-06T12:56:46",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 23
   },
   {
@@ -930,6 +1037,8 @@
    "period_to": "2025-10-31",
    "generated": "2026-01-06T12:57:04",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 23
   },
   {
@@ -945,6 +1054,8 @@
    "period_to": "2025-11-30",
    "generated": "2026-01-06T12:57:34",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 23
   },
   {
@@ -960,6 +1071,8 @@
    "period_to": "2025-12-31",
    "generated": "2026-01-06T12:58:11",
    "kind": "by_station",
+   "date_basis": "reporting",
+   "fir_format": "count(percentage)",
    "rows": 23
   }
  ]

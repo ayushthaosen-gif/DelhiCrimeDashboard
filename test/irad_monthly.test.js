@@ -25,7 +25,7 @@ function readCsv(file) {
 const months = readCsv('irad_monthly_by_district.csv');
 const stations = readCsv('irad_station_by_period.csv');
 const n = (v) => Number(v || 0);
-const DISTRICTS = new Set(['Central', 'East', 'New Delhi', 'North', 'North East', 'North West', 'South', 'South East', 'South West', 'West', 'Shahdara']);
+const DISTRICTS = new Set(['Central', 'East', 'New Delhi', 'North', 'North East', 'North West', 'South', 'South East', 'South West', 'West', 'Shahdara', 'Rohini']);
 
 test('month-wise rows satisfy the report arithmetic, with unique district-month keys', () => {
   assert.ok(months.length >= 140);
@@ -93,3 +93,33 @@ test('New Delhi 2022 to 2025 come from scanned PDFs and are labelled as transcri
   for (const r of months.filter(r => r.extraction_method !== 'image_transcription')) assert.equal(r.extraction_method, 'pdf_table');
 });
 
+
+test('FIR counts are read with the format named in the column header: percentage(count) in the 2026 South East reports, never bigger than the accidents', () => {
+  for (const r of stations) assert.ok(n(r.fir_filed) <= n(r.total_accidents), r.source_file + ' ' + r.police_station + ': FIR ' + r.fir_filed + ' > accidents ' + r.total_accidents);
+  const se = (file, name) => stations.find(r => r.source_file === file && r.police_station === name);
+  assert.equal(se('South_East__17881699603394.pdf', 'Jait Pur').fir_filed, '5');       // printed 71.4(5)
+  assert.equal(se('South_East__17881699603394.pdf', 'Govind Puri').fir_filed, '2');    // printed 100(2)
+  assert.equal(se('South_East__17881706536659.pdf', 'Okhla Industrial Area').fir_filed, '14'); // printed 93.3(14)
+  const fmt = new Set(manifest.filter(f => f.kind === 'by_station' && f.report_district === 'South East' && f.period_from >= '2026-01-01').map(f => f.fir_format));
+  assert.deepEqual([...fmt], ['percentage(count)']);
+});
+
+test('station rows add up to the TOTAL printed in each report, and no report names a district the script does not know', () => {
+  assert.deepEqual(issues.station_totals, []);
+  assert.deepEqual(issues.unknown_district, []);
+});
+
+test('the report that names ROHINI is staged as Rohini, not North West', () => {
+  const rows = stations.filter(r => r.source_file === 'North_West__2025041579.pdf');
+  assert.equal(rows.length, 10);
+  assert.ok(rows.every(r => r.district === 'Rohini'));
+  assert.equal(manifest.find(f => f.file === 'North_West__2025041579.pdf').report_district, 'Rohini');
+});
+
+test('scanned New Delhi files carry their transcribed metadata in the manifest, and row counts exclude the TOTAL line', () => {
+  for (const f of manifest.filter(f => /^New_Delhi__20250415(82|20|33)\.pdf$|^New_Delhi__17809011041267\.pdf$/.test(f.file))) {
+    assert.equal(f.report_district, 'New Delhi'); assert.equal(f.kind, 'month_wise'); assert.equal(f.rows, 12); assert.ok(f.period_from && f.period_to);
+  }
+  assert.equal(manifest.find(f => f.file === 'West__2025041795.pdf').rows, 12);
+  assert.equal(manifest.find(f => f.file === 'Central__jan_2025.pdf').rows, 1);
+});

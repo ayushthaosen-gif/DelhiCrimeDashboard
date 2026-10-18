@@ -1,3 +1,15 @@
+## [2026-10-18] - Claude (Anthropic) - iRAD staging corrected after an independent audit
+
+An independent check of the staged iRAD bundle (done by Codex, against the original PDFs) found real errors; all are fixed in `scripts/collect_irad_monthly.py` and the staged data regenerated. Only staged review data changed; nothing on the dashboard or in `data/releases/` did.
+
+- **56 wrong `fir_filed` values** in the seven 2026 South East station reports. Their FIR column is printed `percentage(count)` (header "FIR Filed % (count)"); the script took the leading number. It now reads the format from the header.
+- **10 rows labelled North West were Rohini** (`North_West__2025041579.pdf` header says ROHINI). Added to the district list; the report is now staged under Rohini.
+- Numbers with thousands separators ("1,888") are now parsed whole, which let the new check reconcile every station table against its printed TOTAL.
+- Manifest: scanned New Delhi files now carry district, period and row count; `rows` no longer counts the TOTAL line; each report records `date_basis` (accident vs reporting date) and `fir_format`.
+- New checks in `issues.json`: station sums vs printed TOTAL, FIR filed above accidents, unknown report district. Duplicate-conflict detection now looks at every numeric column, not three.
+- Docs corrected: West has 8 monthly plus 1 yearly station periods; North West and Rohini are separate undated files.
+- Monthly rows did not change. Original public URLs are still not recorded (the manifest keeps `(cache)` labels), and the scanned New Delhi tables were confirmed correct by the audit (all 728 values).
+
 ## [2026-10-16] - Claude (Anthropic) - Prototype pages, audits and staged iRAD data documented
 
 Documentation only (README, `docs/STRUCTURE.md`); no data or code changed. Summarises work since the last notes:
