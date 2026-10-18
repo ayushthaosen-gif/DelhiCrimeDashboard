@@ -95,6 +95,7 @@ header.masthead { display: grid; grid-template-columns: minmax(0,1fr) minmax(220
 .dynamic-map-link { display: none; margin-top: 14px; padding: 10px 15px; background: var(--amber); border-color: var(--amber); color: var(--night); text-decoration: none; font-size: 13px; }
 .dynamic-map-link:hover { background: var(--amber-dim); color: var(--night); }
 @media (max-width: 760px) { .wrap { padding: 0 14px 44px; } .topnav { margin: 0 -14px 12px; padding: 6px 12px; gap: 8px; } .topnav .brand { display: none; } .hero-image { display: none; } header.masthead { grid-template-columns: 1fr; } .dynamic-map-link { width: 100%; justify-content: center; min-height: 44px; } h1 { font-size: clamp(26px, 7.4vw, 36px); } .subhead { font-size: 13px; } .controls { gap: 9px; } .metric-tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; } .metric-tab { flex: 0 0 auto; } .toggle-row { width: 100%; margin-left: 0; } .panel { border-radius: 8px; } .map-panel, .detail, .method-panel, .scatter-panel, .download-panel { padding: 12px; } .detail-head { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 760px) { .topnav { overflow-x: auto; scrollbar-width: none; } .topnav::-webkit-scrollbar { display: none; } .topnav > * { flex: none; } }
 .eyebrow { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); }
 h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; font-size: 42px; line-height: 1.02; margin: 2px 0 4px; text-wrap: balance; letter-spacing: -.01em; }
 .subhead { color: var(--text-dim); font-size: 13.5px; max-width: 66ch; }
@@ -418,6 +419,7 @@ footer a { color: inherit; }
     <a class="nav-cta" href="interactive_map.html">Interactive map →</a>
     <a class="nav-cta" href="map_3d.html" title="Prototype 3D ward view">3D view (prototype)</a>
     <a class="nav-cta" href="for_reporters.html" title="What you can and cannot say">Reporters &amp; researchers</a>
+    <a class="nav-cta" href="irad_stations.html" title="Prototype: monthly road-accident counts for 2025 and 2026 from district iRAD reports">2025&ndash;26 road accidents (iRAD)</a>
   </nav>
   <header class="masthead">
     <div class="header-copy">
