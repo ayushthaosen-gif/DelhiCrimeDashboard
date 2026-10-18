@@ -185,9 +185,9 @@
     var rows = stations.filter(function (r) { return r.district === d && r.police_station === pickedStation && r.period_from && r.period_from.slice(0, 7) === (r.period_to || '').slice(0, 7); })
       .sort(function (a, b) { return a.period_from.localeCompare(b.period_from); });
     if (rows.length < 3) { box.innerHTML = '<p class="note"><b>' + esc(pickedStation) + '</b>: fewer than three monthly tables for this district, so no trend is shown.</p>'; return; }
-    var max = Math.max.apply(null, rows.map(function (r) { return n(r[measure === 'killed' ? 'killed' : $('sSort').value]); }).concat([1]));
     var key = $('sSort').value;
-    var bars = rows.map(function (r) { var v = n(r[key]); return '<div style="flex:1;min-width:14px;text-align:center"><div style="height:60px;display:flex;align-items:end"><div title="' + esc(periodLabel(r.period_from + '|' + r.period_to)) + ': ' + v + '" style="width:100%;height:' + Math.max(2, v / max * 60) + 'px;background:var(--accent);border-radius:2px 2px 0 0"></div></div><div class="note" style="font-size:10px">' + r.period_from.slice(5, 7) + '/' + r.period_from.slice(2, 4) + '</div></div>'; }).join('');
+    var max = Math.max.apply(null, rows.map(function (r) { return n(r[key]); }).concat([1]));
+    var bars = rows.map(function (r) { var v = n(r[key]); return '<div style="flex:1;min-width:14px;text-align:center"><div style="height:60px;display:flex;align-items:end"><div title="' + esc(periodLabel(r.period_from + '|' + r.period_to)) + ': ' + v + '" style="width:100%;height:' + Math.max(2, v / max * 60) + 'px;background:var(--accent);border-radius:2px 2px 0 0"></div></div><div class="note" style="font-size:11px">' + r.period_from.slice(5, 7) + '/' + r.period_from.slice(2, 4) + '</div></div>'; }).join('');
     box.innerHTML = '<h2 style="font-size:15px">' + esc(pickedStation) + ': monthly ' + MEASURE_LABEL[key] + '</h2><div style="display:flex;gap:3px;align-items:end">' + bars + '</div>';
   }
 
