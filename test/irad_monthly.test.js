@@ -126,21 +126,24 @@ test('scanned New Delhi files carry their transcribed metadata in the manifest, 
   assert.equal(manifest.find(f => f.file === 'Central__jan_2025.pdf').rows, 1);
 });
 
-test('every staged PDF with data has a recovered public link, and the one unloaded published report is listed', () => {
+test('every staged PDF with data has a recovered public link, and every published report is loaded', () => {
   for (const f of manifest.filter(f => f.rows > 0 || f.kind !== 'other')) {
     assert.match(f.source_url, /^https:\/\/(cdn\.s3waas\.gov\.in|[a-z]+\.delhi\.gov\.in)\//, f.file + ' has no public URL');
     assert.ok(f.source_page && f.source_note, f.file);
   }
   const inv = readCsv('unstaged_published_reports.csv');
-  assert.deepEqual(inv.map(r => r.public_url.split('/').pop()), ['2023040532.pdf']);   // the only published report not loaded: an image-only East scan
+  assert.deepEqual(inv, [], 'all 113 reports found by the second discovery are now loaded; list any new unloaded report in unstaged_published_reports.csv');
+  const march = months.find(r => r.district === 'East' && r.year === '2023' && r.month === '3');      // the image-only East scan, read by two readers
+  assert.equal(march.extraction_method, 'image_transcription'); assert.deepEqual([march.fatal, march.total_accidents, march.killed, march.persons_total], ['5', '16', '5', '18']);
+  assert.equal(march.persons_no_injury, '');
   const have = new Set(manifest.filter(f => f.rows > 0).map(f => f.sha256));
   for (const r of inv) { assert.match(r.sha256, /^[0-9a-f]{64}$/); assert.ok(!have.has(r.sha256), r.ref + ' is actually staged'); assert.match(r.public_url, /^https:\/\//); }
 });
 
 test('scanned New Delhi rows record that the header prints accident date, and the 2025 interval is marked as inferred', () => {
   const scans = months.filter(r => r.extraction_method === 'image_transcription');
-  assert.ok(scans.length >= 48);
-  assert.ok(scans.every(r => r.date_basis === 'accident'));
+  assert.ok(scans.length >= 49);
+  assert.ok(scans.filter(r => r.district === 'New Delhi').every(r => r.date_basis === 'accident'));
   assert.equal(manifest.find(f => f.file === 'New_Delhi__17809011041267.pdf').period_inferred, true);
   assert.equal(manifest.find(f => f.file === 'New_Delhi__2025041582.pdf').period_inferred, false);
 });
@@ -171,4 +174,15 @@ test('the districts now loaded from the second discovery are present with their 
   assert.equal(by('South').size, 3);              // Year 2022, 2023, 2024; no dates printed
   assert.ok(by('East').size >= 30 && by('North East').size >= 9);
   assert.ok(stations.some(r => r.district === 'Dwarka') && stations.some(r => r.district === 'New Delhi'));
+});
+
+test('each month-wise report keeps its full printed TOTAL, and the months the range filter dropped are recorded with their values', () => {
+  const f = manifest.find(x => x.file === 'North_East__2025040921.pdf');
+  assert.equal(f.printed_total.total_accidents, 31);                       // includes the 3 accidents printed in a stray December row
+  assert.deepEqual(Object.keys(f.out_of_range_months), ['December']);
+  assert.equal(f.out_of_range_months.December.total_accidents, 3);
+  const dropped = manifest.reduce((a, x) => a + Object.values(x.out_of_range_months || {}).reduce((b, v) => b + (v.total_accidents || 0), 0), 0);
+  assert.equal(dropped, 71);                                               // 38 stray month rows across 23 North East reports
+  const c = issues.conflicts.find(x => x.period === '2023-01');
+  assert.deepEqual(c.differing_columns, { persons_total: [27, 26], persons_injured: [22, 21] });
 });

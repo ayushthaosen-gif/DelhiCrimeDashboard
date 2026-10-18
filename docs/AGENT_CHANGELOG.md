@@ -1,3 +1,13 @@
+## [2026-10-18] - Claude (Anthropic) - iRAD round 3: independent census of the new rows, fixes to the notes
+
+Codex compared all 154 new monthly rows (2,100 numbers) and 686 new station rows (12,878 numbers) with their PDFs and found **no extraction mismatch**; all printed TOTAL rows reconcile; district labels, scope flags and the four layout column maps (current, legacy_21, legacy_17, east_legacy_11) were confirmed. It found documentation and metadata problems, now fixed:
+
+- **North East stray months**: 38 printed month rows (71 accidents, 23 reports) are inside each report's TOTAL but outside its stated period and were dropped from the CSV. The docs now say the CSV months for those reports do not add up to the report's total, and the manifest keeps each report's `printed_total` and `out_of_range_months`. The iRAD page notes it for North East.
+- `issues.json` conflict records now list the differing columns with both values (East January 2023: persons injured 22 vs 21, persons total 27 vs 26).
+- East March 2023 scan loaded as an image transcription, read independently by Codex and Claude (16 accidents, 5 fatal, 5 killed, 18 persons); the unloaded list is empty.
+- Docs corrected: legacy_21 does have vehicles and animals; the year-only and zero-month wording; East 2022 is a partial snapshot (generated 26 Dec); South West and Dwarka May to Dec 2025 zeros are future months, not observed zeros; Dwarka does not inherit the FIR-only flag; North and Shahdara statements qualified; the file table no longer says "no disagreeing duplicates".
+- Not checked: whether the police records are complete; a person has not read every cell (Codex used a second text engine plus visual samples, not a human reading of all cells).
+
 ## [2026-10-18] - Claude (Anthropic) - iRAD: the 112 missed reports are now loaded
 
 The 113 published accident reports found by the second independent check were downloaded (every SHA-256 matched), and 112 are now staged. `data/derived/irad_monthly/` grew from 141 to 295 monthly rows and from 589 to 1,275 station rows, and now covers East, North East, South, South West and Dwarka (new) as well as the earlier districts. Staged review data only; nothing on the dashboard changed.

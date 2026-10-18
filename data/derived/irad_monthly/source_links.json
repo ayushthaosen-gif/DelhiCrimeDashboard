@@ -1392,6 +1392,14 @@
    "link_text": "5. May 2025 to Dec. 2025 06-01-2026 Click to View/Download",
    "retrieved_on": "2026-10-18",
    "matched": "yes"
+  },
+  "East__2023040532.pdf": {
+   "sha256": "6001f883a1a6146699a8ed70b4c8f6d0ed24ce7853f3ab7aa1d2527f7a6a14e0",
+   "public_url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/04/2023040532.pdf",
+   "page_url": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+   "link_text": "4. March 2023 05/04/2023 download.pdf",
+   "retrieved_on": "2026-10-18",
+   "matched": "yes"
   }
  }
 }

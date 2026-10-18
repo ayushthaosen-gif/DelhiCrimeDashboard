@@ -5,6 +5,16 @@
    "table": "month",
    "district": "East",
    "period": "2023-01",
+   "differing_columns": {
+    "persons_total": [
+     27,
+     26
+    ],
+    "persons_injured": [
+     22,
+     21
+    ]
+   },
    "values": [
     {
      "file": "East__2023020720.pdf",

@@ -878,6 +878,50 @@
    },
    "date_basis": "accident",
    "period_inferred": true
+  },
+  {
+   "file": "East__2023040532.pdf",
+   "sha256": "6001f883a1a6146699a8ed70b4c8f6d0ed24ce7853f3ab7aa1d2527f7a6a14e0",
+   "district": "East",
+   "year": 2023,
+   "period_from": "2023-03-01",
+   "period_to": "2023-03-31",
+   "generated": "2023-04-05T11:06:09",
+   "date_basis": null,
+   "period_inferred": false,
+   "layout": "image-only East 11-column month-wise table: no person no-injury, no animals; persons_no_injury is not printed",
+   "readers": [
+    "Codex, visual reading, 2026-10-18",
+    "Claude, visual reading, 2026-10-18"
+   ],
+   "printed_total_row": {
+    "fatal": 5,
+    "grievous": 2,
+    "minor_hospitalised": 6,
+    "minor_non_hospitalised": 2,
+    "no_injury": 1,
+    "total_non_fatal": 11,
+    "total_accidents": 16,
+    "killed": 5,
+    "persons_grievous": 3,
+    "persons_minor": 10,
+    "persons_total": 18
+   },
+   "months": {
+    "March": {
+     "fatal": 5,
+     "grievous": 2,
+     "minor_hospitalised": 6,
+     "minor_non_hospitalised": 2,
+     "no_injury": 1,
+     "total_non_fatal": 11,
+     "total_accidents": 16,
+     "killed": 5,
+     "persons_grievous": 3,
+     "persons_minor": 10,
+     "persons_total": 18
+    }
+   }
   }
  ]
 }
