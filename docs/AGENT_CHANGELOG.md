@@ -1,3 +1,26 @@
+## [2026-10-18] - Claude (Anthropic) - iRAD: round 2 independent check recorded (links, unstaged reports, source disagreements)
+
+A second independent check (Codex, with internet access to the official district pages) was run on the corrected iRAD staging. Only staged review data and docs changed.
+
+- **Public links recovered** for all 62 staged PDFs by matching SHA-256 to the currently published official file (`source_links.json`, merged into `manifest.json`; the old `(cache)` label is kept as `source_url_before`). It proves the same bytes are published now, not the original download URL.
+- **113 published reports are not staged** (East 37, North East 46, South 15, South West and Dwarka 12, New Delhi 3). Listed in `unstaged_published_reports.csv`; not loaded or cell-checked. The docs previously said South and South West had nothing readable; that was wrong. The size limit is not the reason (all are under it); the collector only read each district's main page.
+- Scanned New Delhi files: `date_basis` = accident (all four headings print it); the 2025 interval is marked `period_inferred`.
+- Source-level inconsistencies documented, not changed: South East 2025 annual vs monthly tables differ by 1 accident, 1 fatal, 1 killed (and more in pending/completed); West 2025 annual cannot be reconciled (Jan to Apr monthly tables not published); station lists change over time.
+- The iRAD page and the reporters' guide now say that the page covers only part of what is published.
+- Checked and passing per the audit: all 62 hashes, seven 2026 South East FIR sums, ten Rohini labels, all 35 station TOTAL reconciliations, the four scans (re-read). Not checked: whether the police records themselves are complete, the 113 new reports cell by cell.
+
+## [2026-10-18] - Claude (Anthropic) - iRAD staging corrected after an independent audit
+
+An independent check of the staged iRAD bundle (done by Codex, against the original PDFs) found real errors; all are fixed in `scripts/collect_irad_monthly.py` and the staged data regenerated. Only staged review data changed; nothing on the dashboard or in `data/releases/` did.
+
+- **56 wrong `fir_filed` values** in the seven 2026 South East station reports. Their FIR column is printed `percentage(count)` (header "FIR Filed % (count)"); the script took the leading number. It now reads the format from the header.
+- **10 rows labelled North West were Rohini** (`North_West__2025041579.pdf` header says ROHINI). Added to the district list; the report is now staged under Rohini.
+- Numbers with thousands separators ("1,888") are now parsed whole, which let the new check reconcile every station table against its printed TOTAL.
+- Manifest: scanned New Delhi files now carry district, period and row count; `rows` no longer counts the TOTAL line; each report records `date_basis` (accident vs reporting date) and `fir_format`.
+- New checks in `issues.json`: station sums vs printed TOTAL, FIR filed above accidents, unknown report district. Duplicate-conflict detection now looks at every numeric column, not three.
+- Docs corrected: West has 8 monthly plus 1 yearly station periods; North West and Rohini are separate undated files.
+- Monthly rows did not change. Original public URLs are still not recorded (the manifest keeps `(cache)` labels), and the scanned New Delhi tables were confirmed correct by the audit (all 728 values).
+
 ## [2026-10-16] - Claude (Anthropic) - Prototype pages, audits and staged iRAD data documented
 
 Documentation only (README, `docs/STRUCTURE.md`); no data or code changed. Summarises work since the last notes:

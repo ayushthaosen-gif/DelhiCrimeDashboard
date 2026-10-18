@@ -1,6 +1,6 @@
 {
  "method": "transcribed_from_image",
- "note": "These PDFs are scans with no text layer and there is no OCR engine on this machine. The values were read from the rendered page images by Claude (a language model) and then checked: every row must satisfy the report arithmetic and the 12 months must add up to the TOTAL printed in the PDF. A person should still spot-check them against the PDFs.",
+ "note": "These PDFs are scans with no text layer and there is no OCR engine on this machine. The values were read from the rendered page images by Claude (a language model) and then checked: every row must satisfy the report arithmetic and the 12 months must add up to the TOTAL printed in the PDF. A person should still spot-check them against the PDFs. Round 2 audit: all four headings print \"Accident Date & Time\". The 2025 scan prints Year 2025 and twelve month rows but no From/To dates, so its full-year bounds are inferred.",
  "district": "New Delhi",
  "files": [
   {
@@ -218,7 +218,9 @@
      "animals_killed": 0,
      "animals_injured": 0
     }
-   }
+   },
+   "date_basis": "accident",
+   "period_inferred": false
   },
   {
    "file": "New_Delhi__2025041520.pdf",
@@ -435,7 +437,9 @@
      "animals_killed": 0,
      "animals_injured": 0
     }
-   }
+   },
+   "date_basis": "accident",
+   "period_inferred": false
   },
   {
    "file": "New_Delhi__2025041533.pdf",
@@ -652,7 +656,9 @@
      "animals_killed": 0,
      "animals_injured": 0
     }
-   }
+   },
+   "date_basis": "accident",
+   "period_inferred": false
   },
   {
    "file": "New_Delhi__17809011041267.pdf",
@@ -869,7 +875,9 @@
      "animals_killed": 0,
      "animals_injured": 0
     }
-   }
+   },
+   "date_basis": "accident",
+   "period_inferred": true
   }
  ]
 }
