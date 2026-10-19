@@ -127,7 +127,7 @@ const combinedStreetlights = dashboardFinal.districts.map(d => {
 });
 function csvEscapeStreetlights(v) { if (v == null) return ''; const s = String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
 const slHeaders = Object.keys(combinedStreetlights[0]);
-const slCsv = [slHeaders.join(',')].concat(combinedStreetlights.map(r => slHeaders.map(h => csvEscapeStreetlights(r[h])).join(','))).join('\r\n') + '\r\n';
+const slCsv = [slHeaders.join(',')].concat(combinedStreetlights.map(r => slHeaders.map(h => csvEscapeStreetlights(r[h])).join(','))).join('\n') + '\n';
 fs.writeFileSync(path.join(ROOT, 'data/streetlights_combined_by_district.csv'), slCsv);
 fs.writeFileSync(path.join(ROOT, 'data/streetlights_combined_by_district.json'), JSON.stringify(combinedStreetlights, null, 2));
 const paplCount = combinedStreetlights.filter(r => r.combined_source === 'PAPL survey').length;

@@ -43,7 +43,7 @@ function csvEscape(v) {
   return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
 }
 function toCsv(headers, rows) {
-  return [headers.join(',')].concat(rows.map(r => headers.map(h => csvEscape(r[h])).join(','))).join('\r\n') + '\r\n';
+  return [headers.join(',')].concat(rows.map(r => headers.map(h => csvEscape(r[h])).join(','))).join('\n') + '\n';
 }
 
 // ── Roads (data/source/osm_major_roads_delhi_raw.json -- motorway/trunk/primary/secondary + links,

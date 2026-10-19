@@ -3102,7 +3102,7 @@
     },
     {
       "district": "New Delhi",
-      "latestPeriodEnd": "2025-12-31",
+      "latestPeriodEnd": null,
       "month_wise": {
         "expectedMonths": [
           "2025-01",

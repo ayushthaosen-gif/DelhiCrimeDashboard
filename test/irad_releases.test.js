@@ -28,6 +28,7 @@ test('coverage uses dated observations, retains partial endpoints and distinguis
   assert.equal(c.station.windows[0].kind, 'annual');
   const inferred = coverageMatrix(2025, [{ ...fixture.monthly[1], period_inferred: 'true' }], [], ['Central'])[0];
   assert.deepEqual(inferred.month_wise.coveredMonths, []);
+  assert.equal(inferred.latestPeriodEnd, null, 'Inferred bounds are not a published exact period end');
   const months = Array.from({ length: 12 }, (_, i) => ({ ...fixture.monthly[0], month: String(i + 1), report_period_to: '2025-12-31' }));
   months[0].date_basis = 'reporting';
   assert.equal(coverageMatrix(2025, months, [], ['Central'])[0].month_wise.partial, true);
@@ -126,4 +127,8 @@ test('protected production releases and all derived collection files equal the p
   const baseline = require('./fixtures/phase1_protected_hashes.json');
   assert.equal(baseline.startingSha, '576c023895378f0bf93ba07ddefe2f0d6405813d');
   for (const [file, hash] of Object.entries(baseline.files)) assert.equal(sha256(path.join(ROOT, file)), hash, 'Protected file changed: ' + file);
+});
+
+test("generated map CSVs follow the repository LF contract", () => {
+  for (const file of ["data/footway_sizes.csv", "data/landuse_by_ward.csv", "data/road_sizes.csv", "data/streetlights_combined_by_district.csv"]) assert.ok(!fs.readFileSync(path.join(ROOT, file), "utf8").includes("\r"), file);
 });

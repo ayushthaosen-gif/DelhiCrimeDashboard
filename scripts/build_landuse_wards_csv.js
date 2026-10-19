@@ -144,7 +144,7 @@ wards.features.forEach(ward => {
 });
 
 function csvEscape(v) { if (v == null) return ''; const s = String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
-function toCsv(headers, dataRows) { return [headers.join(',')].concat(dataRows.map(r => headers.map(h => csvEscape(r[h])).join(','))).join('\r\n') + '\r\n'; }
+function toCsv(headers, dataRows) { return [headers.join(',')].concat(dataRows.map(r => headers.map(h => csvEscape(r[h])).join(','))).join('\n') + '\n'; }
 const headers = ['ward', 'ward_no', 'area_sq_km', 'mapped_pct', ...CATEGORIES.flatMap(c => [c + '_km2', c + '_pct']), 'green_open_agriculture_km2', 'green_open_agriculture_pct'];
 fs.writeFileSync(path.join(ROOT, 'data/landuse_by_ward.csv'), toCsv(headers, rows));
 

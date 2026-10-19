@@ -58,7 +58,7 @@ function coverageMatrix(year, monthly, station, districts) {
           seen.add(key);
           const report = { sourceFile: r.source_file, periodFrom: p.from || null, periodTo: p.to || null, periodInferred: p.inferred, scope, dateBasis, schema: r.schema };
           reports.push(report);
-          if (p.to && (!entry.latestPeriodEnd || p.to > entry.latestPeriodEnd)) entry.latestPeriodEnd = p.to;
+          if (p.to && !p.inferred && (!entry.latestPeriodEnd || p.to > entry.latestPeriodEnd)) entry.latestPeriodEnd = p.to;
           if (type === 'station' && p.from && !p.inferred && !(p.from === p.from.slice(0, 7) + '-01' && p.to === monthEnd(p.from.slice(0, 7)))) {
             windows.push({ sourceFile: r.source_file, periodFrom: p.from, periodTo: p.to, kind: p.from === `${year}-01-01` && p.to === `${year}-12-31` ? 'annual' : 'cumulative' });
           }
