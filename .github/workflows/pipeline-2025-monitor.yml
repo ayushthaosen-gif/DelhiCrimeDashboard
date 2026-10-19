@@ -22,6 +22,7 @@ jobs:
           python -m delhi_data_2025.source_diff
           --baseline ../../data/releases/2025/audit/source_manifest_2025.json
           --current output/manifests/source_manifest_2025.json
+          --known-urls ../../data/derived/irad_monthly/source_links.json
           --out output/reports/source_diff.md
           --github-output "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
@@ -32,16 +33,23 @@ jobs:
             tools/pipeline_2025/output/reports/coverage_report_2025.md
             tools/pipeline_2025/output/reports/source_diff.md
           retention-days: 30
-      # One open issue is kept up to date (a comment per weekly change). Nothing is collected or integrated here: a person reviews, collects, validates and opens a pull request.
+      # One open issue is kept up to date. A note identical to the last one on the issue is not posted again.
+      # Nothing is collected or integrated here: a person reviews, collects, validates and opens a pull request.
       - name: Open or update the monitor issue
         if: steps.diff.outputs.changed == 'true'
         working-directory: .
         env:
           GH_TOKEN: ${{ github.token }}
+          DIGEST: ${{ steps.diff.outputs.digest }}
         run: |
           title="Source monitor: new or changed official sources"
           existing=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
           if [ -n "$existing" ]; then
+            last=$(gh issue view "$existing" --json body,comments --jq '[.body] + [.comments[].body] | last')
+            if printf '%s' "$last" | grep -q "monitor-digest: $DIGEST"; then
+              echo "Same note as the last one on #$existing; not posting it again."
+              exit 0
+            fi
             gh issue comment "$existing" --body-file tools/pipeline_2025/output/reports/source_diff.md
           else
             gh issue create --title "$title" --body-file tools/pipeline_2025/output/reports/source_diff.md
