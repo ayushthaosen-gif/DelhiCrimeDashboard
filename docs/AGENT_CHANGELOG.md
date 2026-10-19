@@ -1,3 +1,11 @@
+## [2026-10-19] - Claude (Anthropic) - Weekly monitor smoke test, and the fixes it called for
+
+**What the live runs showed.** The scheduled run (after Phase 0) created issue #39, and a manual run added a comment to it instead of opening a second issue, so the issue-opening path works and the artifact (manifest, coverage report, `source_diff.md`) is uploaded. But the note was mostly noise: of 28 "new" links, 13 were gallery images, 7 unrelated news pages, 7 were the South East 2026 iRAD reports already staged, and 1 an unrelated handbook; the baseline dated from August, so everything since looked new. Two "previously selected links gone" and two reachability changes were timeouts from the GitHub runner. One finding is real: **from GitHub's runners the NCRB site fails TLS verification (self-signed certificate in the chain), so the monitor cannot see NCRB at all**, which is the series it exists to watch for.
+
+**Fixes (`delhi_data_2025.source_diff`, with tests).** Images, media and low-scoring pages are left out; links already collected are left out; timeouts are not reported and an unreachable source is not said to have lost its links; an identical note is not posted twice (a digest in the note). Against the real run the note shrinks from 28 links + 2 gone + 3 status changes to 2 links + 1 status change; with the refreshed baseline it is the NCRB TLS failure only.
+
+**Baseline refreshed** from the 2026-10-19 CI run after review (nothing qualified: the iRAD 2026 reports are staged), with the NCRB error left out so the failure stays visible. The procedure for future refreshes is in the pipeline README.
+
 ## [2026-10-19] - Claude (Anthropic) - Cleanup after Phase 1
 
 - **Palam Village resolved.** The Manual's roster (page 22) lists PALAM VIHAR in South-West (Delhi Cantt. sub-division) and the South-West district details (page 60) list a Palam police station at Palam Village in the same sub-division: one station under two spellings, South West either way. The source label now maps to South West as a `documented_variant`, `needs_review: true`, with both pages in the evidence extract. The crosswalk is now 165 mapped, 2 specialised, 1 ambiguous, 6 unmapped. Still a draft pending human verification.
