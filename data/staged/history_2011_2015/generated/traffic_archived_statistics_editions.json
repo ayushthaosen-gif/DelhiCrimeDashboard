@@ -1,0 +1,162 @@
+{
+  "status": "separate_source_editions_not_overwritten",
+  "editions": [
+    {
+      "path": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "original_url": "http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "column_headers": [
+        "Year",
+        "Non-Inj.Accidents",
+        "Simple Accidents",
+        "Fatal Accidents",
+        "Total Accidents",
+        "Persons Injured",
+        "Persons Killed"
+      ],
+      "rows": [
+        {
+          "reference_year": 2011,
+          "values": [
+            2011,
+            71,
+            5162,
+            2047,
+            7280,
+            6975,
+            2110
+          ]
+        },
+        {
+          "reference_year": 2012,
+          "values": [
+            2012,
+            115,
+            5000,
+            1822,
+            6937,
+            6639,
+            1866
+          ]
+        },
+        {
+          "reference_year": 2013,
+          "values": [
+            2013,
+            169,
+            5619,
+            1778,
+            7566,
+            7098,
+            1820
+          ]
+        }
+      ]
+    },
+    {
+      "path": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "original_url": "https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20150318221557id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "column_headers": [
+        "Year",
+        "Non-Inj.Accidents",
+        "Simple Accidents",
+        "Fatal Accidents",
+        "Total Accidents",
+        "Persons Injured",
+        "Persons Killed"
+      ],
+      "rows": [
+        {
+          "reference_year": 2011,
+          "values": [
+            2011,
+            71,
+            5162,
+            2047,
+            7280,
+            6975,
+            2110
+          ]
+        },
+        {
+          "reference_year": 2012,
+          "values": [
+            2012,
+            115,
+            5000,
+            1822,
+            6937,
+            6639,
+            1866
+          ]
+        },
+        {
+          "reference_year": 2013,
+          "values": [
+            2013,
+            169,
+            5619,
+            1778,
+            7566,
+            7098,
+            1820
+          ]
+        }
+      ]
+    }
+  ],
+  "differences_from_later_official_statistics": [
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2012,
+      "metric": "Persons Injured",
+      "archived_value": 6639,
+      "later_official_value": 6633
+    },
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2013,
+      "metric": "Non-Inj.Accidents",
+      "archived_value": 169,
+      "later_official_value": 173
+    },
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2013,
+      "metric": "Simple Accidents",
+      "archived_value": 5619,
+      "later_official_value": 5615
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2012,
+      "metric": "Persons Injured",
+      "archived_value": 6639,
+      "later_official_value": 6633
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2013,
+      "metric": "Non-Inj.Accidents",
+      "archived_value": 169,
+      "later_official_value": 173
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2013,
+      "metric": "Simple Accidents",
+      "archived_value": 5619,
+      "later_official_value": 5615
+    }
+  ],
+  "interpretation": "Archive capture dates are not publication dates. Cause of discrepancies is not established; neither edition is silently corrected. Total crashes, fatal crashes and persons killed agree for 2011-2013. Injury counts and 2013 non-injury/simple counts require explicit edition selection. These pages are not the full annual reports."
+}

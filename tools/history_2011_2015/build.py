@@ -222,7 +222,7 @@ def traffic_citywide():
                 raise ValueError(f'Production overlap differs in {row["reference_year"]}; report, never repair production')
             overlap.append(row['reference_year'])
     return {'source': 'raw/dtp_statistics.html', 'geography': 'Delhi citywide as published by Delhi Traffic Police', 'reference_years': list(range(2011, 2016)), 'column_headers': headers,
-            'rows': chosen, 'production_overlap_verified': overlap, 'series_extension_assessment': '2011-2013 can extend the existing citywide published-count trend in a later approved change; 2014-2015 are already present. No district allocation is implied.',
+            'rows': chosen, 'production_overlap_verified': overlap, 'series_extension_assessment': '2011-2013 total accidents, fatal accidents and persons killed can extend the existing citywide published-count trend in a later approved change; 2014-2015 are already present. Injury and category counts require explicit source-edition selection. No district allocation is implied.',
             'definition_limit': 'Published police counts. A 30-day fatality follow-up definition was not established in the retrieved historical source; do not label these as standardized 30-day mortality rates.'}
 
 
@@ -237,6 +237,32 @@ def traffic_as_printed(transcription):
     return {'source': transcription['source'], 'reference_years': transcription['years'], 'status': 'needs_review_source_inconsistencies', 'extraction_method': 'Image table transcribed visually; original PDF and structured transcription retained.',
             'review_status': 'author_checked_not_independently_reviewed', 'null_policy': 'Printed dashes remain null, not zero. Outer is not separately tabulated for 2011-2013; no boundary or district existence is inferred.', 'rows': records,
             'printed_totals': transcription['printed_totals']}
+
+
+def archived_statistics(registry, city):
+    """Keep contemporary snapshots distinct from the later official web edition."""
+    editions, differences = [], []
+    for source in registry.get('archived_statistics_pages', []):
+        parser = HtmlTables()
+        parser.feed((BASE / source['path']).read_text(encoding='utf-8'))
+        matches = [t for t in parser.tables if t and t[0] == city['column_headers']]
+        if len(matches) != 1:
+            raise ValueError('Archived statistics schema is not uniquely identifiable')
+        rows = []
+        for row in matches[0][1:]:
+            if not row or not row[0].isdigit() or not 2011 <= int(row[0]) <= 2015:
+                continue
+            values = [count(v) for v in row]
+            if sum(values[1:4]) != values[4]:
+                raise ValueError('Archived citywide accident categories do not reconcile')
+            rows.append({'reference_year': values[0], 'values': values})
+            latest = next(r['values'] for r in city['rows'] if r['reference_year'] == values[0])
+            for index, (old, new) in enumerate(zip(values, latest)):
+                if old != new:
+                    differences.append({'source': source['path'], 'capture_timestamp': source['capture_timestamp'], 'reference_year': values[0], 'metric': city['column_headers'][index], 'archived_value': old, 'later_official_value': new})
+        editions.append({**source, 'column_headers': city['column_headers'], 'rows': rows})
+    return {'status': 'separate_source_editions_not_overwritten', 'editions': editions, 'differences_from_later_official_statistics': differences,
+            'interpretation': 'Archive capture dates are not publication dates. Cause of discrepancies is not established; neither edition is silently corrected. Total crashes, fatal crashes and persons killed agree for 2011-2013. Injury counts and 2013 non-injury/simple counts require explicit edition selection. These pages are not the full annual reports.'}
 
 
 def diagnostics(tables, traffic, city):
@@ -281,11 +307,13 @@ def build(check=False):
     tables = [ncrb_pdf(year) for year in [2011, 2012, 2013]] + [ncrb_xlsx(year, kind) for year in [2014, 2015] for kind in ['ipc', 'sll', 'women']]
     city = traffic_citywide()
     traffic = traffic_as_printed(read('inputs/traffic_table_6_1.json'))
+    archives = archived_statistics(registry, city)
     issues = diagnostics(tables, traffic, city)
     products = {f'generated/ncrb_{table["reference_year"]}_{table["table"].replace(".", "_")}.json': encoded(table) for table in tables}
     products['generated/traffic_citywide_2011_2015.json'] = encoded(city)
     products['generated/traffic_districts_as_printed_2015_vintage.json'] = encoded(traffic)
-    quality = {'arithmetic_diagnostics': issues, 'source_identity_warnings': registry['source_identity_warnings'], 'interpretation': 'Source inconsistencies are retained and flagged, not repaired. These diagnostics are not claims of clean original-source arithmetic.'}
+    products['generated/traffic_archived_statistics_editions.json'] = encoded(archives)
+    quality = {'arithmetic_diagnostics': issues, 'source_identity_warnings': registry['source_identity_warnings'], 'archived_statistics_edition_differences': archives['differences_from_later_official_statistics'], 'interpretation': 'Source inconsistencies and edition differences are retained and flagged, not repaired. These diagnostics are not claims of clean original-source arithmetic.'}
     products['generated/quality_report.json'] = encoded(quality)
     availability = []
     for year in range(2011, 2016):
@@ -295,12 +323,19 @@ def build(check=False):
                              'road_crashes': {'original_annual_report': 'relevant official 2015 report chapters archived' if year == 2015 else 'not located in current official archive during this investigation; this does not prove non-publication', 'citywide': 'official citywide count series staged and arithmetic validated', 'traffic_districts': '2015-report retrospective table staged as printed; source inconsistencies and traffic-geography break prevent blind extension', 'non_null_traffic_districts_in_retrospective_table': sum(r['reference_year'] == year and r['total_accidents'] is not None for r in traffic['rows']), 'publication_date': None, 'publication_date_note': '2015 report front matter is undated; PDF file timestamps are recorded separately and are not treated as publication dates.', 'series_assessment': 'Citywide counts: candidate extension for 2011-2013; 2014-2015 already in existing trend. District/circle data: separate historical series, with source issues unresolved.'}})
     products['generated/availability_comparability.json'] = encoded(availability)
     report = render_report(availability, city, tables, quality, registry)
+    if archives['editions']:
+        report += '\n## Archive follow-up\n\nWayback snapshots of the official site recovered supporting originals, but no complete 2011-2014 annual report was located.\n\n'
+        report += '| Reference year | Recovered evidence | Complete annual report |\n|---|---|---|\n'
+        report += '| 2011 | Official statistics in archived 2014/2015 pages | Not located |\n| 2012 | Official statistics in archived 2014/2015 pages; injury-count version discrepancy | Not located |\n| 2013 | Original accident-prone-zone map and archived statistics | Not located |\n| 2014 | Original accident-prone-zone map and separate zone list | Not located |\n\n'
+        report += 'The 2013 map and 2014 map/list were visually checked against their embedded titles and Delhi Traffic Police/Accident Research Cell insignia. These are single-page image PDFs, not annual-report substitutes. Historical map regions/labels remain unchanged; no coordinates or current-district mapping are inferred. Their stated zone threshold is at least three fatal accidents or ten total accidents within a 500-metre diameter. Exact publication dates remain unknown; capture timestamps and upload paths are not release dates.\n\n'
+        report += 'The archived official statistics give **6,639 injured in 2012**, versus **6,633** in the later official edition. For 2013 they give **169 non-injury and 5,619 simple accidents**, versus **173 and 5,615** later. Total accidents, fatal accidents and persons killed agree for 2011-2013. The cause of these edition differences is unverified. Preserve both; only those three agreeing measures remain straightforward citywide extension candidates.\n\n'
+        report += 'Both archived tables and every differing cell are preserved in generated/traffic_archived_statistics_editions.json. The source register records replay URLs, original government URLs, capture timestamps, checksums and reuse limitations. Archive hosting supplies provenance, not a new reuse licence. Search scope and failed retrievals are recorded in inputs/archive_search_log.json.\n'
     products['AVAILABILITY_AND_COMPARABILITY.md'] = report.encode('utf-8')
     manifest = {'schemaVersion': '1.0.0', 'generatedBy': 'tools/history_2011_2015/build.py', 'generatedAt': None, 'metadataDate': METADATA_DATE, 'releaseStatus': 'staged_research', 'productionReady': False, 'dashboardIntegrated': False, 'referenceYears': list(range(2011, 2016)),
                 'nullPolicy': 'Source blanks and dashes remain null. Literal numeric zeros remain zero. Never distribute citywide or old-district counts among later districts.',
                 'geographyPolicy': 'Retain original NCRB reporting units and separate Delhi UT summaries. Traffic districts and citywide counts are separate series. Same labels do not establish equal boundaries across periods or agencies.',
-                'counts': {'ncrb_tables': len(tables), 'ncrb_reporting_unit_rows': sum(len(t['reporting_units']) for t in tables), 'ncrb_separate_printed_summaries': len(tables), 'traffic_citywide_rows': len(city['rows']), 'traffic_retrospective_district_rows': len(traffic['rows']), 'documented_arithmetic_diagnostics': len(issues)},
-                'sources': registry['sources'], 'evidenceFiles': registry.get('evidence_files', []), 'derivedFrom': [{'path': 'data/staged/history_2011_2015/' + name, 'sha256': sha((BASE / name).read_bytes())} for name in ['inputs/sources.json', 'inputs/traffic_table_6_1.json', 'inputs/production_road_safety_baseline.json']],
+                'counts': {'ncrb_tables': len(tables), 'ncrb_reporting_unit_rows': sum(len(t['reporting_units']) for t in tables), 'ncrb_separate_printed_summaries': len(tables), 'traffic_citywide_rows': len(city['rows']), 'traffic_retrospective_district_rows': len(traffic['rows']), 'documented_arithmetic_diagnostics': len(issues), 'archived_statistics_editions': len(archives['editions']), 'archived_statistics_differing_cells': len(archives['differences_from_later_official_statistics'])},
+                'sources': registry['sources'], 'evidenceFiles': registry.get('evidence_files', []), 'derivedFrom': [{'path': 'data/staged/history_2011_2015/' + name, 'sha256': sha((BASE / name).read_bytes())} for name in ['inputs/sources.json', 'inputs/traffic_table_6_1.json', 'inputs/production_road_safety_baseline.json', 'inputs/archive_search_log.json']],
                 'files': [{'path': name, 'sha256': sha(data), 'bytes': len(data)} for name, data in sorted(products.items())], 'monitorVerification': registry['monitor_verification'], 'reuseTerms': registry['reuse_terms'],
                 'validationInterpretation': 'Source hashes, extraction schema, selected years and citywide arithmetic must pass. Original-source arithmetic contradictions remain explicit in quality_report.json; traffic district data are not approved for series extension.'}
     products['manifest.json'] = encoded(manifest)

@@ -1,5 +1,4 @@
 """Checks for historical geography, null semantics and source-faithful extraction."""
-import copy
 import unittest
 
 import build
@@ -94,6 +93,29 @@ class HistoricalStageTests(unittest.TestCase):
         manifest, quality = build.build(check=True)
         self.assertFalse(manifest['productionReady'])
         self.assertFalse(manifest['dashboardIntegrated'])
+
+    def test_archived_statistics_keep_all_changed_cells_by_edition(self):
+        archive = build.archived_statistics(build.read('inputs/sources.json'), self.city)
+        self.assertEqual(len(archive['editions']), 2)
+        self.assertEqual(len(archive['differences_from_later_official_statistics']), 6)
+        for edition in archive['editions']:
+            self.assertEqual([r['reference_year'] for r in edition['rows']], [2011, 2012, 2013])
+            old = edition['rows'][1]['values']
+            self.assertEqual(old[5], 6639)
+            later = next(r['values'] for r in self.city['rows'] if r['reference_year'] == 2012)
+            self.assertEqual(later[5], 6633)
+            for row in edition['rows']:
+                current = next(r['values'] for r in self.city['rows'] if r['reference_year'] == row['reference_year'])
+                self.assertEqual([row['values'][i] for i in [3, 4, 6]], [current[i] for i in [3, 4, 6]])
+
+    def test_archived_zone_documents_are_supporting_evidence_not_full_reports(self):
+        registry = build.read('inputs/sources.json')
+        maps = [s for s in registry['sources'] if s['role'] == 'archived_official_supporting_document']
+        self.assertEqual(len(maps), 3)
+        self.assertEqual([s['reference_years'] for s in maps], [[2013], [2014], [2014]])
+        self.assertTrue(all(s['page_count'] == 1 and s['publication_date'] is None for s in maps))
+        self.assertTrue(all('delhitrafficpolice.nic.in' in s['original_url'] for s in maps))
+        self.assertEqual(build.read('inputs/archive_search_log.json')['full_reports_found'], [])
 
 
 if __name__ == '__main__':

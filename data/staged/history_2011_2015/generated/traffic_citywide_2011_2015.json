@@ -89,6 +89,6 @@
     2020,
     2021
   ],
-  "series_extension_assessment": "2011-2013 can extend the existing citywide published-count trend in a later approved change; 2014-2015 are already present. No district allocation is implied.",
+  "series_extension_assessment": "2011-2013 total accidents, fatal accidents and persons killed can extend the existing citywide published-count trend in a later approved change; 2014-2015 are already present. Injury and category counts require explicit source-edition selection. No district allocation is implied.",
   "definition_limit": "Published police counts. A 30-day fatality follow-up definition was not established in the retrieved historical source; do not label these as standardized 30-day mortality rates."
 }

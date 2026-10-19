@@ -21,7 +21,9 @@
     "ncrb_separate_printed_summaries": 9,
     "traffic_citywide_rows": 5,
     "traffic_retrospective_district_rows": 55,
-    "documented_arithmetic_diagnostics": 9
+    "documented_arithmetic_diagnostics": 9,
+    "archived_statistics_editions": 2,
+    "archived_statistics_differing_cells": 6
   },
   "sources": [
     {
@@ -522,7 +524,7 @@
         "/Author": "NCRB",
         "/CreationDate": "D:20130620133333+05'30'",
         "/ModDate": "D:20130625124906+05'30'",
-        "/Producer": "MicrosoftÃ‚Â® Word 2010",
+        "/Producer": "MicrosoftÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â® Word 2010",
         "/Title": "LIMITATIONS"
       },
       "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
@@ -783,7 +785,7 @@
         "/Author": "HCL",
         "/CreationDate": "D:20161115121429+05'30'",
         "/ModDate": "D:20161115121429+05'30'",
-        "/Producer": "MicrosoftÃ‚Â® Word 2010"
+        "/Producer": "MicrosoftÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â® Word 2010"
       },
       "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
     },
@@ -951,7 +953,7 @@
         "/CreationDate": "D:20120621153734+05'30'",
         "/ModDate": "D:20120621154230+05'30'",
         "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
-        "/Title": "TABEL Ã¢â‚¬â€œ 1"
+        "/Title": "TABEL ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ 1"
       },
       "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
     },
@@ -978,7 +980,7 @@
         "/CreationDate": "D:20130615143832+05'30'",
         "/ModDate": "D:20130615145006+05'30'",
         "/Producer": "Adobe PDF Library 10.0",
-        "/Title": "TABEL Ã¢â‚¬â€œ 1"
+        "/Title": "TABEL ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ 1"
       },
       "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
     },
@@ -1187,6 +1189,307 @@
         "/Title": "Microsoft Word - LIMITATIONS.FF.doc"
       },
       "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "path": "raw/archive_cdx_old_domain.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=3000",
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=3000",
+      "http_status": 200,
+      "bytes": 262569,
+      "sha256": "1f4095f5e3772e616612a1d71b08f130ae7ee5afbeae3df44a0b2d26e61ecd04",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    },
+    {
+      "path": "raw/archive_cdx_related.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*(accident|Accident|ACCIDENT|booklet|Booklet|statistics|report|Report|crash|Crash).*&to=2017&limit=5000",
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*(accident|Accident|ACCIDENT|booklet|Booklet|statistics|report|Report|crash|Crash).*&to=2017&limit=5000",
+      "http_status": 200,
+      "bytes": 2762,
+      "sha256": "c744e8a3a20bf40a426ec70b88e83278a53adbf5fca47e9346361ae14eea07f4",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    },
+    {
+      "path": "raw/archive_home_2012.html",
+      "url": "https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/",
+      "final_url": "https://web.archive.org/web/20121206180725id_/http://delhitrafficpolice.nic.in/",
+      "http_status": 200,
+      "bytes": 25943,
+      "sha256": "e6ea210a9197815adab1f7c70ccf710c7a96254d606936133ef5d4fa001d4afb",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20121206180725",
+      "original_url": "http://delhitrafficpolice.nic.in/"
+    },
+    {
+      "path": "raw/archive_home_2015.html",
+      "url": "https://web.archive.org/web/20150601000000id_/http://delhitrafficpolice.nic.in/",
+      "final_url": "https://web.archive.org/web/20150315005639id_/https://delhitrafficpolice.nic.in/",
+      "http_status": 200,
+      "bytes": 38512,
+      "sha256": "dea0b8eaea5f3e003b572ee8eb4c8c910dbe3f0c28cf01e2f0bd5d648a875564",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20150315005639",
+      "original_url": "https://delhitrafficpolice.nic.in/"
+    },
+    {
+      "path": "raw/archive_home_2014.html",
+      "url": "https://web.archive.org/web/20140601000000id_/http://delhitrafficpolice.nic.in/",
+      "final_url": "https://web.archive.org/web/20140516205847id_/http://delhitrafficpolice.nic.in/",
+      "http_status": 200,
+      "bytes": 37066,
+      "sha256": "c662653aefda921360daeac03e3a1b2999183f48dea558e30cf3b7467482512c",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140516205847",
+      "original_url": "http://delhitrafficpolice.nic.in/"
+    },
+    {
+      "path": "raw/archive_cdx_new_domain.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=traffic.delhipolice.gov.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=5000",
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=traffic.delhipolice.gov.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=5000",
+      "http_status": 200,
+      "bytes": 65207,
+      "sha256": "d11c9c11d1d32ba7043c8df41f327c2898cab38d15b285b6a512e364a1107549",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    },
+    {
+      "path": "raw/archive_apz_2013.pdf",
+      "url": "https://web.archive.org/web/20140602194145id_/http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf",
+      "final_url": "https://web.archive.org/web/20140602194145id_/http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf",
+      "http_status": 200,
+      "bytes": 1781732,
+      "sha256": "05b26216e64a5efa8692503af6e6eff038d2b2acbbec7305c11269ab58621faf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2013
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_supporting_document",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140602194145",
+      "original_url": "http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf",
+      "page_count": 1,
+      "pdf_metadata": {
+        "/Producer": "GPL Ghostscript 8.64",
+        "/CreationDate": "D:20140318123109+05'30'",
+        "/ModDate": "D:20140318123109+05'30'",
+        "/Title": "Full page photo",
+        "/Author": "Dell"
+      },
+      "identity_check": "Visually checked single-page image PDF: year/title and official Accident Research Cell/Traffic insignia; not a complete annual report."
+    },
+    {
+      "path": "raw/archive_apz_2014_list.pdf",
+      "url": "https://web.archive.org/web/20211227124454id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "final_url": "https://web.archive.org/web/20211227124454id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "http_status": 200,
+      "bytes": 1250309,
+      "sha256": "c9569c8e5b72dbf7a46a2fcf433dafbe95c7a206e11388564453b1136bec6d86",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2014
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_supporting_document",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20211227124454",
+      "original_url": "https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "page_count": 1,
+      "pdf_metadata": {
+        "/Producer": "GPL Ghostscript 8.64",
+        "/CreationDate": "D:20150909123153+05'30'",
+        "/ModDate": "D:20150909123153+05'30'",
+        "/Title": "Full page photo",
+        "/Author": "Dell"
+      },
+      "identity_check": "Visually checked single-page image PDF: year/title and official Accident Research Cell/Traffic insignia; not a complete annual report."
+    },
+    {
+      "path": "raw/archive_apz_2014_map.pdf",
+      "url": "https://web.archive.org/web/20211227120029id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf",
+      "final_url": "https://web.archive.org/web/20211227120029id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf",
+      "http_status": 200,
+      "bytes": 1524034,
+      "sha256": "f9a95842ad79734cca8ee0c7fd61df12040ea10d40099cefaaf3eccdc686fe0d",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2014
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_supporting_document",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20211227120029",
+      "original_url": "https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf",
+      "page_count": 1,
+      "pdf_metadata": {
+        "/Producer": "GPL Ghostscript 8.64",
+        "/CreationDate": "D:20150909123052+05'30'",
+        "/ModDate": "D:20150909123052+05'30'",
+        "/Title": "Full page photo",
+        "/Author": "Dell"
+      },
+      "identity_check": "Visually checked single-page image PDF: year/title and official Accident Research Cell/Traffic insignia; not a complete annual report."
+    },
+    {
+      "path": "raw/archive_statistics_2014.html",
+      "url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "http_status": 200,
+      "bytes": 33039,
+      "sha256": "41556ce6af7031c9484b751b03db19815e4f30a426b72bc7354f2bf358bbeebb",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2011,
+        2012,
+        2013
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_statistics_edition",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140513002946",
+      "original_url": "http://delhitrafficpolice.nic.in:80/about-us/statistics/"
+    },
+    {
+      "path": "raw/archive_statistics_2015.html",
+      "url": "https://web.archive.org/web/20150601000000id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20150318221557id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "http_status": 200,
+      "bytes": 33268,
+      "sha256": "7d2d483855694e640d07d5c02a273b87ebe5651002cd07f2e22f82a25b0c7018",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2011,
+        2012,
+        2013
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_statistics_edition",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20150318221557",
+      "original_url": "https://delhitrafficpolice.nic.in/about-us/statistics/"
+    },
+    {
+      "path": "raw/archive_cdx_pdf_extension.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*[.]pdf.*&to=2017&limit=5000",
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*[.]pdf.*&to=2017&limit=5000",
+      "http_status": 200,
+      "bytes": 144092,
+      "sha256": "9c8437b15bc6db9823b50cbb090a562b33f7716116de8eba5179f7731682a822",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    },
+    {
+      "path": "raw/archive_accident_prone_2014.html",
+      "url": "https://web.archive.org/web/20140513003822id_/http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/",
+      "final_url": "https://web.archive.org/web/20140513003822id_/http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/",
+      "http_status": 200,
+      "bytes": 46551,
+      "sha256": "7da4528572a4aa1b7527894d98f1c26d4d461db8d054ca804af0a5b9f63e97de",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140513003822",
+      "original_url": "http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/"
+    },
+    {
+      "path": "raw/archive_sitemap_2012.html",
+      "url": "https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/site-map.htm",
+      "final_url": "https://web.archive.org/web/20121111025906id_/http://delhitrafficpolice.nic.in/site-map.htm",
+      "http_status": 200,
+      "bytes": 36032,
+      "sha256": "32a5b20eda776067119fe239cad8e8de844b43a3e7863c4ea38125d4b1f9a705",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20121111025906",
+      "original_url": "http://delhitrafficpolice.nic.in/site-map.htm"
+    },
+    {
+      "path": "raw/archive_ia_catalogue_reports.json",
+      "url": "https://archive.org/advancedsearch.php?q=title%3A%28%22road%20accidents%20in%20delhi%22%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json",
+      "final_url": "https://archive.org/advancedsearch.php?q=title%3A%28%22road%20accidents%20in%20delhi%22%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json",
+      "http_status": 200,
+      "bytes": 4901,
+      "sha256": "9ace193d63d7510ae7d08ce6a83f20aa9c4750bb1353c0dc2595efd79c99eaf1",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
     }
   ],
   "evidenceFiles": [
@@ -1242,7 +1545,7 @@
   "derivedFrom": [
     {
       "path": "data/staged/history_2011_2015/inputs/sources.json",
-      "sha256": "0ade5d0a71e78cd174f5990a354de3ea7fa590161c0c51b8d69f26e206b7a3a1"
+      "sha256": "85f1fdfa03b74c218706735f8f9abfbcdbc05e42ce76de57753681b09b276892"
     },
     {
       "path": "data/staged/history_2011_2015/inputs/traffic_table_6_1.json",
@@ -1251,13 +1554,17 @@
     {
       "path": "data/staged/history_2011_2015/inputs/production_road_safety_baseline.json",
       "sha256": "cf05dee46484d7a45fa65d70060d99173fcc642b7c09b238b933e3c200e9a314"
+    },
+    {
+      "path": "data/staged/history_2011_2015/inputs/archive_search_log.json",
+      "sha256": "7b89b9d0bcb69d82bac6121c77d168e89fe8d573407e35ca6163a9f28a99fba6"
     }
   ],
   "files": [
     {
       "path": "AVAILABILITY_AND_COMPARABILITY.md",
-      "sha256": "445765eec6a4a5f11379b83b2001d99604b7ebef79bd34976310f9f38c8f2fa5",
-      "bytes": 24394
+      "sha256": "0eac88a7e10433b6bb694678c10cb9285eff0513bff589cc139ac7ef06330eb4",
+      "bytes": 30512
     },
     {
       "path": "generated/availability_comparability.json",
@@ -1311,13 +1618,18 @@
     },
     {
       "path": "generated/quality_report.json",
-      "sha256": "1ad69e8024cc53b4a297b38a3369c2aa01759860f509f4373c9333dee775b4a8",
-      "bytes": 3129
+      "sha256": "356c184d6e11e38726afa978d1df5ca1e0a02d19bb04ccd99de389a034a97449",
+      "bytes": 4646
+    },
+    {
+      "path": "generated/traffic_archived_statistics_editions.json",
+      "sha256": "980dc0d7bf86cd6a6ee3ab238a191cb9ed0e87f84b8c767d53699673d2802e09",
+      "bytes": 4303
     },
     {
       "path": "generated/traffic_citywide_2011_2015.json",
-      "sha256": "8c6062acae70a2a36c78ef7d8fd149a71c29bf083968449bdbe92e05ae4c896e",
-      "bytes": 1725
+      "sha256": "29b94c50203a6fc24874442eca2e39abe2406933c419719943ee4fa4d1b55bc7",
+      "bytes": 1847
     },
     {
       "path": "generated/traffic_districts_as_printed_2015_vintage.json",

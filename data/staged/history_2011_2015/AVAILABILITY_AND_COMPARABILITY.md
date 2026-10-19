@@ -130,6 +130,21 @@ PR #41 is merged. Both post-merge monitor runs succeeded; the first posted the s
 | raw/ncrb_2014_district_ipc.xlsx | [2014]; primary_original_year_district_table | https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise%20IPC-Cases%20Reported_2014.xlsx | af7316d9904c91f0bbcd96d6398685b2fe457eae3ea4fc7a126a1c6596a6c671 |
 | raw/ncrb_2014_district_sll.xlsx | [2014]; primary_original_year_district_table | https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/2District-wise-SLL-Cases-Reported_2014.xlsx | eaf3608af774bbfc46b095a23c36ade1717d947bf5456301e14faba6cd2072ad |
 | raw/ncrb_2011_limitations.pdf | [2011]; official_source_context | https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653905239_LIMITATIONS2011.pdf | da6c31da8dcc1cd9cdb558d6ecb283c71730c38835ed425e609da887f27c5385 |
+| raw/archive_cdx_old_domain.json | []; archive_discovery_evidence | https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=3000 | 1f4095f5e3772e616612a1d71b08f130ae7ee5afbeae3df44a0b2d26e61ecd04 |
+| raw/archive_cdx_related.json | []; archive_discovery_evidence | https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*(accident|Accident|ACCIDENT|booklet|Booklet|statistics|report|Report|crash|Crash).*&to=2017&limit=5000 | c744e8a3a20bf40a426ec70b88e83278a53adbf5fca47e9346361ae14eea07f4 |
+| raw/archive_home_2012.html | []; archive_discovery_evidence | https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/ | e6ea210a9197815adab1f7c70ccf710c7a96254d606936133ef5d4fa001d4afb |
+| raw/archive_home_2015.html | []; archive_discovery_evidence | https://web.archive.org/web/20150601000000id_/http://delhitrafficpolice.nic.in/ | dea0b8eaea5f3e003b572ee8eb4c8c910dbe3f0c28cf01e2f0bd5d648a875564 |
+| raw/archive_home_2014.html | []; archive_discovery_evidence | https://web.archive.org/web/20140601000000id_/http://delhitrafficpolice.nic.in/ | c662653aefda921360daeac03e3a1b2999183f48dea558e30cf3b7467482512c |
+| raw/archive_cdx_new_domain.json | []; archive_discovery_evidence | https://web.archive.org/cdx/search/cdx?url=traffic.delhipolice.gov.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=5000 | d11c9c11d1d32ba7043c8df41f327c2898cab38d15b285b6a512e364a1107549 |
+| raw/archive_apz_2013.pdf | [2013]; archived_official_supporting_document | https://web.archive.org/web/20140602194145id_/http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf | 05b26216e64a5efa8692503af6e6eff038d2b2acbbec7305c11269ab58621faf |
+| raw/archive_apz_2014_list.pdf | [2014]; archived_official_supporting_document | https://web.archive.org/web/20211227124454id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf | c9569c8e5b72dbf7a46a2fcf433dafbe95c7a206e11388564453b1136bec6d86 |
+| raw/archive_apz_2014_map.pdf | [2014]; archived_official_supporting_document | https://web.archive.org/web/20211227120029id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf | f9a95842ad79734cca8ee0c7fd61df12040ea10d40099cefaaf3eccdc686fe0d |
+| raw/archive_statistics_2014.html | [2011, 2012, 2013]; archived_official_statistics_edition | https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/ | 41556ce6af7031c9484b751b03db19815e4f30a426b72bc7354f2bf358bbeebb |
+| raw/archive_statistics_2015.html | [2011, 2012, 2013]; archived_official_statistics_edition | https://web.archive.org/web/20150601000000id_/https://delhitrafficpolice.nic.in/about-us/statistics/ | 7d2d483855694e640d07d5c02a273b87ebe5651002cd07f2e22f82a25b0c7018 |
+| raw/archive_cdx_pdf_extension.json | []; archive_discovery_evidence | https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*[.]pdf.*&to=2017&limit=5000 | 9c8437b15bc6db9823b50cbb090a562b33f7716116de8eba5179f7731682a822 |
+| raw/archive_accident_prone_2014.html | []; archive_discovery_evidence | https://web.archive.org/web/20140513003822id_/http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/ | 7da4528572a4aa1b7527894d98f1c26d4d461db8d054ca804af0a5b9f63e97de |
+| raw/archive_sitemap_2012.html | []; archive_discovery_evidence | https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/site-map.htm | 32a5b20eda776067119fe239cad8e8de844b43a3e7863c4ea38125d4b1f9a705 |
+| raw/archive_ia_catalogue_reports.json | []; archive_discovery_evidence | https://archive.org/advancedsearch.php?q=title%3A%28%22road%20accidents%20in%20delhi%22%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json | 9ace193d63d7510ae7d08ce6a83f20aa9c4750bb1353c0dc2595efd79c99eaf1 |
 
 ## Reproduce and validate
 
@@ -142,3 +157,20 @@ python -m unittest discover -s tools/history_2011_2015 -p "test_*.py"
 ```
 
 The default build is offline and validates the immutable archived input bytes before extraction. --check compares every generated byte without writing it. Fetching missing originals is separate and refuses a changed SHA-256. Raw landing-page snapshots are historical evidence; a live page may have changed since capture. UI integration is outside this authorization.
+
+## Archive follow-up
+
+Wayback snapshots of the official site recovered supporting originals, but no complete 2011-2014 annual report was located.
+
+| Reference year | Recovered evidence | Complete annual report |
+|---|---|---|
+| 2011 | Official statistics in archived 2014/2015 pages | Not located |
+| 2012 | Official statistics in archived 2014/2015 pages; injury-count version discrepancy | Not located |
+| 2013 | Original accident-prone-zone map and archived statistics | Not located |
+| 2014 | Original accident-prone-zone map and separate zone list | Not located |
+
+The 2013 map and 2014 map/list were visually checked against their embedded titles and Delhi Traffic Police/Accident Research Cell insignia. These are single-page image PDFs, not annual-report substitutes. Historical map regions/labels remain unchanged; no coordinates or current-district mapping are inferred. Their stated zone threshold is at least three fatal accidents or ten total accidents within a 500-metre diameter. Exact publication dates remain unknown; capture timestamps and upload paths are not release dates.
+
+The archived official statistics give **6,639 injured in 2012**, versus **6,633** in the later official edition. For 2013 they give **169 non-injury and 5,619 simple accidents**, versus **173 and 5,615** later. Total accidents, fatal accidents and persons killed agree for 2011-2013. The cause of these edition differences is unverified. Preserve both; only those three agreeing measures remain straightforward citywide extension candidates.
+
+Both archived tables and every differing cell are preserved in generated/traffic_archived_statistics_editions.json. The source register records replay URLs, original government URLs, capture timestamps, checksums and reuse limitations. Archive hosting supplies provenance, not a new reuse licence. Search scope and failed retrievals are recorded in inputs/archive_search_log.json.

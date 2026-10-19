@@ -98,5 +98,55 @@
       "summary": "Linked from CII 2015 but explicitly describes 2014 and is byte-identical to the 2014 limitations file; not treated as 2015 definition evidence."
     }
   ],
-  "interpretation": "Source inconsistencies are retained and flagged, not repaired. These diagnostics are not claims of clean original-source arithmetic."
+  "archived_statistics_edition_differences": [
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2012,
+      "metric": "Persons Injured",
+      "archived_value": 6639,
+      "later_official_value": 6633
+    },
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2013,
+      "metric": "Non-Inj.Accidents",
+      "archived_value": 169,
+      "later_official_value": 173
+    },
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2013,
+      "metric": "Simple Accidents",
+      "archived_value": 5619,
+      "later_official_value": 5615
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2012,
+      "metric": "Persons Injured",
+      "archived_value": 6639,
+      "later_official_value": 6633
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2013,
+      "metric": "Non-Inj.Accidents",
+      "archived_value": 169,
+      "later_official_value": 173
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2013,
+      "metric": "Simple Accidents",
+      "archived_value": 5619,
+      "later_official_value": 5615
+    }
+  ],
+  "interpretation": "Source inconsistencies and edition differences are retained and flagged, not repaired. These diagnostics are not claims of clean original-source arithmetic."
 }
