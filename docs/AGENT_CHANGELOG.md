@@ -1171,3 +1171,9 @@ Prior to the divergence, Claude's contributions (now absorbed by Antigravity's r
 
 5. **Modern ES6 Syntax Standardization**
    - Refactored string concatenation (`'...' + ...`) across `renderList()`, `renderMethod()`, `renderZones()`, `renderRoadSafetyTabs()`, `renderDownloadTabs()`, and `renderDownloadFields()` to ES6 template literals.
+## [2026-10-19] - Codex - Historical district map reference preview
+
+- Built a separate 2014 reference map from the archived May 2014 station polygons and the official December 2014 parliamentary station roster: 161 territorial stations dissolved into 11 districts; two airport station polygons kept separate. Original 2014 NCRB counts join directly to reporting-unit rows; no modern-district allocation or rates.
+- Recorded Dwarka's November 2017 notification naming South-West and Outer as parent districts. The 2014 roster additionally demonstrates why current polygons cannot be merged through one parent lookup: Uttam Nagar was in West, and Vasant Vihar was in South.
+- Boundary certification is blocked by unknown archive effective date, 1.05 km² of overlap between reconstructed districts, unresolved source reuse terms and missing verified equivalence for other reporting years. Original MHA binaries currently return 404; no original binary hashes invented. The review preview and manifest expose these limitations. Existing dashboard/map HTML, district boundaries, crime data and production releases remain unchanged.
+- Archive extraction and map generation are reproducible. All 178 JavaScript tests pass, including three historical-map checks; browser review verified measure changes and district selection.

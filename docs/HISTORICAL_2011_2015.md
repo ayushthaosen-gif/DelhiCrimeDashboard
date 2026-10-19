@@ -2,6 +2,8 @@
 
 The user approved extending the **citywide road trend** to 2011. The NCRB historical crime panel remains **staged and off the dashboard**. Crime selectors, district metrics and maps continue to use the existing 2016–2024 production series.
 
+The request for historical district shapes now has a separate [2014 reference map preview](../data/staged/police_geography_history/preview.html) and [geography research record](../data/staged/police_geography_history/README.md). It groups archived station polygons into 11 historical territorial districts, with airport jurisdiction separate, and joins original 2014 NCRB counts. The station memberships, dated source limitations and geometry overlaps are recorded; no other year or production map uses these shapes. Dwarka's 2017 notification names South-West and Outer as its parent districts, so merging today's entire Dwarka polygon into South-East would be incorrect.
+
 ## Citywide road trend
 
 The [production release](../data/releases/citywide_road_trend/README.md) contains 2011–2024 total accidents, fatal accidents and persons killed. The new rows are:
