@@ -69,6 +69,16 @@ test('the structure evidence behind the inferred years is on file and says what 
   assert.match(html, /every year from 2010-11 to 2014-15/);
 });
 
+test('the manifest records the hash of every shape, validation and evidence file the page is built from', () => {
+  const lib = require('../scripts/lib/historical_map_shapes');
+  const crypto = require('node:crypto');
+  const recorded = Object.fromEntries(manifest.sourceInputs.map(i => [i.path, i.sha256]));
+  for (const p of lib.INPUTS) {
+    assert.ok(recorded[p], 'missing from sourceInputs: ' + p);
+    assert.equal(recorded[p], crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, p))).digest('hex'), p);
+  }
+});
+
 test('the page never loads modern district or ward shapes and carries the boundary caveats', () => {
   assert.ok(!/dashboard_boundaries|delhi_wards|police_markers/.test(html), 'a modern geography is referenced');
   assert.ok(!/fetch\(/.test(html), 'the page must use its embedded data only');

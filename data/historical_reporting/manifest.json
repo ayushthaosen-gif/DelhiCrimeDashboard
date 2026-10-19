@@ -135,12 +135,16 @@
       "sha256": "3036ff0607505b78d9beefa744cfd8964137af07c81ac24a03e82e139b6269f6"
     },
     {
+      "path": "data/staged/police_geography_history/validation.json",
+      "sha256": "535b09f94d01c46533db0d601f0943a490f05be101103a1bf41d0b3b9cdb5265"
+    },
+    {
       "path": "data/staged/police_geography_history/validation_2017.json",
       "sha256": "7336b1d95fff31c412eaeaf5dd3434571b37e0afa3b461886c55f28ef2cb2d29"
     },
     {
-      "path": "data/staged/police_geography_history/validation.json",
-      "sha256": "535b09f94d01c46533db0d601f0943a490f05be101103a1bf41d0b3b9cdb5265"
+      "path": "data/staged/police_geography_history/structure_evidence_2010_2016.json",
+      "sha256": "fcc7b6c5becd09c88afafd5ef75663b754b2a74f88758fdc74a928523e6d1ef5"
     }
   ],
   "definitionPolicy": "Old burglary (2011–2013), revised criminal trespass/burglary (2014–2015), and the later burglary series remain separate. Missing aggregates remain null.",

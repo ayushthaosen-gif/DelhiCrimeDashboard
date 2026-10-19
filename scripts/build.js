@@ -5,6 +5,19 @@ const SERIES_STATUS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/series_st
 const covEsc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_final.json'), 'utf8'));
+// Historical years (2011-2018) are drawn on the same map with the districts reported at the time; see scripts/lib/historical_map_shapes.js.
+const histLib = require('./lib/historical_map_shapes');
+const histCounts = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/historical_reporting/counts_2011_2018.json'), 'utf8'));
+const HIST = {
+  viewBox: histLib.VIEW_BOX,
+  maps: histLib.buildShapes(ROOT).maps,
+  notes: histLib.notes(ROOT),
+  years: histCounts.years.map(y => ({
+    year: y.year, sourceLabel: y.sourceLabel, notes: y.notes || [], territorialCount: y.territorialCount, map: {status: y.map.status, referenceYear: y.map.referenceYear},
+    citywide: {scope: y.citywide.scope, values: y.citywide.values},
+    units: y.units.map(u => ({label: u.label, territorial: u.territorial, values: u.values}))
+  }))
+};
 const grid = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/streetlight_grid.json'), 'utf8'));
 
 const correlations = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/correlations.json'), 'utf8'));
@@ -320,6 +333,11 @@ path.district:hover { opacity: .82; }
 .list-sub { font-size: 11.5px; color: var(--text-dim); margin-bottom: 12px; }
 .rank-row { display: grid; grid-template-columns: 20px 1fr auto; align-items: center; gap: 10px; padding: 8px 4px; border-bottom: 1px solid var(--border); cursor: pointer; border-radius: 4px; }
 .rank-row:last-child { border-bottom: none; }
+body.history-mode .rate-field, body.history-mode .display-field, body.history-mode #compareToggleBtn, body.history-mode #mapLayersGroup, body.history-mode #activeLayerChips, body.history-mode .search-container, body.history-mode #methodSection, body.history-mode #scatterSection, body.history-mode #compareCard { display: none !important; }
+#mapHistory path { stroke: var(--surface); stroke-width: 1.3; fill-rule: evenodd; cursor: pointer; transition: fill .25s ease; }
+#mapHistory path.sel, #mapHistory path:hover, #mapHistory path:focus-visible { stroke: var(--night); stroke-width: 3; outline: none; }
+:root[data-theme="dark"] #mapHistory path.sel, :root[data-theme="dark"] #mapHistory path:hover { stroke: #fff; }
+@media (prefers-reduced-motion: reduce) { #mapHistory path { transition: none; } }
 .rank-row:hover { background: var(--bg); }
 .rank-row.selected { background: var(--bg); box-shadow: inset 3px 0 0 var(--amber); }
 .rank-num { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace; font-size: 11px; color: var(--text-dim); text-align: right; }
@@ -556,6 +574,7 @@ footer a { color: inherit; }
     <div class="panel map-panel">
       <div class="map-stage">
         <svg id="map" viewBox="${data.viewBox}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Delhi's 15 police districts, shaded by the selected crime or road-safety metric"></svg>
+        <svg id="mapHistory" viewBox="${HIST.viewBox}" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Delhi police districts as reported in the selected historical year, shaded by the selected crime metric" style="display:none"></svg>
         <div id="mapTooltip" class="map-tooltip"></div>
       </div>
       <div class="data-status-panel" id="dataStatus" aria-live="polite"></div>
@@ -806,6 +825,7 @@ footer a { color: inherit; }
 
 <script>
 const DATA = ${JSON.stringify(data.districts)};
+const HIST = ${JSON.stringify(HIST).replace(/</g, '\\u003c')};
 const GRID = ${JSON.stringify(grid)};
 const OSM_STREET_LAMP_MARKERS = ${JSON.stringify(osmStreetLampMarkers)};
 const CORR = ${JSON.stringify(correlations)};
@@ -1002,6 +1022,7 @@ function metricSupportsYear(m, year) {
   if (m.yearVariants) return !!m.yearVariants[year];
   if (!m.prevKey) return year === m.year;
   if (['2022','2023','2024'].includes(year)) return true;
+  if (+year >= 2011 && +year <= 2018) return true; // drawn from the historical reporting data, see isHistoryView()
   return !!(m.historicalYears && m.historicalYears.includes(year));
 }
 
@@ -1085,10 +1106,6 @@ function buildYearToggle() {
   el.innerHTML = years.map(y => '<option value="' + y + '"' + (activeYear === y ? ' selected' : '') + '>' + y + '</option>').join('');
   el.title = m.historicalYears ? m.historicalSource : 'Available reporting years for ' + m.label;
   el.onchange = () => {
-    if (m.prevKey && +el.value <= 2018) {
-      location.href = 'historical_crime.html?year=' + encodeURIComponent(el.value) + '&metric=' + encodeURIComponent(m.key);
-      return;
-    }
     activeYear = el.value; render();
   };
 }
@@ -2230,21 +2247,132 @@ function renderRoadSummary() {
   '</table>';
 }
 
+// ---- Historical years (2011-2018): the same map, drawn with the districts reported at the time ----
+// Counts as printed. Never allocated to today's 15 districts; the shapes are schematic and labelled by how they were derived.
+const HIST_KEYS = { theft: 'theft', robbery: 'robbery', totalIPC: 'total_ipc', crimeAgainstWomen: 'total_crimes_against_women', totalSLL: 'total_sll' };
+let histSelected = null;
+function isHistoryView() { const m = currentMetric(); return !!(m && m.prevKey && +activeYear <= 2018); }
+function histKey(m, year) {
+  if (m.key === 'burglary') return +year < 2014 ? 'burglary_old_definition' : (+year < 2016 ? 'criminal_trespass_burglary_revised_definition' : 'burglary');
+  return HIST_KEYS[m.key];
+}
+function histMeasureName(key) {
+  return { theft: 'Theft', robbery: 'Robbery', burglary_old_definition: 'Burglary (original 2011-2013 head)', criminal_trespass_burglary_revised_definition: 'Criminal trespass/burglary (revised 2014-2015 head)', burglary: 'Burglary', total_ipc: 'Total IPC', total_crimes_against_women: 'Crimes against women', total_sll: 'SLL crimes' }[key] || key;
+}
+function histCanon(s) { return String(s).toLowerCase().replace(/[^a-z]/g, ''); }
+function histYearData() { return HIST.years.find(y => y.year === +activeYear); }
+function histMapStatus(d) {
+  if (d.map.status === 'reference_only') return '2014 reference map (reconstruction, not certified)';
+  if (d.map.status === 'inferred_reference') return '2014 shapes applied, inferred, not verified';
+  return 'Nov 2017 gazette schedule on 2014 shapes, derived';
+}
+function histMapNote(d) {
+  if (d.map.status === 'reference_only') return HIST.notes.reference2014;
+  if (d.map.status === 'inferred_reference') return HIST.notes.inferred + (d.year >= 2015 ? ' ' + HIST.notes.inferred2015 : '') + (d.year === 2016 ? ' ' + HIST.notes.inferred2016 : '');
+  return HIST.notes.derived;
+}
+function histSelect(name) {
+  histSelected = histSelected === name ? null : name;
+  render();
+}
+function histBuildSvg() {
+  const svg = document.getElementById('mapHistory');
+  if (svg.dataset.built) return svg;
+  svg.innerHTML = Object.keys(HIST.maps).map(r => '<g data-ref="' + r + '">' + HIST.maps[r].map((f, i) => '<path tabindex="0" role="button" data-i="' + i + '" d="' + f.d + '"></path>').join('') + '</g>').join('');
+  svg.querySelectorAll('path').forEach(p => {
+    const go = () => { const f = HIST.maps[p.parentNode.dataset.ref][Number(p.dataset.i)]; if (f.properties.territorial) histSelect(f.properties.name); };
+    p.addEventListener('click', go);
+    p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+  });
+  svg.dataset.built = '1';
+  return svg;
+}
+function renderHistoryView() {
+  const m = currentMetric(), d = histYearData(), key = histKey(m, d.year), ref = String(d.map.referenceYear);
+  const svg = histBuildSvg();
+  svg.querySelectorAll('g').forEach(g => { g.style.display = g.dataset.ref === ref ? '' : 'none'; });
+  const units = d.units.filter(u => u.territorial);
+  const find = name => d.units.find(u => histCanon(u.label) === histCanon(name));
+  const vals = units.map(u => u.values[key]).filter(v => v != null);
+  const scale = percentileScale(vals);
+  const lo = vals.length ? Math.min.apply(null, vals) : null, hi = vals.length ? Math.max.apply(null, vals) : null;
+  const measure = histMeasureName(key);
+  svg.querySelectorAll('g[data-ref="' + ref + '"] path').forEach(p => {
+    const f = HIST.maps[ref][Number(p.dataset.i)], u = f.properties.territorial ? find(f.properties.name) : null;
+    const v = u ? u.values[key] : null, isSel = !!u && histSelected && histCanon(histSelected) === histCanon(u.label);
+    p.setAttribute('fill', v == null ? 'var(--map-nodata-stripe)' : rustScale(scale(v)));
+    p.classList.toggle('sel', !!isSel);
+    p.setAttribute('aria-selected', isSel ? 'true' : 'false');
+    const title = f.properties.territorial ? f.properties.name + ' reporting district' : 'IGI Airport';
+    const body = !f.properties.territorial ? 'Separate police jurisdiction; not in the territorial colour scale.'
+      : '<div class="tt-metric"><b>' + measure + ' (' + d.year + '):</b> ' + (v == null ? 'not reported' : fmtNum(v)) + '</div><div class="tt-metric">Registered cases, as printed. Shape: ' + histMapStatus(d) + '.</div>';
+    p.setAttribute('data-tt-title', title);
+    p.setAttribute('data-tt-body', body);
+    p.setAttribute('aria-label', title + ': ' + (v == null ? 'not reported' : fmtNum(v)));
+  });
+  document.getElementById('singleLegend').style.display = '';
+  document.getElementById('bivariateLegend').style.display = 'none';
+  document.getElementById('legendLabel').textContent = measure + ', ' + d.year + ' (as printed)';
+  document.getElementById('legendMin').textContent = lo == null ? 'Not reported' : fmtNum(lo);
+  document.getElementById('legendMax').textContent = hi == null ? '' : fmtNum(hi);
+  document.getElementById('legendScale').innerHTML = Array.from({length: 10}, (_, i) => '<span style="background:' + rustScale(i / 9) + '"></span>').join('');
+  const special = d.units.filter(u => !u.territorial);
+  document.getElementById('dataStatus').innerHTML = '<b>Data status · ' + esc(m.label) + ' (' + d.year + ')</b>' +
+    '<span><span class="data-status-label">Status</span><span class="data-status-badge ' + (vals.length ? 'production' : 'partial') + '">' + (vals.length ? 'Production · counts as printed' : 'Not reported in the source') + '</span></span>' +
+    '<span><span class="data-status-label">Coverage</span><span class="data-status-value">' + d.territorialCount + ' territorial reporting districts as reported in ' + d.year + (special.length ? ', plus ' + special.length + ' other units listed separately' : '') + '</span></span>' +
+    '<span><span class="data-status-label">Comparable?</span><span class="data-status-value">Not comparable with the current 15-district years; offence definitions differ by year (see notes). Counts, not rates.</span></span>' +
+    '<span><span class="data-status-label">Map</span><span class="data-status-value">' + esc(histMapStatus(d)) + '</span></span>' +
+    '<span><span class="data-status-label">Source</span><span class="data-status-value">' + esc(d.sourceLabel) + '</span></span>';
+  document.getElementById('listSub').textContent = 'Reporting districts by ' + measure.toLowerCase() + ', ' + d.year + ' (as printed)';
+  const sorted = units.slice().sort((a, b) => (b.values[key] == null ? -Infinity : b.values[key]) - (a.values[key] == null ? -Infinity : a.values[key]));
+  document.getElementById('rankList').innerHTML = sorted.map((u, i) => {
+    const v = u.values[key], pct = v == null || hi == null ? 0 : Math.max(3, hi === lo ? 100 : (v - lo) / (hi - lo) * 100);
+    const color = v == null ? 'var(--map-nodata-stripe)' : rustScale(scale(v));
+    const sel = histSelected && histCanon(histSelected) === histCanon(u.label) ? ' selected' : '';
+    return '<div class="rank-row hist-row' + sel + '" data-name="' + esc(u.label) + '"><span class="rank-num">' + (i + 1) + '</span><span class="rank-name">' + esc(u.label) + '</span><span class="rank-val">' + (v == null ? 'n/r' : fmtNum(v)) + '</span><div class="rank-bar-track"><div class="rank-bar-fill" style="width:' + pct + '%;background:' + color + ';"></div></div></div>';
+  }).join('');
+  const sel = histSelected ? find(histSelected) : null;
+  const tile = (label, k) => { const v = sel.values[k]; return '<div class="stat"><span class="stat-label">' + label + ' (' + d.year + ')</span>' + (v == null ? '<span class="stat-val nodata">Not reported</span>' : '<span class="stat-val">' + fmtNum(v) + '</span>') + '</div>'; };
+  const tiles = sel ? [['Theft', 'theft'], ['Robbery', 'robbery'], [histMeasureName(histKey({key: 'burglary'}, d.year)), histKey({key: 'burglary'}, d.year)], ['Total IPC', 'total_ipc'], ['Vs. women', 'total_crimes_against_women'], ['SLL crimes', 'total_sll']].map(t => tile(t[0], t[1])).join('') : '';
+  const city = d.citywide && d.citywide.values ? d.citywide.values[key] : null;
+  const specialRows = special.length ? '<div class="section-divider"></div><div class="stat-label">Other reporting units, as printed</div>' + special.map(u => '<div class="stat"><span class="stat-label">' + esc(u.label) + '</span>' + (u.values[key] == null ? '<span class="stat-val nodata">Not reported</span>' : '<span class="stat-val">' + fmtNum(u.values[key]) + '</span>') + '</div>').join('') : '';
+  document.getElementById('detail').innerHTML =
+    '<div class="detail-head"><h2>' + esc(sel ? sel.label : 'Delhi, ' + d.year + ', as reported') + '</h2><span class="area">' + (sel ? 'reporting district' : d.territorialCount + ' districts') + '</span></div>' +
+    (sel ? tiles : '<p style="margin:0;color:var(--text-dim);">Select a district on the map or in the list to see its counts for ' + d.year + '.</p>') +
+    '<div class="section-divider"></div>' +
+    '<div class="stat"><span class="stat-label">Delhi UT total, ' + esc(measure) + ' (' + d.year + ')</span>' + (city == null ? '<span class="stat-val nodata">Not reported</span>' : '<span class="stat-val">' + fmtNum(city) + '</span>') + '</div>' +
+    '<p class="small" style="color:var(--text-dim);margin:4px 0 0;">The printed Delhi total is separate from the district rows; it is not their sum.</p>' +
+    specialRows +
+    '<div class="section-divider"></div>' +
+    '<div class="analysis" style="border:none;padding-top:0;margin-top:0;"><div class="confidence-badge partial">◐ How to read this</div>' +
+      '<p>' + esc(histMapNote(d)) + '</p>' +
+      d.notes.map(n => '<p>' + esc(n) + '</p>').join('') +
+      '<p><a href="historical_crime.html?year=' + d.year + '&metric=' + encodeURIComponent(key) + '">Open the full table, original source rows and evidence →</a></p></div>';
+}
+
 function render() {
+  const hist = isHistoryView();
+  document.body.classList.toggle('history-mode', hist);
+  document.getElementById('map').style.display = hist ? 'none' : '';
+  document.getElementById('mapHistory').style.display = hist ? '' : 'none';
   buildMetricTabs();
-  renderDataStatus();
-  renderMap();
-  renderList();
-  renderDetail();
-  renderMethod();
-  renderCorrelationMatrix();
+  if (hist) {
+    renderHistoryView();
+  } else {
+    renderDataStatus();
+    renderMap();
+    renderList();
+    renderDetail();
+    renderMethod();
+    renderCorrelationMatrix();
+  }
   renderTrends();
   renderVictimsByMode();
   renderZones();
   renderZones2024();
   renderEnforcement();
   renderRoadSummary();
-  if (compareMode) renderCompareCard();
+  if (compareMode && !hist) renderCompareCard();
 }
 
 const MAP_LAYER_CONTROLS = [
@@ -2370,6 +2498,7 @@ mapSvg.addEventListener('click', (e) => {
 document.getElementById('rankList').addEventListener('click', (e) => {
   const row = e.target.closest('.rank-row');
   if (!row) return;
+  if (row.classList.contains('hist-row')) { histSelect(row.dataset.name); return; }
   selected = selected === row.dataset.name ? null : row.dataset.name;
   render();
 });
