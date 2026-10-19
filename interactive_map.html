@@ -330,7 +330,7 @@ details.adv[open] > summary h2 { margin-bottom: 10px; }
       <label class="check"><input type="checkbox" id="chkHeatmap"> Crash-zone heatmap</label>
       <label class="check"><input type="checkbox" id="chkUnsafe"> Composite unsafe-areas score</label>
       <span id="unsafeMethodLink" style="display:none; cursor:pointer; text-decoration:underline; color:var(--text-dim); font-size:12px; margin-left:26px;">ⓘ methodology</span>
-      <div class="adv-sub">Ward level (290 wards)</div>
+      <div class="adv-sub">Ward level (290 legacy wards, pre-2022; not the current 250)</div>
       <label class="check"><input type="checkbox" id="chkWardBivariate"> Ward bivariate</label>
       <label class="indent" id="wardInfraWrap" style="display:none"><span>Compare</span><select id="wardInfraXSelect"></select><span>against</span><select id="wardInfraYSelect"></select></label>
       <label class="check"><input type="checkbox" id="chkWardExploratoryIndex"> Liquor-crash exploratory index</label>
@@ -745,7 +745,7 @@ function renderWardLegend(show, xInf, yInf) {
     '<div class="leg-biv-grid">' + cells.join('') + '</div>' +
     '<div class="leg-biv-axes"><span>↑ ' + yInf.label + '</span></div>' +
     '<div class="leg-biv-axes"><span>Low ' + xInf.label + ' →</span><span>High</span></div>' +
-    '<div style="margin-top:4px;font-style:italic;">290 wards · tertiles, computed live</div>' +
+    '<div style="margin-top:4px;font-style:italic;">290 legacy wards (pre-2022) · tertiles, computed live</div>' +
     (caveats.length ? '<div style="margin-top:4px;font-style:italic;">' + caveats.join('<br>') + '</div>' : '');
   el.classList.add('show');
 }

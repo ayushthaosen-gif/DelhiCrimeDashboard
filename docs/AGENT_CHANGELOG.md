@@ -1,3 +1,12 @@
+## [2026-10-19] - Claude (Anthropic) - Phase 2 (no new data): legacy ward labels, geography registry, coverage table
+
+- **250 wards: blocked on data, and the note says why.** The official 2022 ward map (GSDL/MCD/16.01.2023/01) is marked restricted, with reproduction prohibited without GSDL's written permission; its linework forms 921 faces, not 250 wards, so reconstruction is not viable. OpenCity's 2022 layer is no longer hosted and OpenStreetMap has no MCD wards. `series_status.json` now records this, names the next step (ask GSDL for the digital layer with written reuse terms; no request has been sent) and says nothing may be traced or invented meanwhile.
+- **`data/geography_registry.json`**: the legacy 290-ward geography (273 MCD polygons, 9 NDMC, 8 Cantonment; DataMeet, pre-2022, not an official boundary) and the 250-ward geography (not implemented), with every ward-level file registered and a join policy that blocks cross-geography joins. The shared release manifest lists both. `test/geography_registry.test.js` computes the ward count from the boundary file, requires every ward-level file in `data/` to be registered, and requires the labels below.
+- **Legacy labels where wards are shown**: the interactive map's ward mode, `map_3d.html`, `map_3d_mpd.html`, and the dashboard.
+- **Dashboard coverage table**: "How current is each data series?" (built from `series_status.json`), with a warning never to compare year-to-date or provisional series with a full year.
+- **iRAD page**: 2026 is labelled "year to date" and "provisional" in the chart legend, with a note not to compare its total with a full year.
+- Not done: any 250-ward layer, any cross-geography mapping; the draft ward register extracted from the restricted map is not in the repository (if a register is wanted, extract it from the public notification and verify it).
+
 ## [2026-10-19] - Claude (Anthropic) - Cleanup after Phase 1
 
 - **Palam Village resolved.** The Manual's roster (page 22) lists PALAM VIHAR in South-West (Delhi Cantt. sub-division) and the South-West district details (page 60) list a Palam police station at Palam Village in the same sub-division: one station under two spellings, South West either way. The source label now maps to South West as a `documented_variant`, `needs_review: true`, with both pages in the evidence extract. The crosswalk is now 165 mapped, 2 specialised, 1 ambiguous, 6 unmapped. Still a draft pending human verification.
