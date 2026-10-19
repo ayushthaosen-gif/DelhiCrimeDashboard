@@ -63,3 +63,15 @@ Things the loading had to handle:
 - Revenue districts are administrative areas; the 15 police districts used by the dashboard need the police-station crosswalk in `tools/pipeline_2025/config/` before any comparison.
 
 Re-run: `python scripts/collect_irad_monthly.py` (add `--offline` to use only the PDFs already in `scratch/irad_monthly_pdfs`, which is not committed).
+
+## Phase 1 staged releases (2026-10-19; hand-maintained documentation)
+
+The derived collection remains unchanged. `data/releases/2025/irad/manifest.json` is authoritative for staged 2025 iRAD; `data/releases/2026/irad/manifest.json` is provisional, year-to-date, and must never be compared with a full year. Both preserve input columns, values, duplicates and source order. `data/releases/irad_dispositions.json` accounts for every input row once, including historical, multi-year and undated exclusions. Counts and coverage are generated, not maintained in this prose.
+
+Coverage matrices distinguish dated monthly observations, partial endpoints, gaps, year-only periods and overlapping annual/cumulative station windows. Blank scope is unspecified. Central December is a partial endpoint. Missing rows are not zeros. Source links prove that identical bytes were published on the verification date, not the original download location. PDF generation time, link-verification date and release metadata date are distinct.
+
+`data/reference/police_station_crosswalk.csv` covers all distinct collection reporting-district/station-label pairs. Its evidence CSV is an author-created draft pending human verification. The owner clarified that repeated printed occurrences for the same normalized name and police district represent one identity, while all occurrences remain evidence; names identifying different districts remain ambiguous. The territorial roster and contextual repeated name occurrences are recorded separately in evidence notes. The extract includes the territorial roster and other station lists on printed pages 13-25, supporting MACT branch entries, and contextual repeated occurrences; it does not claim an exhaustive transcription of every address or specialised branch throughout the Manual. The post-period Manual cannot prove historical jurisdictions. The four required unresolved labels remain unresolved. No police-district aggregation is implemented.
+
+The legacy pipeline config is unchanged. Compatibility joins its raw label to every normalized matching source label without inventing a reporting district, preserving its canonical display name, police district and page. See generated crosswalk coverage for those joins and mapped source-table row shares with denominators. These rows include overlapping annual and monthly windows, not unique stations, incidents or geographic completeness.
+
+Both release commands invoke `scripts/build_all_releases.js`: production years, staged iRAD, crosswalk, shared inventory, then the index last. The release metadata date is a human-maintained constant; new manifests set generatedAt to null. Rebuild and fail on differences.

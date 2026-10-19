@@ -1,0 +1,4109 @@
+{
+  "schemaVersion": "1.0.0",
+  "releaseYear": 2025,
+  "jurisdiction": "Delhi",
+  "generatedBy": "scripts/build_irad_releases.js",
+  "generatedAt": null,
+  "releaseMetadataDate": "2026-10-19",
+  "releaseStatus": "staged",
+  "temporalType": "multi_period",
+  "productionReady": false,
+  "coverageComplete": false,
+  "dashboardIntegrated": false,
+  "seriesId": "irad_2025_release",
+  "nullPolicy": "Blank remains null/unknown, never zero. Blank scope is unspecified.",
+  "comparability": "iRAD is a different series from the Delhi Traffic Police crash report and NCRB. Reporting districts are not the 15 police districts. Coverage differs by district. Annual/cumulative station windows overlap monthly windows and are not twelve independent observations.",
+  "sourceLinkCaveat": "Public links recovered 2026-10-18 by an independent check (Codex). Each file was matched to the currently published official PDF by identical SHA-256. This proves the same bytes are published now, not which URL the original collection used. Entries for files added after the second check come from its inventory of published reports.",
+  "coverage": {
+    "monthlyRows": 60,
+    "stationRows": 603,
+    "districts": 11,
+    "perTable": {
+      "month_wise": {
+        "rows": 60,
+        "districts": 7
+      },
+      "station": {
+        "rows": 603,
+        "districts": 8
+      }
+    }
+  },
+  "schemas": {
+    "month_wise": [
+      "district",
+      "year",
+      "month",
+      "month_name",
+      "fatal",
+      "grievous",
+      "minor_hospitalised",
+      "minor_non_hospitalised",
+      "no_injury",
+      "total_non_fatal",
+      "total_accidents",
+      "killed",
+      "persons_grievous",
+      "persons_minor",
+      "persons_no_injury",
+      "persons_total",
+      "animals_killed",
+      "animals_injured",
+      "persons_injured",
+      "local_body_pending",
+      "report_period_from",
+      "report_period_to",
+      "generated",
+      "date_basis",
+      "scope",
+      "period_inferred",
+      "schema",
+      "extraction_method",
+      "source_file",
+      "sha256",
+      "check"
+    ],
+    "station": [
+      "district",
+      "period_from",
+      "period_to",
+      "report_year",
+      "generated",
+      "date_basis",
+      "s_no",
+      "code",
+      "police_station",
+      "fatal",
+      "grievous",
+      "minor_hospitalised",
+      "minor_non_hospitalised",
+      "no_injury",
+      "total_non_fatal",
+      "total_accidents",
+      "fir_filed",
+      "proceeded_mact",
+      "pending",
+      "completed",
+      "killed",
+      "persons_grievous",
+      "persons_minor",
+      "persons_no_injury",
+      "persons_total",
+      "vehicle_count",
+      "animals_killed",
+      "animals_injured",
+      "scope",
+      "period_inferred",
+      "schema",
+      "source_file",
+      "sha256",
+      "check"
+    ]
+  },
+  "files": [
+    {
+      "path": "irad_monthly_by_district_2025.csv",
+      "datasetId": "delhi_irad_month_wise_2025",
+      "mediaType": "text/csv",
+      "sha256": "e383144c28a5c64b0a74692cd92d16b68b31a142845294dd42305d6417d30a5c",
+      "bytes": 14092,
+      "rows": 60,
+      "derivedFrom": [
+        {
+          "path": "data/derived/irad_monthly/irad_monthly_by_district.csv",
+          "sha256": "2699f9fe422f6307d293d49291bb42931bcc04a1b1afcea9033c194b37ee98a8",
+          "selectionRuleVersion": "irad-phase1-v1"
+        }
+      ]
+    },
+    {
+      "path": "irad_station_by_period_2025.csv",
+      "datasetId": "delhi_irad_station_2025",
+      "mediaType": "text/csv",
+      "sha256": "40b6f3fad559908fa3cbdbafa2d5569f4e94f4e4b74293ef3dddec6a1001fe80",
+      "bytes": 136656,
+      "rows": 603,
+      "derivedFrom": [
+        {
+          "path": "data/derived/irad_monthly/irad_station_by_period.csv",
+          "sha256": "982d225835537addcddeb0c44589f6179ede7ff3e1db9b6e34a5e34132fd38b7",
+          "selectionRuleVersion": "irad-phase1-v1"
+        }
+      ]
+    }
+  ],
+  "derivedFrom": [
+    {
+      "path": "data/derived/irad_monthly/irad_monthly_by_district.csv",
+      "sha256": "2699f9fe422f6307d293d49291bb42931bcc04a1b1afcea9033c194b37ee98a8",
+      "selectionRuleVersion": "irad-phase1-v1"
+    },
+    {
+      "path": "data/derived/irad_monthly/irad_station_by_period.csv",
+      "sha256": "982d225835537addcddeb0c44589f6179ede7ff3e1db9b6e34a5e34132fd38b7",
+      "selectionRuleVersion": "irad-phase1-v1"
+    },
+    {
+      "path": "data/derived/irad_monthly/manifest.json",
+      "sha256": "173ec9a9f27ac840ba85ac452333cfd68d8cad8edb8de0d5906c31ff9ab962fa",
+      "selectionRuleVersion": "irad-phase1-v1"
+    },
+    {
+      "path": "data/derived/irad_monthly/issues.json",
+      "sha256": "3c3a26e92b2a9ec702003aea8607a484e68ba5a14ce67028ffa4c4bfc291a5ff",
+      "selectionRuleVersion": "irad-phase1-v1"
+    },
+    {
+      "path": "data/derived/irad_monthly/source_links.json",
+      "sha256": "1a0fa66e8fbd4f3cf79372603cafa6f4611073e0916a1bb4d0eb6595d36ba30c",
+      "selectionRuleVersion": "irad-phase1-v1"
+    },
+    {
+      "path": "data/reference/irad_known_issues.json",
+      "sha256": "6ad50b1f629265daa0bca6627c20383c367d433a10e68b059acb2ceab0efce0c",
+      "selectionRuleVersion": "irad-phase1-v1"
+    }
+  ],
+  "sources": [
+    {
+      "filename": "Central__05-03-2025.pdf",
+      "sha256": "38519d3aa5135a7f957c6e6fb9327b9de67aa5e02444686e1fa77013141aecd0",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/05-03-2025.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "Central__police_station_wise_accident_cases.pdf",
+      "sha256": "407fa6cdca2a889d4358ff0696fcb143e06d2205c4bbfc46788bf037934a1b8a",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/police_station_wise_accident_cases.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "Central__jan_2025.pdf",
+      "sha256": "3c51640f9f42ad3389da94b3fd226076fb17bf82b51dc0e9efa5ca0c64798a7b",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/jan_2025.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "Central__feb_2025.pdf",
+      "sha256": "561db9c8046c01e267fabc7231e0ad65d301bd525b3d0d45d416a90536e9dfc7",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/feb_2025.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "Central__march_2025.pdf",
+      "sha256": "fa12d310ee7a627d0452b52ed2b83afad0cb93b072c8820ed9b57f6dc9b1345c",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/march_2025.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "Central__april_2025.pdf",
+      "sha256": "8d558514114085ba69dd799379a8e9956986abc6987c0912d5391dce962327d7",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/april_2025.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "Central__may_2025.pdf",
+      "sha256": "fba52de7fa844016f33991477dfeceddc856e3c733a1ec02621eb36b8549034f",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/may_2025.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "Central__june_2025.pdf",
+      "sha256": "90caa029482f1ad594ad6c4176e349979bcaff88763a5ea1a75305bf7bb59890",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/june_2025.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "Central__iRAD Report1(1. Accidents Classified According to Month-wise).pdf",
+      "sha256": "9748cd13fc18d0d3bb6c4b062f9c55f28bb9398c46aba78f6ce6d434e12ab103",
+      "publicPdfUrl": "https://dccentral.delhi.gov.in/sites/default/files/dccentral/generic_multiple_files/iRAD%20Report1%281.%20Accidents%20Classified%20According%20to%20Month-wise%29.pdf",
+      "landingPageUrl": "https://dccentral.delhi.gov.in/en/dccentral/iradedar-central-delhi",
+      "linkText": "Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_West__2025041786.pdf",
+      "sha256": "e97c75cf8b4b5f5c32cc27da782a01286507e29c739d06aa4e90135d38b6dcb7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025041786.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/police-station-wise-accident-cases/",
+      "linkText": "Police station wise Accident Cases Dwarka",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__2025042112-1.pdf",
+      "sha256": "4beab54a40ff70013240a8e9e06f941b3f8daee0ed1a83e500e6ed942ed1d06e",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042112-1.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+      "linkText": "2. Jan. 2023 to Dec. 2023 10-01-2024 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__2025042138.pdf",
+      "sha256": "850504109667680020246e33495f257ed3132cb16ab1da6606b27ca7956a6020",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042138.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+      "linkText": "4. Jan. 2025 to April. 2025 17-04-2025 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_West__2025042150.pdf",
+      "sha256": "6f800d07b4ca0ce64d1c2c00534dda89554a3b9c6ec3b361077e64743f95295f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042150.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+      "linkText": "1. Jan. 2022 to Dec. 2022 12-01-2023 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__2025042179-1.pdf",
+      "sha256": "8eb0f03cd801b7123a9f508d9ebcd433347d868ae21137fd1faac3a37fd4aa83",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042179-1.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+      "linkText": "3. Jan. 2024 to Dec. 2024 09-01-2025 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__17676951078366.pdf",
+      "sha256": "f66ae060b0f7914e4de847c617cd325315546468ffe03159478d096a9e116120",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2026/01/17676951078366.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-dwarka/",
+      "linkText": "5. May 2025 to Dec. 2025 06-01-2026 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__2022122645.pdf",
+      "sha256": "3014f04a83b5bcd3ce0f6c1fe6ac70a7d4fbc5372821d3ad22c22116472965ed",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2022/12/2022122645.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "1. Jan to Dec 2022 26/12/2022 download pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2025032010.pdf",
+      "sha256": "ab883ed2ee14be511ab5ae9924f12b1ea278cd27851837a26199ffb1f4a10f43",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/03/2025032010.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/departments/irad-edar-east-delhi/",
+      "linkText": "Police Station wise Accident Cases",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2023020720.pdf",
+      "sha256": "871886d7283817237dd6102d357d1602e66bfc964e7df8a8fb8855ac72d40e32",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/02/2023020720.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "2. Jan 2023 07/02/2023 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2023031456.pdf",
+      "sha256": "93ff2c572fc6d2ada2735f02d32d3b0d7edb67a56d3597852ad1df109fb7be20",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/03/2023031456.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "3. Feb-2023 14/03/2023 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2023040532.pdf",
+      "sha256": "6001f883a1a6146699a8ed70b4c8f6d0ed24ce7853f3ab7aa1d2527f7a6a14e0",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/04/2023040532.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "4. March 2023 05/04/2023 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2023050171.pdf",
+      "sha256": "61a386e034b3a07d56d834ed0d2ac4378b54a226270720641b9f089ffe0b55af",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/05/2023050171.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "5. April 2023 01/05/2023 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2023092148.pdf",
+      "sha256": "b9820626127913d72f123496554a15fd8a5118618ad37e5bf48877f2624fc776",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/09/2023092148.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "6. May 2023 21/09/2023 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2023092187.pdf",
+      "sha256": "18c96f9733b860316e5a8cb6bebf5658905cbac323ce9181aaf276e5bd4a9829",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/09/2023092187.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "7. June 2023 21/09/2023 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2023092181.pdf",
+      "sha256": "1f8104722150c5f466a1cb085e7f9ed53217d63d68da05e24289fa7b659c4254",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/09/2023092181.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "8. July 2023 21/09/2023 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2023092190.pdf",
+      "sha256": "1f0455d9e26bbf67ce0528347ce9ffaa3762176e7553ffdea09c895e2f479948",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2023/09/2023092190.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "9. August 2023 21/09/2023 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024020719.pdf",
+      "sha256": "df8db1fe1b4e40272ca07cc8658f61bb93c639cc381e54658fb04aed5bc6d5a1",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2020/02/2024020719.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "10. September 2023 07/02/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024020772.pdf",
+      "sha256": "2f90528b9cb0f94769167d978609e9b15595fa867d649a91e4f777bc6a363dc7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2020/02/2024020772.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "11. October 2023 07/02/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024020730.pdf",
+      "sha256": "b292cd8ca97b5561ca8f1e3c0391fc5daed5334a5d999dec90077f3b375c3586",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2020/02/2024020730.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "12. November 2023 07/02/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024020710.pdf",
+      "sha256": "55b0e6c894020fbbcd231014c135953e653a3a2cf3fee21477065f221871efcf",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2020/02/2024020710.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "13. December 2023 07/02/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024080262.pdf",
+      "sha256": "12e75778b42739ce9c73bfb5e4ce3b50e11bfd397e2d166deaba96b940fc52dd",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080262.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "14. Jan 2024 02/08/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024080219.pdf",
+      "sha256": "53e0255745f21158227e8fb6dc65de956c77652fff2611a9fb827fc6614cc748",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080219.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "15. Feb 2024 02/08/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024080233.pdf",
+      "sha256": "9945c716287f262551ab9a3226659b35093409f95a557a9bf26e227dd1166bf8",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080233.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "16. March 2024 02/08/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024080266.pdf",
+      "sha256": "abf814b0e3f256ee21f35dd402806d2085453b9a4782644c3d1ae6e9c2234936",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080266.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "17. April 2024 02/08/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024080227.pdf",
+      "sha256": "54b16ae0239303ca85f7f1628e0352a9f1d9164ff3932827c144838305bee4d2",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080227.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "18. May 2024 02/08/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024080255.pdf",
+      "sha256": "afba0ec2cef893a228df026809b558c31aca49381333185db64673555b609958",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/08/2024080255.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "19. June 2024 02/08/2024 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024121390.pdf",
+      "sha256": "083bb182a228cb5c85a9d695703774b046dfac7942bd1b199a2d728784a9f236",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/2024121390.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "20. July 2024 13/12/2024 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024121358.pdf",
+      "sha256": "4f65890fc34f5ffc31428863ed3717ae438c72242708e736c366128167d3c43f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/2024121358.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "21. August 2024 13/12/2024 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__20241213100.pdf",
+      "sha256": "355f0ad5863fc602e059c8bb4fb77862cd0a300b525f2247b88aafbb704f4149",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/20241213100.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "22. Sept 2024 13/12/2024 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024121329.pdf",
+      "sha256": "135de0a9c888d6202d2416e1acffcacbd5da71da4fb24b0b1f573694b18cbeac",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/2024121329.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "23. Oct 2024 13/12/2024 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2024121384.pdf",
+      "sha256": "e03350727958391faa49ca3a6ef72839e9e8244943aae5035e8be4a66df85109",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2024/12/2024121384.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "24. Nov 2024 13/12/2024 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2025032039.pdf",
+      "sha256": "5ec23a56e2aa88e54cb74f75878d46a96d3ba573b317075459496e1175c17c22",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/03/2025032039.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "25. Dec 2024 20/03/2025 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "East__2025032074.pdf",
+      "sha256": "85c221b32618102cf4d4a1176c0992b66f0c4ed848edaba30333bd3566f12716",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/03/2025032074.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "26. Jan 2025 20/03/2025 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__2025032070.pdf",
+      "sha256": "1feedfca4a431d8f7cfba4c3ef34b3a3852381a70e2a815b7f9299666b7d5e99",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/03/2025032070.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "27. Feb 2025 20/03/2025 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__2025050526.pdf",
+      "sha256": "c4f8ad20cf118e41282efd066e88d481e91f61e855b81cee67f1c5393b1bc715",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/05/2025050526.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "28. March 2025 05/05/2025 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__2025050513.pdf",
+      "sha256": "24493ff94a0f86efcdaca9c396b2e62782f996c72bf0a96a3f3ad95a3b954185",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/05/2025050513.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "29. April 2025 05/05/2025 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__17525703177377.pdf",
+      "sha256": "b5c85e39f3939919fbc616d2e8496c0c3337dd31c4ee5e40ad3cff17f33b5a05",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/07/17525703177377.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "30. May 2025 15/07/2025 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__17525703164640.pdf",
+      "sha256": "94c4cbbb753b4c709253fb66814b01840bc3c9debcec60599beaee71027f47de",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/07/17525703164640.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "31. June 2025 15/07/2025 download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__17676901966990.pdf",
+      "sha256": "fa3af737a69b90c012590ea94b85b9c0918e170f831f9517523c3d24e6d16868",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901966990.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "32. July 2025 06/01/2026 Download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__17676901943293.pdf",
+      "sha256": "2f13b83a52f0c1becc70d5bc857ad85575101b5d8c8629a5a9655a50e30e2160",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901943293.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "33. August 2025 06/01/2026 Download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__17676902009883.pdf",
+      "sha256": "592fa590da3397469e6432c2f44cb4adaebbb07fa69d04b09f6d1a03cbe2f557",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676902009883.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "34. September 2025 06/01/2026 Download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__17676901999252.pdf",
+      "sha256": "568295f29451f4165fcfa8ff2151d8cd37540a6a23585ebbd8f9ea11c8abe6a7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901999252.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "35. October 2025 06/01/2026 Download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__17676901978544.pdf",
+      "sha256": "33bfdb9dbeaa26e5162884771ecf72d942ecfeb7bb0921680d94281eaa9ca5ff",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901978544.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "36. November 2025 06/01/2026 Download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "East__17676901956137.pdf",
+      "sha256": "57c3a6be51d36e5a5ca4dea756a2747f239a98bd7fc8b0fd760bef04fa6d4c44",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2026/01/17676901956137.pdf",
+      "landingPageUrl": "https://dmeast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "37. December 2025 06/01/2026 Download link",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "New_Delhi__17809021792316.pdf",
+      "sha256": "17e99cee75673f4bafca58114fc4357fd671581ed9fe9d64b58b83fdd4662f01",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809021792316.pdf",
+      "landingPageUrl": "https://dmnewdelhi.delhi.gov.in/police-station-wise-accident-cases/",
+      "linkText": "2. 1st Jan,2025 to 31st Dec,2025 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "New_Delhi__2025041582.pdf",
+      "sha256": "a1ce99c44d6226cfb02a347978b26fb37f2c1e736dd199871b3f1c47dbad854a",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041582.pdf",
+      "landingPageUrl": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "New_Delhi__2025070442.pdf",
+      "sha256": "01cd73fa656439e8ccf66ff3aecf13de4915a4999913e6fc02b75667cd4f6439",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/07/2025070442.pdf",
+      "landingPageUrl": "https://dmnewdelhi.delhi.gov.in/police-station-wise-accident-cases/",
+      "linkText": "1. 1st Jan,2022 to 31st December,2024 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "New_Delhi__2025041520.pdf",
+      "sha256": "5ce556cef0cb01ce01a978fb00b71601904c5a6409ce3f7782ccf0f205c569b1",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041520.pdf",
+      "landingPageUrl": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "New_Delhi__2025041533.pdf",
+      "sha256": "d9fd6c3bf5e2d6acee22a95953a8368def0827260f45b3927284ad0bba6aec0b",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041533.pdf",
+      "landingPageUrl": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "New_Delhi__17809011041267.pdf",
+      "sha256": "8f870fe8e5ed8c82ad6d7887fd6584673d92ee89ef4f50cde5c73a513cccf888",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809011041267.pdf",
+      "landingPageUrl": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "New_Delhi__17809016931369.pdf",
+      "sha256": "055077cc63569c234aa08727fba6b9c927351b0e8774813235256cd949716db0",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809016931369.pdf",
+      "landingPageUrl": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "New_Delhi__17809023682823.pdf",
+      "sha256": "4ff46d462f822e98bdedf2ec6854ab0d7561de2d7422394d1b09ffb72d3f140f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809023682823.pdf",
+      "landingPageUrl": "https://dmnewdelhi.delhi.gov.in/police-station-wise-accident-cases/",
+      "linkText": "3. 1st Jan,2026 to 31st May,2026 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040910.pdf",
+      "sha256": "94e16ed12a186a6b9344a6f4819bbb9d77cfa82dedc36336d8e6eb7e71a32d6d",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040910.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "1. Jan to Dec 2022 08/04/2025 download pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040993.pdf",
+      "sha256": "2b3aa3b0b2d113c231f341bd414de075fcf554ab3ab459e0962947dde923693c",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040993.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/irad-edar-north-east-delhi/",
+      "linkText": "download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040921.pdf",
+      "sha256": "d29ab6059a73cf0e32601dd8b7f9f72d4a26791880a827a2256d43617d8fb54e",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040921.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "2. Jan 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040977.pdf",
+      "sha256": "ed4a167c734d0f7ab2145fdef9dc01a179b559a15437d8792186d273d396f004",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040977.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "3. Feb-2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040994.pdf",
+      "sha256": "04ebb37f9e19d46ae0cca6b9a3db3b4270dc8ed576608ad673527dfab1bff0f7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040994.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "4. March 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040934-1.pdf",
+      "sha256": "fc92c8e19cd76940cabe4db99b9e36a4eccccefc047c1e8670590314ff35caaf",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040934-1.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "5. April 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040912.pdf",
+      "sha256": "a4ac7577949fbbd1d20d58abce185b4adc578fd52897b8e92adfef5d27d57b9c",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040912.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "6. May 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040912-1.pdf",
+      "sha256": "1fc166bfada2d17f4c05fad87fc9d17445a298d6a9ad514c61ba97c4396860a7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040912-1.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "7. June 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040945.pdf",
+      "sha256": "4623e7b5338745f74663a52456d0c2d50bbaea2b59553f082e0437f2528fef27",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040945.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "8. July 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040936.pdf",
+      "sha256": "3ac6584f076eea2870bc047b6e8ae2bc574619b9d503a248f87a03d9113431ca",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040936.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "9. August 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040996.pdf",
+      "sha256": "ac4a5f96a8bfeff36e235031703cf0200a39cfd21be8116705101209ec9209fd",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040996.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "10. September 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040930-1.pdf",
+      "sha256": "167cf98ef1f6139befe2ce33e21adbc4a581cb2efdc9bba2a489dbda4c74692c",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040930-1.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "11. October 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040913.pdf",
+      "sha256": "13f105e274dd6248d30c0159f48f56fdc963f7ee2b3234af85acc13151f799ed",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040913.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "12. November 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040956.pdf",
+      "sha256": "ffbaf5475a55a0d49a4a8fa7d5ae2ca741da28198486f648382d800e171df344",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040956.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "13. December 2023 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040953.pdf",
+      "sha256": "8117dd37afe47c66aa2a15e29105f44aa4f2d44e92df347b1b6c2af38ffe013e",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040953.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "14. Jan 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040984-1.pdf",
+      "sha256": "dcc9e830f00d224d652a414650aa9b4442167bce19e6d6989ed98e40b01dbeb1",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040984-1.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "15. Feb 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040988.pdf",
+      "sha256": "22e3cc42872419ac348bb6499d70c4a00348a53dc77a418606e6691686383a59",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040988.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "16. March 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040962.pdf",
+      "sha256": "604cd2ae7507e45d26a4716806ef234327116a55916ae80bd25b2026137ee1f9",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040962.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "17. April 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040961-1.pdf",
+      "sha256": "8c9e0f9bca886542078bb1aea0a0386fbdef4900c333deb49c6a4d9f2d8b8a1c",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040961-1.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "18. May 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040922.pdf",
+      "sha256": "2874cd50a811f9a11e8a6e6fb1180ddfce132b528404fa34b1c10a7e3c9d5938",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040922.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "19. June 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040947.pdf",
+      "sha256": "6061b8e4ed85f7f224c8dc8408979646173a45649efae5e80a6796da85bc6bec",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040947.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "20. July 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040962-1.pdf",
+      "sha256": "bd8fb78ace7ef1780f1eb9e9e92d30cc8a3d5af865e20dfaf38dcd2abfa013d7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040962-1.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "21. August 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040992.pdf",
+      "sha256": "42cd2ae53bff094960a4443f72d497b5b6514a6e350432afcd03a087002505cb",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040992.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "22. Sept 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040963.pdf",
+      "sha256": "2f8a1cb8d5e1f7f1d8bbb95ac10800f98dc550a4bf977387e132a4ee8e4886d7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040963.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "23. Oct 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040925.pdf",
+      "sha256": "80b1f3a9c88c4ad7ca3089c153384f404ec82934ad91119039ae236cb483f6bc",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040925.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "24. Nov 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__2025040912-2.pdf",
+      "sha256": "e0e9e6a42be7737608f0515419bb6a6b4629e8a849d3d4c22c11d6a39b4a1dd1",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2025/04/2025040912-2.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "25. Dec 2024 08/04/2025 download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679408182812.pdf",
+      "sha256": "ede269e883c3b95146d7fa811831bc7bedb851cc7027d040bacaa1f3793b497e",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679408182812.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "27. Jan-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679419374958.pdf",
+      "sha256": "b63d55c40a565fcd682d67dd2456eee70097eff4f76f6d3a18fb9347f2f82128",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679419374958.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "26. Jan-2025 to Dec-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "North_East__17679409635243.pdf",
+      "sha256": "e1b564073fb1e5063a35390b6a89cbd2311227a8d857c81aeeb4adc427b8d9d1",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679409635243.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "28. Feb-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679410229820.pdf",
+      "sha256": "679130e185f266f573b7c6ee7d2cead2953cfb9020608986766ec02923b4e2c0",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679410229820.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "29. Mar-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679410575440.pdf",
+      "sha256": "801cd350a8bbc3eb0199ecad0ad062603550bdebdfde48ed88f1fd30252c69fb",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679410575440.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "30. Apr-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679410826703.pdf",
+      "sha256": "7194a840202f99627bc9dad1c1fa4e26908b24b42226b43db1d7d9e43c916818",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679410826703.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "31. May-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679411147347.pdf",
+      "sha256": "6a8252554ea4d071689935013701fcdaa348a53898148798d301e660e958d075",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679411147347.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "32. Jun-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679411382592.pdf",
+      "sha256": "5d03f8b847e9667e4b3336b06cd8c7fce4840ee401d46c926f6cb0e4f686c0dc",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679411382592.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "33. Jul-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679411637692.pdf",
+      "sha256": "d54cd7e72dc671d5c6acacee11f4ffe7873ff67a8c061a5364f5abd68eb070f3",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679411637692.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "34. Aug-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679411871717.pdf",
+      "sha256": "994e866ac4b72f1c7991e352664a1586d79e1ba0195ef905cccd12dd3e273a67",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679411871717.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "35. Sep-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679412089215.pdf",
+      "sha256": "517a5d731d2636824fb4da2774d8b81507bdb34b7aeafeceaeb3178c6cac0579",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679412089215.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "36. Oct-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679414545238.pdf",
+      "sha256": "6a4828ee5643d865d47e9550447fe5ef83f2003d89e30b1ffc1a8567f33948fd",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679414545238.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "37. Nov-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17679414742910.pdf",
+      "sha256": "909a1271ee1bbbcea9288bb68e99237e67513e45279b280a547753905823911f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/01/17679414742910.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "38. Dec-2025 09-01-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17882586097454.pdf",
+      "sha256": "a6e072711c3a5435163a704838fa5766c27b1f4e244f78356944dfb4657af374",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882586097454.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "39. Jan-2026 01-09-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17882586513230.pdf",
+      "sha256": "2d1f7681c1538c6bd94372057e6c62cd431986b25418d74747b41f932e57c325",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882586513230.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "40. Feb-2026 01-09-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17882586838653.pdf",
+      "sha256": "e1d1060a039e5240ef6d08cb129dbabd3f0e907e27a841ee419e86909946c084",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882586838653.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "41. March-2026 01-09-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17882587114432.pdf",
+      "sha256": "0168998fbf397d56c30a9e0629fdfaf6be95b72d6863cddf5721d69517e3388b",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882587114432.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "42. April-2026 01-09-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17882587381004.pdf",
+      "sha256": "ddc0a10412b0437de77cd79790e92b5235bd9442f12f79a67972e2d87b51f17a",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882587381004.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "43. May-2026 01-09-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17882588027052.pdf",
+      "sha256": "683f621459bcf209672d437f29e8214cb14931292cd575fb1853780a0ebf710b",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882588027052.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "44. June-2026 01-09-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17882588594316.pdf",
+      "sha256": "d8f01590581fad68277442d815aeaddc0013af725c016f657679c197e7532f1f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882588594316.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "45. July-2026 01-09-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_East__17882588892072.pdf",
+      "sha256": "f4aea00f799d0f1463bd2c788deb7ce10d98f58f8a4b079006871352b48a86a5",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s35b8add2a5d98b1a652ea7fd72d942dac/uploads/2026/09/17882588892072.pdf",
+      "landingPageUrl": "https://dmnortheast.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "linkText": "46. Aug-2026 01-09-2026 Download.pdf",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_West__17676911964560.pdf",
+      "sha256": "abb430424c6c2c444d183f904f24efbfb42554f6b91d4ff9bf62dfe4a783d7c5",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3b1eec33c726a60554bc78518d5f9b32c/uploads/2026/01/17676911964560.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "iRAD (Accidents Classified According 01 Jan 2025 to 31 Dec 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "North_West__2025041579.pdf",
+      "sha256": "196cf30e14ededd5eb16061035c64005609837d27115fae9282a346b435c0d7f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s3b1eec33c726a60554bc78518d5f9b32c/uploads/2025/04/2025041579.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "Police Station wise Accident Cases",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__2025041559.pdf",
+      "sha256": "aaed88237c309424ed1f48a6588d2050b5d57001d884be694ef11ffd1955e8eb",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2025/04/2025041559.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/police-station-wise-accident-cases-2/",
+      "linkText": "Police Station Wise Accident Cases 01/01/2022 View (102 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South__2025041566.pdf",
+      "sha256": "960f75af04a936a2efa4df3fb82ad954731fd4d005435de2383f100789d2f614",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2025/04/2025041566.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/police-station-wise-accident-cases-3/",
+      "linkText": "Police Station Wise Accident Cases 01/01/2024 View (102 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South__2025041584-1.pdf",
+      "sha256": "59baa7cb57fdf838b78718b873f39b75e84e705d3ea032e5c13e2d26dfe17ab2",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2025/04/2025041584-1.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/police-station-wise-accident-cases/",
+      "linkText": "Police Station Wise Accident Cases 01/01/2023 View (102 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South__17676984562540.pdf",
+      "sha256": "7ab4585ca5b4533234414f68feb97d7a7bedc3319389f26bcf5bf9c4cd393b3d",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676984562540.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/january-2025/",
+      "linkText": "January 2025 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17676992399750.pdf",
+      "sha256": "a07384a5d630ea81de46a962de5059eff66b7c35705f83c87c39cf98328dc480",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676992399750.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/february/",
+      "linkText": "february 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17676993008951.pdf",
+      "sha256": "65f096ed795f865362b09e290ad5cba69b68877c874d66f36179ec8de98d7b92",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676993008951.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/march-2025/",
+      "linkText": "March 2025 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17676995869932.pdf",
+      "sha256": "40cc36f51b701a5df0e6e676398df80b023b1d1e52d754fc2b233b05f10d5903",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676995869932.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/april/",
+      "linkText": "April 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17676997411236.pdf",
+      "sha256": "4b59bfa751483c9ba5ed6281e846cefc3907481d16db124077a6980dccd54d8d",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676997411236.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/may/",
+      "linkText": "May 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17676997926574.pdf",
+      "sha256": "b75ec1bc75b8bc2870fe8c12bd7cbf7816ba3797e036852d02a9ae0e87c2f4d8",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676997926574.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/june-2025/",
+      "linkText": "June 2025 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17676998256483.pdf",
+      "sha256": "a8ae4e2a0f0925a031c65ab9cb5005286b89129f99de4f1d0e1a931bda9d0d1f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676998256483.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/july-2025/",
+      "linkText": "july 2025 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17676998727892.pdf",
+      "sha256": "30ad6ba937fbd890b21b3dcce59a6fe4b82607721f2ff7c6dabe8ead9d66234f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676998727892.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/august/",
+      "linkText": "August 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17676999089166.pdf",
+      "sha256": "c9c141ea344a7f2d961c90dd336d3fae024cf52e64d5a61b4b3af5ada5389707",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17676999089166.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/september/",
+      "linkText": "September 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17677005771490.pdf",
+      "sha256": "816e1dc6a46bb3daad4df7d3ca378aa679e46f3245b75a382a07cbcff25b8be0",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17677005771490.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/october-2025/",
+      "linkText": "october 2025 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17677006107212.pdf",
+      "sha256": "031994956b23a6259b586ed5a2bf07aa8b85fbad8583764151e8596872c26710",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17677006107212.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/november-2025/",
+      "linkText": "November 2025 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South__17677006496518.pdf",
+      "sha256": "3605d4f11f12d4a81b31ba4c2bf837fed39a24844de3d830316f77a3fd83b2a7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s39bf31c7ff062936a96d3c8bd1f8f2ff3/uploads/2026/01/17677006496518.pdf",
+      "landingPageUrl": "https://dmsouth.delhi.gov.in/document/december/",
+      "linkText": "December 06/01/2026 View (132 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__2025042124.pdf",
+      "sha256": "16f337d55b199718280e682bc5d599b8aa59a0697db446047dfd131cc8755bd9",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042124.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "Police Station Wise Accident Cases (2022 to 2024)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__2025042136.pdf",
+      "sha256": "8d5277807a5f4f69eeb7117da1da6a224d7a78f256c634f482dfa7363ccca927",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042136.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified According by year 01 Jan 2022 to 31 Dec 2022)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__2025042158.pdf",
+      "sha256": "ef0013169bed3250ed7015d9c65972a2d7f1cd03761047d05c7900cb1f007af9",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042158.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified According By year 01 Jan 2023 to 31 Dec 2023)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__2025042163.pdf",
+      "sha256": "541cc34845ff7edcf52a8ce0999417b306319ea59eb7d72c18a7146791010f2d",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042163.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified According By year 01 Jan 2024 to 31 Dec 2024)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_West__17659564847373.pdf",
+      "sha256": "cdc22d7ae750ef8ba61407c5d75fafeac94fd34002e93af56e47cd9bb5c13c39",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659564847373.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Jan 2025 to 31 Jan 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__17659564847373.pdf",
+      "sha256": "cdc22d7ae750ef8ba61407c5d75fafeac94fd34002e93af56e47cd9bb5c13c39",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659564847373.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Jan 2025 to 31 Jan 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17676880854501.pdf",
+      "sha256": "8f1a2abb5caf2b50fbbaa377a846b3664f7cc02be2896cb5801cbc7edab5e63f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676880854501.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified According By Year 01 Jan 2025 to 31 Dec 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "North_West__17659568465531.pdf",
+      "sha256": "8e99ce15c1ba2918e59d7da0837b195ee7235ad31b340e2d5678de2eef4bb5f3",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659568465531.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Feb 2025 to 28 Feb 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__17659568465531.pdf",
+      "sha256": "8e99ce15c1ba2918e59d7da0837b195ee7235ad31b340e2d5678de2eef4bb5f3",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659568465531.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Feb 2025 to 28 Feb 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17659565245947.pdf",
+      "sha256": "858dc5d05233971fd49d3ff41af1fba804d4527368cb0c729372e1cd6a5a8687",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659565245947.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Mar 2025 to 31 Mar 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__17659565856136.pdf",
+      "sha256": "69323b6749caa2f932892b9522a3032e06bb1dbdb8e11593a6103c28857e6ea7",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659565856136.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Apr 2025 to 30 Apr 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "North_West__17659566344197.pdf",
+      "sha256": "159ae26d8ebe8079ed50297fdf4c6b7a9ad5c50335f1cec8062a7a1972492a8f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566344197.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 May 2025 to 31 May 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__17659566344197.pdf",
+      "sha256": "159ae26d8ebe8079ed50297fdf4c6b7a9ad5c50335f1cec8062a7a1972492a8f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566344197.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 May 2025 to 31 May 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17659566625570.pdf",
+      "sha256": "60f93d08353f65a3dda7cf25762f6713e16fefbbdb68b4a445863ae4d83a0deb",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566625570.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Jun 2025 to 30 Jun 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "North_West__17659566916898.pdf",
+      "sha256": "417cb372514cec51f00129be647092960ad39081c01be238f389e7dac4e73538",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566916898.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Jul 2025 to 31 Jul 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__17659566916898.pdf",
+      "sha256": "417cb372514cec51f00129be647092960ad39081c01be238f389e7dac4e73538",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566916898.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Jul 2025 to 31 Jul 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17659567106223.pdf",
+      "sha256": "8f89701e3c5361a20c60f785af9ab23cdc0e8f7c89d849bd2f5388c59a3f94df",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567106223.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Aug 2025 to 31 Aug 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "North_West__17659567362040.pdf",
+      "sha256": "615c311008d5d8c5a78b740f6f7e00fa708e7cff4505cb2deb3bc2c6aa332722",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567362040.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Sep 2025 to 30 Sep 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__17659567362040.pdf",
+      "sha256": "615c311008d5d8c5a78b740f6f7e00fa708e7cff4505cb2deb3bc2c6aa332722",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567362040.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Sep 2025 to 30 Sep 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "North_West__17659567553072.pdf",
+      "sha256": "8e7804aa0841eac1b7856215834fbafc6e081ce6c46573a7f36d96038940b017",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567553072.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Oct 2025 to 31 Oct 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__17659567553072.pdf",
+      "sha256": "8e7804aa0841eac1b7856215834fbafc6e081ce6c46573a7f36d96038940b017",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567553072.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Oct 2025 to 31 Oct 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17659567676014.pdf",
+      "sha256": "9f37c5d8c8e9a4949b27ef1e65a7ceb5177fb188aa6e567ab03ce5208fcb4bdb",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567676014.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Nov 2025 to 30 Nov 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "North_West__17676879156890.pdf",
+      "sha256": "b7c9cc16cf222913991df95eaa62326d75628aeb5f89a401e2e01791d38624e4",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676879156890.pdf",
+      "landingPageUrl": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Dec 2025 to 31 Dec 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_East__17676879156890.pdf",
+      "sha256": "b7c9cc16cf222913991df95eaa62326d75628aeb5f89a401e2e01791d38624e4",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676879156890.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Dec 2025 to 31 Dec 2025)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17881699603394.pdf",
+      "sha256": "fe74c0071f3ff8ebfda591d260c643c475ff236ac490b43d98edb059bcc685a0",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881699603394.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Jan 2026 to 31 Jan 2026)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17881705845681.pdf",
+      "sha256": "76ec1dd0dfabe103e9b423635dfddbe239162440349a399efb7f5172c93d34e0",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881705845681.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Feb 2026 to 28 Feb 2026)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17881706119872.pdf",
+      "sha256": "f75edfe5477112b61019973bbf88a83fd505154d583c7c5182b96ac7a6e9ff33",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706119872.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Mar 2026 to 31 Mar 2026)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17881706318178.pdf",
+      "sha256": "47d7f34620ab811e0ea86aeb2cd9912adfd68b59c26fd33ad24a502e867e7f0c",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706318178.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Apr 2026 to 30 Apr 2026)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17881706536659.pdf",
+      "sha256": "8ff67ef26d9879a9a87a32728564b5a294d58b91b1370e4fc2ce904d1c1822d8",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706536659.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 May 2026 to 31 May 2026)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17881706749283.pdf",
+      "sha256": "586d225289aee1535fbec48066bb46b5fb065f3f800fb751c858c63cd915d002",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706749283.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Jun 2026 to 30 Jun 2026)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_East__17881706927042.pdf",
+      "sha256": "4957e2faaf2ac10c08b30893dc27e8ae23ac66b3f292a46a27055a1ad3a60848",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706927042.pdf",
+      "landingPageUrl": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "linkText": "iRAD (Accidents Classified by Month Wise 01 Jul 2026 to 31 Jul 2026)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__2025041749.pdf",
+      "sha256": "34731a392eb2b99dce1e96b20f7230149b4d8ab66d65c0c10ffb7ebe4804ef41",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025041749.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/police-station-wise-accident-cases/",
+      "linkText": "Police station wise Accident Cases south west",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__2025042112.pdf",
+      "sha256": "686c2cd765e97a4e98b7d7456f9d743e4a72204c1287a35955b88a3dda4d5a43",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042112.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+      "linkText": "3. Jan. 2024 to Dec. 2024 09-01-2025 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__2025042155.pdf",
+      "sha256": "c44e8bb2ee823db8051b11c8935f539ab7abce240e9efec0ee48c12f91ace791",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042155.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+      "linkText": "1. Jan. 2022 to Dec. 2022 12-01-2023 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__2025042179.pdf",
+      "sha256": "4296b24e6f4300a4d0d6630bef08dd72eb430d87975162fe73b80b0930f7430d",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042179.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+      "linkText": "4. Jan. 2025 to April. 2025 17-04-2025 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "South_West__2025042191.pdf",
+      "sha256": "1e7f6b3598dc1260c45434918e3ebc21689a20c432ca337db023b61ea2f7c3c0",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2025/04/2025042191.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+      "linkText": "2. Jan. 2023 to Dec. 2023 10-01-2024 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "South_West__17676949639850.pdf",
+      "sha256": "3e473991f6e69e0d58ff266184ac32611e52104805d9000725f1b6d3df483930",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s388ae6372cfdc5df69a976e893f4d554b/uploads/2026/01/17676949639850.pdf",
+      "landingPageUrl": "https://dmsouthwest.delhi.gov.in/integrated-road-accident-cases-month-wisedistt-south-west/",
+      "linkText": "5. May 2025 to Dec. 2025 06-01-2026 Click to View/Download",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__2025041795.pdf",
+      "sha256": "fe9e36720d97891b3d91c968b0ecec59f9ebfb2455a13a69136c810ac449ddcc",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/04/2025041795.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/jan-2022-to-dec-2022/",
+      "linkText": "View (135 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "West__20250417100.pdf",
+      "sha256": "3fd446d82a9e8ae164cb5ae5e441f4cb28205a17f4fed3dbb088ae2024a1cd86",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/04/20250417100.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/from-01-jan-2023-to-31-dec-2023/",
+      "linkText": "View (135 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "West__2025041743.pdf",
+      "sha256": "c53ef37d6c5a06afb20bd7e75b0d4753707ab5e753e133c7a18df927199610ba",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/04/2025041743.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/from-01-jan-2024-to-31-dec-2024/",
+      "linkText": "View (135 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "evidence_only"
+    },
+    {
+      "filename": "West__17676875811215.pdf",
+      "sha256": "8327f3d6f5619cef73faff240ffc2dc5641d378062414e2f2cb3408004024263",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676875811215.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+      "linkText": "View (125 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__2025070449.pdf",
+      "sha256": "2dfdd5b6e7bd5d6768b7b857ffa44704f792016ed34feca2a4eecda3a231b414",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/07/2025070449.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/from-1-jan-2025-to-30-april-2025/",
+      "linkText": "View (133 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__2025070423.pdf",
+      "sha256": "bb911af31533f23ff01b240e7676520bb002360c1076722ab0158d67f80c9b8d",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/07/2025070423.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/month-of-may-2025/",
+      "linkText": "View (98 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__2025070441.pdf",
+      "sha256": "78c26ccb658a955a8f9629ab6d68cc45f69279e9bac63a51a11131db0d12bd9d",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2025/07/2025070441.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/month-of-june-2025/",
+      "linkText": "View (98 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__17676869538318.pdf",
+      "sha256": "e79369f4815bed1bc59a9a25a4d8e61606b3f5040646b8909b1ca8be612e5b5f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676869538318.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/month-of-july/",
+      "linkText": "View (125 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__17676870979027.pdf",
+      "sha256": "dadad575cc06f1f1e4a1ea39039eeb65e7e5382ad0d58f81f7c481db5cfba427",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676870979027.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/month-of-august/",
+      "linkText": "View (125 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__17676873471505.pdf",
+      "sha256": "9be84ce7578aa44b78ced79677eb7489ffda36f58989f104e91c2e615c77fa7f",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676873471505.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/month-of-sep/",
+      "linkText": "View (124 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__17676873839212.pdf",
+      "sha256": "526701b1ba2637ec2dab3773e9eb3811a4712c48fa9ac17f5a29c6224b433620",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676873839212.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/month-of-oct/",
+      "linkText": "View (125 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__17676874124105.pdf",
+      "sha256": "ccd04dec3c60de98c05d56f2b0223587aa5b2441ca2a5c96b6753ada8d03ff3d",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676874124105.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/month-of-nov/",
+      "linkText": "View (125 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    },
+    {
+      "filename": "West__17676874414987.pdf",
+      "sha256": "51b36da1965d5ef35cc5f134b010a3bdb60aae1cd118c3a773204c66da7cd2b4",
+      "publicPdfUrl": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676874414987.pdf",
+      "landingPageUrl": "https://dmwest.delhi.gov.in/document/month-of-dec/",
+      "linkText": "View (125 KB)",
+      "verifiedOn": "2026-10-18",
+      "role": "contributes_rows"
+    }
+  ],
+  "knownIssues": [
+    {
+      "id": "north-east-historical-stray-months",
+      "summary": "Historical reporting-date tables include out-of-period months in printed totals; retained monthly CSV rows exclude them.",
+      "affectedSources": [
+        "North_East__2025040921.pdf",
+        "North_East__2025040977.pdf",
+        "North_East__2025040994.pdf",
+        "North_East__2025040912.pdf",
+        "North_East__2025040912-1.pdf",
+        "North_East__2025040945.pdf",
+        "North_East__2025040936.pdf",
+        "North_East__2025040996.pdf",
+        "North_East__2025040930-1.pdf",
+        "North_East__2025040913.pdf",
+        "North_East__2025040956.pdf",
+        "North_East__2025040953.pdf",
+        "North_East__2025040984-1.pdf",
+        "North_East__2025040988.pdf",
+        "North_East__2025040962.pdf",
+        "North_East__2025040961-1.pdf",
+        "North_East__2025040922.pdf",
+        "North_East__2025040947.pdf",
+        "North_East__2025040962-1.pdf",
+        "North_East__2025040992.pdf",
+        "North_East__2025040963.pdf",
+        "North_East__2025040925.pdf",
+        "North_East__2025040912-2.pdf"
+      ],
+      "affectedPeriods": [
+        2023,
+        2024
+      ],
+      "counts": {
+        "rows": 38,
+        "accidents": 71,
+        "reports": 23
+      },
+      "printedTotals": [
+        {
+          "sourceFile": "North_East__2025040921.pdf",
+          "printedTotal": {
+            "fatal": 9,
+            "grievous": 3,
+            "minor_hospitalised": 14,
+            "minor_non_hospitalised": 4,
+            "no_injury": 1,
+            "total_non_fatal": 22,
+            "total_accidents": 31,
+            "killed": 12,
+            "persons_grievous": 3,
+            "persons_minor": 25,
+            "persons_no_injury": 15,
+            "persons_total": 55,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040977.pdf",
+          "printedTotal": {
+            "fatal": 9,
+            "grievous": 6,
+            "minor_hospitalised": 10,
+            "minor_non_hospitalised": 1,
+            "no_injury": 2,
+            "total_non_fatal": 19,
+            "total_accidents": 28,
+            "killed": 9,
+            "persons_grievous": 6,
+            "persons_minor": 16,
+            "persons_no_injury": 19,
+            "persons_total": 50,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040994.pdf",
+          "printedTotal": {
+            "fatal": 10,
+            "grievous": 5,
+            "minor_hospitalised": 15,
+            "minor_non_hospitalised": 0,
+            "no_injury": 1,
+            "total_non_fatal": 21,
+            "total_accidents": 31,
+            "killed": 10,
+            "persons_grievous": 6,
+            "persons_minor": 19,
+            "persons_no_injury": 31,
+            "persons_total": 66,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040912.pdf",
+          "printedTotal": {
+            "fatal": 9,
+            "grievous": 10,
+            "minor_hospitalised": 23,
+            "minor_non_hospitalised": 3,
+            "no_injury": 0,
+            "total_non_fatal": 36,
+            "total_accidents": 45,
+            "killed": 13,
+            "persons_grievous": 12,
+            "persons_minor": 35,
+            "persons_no_injury": 27,
+            "persons_total": 87,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040912-1.pdf",
+          "printedTotal": {
+            "fatal": 9,
+            "grievous": 8,
+            "minor_hospitalised": 7,
+            "minor_non_hospitalised": 0,
+            "no_injury": 0,
+            "total_non_fatal": 15,
+            "total_accidents": 24,
+            "killed": 9,
+            "persons_grievous": 12,
+            "persons_minor": 14,
+            "persons_no_injury": 21,
+            "persons_total": 56,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040945.pdf",
+          "printedTotal": {
+            "fatal": 5,
+            "grievous": 5,
+            "minor_hospitalised": 16,
+            "minor_non_hospitalised": 3,
+            "no_injury": 1,
+            "total_non_fatal": 25,
+            "total_accidents": 30,
+            "killed": 8,
+            "persons_grievous": 15,
+            "persons_minor": 31,
+            "persons_no_injury": 19,
+            "persons_total": 73,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040936.pdf",
+          "printedTotal": {
+            "fatal": 8,
+            "grievous": 5,
+            "minor_hospitalised": 17,
+            "minor_non_hospitalised": 2,
+            "no_injury": 0,
+            "total_non_fatal": 24,
+            "total_accidents": 32,
+            "killed": 8,
+            "persons_grievous": 7,
+            "persons_minor": 25,
+            "persons_no_injury": 22,
+            "persons_total": 62,
+            "animals_killed": 0,
+            "animals_injured": 1
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040996.pdf",
+          "printedTotal": {
+            "fatal": 11,
+            "grievous": 8,
+            "minor_hospitalised": 18,
+            "minor_non_hospitalised": 3,
+            "no_injury": 0,
+            "total_non_fatal": 29,
+            "total_accidents": 40,
+            "killed": 11,
+            "persons_grievous": 9,
+            "persons_minor": 30,
+            "persons_no_injury": 38,
+            "persons_total": 88,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040930-1.pdf",
+          "printedTotal": {
+            "fatal": 3,
+            "grievous": 11,
+            "minor_hospitalised": 13,
+            "minor_non_hospitalised": 1,
+            "no_injury": 1,
+            "total_non_fatal": 26,
+            "total_accidents": 29,
+            "killed": 3,
+            "persons_grievous": 12,
+            "persons_minor": 18,
+            "persons_no_injury": 24,
+            "persons_total": 57,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040913.pdf",
+          "printedTotal": {
+            "fatal": 8,
+            "grievous": 7,
+            "minor_hospitalised": 17,
+            "minor_non_hospitalised": 2,
+            "no_injury": 0,
+            "total_non_fatal": 26,
+            "total_accidents": 34,
+            "killed": 8,
+            "persons_grievous": 8,
+            "persons_minor": 29,
+            "persons_no_injury": 26,
+            "persons_total": 71,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040956.pdf",
+          "printedTotal": {
+            "fatal": 9,
+            "grievous": 4,
+            "minor_hospitalised": 19,
+            "minor_non_hospitalised": 0,
+            "no_injury": 2,
+            "total_non_fatal": 25,
+            "total_accidents": 34,
+            "killed": 9,
+            "persons_grievous": 6,
+            "persons_minor": 21,
+            "persons_no_injury": 30,
+            "persons_total": 66,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040953.pdf",
+          "printedTotal": {
+            "fatal": 7,
+            "grievous": 1,
+            "minor_hospitalised": 22,
+            "minor_non_hospitalised": 0,
+            "no_injury": 2,
+            "total_non_fatal": 25,
+            "total_accidents": 32,
+            "killed": 7,
+            "persons_grievous": 1,
+            "persons_minor": 29,
+            "persons_no_injury": 26,
+            "persons_total": 63,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040984-1.pdf",
+          "printedTotal": {
+            "fatal": 1,
+            "grievous": 3,
+            "minor_hospitalised": 24,
+            "minor_non_hospitalised": 0,
+            "no_injury": 1,
+            "total_non_fatal": 28,
+            "total_accidents": 29,
+            "killed": 1,
+            "persons_grievous": 4,
+            "persons_minor": 26,
+            "persons_no_injury": 22,
+            "persons_total": 53,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040988.pdf",
+          "printedTotal": {
+            "fatal": 7,
+            "grievous": 3,
+            "minor_hospitalised": 16,
+            "minor_non_hospitalised": 0,
+            "no_injury": 2,
+            "total_non_fatal": 21,
+            "total_accidents": 28,
+            "killed": 7,
+            "persons_grievous": 4,
+            "persons_minor": 20,
+            "persons_no_injury": 22,
+            "persons_total": 53,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040962.pdf",
+          "printedTotal": {
+            "fatal": 6,
+            "grievous": 4,
+            "minor_hospitalised": 19,
+            "minor_non_hospitalised": 0,
+            "no_injury": 1,
+            "total_non_fatal": 24,
+            "total_accidents": 30,
+            "killed": 6,
+            "persons_grievous": 6,
+            "persons_minor": 23,
+            "persons_no_injury": 24,
+            "persons_total": 59,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040961-1.pdf",
+          "printedTotal": {
+            "fatal": 7,
+            "grievous": 4,
+            "minor_hospitalised": 17,
+            "minor_non_hospitalised": 1,
+            "no_injury": 1,
+            "total_non_fatal": 23,
+            "total_accidents": 30,
+            "killed": 7,
+            "persons_grievous": 4,
+            "persons_minor": 21,
+            "persons_no_injury": 30,
+            "persons_total": 62,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040922.pdf",
+          "printedTotal": {
+            "fatal": 5,
+            "grievous": 10,
+            "minor_hospitalised": 17,
+            "minor_non_hospitalised": 2,
+            "no_injury": 1,
+            "total_non_fatal": 30,
+            "total_accidents": 35,
+            "killed": 5,
+            "persons_grievous": 11,
+            "persons_minor": 21,
+            "persons_no_injury": 32,
+            "persons_total": 69,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040947.pdf",
+          "printedTotal": {
+            "fatal": 10,
+            "grievous": 4,
+            "minor_hospitalised": 9,
+            "minor_non_hospitalised": 1,
+            "no_injury": 3,
+            "total_non_fatal": 17,
+            "total_accidents": 27,
+            "killed": 10,
+            "persons_grievous": 4,
+            "persons_minor": 12,
+            "persons_no_injury": 27,
+            "persons_total": 53,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040962-1.pdf",
+          "printedTotal": {
+            "fatal": 6,
+            "grievous": 5,
+            "minor_hospitalised": 16,
+            "minor_non_hospitalised": 1,
+            "no_injury": 1,
+            "total_non_fatal": 23,
+            "total_accidents": 29,
+            "killed": 6,
+            "persons_grievous": 6,
+            "persons_minor": 22,
+            "persons_no_injury": 25,
+            "persons_total": 59,
+            "animals_killed": 1,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040992.pdf",
+          "printedTotal": {
+            "fatal": 7,
+            "grievous": 7,
+            "minor_hospitalised": 15,
+            "minor_non_hospitalised": 2,
+            "no_injury": 3,
+            "total_non_fatal": 27,
+            "total_accidents": 34,
+            "killed": 7,
+            "persons_grievous": 12,
+            "persons_minor": 20,
+            "persons_no_injury": 27,
+            "persons_total": 66,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040963.pdf",
+          "printedTotal": {
+            "fatal": 3,
+            "grievous": 10,
+            "minor_hospitalised": 14,
+            "minor_non_hospitalised": 4,
+            "no_injury": 0,
+            "total_non_fatal": 28,
+            "total_accidents": 31,
+            "killed": 3,
+            "persons_grievous": 10,
+            "persons_minor": 24,
+            "persons_no_injury": 32,
+            "persons_total": 69,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040925.pdf",
+          "printedTotal": {
+            "fatal": 10,
+            "grievous": 4,
+            "minor_hospitalised": 14,
+            "minor_non_hospitalised": 3,
+            "no_injury": 0,
+            "total_non_fatal": 21,
+            "total_accidents": 31,
+            "killed": 11,
+            "persons_grievous": 4,
+            "persons_minor": 27,
+            "persons_no_injury": 31,
+            "persons_total": 73,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        },
+        {
+          "sourceFile": "North_East__2025040912-2.pdf",
+          "printedTotal": {
+            "fatal": 6,
+            "grievous": 7,
+            "minor_hospitalised": 17,
+            "minor_non_hospitalised": 1,
+            "no_injury": 1,
+            "total_non_fatal": 26,
+            "total_accidents": 32,
+            "killed": 6,
+            "persons_grievous": 9,
+            "persons_minor": 19,
+            "persons_no_injury": 20,
+            "persons_total": 54,
+            "animals_killed": 0,
+            "animals_injured": 0
+          }
+        }
+      ],
+      "relevantToThisRelease": false
+    },
+    {
+      "id": "collection-conflict-1",
+      "summary": "Conflicting source values retained at collection level.",
+      "affectedSources": [
+        "East__2023020720.pdf",
+        "East__2023031456.pdf"
+      ],
+      "affectedPeriods": [
+        "2023-01"
+      ],
+      "details": {
+        "table": "month",
+        "district": "East",
+        "period": "2023-01",
+        "differing_columns": {
+          "persons_total": [
+            27,
+            26
+          ],
+          "persons_injured": [
+            22,
+            21
+          ]
+        },
+        "values": [
+          {
+            "file": "East__2023020720.pdf",
+            "generated": "2023-02-07T12:16:49",
+            "accidents": 27,
+            "fatal": 5,
+            "killed": 5
+          },
+          {
+            "file": "East__2023031456.pdf",
+            "generated": "2023-03-03T09:57:35",
+            "accidents": 27,
+            "fatal": 5,
+            "killed": 5
+          }
+        ]
+      },
+      "relevantToThisRelease": false
+    },
+    {
+      "id": "collection-listing-north-west-17659564847373-pdf",
+      "summary": "Listed under North West; report header says South East. Source rows retain the report header district.",
+      "affectedSources": [
+        "North_West__17659564847373.pdf"
+      ],
+      "affectedPeriods": [
+        "2025-01-01",
+        "2025-01-31"
+      ],
+      "details": {
+        "file": "North_West__17659564847373.pdf",
+        "listed_on": "North West",
+        "report_says": "South East",
+        "period": [
+          "2025-01-01",
+          "2025-01-31"
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-north-west-17659566344197-pdf",
+      "summary": "Listed under North West; report header says South East. Source rows retain the report header district.",
+      "affectedSources": [
+        "North_West__17659566344197.pdf"
+      ],
+      "affectedPeriods": [
+        "2025-05-01",
+        "2025-05-31"
+      ],
+      "details": {
+        "file": "North_West__17659566344197.pdf",
+        "listed_on": "North West",
+        "report_says": "South East",
+        "period": [
+          "2025-05-01",
+          "2025-05-31"
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-north-west-17659566916898-pdf",
+      "summary": "Listed under North West; report header says South East. Source rows retain the report header district.",
+      "affectedSources": [
+        "North_West__17659566916898.pdf"
+      ],
+      "affectedPeriods": [
+        "2025-07-01",
+        "2025-07-31"
+      ],
+      "details": {
+        "file": "North_West__17659566916898.pdf",
+        "listed_on": "North West",
+        "report_says": "South East",
+        "period": [
+          "2025-07-01",
+          "2025-07-31"
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-north-west-17659567362040-pdf",
+      "summary": "Listed under North West; report header says South East. Source rows retain the report header district.",
+      "affectedSources": [
+        "North_West__17659567362040.pdf"
+      ],
+      "affectedPeriods": [
+        "2025-09-01",
+        "2025-09-30"
+      ],
+      "details": {
+        "file": "North_West__17659567362040.pdf",
+        "listed_on": "North West",
+        "report_says": "South East",
+        "period": [
+          "2025-09-01",
+          "2025-09-30"
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-north-west-17659567553072-pdf",
+      "summary": "Listed under North West; report header says South East. Source rows retain the report header district.",
+      "affectedSources": [
+        "North_West__17659567553072.pdf"
+      ],
+      "affectedPeriods": [
+        "2025-10-01",
+        "2025-10-31"
+      ],
+      "details": {
+        "file": "North_West__17659567553072.pdf",
+        "listed_on": "North West",
+        "report_says": "South East",
+        "period": [
+          "2025-10-01",
+          "2025-10-31"
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-north-west-17659568465531-pdf",
+      "summary": "Listed under North West; report header says South East. Source rows retain the report header district.",
+      "affectedSources": [
+        "North_West__17659568465531.pdf"
+      ],
+      "affectedPeriods": [
+        "2025-02-01",
+        "2025-02-28"
+      ],
+      "details": {
+        "file": "North_West__17659568465531.pdf",
+        "listed_on": "North West",
+        "report_says": "South East",
+        "period": [
+          "2025-02-01",
+          "2025-02-28"
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-north-west-17676879156890-pdf",
+      "summary": "Listed under North West; report header says South East. Source rows retain the report header district.",
+      "affectedSources": [
+        "North_West__17676879156890.pdf"
+      ],
+      "affectedPeriods": [
+        "2025-12-01",
+        "2025-12-31"
+      ],
+      "details": {
+        "file": "North_West__17676879156890.pdf",
+        "listed_on": "North West",
+        "report_says": "South East",
+        "period": [
+          "2025-12-01",
+          "2025-12-31"
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-north-west-2025041579-pdf",
+      "summary": "Listed under North West; report header says Rohini. Source rows retain the report header district.",
+      "affectedSources": [
+        "North_West__2025041579.pdf"
+      ],
+      "affectedPeriods": [
+        "undated or year-only; see source rows"
+      ],
+      "details": {
+        "file": "North_West__2025041579.pdf",
+        "listed_on": "North West",
+        "report_says": "Rohini",
+        "period": [
+          null,
+          null
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-south-west-17676951078366-pdf",
+      "summary": "Listed under South West; report header says Dwarka. Source rows retain the report header district.",
+      "affectedSources": [
+        "South_West__17676951078366.pdf"
+      ],
+      "affectedPeriods": [
+        "2025-05-01",
+        "2025-12-31"
+      ],
+      "details": {
+        "file": "South_West__17676951078366.pdf",
+        "listed_on": "South West",
+        "report_says": "Dwarka",
+        "period": [
+          "2025-05-01",
+          "2025-12-31"
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-south-west-2025041786-pdf",
+      "summary": "Listed under South West; report header says Dwarka. Source rows retain the report header district.",
+      "affectedSources": [
+        "South_West__2025041786.pdf"
+      ],
+      "affectedPeriods": [
+        "undated or year-only; see source rows"
+      ],
+      "details": {
+        "file": "South_West__2025041786.pdf",
+        "listed_on": "South West",
+        "report_says": "Dwarka",
+        "period": [
+          null,
+          null
+        ]
+      },
+      "relevantToThisRelease": false
+    },
+    {
+      "id": "collection-listing-south-west-2025042112-1-pdf",
+      "summary": "Listed under South West; report header says Dwarka. Source rows retain the report header district.",
+      "affectedSources": [
+        "South_West__2025042112-1.pdf"
+      ],
+      "affectedPeriods": [
+        "undated or year-only; see source rows"
+      ],
+      "details": {
+        "file": "South_West__2025042112-1.pdf",
+        "listed_on": "South West",
+        "report_says": "Dwarka",
+        "period": [
+          null,
+          null
+        ]
+      },
+      "relevantToThisRelease": false
+    },
+    {
+      "id": "collection-listing-south-west-2025042138-pdf",
+      "summary": "Listed under South West; report header says Dwarka. Source rows retain the report header district.",
+      "affectedSources": [
+        "South_West__2025042138.pdf"
+      ],
+      "affectedPeriods": [
+        "undated or year-only; see source rows"
+      ],
+      "details": {
+        "file": "South_West__2025042138.pdf",
+        "listed_on": "South West",
+        "report_says": "Dwarka",
+        "period": [
+          null,
+          null
+        ]
+      },
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "collection-listing-south-west-2025042150-pdf",
+      "summary": "Listed under South West; report header says Dwarka. Source rows retain the report header district.",
+      "affectedSources": [
+        "South_West__2025042150.pdf"
+      ],
+      "affectedPeriods": [
+        "undated or year-only; see source rows"
+      ],
+      "details": {
+        "file": "South_West__2025042150.pdf",
+        "listed_on": "South West",
+        "report_says": "Dwarka",
+        "period": [
+          null,
+          null
+        ]
+      },
+      "relevantToThisRelease": false
+    },
+    {
+      "id": "collection-listing-south-west-2025042179-1-pdf",
+      "summary": "Listed under South West; report header says Dwarka. Source rows retain the report header district.",
+      "affectedSources": [
+        "South_West__2025042179-1.pdf"
+      ],
+      "affectedPeriods": [
+        "undated or year-only; see source rows"
+      ],
+      "details": {
+        "file": "South_West__2025042179-1.pdf",
+        "listed_on": "South West",
+        "report_says": "Dwarka",
+        "period": [
+          null,
+          null
+        ]
+      },
+      "relevantToThisRelease": false
+    },
+    {
+      "id": "south-east-2025-annual-monthly-conflict",
+      "summary": "Annual and twelve monthly station tables disagree within the official sources; neither replaces the other.",
+      "affectedSources": [
+        "South_East__17676880854501.pdf",
+        "North_West__17659564847373.pdf",
+        "North_West__17659568465531.pdf",
+        "South_East__17659565245947.pdf",
+        "South_East__17659565856136.pdf",
+        "North_West__17659566344197.pdf",
+        "South_East__17659566625570.pdf",
+        "North_West__17659566916898.pdf",
+        "South_East__17659567106223.pdf",
+        "North_West__17659567362040.pdf",
+        "North_West__17659567553072.pdf",
+        "South_East__17659567676014.pdf",
+        "North_West__17676879156890.pdf"
+      ],
+      "affectedPeriods": [
+        "2025"
+      ],
+      "printedAnnual": {
+        "fatal": 118,
+        "grievous": 149,
+        "minor_hospitalised": 190,
+        "minor_non_hospitalised": 7,
+        "no_injury": 21,
+        "total_non_fatal": 367,
+        "total_accidents": 485,
+        "fir_filed": 296,
+        "proceeded_mact": 64,
+        "pending": 131,
+        "completed": 354,
+        "killed": 123,
+        "persons_grievous": 190,
+        "persons_minor": 318,
+        "persons_no_injury": 474,
+        "persons_total": 1105,
+        "vehicle_count": 780,
+        "animals_killed": 0,
+        "animals_injured": 1
+      },
+      "monthlyStationTotals": {
+        "total_accidents": 486,
+        "fatal": 119,
+        "killed": 124,
+        "pending": 179,
+        "completed": 307
+      },
+      "availableMonthlyPeriods": [
+        "2025-01",
+        "2025-02",
+        "2025-03",
+        "2025-04",
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "explanatoryEvidence": "docs/IRAD_DISTRICT_REPORTS.md",
+      "relevantToThisRelease": true
+    },
+    {
+      "id": "west-2025-annual-unreconciled",
+      "summary": "Annual station table cannot be reconciled with monthly station windows: January to April station tables are not published.",
+      "affectedSources": [
+        "West__17676875811215.pdf",
+        "West__2025070423.pdf",
+        "West__2025070441.pdf",
+        "West__17676869538318.pdf",
+        "West__17676870979027.pdf",
+        "West__17676873471505.pdf",
+        "West__17676873839212.pdf",
+        "West__17676874124105.pdf",
+        "West__17676874414987.pdf"
+      ],
+      "affectedPeriods": [
+        "2025"
+      ],
+      "printedAnnual": {
+        "fatal": 99,
+        "grievous": 71,
+        "minor_hospitalised": 268,
+        "minor_non_hospitalised": 7,
+        "no_injury": 16,
+        "total_non_fatal": 362,
+        "total_accidents": 461,
+        "fir_filed": 449,
+        "proceeded_mact": 56,
+        "pending": 9,
+        "completed": 452,
+        "killed": 103,
+        "persons_grievous": 88,
+        "persons_minor": 378,
+        "persons_no_injury": 424,
+        "persons_total": 993,
+        "vehicle_count": 694,
+        "animals_killed": 1,
+        "animals_injured": 2
+      },
+      "monthlyStationTotals": {
+        "total_accidents": 313,
+        "fatal": 77,
+        "killed": 80,
+        "pending": 13,
+        "completed": 300
+      },
+      "availableMonthlyPeriods": [
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "explanatoryEvidence": "docs/IRAD_DISTRICT_REPORTS.md",
+      "relevantToThisRelease": true
+    }
+  ],
+  "coverageMatrix": [
+    {
+      "district": "Central",
+      "latestPeriodEnd": "2025-12-10",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11"
+        ],
+        "partialEndpoints": [
+          "2025-12"
+        ],
+        "gaps": [],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "Central__jan_2025.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-01-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "Central__feb_2025.pdf",
+            "periodFrom": "2025-02-01",
+            "periodTo": "2025-02-28",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "Central__march_2025.pdf",
+            "periodFrom": "2025-03-01",
+            "periodTo": "2025-03-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "Central__april_2025.pdf",
+            "periodFrom": "2025-04-01",
+            "periodTo": "2025-04-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "Central__may_2025.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-05-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "Central__june_2025.pdf",
+            "periodFrom": "2025-06-01",
+            "periodTo": "2025-06-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "Central__iRAD Report1(1. Accidents Classified According to Month-wise).pdf",
+            "periodFrom": "2025-07-01",
+            "periodTo": "2025-12-10",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [],
+        "windows": []
+      }
+    },
+    {
+      "district": "Dwarka",
+      "latestPeriodEnd": "2025-12-31",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "South_West__2025042138.pdf",
+            "periodFrom": null,
+            "periodTo": null,
+            "periodInferred": true,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "South_West__17676951078366.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": [
+          {
+            "sourceFile": "South_West__17676951078366.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-12-31",
+            "kind": "cumulative"
+          }
+        ]
+      }
+    },
+    {
+      "district": "East",
+      "latestPeriodEnd": "2025-12-31",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partialEndpoints": [],
+        "gaps": [],
+        "partial": false,
+        "reports": [
+          {
+            "sourceFile": "East__2025032074.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-01-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__2025032070.pdf",
+            "periodFrom": "2025-02-01",
+            "periodTo": "2025-02-28",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__2025050526.pdf",
+            "periodFrom": "2025-03-01",
+            "periodTo": "2025-03-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__2025050513.pdf",
+            "periodFrom": "2025-04-01",
+            "periodTo": "2025-04-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__17525703177377.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-05-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__17525703164640.pdf",
+            "periodFrom": "2025-06-01",
+            "periodTo": "2025-06-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__17676901966990.pdf",
+            "periodFrom": "2025-07-01",
+            "periodTo": "2025-07-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__17676901943293.pdf",
+            "periodFrom": "2025-08-01",
+            "periodTo": "2025-08-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__17676902009883.pdf",
+            "periodFrom": "2025-09-01",
+            "periodTo": "2025-09-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__17676901999252.pdf",
+            "periodFrom": "2025-10-01",
+            "periodTo": "2025-10-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__17676901978544.pdf",
+            "periodFrom": "2025-11-01",
+            "periodTo": "2025-11-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "East__17676901956137.pdf",
+            "periodFrom": "2025-12-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      }
+    },
+    {
+      "district": "New Delhi",
+      "latestPeriodEnd": "2025-12-31",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "New_Delhi__17809011041267.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": true,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "scan"
+          }
+        ],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "New_Delhi__17809021792316.pdf",
+            "periodFrom": null,
+            "periodTo": null,
+            "periodInferred": true,
+            "scope": "fir_registered_only",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      }
+    },
+    {
+      "district": "North East",
+      "latestPeriodEnd": "2025-12-31",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partialEndpoints": [],
+        "gaps": [],
+        "partial": false,
+        "reports": [
+          {
+            "sourceFile": "North_East__17679419374958.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [],
+        "windows": []
+      }
+    },
+    {
+      "district": "North West",
+      "latestPeriodEnd": null,
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "North_West__17676911964560.pdf",
+            "periodFrom": null,
+            "periodTo": null,
+            "periodInferred": true,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      }
+    },
+    {
+      "district": "Rohini",
+      "latestPeriodEnd": null,
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "North_West__2025041579.pdf",
+            "periodFrom": null,
+            "periodTo": null,
+            "periodInferred": true,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      }
+    },
+    {
+      "district": "South",
+      "latestPeriodEnd": "2025-12-31",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partialEndpoints": [],
+        "gaps": [],
+        "partial": false,
+        "reports": [
+          {
+            "sourceFile": "South__17676984562540.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-01-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17676992399750.pdf",
+            "periodFrom": "2025-02-01",
+            "periodTo": "2025-02-28",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17676993008951.pdf",
+            "periodFrom": "2025-03-01",
+            "periodTo": "2025-03-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17676995869932.pdf",
+            "periodFrom": "2025-04-01",
+            "periodTo": "2025-04-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17676997411236.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-05-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17676997926574.pdf",
+            "periodFrom": "2025-06-01",
+            "periodTo": "2025-06-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17676998256483.pdf",
+            "periodFrom": "2025-07-01",
+            "periodTo": "2025-07-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17676998727892.pdf",
+            "periodFrom": "2025-08-01",
+            "periodTo": "2025-08-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17676999089166.pdf",
+            "periodFrom": "2025-09-01",
+            "periodTo": "2025-09-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17677005771490.pdf",
+            "periodFrom": "2025-10-01",
+            "periodTo": "2025-10-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17677006107212.pdf",
+            "periodFrom": "2025-11-01",
+            "periodTo": "2025-11-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South__17677006496518.pdf",
+            "periodFrom": "2025-12-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [],
+        "windows": []
+      }
+    },
+    {
+      "district": "South East",
+      "latestPeriodEnd": "2025-12-31",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partialEndpoints": [],
+        "gaps": [],
+        "partial": false,
+        "reports": [
+          {
+            "sourceFile": "North_West__17659564847373.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-01-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South_East__17676880854501.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "North_West__17659568465531.pdf",
+            "periodFrom": "2025-02-01",
+            "periodTo": "2025-02-28",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South_East__17659565245947.pdf",
+            "periodFrom": "2025-03-01",
+            "periodTo": "2025-03-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South_East__17659565856136.pdf",
+            "periodFrom": "2025-04-01",
+            "periodTo": "2025-04-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "North_West__17659566344197.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-05-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South_East__17659566625570.pdf",
+            "periodFrom": "2025-06-01",
+            "periodTo": "2025-06-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "North_West__17659566916898.pdf",
+            "periodFrom": "2025-07-01",
+            "periodTo": "2025-07-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South_East__17659567106223.pdf",
+            "periodFrom": "2025-08-01",
+            "periodTo": "2025-08-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "North_West__17659567362040.pdf",
+            "periodFrom": "2025-09-01",
+            "periodTo": "2025-09-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "North_West__17659567553072.pdf",
+            "periodFrom": "2025-10-01",
+            "periodTo": "2025-10-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "South_East__17659567676014.pdf",
+            "periodFrom": "2025-11-01",
+            "periodTo": "2025-11-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "North_West__17676879156890.pdf",
+            "periodFrom": "2025-12-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          }
+        ],
+        "windows": [
+          {
+            "sourceFile": "South_East__17676880854501.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-12-31",
+            "kind": "annual"
+          }
+        ]
+      }
+    },
+    {
+      "district": "South West",
+      "latestPeriodEnd": "2025-12-31",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "South_West__2025042179.pdf",
+            "periodFrom": null,
+            "periodTo": null,
+            "periodInferred": true,
+            "scope": "fir_registered_only",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "South_West__17676949639850.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": [
+          {
+            "sourceFile": "South_West__17676949639850.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-12-31",
+            "kind": "cumulative"
+          }
+        ]
+      }
+    },
+    {
+      "district": "West",
+      "latestPeriodEnd": "2025-12-31",
+      "month_wise": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04"
+        ],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "West__2025070449.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-04-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          }
+        ],
+        "windows": []
+      },
+      "station": {
+        "expectedMonths": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04",
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "coveredMonths": [
+          "2025-05",
+          "2025-06",
+          "2025-07",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-11",
+          "2025-12"
+        ],
+        "partialEndpoints": [],
+        "gaps": [
+          "2025-01",
+          "2025-02",
+          "2025-03",
+          "2025-04"
+        ],
+        "partial": true,
+        "reports": [
+          {
+            "sourceFile": "West__17676875811215.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "West__2025070423.pdf",
+            "periodFrom": "2025-05-01",
+            "periodTo": "2025-05-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "West__2025070441.pdf",
+            "periodFrom": "2025-06-01",
+            "periodTo": "2025-06-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "accident",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "West__17676869538318.pdf",
+            "periodFrom": "2025-07-01",
+            "periodTo": "2025-07-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "West__17676870979027.pdf",
+            "periodFrom": "2025-08-01",
+            "periodTo": "2025-08-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "West__17676873471505.pdf",
+            "periodFrom": "2025-09-01",
+            "periodTo": "2025-09-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "West__17676873839212.pdf",
+            "periodFrom": "2025-10-01",
+            "periodTo": "2025-10-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "West__17676874124105.pdf",
+            "periodFrom": "2025-11-01",
+            "periodTo": "2025-11-30",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          },
+          {
+            "sourceFile": "West__17676874414987.pdf",
+            "periodFrom": "2025-12-01",
+            "periodTo": "2025-12-31",
+            "periodInferred": false,
+            "scope": "unspecified",
+            "dateBasis": "reporting",
+            "schema": "current"
+          }
+        ],
+        "windows": [
+          {
+            "sourceFile": "West__17676875811215.pdf",
+            "periodFrom": "2025-01-01",
+            "periodTo": "2025-12-31",
+            "kind": "annual"
+          }
+        ]
+      }
+    }
+  ],
+  "dispositionRef": "data/releases/irad_dispositions.json"
+}

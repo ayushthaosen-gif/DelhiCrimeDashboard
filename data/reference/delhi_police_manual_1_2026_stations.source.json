@@ -1,0 +1,9 @@
+{
+  "source": "data/raw/source_archive/delhi_police/manual_1_2026-05-22.pdf",
+  "sha256": "040a14bc2be2db9ec5575d485c8067c45429e5940a271d7ca3c81135d9efe77c",
+  "reviewStatus": "draft",
+  "scope": "Territorial roster (printed pages 13-22), other station lists (pages 22-25), two supporting MACT branch entries, and additional printed occurrences of territorial names. Additional name occurrences may be addresses or court references, not independent station identities. Context occurrence harvesting is draft evidence and is not a claim to exhaustively transcribe every address or specialised branch throughout the Manual.",
+  "identityPolicy": "Owner clarified: match unique station identities (normalized name plus police district); preserve repeated printed occurrences as evidence. Same name in different districts remains ambiguous.",
+  "authoredOn": "2026-10-19",
+  "reviewedBy": null
+}

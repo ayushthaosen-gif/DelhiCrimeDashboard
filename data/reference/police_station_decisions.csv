@@ -1,0 +1,38 @@
+source_reporting_district,source_station_label,decision,canonical_name,evidence_page,reviewer_note
+Central,PRASAD NAGAR,documented_variant,PRASHAD NAGAR,21,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+Dwarka,Baba Hari Das Nagar,documented_variant,BABA HARIDAS NAGAR,17,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+Dwarka,Dwarka Sec- 23,documented_variant,SECTOR-23 DWARKA,17,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+Dwarka,Jaffarpur Kalan,documented_variant,JAFARPUR KALAN,17,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+East,EAST MACT CELL,specialised_unit,,101,"MACT Cell, East Distt. is a branch, not a territorial station."
+East,MAYUR VIHAR PH-I,documented_variant,MAYUR VIHAR,15,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+East,Patparganj Industrial area,documented_variant,PATPARGANJ IND. AREA,15,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+East,SAKARPUR,documented_variant,SHAKARPUR,15,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+New Delhi,"Accident Investigation Unit, NDD",unmapped,,no_supporting_entry_found,No unique supporting territorial roster entry found. Source label denotes a specialised unit/location; do not assign a police district.
+New Delhi,Barakhamba Road,documented_variant,BARAKHAMBA ROAD,21,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+New Delhi,EXHIBITION GROUND,unmapped,,no_supporting_entry_found,No unique supporting territorial roster entry found. Source label denotes a specialised unit/location; do not assign a police district.
+New Delhi,TUGHLAK ROAD,documented_variant,TUGLAK ROAD,21,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+North East,Gokal Puri,documented_variant,GOKUL PURI,13,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+North East,Seeelampur,documented_variant,SEELAM PUR,13,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+North East,WELCOME COLONY,documented_variant,WELCOME,14,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+North East,Zafrabad,documented_variant,JAFRABAD,14,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+North West,MACT Cell NW,specialised_unit,,135,Mandatory Phase 1 unresolved case; no territorial assignment. North West MACT branch is printed on page 135.
+North West,MUKHERJEE NAGAR,documented_variant,MUKHERJI NAGAR,19,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+North West,Maherdra Park,documented_variant,MAHENDRA PARK,19,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+Rohini,KNK MARG,documented_variant,K.N. KATJU MARG,18,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South,H.NIZAMUDDIN,documented_variant,HAZRAT NIZAMUDDIN,15,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South,K.M. PUR,documented_variant,KOTLA MUBARAKPUR,16,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South,LODI COLONY,documented_variant,LODHI COLONY,16,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South,O.I.ESTATE,unmapped,,no_supporting_entry_found,No unique supporting territorial roster entry found. No alias or jurisdiction guessed.
+South,SHO PS Fatehpur Beri,documented_variant,FATEHPUR BERI,16,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South,SRI NIWAS PURI,unmapped,,no_supporting_entry_found,No unique supporting territorial roster entry found. No alias or jurisdiction guessed.
+South,Vashant Kunj North,documented_variant,VASANT KUNJ NORTH,22,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South East,Hazarat Nizamuddin,documented_variant,HAZRAT NIZAMUDDIN,15,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South East,Okhla Industrial Area,documented_variant,OKHLA INDL. AREA,16,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South West,PALAM VILLAGE,unmapped,,no_supporting_entry_found,No unique supporting territorial roster entry found. No alias or jurisdiction guessed.
+South West,Police Station Kishangarh,documented_variant,KISHAN GARH,22,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South West,Police Station R K Puram,documented_variant,R.K. PURAM,22,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+South West,Safdarjung enclave police station,documented_variant,SAFDARJUNG ENCLAVE,22,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+West,Inderpuri Police Station,documented_variant,INDER PURI,17,Draft spelling/abbreviation judgement against the printed roster; source label preserved. Pending human verification.
+West,Madipur,unmapped,,no_supporting_entry_found,Mandatory Phase 1 unresolved case; no territorial assignment. No supporting territorial roster entry found; do not infer an assignment.
+West,Mianwali Nagar,unmapped,,no_supporting_entry_found,Mandatory Phase 1 unresolved case; no territorial assignment. No supporting territorial roster entry found; do not infer an assignment.
+West,PASCHIM VIHAR,ambiguous,,18,Mandatory Phase 1 unresolved case; no territorial assignment. Plain label cannot select East or West territorial station.

@@ -22,6 +22,8 @@ Official crime and crash figures run **to 2024**. Newer material exists but is d
 | `traffic_police_crash_report_2025` | Delhi Traffic Police annual Road Crash Report 2025 | none | not_published | 15 police districts |
 | `irad_district_reports` | District iRAD road-accident reports | 2026-08 (varies by district) | staged | revenue districts and police stations as printed; not mapped to the 15 police districts |
 | `irad_2026_year_to_date` | iRAD reports for 2026 | 2026-01 to 2026-08 (South East to July, North East to August, New Delhi to May) | provisional | only the districts that publish 2026 reports |
+| `irad_2025_release` | [Staged iRAD 2025 release](data/releases/2025/irad/manifest.json) | 2025; multi-period, coverage differs | staged | reporting districts and source station labels |
+| `police_station_crosswalk` | [Police station crosswalk](data/reference/police_station_crosswalk.csv) | Manual 2026-05-22; draft evidence | staged | post-period structural reference |
 | `delhi_police_2025_citywide_counts` | Delhi Police 2025 citywide counts as reported by two news outlets | 2025 | staged | Delhi as a whole, 8 offences, no district split |
 | `osm_infrastructure` | OpenStreetMap infrastructure snapshots (overbridges, signals, crossings, hospitals, cameras, police, footways) | 2026-08 | production | points and ways, assigned to districts and wards |
 | `crash_zone_sidewalks` | Sidewalk, footway and crossing mapping around crash zones | 2026-10 | staged | 250 m and 500 m around each 2024 crash zone |
