@@ -22,21 +22,21 @@
       "status": "inferred_reference",
       "referenceYear": 2014,
       "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
-      "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
+      "basis": "Same 11 reporting district names and the same 11-district, 54-sub-division structure in MHA annual reports 2010-11 to 2014-15; no dated roster for this year (see structure_evidence_2010_2016.json)."
     },
     {
       "year": 2012,
       "status": "inferred_reference",
       "referenceYear": 2014,
       "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
-      "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
+      "basis": "Same 11 reporting district names and the same 11-district, 54-sub-division structure in MHA annual reports 2010-11 to 2014-15; no dated roster for this year (see structure_evidence_2010_2016.json)."
     },
     {
       "year": 2013,
       "status": "inferred_reference",
       "referenceYear": 2014,
       "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
-      "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
+      "basis": "Same 11 reporting district names and the same 11-district, 54-sub-division structure in MHA annual reports 2010-11 to 2014-15; no dated roster for this year (see structure_evidence_2010_2016.json)."
     },
     {
       "year": 2014,
@@ -49,14 +49,14 @@
       "status": "inferred_reference",
       "referenceYear": 2014,
       "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
-      "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
+      "basis": "Same 11 reporting district names and the same 11-district, 54-sub-division structure in MHA annual reports 2010-11 to 2014-15; no dated roster for this year (see structure_evidence_2010_2016.json)."
     },
     {
       "year": 2016,
       "status": "inferred_reference",
       "referenceYear": 2014,
       "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
-      "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
+      "basis": "Same 11 reporting district names and the same 11-district, 54-sub-division structure in MHA annual reports 2010-11 to 2014-15; no dated roster for this year (see structure_evidence_2010_2016.json)."
     },
     {
       "year": 2017,
