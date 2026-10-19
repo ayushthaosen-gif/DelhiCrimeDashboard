@@ -3639,9 +3639,10 @@
       ],
       "sourceLabel": "Existing verified NCRB / India Data Portal extract",
       "map": {
-        "status": "boundary_unverified",
-        "referenceYear": null,
-        "path": null
+        "status": "derived_reference",
+        "referenceYear": 2017,
+        "path": "data/staged/police_geography_history/districts_2017_reference.geojson",
+        "basis": "Official 9 Nov 2017 gazette station schedule (14 districts) applied to the May 2014 station polygons; two stations have no archived polygon."
       },
       "comparability": "No cross-year district change or present-day area/population rates; transition-year geography requires source verification."
     },
@@ -3994,9 +3995,10 @@
       ],
       "sourceLabel": "Existing verified NCRB / India Data Portal extract",
       "map": {
-        "status": "boundary_unverified",
-        "referenceYear": null,
-        "path": null
+        "status": "derived_reference",
+        "referenceYear": 2017,
+        "path": "data/staged/police_geography_history/districts_2017_reference.geojson",
+        "basis": "Official 9 Nov 2017 gazette station schedule (14 districts) applied to the May 2014 station polygons; two stations have no archived polygon."
       },
       "comparability": "No cross-year district change or present-day area/population rates; transition-year geography requires source verification."
     }

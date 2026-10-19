@@ -60,15 +60,17 @@
     },
     {
       "year": 2017,
-      "status": "boundary_unverified",
-      "referenceYear": null,
-      "path": null
+      "status": "derived_reference",
+      "referenceYear": 2017,
+      "path": "data/staged/police_geography_history/districts_2017_reference.geojson",
+      "basis": "Official 9 Nov 2017 gazette station schedule (14 districts) applied to the May 2014 station polygons; two stations have no archived polygon."
     },
     {
       "year": 2018,
-      "status": "boundary_unverified",
-      "referenceYear": null,
-      "path": null
+      "status": "derived_reference",
+      "referenceYear": 2017,
+      "path": "data/staged/police_geography_history/districts_2017_reference.geojson",
+      "basis": "Official 9 Nov 2017 gazette station schedule (14 districts) applied to the May 2014 station polygons; two stations have no archived polygon."
     }
   ],
   "sourceInputs": [
@@ -127,6 +129,14 @@
     {
       "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
       "sha256": "df09639b17373595661470ec5bda816d978c572f2cdd2132f998f91f8d11d662"
+    },
+    {
+      "path": "data/staged/police_geography_history/districts_2017_reference.geojson",
+      "sha256": "3036ff0607505b78d9beefa744cfd8964137af07c81ac24a03e82e139b6269f6"
+    },
+    {
+      "path": "data/staged/police_geography_history/validation_2017.json",
+      "sha256": "7336b1d95fff31c412eaeaf5dd3434571b37e0afa3b461886c55f28ef2cb2d29"
     },
     {
       "path": "data/staged/police_geography_history/validation.json",

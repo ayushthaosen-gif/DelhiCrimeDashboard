@@ -36,7 +36,7 @@ test('every unit cites evidence that exists, and no value is negative', () => {
   }
 });
 
-test('the 2014 map is the only verified-as-reference one; 2011-2013, 2015 and 2016 reuse it labelled inferred; 2017-2018 have none', () => {
+test('the 2014 map is the only verified-as-reference one; 2011-2013, 2015 and 2016 reuse it labelled inferred; 2017-2018 use the gazette-derived grouping', () => {
   const byYear = Object.fromEntries(counts.years.map(y => [y.year, y.map]));
   assert.equal(byYear[2014].status, 'reference_only');
   for (const y of [2011, 2012, 2013, 2015, 2016]) {
@@ -44,7 +44,15 @@ test('the 2014 map is the only verified-as-reference one; 2011-2013, 2015 and 20
     assert.equal(byYear[y].path, byYear[2014].path, 'inferred years reuse the 2014 file and nothing else');
     assert.match(byYear[y].basis, /no dated roster/i);
   }
-  for (const y of [2017, 2018]) assert.equal(byYear[y].path, null, String(y));
+  const g17 = 'data/staged/police_geography_history/districts_2017_reference.geojson';
+  for (const y of [2017, 2018]) {
+    assert.equal(byYear[y].status, 'derived_reference', String(y));
+    assert.equal(byYear[y].path, g17);
+  }
+  const f17 = JSON.parse(read(g17)).features;
+  assert.equal(f17.filter(f => f.properties.territorial).length, 14);
+  assert.equal(f17.filter(f => f.properties.territorial).reduce((n, f) => n + f.properties.stationCount, 0), 163);
+  assert.deepEqual(f17.find(f => f.properties.name === 'New Delhi').properties.stationsWithoutPolygon, ['North Avenue', 'South Avenue']);
   assert.ok(fs.existsSync(path.join(ROOT, byYear[2014].path)));
   assert.match(html, /Inferred, not verified/);
   assert.equal(counts.policy.annualBoundariesVerified, false);

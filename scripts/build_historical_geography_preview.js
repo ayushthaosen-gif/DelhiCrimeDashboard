@@ -64,6 +64,57 @@ const validation = {
 };
 write('districts_2014_reference.geojson', {type: 'FeatureCollection', features});
 write('validation.json', validation);
+
+// 2017-2018 reference: the same May 2014 station polygons regrouped with the 9 Nov 2017 gazette schedule (14 districts).
+// Two stations in the schedule (North Avenue, South Avenue) have no archived polygon; they are listed, never invented.
+const roster17 = read('roster_2017.json');
+assert.equal(sha(path.join(base, 'raw/delhi_gazette_2017-11-09_police_districts.pdf')), '7c22a0ce03f8ee0df24283b04dc41f0cc7da856e488b386c99554ffbba340922');
+const assigned17 = new Set();
+const features17 = Object.entries(roster17.districts).map(([label, members]) => {
+  const polys = [];
+  const stationsOut = [];
+  for (const member of members) {
+    if (roster17.stationsWithoutPolygon.includes(member)) { stationsOut.push(member); continue; }
+    const key = roster17.geometryAliases[member] || member;
+    assert(names.has(key), 'No archived polygon for gazette station ' + member);
+    assert(!assigned17.has(key), 'Polygon used twice: ' + key);
+    assigned17.add(key);
+    polys.push(names.get(key));
+  }
+  const merged = turf.union(turf.featureCollection(polys));
+  assert(merged && ['Polygon', 'MultiPolygon'].includes(merged.geometry.type));
+  merged.properties = {name: label, territorial: true, geometryReferenceYear: 2014, rosterReferenceYear: 2017, stationCount: members.length, stationsWithPolygon: polys.length, stationsWithoutPolygon: stationsOut, stations: members};
+  return merged;
+});
+assert.equal(assigned17.size, 161);
+assert.equal(Object.values(roster17.districts).flat().length, 163);
+const airport17 = dissolve17Airport();
+function dissolve17Airport() {
+  const f = roster.airportStations.map(n => names.get(n));
+  const m = turf.union(turf.featureCollection(f));
+  m.properties = {name: 'IGI Airport', territorial: false, geometryReferenceYear: 2014, rosterReferenceYear: 2017, stationCount: f.length, stations: roster.airportStations};
+  return m;
+}
+features17.push(airport17);
+const union17 = turf.union(turf.featureCollection(features17));
+assert(Math.abs(turf.area(union17) - turf.area(sourceUnion)) < 1, '2017 regrouping changed the footprint');
+const district14 = new Map(Object.entries(roster.districts).flatMap(([d, ms]) => ms.map(m => [m, d])));
+const moves17 = {};
+for (const [d17, members] of Object.entries(roster17.districts)) for (const m of members) {
+  const key = roster17.geometryAliases[m] || m;
+  const d14 = district14.get(key);
+  if (d14 && d14 !== d17) (moves17[d14 + ' -> ' + d17] ||= []).push(m);
+}
+const parts17 = Object.fromEntries(features17.map(f => [f.properties.name, f.geometry.type === 'Polygon' ? 1 : f.geometry.coordinates.length]));
+write('districts_2017_reference.geojson', {type: 'FeatureCollection', features: features17});
+write('validation_2017.json', {
+  territorialDistricts: 14, territorialStationsInSchedule: 163, territorialStationsWithArchivedPolygon: 161,
+  stationsWithoutPolygon: roster17.stationsWithoutPolygon, footprintDifferenceSqMetres: Math.abs(turf.area(union17) - turf.area(sourceUnion)),
+  districtOverlapSqKm: (features17.reduce((sum, f) => sum + turf.area(f), 0) - turf.area(union17)) / 1e6,
+  polygonPartsPerDistrict: parts17,
+  stationsChangingDistrictSince2014Roster: moves17,
+  limitations: ['Station shapes are the undated May 2014 archive; station boundaries, and the two new New Delhi stations, may have changed by Nov 2017.', 'Roster is the official Nov 2017 gazette schedule; the original 3.5 MB scan was recovered from an Internet Archive copy of the MHA URL (live URL returns 404).', 'The schedule is applied to 2017 and 2018: NCRB reports the same 14 districts in both years and the CAG records 14 districts for 2018; no 2018 roster was found.']
+});
 write('manifest.json', {
   schemaVersion: '1.0.0', status: 'reference_preview', productionReady: false, dashboardIntegrated: false,
   geometryReferenceYear: 2014, approvedForOtherYears: [], annualBoundaryCertification: false,
@@ -74,8 +125,9 @@ write('manifest.json', {
     {id: 'crime_counts', path: 'data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json', referenceYear: 2014, sha256: sha(path.join(root, 'data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json')), originalSourceManifest: 'data/staged/history_2011_2015/manifest.json'},
     {id: 'dwarka_notification', url: 'https://www.mha.gov.in/sites/default/files/UTPSectionMHA_13042018.pdf', notificationDate: '2017-11-09', number: 'F.1/6/2016/HP-I/Estt./4049-4056', finding: 'Dwarka carved from South-West and Outer; not South-East.', originalBinarySha256: null, retrievalStatus: 'Official search-index text inspected; live binary returned 404'}
   ],
-  inputs: ['raw/stations_2014.geojson', 'roster_2014.json'].map(p => ({path: p, sha256: sha(path.join(base, p))})),
+  inputs: ['raw/stations_2014.geojson', 'roster_2014.json', 'roster_2017.json', 'raw/delhi_gazette_2017-11-09_police_districts.pdf'].map(p => ({path: p, sha256: sha(path.join(base, p))})),
   validation,
+  reference2017: {status: 'derived_reference', rosterPath: 'roster_2017.json', geometryPath: 'districts_2017_reference.geojson', validationPath: 'validation_2017.json', rosterSource: {title: 'Delhi Gazette Extraordinary No. 412, 9 Nov 2017, notification F.1/6/2016/HP-I/Estt./4049-4056', liveUrl: 'https://www.mha.gov.in/sites/default/files/UTPSectionMHA_13042018.pdf', liveUrlStatus: 'HTTP 404 on 2026-10-19', recoveredFrom: 'Internet Archive capture 20230807231605 of the same URL', archivedFile: 'raw/delhi_gazette_2017-11-09_police_districts.pdf', sha256: '7c22a0ce03f8ee0df24283b04dc41f0cc7da856e488b386c99554ffbba340922', reuseTerms: 'Government gazette; reuse terms not separately verified', transcription: 'Hand-transcribed from the scanned English schedule (pages 6-10) by reading the images; no OCR. Serial numbers 1-163 territorial, 164-165 airport.'}},
   policy: 'Never merge today\'s whole districts by presumed parent. Preserve station membership, original counts, special units, nulls and definition breaks. Counts only; no modern population or area denominators.'
 });
 const [west, south, east, north] = turf.bbox(turf.featureCollection(features));

@@ -51,11 +51,19 @@
   "inputs": [
     {
       "path": "raw/stations_2014.geojson",
-      "sha256": "890b3d48c385cc41d37d544c7c04801eadc13c2d6e3a0f1a0afa691c46245d49"
+      "sha256": "c960becb917e9c3750511a322fa01cc7cec0a9560f7b52d186434eea57e0e56d"
     },
     {
       "path": "roster_2014.json",
       "sha256": "dcbe83102fd32768b52c951e6573345dde039333de024174fd6a43ad482dc58b"
+    },
+    {
+      "path": "roster_2017.json",
+      "sha256": "9c8d15bb7c156b53f86e00978ebf2b73ef347dd771687645a96f26f25db8784c"
+    },
+    {
+      "path": "raw/delhi_gazette_2017-11-09_police_districts.pdf",
+      "sha256": "7c22a0ce03f8ee0df24283b04dc41f0cc7da856e488b386c99554ffbba340922"
     }
   ],
   "validation": {
@@ -80,6 +88,22 @@
       "Archived station polygons overlap; district polygons retain cross-district overlaps. No snapping, clipping or invented corrections applied.",
       "A 2014 reference reconstruction, not an exact annual boundary certification."
     ]
+  },
+  "reference2017": {
+    "status": "derived_reference",
+    "rosterPath": "roster_2017.json",
+    "geometryPath": "districts_2017_reference.geojson",
+    "validationPath": "validation_2017.json",
+    "rosterSource": {
+      "title": "Delhi Gazette Extraordinary No. 412, 9 Nov 2017, notification F.1/6/2016/HP-I/Estt./4049-4056",
+      "liveUrl": "https://www.mha.gov.in/sites/default/files/UTPSectionMHA_13042018.pdf",
+      "liveUrlStatus": "HTTP 404 on 2026-10-19",
+      "recoveredFrom": "Internet Archive capture 20230807231605 of the same URL",
+      "archivedFile": "raw/delhi_gazette_2017-11-09_police_districts.pdf",
+      "sha256": "7c22a0ce03f8ee0df24283b04dc41f0cc7da856e488b386c99554ffbba340922",
+      "reuseTerms": "Government gazette; reuse terms not separately verified",
+      "transcription": "Hand-transcribed from the scanned English schedule (pages 6-10) by reading the images; no OCR. Serial numbers 1-163 territorial, 164-165 airport."
+    }
   },
   "policy": "Never merge today's whole districts by presumed parent. Preserve station membership, original counts, special units, nulls and definition breaks. Counts only; no modern population or area denominators."
 }
