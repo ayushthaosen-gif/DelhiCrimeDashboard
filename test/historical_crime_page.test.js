@@ -36,11 +36,18 @@ test('every unit cites evidence that exists, and no value is negative', () => {
   }
 });
 
-test('a map is offered only where a dated reference exists (2014), and it is marked reference only', () => {
-  const withPath = counts.years.filter(y => y.map && y.map.path).map(y => y.year);
-  assert.deepEqual(withPath, [2014]);
-  assert.equal(counts.years.find(y => y.year === 2014).map.status, 'reference_only');
-  assert.ok(fs.existsSync(path.join(ROOT, counts.years.find(y => y.year === 2014).map.path)));
+test('the 2014 map is the only verified-as-reference one; 2011-2013, 2015 and 2016 reuse it labelled inferred; 2017-2018 have none', () => {
+  const byYear = Object.fromEntries(counts.years.map(y => [y.year, y.map]));
+  assert.equal(byYear[2014].status, 'reference_only');
+  for (const y of [2011, 2012, 2013, 2015, 2016]) {
+    assert.equal(byYear[y].status, 'inferred_reference', String(y));
+    assert.equal(byYear[y].path, byYear[2014].path, 'inferred years reuse the 2014 file and nothing else');
+    assert.match(byYear[y].basis, /no dated roster/i);
+  }
+  for (const y of [2017, 2018]) assert.equal(byYear[y].path, null, String(y));
+  assert.ok(fs.existsSync(path.join(ROOT, byYear[2014].path)));
+  assert.match(html, /Inferred, not verified/);
+  assert.equal(counts.policy.annualBoundariesVerified, false);
 });
 
 test('the page never loads modern district or ward shapes and carries the boundary caveats', () => {

@@ -505,9 +505,10 @@
       ],
       "sourceLabel": "NCRB original-year district tables, as printed",
       "map": {
-        "status": "boundary_unverified",
-        "referenceYear": null,
-        "path": null
+        "status": "inferred_reference",
+        "referenceYear": 2014,
+        "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
+        "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
       },
       "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
     },
@@ -1015,9 +1016,10 @@
       ],
       "sourceLabel": "NCRB original-year district tables, as printed",
       "map": {
-        "status": "boundary_unverified",
-        "referenceYear": null,
-        "path": null
+        "status": "inferred_reference",
+        "referenceYear": 2014,
+        "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
+        "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
       },
       "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
     },
@@ -1554,9 +1556,10 @@
       ],
       "sourceLabel": "NCRB original-year district tables, as printed",
       "map": {
-        "status": "boundary_unverified",
-        "referenceYear": null,
-        "path": null
+        "status": "inferred_reference",
+        "referenceYear": 2014,
+        "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
+        "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
       },
       "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
     },
@@ -2994,9 +2997,10 @@
       ],
       "sourceLabel": "NCRB original-year district tables, as printed",
       "map": {
-        "status": "boundary_unverified",
-        "referenceYear": null,
-        "path": null
+        "status": "inferred_reference",
+        "referenceYear": 2014,
+        "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
+        "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
       },
       "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
     },
@@ -3279,9 +3283,10 @@
       ],
       "sourceLabel": "Existing verified NCRB / India Data Portal extract",
       "map": {
-        "status": "boundary_unverified",
-        "referenceYear": null,
-        "path": null
+        "status": "inferred_reference",
+        "referenceYear": 2014,
+        "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
+        "basis": "Same 11 reporting district names as 2014; no dated roster for this year; district-share stability check only."
       },
       "comparability": "No cross-year district change or present-day area/population rates; transition-year geography requires source verification."
     },
