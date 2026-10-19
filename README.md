@@ -18,6 +18,8 @@ Official crime and crash figures run **to 2024**. Newer material exists but is d
 |---|---|---|---|---|
 | `ncrb_district_crime` | NCRB district crime (IPC/BNS, SLL, crimes against women) | 2024 | production | 15 police districts |
 | `citywide_road_trend` | [Citywide road trend, 2011–2024](data/releases/citywide_road_trend/manifest.json) | 2024 | production | Delhi citywide; counts, not rates |
+| `ncrb_historical_counts_2011_2018` | [Historical district crime counts, 2011–2018](data/historical_reporting/manifest.json) | 2018 | production | Original reporting districts; counts only, no allocation to current districts |
+| `historical_police_district_maps` | [Historical police-district reference maps](data/staged/police_geography_history/manifest.json) | 2018 | staged | Schematic reference shapes, labelled inferred or derived |
 | `ncrb_2025` | NCRB Crime in India 2025 | none | not_published | 15 police districts |
 | `crash_zones_2024` | Delhi Traffic Police crash-prone zones | 2024 | production | named locations (93 zones in 2024); 15 police districts |
 | `traffic_police_crash_report_2025` | Delhi Traffic Police annual Road Crash Report 2025 | none | not_published | 15 police districts |

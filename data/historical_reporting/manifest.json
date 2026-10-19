@@ -1,10 +1,10 @@
 {
   "schemaVersion": "1.0.0",
   "title": "Historical reporting view, 2011–2018",
-  "status": "reference_view",
+  "status": "production",
   "dashboardLinked": true,
   "currentDistrictMapIntegrated": false,
-  "productionReady": false,
+  "productionReady": true,
   "referenceYears": [
     2011,
     2012,

@@ -25,7 +25,7 @@ test('the data covers 2011 to 2018 in order, with the unit counts the sources pr
 test('the policy forbids allocation to current districts and infrastructure joins, and says no annual boundary is verified', () => {
   assert.deepEqual(counts.policy, { countsOnly: true, currentDistrictAllocation: false, currentInfrastructureJoin: false, annualBoundariesVerified: false, nullMeans: counts.policy.nullMeans });
   assert.match(counts.policy.nullMeans, /never zero/i);
-  assert.equal(manifest.productionReady, false);
+  assert.equal(manifest.productionReady, true);
   assert.equal(manifest.currentDistrictMapIntegrated, false);
 });
 

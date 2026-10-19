@@ -86,10 +86,10 @@
         2014,
         2015
       ],
-      "status": "staged",
+      "status": "production",
       "path": "historical_2011_2015/manifest.json",
-      "productionReady": false,
-      "dashboardIntegrated": false
+      "productionReady": true,
+      "dashboardIntegrated": true
     }
   ],
   "citywideRoadTrend": {

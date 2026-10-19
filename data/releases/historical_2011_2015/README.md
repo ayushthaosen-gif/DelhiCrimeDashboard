@@ -1,6 +1,6 @@
 # Delhi NCRB historical panel: 2011 to 2015
 
-**Staged; not on the dashboard.** Original geography and offence definitions are retained. Start with [manifest.json](manifest.json).
+**Production, as a separate historical panel shown on [historical_crime.html](../../../historical_crime.html); not merged into the 2016-2024 district series.** Original geography and offence definitions are retained. Start with [manifest.json](manifest.json).
 
 - [citywide_crime.csv](citywide_crime.csv) / [JSON](citywide_crime.json): five Delhi UT rows, selected original measures, explicit null reasons and source/publication evidence. Delhi UT is not a mega-city table.
 - [citywide_totals_as_printed.json](citywide_totals_as_printed.json) and [all offence counts](citywide_offence_counts_as_printed.csv): all original summary columns, stored separately from district rows.
