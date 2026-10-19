@@ -1,0 +1,20 @@
+{
+  "purpose": "Published descriptions of the Delhi Police structure (districts, sub-divisions, stations) in each year before the 2017 gazette schedule. Supports, but does not prove, reuse of the 2014 station roster for 2011-2013 and 2015. Not a station roster.",
+  "caveat": "Station totals count different things in different reports (territorial plus special, railway, metro, airport and other units), so the totals are not comparable year to year. Only the 2014-15 report and the Dec 2014 Lok Sabha answer split out 161 territorial stations.",
+  "retrieval": "Internet Archive captures of the MHA URLs, fetched 2026-10-19. The PDFs are not committed (6-17 MB each); the SHA-256 identifies the exact capture read.",
+  "reports": [
+    {"report": "MHA Annual Report 2010-11", "districts": 11, "subDivisions": 54, "policeStationsAllKinds": 175, "ranges": 3, "archiveCapture": "20210927234504", "sha256": "bde3d6021c3037f33eaffa3e5e8d3b8d865787a2f26bb70b25acaaea7df0682f", "url": "https://www.mha.gov.in/sites/default/files/AnnualReport_10_11.pdf"},
+    {"report": "MHA Annual Report 2011-12", "districts": 11, "subDivisions": 54, "policeStationsAllKinds": 184, "archiveCapture": "20210927234500", "sha256": "66597cc3e01e6f158d3555cc49d8a8c4bd10067522cc6c721efe768dbe61e761", "url": "https://www.mha.gov.in/sites/default/files/AnnualReport_11_12.pdf"},
+    {"report": "MHA Annual Report 2012-13", "districts": 11, "subDivisions": 54, "policeStationsAllKinds": 180, "archiveCapture": "20210927234455", "sha256": "72bddd90d31ca30eb300d837b3427840234e603255b857e1c2576d54ee41079b", "url": "https://www.mha.gov.in/sites/default/files/AnnualReport_12_13.pdf"},
+    {"report": "MHA Annual Report 2013-14", "districts": 11, "subDivisions": 54, "policeStationsAllKinds": 181, "ranges": 6, "archiveCapture": "20210927234452", "sha256": "fb9fcd33a8e5aca933bf3df192695a99749c9f8fb1a6c56ebadccfaabd4a2d40", "url": "https://www.mha.gov.in/sites/default/files/AnnualReport_13_14.pdf"},
+    {"report": "MHA Annual Report 2014-15", "districts": 11, "subDivisions": 54, "policeStationsAllKinds": 181, "territorialStations": 161, "ranges": 6, "archiveCapture": "20210824234218", "sha256": "e6537569adf74b9192a59a024891af3cbd611df8d3eb425ade400083816389b8", "url": "https://www.mha.gov.in/sites/default/files/AnnualReport_14_15.pdf"},
+    {"report": "MHA Annual Report 2015-16", "districts": 11, "subDivisions": null, "policeStationsAllKinds": 190, "ranges": 6, "archiveCapture": "20210824170813", "sha256": "a68dd345a3288e405b3f1bda36b9ce8db7eca83ecea9682f0f7d1485f0718356", "url": "https://www.mha.gov.in/sites/default/files/AnnualReport_15_16.pdf"},
+    {"report": "Lok Sabha unstarred question 2626, 9 Dec 2014", "districts": 11, "territorialStations": 161, "policeStationsAllKinds": 181, "url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2014-pdfs/ls-091214/2626.pdf", "note": "The roster used for the 2014 reference map."}
+  ],
+  "readAs": [
+    "The 11-district, 54-sub-division structure is stated in every MHA annual report from 2010-11 to 2014-15, so no district or sub-division was added or removed in that period.",
+    "Territorial stations were 161 in 2014-15 and 163 in the Nov 2017 schedule; the two extra (North Avenue, South Avenue) appeared after the 2014 archive. The 2015-16 report counts 190 stations of all kinds, up from 181, with no territorial split.",
+    "Rohini and Shahdara were notified 14 Oct 2016 and reported as newly created in early Dec 2016 (press); Dwarka followed on 9 Nov 2017.",
+    "None of this lists station-by-station membership before 2014, so a single station moving between districts cannot be ruled out."
+  ]
+}

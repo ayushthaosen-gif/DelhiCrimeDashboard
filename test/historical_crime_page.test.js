@@ -58,6 +58,17 @@ test('the 2014 map is the only verified-as-reference one; 2011-2013, 2015 and 20
   assert.equal(counts.policy.annualBoundariesVerified, false);
 });
 
+test('the structure evidence behind the inferred years is on file and says what it cannot show', () => {
+  const ev = JSON.parse(read('data/staged/police_geography_history/structure_evidence_2010_2016.json'));
+  for (const r of ev.reports.filter(r => /^MHA Annual Report 20(10-11|11-12|12-13|13-14|14-15)$/.test(r.report))) {
+    assert.equal(r.districts, 11, r.report);
+    assert.equal(r.subDivisions, 54, r.report);
+    assert.match(r.sha256, /^[0-9a-f]{64}$/, r.report);
+  }
+  assert.match(ev.readAs.join(' '), /cannot be ruled out/);
+  assert.match(html, /every year from 2010-11 to 2014-15/);
+});
+
 test('the page never loads modern district or ward shapes and carries the boundary caveats', () => {
   assert.ok(!/dashboard_boundaries|delhi_wards|police_markers/.test(html), 'a modern geography is referenced');
   assert.ok(!/fetch\(/.test(html), 'the page must use its embedded data only');
