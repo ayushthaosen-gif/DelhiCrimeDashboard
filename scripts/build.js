@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
+const SERIES_STATUS = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/series_status.json'), 'utf8'));
+const covEsc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_final.json'), 'utf8'));
 const grid = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/streetlight_grid.json'), 'utf8'));
@@ -147,6 +149,14 @@ h1 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; 
 }
 .datanote summary { cursor: pointer; list-style: none; padding: 10px 14px; color: var(--text); font-weight: 750; display: flex; align-items: center; gap: 8px; }
 .datanote summary::-webkit-details-marker { display: none; }
+.cov-wrap { overflow-x: auto; margin: 8px 0; }
+.cov-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.cov-table th, .cov-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.cov-table thead th { color: var(--text-dim); font-weight: 650; }
+.cov-table tbody th { font-weight: 650; color: var(--text); }
+.cov-status { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 700; border: 1px solid var(--border); white-space: nowrap; }
+.cov-production { color: var(--text); } .cov-provisional, .cov-staged { color: var(--accent-text); } .cov-not_published, .cov-not_implemented, .cov-retained_legacy_year { color: var(--text-dim); }
+.cov-note { color: var(--text-dim); font-size: 13px; }
 .datanote summary::before { content: '▸'; color: var(--accent-text); }
 .datanote[open] summary::before { content: '▾'; }
 .datanote[open] summary { border-bottom: 1px solid var(--border); }
@@ -457,6 +467,15 @@ footer a { color: inherit; }
   </header>
 
   <main id="main">
+  <details class="datanote" id="coverage">
+    <summary>How current is each data series?</summary>
+    <div class="datanote-body">
+      <p class="about-lede">Official crime and crash figures stop at <b>2024</b>. Newer material exists but is kept off the maps on purpose. <b>Never compare a year-to-date or provisional series with a full year.</b> Source: <code>data/series_status.json</code>.</p>
+      <div class="cov-wrap"><table class="cov-table"><thead><tr><th scope="col">Series</th><th scope="col">Latest period</th><th scope="col">Status</th><th scope="col">Geography</th></tr></thead><tbody>${SERIES_STATUS.series.map(s => `<tr><th scope="row">${covEsc(s.name)}</th><td>${covEsc(s.latest_reference_period || 'none')}</td><td><span class="cov-status cov-${covEsc(s.status)}">${covEsc(s.status.replace(/_/g, ' '))}</span></td><td>${covEsc(s.geography)}</td></tr>`).join('')}</tbody></table></div>
+      <p class="cov-note">Ward-level layers use the <b>legacy 290-ward geography</b> (before the 2022 delimitation), not the current 250 MCD wards.</p>
+    </div>
+  </details>
+
   <details class="datanote" id="about">
     <summary>About this project and data coverage notes</summary>
     <div class="datanote-body">

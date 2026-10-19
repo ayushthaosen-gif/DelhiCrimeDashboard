@@ -224,7 +224,9 @@ function buildShared() {
     });
   const manifestPath = path.join(dir, 'manifest.json');
   const referenceInventory = fs.readdirSync(path.join(ROOT, 'data/reference')).sort().map(name => { const file = `data/reference/${name}`; return { file, sha256: sha256(path.join(ROOT, file)), bytes: canonicalSize(path.join(ROOT, file)), status: 'staged; evidence pending human verification' }; });
-  const manifest = { referenceInventory, schemaVersion: '1.0.0', scope: 'shared and non-year-specific production datasets', generatedBy: 'scripts/build_yearly_releases.js', generatedAt: null, warning: 'Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.', datasets, productionFileInventory };
+  const registry = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/geography_registry.json'), 'utf8'));
+  const geographies = registry.geographies.map(g => ({ id: g.id, status: g.status, wardCount: g.wardCount, files: g.files }));
+  const manifest = { geographies, joinPolicy: registry.joinPolicy, referenceInventory, schemaVersion: '1.0.0', scope: 'shared and non-year-specific production datasets', generatedBy: 'scripts/build_yearly_releases.js', generatedAt: null, warning: 'Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.', datasets, productionFileInventory };
   manifest.generatedAt = stableGeneratedAt(manifestPath, manifest);
   write(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
   write(path.join(dir, 'README.md'), '# Shared production datasets\n\nMachine-readable provenance for infrastructure, boundaries and approximate-location layers that do not belong to a single crime year. See `manifest.json`.\n');

@@ -1,0 +1,41 @@
+{
+  "note": "Which ward geography each ward-level file uses. Every ward-level dataset in this repository must name its geography here; test/geography_registry.test.js enforces it. Datasets on different geographies must never be joined automatically.",
+  "updated": "2026-10-19",
+  "joinPolicy": "Ward-level data on one geography is never joined to ward-level data on another by name, number or position. A join needs a reviewed, evidenced mapping between the two; none exists, and the current geography has no boundary layer, so no cross-geography join is possible today.",
+  "geographies": [
+    {
+      "id": "legacy_290_wards",
+      "name": "Legacy ward geography (290 polygons)",
+      "status": "legacy",
+      "wardCount": 290,
+      "composition": "273 MCD ward polygons (272 numbered, plus one polygon without a ward number), 9 NDMC charges and 8 Delhi Cantonment charges",
+      "effectiveFrom": null,
+      "effectiveTo": "2022 (replaced for the Municipal Corporation by the 250-ward delimitation of October 2022)",
+      "boundaryReferenceDate": "not established; most likely the pre-2022 delimitation",
+      "source": "DataMeet Municipal_Spatial_Data (CC-BY-SA 2.5 India), scraped from ArcGIS Online",
+      "sourceUrl": "https://github.com/datameet/Municipal_Spatial_Data/tree/master/Delhi",
+      "caveat": "Not an official or current administrative boundary. Used here as a finer grid for point-density aggregation and for the Master Plan comparison. Ward names and numbers do not match the current wards.",
+      "files": [
+        "data/source/delhi_wards_boundaries.geojson",
+        "data/delhi_wards_infra.geojson",
+        "data/landuse_by_ward.csv",
+        "data/mpd2047_ward_comparison.csv",
+        "data/mpd2047_ward_comparison.json"
+      ]
+    },
+    {
+      "id": "mcd_2022_250_wards",
+      "name": "Current MCD ward geography (250 wards, 2022 delimitation)",
+      "status": "not_implemented",
+      "wardCount": 250,
+      "composition": "250 Municipal Corporation of Delhi wards in 12 zones",
+      "effectiveFrom": "2022 (Final Delimitation Order, 17 October 2022)",
+      "effectiveTo": null,
+      "boundaryReferenceDate": "2022 delimitation",
+      "source": "Geospatial Delhi Limited (GSDL) map GSDL/MCD/16.01.2023/01; notification archived at data/raw/source_archive/wards/",
+      "sourceUrl": "https://gsdl.org.in/",
+      "caveat": "No boundary layer exists in this repository. The official map is marked restricted and its reproduction is prohibited without GSDL's written permission; reconstructing wards from it is not viable (its linework forms 921 faces, not 250 wards) and would not settle reuse rights. The route is to ask GSDL for the digital layer with written reuse terms; no request has been sent.",
+      "files": []
+    }
+  ]
+}
