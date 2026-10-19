@@ -2,8 +2,8 @@
   "referenceInventory": [
     {
       "file": "data/reference/delhi_police_manual_1_2026_stations.csv",
-      "sha256": "aed83f695d3ec2206830c968eddcd4e3b0120f2cb2c5b77e41bce98a3281d18a",
-      "bytes": 370565,
+      "sha256": "5151e9b6b39a73eb83cfb0010944eab5577eed0c1099d6143eda5c3991e4d715",
+      "bytes": 370850,
       "status": "staged; evidence pending human verification"
     },
     {
@@ -20,20 +20,20 @@
     },
     {
       "file": "data/reference/police_station_crosswalk.csv",
-      "sha256": "3fe37d1f945fa79ebbbd4375939264b22876225f003c2c7e2825da7120f91a0a",
-      "bytes": 44615,
+      "sha256": "996bcd7ae945f91413684b9dfb0633bb180bb68224d6bb9a06e81e2a61367b42",
+      "bytes": 44846,
       "status": "staged; evidence pending human verification"
     },
     {
       "file": "data/reference/police_station_crosswalk_coverage.json",
-      "sha256": "2aa880540f8dc763aac95c692b01a4d2fc91a528cd3ae2642eeed1d2b3f36ba2",
-      "bytes": 14168,
+      "sha256": "56622908535bec6854183dabac6a0b7218ae457b0b89e9e3d4f5c0e1c2c0f966",
+      "bytes": 14151,
       "status": "staged; evidence pending human verification"
     },
     {
       "file": "data/reference/police_station_decisions.csv",
-      "sha256": "4c59ede20ccdd652732b403427ac1884d9f9dcd69cf5a37ed62ea9f2a7470278",
-      "bytes": 6593,
+      "sha256": "ea658d750e78efbec9fa4357c958f6efb7a7c18b19aae1cde4bb76e7453b8b33",
+      "bytes": 6860,
       "status": "staged; evidence pending human verification"
     }
   ],

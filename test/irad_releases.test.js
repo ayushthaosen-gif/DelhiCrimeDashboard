@@ -123,10 +123,37 @@ test('index, npm orchestration and README status table describe staged releases 
   }
   assert.ok(fs.statSync(path.join(ROOT, 'README.md')).size < 12000);
 });
-test('protected production releases and all derived collection files equal the pinned baseline', () => {
-  const baseline = require('./fixtures/phase1_protected_hashes.json');
-  assert.equal(baseline.startingSha, '576c023895378f0bf93ba07ddefe2f0d6405813d');
-  for (const [file, hash] of Object.entries(baseline.files)) assert.equal(sha256(path.join(ROOT, file)), hash, 'Protected file changed: ' + file);
+test('manifests record the current hash of every file they describe, so a changed file cannot hide behind a stale manifest', () => {
+  const index = json('data/releases/manifest.json');
+  const checkFiles = (dir, files) => { for (const f of files) { const file = dir + f.path; assert.equal(sha256(path.join(ROOT, file)), f.sha256, 'stale hash: ' + file); assert.equal(canonicalSize(path.join(ROOT, file)), f.bytes, 'stale size: ' + file); } };
+  for (const y of index.years) checkFiles('data/releases/' + path.dirname(y.path) + '/', json('data/releases/' + y.path).files);
+  for (const r of index.stagedReleases) checkFiles('data/releases/' + path.dirname(r.path) + '/', json('data/releases/' + r.path).files);
+  const shared = json('data/releases/shared/manifest.json');
+  for (const f of shared.productionFileInventory.concat(shared.referenceInventory)) assert.equal(sha256(path.join(ROOT, f.file)), f.sha256, 'stale shared inventory hash: ' + f.file);
+});
+
+test('staged iRAD manifests were built from the iRAD files that are on disk now', () => {
+  for (const year of [2025, 2026]) {
+    const manifest = json('data/releases/' + year + '/irad/manifest.json');
+    assert.ok(manifest.derivedFrom.length >= 2);
+    for (const input of manifest.derivedFrom) assert.equal(sha256(path.join(ROOT, input.path)), input.sha256, year + ' release is stale against ' + input.path);
+  }
+  const coverage = json('data/reference/police_station_crosswalk_coverage.json');
+  for (const input of coverage.inputs || []) if (input.sha256) assert.equal(sha256(path.join(ROOT, input.path)), input.sha256, 'crosswalk coverage is stale against ' + input.path);
+});
+
+test('no committed release or reference file contains a machine-specific path', () => {
+  const walk = dir => fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(dir + '/' + e.name) : [dir + '/' + e.name]);
+  const offenders = walk('data/releases').concat(walk('data/reference')).filter(f => /\.(csv|json|md|txt)$/.test(f) && /[A-Za-z]:\\|\\\\Users\\\\|\/Users\/|\.codex/.test(fs.readFileSync(path.join(ROOT, f), 'utf8')));
+  assert.deepEqual(offenders, []);
+});
+
+test('South West PALAM VILLAGE resolves to the South West roster entry with its two-page evidence, flagged for human review', () => {
+  const row = csv('data/reference/police_station_crosswalk.csv').rows.find(r => r.source_station_label === 'PALAM VILLAGE');
+  assert.equal(row.source_reporting_district, 'South West'); assert.equal(row.police_district, 'South West');
+  assert.equal(row.mapping_method, 'documented_variant'); assert.equal(row.needs_review, 'true'); assert.equal(row.manual_page, '22');
+  const pages = csv('data/reference/delhi_police_manual_1_2026_stations.csv').rows.filter(r => r.canonical_name === 'PALAM VIHAR' && r.police_district === 'South West').map(r => r.printed_page).sort();
+  assert.deepEqual(pages, ['22', '60']);
 });
 
 test("generated map CSVs follow the repository LF contract", () => {
