@@ -774,6 +774,11 @@ footer a { color: inherit; }
       <button type="button" class="dl-download-btn" id="dlAllDownload">⬇ Download CSV — All District Data</button>
     </div>
 
+    <div id="dlHistoryPanel" class="dl-panel" style="display:none;">
+      <p class="scatter-read" style="margin-bottom:14px;">The selected historical year, exactly as printed: every reporting district and other reporting unit, plus the printed Delhi total. Counts only. Nothing here is divided by today's areas or populations, joined to today's infrastructure or allocated to today's 15 districts.</p>
+      <button type="button" class="dl-download-btn" id="dlHistoryDownload">⬇ Download CSV — Historical Counts, Selected Year</button>
+    </div>
+
     <div id="dlCorrPanel" class="dl-panel" style="display:none;">
       <p class="scatter-read" style="margin-bottom:14px;">Every infrastructure type against every crime/road-safety metric — \${INFRA.length * METRICS.length} combinations, each with its own live-computed r and district count, exactly like the scatter chart above.</p>
       <button type="button" class="dl-download-btn" id="dlCorrDownload">⬇ Download CSV — Full Correlation Matrix</button>
@@ -2271,6 +2276,17 @@ function histMapNote(d) {
   if (d.map.status === 'inferred_reference') return HIST.notes.inferred + (d.year >= 2015 ? ' ' + HIST.notes.inferred2015 : '') + (d.year === 2016 ? ' ' + HIST.notes.inferred2016 : '');
   return HIST.notes.derived;
 }
+// Counts-only export for the selected historical year: original reporting units and the printed Delhi total.
+// No modern denominators, no allocation to today's districts, nothing from the current-district data.
+function histExport(year) {
+  const d = HIST.years.find(y => y.year === +year);
+  const bKey = histKey({ key: 'burglary' }, d.year);
+  const headers = ['Reference year', 'Reporting unit (as printed)', 'Unit type', 'Theft', 'Robbery', 'Burglary measure', 'Burglary', 'Total IPC', 'Crimes against women', 'SLL crimes', 'Map status', 'Source', 'Note'];
+  const row = (label, type, v, note) => [d.year, label, type, v.theft, v.robbery, histMeasureName(bKey), v[bKey], v.total_ipc, v.total_crimes_against_women, v.total_sll, type === 'Territorial district' ? histMapStatus(d) : '', d.sourceLabel, note];
+  const rows = d.units.map(u => row(u.label, u.territorial ? 'Territorial district' : 'Other reporting unit', u.values, ''));
+  rows.push(row('Delhi UT total', 'Printed total', d.citywide.values, 'Printed Delhi total; not the sum of the rows above. Blank means not reported, never zero.'));
+  return { headers, rows };
+}
 function histSelect(name) {
   histSelected = histSelected === name ? null : name;
   render();
@@ -2366,6 +2382,7 @@ function render() {
     renderMethod();
     renderCorrelationMatrix();
   }
+  renderDownloadTabs();
   renderTrends();
   renderVictimsByMode();
   renderZones();
@@ -2891,7 +2908,14 @@ document.getElementById('dlAllDownload').addEventListener('click', () => {
   triggerDownload('gaitway_delhi_district_data.csv', toCSV(headers, rows));
 });
 
+document.getElementById('dlHistoryDownload').addEventListener('click', () => {
+  if (!isHistoryView()) return;
+  const out = histExport(activeYear);
+  triggerDownload('gaitway_delhi_historical_counts_' + activeYear + '.csv', toCSV(out.headers, out.rows));
+});
+
 document.getElementById('dlCorrDownload').addEventListener('click', () => {
+  if (isHistoryView()) return;
   const headers = ['Infrastructure type', 'Crime/road-safety metric', 'Metric year', 'Pearson r', 'Districts included (n)', 'Coverage note'];
   const rows = [];
   INFRA.forEach(inf => {
@@ -2949,6 +2973,7 @@ function updateVersusLabel() {
   document.getElementById('dlVersusLabel').textContent = inf.label + ' density vs. ' + m.short + ' density';
 }
 document.getElementById('dlVersusDownload').addEventListener('click', () => {
+  if (isHistoryView()) return;
   const inf = INFRA.find(i => i.key === scatterType);
   const m = METRICS.find(x => x.key === scatterYMetric);
   const headers = ['District', inf.label + ' density (per km²)', m.label + ' density (per km²)', inf.label + ' (count)', m.label + ' (raw count)'];
@@ -3113,6 +3138,7 @@ function buildSourcesSheet() {
 }
 
 document.getElementById('dlExcelDownload').addEventListener('click', () => {
+  if (isHistoryView()) return;
   const sheets = [
     buildDataSheet(),
     buildCorrelationSheet(),
@@ -3155,27 +3181,37 @@ function renderRoadSafetyTabs() {
   document.getElementById('rsRoadsPanel').classList.toggle('active', activeRoadSafetyTab === 'roads');
 }
 
+// The correlation, comparison and Excel exports join the selected crime year to today's 15 districts (areas, infrastructure).
+// They are not offered while a 2011-2018 year is showing; a separate counts-only export is offered instead.
 const DOWNLOAD_TABS = [
   { key: 'all', label: 'All District Data' },
-  { key: 'corr', label: 'Correlation Matrix' },
-  { key: 'versus', label: 'Current Comparison' },
-  { key: 'excel', label: 'Excel Workbook' },
+  { key: 'history', label: 'Historical counts (as printed)', historyOnly: true },
+  { key: 'corr', label: 'Correlation Matrix', modernOnly: true },
+  { key: 'versus', label: 'Current Comparison', modernOnly: true },
+  { key: 'excel', label: 'Excel Workbook', modernOnly: true },
 ];
 let activeDownloadTab = 'all';
+function syncDownloadPanels() {
+  document.getElementById('dlAllPanel').style.display = activeDownloadTab === 'all' ? '' : 'none';
+  document.getElementById('dlHistoryPanel').style.display = activeDownloadTab === 'history' ? '' : 'none';
+  document.getElementById('dlCorrPanel').style.display = activeDownloadTab === 'corr' ? '' : 'none';
+  document.getElementById('dlVersusPanel').style.display = activeDownloadTab === 'versus' ? '' : 'none';
+  document.getElementById('dlExcelPanel').style.display = activeDownloadTab === 'excel' ? '' : 'none';
+}
 function renderDownloadTabs() {
-  document.getElementById('downloadTabs').innerHTML = DOWNLOAD_TABS.map(t =>
+  const hist = isHistoryView();
+  const tabs = DOWNLOAD_TABS.filter(t => hist ? !t.modernOnly : !t.historyOnly);
+  if (!tabs.some(t => t.key === activeDownloadTab)) activeDownloadTab = 'all';
+  document.getElementById('downloadTabs').innerHTML = tabs.map(t =>
     '<button class="metric-tab' + (t.key===activeDownloadTab ? ' active' : '') + '" data-key="' + t.key + '" aria-pressed="' + (t.key===activeDownloadTab) + '">' + t.label + '</button>'
   ).join('');
   document.querySelectorAll('#downloadTabs .metric-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       activeDownloadTab = btn.dataset.key;
       renderDownloadTabs();
-      document.getElementById('dlAllPanel').style.display = activeDownloadTab === 'all' ? '' : 'none';
-      document.getElementById('dlCorrPanel').style.display = activeDownloadTab === 'corr' ? '' : 'none';
-      document.getElementById('dlVersusPanel').style.display = activeDownloadTab === 'versus' ? '' : 'none';
-      document.getElementById('dlExcelPanel').style.display = activeDownloadTab === 'excel' ? '' : 'none';
     });
   });
+  syncDownloadPanels();
 }
 
 buildScatterTabs();
