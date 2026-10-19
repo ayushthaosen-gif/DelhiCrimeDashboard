@@ -1,0 +1,174 @@
+{
+  "searched_on": "2026-10-19",
+  "scope": "Internet Archive PDF indexes for old and current official domains; old-domain PDF-extension search regardless of MIME through 2017; related-page index through 2017; homepage captures 2012/2014/2015; original statistics pages; accident-zone page; 2012 sitemap; IA item catalogue. ZIP/MIME index requests timed out, so those routes are not asserted complete.",
+  "index_counts": {
+    "cdx_old_domain.json": 2569,
+    "cdx_new_domain.json": 535,
+    "cdx_pdf_extension.json": 1281,
+    "cdx_related.json": 25
+  },
+  "requests": [
+    {
+      "file": "cdx_old_domain.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=3000",
+      "status": 200
+    },
+    {
+      "file": "cdx_related.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*(accident|Accident|ACCIDENT|booklet|Booklet|statistics|report|Report|crash|Crash).*&to=2017&limit=5000",
+      "status": 200,
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*(accident|Accident|ACCIDENT|booklet|Booklet|statistics|report|Report|crash|Crash).*&to=2017&limit=5000",
+      "bytes": 2762,
+      "sha256": "c744e8a3a20bf40a426ec70b88e83278a53adbf5fca47e9346361ae14eea07f4",
+      "content_type": "application/json"
+    },
+    {
+      "file": "cdx_archives.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=mimetype:.*(zip|octet|download).*&to=2017&limit=2000",
+      "error": "The read operation timed out"
+    },
+    {
+      "file": "home_2012.html",
+      "url": "https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20121206180725id_/http://delhitrafficpolice.nic.in/",
+      "bytes": 25943,
+      "sha256": "e6ea210a9197815adab1f7c70ccf710c7a96254d606936133ef5d4fa001d4afb",
+      "content_type": "text/html"
+    },
+    {
+      "file": "home_2015.html",
+      "url": "https://web.archive.org/web/20150601000000id_/http://delhitrafficpolice.nic.in/",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20150315005639id_/https://delhitrafficpolice.nic.in/",
+      "bytes": 38512,
+      "sha256": "dea0b8eaea5f3e003b572ee8eb4c8c910dbe3f0c28cf01e2f0bd5d648a875564",
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "file": "home_2014.html",
+      "url": "https://web.archive.org/web/20140601000000id_/http://delhitrafficpolice.nic.in/",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20140516205847id_/http://delhitrafficpolice.nic.in/",
+      "bytes": 37066,
+      "sha256": "c662653aefda921360daeac03e3a1b2999183f48dea558e30cf3b7467482512c",
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "file": "cdx_new_domain.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=traffic.delhipolice.gov.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=5000",
+      "status": 200,
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=traffic.delhipolice.gov.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=5000",
+      "bytes": 65207,
+      "sha256": "d11c9c11d1d32ba7043c8df41f327c2898cab38d15b285b6a512e364a1107549",
+      "content_type": "application/json"
+    },
+    {
+      "file": "apz_2013.pdf",
+      "url": "https://web.archive.org/web/20140602194145id_/http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20140602194145id_/http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf",
+      "bytes": 1781732,
+      "sha256": "05b26216e64a5efa8692503af6e6eff038d2b2acbbec7305c11269ab58621faf",
+      "content_type": "application/pdf"
+    },
+    {
+      "file": "apz_2014_list.pdf",
+      "url": "https://web.archive.org/web/20211227124454id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20211227124454id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "bytes": 1250309,
+      "sha256": "c9569c8e5b72dbf7a46a2fcf433dafbe95c7a206e11388564453b1136bec6d86",
+      "content_type": "application/pdf"
+    },
+    {
+      "file": "apz_2014_map.pdf",
+      "url": "https://web.archive.org/web/20211227120029id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20211227120029id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf",
+      "bytes": 1524034,
+      "sha256": "f9a95842ad79734cca8ee0c7fd61df12040ea10d40099cefaaf3eccdc686fe0d",
+      "content_type": "application/pdf"
+    },
+    {
+      "file": "statistics_2014.html",
+      "url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "bytes": 33039,
+      "sha256": "41556ce6af7031c9484b751b03db19815e4f30a426b72bc7354f2bf358bbeebb",
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "file": "statistics_2015.html",
+      "url": "https://web.archive.org/web/20150601000000id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20150318221557id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "bytes": 33268,
+      "sha256": "7d2d483855694e640d07d5c02a273b87ebe5651002cd07f2e22f82a25b0c7018",
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "file": "road_accidents_2012.html",
+      "url": "https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/road-accidents.htm",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "cdx_pdf_extension.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*[.]pdf.*&to=2017&limit=5000",
+      "status": 200,
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*[.]pdf.*&to=2017&limit=5000",
+      "bytes": 144092,
+      "sha256": "9c8437b15bc6db9823b50cbb090a562b33f7716116de8eba5179f7731682a822",
+      "content_type": "application/json"
+    },
+    {
+      "file": "ia_catalogue.json",
+      "url": "https://archive.org/advancedsearch.php?q=%28title%3A%28Delhi%29%20AND%20%28accidents%20OR%20traffic%20OR%20crash%29%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json",
+      "status": 200,
+      "final_url": "https://archive.org/advancedsearch.php?q=%28title%3A%28Delhi%29%20AND%20%28accidents%20OR%20traffic%20OR%20crash%29%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json",
+      "bytes": 12119,
+      "sha256": "9f83da2f09f6045eb13a7ee5bb7c5e9e95f8da49fdb90a1a9679fd1191a3af3c",
+      "content_type": "application/json"
+    },
+    {
+      "file": "accident_prone_2014.html",
+      "url": "https://web.archive.org/web/20140513003822id_/http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20140513003822id_/http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/",
+      "bytes": 46551,
+      "sha256": "7da4528572a4aa1b7527894d98f1c26d4d461db8d054ca804af0a5b9f63e97de",
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "file": "sitemap_2012.html",
+      "url": "https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/site-map.htm",
+      "status": 200,
+      "final_url": "https://web.archive.org/web/20121111025906id_/http://delhitrafficpolice.nic.in/site-map.htm",
+      "bytes": 36032,
+      "sha256": "32a5b20eda776067119fe239cad8e8de844b43a3e7863c4ea38125d4b1f9a705",
+      "content_type": "text/html"
+    },
+    {
+      "file": "cdx_zip_names.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*[.](zip|rar).*&to=2017&limit=500",
+      "error": "The read operation timed out"
+    },
+    {
+      "file": "ia_catalogue_reports.json",
+      "url": "https://archive.org/advancedsearch.php?q=title%3A%28%22road%20accidents%20in%20delhi%22%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json",
+      "status": 200,
+      "final_url": "https://archive.org/advancedsearch.php?q=title%3A%28%22road%20accidents%20in%20delhi%22%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json",
+      "bytes": 4901,
+      "sha256": "9ace193d63d7510ae7d08ce6a83f20aa9c4750bb1353c0dc2595efd79c99eaf1",
+      "content_type": "application/json"
+    }
+  ],
+  "full_reports_found": [],
+  "supporting_originals_found": [
+    "2013 accident-prone-zone map",
+    "2014 accident-prone-zone map",
+    "2014 accident-prone-zone list"
+  ],
+  "limits": "No result does not prove a report was never published or archived. No geographic digitisation, OCR-derived zone dataset or present-day allocation performed."
+}

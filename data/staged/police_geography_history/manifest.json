@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "reference_preview",
+  "productionReady": false,
+  "dashboardIntegrated": false,
+  "geometryReferenceYear": 2014,
+  "approvedForOtherYears": [],
+  "annualBoundaryCertification": false,
+  "generatedBy": "scripts/build_historical_geography_preview.js",
+  "sources": [
+    {
+      "id": "station_geometry",
+      "url": "https://groups.google.com/group/datameet/attach/79bd403db2079203/delhi%20police%20stations.zip?part=0.1",
+      "contextUrl": "https://groups.google.com/g/datameet/c/G3EQ5ggZkKc/m/A5IHsj1AvXkJ",
+      "claimedOriginalUrl": "http://www.delhipolice.nic.in/knowurps.html",
+      "publicationDate": "2014-05-13",
+      "effectiveDate": null,
+      "retrievedDate": "2026-10-19",
+      "path": "raw/police_stations_2014.zip",
+      "sha256": "72d35143e8dbbc1b76f55db22ab315449ca89a080a3c894436b5b402770c9049",
+      "reuseTerms": "No explicit open licence found in post/archive; source claim and reuse permission are not independently verified."
+    },
+    {
+      "id": "station_roster",
+      "url": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2014-pdfs/ls-091214/2626.pdf",
+      "referenceDate": "2014-12-09",
+      "publicationDate": "2014-12-09",
+      "originalBinarySha256": null,
+      "retrievalStatus": "Search-index text inspected; live binary returned 404",
+      "transcriptionPath": "roster_2014.json",
+      "transcriptionSha256": "dcbe83102fd32768b52c951e6573345dde039333de024174fd6a43ad482dc58b",
+      "reuseTerms": "Official parliamentary factual roster; no explicit open-data licence verified for this file."
+    },
+    {
+      "id": "crime_counts",
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+      "referenceYear": 2014,
+      "sha256": "e581316ce0ac6585c3674676433b43e1b97caed9af10ca62b0857ec461752e41",
+      "originalSourceManifest": "data/staged/history_2011_2015/manifest.json"
+    },
+    {
+      "id": "dwarka_notification",
+      "url": "https://www.mha.gov.in/sites/default/files/UTPSectionMHA_13042018.pdf",
+      "notificationDate": "2017-11-09",
+      "number": "F.1/6/2016/HP-I/Estt./4049-4056",
+      "finding": "Dwarka carved from South-West and Outer; not South-East.",
+      "originalBinarySha256": null,
+      "retrievalStatus": "Official search-index text inspected; live binary returned 404"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "raw/stations_2014.geojson",
+      "sha256": "c960becb917e9c3750511a322fa01cc7cec0a9560f7b52d186434eea57e0e56d"
+    },
+    {
+      "path": "roster_2014.json",
+      "sha256": "dcbe83102fd32768b52c951e6573345dde039333de024174fd6a43ad482dc58b"
+    },
+    {
+      "path": "roster_2017.json",
+      "sha256": "9c8d15bb7c156b53f86e00978ebf2b73ef347dd771687645a96f26f25db8784c"
+    },
+    {
+      "path": "raw/delhi_gazette_2017-11-09_police_districts.pdf",
+      "sha256": "7c22a0ce03f8ee0df24283b04dc41f0cc7da856e488b386c99554ffbba340922"
+    }
+  ],
+  "validation": {
+    "stationPolygons": 163,
+    "territorialStationPolygons": 161,
+    "airportStationPolygons": 2,
+    "territorialDistricts": 11,
+    "airportGeometrySeparate": true,
+    "unmatchedStations": [],
+    "duplicateAssignments": [],
+    "unmatchedCrimeRows": [],
+    "sourceFootprintSqKm": 1572.7183734942491,
+    "dissolveFootprintDifferenceSqMetres": 9.5367431640625e-7,
+    "sourceOverlapSqKm": 11.081384805244685,
+    "reconstructedDistrictOverlapSqKm": 1.0509518361983299,
+    "geometryQualityStatus": "needs_review",
+    "countJoin": "Exact 2014 reporting-unit identity after case/punctuation normalization; no aggregation or allocation",
+    "otherYearsEnabled": false,
+    "limitations": [
+      "Community-preserved geometry uploaded 2014-05-13; survey/effective date not supplied.",
+      "Roster dated 2014-12-09; changes within that interval have not been independently ruled out.",
+      "Archived station polygons overlap; district polygons retain cross-district overlaps. No snapping, clipping or invented corrections applied.",
+      "A 2014 reference reconstruction, not an exact annual boundary certification."
+    ]
+  },
+  "reference2017": {
+    "status": "derived_reference",
+    "rosterPath": "roster_2017.json",
+    "geometryPath": "districts_2017_reference.geojson",
+    "validationPath": "validation_2017.json",
+    "rosterSource": {
+      "title": "Delhi Gazette Extraordinary No. 412, 9 Nov 2017, notification F.1/6/2016/HP-I/Estt./4049-4056",
+      "liveUrl": "https://www.mha.gov.in/sites/default/files/UTPSectionMHA_13042018.pdf",
+      "liveUrlStatus": "HTTP 404 on 2026-10-19",
+      "recoveredFrom": "Internet Archive capture 20230807231605 of the same URL",
+      "archivedFile": "raw/delhi_gazette_2017-11-09_police_districts.pdf",
+      "sha256": "7c22a0ce03f8ee0df24283b04dc41f0cc7da856e488b386c99554ffbba340922",
+      "reuseTerms": "Government gazette; reuse terms not separately verified",
+      "transcription": "Hand-transcribed from the scanned English schedule (pages 6-10) by reading the images; no OCR. Serial numbers 1-163 territorial, 164-165 airport."
+    }
+  },
+  "policy": "Never merge today's whole districts by presumed parent. Preserve station membership, original counts, special units, nulls and definition breaks. Counts only; no modern population or area denominators."
+}

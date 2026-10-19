@@ -1,0 +1,94 @@
+{
+  "source": "raw/dtp_statistics.html",
+  "geography": "Delhi citywide as published by Delhi Traffic Police",
+  "reference_years": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015
+  ],
+  "column_headers": [
+    "Year",
+    "Non-Inj.Accidents",
+    "Simple Accidents",
+    "Fatal Accidents",
+    "Total Accidents",
+    "Persons Injured",
+    "Persons Killed"
+  ],
+  "rows": [
+    {
+      "reference_year": 2011,
+      "values": [
+        2011,
+        71,
+        5162,
+        2047,
+        7280,
+        6975,
+        2110
+      ]
+    },
+    {
+      "reference_year": 2012,
+      "values": [
+        2012,
+        115,
+        5000,
+        1822,
+        6937,
+        6633,
+        1866
+      ]
+    },
+    {
+      "reference_year": 2013,
+      "values": [
+        2013,
+        173,
+        5615,
+        1778,
+        7566,
+        7098,
+        1820
+      ]
+    },
+    {
+      "reference_year": 2014,
+      "values": [
+        2014,
+        209,
+        6785,
+        1629,
+        8623,
+        8283,
+        1671
+      ]
+    },
+    {
+      "reference_year": 2015,
+      "values": [
+        2015,
+        160,
+        6343,
+        1582,
+        8085,
+        8258,
+        1622
+      ]
+    }
+  ],
+  "production_overlap_verified": [
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+  ],
+  "series_extension_assessment": "2011-2013 total accidents, fatal accidents and persons killed can extend the existing citywide published-count trend in a later approved change; 2014-2015 are already present. Injury and category counts require explicit source-edition selection. No district allocation is implied.",
+  "definition_limit": "Published police counts. A 30-day fatality follow-up definition was not established in the retrieved historical source; do not label these as standardized 30-day mortality rates."
+}

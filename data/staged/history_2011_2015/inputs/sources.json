@@ -1,0 +1,1651 @@
+{
+  "schema_version": "1.0.0",
+  "retrieved_on": "2026-10-19",
+  "sources": [
+    {
+      "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2015",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2015",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Mon, 19 Oct 2026 14:45:43 GMT",
+      "bytes": 54136,
+      "sha256": "6e04ffe5ac583dae4953803d4b967bc9de071413e60b873cb218b1f9206b51cc",
+      "path": "raw/dtp_2015_index.html",
+      "reference_years": [
+        2015
+      ],
+      "role": "official_annual_report_context",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "dtp"
+    },
+    {
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/FOREWORD-PREFACE-AND-INDEX.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/FOREWORD-PREFACE-AND-INDEX.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+      "bytes": 1457471,
+      "sha256": "a38434e4aaa1bb7f73bde3cdc0eb10182eedfda20dc88fdd5c293ba608623e97",
+      "path": "raw/dtp_2015_frontmatter.pdf",
+      "reference_years": [
+        2015
+      ],
+      "role": "official_annual_report_context",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "dtp",
+      "pdf_metadata": {
+        "/Author": "SURENDER",
+        "/CreationDate": "D:20161226151247+05'30'",
+        "/ModDate": "D:20161230132546+05'30'",
+        "/Producer": "Corel PDF Engine Version 17.0.0.491",
+        "/Title": "Road Accident in Delhi 2015.cdr"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-2-VEHICLE-REGISTRATION-AND-ACCIDENT-STATISTICS.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-2-VEHICLE-REGISTRATION-AND-ACCIDENT-STATISTICS.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+      "bytes": 3906566,
+      "sha256": "ba3093b9625ad43d5b4fe3f3ba7e891cfabab0c599cd9f76bc9bf50a34a3a3a6",
+      "path": "raw/dtp_2015_chapter_2.pdf",
+      "reference_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "role": "official_2015_annual_report_retrospective",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "dtp",
+      "pdf_metadata": {
+        "/Author": "SURENDER",
+        "/CreationDate": "D:20161226151247+05'30'",
+        "/ModDate": "D:20161230132912+05'30'",
+        "/Producer": "Corel PDF Engine Version 17.0.0.491",
+        "/Title": "Road Accident in Delhi 2015.cdr"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-6-SPATIAL-TRENDS.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-6-SPATIAL-TRENDS.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+      "bytes": 13066324,
+      "sha256": "c286cd138729c3827baf2d18724ab7b1ddac07aaae190f4277fc8844bb1c119a",
+      "path": "raw/dtp_2015_chapter_6.pdf",
+      "reference_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "role": "official_2015_annual_report_retrospective",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "dtp",
+      "pdf_metadata": {
+        "/Author": "SURENDER",
+        "/CreationDate": "D:20161226151247+05'30'",
+        "/ModDate": "D:20161230134213+05'30'",
+        "/Producer": "Corel PDF Engine Version 17.0.0.491",
+        "/Title": "Road Accident in Delhi 2015.cdr"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://traffic.delhipolice.gov.in/statistics",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://traffic.delhipolice.gov.in/statistics",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Mon, 19 Oct 2026 14:45:43 GMT",
+      "bytes": 65808,
+      "sha256": "8d3d9aebffb775385b621da779654fa56f4a8c7017c655285f563471136433d2",
+      "path": "raw/dtp_statistics.html",
+      "reference_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "role": "primary_citywide_counts",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "dtp"
+    },
+    {
+      "url": "https://www.data.gov.in/catalog/district-wise-crimes-under-various-sections-indian-penal-code-ipc-crimes",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.data.gov.in/catalog/district-wise-crimes-under-various-sections-indian-penal-code-ipc-crimes",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "bytes": 1143259,
+      "sha256": "03bbbb77622ec8ca062e6fb1f3f875e9f1a645b29ac8b3a9e0ace52b1df10a7d",
+      "path": "raw/ogd_ipc_catalog.html",
+      "reference_years": [],
+      "role": "discovery_lead_only_not_used_for_counts",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "not_used"
+    },
+    {
+      "url": "https://www.data.gov.in/catalog/crime-india-2015",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.data.gov.in/catalog/crime-india-2015",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "bytes": 1148411,
+      "sha256": "ce3293bda8d1f5b62452312bb8503591748f4738f1e125c368045fa81308d5f6",
+      "path": "raw/ogd_cii_2015_catalog.html",
+      "reference_years": [
+        2015
+      ],
+      "role": "discovery_lead_only_not_used_for_counts",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "not_used"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-year-wise.html",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-year-wise.html",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 103534,
+      "sha256": "5240e056f5f9929dd8c40951b80c46c8093ae5c2154a82c87354da8550c5ecf6",
+      "path": "raw/ncrb_yearwise.html",
+      "reference_years": [],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://ckandev.indiadataportal.com/api/3/action/package_show?id=e311a510-ce48-4f4c-baf6-0ec5f9278285",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://ckandev.indiadataportal.com/api/3/action/package_show?id=e311a510-ce48-4f4c-baf6-0ec5f9278285",
+      "http_status": 200,
+      "content_type": "application/json;charset=utf-8",
+      "last_modified": null,
+      "bytes": 101090,
+      "sha256": "0cd51624bd667be44f9f32e2974d2a7d2228d05b0f7d52cc4ffe90687a5bd2b4",
+      "path": "raw/idp_crime_metadata.json",
+      "reference_years": [],
+      "role": "discovery_lead_only_not_used_for_counts",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "not_used"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-year-wise.html?year=2011&keyword=",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-year-wise.html?year=2011&keyword=",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 110945,
+      "sha256": "dbbcbb7699f5d52012342edde74fd37e543c536bb2d39a03cbd4d16979e21d51",
+      "path": "raw/ncrb_2011_index.html",
+      "reference_years": [
+        2011
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-year-wise.html?year=2012&keyword=",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-year-wise.html?year=2012&keyword=",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 111549,
+      "sha256": "7899f9d15661c39d690687a2a55dc5d3f4fe323cf3797da25f0a4f67d7bba492",
+      "path": "raw/ncrb_2012_index.html",
+      "reference_years": [
+        2012
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-year-wise.html?year=2013&keyword=",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-year-wise.html?year=2013&keyword=",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 111089,
+      "sha256": "428feaffb66df7a478f3bcd00837fdb938d685e7f78b7ec6f0302fc90b0da457",
+      "path": "raw/ncrb_2013_index.html",
+      "reference_years": [
+        2013
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-year-wise.html?year=2014&keyword=",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-year-wise.html?year=2014&keyword=",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 110443,
+      "sha256": "87c0c1a844ad074b223e28c4d87c3bbced4461bc1abd08291395326f0eca92ac",
+      "path": "raw/ncrb_2014_index.html",
+      "reference_years": [
+        2014
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-year-wise.html?year=2015&keyword=",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-year-wise.html?year=2015&keyword=",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 111637,
+      "sha256": "42618e09b192aacddccb18cee8dee916bf8a5047a9e1c3e8a04350b3f0b73de7",
+      "path": "raw/ncrb_2015_index.html",
+      "reference_years": [
+        2015
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-1-AN-OVEVIEW.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-1-AN-OVEVIEW.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 21 Mar 2022 06:34:06 GMT",
+      "bytes": 1734072,
+      "sha256": "f5fe2b11c54627be71d8f0a2f33925a933cb644e9831a75f0edcb22209082125",
+      "path": "raw/dtp_2015_chapter_1.pdf",
+      "reference_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "role": "official_2015_annual_report_retrospective",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "dtp",
+      "pdf_metadata": {
+        "/Author": "SURENDER",
+        "/CreationDate": "D:20161226151247+05'30'",
+        "/ModDate": "D:20161230132732+05'30'",
+        "/Producer": "Corel PDF Engine Version 17.0.0.491",
+        "/Title": "Road Accident in Delhi 2015.cdr"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-3-VICTIMS-OF-ROAD-ACCIDENTS.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-3-VICTIMS-OF-ROAD-ACCIDENTS.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+      "bytes": 3012316,
+      "sha256": "56dfff04bf27adb11e328766b6251fc16c53eaea80ea405589309778d355af85",
+      "path": "raw/dtp_2015_chapter_3.pdf",
+      "reference_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "role": "official_2015_annual_report_retrospective",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "dtp",
+      "pdf_metadata": {
+        "/Author": "SURENDER",
+        "/CreationDate": "D:20161226151247+05'30'",
+        "/ModDate": "D:20161230133040+05'30'",
+        "/Producer": "Corel PDF Engine Version 17.0.0.491",
+        "/Title": "Road Accident in Delhi 2015.cdr"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653904642_Foreword2011.PDF",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653904642_Foreword2011.PDF",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 09:57:22 GMT",
+      "bytes": 1610794,
+      "sha256": "7418dc8f4d74130d5c6a34931cec68c132b1501a47c3317a8140bcf5929f9a15",
+      "path": "raw/ncrb_2011_foreword.pdf",
+      "reference_years": [
+        2011
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "HP",
+        "/CreationDate": "D:20120628134305+05'30'",
+        "/ModDate": "D:20120630125445+05'30'",
+        "/Producer": "Adobe PDF Library 10.0"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-table-content?year=2011",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-table-content?year=2011",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 269444,
+      "sha256": "b94e8a783eb767b60a7a386c4dc9753a39b368412f15331542c60bd8a960cbd6",
+      "path": "raw/ncrb_2011_tables.html",
+      "reference_years": [
+        2011
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-additional-table?year=2011",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-additional-table?year=2011",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 129823,
+      "sha256": "3be3dbcef69e6846b1ff8d9ca2bdb5a28961e78ec36dfb0e938bdf5599581f57",
+      "path": "raw/ncrb_2011_additional.html",
+      "reference_years": [
+        2011
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653903349_Foreword2012.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653903349_Foreword2012.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 09:35:49 GMT",
+      "bytes": 169625,
+      "sha256": "cc549a4dede8b64cf64d7e74b185041c38b68dc18591b9a245905c41c3762e4b",
+      "path": "raw/ncrb_2012_foreword.pdf",
+      "reference_years": [
+        2012
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/CreationDate": "D:20130611104021+05'30'",
+        "/ModDate": "D:20130615160658+05'30'",
+        "/Producer": "Adobe Acrobat 10.0 Paper Capture Plug-in"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653903413_Disclaimer_1.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653903413_Disclaimer_1.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 09:36:53 GMT",
+      "bytes": 14593,
+      "sha256": "1c8d7ae5235448f4089a327c6a3d6f8fd969522bf06cfd5a3e8c556cc1a07108",
+      "path": "raw/ncrb_2012_disclaimer.pdf",
+      "reference_years": [],
+      "role": "evidence_only_mislinked_document",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "psk",
+        "/CreationDate": "D:20140627170705+05'30'",
+        "/ModDate": "D:20140627170726+05'30'",
+        "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
+        "/Title": "Microsoft Word - Disclaimer.doc"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity.",
+      "identity_warning": "Linked from CII 2012 but content identifies Accidental Deaths and Suicides in India 2013; excluded from crime interpretation.",
+      "reference_years_as_linked": [
+        2012
+      ]
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653903505_LIMITATIONS2012.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653903505_LIMITATIONS2012.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 09:38:25 GMT",
+      "bytes": 100012,
+      "sha256": "678e1ea91db04c1e1ce9e1a995c428b66ba8240b883dea91f72064c9e4024d6d",
+      "path": "raw/ncrb_2012_limitations.pdf",
+      "reference_years": [
+        2012
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "NCRB",
+        "/CreationDate": "D:20130620133333+05'30'",
+        "/ModDate": "D:20130625124906+05'30'",
+        "/Producer": "MicrosoftÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â® Word 2010",
+        "/Title": "LIMITATIONS"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-table-content?year=2012",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-table-content?year=2012",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 256729,
+      "sha256": "79ee066f82667dcd077b58574a0baf8483021e94ef6b8ce92bb5d5781cc9b0c4",
+      "path": "raw/ncrb_2012_tables.html",
+      "reference_years": [
+        2012
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-additional-table?year=2012",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-additional-table?year=2012",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 152156,
+      "sha256": "69b57d5b2bcd8cec195cb88f100fd0230afc5b9c942436a26b66deddf60c7413",
+      "path": "raw/ncrb_2012_additional.html",
+      "reference_years": [
+        2012
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653897728_Foreword2013.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653897728_Foreword2013.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 08:02:08 GMT",
+      "bytes": 1860293,
+      "sha256": "e074911766b5d3efbc117a5c4da8fbfe16c17d3917d605bd5e7893e662bc7d47",
+      "path": "raw/ncrb_2013_foreword.pdf",
+      "reference_years": [
+        2013
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/CreationDate": "D:20140706112418+05'30'",
+        "/ModDate": "D:20140706112518+05'30'",
+        "/Producer": "Adobe Acrobat 10.0 Image Conversion Plug-in"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653897828_disclaimer2013.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653897828_disclaimer2013.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 08:03:48 GMT",
+      "bytes": 76629,
+      "sha256": "3f1c27303193e36e2f7ddeb900034c69e9aa0e45c1ece80531e5b6efc531cd44",
+      "path": "raw/ncrb_2013_disclaimer.pdf",
+      "reference_years": [
+        2013
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "psk",
+        "/CreationDate": "D:20140714102947+05'30'",
+        "/ModDate": "D:20140714103013+05'30'",
+        "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
+        "/Title": "Microsoft Word - LIMITATIONS  DISCLAIMER CSO.doc"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653897939_limitations2013.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653897939_limitations2013.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 08:05:39 GMT",
+      "bytes": 78091,
+      "sha256": "266685ca00e46d75cea2251ce5e53327d254abd11ee9329f03b6506eab0468cf",
+      "path": "raw/ncrb_2013_limitations.pdf",
+      "reference_years": [
+        2013
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "psk",
+        "/CreationDate": "D:20140714103026+05'30'",
+        "/ModDate": "D:20140714103034+05'30'",
+        "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
+        "/Title": "Microsoft Word - LIMITATIONS  DISCLAIMER CSO.doc"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-table-content?year=2013",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-table-content?year=2013",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 269353,
+      "sha256": "042ada28d76704194dff829159bee5e81a5758a873cb750c5d90f3aba5c8a346",
+      "path": "raw/ncrb_2013_tables.html",
+      "reference_years": [
+        2013
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1678967839Disclaimer2014.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1678967839Disclaimer2014.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Thu, 16 Mar 2023 11:57:19 GMT",
+      "bytes": 28241,
+      "sha256": "2119ac6e4371e35c912cf1fdfbfda441b64205a40c78c735ed95db77ac46e904",
+      "path": "raw/ncrb_2014_disclaimer.pdf",
+      "reference_years": [
+        2014
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "NCRB",
+        "/CreationDate": "D:20151015122819+05'30'",
+        "/ModDate": "D:20151015122829+05'30'",
+        "/Producer": "Adobe PDF Library 10.0",
+        "/Title": "LIMITATIONS"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653896549_foreword2014_0.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653896549_foreword2014_0.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 07:42:29 GMT",
+      "bytes": 1205560,
+      "sha256": "87bdcbd214df7171943e2bc820786d4fbc1b16968506189a1947ff90125cc574",
+      "path": "raw/ncrb_2014_foreword.pdf",
+      "reference_years": [
+        2014
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/CreationDate": "D:20150930113328+05'30'",
+        "/ModDate": "D:20150930113403+05'30'",
+        "/Producer": "Adobe Acrobat 11.0.6 Image Conversion Plug-in"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653896890_Limitations2014.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653896890_Limitations2014.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 07:48:10 GMT",
+      "bytes": 34721,
+      "sha256": "b9304b1d6a2446c8b2b23844d66c494fcbb20fdb9e1ba26c6b5a646303e144c5",
+      "path": "raw/ncrb_2014_limitations.pdf",
+      "reference_years": [
+        2014
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "NCRB",
+        "/CreationDate": "D:20151015122840+05'30'",
+        "/ModDate": "D:20151015122848+05'30'",
+        "/Producer": "Adobe PDF Library 10.0",
+        "/Title": "LIMITATIONS"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-table-content?year=2014",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-table-content?year=2014",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 240379,
+      "sha256": "581e7337f0c4b910ff9103ec49ea9f994f41e0d2968e4be163a974dbe7aecf7f",
+      "path": "raw/ncrb_2014_tables.html",
+      "reference_years": [
+        2014
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653894900_Foreword-15.11.16_0.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653894900_Foreword-15.11.16_0.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 07:15:00 GMT",
+      "bytes": 459880,
+      "sha256": "88b75b594c8ff4df5a1dd4b9ce9a677c2341cbb939a97186275b9aae8cce1ca6",
+      "path": "raw/ncrb_2015_foreword.pdf",
+      "reference_years": [
+        2015
+      ],
+      "role": "official_source_context",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "HCL",
+        "/CreationDate": "D:20161115121429+05'30'",
+        "/ModDate": "D:20161115121429+05'30'",
+        "/Producer": "MicrosoftÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â® Word 2010"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653894954_DISCLAIMER.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653894954_DISCLAIMER.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 07:15:54 GMT",
+      "bytes": 51794,
+      "sha256": "4bbef29a7030afda1f9c79242e52ed89a64b19658d98dba41e602cef5e338388",
+      "path": "raw/ncrb_2015_disclaimer.pdf",
+      "reference_years": [],
+      "role": "evidence_only_mislinked_document",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "ncrb",
+        "/CreationDate": "D:20160922120102+05'30'",
+        "/ModDate": "D:20160922120114+05'30'",
+        "/Producer": "Adobe PDF Library 10.0",
+        "/Title": "DISCLAIMER"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity.",
+      "identity_warning": "Linked from CII 2015 but content identifies Accidental Deaths and Suicides in India 2015; excluded from crime interpretation.",
+      "reference_years_as_linked": [
+        2015
+      ]
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653895017_LIMITATIONS.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653895017_LIMITATIONS.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 07:16:57 GMT",
+      "bytes": 34721,
+      "sha256": "b9304b1d6a2446c8b2b23844d66c494fcbb20fdb9e1ba26c6b5a646303e144c5",
+      "path": "raw/ncrb_2015_limitations.pdf",
+      "reference_years": [],
+      "role": "evidence_only_mislinked_document",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "NCRB",
+        "/CreationDate": "D:20151015122840+05'30'",
+        "/ModDate": "D:20151015122848+05'30'",
+        "/Producer": "Adobe PDF Library 10.0",
+        "/Title": "LIMITATIONS"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity.",
+      "identity_warning": "Linked from CII 2015 but explicitly describes 2014 and is byte-identical to the 2014 limitations file; not treated as 2015 definition evidence.",
+      "reference_years_as_linked": [
+        2015
+      ]
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653896427_Corrigendum_0.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653896427_Corrigendum_0.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 07:40:27 GMT",
+      "bytes": 69937,
+      "sha256": "653f142fb51dfc0c802ef37cf797b2e89e6e3ec664c80ee5f35ae72564f2e663",
+      "path": "raw/ncrb_2015_corrigendum.pdf",
+      "reference_years": [
+        2015
+      ],
+      "role": "official_source_context",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "Lenovo",
+        "/CreationDate": "D:20160912145219+05'30'",
+        "/ModDate": "D:20160912145219+05'30'",
+        "/Producer": "Adobe PDF Library 10.0"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-table-content?year=2015",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-table-content?year=2015",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 240405,
+      "sha256": "97e6f7da867dbcc709310f8328ffd22dfec67c2253c61c12d7bba5ce5721be3a",
+      "path": "raw/ncrb_2015_tables.html",
+      "reference_years": [
+        2015
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-additional-table?year=2015",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-additional-table?year=2015",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 160423,
+      "sha256": "49acd3334bed8cda8d7ffdf7b40275cf6a96e8e03db4239ffdf154da5ab605e4",
+      "path": "raw/ncrb_2015_additional.html",
+      "reference_years": [
+        2015
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=149357",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=149357",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": null,
+      "bytes": 30100,
+      "sha256": "efe956431dcdadaf0796a9a307af8112b2a66070e3ad67086d850824ace222f8",
+      "path": "raw/pib_cii_2015_release.html",
+      "reference_years": [
+        2015
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "not_used"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14_2011.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14_2011.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 13 Mar 2023 07:45:36 GMT",
+      "bytes": 1212511,
+      "sha256": "bdfdf59c9b8af0b095fad1b8d9b6e65d38785400c9eb05d50af62444b5fadf4e",
+      "path": "raw/ncrb_2011_district_ipc.pdf",
+      "reference_years": [
+        2011
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "CRIME IN INDIA",
+        "/CreationDate": "D:20120621153734+05'30'",
+        "/ModDate": "D:20120621154230+05'30'",
+        "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
+        "/Title": "TABEL ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ 1"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 13 Mar 2023 07:45:36 GMT",
+      "bytes": 2463767,
+      "sha256": "55059f1c56627be89482d584171a7a9541551be34c124f4244fd751035da5985",
+      "path": "raw/ncrb_2012_district_ipc.pdf",
+      "reference_years": [
+        2012
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "CRIME IN INDIA",
+        "/CreationDate": "D:20130615143832+05'30'",
+        "/ModDate": "D:20130615145006+05'30'",
+        "/Producer": "Adobe PDF Library 10.0",
+        "/Title": "TABEL ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ 1"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14_2013.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14_2013.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 13 Mar 2023 07:45:36 GMT",
+      "bytes": 1082736,
+      "sha256": "a96494d8d57f2533ff6830a16f803b828aee85e0fbefea18a62b15a519ac83a7",
+      "path": "raw/ncrb_2013_district_ipc.pdf",
+      "reference_years": [
+        2013
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "psk",
+        "/CreationDate": "D:20140702154314+05'30'",
+        "/ModDate": "D:20140702154314+05'30'",
+        "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
+        "/Title": "Microsoft Word - Table 1.14.doc"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/2-District-wise-SLL-Cases-Reported_2015.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/2-District-wise-SLL-Cases-Reported_2015.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:42 GMT",
+      "bytes": 284346,
+      "sha256": "7dab22d9c66975eaf651c6552eeda203338a198486a2eecea4ad43aaf5853ccd",
+      "path": "raw/ncrb_2015_district_sll.xlsx",
+      "reference_years": [
+        2015
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise-IPC-Cases-Reported_2015.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise-IPC-Cases-Reported_2015.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:42 GMT",
+      "bytes": 401236,
+      "sha256": "9bffff8f2fa3c85c0a6851e51a00328abe2b47d15eddf189f09ba360d27d8356",
+      "path": "raw/ncrb_2015_district_ipc.xlsx",
+      "reference_years": [
+        2015
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/5-District-wise-Crimes-committed-against-Women_2015.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/5-District-wise-Crimes-committed-against-Women_2015.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:44 GMT",
+      "bytes": 279426,
+      "sha256": "f0c049c0c0521888a8f387e7eba85376f0e0cd8ce6d1b462ae31c67c85cc001f",
+      "path": "raw/ncrb_2015_district_women.xlsx",
+      "reference_years": [
+        2015
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-additional-table?year=2013",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-additional-table?year=2013",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 111756,
+      "sha256": "33e6d91315bc6b6620d3be79a6708d19c0443fc406749c41c93c3e949d974d5c",
+      "path": "raw/ncrb_2013_additional.html",
+      "reference_years": [
+        2013
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/crime-in-india-additional-table?year=2014",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/crime-in-india-additional-table?year=2014",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "last_modified": null,
+      "bytes": 113841,
+      "sha256": "6e642707c51dc5f21b3332c389b04f981a773f6db72a059ebb16c2f212180792",
+      "path": "raw/ncrb_2014_additional.html",
+      "reference_years": [
+        2014
+      ],
+      "role": "official_source_discovery_snapshot",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/5District-wise-Crimes-committed-against-Women_2014.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/5District-wise-Crimes-committed-against-Women_2014.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:44 GMT",
+      "bytes": 274696,
+      "sha256": "3d71c50238161adab4ec4aa88f4a3eb943362e409c485629ddb81bf75122f75f",
+      "path": "raw/ncrb_2014_district_women.xlsx",
+      "reference_years": [
+        2014
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise%20IPC-Cases%20Reported_2014.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise%20IPC-Cases%20Reported_2014.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:40 GMT",
+      "bytes": 394549,
+      "sha256": "af7316d9904c91f0bbcd96d6398685b2fe457eae3ea4fc7a126a1c6596a6c671",
+      "path": "raw/ncrb_2014_district_ipc.xlsx",
+      "reference_years": [
+        2014
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/2District-wise-SLL-Cases-Reported_2014.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/2District-wise-SLL-Cases-Reported_2014.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:42 GMT",
+      "bytes": 280858,
+      "sha256": "eaf3608af774bbfc46b095a23c36ade1717d947bf5456301e14faba6cd2072ad",
+      "path": "raw/ncrb_2014_district_sll.xlsx",
+      "reference_years": [
+        2014
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653905239_LIMITATIONS2011.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/nationalcrimerecordsbureau/custom/1653905239_LIMITATIONS2011.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 30 May 2022 10:07:19 GMT",
+      "bytes": 22026,
+      "sha256": "da6c31da8dcc1cd9cdb558d6ecb283c71730c38835ed425e609da887f27c5385",
+      "path": "raw/ncrb_2011_limitations.pdf",
+      "reference_years": [
+        2011
+      ],
+      "role": "official_source_context",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "adsi",
+        "/CreationDate": "D:20120702164216+05'30'",
+        "/ModDate": "D:20120702164216+05'30'",
+        "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
+        "/Title": "Microsoft Word - LIMITATIONS.FF.doc"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "path": "raw/archive_cdx_old_domain.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=3000",
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=3000",
+      "http_status": 200,
+      "bytes": 262569,
+      "sha256": "1f4095f5e3772e616612a1d71b08f130ae7ee5afbeae3df44a0b2d26e61ecd04",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    },
+    {
+      "path": "raw/archive_cdx_related.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*(accident|Accident|ACCIDENT|booklet|Booklet|statistics|report|Report|crash|Crash).*&to=2017&limit=5000",
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*(accident|Accident|ACCIDENT|booklet|Booklet|statistics|report|Report|crash|Crash).*&to=2017&limit=5000",
+      "http_status": 200,
+      "bytes": 2762,
+      "sha256": "c744e8a3a20bf40a426ec70b88e83278a53adbf5fca47e9346361ae14eea07f4",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    },
+    {
+      "path": "raw/archive_home_2012.html",
+      "url": "https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/",
+      "final_url": "https://web.archive.org/web/20121206180725id_/http://delhitrafficpolice.nic.in/",
+      "http_status": 200,
+      "bytes": 25943,
+      "sha256": "e6ea210a9197815adab1f7c70ccf710c7a96254d606936133ef5d4fa001d4afb",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20121206180725",
+      "original_url": "http://delhitrafficpolice.nic.in/"
+    },
+    {
+      "path": "raw/archive_home_2015.html",
+      "url": "https://web.archive.org/web/20150601000000id_/http://delhitrafficpolice.nic.in/",
+      "final_url": "https://web.archive.org/web/20150315005639id_/https://delhitrafficpolice.nic.in/",
+      "http_status": 200,
+      "bytes": 38512,
+      "sha256": "dea0b8eaea5f3e003b572ee8eb4c8c910dbe3f0c28cf01e2f0bd5d648a875564",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20150315005639",
+      "original_url": "https://delhitrafficpolice.nic.in/"
+    },
+    {
+      "path": "raw/archive_home_2014.html",
+      "url": "https://web.archive.org/web/20140601000000id_/http://delhitrafficpolice.nic.in/",
+      "final_url": "https://web.archive.org/web/20140516205847id_/http://delhitrafficpolice.nic.in/",
+      "http_status": 200,
+      "bytes": 37066,
+      "sha256": "c662653aefda921360daeac03e3a1b2999183f48dea558e30cf3b7467482512c",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140516205847",
+      "original_url": "http://delhitrafficpolice.nic.in/"
+    },
+    {
+      "path": "raw/archive_cdx_new_domain.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=traffic.delhipolice.gov.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=5000",
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=traffic.delhipolice.gov.in/*&output=json&filter=statuscode:200&filter=mimetype:application/pdf&collapse=urlkey&fl=timestamp,original&limit=5000",
+      "http_status": 200,
+      "bytes": 65207,
+      "sha256": "d11c9c11d1d32ba7043c8df41f327c2898cab38d15b285b6a512e364a1107549",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    },
+    {
+      "path": "raw/archive_apz_2013.pdf",
+      "url": "https://web.archive.org/web/20140602194145id_/http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf",
+      "final_url": "https://web.archive.org/web/20140602194145id_/http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf",
+      "http_status": 200,
+      "bytes": 1781732,
+      "sha256": "05b26216e64a5efa8692503af6e6eff038d2b2acbbec7305c11269ab58621faf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2013
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_supporting_document",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140602194145",
+      "original_url": "http://delhitrafficpolice.nic.in:80/wp-content/uploads/2014/03/ACCIDENT-PRONE-AREA-2013.pdf",
+      "page_count": 1,
+      "pdf_metadata": {
+        "/Producer": "GPL Ghostscript 8.64",
+        "/CreationDate": "D:20140318123109+05'30'",
+        "/ModDate": "D:20140318123109+05'30'",
+        "/Title": "Full page photo",
+        "/Author": "Dell"
+      },
+      "identity_check": "Visually checked single-page image PDF: year/title and official Accident Research Cell/Traffic insignia; not a complete annual report."
+    },
+    {
+      "path": "raw/archive_apz_2014_list.pdf",
+      "url": "https://web.archive.org/web/20211227124454id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "final_url": "https://web.archive.org/web/20211227124454id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "http_status": 200,
+      "bytes": 1250309,
+      "sha256": "c9569c8e5b72dbf7a46a2fcf433dafbe95c7a206e11388564453b1136bec6d86",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2014
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_supporting_document",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20211227124454",
+      "original_url": "https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "page_count": 1,
+      "pdf_metadata": {
+        "/Producer": "GPL Ghostscript 8.64",
+        "/CreationDate": "D:20150909123153+05'30'",
+        "/ModDate": "D:20150909123153+05'30'",
+        "/Title": "Full page photo",
+        "/Author": "Dell"
+      },
+      "identity_check": "Visually checked single-page image PDF: year/title and official Accident Research Cell/Traffic insignia; not a complete annual report."
+    },
+    {
+      "path": "raw/archive_apz_2014_map.pdf",
+      "url": "https://web.archive.org/web/20211227120029id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf",
+      "final_url": "https://web.archive.org/web/20211227120029id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf",
+      "http_status": 200,
+      "bytes": 1524034,
+      "sha256": "f9a95842ad79734cca8ee0c7fd61df12040ea10d40099cefaaf3eccdc686fe0d",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2014
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_supporting_document",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20211227120029",
+      "original_url": "https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-MAP.pdf",
+      "page_count": 1,
+      "pdf_metadata": {
+        "/Producer": "GPL Ghostscript 8.64",
+        "/CreationDate": "D:20150909123052+05'30'",
+        "/ModDate": "D:20150909123052+05'30'",
+        "/Title": "Full page photo",
+        "/Author": "Dell"
+      },
+      "identity_check": "Visually checked single-page image PDF: year/title and official Accident Research Cell/Traffic insignia; not a complete annual report."
+    },
+    {
+      "path": "raw/archive_statistics_2014.html",
+      "url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "http_status": 200,
+      "bytes": 33039,
+      "sha256": "41556ce6af7031c9484b751b03db19815e4f30a426b72bc7354f2bf358bbeebb",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2011,
+        2012,
+        2013
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_statistics_edition",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140513002946",
+      "original_url": "http://delhitrafficpolice.nic.in:80/about-us/statistics/"
+    },
+    {
+      "path": "raw/archive_statistics_2015.html",
+      "url": "https://web.archive.org/web/20150601000000id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20150318221557id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "http_status": 200,
+      "bytes": 33268,
+      "sha256": "7d2d483855694e640d07d5c02a273b87ebe5651002cd07f2e22f82a25b0c7018",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2011,
+        2012,
+        2013
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_statistics_edition",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20150318221557",
+      "original_url": "https://delhitrafficpolice.nic.in/about-us/statistics/"
+    },
+    {
+      "path": "raw/archive_cdx_pdf_extension.json",
+      "url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*[.]pdf.*&to=2017&limit=5000",
+      "final_url": "https://web.archive.org/cdx/search/cdx?url=delhitrafficpolice.nic.in/*&output=json&filter=statuscode:200&collapse=urlkey&fl=timestamp,original,mimetype&filter=original:.*[.]pdf.*&to=2017&limit=5000",
+      "http_status": 200,
+      "bytes": 144092,
+      "sha256": "9c8437b15bc6db9823b50cbb090a562b33f7716116de8eba5179f7731682a822",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    },
+    {
+      "path": "raw/archive_accident_prone_2014.html",
+      "url": "https://web.archive.org/web/20140513003822id_/http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/",
+      "final_url": "https://web.archive.org/web/20140513003822id_/http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/",
+      "http_status": 200,
+      "bytes": 46551,
+      "sha256": "7da4528572a4aa1b7527894d98f1c26d4d461db8d054ca804af0a5b9f63e97de",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140513003822",
+      "original_url": "http://delhitrafficpolice.nic.in:80/be-road-smart/accident-prone-area/"
+    },
+    {
+      "path": "raw/archive_sitemap_2012.html",
+      "url": "https://web.archive.org/web/20121201000000id_/http://delhitrafficpolice.nic.in/site-map.htm",
+      "final_url": "https://web.archive.org/web/20121111025906id_/http://delhitrafficpolice.nic.in/site-map.htm",
+      "http_status": 200,
+      "bytes": 36032,
+      "sha256": "32a5b20eda776067119fe239cad8e8de844b43a3e7863c4ea38125d4b1f9a705",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20121111025906",
+      "original_url": "http://delhitrafficpolice.nic.in/site-map.htm"
+    },
+    {
+      "path": "raw/archive_ia_catalogue_reports.json",
+      "url": "https://archive.org/advancedsearch.php?q=title%3A%28%22road%20accidents%20in%20delhi%22%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json",
+      "final_url": "https://archive.org/advancedsearch.php?q=title%3A%28%22road%20accidents%20in%20delhi%22%29&fl%5B%5D=identifier&fl%5B%5D=title&rows=100&output=json",
+      "http_status": 200,
+      "bytes": 4901,
+      "sha256": "9ace193d63d7510ae7d08ce6a83f20aa9c4750bb1353c0dc2595efd79c99eaf1",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archive_discovery_evidence",
+      "reuse_terms_id": "archive_metadata_not_used_for_counts",
+      "archive_custodian": "Internet Archive index/search metadata"
+    }
+  ],
+  "publication_evidence": {
+    "2011": {
+      "publication_date": null,
+      "foreword_date": "2012-06-28",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2012-06-28."
+    },
+    "2012": {
+      "publication_date": null,
+      "foreword_date": "2013-06-04",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2013-06-04."
+    },
+    "2013": {
+      "publication_date": null,
+      "foreword_date": "2014-06-16",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2014-06-16."
+    },
+    "2014": {
+      "publication_date": null,
+      "foreword_date": null,
+      "basis": "Archived foreword undated; portal upload path is not a release date.",
+      "display": "Exact release date unknown; foreword undated."
+    },
+    "2015": {
+      "publication_date": "2016-08-30",
+      "foreword_date": null,
+      "basis": "PIB release states calendar-year 2015 Crime in India was released today. Archived files may incorporate later revisions.",
+      "url": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=149357",
+      "corrigendum_date": "2016-09-09",
+      "display": "Released 2016-08-30 (PIB); corrigendum dated 2016-09-09; archived edition retained."
+    }
+  },
+  "comparability_notes": {
+    "2011": [
+      "IPC Table 1.14 supplies 30 columns; SLL and a comparable aggregate of crimes against women are not supplied by this selected table and remain null.",
+      "Printed labels Molestation (354) and Sexual Harassment (509) are retained. Census 2011 provisional population underlies published rates; no rates are reconstructed."
+    ],
+    "2012": [
+      "Same 17-unit IPC layout; 354/509 header wording changes to assault on women/insult to modesty. No boundary equivalence is inferred.",
+      "SLL and comparable crimes-against-women aggregate are not supplied by this selected table and remain null. Additional multi-year catalogues are discovery leads, not extracted substitutes."
+    ],
+    "2013": [
+      "18 reporting units: METRO RAIL appears separately in 2013, compared with 17 units in 2011-2012.",
+      "Criminal Law (Amendment) Act 2013 may affect offence coverage; equal IPC section labels do not prove unchanged legal definitions across 2012/2013.",
+      "Published rate denominators for women and other segments change; staged values are counts only. SLL and comparable women aggregate absent from selected IPC table remain null."
+    ],
+    "2014": [
+      "NCRB revised proformae, added heads and changed sections. 19 units replace the earlier 17/18-unit lists; do not treat this as a stable district panel.",
+      "Revised Criminal Trespass/Burglary is distinct from old Burglary. Women basket expands to suicide abetment and domestic violence; women totals are not additive to IPC/SLL."
+    ],
+    "2015": [
+      "19 reporting units as printed; unit names alone do not establish boundary continuity with 2014 or 2016 onward.",
+      "Retain revised offence heads, separate women aggregate versus women-victim total, and source corrigendum. Prior categories are not mechanically backfilled."
+    ]
+  },
+  "source_identity_warnings": [
+    {
+      "path": "raw/ncrb_2012_disclaimer.pdf",
+      "summary": "Linked from CII 2012 but content identifies Accidental Deaths and Suicides in India 2013; excluded from crime interpretation."
+    },
+    {
+      "path": "raw/ncrb_2015_disclaimer.pdf",
+      "summary": "Linked from CII 2015 but content identifies Accidental Deaths and Suicides in India 2015; excluded from crime interpretation."
+    },
+    {
+      "path": "raw/ncrb_2015_limitations.pdf",
+      "summary": "Linked from CII 2015 but explicitly describes 2014 and is byte-identical to the 2014 limitations file; not treated as 2015 definition evidence."
+    }
+  ],
+  "monitor_verification": {
+    "pull_request": "https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/pull/41",
+    "merge_commit": "a12f79db4f4be8393c861cce6a7f357c9798726d",
+    "first_run": {
+      "url": "https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/actions/runs/39270252161",
+      "conclusion": "success",
+      "result": "Posted short NCRB TLS warning",
+      "comment_url": "https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/issues/39#issuecomment-6269860735"
+    },
+    "second_run": {
+      "url": "https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/actions/runs/39270877404",
+      "conclusion": "success",
+      "result": "Same note as the last one on #39; not posting it again."
+    },
+    "digest": "7467476fbd73e106",
+    "issue_39_comments_after_each_run": 2,
+    "issue_38": "Already closed; no state change performed.",
+    "performed_before_historical_collection": true
+  },
+  "reuse_terms": [
+    {
+      "id": "ncrb",
+      "publisher": "NCRB",
+      "assessment": "2012 foreword explicitly permits free downloading from the NCRB website. No explicit open-data redistribution licence was established for these direct-hosted files; attribution and permission/terms review are required before public redistribution.",
+      "evidence_paths": [
+        "raw/ncrb_2012_foreword.pdf"
+      ],
+      "open_licence_verified": false
+    },
+    {
+      "id": "dtp",
+      "publisher": "Delhi Traffic Police",
+      "assessment": "Archived site footer states All Rights Reserved. No explicit open-data licence for the annual PDFs or statistics was established. Retain provenance; review permission/terms before public redistribution.",
+      "evidence_paths": [
+        "raw/dtp_2015_index.html",
+        "raw/dtp_statistics.html"
+      ],
+      "open_licence_verified": false
+    }
+  ],
+  "discovery_scope": {
+    "ncrb": "Official year indexes, main tables and additional tables for each 2011-2015 year. Early multi-year women/IPC additional links recorded in discovery pages but not substituted for original-year IPC sources. No early district SLL/CAW aggregate is claimed unavailable globally.",
+    "traffic": "Official annual-report landing page and linked 2015 chapters; official statistics; targeted official-domain searches for 2011-2014. Original 2011-2014 annual-report PDFs not located, not proof of non-publication. Archive follow-up recovered 2013 zone map and 2014 zone map/list; no full 2011-2014 annual report found. Archived statistics editions expose changed injury/category values.",
+    "not_collected": "All-India raw source files are archived, but only Delhi rows are extracted. Other offence families, investigation/trial outcomes, rates and population denominators are outside this initial staged extract."
+  },
+  "evidence_files": [
+    {
+      "path": "evidence/run1_coverage_report_2025.md",
+      "bytes": 2194,
+      "sha256": "f533d21c0f3a1e3b80b30a9e2d1b6ee583455b9cf789ad64d9599f5c1cce38a5",
+      "role": "monitor_verification_saved_output"
+    },
+    {
+      "path": "evidence/run1_monitor_run_1.log",
+      "bytes": 86834,
+      "sha256": "84b085643a0dadb4f6ad6a2ddb5cb347db8df01ce77ebca1d535c78ac48c2653",
+      "role": "monitor_verification_saved_output"
+    },
+    {
+      "path": "evidence/run1_source_diff.md",
+      "bytes": 649,
+      "sha256": "fec5a77f41aef4c8689e850229070ba782e710a8d94f69e4386ffee4959684df",
+      "role": "monitor_verification_saved_output"
+    },
+    {
+      "path": "evidence/run1_source_manifest_2025.json",
+      "bytes": 40424,
+      "sha256": "5b3b8097bb577aab858d7368ca7795d702a4afe5c0177e6330eab56213fa2951",
+      "role": "monitor_verification_saved_output"
+    },
+    {
+      "path": "evidence/run2_coverage_report_2025.md",
+      "bytes": 2194,
+      "sha256": "f533d21c0f3a1e3b80b30a9e2d1b6ee583455b9cf789ad64d9599f5c1cce38a5",
+      "role": "monitor_verification_saved_output"
+    },
+    {
+      "path": "evidence/run2_monitor_run_2.log",
+      "bytes": 86800,
+      "sha256": "873e4f8982c4fd17d7409a5ed950562840944edd6d0393a22d2c1008f8241ea4",
+      "role": "monitor_verification_saved_output"
+    },
+    {
+      "path": "evidence/run2_source_diff.md",
+      "bytes": 649,
+      "sha256": "fec5a77f41aef4c8689e850229070ba782e710a8d94f69e4386ffee4959684df",
+      "role": "monitor_verification_saved_output"
+    },
+    {
+      "path": "evidence/run2_source_manifest_2025.json",
+      "bytes": 40424,
+      "sha256": "a37576f82df285d5f1b689d8dcdea01a0a1daa95a11ef116c1f1b7cdc77f7ccf",
+      "role": "monitor_verification_saved_output"
+    }
+  ],
+  "archived_statistics_pages": [
+    {
+      "path": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "original_url": "http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/"
+    },
+    {
+      "path": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "original_url": "https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20150318221557id_/https://delhitrafficpolice.nic.in/about-us/statistics/"
+    }
+  ]
+}

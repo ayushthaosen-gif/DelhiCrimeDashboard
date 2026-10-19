@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi citywide road trend, 2011-2024",
+  "status": "production",
+  "generatedBy": "scripts/build_citywide_road_release.js",
+  "generatedAt": null,
+  "referenceYears": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "geography": "Delhi citywide; no district allocation",
+  "unit": "Police-reported annual counts, not rates",
+  "measures": {
+    "crashes": "Total accidents",
+    "fatalCrashes": "Fatal accidents, distinct from persons killed",
+    "fatalities": "Persons killed"
+  },
+  "sourcePolicy": "2011-2013 agree across the archived 2014/2015 statistics pages and later official statistics. Existing 2014-2024 rows are unchanged from the retained compiled baseline.",
+  "caveats": [
+    "Not population-, travel- or exposure-adjusted rates; the chart indexes counts to 2011=100, not a risk rate.",
+    "A standardized 30-day fatality follow-up definition was not established for the early source.",
+    "Original 2011-2014 complete annual booklets were not recovered. Archived injury/category counts differ from the later edition and are excluded from this extension.",
+    "Victim-by-mode data retain their separate 2019-2024 period. Historical traffic-district data and NCRB crime are not included here."
+  ],
+  "sources": [
+    {
+      "url": "https://traffic.delhipolice.gov.in/statistics",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://traffic.delhipolice.gov.in/statistics",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "last_modified": "Mon, 19 Oct 2026 14:45:43 GMT",
+      "bytes": 65808,
+      "sha256": "8d3d9aebffb775385b621da779654fa56f4a8c7017c655285f563471136433d2",
+      "path": "data/staged/history_2011_2015/raw/dtp_statistics.html",
+      "reference_years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "role": "primary_citywide_counts",
+      "publication_date": null,
+      "publication_date_basis": "Not established for this web page/document.",
+      "reuse_terms_id": "dtp"
+    },
+    {
+      "path": "data/staged/history_2011_2015/raw/archive_statistics_2014.html",
+      "url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+      "http_status": 200,
+      "bytes": 33039,
+      "sha256": "41556ce6af7031c9484b751b03db19815e4f30a426b72bc7354f2bf358bbeebb",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2011,
+        2012,
+        2013
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_statistics_edition",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20140513002946",
+      "original_url": "http://delhitrafficpolice.nic.in:80/about-us/statistics/"
+    },
+    {
+      "path": "data/staged/history_2011_2015/raw/archive_statistics_2015.html",
+      "url": "https://web.archive.org/web/20150601000000id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "final_url": "https://web.archive.org/web/20150318221557id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+      "http_status": 200,
+      "bytes": 33268,
+      "sha256": "7d2d483855694e640d07d5c02a273b87ebe5651002cd07f2e22f82a25b0c7018",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "reference_years": [
+        2011,
+        2012,
+        2013
+      ],
+      "publication_date": null,
+      "publication_date_basis": "Not established; archive capture timestamp is recorded separately and is not a publication date.",
+      "role": "archived_official_statistics_edition",
+      "reuse_terms_id": "dtp",
+      "archive_custodian": "Internet Archive Wayback Machine; replay of original official-site content",
+      "capture_timestamp": "20150318221557",
+      "original_url": "https://delhitrafficpolice.nic.in/about-us/statistics/"
+    }
+  ],
+  "retainedBaseline": {
+    "path": "data/staged/history_2011_2015/inputs/production_road_safety_baseline.json",
+    "sha256": "cf05dee46484d7a45fa65d70060d99173fcc642b7c09b238b933e3c200e9a314"
+  },
+  "reuseTerms": [
+    {
+      "id": "dtp",
+      "publisher": "Delhi Traffic Police",
+      "assessment": "Archived site footer states All Rights Reserved. No explicit open-data licence for the annual PDFs or statistics was established. Retain provenance; review permission/terms before public redistribution.",
+      "evidence_paths": [
+        "raw/dtp_2015_index.html",
+        "raw/dtp_statistics.html"
+      ],
+      "open_licence_verified": false
+    }
+  ],
+  "files": [
+    {
+      "path": "citywide_road_trend.json",
+      "bytes": 1361,
+      "sha256": "6df2da3451e40bb1624bddf66063e7457e9cd6d1b2fb3cc6d86006bb437e0558"
+    },
+    {
+      "path": "citywide_road_trend.csv",
+      "bytes": 317,
+      "sha256": "3936529dcbd66ceca32b239360f4f369f0057ed096aabeabdae0ba54a3f9c24a"
+    }
+  ]
+}

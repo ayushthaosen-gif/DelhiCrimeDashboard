@@ -1,0 +1,101 @@
+{
+  "territorialDistricts": 14,
+  "territorialStationsInSchedule": 163,
+  "territorialStationsWithArchivedPolygon": 161,
+  "stationsWithoutPolygon": [
+    "North Avenue",
+    "South Avenue"
+  ],
+  "footprintDifferenceSqMetres": 0,
+  "districtOverlapSqKm": 1.262046484626293,
+  "polygonPartsPerDistrict": {
+    "South": 1,
+    "South-East": 1,
+    "West": 1,
+    "Outer": 1,
+    "Dwarka": 1,
+    "North-West": 2,
+    "Rohini": 1,
+    "Central": 1,
+    "North": 1,
+    "East": 1,
+    "North-East": 2,
+    "Shahdara": 1,
+    "New Delhi": 1,
+    "South-West": 1,
+    "IGI Airport": 1
+  },
+  "stationsChangingDistrictSince2014Roster": {
+    "South-East -> South": [
+      "Greater Kailash",
+      "Ambedkar Nagar",
+      "Sangam Vihar",
+      "Chitranjan Park"
+    ],
+    "South-West -> West": [
+      "Naraina",
+      "Inder Puri"
+    ],
+    "West -> Outer": [
+      "Nangloi",
+      "Ranhola",
+      "Paschim Vihar",
+      "Mianwali Nagar",
+      "Nihal Vihar",
+      "Mundka"
+    ],
+    "South-West -> Dwarka": [
+      "Dabri",
+      "Binda Pur",
+      "Dwarka North",
+      "Dwarka South",
+      "Sector 23 Dwarka",
+      "Chhawla",
+      "Jaffarpur Kalan",
+      "Najafgarh",
+      "Baba Haridas Nagar"
+    ],
+    "West -> Dwarka": [
+      "Uttam Nagar"
+    ],
+    "Outer -> Rohini": [
+      "Bawana",
+      "Shahbad Dairy",
+      "Begum Pur",
+      "Ali Pur",
+      "Narela",
+      "South Rohini",
+      "North Rohini",
+      "Vijay Vihar",
+      "Samai Pur Badli",
+      "K.N. Katju Marg",
+      "Parshant Vihar"
+    ],
+    "North-East -> Shahdara": [
+      "Shahadra",
+      "Seema Puri",
+      "Mansarover Park",
+      "G.T.B. Enclave"
+    ],
+    "East -> Shahdara": [
+      "Farash Bazar",
+      "Vivek Vihar",
+      "Anand Vihar",
+      "Gandhi Nagar",
+      "Geeta Colony",
+      "Krishna Nagar"
+    ],
+    "South -> South-West": [
+      "Vasant Vihar",
+      "R.K. Puram",
+      "South Campus",
+      "Vasant Kunj North",
+      "Vasant Kunj South"
+    ]
+  },
+  "limitations": [
+    "Station shapes are the undated May 2014 archive; station boundaries, and the two new New Delhi stations, may have changed by Nov 2017.",
+    "Roster is the official Nov 2017 gazette schedule; the original 3.5 MB scan was recovered from an Internet Archive copy of the MHA URL (live URL returns 404).",
+    "The schedule is applied to 2017 and 2018: NCRB reports the same 14 districts in both years and the CAG records 14 districts for 2018; no 2018 roster was found."
+  ]
+}

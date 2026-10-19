@@ -75,5 +75,28 @@
       "productionReady": false,
       "coverageComplete": false
     }
-  ]
+  ],
+  "historicalReleases": [
+    {
+      "id": "ncrb_historical_2011_2015",
+      "referenceYears": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "status": "staged",
+      "path": "historical_2011_2015/manifest.json",
+      "productionReady": false,
+      "dashboardIntegrated": false
+    }
+  ],
+  "citywideRoadTrend": {
+    "id": "citywide_road_trend",
+    "path": "citywide_road_trend/manifest.json",
+    "status": "production",
+    "coverageStart": 2011,
+    "coverageEnd": 2024
+  }
 }

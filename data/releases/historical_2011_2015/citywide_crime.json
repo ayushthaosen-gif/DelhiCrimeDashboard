@@ -1,0 +1,168 @@
+[
+  {
+    "reference_year": 2011,
+    "jurisdiction": "Delhi UT",
+    "geography_scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+    "source_reporting_units": 17,
+    "theft": 22899,
+    "robbery": 562,
+    "burglary_old_definition": 1419,
+    "criminal_trespass_burglary_revised_definition": null,
+    "total_ipc": 53353,
+    "total_sll": null,
+    "total_crimes_against_women": null,
+    "total_crimes_in_which_women_was_victim": null,
+    "null_reasons": {
+      "criminal_trespass_burglary_revised_definition": "Revised head not supplied by 2011-2013 table; old burglary is separate.",
+      "total_sll": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components.",
+      "total_crimes_against_women": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components.",
+      "total_crimes_in_which_women_was_victim": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components."
+    },
+    "source_paths": [
+      "data/staged/history_2011_2015/raw/ncrb_2011_district_ipc.pdf"
+    ],
+    "definition_notes": [
+      "IPC Table 1.14 supplies 30 columns; SLL and a comparable aggregate of crimes against women are not supplied by this selected table and remain null.",
+      "Printed labels Molestation (354) and Sexual Harassment (509) are retained. Census 2011 provisional population underlies published rates; no rates are reconstructed."
+    ],
+    "publication": {
+      "publication_date": null,
+      "foreword_date": "2012-06-28",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2012-06-28."
+    }
+  },
+  {
+    "reference_year": 2012,
+    "jurisdiction": "Delhi UT",
+    "geography_scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+    "source_reporting_units": 17,
+    "theft": 22032,
+    "robbery": 608,
+    "burglary_old_definition": 1715,
+    "criminal_trespass_burglary_revised_definition": null,
+    "total_ipc": 54287,
+    "total_sll": null,
+    "total_crimes_against_women": null,
+    "total_crimes_in_which_women_was_victim": null,
+    "null_reasons": {
+      "criminal_trespass_burglary_revised_definition": "Revised head not supplied by 2011-2013 table; old burglary is separate.",
+      "total_sll": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components.",
+      "total_crimes_against_women": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components.",
+      "total_crimes_in_which_women_was_victim": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components."
+    },
+    "source_paths": [
+      "data/staged/history_2011_2015/raw/ncrb_2012_district_ipc.pdf"
+    ],
+    "definition_notes": [
+      "Same 17-unit IPC layout; 354/509 header wording changes to assault on women/insult to modesty. No boundary equivalence is inferred.",
+      "SLL and comparable crimes-against-women aggregate are not supplied by this selected table and remain null. Additional multi-year catalogues are discovery leads, not extracted substitutes."
+    ],
+    "publication": {
+      "publication_date": null,
+      "foreword_date": "2013-06-04",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2013-06-04."
+    }
+  },
+  {
+    "reference_year": 2013,
+    "jurisdiction": "Delhi UT",
+    "geography_scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+    "source_reporting_units": 18,
+    "theft": 30124,
+    "robbery": 1245,
+    "burglary_old_definition": 2835,
+    "criminal_trespass_burglary_revised_definition": null,
+    "total_ipc": 80184,
+    "total_sll": null,
+    "total_crimes_against_women": null,
+    "total_crimes_in_which_women_was_victim": null,
+    "null_reasons": {
+      "criminal_trespass_burglary_revised_definition": "Revised head not supplied by 2011-2013 table; old burglary is separate.",
+      "total_sll": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components.",
+      "total_crimes_against_women": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components.",
+      "total_crimes_in_which_women_was_victim": "Aggregate not supplied by the selected original-year table; not inferred from overlapping components."
+    },
+    "source_paths": [
+      "data/staged/history_2011_2015/raw/ncrb_2013_district_ipc.pdf"
+    ],
+    "definition_notes": [
+      "18 reporting units: METRO RAIL appears separately in 2013, compared with 17 units in 2011-2012.",
+      "Criminal Law (Amendment) Act 2013 may affect offence coverage; equal IPC section labels do not prove unchanged legal definitions across 2012/2013.",
+      "Published rate denominators for women and other segments change; staged values are counts only. SLL and comparable women aggregate absent from selected IPC table remain null."
+    ],
+    "publication": {
+      "publication_date": null,
+      "foreword_date": "2014-06-16",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2014-06-16."
+    }
+  },
+  {
+    "reference_year": 2014,
+    "jurisdiction": "Delhi UT",
+    "geography_scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+    "source_reporting_units": 19,
+    "theft": 78753,
+    "robbery": 6464,
+    "burglary_old_definition": null,
+    "criminal_trespass_burglary_revised_definition": 10309,
+    "total_ipc": 155654,
+    "total_sll": 9908,
+    "total_crimes_against_women": 15265,
+    "total_crimes_in_which_women_was_victim": 6990,
+    "null_reasons": {
+      "burglary_old_definition": "Earlier definition not supplied by revised 2014-2015 table."
+    },
+    "source_paths": [
+      "data/staged/history_2011_2015/raw/ncrb_2014_district_ipc.xlsx",
+      "data/staged/history_2011_2015/raw/ncrb_2014_district_sll.xlsx",
+      "data/staged/history_2011_2015/raw/ncrb_2014_district_women.xlsx"
+    ],
+    "definition_notes": [
+      "NCRB revised proformae, added heads and changed sections. 19 units replace the earlier 17/18-unit lists; do not treat this as a stable district panel.",
+      "Revised Criminal Trespass/Burglary is distinct from old Burglary. Women basket expands to suicide abetment and domestic violence; women totals are not additive to IPC/SLL."
+    ],
+    "publication": {
+      "publication_date": null,
+      "foreword_date": null,
+      "basis": "Archived foreword undated; portal upload path is not a release date.",
+      "display": "Exact release date unknown; foreword undated."
+    }
+  },
+  {
+    "reference_year": 2015,
+    "jurisdiction": "Delhi UT",
+    "geography_scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+    "source_reporting_units": 19,
+    "theft": 104432,
+    "robbery": 7407,
+    "burglary_old_definition": null,
+    "criminal_trespass_burglary_revised_definition": 12862,
+    "total_ipc": 191377,
+    "total_sll": 8599,
+    "total_crimes_against_women": 17104,
+    "total_crimes_in_which_women_was_victim": 8165,
+    "null_reasons": {
+      "burglary_old_definition": "Earlier definition not supplied by revised 2014-2015 table."
+    },
+    "source_paths": [
+      "data/staged/history_2011_2015/raw/ncrb_2015_district_ipc.xlsx",
+      "data/staged/history_2011_2015/raw/ncrb_2015_district_sll.xlsx",
+      "data/staged/history_2011_2015/raw/ncrb_2015_district_women.xlsx"
+    ],
+    "definition_notes": [
+      "19 reporting units as printed; unit names alone do not establish boundary continuity with 2014 or 2016 onward.",
+      "Retain revised offence heads, separate women aggregate versus women-victim total, and source corrigendum. Prior categories are not mechanically backfilled."
+    ],
+    "publication": {
+      "publication_date": "2016-08-30",
+      "foreword_date": null,
+      "basis": "PIB release states calendar-year 2015 Crime in India was released today. Archived files may incorporate later revisions.",
+      "url": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=149357",
+      "corrigendum_date": "2016-09-09",
+      "display": "Released 2016-08-30 (PIB); corrigendum dated 2016-09-09; archived edition retained."
+    }
+  }
+]

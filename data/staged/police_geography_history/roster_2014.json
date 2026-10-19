@@ -1,0 +1,24 @@
+{
+  "referenceDate": "2014-12-09",
+  "sourceUrl": "https://www.mha.gov.in/MHA1/Par2017/pdfs/par2014-pdfs/ls-091214/2626.pdf",
+  "sourceTitle": "Lok Sabha unstarred question 2626, Annexure A, pages 3–6",
+  "accessNote": "Official document readable through search index on 2026-10-19; original binary download returned HTTP 404. This is a factual station-membership transcription, not a recovered source PDF.",
+  "labelPolicy": "Station spellings below match archived geometry; explicit spelling aliases are recorded separately. Membership is transcribed from the official roster, not inferred from polygon order or current districts.",
+  "districts": {
+    "North": ["Kotwali", "Lahori Gate", "Sadar Bazar", "Kashmere Gate", "Bara Hindu Rao", "Subzi Mandi", "Sarai Rohilla", "Gulabi Bagh", "Civil Lines", "Roop Nagar", "Timarpur", "Maurice Nagar", "Burari"],
+    "North-West": ["Model Town", "Mukherjee Nagar", "Adarsh Nagar", "Jahangir Puri", "Shalimar Bagh", "Ashok Vihar", "Keshav Puram", "Subhash Palace", "Swaroop Nagar", "Maurya Enclave", "Bhalswa Dairy", "Mahendra Park", "Rani Bagh", "Bharat Nagar"],
+    "Outer": ["Narela", "Alipur", "Samai Pur Badli", "Rohini South", "Mangol Puri", "Sultan Puri", "Aman Vihar", "Kanjhawala", "Bawana", "Prashant Vihar", "Vijay Vihar", "Shahbad Dairy", "Rohini North", "Begum Pur", "K.N. Katju Marg"],
+    "Central": ["Darya Ganj", "Jama Masjid", "Chandni Mahal", "Kamla Market", "Hauz Qazi", "I.P.Estate", "Pahar Ganj", "Nabi Karim", "D.B.G. Road", "Karol Bagh", "Rajinder Nagar", "Prasad Nagar", "Anand Parbat", "Patel Nagar", "Ranjit Nagar"],
+    "New Delhi": ["Parliament Street", "Mandir Marg", "Connaught Place", "Tilak Marg", "Chanakya Puri", "Tughlak Road", "Barakhamba Road"],
+    "East": ["Gandhi Nagar", "Krishna Nagar", "Geeta Colony", "Vivek Vihar", "Farsh Bazar", "Anand Vihar", "Preet Vihar", "Shakar Pur", "Kalyan Puri", "New Ashok Nagar", "Pandav Nagar", "Mandawali", "Mayur Vihar", "Madhu Vihar", "Jagat Puri", "Ghazipur"],
+    "North-East": ["Shahdara", "Welcome Colony", "Mansarovar Park", "Seelam Pur", "Gokul Puri", "Khajoori Khas", "Bhajan Pura", "Seema Puri", "Nand Nagari", "New Usman Pur", "Karawal Nagar", "Harsh Vihar", "Jyoti Nagar", "Sonia Vihar", "Zafrabad", "G.T.B. Enclave"],
+    "South": ["Hauz Khas", "Malviya Nagar", "Mehrauli", "Defence Colony", "Lodhi Colony", "Kotla Mubarakpur", "R.K. Puram", "Sarojini Nagar", "Vasant Vihar", "Vasant Kunj North", "Saket", "Neb Sarai", "Safdarjung Enclave", "Vasant Kunj South", "Fatehpur Beri", "South Campus"],
+    "South-East": ["Lajpat Nagar", "New Friends Colony", "Hazrat Nizamuddin", "Kalkaji", "Okhla Industrial Area", "Sangam Vihar", "Badarpur", "Greater Kailash", "Ambedkar Nagar", "Chittaranjan Park", "Amar Colony", "Jamia Nagar", "Sarita Vihar", "Govind Puri", "Jait Pur", "Pul Prahladpur", "Sunlight Colony"],
+    "South-West": ["Delhi Cantt.", "Naraina", "Inder Puri", "Najafgarh", "Dabri", "Jaffarpur Kalan", "Sector 23 Dwarka", "Kapashera", "Binda Pur", "Chhawla", "Palam Village", "Dwarka North", "Dwarka South", "Sagar Pur", "Baba Haridas Nagar"],
+    "West": ["Tilak Nagar", "Janak Puri", "Vikas Puri", "Uttam Nagar", "Rajouri Garden", "Hari Nagar", "Kirti Nagar", "Punjabi Bagh", "Paschim Vihar", "Moti Nagar", "Nangloi", "Mayapuri", "Nihal Vihar", "Khyala", "Mianwali Nagar", "Ranhola", "Mundka"]
+  },
+  "airportStations": ["I.G.I. Airport", "Palam Airport"],
+  "spellingAliases": {
+    "Mukherjee Nagar": "Mukherji Nagar", "Subhash Palace": "Subhash Place", "Swaroop Nagar": "Swarup Nagar", "Samai Pur Badli": "Samaipur Badli", "Rohini South": "South Rohini", "Rohini North": "North Rohini", "Prasad Nagar": "Parshad Nagar", "Chanakya Puri": "Chankaya Puri", "Tughlak Road": "Tuglak Road", "Farsh Bazar": "Farash Bazar", "Shahdara": "Shahadra", "Welcome Colony": "Welcome", "Mansarovar Park": "Mansarover Park", "Khajoori Khas": "Khajuri Khas", "Nand Nagari": "Nand Nagri", "Kotla Mubarakpur": "Kotla Mubarak Pur", "Hazrat Nizamuddin": "H.N. Din", "Okhla Industrial Area": "Okhla Ind. Area", "Chittaranjan Park": "Chitranjan Park", "Jait Pur": "Jaitpur", "Pul Prahladpur": "Pul Prahlad Pur", "Mayapuri": "Maya Puri", "Palam Airport": "Domestic Airport", "I.G.I. Airport": "IGI Airport", "I.P.Estate": "I.P. Estate", "Timarpur": "Timar Pur"
+  }
+}

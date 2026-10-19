@@ -1,3 +1,9 @@
+## [2026-10-19] - Codex - Citywide road trend to 2011; separate staged NCRB historical panel
+
+- User-approved road extension adds 2011–2013 total crashes, fatal crashes and deaths only. All 2014–2024 figures and victim-by-mode rows are unchanged. The road chart, 2011=100 baseline, endpoint labels, annual-count table and CSV range agree. Visible notes say counts, not rates, citywide scope, edition differences and unconfirmed early fatality follow-up definition.
+- Reproducible `citywide_road_trend/` production release retains source/checksum evidence. `historical_2011_2015/` is a separate staged NCRB panel: Delhi UT summaries, nine original table extracts and offence-level CSVs. No current-district mapping, total allocation or historical crime dashboard integration.
+- Historical source editions, publication-date gaps, source identity warnings and reuse caveats remain recorded. The historical release sits outside the production year list; all nine existing district-crime releases stay unchanged.
+
 ## [2026-10-19] - Claude (Anthropic) - Weekly monitor smoke test, and the fixes it called for
 
 **What the live runs showed.** The scheduled run (after Phase 0) created issue #39, and a manual run added a comment to it instead of opening a second issue, so the issue-opening path works and the artifact (manifest, coverage report, `source_diff.md`) is uploaded. But the note was mostly noise: of 28 "new" links, 13 were gallery images, 7 unrelated news pages, 7 were the South East 2026 iRAD reports already staged, and 1 an unrelated handbook; the baseline dated from August, so everything since looked new. Two "previously selected links gone" and two reachability changes were timeouts from the GitHub runner. One finding is real: **from GitHub's runners the NCRB site fails TLS verification (self-signed certificate in the chain), so the monitor cannot see NCRB at all**, which is the series it exists to watch for.
@@ -29,7 +35,7 @@ The clean-status check exposed existing CSV writers emitting CRLF despite the re
 
 ## [2026-10-19] - Claude (Anthropic) - Pipeline outputs made path-independent so the validation check can pass
 
-The "Pipeline 2025 validation" CI job (which only runs when `tools/pipeline_2025/` or its workflows change) failed for reasons that predate Phase 0: the committed reports contained absolute Windows paths from a Codex session (a C:/Users/.../.codex/... folder), and CI had no raw files, so its offline regeneration was empty and never matched.
+The "Pipeline 2025 validation" CI job (which only runs when `tools/pipeline_2025/` or its workflows change) failed for reasons that predate Phase 0: the committed reports contained absolute Windows paths from a Codex session (a local Windows folder from an earlier session), and CI had no raw files, so its offline regeneration was empty and never matched.
 
 - Raw files are recorded as `raw/<source_id>/<file>` in the download manifest, provenance, extraction rows and review queue; absolute paths and the path inside a missing-file error are gone (`portable_path`, `_reason`).
 - `python -m delhi_data_2025.raw_restore` copies the checked-in official files from `data/releases/2025/raw_sources/` into `output/raw/` by SHA-256 match; the workflow runs it before `collect --offline`. The reproducibility assertion is unchanged.
@@ -1165,3 +1171,9 @@ Prior to the divergence, Claude's contributions (now absorbed by Antigravity's r
 
 5. **Modern ES6 Syntax Standardization**
    - Refactored string concatenation (`'...' + ...`) across `renderList()`, `renderMethod()`, `renderZones()`, `renderRoadSafetyTabs()`, `renderDownloadTabs()`, and `renderDownloadFields()` to ES6 template literals.
+## [2026-10-19] - Codex - Historical district map reference preview
+
+- Built a separate 2014 reference map from the archived May 2014 station polygons and the official December 2014 parliamentary station roster: 161 territorial stations dissolved into 11 districts; two airport station polygons kept separate. Original 2014 NCRB counts join directly to reporting-unit rows; no modern-district allocation or rates.
+- Recorded Dwarka's November 2017 notification naming South-West and Outer as parent districts. The 2014 roster additionally demonstrates why current polygons cannot be merged through one parent lookup: Uttam Nagar was in West, and Vasant Vihar was in South.
+- Boundary certification is blocked by unknown archive effective date, 1.05 km² of overlap between reconstructed districts, unresolved source reuse terms and missing verified equivalence for other reporting years. Original MHA binaries currently return 404; no original binary hashes invented. The review preview and manifest expose these limitations. Existing dashboard/map HTML, district boundaries, crime data and production releases remain unchanged.
+- Archive extraction and map generation are reproducible. All 178 JavaScript tests pass, including three historical-map checks; browser review verified measure changes and district selection.

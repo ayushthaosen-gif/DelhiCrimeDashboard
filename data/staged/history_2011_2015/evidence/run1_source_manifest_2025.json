@@ -1,0 +1,997 @@
+{
+  "year": 2025,
+  "generated_at": "2026-10-19T14:35:22.815282+00:00",
+  "sources": [
+    {
+      "source_id": "ncrb_crime_monitor",
+      "agency": "National Crime Records Bureau",
+      "dataset": "crime",
+      "mode": "monitor",
+      "page_url": "https://ncrb.gov.in/",
+      "candidates": [],
+      "error": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1010)"
+    },
+    {
+      "source_id": "delhi_traffic_report_monitor",
+      "agency": "Delhi Traffic Police",
+      "dataset": "road_crash_report",
+      "mode": "monitor",
+      "page_url": "https://traffic.delhipolice.gov.in/",
+      "candidates": [
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2025/i4c_handbook_dos_and_don_t_final.pdf",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2025/i4c_handbook_dos_and_don_t_final.pdf",
+          "score": 40,
+          "reasons": [
+            "requested year",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Award Ceremony – Summer Camp 2025 Felicitation of Traffic Praharis Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/award-ceremony-%E2%80%93-summer-camp-2025",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Award Ceremony – Summer Camp 2025 Felicitation of Traffic Praharis Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/award-ceremony-%E2%80%93-summer-camp-2025",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Award Ceremony – Summer Camp 2025 Felicitation of Traffic Praharis Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/award-ceremony-%E2%80%93-summer-camp-2025",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/award-ceremony-%E2%80%93-summer-camp-2025",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Felicitation of Traffic Praharis Felicitation of Traffic Praharis Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/felicitation-traffic-praharis",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "On the occasion of \"सेवा दिवस\" Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 On the occasion of \"सेवा दिवस\"",
+          "url": "https://traffic.delhipolice.gov.in/en/occasion-%E0%A4%B8%E0%A5%87%E0%A4%B5%E0%A4%BE-%E0%A4%A6%E0%A4%BF%E0%A4%B5%E0%A4%B8",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Road Safety Pavilion at IITF 2025 Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Road Safety Pavilion at IITF 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/road-safety-pavilion-iitf-2025",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 On the occasion of \"सेवा दिवस\"",
+          "url": "https://traffic.delhipolice.gov.in/en/road-safety-pavilion-iitf-2025",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 On the occasion of \"सेवा दिवस\"",
+          "url": "https://traffic.delhipolice.gov.in/en/road-safety-pavilion-iitf-2025",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 On the occasion of \"सेवा दिवस\"",
+          "url": "https://traffic.delhipolice.gov.in/en/road-safety-pavilion-iitf-2025",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Road Safety Pavilion at IITF 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/visit-lg-delhi-delhi-traffic-police-hq",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Road Safety Pavilion at IITF 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/visit-lg-delhi-delhi-traffic-police-hq",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Road Safety Pavilion at IITF 2025",
+          "url": "https://traffic.delhipolice.gov.in/en/visit-lg-delhi-delhi-traffic-police-hq",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/1.JPG Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 On the occasion of \"सेवा दिवस\"",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/1.JPG",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/1_1.jpeg Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Road Safety Pavilion at IITF 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/1_1.jpeg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/2.JPG Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 On the occasion of \"सेवा दिवस\"",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/2.JPG",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/2_1.jpeg Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Road Safety Pavilion at IITF 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/2_1.jpeg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/3.JPG Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Road Safety Pavilion at IITF 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/3.JPG",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/4.JPG Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 On the occasion of \"सेवा दिवस\"",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/4.JPG",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/7.jpeg Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Visit of LG Delhi at Delhi Traffic Police HQ Road Safety Pavilion at IITF 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/7.jpeg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/7_22.jpg Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 Road Safety Pavilion at IITF 2025 On the occasion of \"सेवा दिवस\"",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/7_22.jpg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/WhatsApp%20Image%202025-09-17%20at%2010.44.18%20%281%29.jpeg Felicitation of Traffic Praharis Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/WhatsApp%20Image%202025-09-17%20at%2010.44.18%20%281%29.jpeg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/WhatsApp%20Image%202025-09-17%20at%2010.44.18%20%282%29.jpeg Felicitation of Traffic Praharis Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/WhatsApp%20Image%202025-09-17%20at%2010.44.18%20%282%29.jpeg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/WhatsApp%20Image%202025-09-17%20at%2010.44.18%20%283%29.jpeg Felicitation of Traffic Praharis Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/WhatsApp%20Image%202025-09-17%20at%2010.44.18%20%283%29.jpeg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/WhatsApp%20Image%202025-09-17%20at%2010.44.18%20%284%29.jpeg Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/WhatsApp%20Image%202025-09-17%20at%2010.44.18%20%284%29.jpeg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/gpdkm77x0aakiec.jpg Felicitation of Traffic Praharis Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025 Award Ceremony – Summer Camp 2025",
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/Gallery/gpdkm77x0aakiec.jpg",
+          "score": 30,
+          "reasons": [
+            "requested year"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "delhi_traffic_report_monitor",
+          "title": "Lok Adalat Notices/Challans can be downloaded from 19.10.2026 onwards A maximum of 50,000 Challans/Notices may be downloaded per day, subject to the exhaustion of the total capacity of 2,00,000 Challans/Notices. 18-Oct-2026",
+          "url": "https://traffic.delhipolice.gov.in/lokadalat/",
+          "score": 2,
+          "reasons": [
+            "monthly coverage"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "irad_new_delhi",
+      "agency": "District Administration New Delhi",
+      "dataset": "irad_edar",
+      "mode": "collect",
+      "page_url": "https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "candidates": [
+        {
+          "source_id": "irad_new_delhi",
+          "title": "Click to View/Download 4. Jan,2025 to Dec,2025 Click to View/Download",
+          "url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809011041267.pdf",
+          "score": 95,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "annual coverage",
+            "downloadable document"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "irad_new_delhi",
+          "title": "Click to View/Download 2. Jan,2023 to Dec,2023 Click to View/Download",
+          "url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041520.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_new_delhi",
+          "title": "Click to View/Download 3. Jan,2024 to Dec,2024 Click to View/Download",
+          "url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041533.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_new_delhi",
+          "title": "Click to View/Download 1. Jan,2022 to Dec,2022 Click to View/Download",
+          "url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2025/04/2025041582.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_new_delhi",
+          "title": "Click to View/Download 5 Jan,2026 to May,2026 Click to View/Download",
+          "url": "https://cdn.s3waas.gov.in/s3f7177163c833dff4b38fc8d2872f1ec6/uploads/2026/06/17809016931369.pdf",
+          "score": 12,
+          "reasons": [
+            "monthly coverage",
+            "downloadable document"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "irad_west",
+      "agency": "District Administration West Delhi",
+      "dataset": "irad_edar",
+      "mode": "collect",
+      "page_url": "https://dmwest.delhi.gov.in/integrated-road-accident-cases-month-wise/",
+      "candidates": [
+        {
+          "source_id": "irad_west",
+          "title": "View (125 KB) Jan 2025 to Dec 2025 06/01/2026 View (125 KB)",
+          "url": "https://cdn.s3waas.gov.in/s30f49c89d1e7298bb9930789c8ed59d48/uploads/2026/01/17676875811215.pdf",
+          "score": 95,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "annual coverage",
+            "downloadable document"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "irad_west",
+          "title": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+          "url": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+          "score": 85,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "annual coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_west",
+          "title": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+          "url": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+          "score": 85,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "annual coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_west",
+          "title": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+          "url": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/",
+          "score": 85,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "annual coverage"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_west",
+          "title": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/#SkipContent",
+          "url": "https://dmwest.delhi.gov.in/document/jan-2025-to-dec-2025/#SkipContent",
+          "score": 85,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "annual coverage"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "irad_south_east",
+      "agency": "District Administration South East Delhi",
+      "dataset": "irad_edar",
+      "mode": "collect",
+      "page_url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+      "candidates": [
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified According By Year 01 Jan 2025 to 31 Dec 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676880854501.pdf",
+          "score": 95,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "annual coverage",
+            "downloadable document"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 May 2025 to 31 May 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566344197.pdf",
+          "score": 72,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "monthly coverage",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD-eDAR Overview",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042132.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Jan 2025 to 31 Jan 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659564847373.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Mar 2025 to 31 Mar 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659565245947.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Apr 2025 to 30 Apr 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659565856136.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Jun 2025 to 30 Jun 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566625570.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Jul 2025 to 31 Jul 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566916898.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Aug 2025 to 31 Aug 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567106223.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Sep 2025 to 30 Sep 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567362040.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Oct 2025 to 31 Oct 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567553072.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Nov 2025 to 30 Nov 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567676014.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Feb 2025 to 28 Feb 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659568465531.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Dec 2025 to 31 Dec 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676879156890.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "Press Notes issued during SIR-2025",
+          "url": "https://dmsoutheast.delhi.gov.in/2-press-notes-issued-during-sir-2025/",
+          "score": 60,
+          "reasons": [
+            "requested year",
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 May 2026 to 31 May 2026)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706536659.pdf",
+          "score": 42,
+          "reasons": [
+            "dataset title pattern",
+            "monthly coverage",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "Police Station Wise Accident Cases (2022 to 2024)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042124.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified According by year 01 Jan 2022 to 31 Dec 2022)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042136.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified According By year 01 Jan 2023 to 31 Dec 2023)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042158.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified According By year 01 Jan 2024 to 31 Dec 2024)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/04/2025042163.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Jan 2026 to 31 Jan 2026)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881699603394.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Feb 2026 to 28 Feb 2026)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881705845681.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Mar 2026 to 31 Mar 2026)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706119872.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Apr 2026 to 30 Apr 2026)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706318178.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Jun 2026 to 30 Jun 2026)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706749283.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Jul 2026 to 31 Jul 2026)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/08/17881706927042.pdf",
+          "score": 40,
+          "reasons": [
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "iRAD/eDAR South East",
+          "url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "Media Gallery",
+          "url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_south_east",
+          "title": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/#SkipContent",
+          "url": "https://dmsoutheast.delhi.gov.in/irad-edar-south-east/#SkipContent",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "irad_north_west",
+      "agency": "District Administration North West Delhi",
+      "dataset": "irad_edar",
+      "mode": "collect",
+      "page_url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+      "candidates": [
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD (Accidents Classified According 01 Jan 2025 to 31 Dec 2025)",
+          "url": "https://cdn.s3waas.gov.in/s3b1eec33c726a60554bc78518d5f9b32c/uploads/2026/01/17676911964560.pdf",
+          "score": 95,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "annual coverage",
+            "downloadable document"
+          ],
+          "selected": true
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD (Accidents Classified by Month Wise 01 May 2025 to 31 May 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566344197.pdf",
+          "score": 72,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "monthly coverage",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Jan 2025 to 31 Jan 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659564847373.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Jul 2025 to 31 Jul 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659566916898.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Sep 2025 to 30 Sep 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567362040.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Oct 2025 to 31 Oct 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659567553072.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Feb 2025 to 28 Feb 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2025/12/17659568465531.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD (Accidents Classified by Month Wise 01 Dec 2025 to 31 Dec 2025)",
+          "url": "https://cdn.s3waas.gov.in/s31ecfb463472ec9115b10c292ef8bc986/uploads/2026/01/17676879156890.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "Police Station wise Accident Cases",
+          "url": "https://cdn.s3waas.gov.in/s3b1eec33c726a60554bc78518d5f9b32c/uploads/2025/04/2025041579.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD Overview",
+          "url": "https://cdn.s3waas.gov.in/s3f79921bbae40a577928b76d2fc3edc2a/uploads/2025/04/2025040313.pdf",
+          "score": 70,
+          "reasons": [
+            "requested year",
+            "dataset title pattern",
+            "downloadable document"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "iRAD/eDAR, North-West Delhi",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "Gallery",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "Notices",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        },
+        {
+          "source_id": "irad_north_west",
+          "title": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/#SkipContent",
+          "url": "https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/#SkipContent",
+          "score": 30,
+          "reasons": [
+            "dataset title pattern"
+          ],
+          "selected": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "source_id": "excise_preferred_vends_2025",
+      "agency": "Delhi Excise Department",
+      "dataset": "liquor_vends_preferred",
+      "mode": "collect",
+      "page_url": "https://excise.delhi.gov.in/excise/preferred-vends-purchaseprocurement-liquor-p-10-permit",
+      "candidates": [],
+      "error": "timed out"
+    },
+    {
+      "source_id": "dscsc_vends",
+      "agency": "Delhi State Civil Supplies Corporation",
+      "dataset": "liquor_vends",
+      "mode": "collect_with_date_warning",
+      "page_url": "https://dscsc.delhi.gov.in/dscsc/liquor-vends",
+      "candidates": [],
+      "error": "timed out"
+    },
+    {
+      "source_id": "osm_snapshot_2025",
+      "agency": "OpenStreetMap contributors",
+      "dataset": "infrastructure",
+      "mode": "collect",
+      "page_url": "https://api.ohsome.org/v1/elements/geometry",
+      "candidates": [
+        {
+          "source_id": "osm_snapshot_2025",
+          "title": "ohsome historical snapshot 2025",
+          "url": "https://api.ohsome.org/v1/elements/geometry",
+          "score": 100,
+          "reasons": [
+            "configured exact snapshot endpoint"
+          ],
+          "selected": true
+        }
+      ],
+      "error": null
+    }
+  ]
+}

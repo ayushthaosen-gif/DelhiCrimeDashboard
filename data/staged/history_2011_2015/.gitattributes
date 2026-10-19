@@ -1,0 +1,2 @@
+# Archived and manifested bytes must survive checkout without newline conversion.
+** -text

@@ -1,0 +1,152 @@
+{
+  "arithmetic_diagnostics": [
+    {
+      "kind": "traffic_row_arithmetic",
+      "reference_year": 2012,
+      "label": "EAST",
+      "sum_of_categories": 716,
+      "printed_total": 696,
+      "source_table": "6.1",
+      "source_printed_page": 38
+    },
+    {
+      "kind": "traffic_row_arithmetic",
+      "reference_year": 2011,
+      "label": "NORTH WEST",
+      "sum_of_categories": 1548,
+      "printed_total": 1584,
+      "source_table": "6.1",
+      "source_printed_page": 38
+    },
+    {
+      "kind": "traffic_row_arithmetic",
+      "reference_year": 2012,
+      "label": "NORTH",
+      "sum_of_categories": 234,
+      "printed_total": 446,
+      "source_table": "6.1",
+      "source_printed_page": 38
+    },
+    {
+      "kind": "traffic_row_arithmetic",
+      "reference_year": 2012,
+      "label": "WEST",
+      "sum_of_categories": 661,
+      "printed_total": 549,
+      "source_table": "6.1",
+      "source_printed_page": 38
+    },
+    {
+      "kind": "traffic_observed_rows_vs_printed_total",
+      "reference_year": 2011,
+      "metric": "non_injury_accidents",
+      "non_null_observations": 10,
+      "observed_sum": 71,
+      "printed_total": 45,
+      "source_table": "6.1",
+      "source_printed_page": 38
+    },
+    {
+      "kind": "traffic_observed_rows_vs_printed_total",
+      "reference_year": 2011,
+      "metric": "total_accidents",
+      "non_null_observations": 10,
+      "observed_sum": 7316,
+      "printed_total": 7280,
+      "source_table": "6.1",
+      "source_printed_page": 38
+    },
+    {
+      "kind": "traffic_printed_total_vs_citywide_source",
+      "reference_year": 2011,
+      "metric": "non_injury_accidents",
+      "table_6_1_total": 45,
+      "citywide_statistics": 71
+    },
+    {
+      "kind": "traffic_observed_rows_vs_printed_total",
+      "reference_year": 2012,
+      "metric": "injury_accidents",
+      "non_null_observations": 10,
+      "observed_sum": 4788,
+      "printed_total": 5000,
+      "source_table": "6.1",
+      "source_printed_page": 38
+    },
+    {
+      "kind": "traffic_observed_rows_vs_printed_total",
+      "reference_year": 2012,
+      "metric": "total_accidents",
+      "non_null_observations": 10,
+      "observed_sum": 6805,
+      "printed_total": 6937,
+      "source_table": "6.1",
+      "source_printed_page": 38
+    }
+  ],
+  "source_identity_warnings": [
+    {
+      "path": "raw/ncrb_2012_disclaimer.pdf",
+      "summary": "Linked from CII 2012 but content identifies Accidental Deaths and Suicides in India 2013; excluded from crime interpretation."
+    },
+    {
+      "path": "raw/ncrb_2015_disclaimer.pdf",
+      "summary": "Linked from CII 2015 but content identifies Accidental Deaths and Suicides in India 2015; excluded from crime interpretation."
+    },
+    {
+      "path": "raw/ncrb_2015_limitations.pdf",
+      "summary": "Linked from CII 2015 but explicitly describes 2014 and is byte-identical to the 2014 limitations file; not treated as 2015 definition evidence."
+    }
+  ],
+  "archived_statistics_edition_differences": [
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2012,
+      "metric": "Persons Injured",
+      "archived_value": 6639,
+      "later_official_value": 6633
+    },
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2013,
+      "metric": "Non-Inj.Accidents",
+      "archived_value": 169,
+      "later_official_value": 173
+    },
+    {
+      "source": "raw/archive_statistics_2014.html",
+      "capture_timestamp": "20140513002946",
+      "reference_year": 2013,
+      "metric": "Simple Accidents",
+      "archived_value": 5619,
+      "later_official_value": 5615
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2012,
+      "metric": "Persons Injured",
+      "archived_value": 6639,
+      "later_official_value": 6633
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2013,
+      "metric": "Non-Inj.Accidents",
+      "archived_value": 169,
+      "later_official_value": 173
+    },
+    {
+      "source": "raw/archive_statistics_2015.html",
+      "capture_timestamp": "20150318221557",
+      "reference_year": 2013,
+      "metric": "Simple Accidents",
+      "archived_value": 5619,
+      "later_official_value": 5615
+    }
+  ],
+  "interpretation": "Source inconsistencies and edition differences are retained and flagged, not repaired. These diagnostics are not claims of clean original-source arithmetic."
+}

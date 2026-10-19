@@ -1,0 +1,393 @@
+{
+  "source": "raw/dtp_2015_chapter_6.pdf",
+  "source_table": "6.1",
+  "source_pdf_page": 1,
+  "source_printed_page": 38,
+  "method": "Visual transcription of embedded image; checked by author against rendered page; no corrections applied. Not independently reviewed.",
+  "years": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015
+  ],
+  "metrics": [
+    "fatal_accidents",
+    "injury_accidents",
+    "non_injury_accidents",
+    "total_accidents"
+  ],
+  "rows": [
+    {
+      "label": "CENTRAL",
+      "fatal_accidents": [
+        67,
+        67,
+        63,
+        62,
+        64
+      ],
+      "injury_accidents": [
+        136,
+        164,
+        243,
+        285,
+        264
+      ],
+      "non_injury_accidents": [
+        3,
+        3,
+        6,
+        6,
+        6
+      ],
+      "total_accidents": [
+        206,
+        234,
+        312,
+        353,
+        334
+      ]
+    },
+    {
+      "label": "NEW DELHI",
+      "fatal_accidents": [
+        81,
+        61,
+        59,
+        54,
+        60
+      ],
+      "injury_accidents": [
+        206,
+        171,
+        197,
+        230,
+        206
+      ],
+      "non_injury_accidents": [
+        19,
+        14,
+        21,
+        45,
+        21
+      ],
+      "total_accidents": [
+        306,
+        246,
+        277,
+        329,
+        287
+      ]
+    },
+    {
+      "label": "EAST",
+      "fatal_accidents": [
+        178,
+        178,
+        137,
+        121,
+        130
+      ],
+      "injury_accidents": [
+        656,
+        534,
+        564,
+        684,
+        643
+      ],
+      "non_injury_accidents": [
+        2,
+        4,
+        11,
+        25,
+        26
+      ],
+      "total_accidents": [
+        836,
+        696,
+        712,
+        830,
+        799
+      ]
+    },
+    {
+      "label": "NORTH EAST",
+      "fatal_accidents": [
+        141,
+        129,
+        121,
+        100,
+        115
+      ],
+      "injury_accidents": [
+        451,
+        399,
+        512,
+        567,
+        548
+      ],
+      "non_injury_accidents": [
+        0,
+        3,
+        6,
+        8,
+        2
+      ],
+      "total_accidents": [
+        592,
+        531,
+        639,
+        675,
+        665
+      ]
+    },
+    {
+      "label": "NORTH WEST",
+      "fatal_accidents": [
+        490,
+        434,
+        448,
+        256,
+        252
+      ],
+      "injury_accidents": [
+        1050,
+        1115,
+        1177,
+        755,
+        819
+      ],
+      "non_injury_accidents": [
+        8,
+        34,
+        48,
+        10,
+        16
+      ],
+      "total_accidents": [
+        1584,
+        1583,
+        1673,
+        1021,
+        1087
+      ]
+    },
+    {
+      "label": "NORTH",
+      "fatal_accidents": [
+        149,
+        115,
+        132,
+        110,
+        98
+      ],
+      "injury_accidents": [
+        294,
+        115,
+        367,
+        390,
+        346
+      ],
+      "non_injury_accidents": [
+        2,
+        4,
+        3,
+        7,
+        3
+      ],
+      "total_accidents": [
+        445,
+        446,
+        502,
+        507,
+        447
+      ]
+    },
+    {
+      "label": "OUTER",
+      "fatal_accidents": [
+        null,
+        null,
+        null,
+        191,
+        178
+      ],
+      "injury_accidents": [
+        null,
+        null,
+        null,
+        658,
+        522
+      ],
+      "non_injury_accidents": [
+        null,
+        null,
+        null,
+        1,
+        1
+      ],
+      "total_accidents": [
+        null,
+        null,
+        null,
+        850,
+        701
+      ]
+    },
+    {
+      "label": "SOUTH",
+      "fatal_accidents": [
+        177,
+        158,
+        149,
+        139,
+        117
+      ],
+      "injury_accidents": [
+        428,
+        421,
+        440,
+        632,
+        631
+      ],
+      "non_injury_accidents": [
+        3,
+        10,
+        17,
+        17,
+        12
+      ],
+      "total_accidents": [
+        608,
+        589,
+        606,
+        788,
+        760
+      ]
+    },
+    {
+      "label": "SOUTH-EAST",
+      "fatal_accidents": [
+        294,
+        250,
+        244,
+        229,
+        212
+      ],
+      "injury_accidents": [
+        946,
+        877,
+        913,
+        1138,
+        1035
+      ],
+      "non_injury_accidents": [
+        18,
+        32,
+        46,
+        71,
+        56
+      ],
+      "total_accidents": [
+        1258,
+        1159,
+        1203,
+        1438,
+        1303
+      ]
+    },
+    {
+      "label": "SOUTH WEST",
+      "fatal_accidents": [
+        231,
+        204,
+        206,
+        174,
+        157
+      ],
+      "injury_accidents": [
+        501,
+        564,
+        683,
+        771,
+        586
+      ],
+      "non_injury_accidents": [
+        4,
+        4,
+        12,
+        14,
+        9
+      ],
+      "total_accidents": [
+        736,
+        772,
+        901,
+        959,
+        752
+      ]
+    },
+    {
+      "label": "WEST",
+      "fatal_accidents": [
+        239,
+        226,
+        219,
+        193,
+        199
+      ],
+      "injury_accidents": [
+        494,
+        428,
+        519,
+        675,
+        743
+      ],
+      "non_injury_accidents": [
+        12,
+        7,
+        3,
+        5,
+        8
+      ],
+      "total_accidents": [
+        745,
+        549,
+        741,
+        873,
+        950
+      ]
+    }
+  ],
+  "printed_totals": {
+    "fatal_accidents": [
+      2047,
+      1822,
+      1778,
+      1629,
+      1582
+    ],
+    "injury_accidents": [
+      5162,
+      5000,
+      5615,
+      6785,
+      6343
+    ],
+    "non_injury_accidents": [
+      45,
+      115,
+      173,
+      209,
+      160
+    ],
+    "total_accidents": [
+      7280,
+      6937,
+      7566,
+      8623,
+      8085
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "stationPolygons": 163,
+  "territorialStationPolygons": 161,
+  "airportStationPolygons": 2,
+  "territorialDistricts": 11,
+  "airportGeometrySeparate": true,
+  "unmatchedStations": [],
+  "duplicateAssignments": [],
+  "unmatchedCrimeRows": [],
+  "sourceFootprintSqKm": 1572.7183734942491,
+  "dissolveFootprintDifferenceSqMetres": 9.5367431640625e-7,
+  "sourceOverlapSqKm": 11.081384805244685,
+  "reconstructedDistrictOverlapSqKm": 1.0509518361983299,
+  "geometryQualityStatus": "needs_review",
+  "countJoin": "Exact 2014 reporting-unit identity after case/punctuation normalization; no aggregation or allocation",
+  "otherYearsEnabled": false,
+  "limitations": [
+    "Community-preserved geometry uploaded 2014-05-13; survey/effective date not supplied.",
+    "Roster dated 2014-12-09; changes within that interval have not been independently ruled out.",
+    "Archived station polygons overlap; district polygons retain cross-district overlaps. No snapping, clipping or invented corrections applied.",
+    "A 2014 reference reconstruction, not an exact annual boundary certification."
+  ]
+}
