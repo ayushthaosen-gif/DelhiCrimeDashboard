@@ -33,3 +33,11 @@ test('the page keeps its caveat, a Home link and no external scripts', () => {
   assert.ok(html.includes('href="delhi_safety_dashboard.html"'));
   assert.ok(!/<script[^>]+src=/.test(html));
 });
+
+test('the coverage caveat is built from the data files, not typed into the page', () => {
+  for (const f of ['manifest.json', 'unstaged_published_reports.csv', 'coverage_notes.json']) assert.ok(html.includes('data/derived/irad_monthly/' + f), f + ' is not read by the page');
+  assert.ok(html.includes('id="coverageDyn"'));
+  assert.ok(!/is not loaded/.test(html) && !/None? and Shahdara have none/.test(html), 'a hard-coded coverage statement is back in the page');
+  const notes = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'derived', 'irad_monthly', 'coverage_notes.json'), 'utf8'));
+  assert.deepEqual(notes.no_accident_series_found.map(d => d.district), ['North', 'Shahdara']);
+});

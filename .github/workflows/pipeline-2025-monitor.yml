@@ -16,10 +16,33 @@ jobs:
       - run: pip install -e .
       - run: python -m delhi_data_2025 discover --year 2025
       - run: python -m delhi_data_2025 report --year 2025
+      - name: Compare with the committed baseline
+        id: diff
+        run: >
+          python -m delhi_data_2025.source_diff
+          --baseline ../../data/releases/2025/audit/source_manifest_2025.json
+          --current output/manifests/source_manifest_2025.json
+          --out output/reports/source_diff.md
+          --github-output "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         with:
           name: source-discovery-2025
           path: |
             tools/pipeline_2025/output/manifests/source_manifest_2025.json
             tools/pipeline_2025/output/reports/coverage_report_2025.md
+            tools/pipeline_2025/output/reports/source_diff.md
           retention-days: 30
+      # One open issue is kept up to date (a comment per weekly change). Nothing is collected or integrated here: a person reviews, collects, validates and opens a pull request.
+      - name: Open or update the monitor issue
+        if: steps.diff.outputs.changed == 'true'
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Source monitor: new or changed official sources"
+          existing=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file tools/pipeline_2025/output/reports/source_diff.md
+          else
+            gh issue create --title "$title" --body-file tools/pipeline_2025/output/reports/source_diff.md
+          fi

@@ -1,3 +1,13 @@
+## [2026-10-19] - Claude (Anthropic) - Phase 0 consolidation (from a Codex audit of the repository)
+
+Small, safe fixes that came out of an independent audit; the larger consolidation (one authoritative 2025/2026 release built from the iRAD data, a rebuilt station crosswalk, the 250-ward layer) is planned separately.
+
+- **iRAD page caveat from data.** The page's coverage sentence is now built from `manifest.json`, `unstaged_published_reports.csv` and the new hand-maintained `coverage_notes.json`, so it cannot go stale again. (It had kept saying one East scan was not loaded after that scan was loaded.) A test fails if a hard-coded coverage statement returns.
+- **`data/series_status.json`**: one machine-readable statement of every series, its latest period, geography and status (production, staged, provisional, not_published, not_implemented, retained_legacy_year). `test/series_status.test.js` checks fields, paths and that the README table matches.
+- **README cut from 29 KB to about 8 KB.** It now opens with what the project is, has the status table, the main limitations and a documentation index. Detail moved verbatim into `docs/DATA_SOURCES.md`, `docs/DATA_RELEASES.md`, `docs/PIPELINE_2025.md`, `docs/WHATS_NEW.md`, `docs/ANALYSES.md` and `docs/STRUCTURE.md`. Wording corrected: no longer "single-file dashboard", "real public infrastructure coverage" or "real coordinates". `test/docs_links.test.js` guards relative links and the README size.
+- **Source monitor now alerts.** The weekly workflow compares fresh discovery with the committed baseline (`delhi_data_2025/source_diff.py`, tested) and opens or updates one issue, "Source monitor: new or changed official sources". It still downloads and integrates nothing.
+- Not done here: the 2025 staging manifest, the 2026 release, the crosswalk rebuild, the 250 wards.
+
 ## [2026-10-18] - Claude (Anthropic) - iRAD round 3: independent census of the new rows, fixes to the notes
 
 Codex compared all 154 new monthly rows (2,100 numbers) and 686 new station rows (12,878 numbers) with their PDFs and found **no extraction mismatch**; all printed TOTAL rows reconcile; district labels, scope flags and the four layout column maps (current, legacy_21, legacy_17, east_legacy_11) were confirmed. It found documentation and metadata problems, now fixed:
