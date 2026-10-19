@@ -3,15 +3,29 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import ssl
 import time
 from collections import defaultdict
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
+import certifi
 import httpx
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 SENSITIVE = {"token", "key", "api_key", "access_token", "signature"}
+
+
+def tls_context() -> ssl.SSLContext:
+    """Verify against certifi's bundle plus the operating system's trust store.
+
+    Verification stays on (certificate required, hostname checked). certifi alone is not enough:
+    ncrb.gov.in chains to the emSign Root CA - G1, which the current certifi bundle no longer
+    contains although Ubuntu and Windows still trust it (issue #42).
+    """
+    context = ssl.create_default_context()
+    context.load_verify_locations(cafile=certifi.where())
+    return context
 
 
 def redact_url(url: str) -> str:
@@ -55,6 +69,7 @@ class SafeHttpClient:
             timeout=timeout,
             follow_redirects=True,
             transport=transport,
+            verify=tls_context(),
         )
         self.rate = rate
         self.max_bytes = max_bytes
