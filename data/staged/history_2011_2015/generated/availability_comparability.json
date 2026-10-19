@@ -276,7 +276,7 @@
       ]
     },
     "road_crashes": {
-      "original_annual_report": "official 2015 report archived in chapters",
+      "original_annual_report": "relevant official 2015 report chapters archived",
       "citywide": "official citywide count series staged and arithmetic validated",
       "traffic_districts": "2015-report retrospective table staged as printed; source inconsistencies and traffic-geography break prevent blind extension",
       "non_null_traffic_districts_in_retrospective_table": 11,

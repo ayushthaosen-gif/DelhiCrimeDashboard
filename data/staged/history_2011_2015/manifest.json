@@ -1256,13 +1256,13 @@
   "files": [
     {
       "path": "AVAILABILITY_AND_COMPARABILITY.md",
-      "sha256": "07da88c5fd8722d9a11cd7a7dcd5d115e738c8e1457bacad425b7ef16ab68fd9",
-      "bytes": 24369
+      "sha256": "445765eec6a4a5f11379b83b2001d99604b7ebef79bd34976310f9f38c8f2fa5",
+      "bytes": 24394
     },
     {
       "path": "generated/availability_comparability.json",
-      "sha256": "7b5e8fc00d5f357a1595f156d5cae90d781615ff61e189c97555518a3b849ebd",
-      "bytes": 12370
+      "sha256": "a72af9adf47cd2bed3e1f0132a3f264818e5434dd21999b4698f4aa66446b1c0",
+      "bytes": 12376
     },
     {
       "path": "generated/ncrb_2011_1_14.json",
