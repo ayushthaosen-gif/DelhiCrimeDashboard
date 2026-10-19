@@ -358,6 +358,7 @@ details.adv[open] > summary h2 { margin-bottom: 10px; }
       <summary aria-label="More actions">⋯</summary>
       <div class="menu-pop">
         <a class="menu-link" href="delhi_safety_dashboard.html">← Back to dashboard</a>
+        <a class="menu-link" href="historical_crime.html">Historical crime · 2011–2018</a>
         <a class="menu-link" href="map_3d.html">3D ward view (prototype)</a>
         <a class="menu-link" href="irad_stations.html">2025&ndash;26 road accidents (iRAD, prototype)</a>
         <button id="resetMapBtn" type="button">⟲ Reset map</button>
@@ -1225,6 +1226,11 @@ function applyUrlStateOnLoad() {
   const params = new URLSearchParams(location.search);
   const crime = params.get('crime');
   const year = params.get('year');
+  // Older counts must never inherit this page's modern district polygons/denominators.
+  if (/^201[1-8]$/.test(year || '') && (!crime || METRICS.some(m => m.key === crime && m.prevKey))) {
+    location.replace('historical_crime.html?year=' + encodeURIComponent(year) + '&metric=' + encodeURIComponent(crime || 'theft'));
+    return;
+  }
   const rate = params.get('rate');
   const bivariate = params.get('bivariate');
   const infra = params.get('infra');

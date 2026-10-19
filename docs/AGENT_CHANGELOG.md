@@ -35,7 +35,7 @@ The clean-status check exposed existing CSV writers emitting CRLF despite the re
 
 ## [2026-10-19] - Claude (Anthropic) - Pipeline outputs made path-independent so the validation check can pass
 
-The "Pipeline 2025 validation" CI job (which only runs when `tools/pipeline_2025/` or its workflows change) failed for reasons that predate Phase 0: the committed reports contained absolute Windows paths from a Codex session (a C:/Users/.../.codex/... folder), and CI had no raw files, so its offline regeneration was empty and never matched.
+The "Pipeline 2025 validation" CI job (which only runs when `tools/pipeline_2025/` or its workflows change) failed for reasons that predate Phase 0: the committed reports contained absolute Windows paths from a Codex session (a local Windows folder from an earlier session), and CI had no raw files, so its offline regeneration was empty and never matched.
 
 - Raw files are recorded as `raw/<source_id>/<file>` in the download manifest, provenance, extraction rows and review queue; absolute paths and the path inside a missing-file error are gone (`portable_path`, `_reason`).
 - `python -m delhi_data_2025.raw_restore` copies the checked-in official files from `data/releases/2025/raw_sources/` into `output/raw/` by SHA-256 match; the workflow runs it before `collect --offline`. The reproducibility assertion is unchanged.

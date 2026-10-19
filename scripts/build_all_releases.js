@@ -6,6 +6,7 @@ function build() {
   const years = yearly.buildYears();
   const historical = require('./build_historical_crime_release').build();
   const citywideRoad = require('./build_citywide_road_release').build();
+  require('./build_historical_reporting_view').build();
   require('./build_irad_releases').build();
   require('./build_police_station_crosswalk').build();
   // Shared inventory needs the generated reference targets to exist, too.

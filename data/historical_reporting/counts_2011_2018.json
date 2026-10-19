@@ -1,0 +1,4006 @@
+{
+  "schemaVersion": "1.0.0",
+  "years": [
+    {
+      "year": 2011,
+      "units": [
+        {
+          "label": "CAW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 130,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "CAW",
+              "sourceRow": null,
+              "sourceSerial": 1,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "CENTRAL",
+          "territorial": true,
+          "values": {
+            "theft": 1308,
+            "robbery": 26,
+            "burglary_old_definition": 39,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2451,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "CENTRAL",
+              "sourceRow": null,
+              "sourceSerial": 2,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "CRIME BRANCH",
+          "territorial": false,
+          "values": {
+            "theft": 3,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 121,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "CRIME BRANCH",
+              "sourceRow": null,
+              "sourceSerial": 3,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "EAST",
+          "territorial": true,
+          "values": {
+            "theft": 3490,
+            "robbery": 67,
+            "burglary_old_definition": 154,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 7004,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "EAST",
+              "sourceRow": null,
+              "sourceSerial": 4,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "EOW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 149,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "EOW",
+              "sourceRow": null,
+              "sourceSerial": 5,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "GRP(RLY)",
+          "territorial": false,
+          "values": {
+            "theft": 746,
+            "robbery": 21,
+            "burglary_old_definition": 4,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 972,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "GRP(RLY)",
+              "sourceRow": null,
+              "sourceSerial": 6,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "IGI AIRPORT",
+          "territorial": false,
+          "values": {
+            "theft": 67,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 565,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "IGI AIRPORT",
+              "sourceRow": null,
+              "sourceSerial": 7,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NEW DELHI",
+          "territorial": true,
+          "values": {
+            "theft": 418,
+            "robbery": 12,
+            "burglary_old_definition": 38,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1181,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "NEW DELHI",
+              "sourceRow": null,
+              "sourceSerial": 8,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH",
+          "territorial": true,
+          "values": {
+            "theft": 1176,
+            "robbery": 38,
+            "burglary_old_definition": 59,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2841,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "NORTH",
+              "sourceRow": null,
+              "sourceSerial": 9,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH-EAST",
+          "territorial": true,
+          "values": {
+            "theft": 2702,
+            "robbery": 55,
+            "burglary_old_definition": 76,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5734,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "NORTH-EAST",
+              "sourceRow": null,
+              "sourceSerial": 10,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH-WEST",
+          "territorial": true,
+          "values": {
+            "theft": 2268,
+            "robbery": 89,
+            "burglary_old_definition": 180,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4889,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "NORTH-WEST",
+              "sourceRow": null,
+              "sourceSerial": 11,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "OUTER",
+          "territorial": true,
+          "values": {
+            "theft": 2220,
+            "robbery": 74,
+            "burglary_old_definition": 260,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6118,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "OUTER",
+              "sourceRow": null,
+              "sourceSerial": 12,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH",
+          "territorial": true,
+          "values": {
+            "theft": 2252,
+            "robbery": 31,
+            "burglary_old_definition": 203,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5141,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "SOUTH",
+              "sourceRow": null,
+              "sourceSerial": 13,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH-EAST",
+          "territorial": true,
+          "values": {
+            "theft": 2437,
+            "robbery": 54,
+            "burglary_old_definition": 147,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6377,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "SOUTH-EAST",
+              "sourceRow": null,
+              "sourceSerial": 14,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH-WEST",
+          "territorial": true,
+          "values": {
+            "theft": 1234,
+            "robbery": 52,
+            "burglary_old_definition": 158,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3783,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "SOUTH-WEST",
+              "sourceRow": null,
+              "sourceSerial": 15,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 14,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "STF",
+              "sourceRow": null,
+              "sourceSerial": 16,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "WEST",
+          "territorial": true,
+          "values": {
+            "theft": 2578,
+            "robbery": 43,
+            "burglary_old_definition": 101,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5883,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+              "sourceLabel": "WEST",
+              "sourceRow": null,
+              "sourceSerial": 17,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": 22899,
+          "robbery": 562,
+          "burglary_old_definition": 1419,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 53353,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null
+        },
+        "scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+        "evidence": [
+          "data/staged/history_2011_2015/raw/ncrb_2011_district_ipc.pdf"
+        ]
+      },
+      "notes": [
+        "IPC Table 1.14 supplies 30 columns; SLL and a comparable aggregate of crimes against women are not supplied by this selected table and remain null.",
+        "Printed labels Molestation (354) and Sexual Harassment (509) are retained. Census 2011 provisional population underlies published rates; no rates are reconstructed."
+      ],
+      "sourceLabel": "NCRB original-year district tables, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2012,
+      "units": [
+        {
+          "label": "CAW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 178,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "CAW",
+              "sourceRow": null,
+              "sourceSerial": 1,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "CENTRAL",
+          "territorial": true,
+          "values": {
+            "theft": 1403,
+            "robbery": 47,
+            "burglary_old_definition": 101,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2973,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "CENTRAL",
+              "sourceRow": null,
+              "sourceSerial": 2,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "CRIME BRANCH",
+          "territorial": false,
+          "values": {
+            "theft": 1,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 90,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "CRIME BRANCH",
+              "sourceRow": null,
+              "sourceSerial": 3,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "EAST",
+          "territorial": true,
+          "values": {
+            "theft": 3258,
+            "robbery": 57,
+            "burglary_old_definition": 172,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 7423,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "EAST",
+              "sourceRow": null,
+              "sourceSerial": 4,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "EOW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 124,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "EOW",
+              "sourceRow": null,
+              "sourceSerial": 5,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "GRP(RLY)",
+          "territorial": false,
+          "values": {
+            "theft": 630,
+            "robbery": 12,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 837,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "GRP(RLY)",
+              "sourceRow": null,
+              "sourceSerial": 6,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "IGI AIRPORT",
+          "territorial": false,
+          "values": {
+            "theft": 68,
+            "robbery": 1,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 382,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "IGI AIRPORT",
+              "sourceRow": null,
+              "sourceSerial": 7,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NEW DELHI",
+          "territorial": true,
+          "values": {
+            "theft": 374,
+            "robbery": 9,
+            "burglary_old_definition": 25,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1057,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "NEW DELHI",
+              "sourceRow": null,
+              "sourceSerial": 8,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH",
+          "territorial": true,
+          "values": {
+            "theft": 1025,
+            "robbery": 45,
+            "burglary_old_definition": 97,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2700,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "NORTH",
+              "sourceRow": null,
+              "sourceSerial": 9,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH-EAST",
+          "territorial": true,
+          "values": {
+            "theft": 2616,
+            "robbery": 58,
+            "burglary_old_definition": 57,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5903,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "NORTH-EAST",
+              "sourceRow": null,
+              "sourceSerial": 10,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH-WEST",
+          "territorial": true,
+          "values": {
+            "theft": 1901,
+            "robbery": 65,
+            "burglary_old_definition": 166,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4542,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "NORTH-WEST",
+              "sourceRow": null,
+              "sourceSerial": 11,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "OUTER",
+          "territorial": true,
+          "values": {
+            "theft": 2215,
+            "robbery": 91,
+            "burglary_old_definition": 262,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6344,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "OUTER",
+              "sourceRow": null,
+              "sourceSerial": 12,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH",
+          "territorial": true,
+          "values": {
+            "theft": 2126,
+            "robbery": 52,
+            "burglary_old_definition": 235,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5045,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "SOUTH",
+              "sourceRow": null,
+              "sourceSerial": 13,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH-EAST",
+          "territorial": true,
+          "values": {
+            "theft": 2892,
+            "robbery": 72,
+            "burglary_old_definition": 201,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 7040,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "SOUTH-EAST",
+              "sourceRow": null,
+              "sourceSerial": 14,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH-WEST",
+          "territorial": true,
+          "values": {
+            "theft": 1171,
+            "robbery": 47,
+            "burglary_old_definition": 211,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4085,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "SOUTH-WEST",
+              "sourceRow": null,
+              "sourceSerial": 15,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "STF",
+              "sourceRow": null,
+              "sourceSerial": 16,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "WEST",
+          "territorial": true,
+          "values": {
+            "theft": 2352,
+            "robbery": 52,
+            "burglary_old_definition": 186,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5558,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+              "sourceLabel": "WEST",
+              "sourceRow": null,
+              "sourceSerial": 17,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": 22032,
+          "robbery": 608,
+          "burglary_old_definition": 1715,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 54287,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null
+        },
+        "scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+        "evidence": [
+          "data/staged/history_2011_2015/raw/ncrb_2012_district_ipc.pdf"
+        ]
+      },
+      "notes": [
+        "Same 17-unit IPC layout; 354/509 header wording changes to assault on women/insult to modesty. No boundary equivalence is inferred.",
+        "SLL and comparable crimes-against-women aggregate are not supplied by this selected table and remain null. Additional multi-year catalogues are discovery leads, not extracted substitutes."
+      ],
+      "sourceLabel": "NCRB original-year district tables, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2013,
+      "units": [
+        {
+          "label": "CAW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 203,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "CAW",
+              "sourceRow": null,
+              "sourceSerial": 1,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "CENTRAL",
+          "territorial": true,
+          "values": {
+            "theft": 1928,
+            "robbery": 55,
+            "burglary_old_definition": 121,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4562,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "CENTRAL",
+              "sourceRow": null,
+              "sourceSerial": 2,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "CRIME BRANCH",
+          "territorial": false,
+          "values": {
+            "theft": 1,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 80,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "CRIME BRANCH",
+              "sourceRow": null,
+              "sourceSerial": 3,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "EAST",
+          "territorial": true,
+          "values": {
+            "theft": 4252,
+            "robbery": 134,
+            "burglary_old_definition": 236,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 10388,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "EAST",
+              "sourceRow": null,
+              "sourceSerial": 4,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "EOW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 163,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "EOW",
+              "sourceRow": null,
+              "sourceSerial": 5,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "GRP(RLY)",
+          "territorial": false,
+          "values": {
+            "theft": 553,
+            "robbery": 20,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 760,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "GRP(RLY)",
+              "sourceRow": null,
+              "sourceSerial": 6,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "IGI AIRPORT",
+          "territorial": false,
+          "values": {
+            "theft": 79,
+            "robbery": 2,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 351,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "IGI AIRPORT",
+              "sourceRow": null,
+              "sourceSerial": 7,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "METRO RAIL",
+          "territorial": false,
+          "values": {
+            "theft": 875,
+            "robbery": 2,
+            "burglary_old_definition": 4,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 962,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "METRO RAIL",
+              "sourceRow": null,
+              "sourceSerial": 8,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NEW DELHI",
+          "territorial": true,
+          "values": {
+            "theft": 473,
+            "robbery": 14,
+            "burglary_old_definition": 19,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1458,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "NEW DELHI",
+              "sourceRow": null,
+              "sourceSerial": 9,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH",
+          "territorial": true,
+          "values": {
+            "theft": 1542,
+            "robbery": 87,
+            "burglary_old_definition": 165,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4081,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "NORTH",
+              "sourceRow": null,
+              "sourceSerial": 10,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH-EAST",
+          "territorial": true,
+          "values": {
+            "theft": 3703,
+            "robbery": 223,
+            "burglary_old_definition": 143,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 9041,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "NORTH-EAST",
+              "sourceRow": null,
+              "sourceSerial": 11,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "NORTH-WEST",
+          "territorial": true,
+          "values": {
+            "theft": 2548,
+            "robbery": 194,
+            "burglary_old_definition": 331,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6564,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "NORTH-WEST",
+              "sourceRow": null,
+              "sourceSerial": 12,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "OUTER",
+          "territorial": true,
+          "values": {
+            "theft": 3383,
+            "robbery": 134,
+            "burglary_old_definition": 547,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 9579,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "OUTER",
+              "sourceRow": null,
+              "sourceSerial": 13,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH",
+          "territorial": true,
+          "values": {
+            "theft": 3420,
+            "robbery": 68,
+            "burglary_old_definition": 429,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 8593,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "SOUTH",
+              "sourceRow": null,
+              "sourceSerial": 14,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH-EAST",
+          "territorial": true,
+          "values": {
+            "theft": 3155,
+            "robbery": 132,
+            "burglary_old_definition": 240,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 8608,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "SOUTH-EAST",
+              "sourceRow": null,
+              "sourceSerial": 15,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "SOUTH-WEST",
+          "territorial": true,
+          "values": {
+            "theft": 1077,
+            "robbery": 116,
+            "burglary_old_definition": 263,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5963,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "SOUTH-WEST",
+              "sourceRow": null,
+              "sourceSerial": 16,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 15,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "STF",
+              "sourceRow": null,
+              "sourceSerial": 17,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        },
+        {
+          "label": "WEST",
+          "territorial": true,
+          "values": {
+            "theft": 3135,
+            "robbery": 64,
+            "burglary_old_definition": 337,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 8813,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+              "sourceLabel": "WEST",
+              "sourceRow": null,
+              "sourceSerial": 18,
+              "sourcePdfPages": [
+                49,
+                50,
+                51
+              ]
+            }
+          ]
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": 30124,
+          "robbery": 1245,
+          "burglary_old_definition": 2835,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 80184,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null
+        },
+        "scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+        "evidence": [
+          "data/staged/history_2011_2015/raw/ncrb_2013_district_ipc.pdf"
+        ]
+      },
+      "notes": [
+        "18 reporting units: METRO RAIL appears separately in 2013, compared with 17 units in 2011-2012.",
+        "Criminal Law (Amendment) Act 2013 may affect offence coverage; equal IPC section labels do not prove unchanged legal definitions across 2012/2013.",
+        "Published rate denominators for women and other segments change; staged values are counts only. SLL and comparable women aggregate absent from selected IPC table remain null."
+      ],
+      "sourceLabel": "NCRB original-year district tables, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2014,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 4124,
+            "robbery": 288,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 576,
+            "burglary": null,
+            "total_ipc": 8932,
+            "total_sll": 921,
+            "total_crimes_against_women": 615,
+            "total_crimes_in_which_women_was_victim": 219
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "Central",
+              "sourceRow": 883,
+              "sourceSerial": 1,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "Central",
+              "sourceRow": 884,
+              "sourceSerial": 1
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "Central",
+              "sourceRow": 882,
+              "sourceSerial": 1
+            }
+          ]
+        },
+        {
+          "label": "Crime Branch",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 52,
+            "total_sll": 88,
+            "total_crimes_against_women": 3,
+            "total_crimes_in_which_women_was_victim": 9
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "Crime Branch",
+              "sourceRow": 884,
+              "sourceSerial": 2,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "Crime Branch",
+              "sourceRow": 885,
+              "sourceSerial": 2
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "Crime Branch",
+              "sourceRow": 883,
+              "sourceSerial": 2
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 9437,
+            "robbery": 789,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 999,
+            "burglary": null,
+            "total_ipc": 18642,
+            "total_sll": 599,
+            "total_crimes_against_women": 1646,
+            "total_crimes_in_which_women_was_victim": 1027
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "East",
+              "sourceRow": 885,
+              "sourceSerial": 3,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "East",
+              "sourceRow": 886,
+              "sourceSerial": 3
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "East",
+              "sourceRow": 884,
+              "sourceSerial": 3
+            }
+          ]
+        },
+        {
+          "label": "EOW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 85,
+            "total_sll": 63,
+            "total_crimes_against_women": 2,
+            "total_crimes_in_which_women_was_victim": 20
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "EOW",
+              "sourceRow": 886,
+              "sourceSerial": 4,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "EOW",
+              "sourceRow": 887,
+              "sourceSerial": 4
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "EOW",
+              "sourceRow": 885,
+              "sourceSerial": 4
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 157,
+            "robbery": 3,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1,
+            "burglary": null,
+            "total_ipc": 453,
+            "total_sll": 163,
+            "total_crimes_against_women": 16,
+            "total_crimes_in_which_women_was_victim": 0
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "IGI Airport",
+              "sourceRow": 887,
+              "sourceSerial": 5,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "IGI Airport",
+              "sourceRow": 888,
+              "sourceSerial": 5
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "IGI Airport",
+              "sourceRow": 886,
+              "sourceSerial": 5
+            }
+          ]
+        },
+        {
+          "label": "Metro",
+          "territorial": false,
+          "values": {
+            "theft": 2198,
+            "robbery": 4,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 2,
+            "burglary": null,
+            "total_ipc": 2309,
+            "total_sll": 13,
+            "total_crimes_against_women": 34,
+            "total_crimes_in_which_women_was_victim": 240
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "Metro",
+              "sourceRow": 888,
+              "sourceSerial": 6,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "Metro",
+              "sourceRow": 889,
+              "sourceSerial": 6
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "Metro",
+              "sourceRow": 887,
+              "sourceSerial": 6
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 1252,
+            "robbery": 63,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 53,
+            "burglary": null,
+            "total_ipc": 2421,
+            "total_sll": 123,
+            "total_crimes_against_women": 136,
+            "total_crimes_in_which_women_was_victim": 93
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "New Delhi",
+              "sourceRow": 889,
+              "sourceSerial": 7,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "New Delhi",
+              "sourceRow": 890,
+              "sourceSerial": 7
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "New Delhi",
+              "sourceRow": 888,
+              "sourceSerial": 7
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 4309,
+            "robbery": 353,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 653,
+            "burglary": null,
+            "total_ipc": 8201,
+            "total_sll": 505,
+            "total_crimes_against_women": 537,
+            "total_crimes_in_which_women_was_victim": 381
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "North",
+              "sourceRow": 890,
+              "sourceSerial": 8,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "North",
+              "sourceRow": 891,
+              "sourceSerial": 8
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "North",
+              "sourceRow": 889,
+              "sourceSerial": 8
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 8185,
+            "robbery": 1286,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1049,
+            "burglary": null,
+            "total_ipc": 16904,
+            "total_sll": 886,
+            "total_crimes_against_women": 1749,
+            "total_crimes_in_which_women_was_victim": 841
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "North-East",
+              "sourceRow": 891,
+              "sourceSerial": 9,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "North-East",
+              "sourceRow": 892,
+              "sourceSerial": 9
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "North-East",
+              "sourceRow": 890,
+              "sourceSerial": 9
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 7341,
+            "robbery": 734,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 935,
+            "burglary": null,
+            "total_ipc": 13251,
+            "total_sll": 886,
+            "total_crimes_against_women": 1246,
+            "total_crimes_in_which_women_was_victim": 395
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "North-West",
+              "sourceRow": 892,
+              "sourceSerial": 10,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "North-West",
+              "sourceRow": 893,
+              "sourceSerial": 10
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "North-West",
+              "sourceRow": 891,
+              "sourceSerial": 10
+            }
+          ]
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 10031,
+            "robbery": 1009,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1842,
+            "burglary": null,
+            "total_ipc": 20320,
+            "total_sll": 1911,
+            "total_crimes_against_women": 2079,
+            "total_crimes_in_which_women_was_victim": 1224
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "Outer",
+              "sourceRow": 893,
+              "sourceSerial": 11,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "Outer",
+              "sourceRow": 894,
+              "sourceSerial": 11
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "Outer",
+              "sourceRow": 892,
+              "sourceSerial": 11
+            }
+          ]
+        },
+        {
+          "label": "RAILWAY",
+          "territorial": false,
+          "values": {
+            "theft": 1455,
+            "robbery": 62,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 1816,
+            "total_sll": 63,
+            "total_crimes_against_women": 29,
+            "total_crimes_in_which_women_was_victim": 18
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "RAILWAY",
+              "sourceRow": 894,
+              "sourceSerial": 12,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "RAILWAY",
+              "sourceRow": 895,
+              "sourceSerial": 12
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "RAILWAY",
+              "sourceRow": 893,
+              "sourceSerial": 12
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 8670,
+            "robbery": 496,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1249,
+            "burglary": null,
+            "total_ipc": 17371,
+            "total_sll": 1143,
+            "total_crimes_against_women": 2075,
+            "total_crimes_in_which_women_was_victim": 393
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "South",
+              "sourceRow": 895,
+              "sourceSerial": 13,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "South",
+              "sourceRow": 896,
+              "sourceSerial": 13
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "South",
+              "sourceRow": 894,
+              "sourceSerial": 13
+            }
+          ]
+        },
+        {
+          "label": "South-East",
+          "territorial": true,
+          "values": {
+            "theft": 7557,
+            "robbery": 394,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1065,
+            "burglary": null,
+            "total_ipc": 14914,
+            "total_sll": 682,
+            "total_crimes_against_women": 1612,
+            "total_crimes_in_which_women_was_victim": 356
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "South-East",
+              "sourceRow": 896,
+              "sourceSerial": 14,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "South-East",
+              "sourceRow": 897,
+              "sourceSerial": 14
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "South-East",
+              "sourceRow": 895,
+              "sourceSerial": 14
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 4632,
+            "robbery": 403,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 913,
+            "burglary": null,
+            "total_ipc": 11320,
+            "total_sll": 649,
+            "total_crimes_against_women": 1549,
+            "total_crimes_in_which_women_was_victim": 667
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "South-West",
+              "sourceRow": 897,
+              "sourceSerial": 15,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "South-West",
+              "sourceRow": 898,
+              "sourceSerial": 15
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "South-West",
+              "sourceRow": 896,
+              "sourceSerial": 15
+            }
+          ]
+        },
+        {
+          "label": "Spl Cell",
+          "territorial": false,
+          "values": {
+            "theft": 1,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 14,
+            "total_sll": 49,
+            "total_crimes_against_women": 0,
+            "total_crimes_in_which_women_was_victim": 0
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "Spl Cell",
+              "sourceRow": 898,
+              "sourceSerial": 16,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "Spl Cell",
+              "sourceRow": 899,
+              "sourceSerial": 16
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "Spl Cell",
+              "sourceRow": 897,
+              "sourceSerial": 16
+            }
+          ]
+        },
+        {
+          "label": "SPUWAC",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 161,
+            "total_sll": 1,
+            "total_crimes_against_women": 161,
+            "total_crimes_in_which_women_was_victim": 0
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "SPUWAC",
+              "sourceRow": 899,
+              "sourceSerial": 17,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "SPUWAC",
+              "sourceRow": 900,
+              "sourceSerial": 17
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "SPUWAC",
+              "sourceRow": 898,
+              "sourceSerial": 17
+            }
+          ]
+        },
+        {
+          "label": "Vigilance",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 0,
+            "total_sll": 28,
+            "total_crimes_against_women": 0,
+            "total_crimes_in_which_women_was_victim": 0
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "Vigilance",
+              "sourceRow": 900,
+              "sourceSerial": 18,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "Vigilance",
+              "sourceRow": 901,
+              "sourceSerial": 18
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "Vigilance",
+              "sourceRow": 899,
+              "sourceSerial": 18
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 9404,
+            "robbery": 580,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 972,
+            "burglary": null,
+            "total_ipc": 18488,
+            "total_sll": 1135,
+            "total_crimes_against_women": 1776,
+            "total_crimes_in_which_women_was_victim": 1107
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+              "sourceLabel": "West",
+              "sourceRow": 901,
+              "sourceSerial": 19,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+              "sourceLabel": "West",
+              "sourceRow": 902,
+              "sourceSerial": 19
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+              "sourceLabel": "West",
+              "sourceRow": 900,
+              "sourceSerial": 19
+            }
+          ]
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": 78753,
+          "robbery": 6464,
+          "burglary_old_definition": null,
+          "criminal_trespass_burglary_revised_definition": 10309,
+          "burglary": null,
+          "total_ipc": 155654,
+          "total_sll": 9908,
+          "total_crimes_against_women": 15265,
+          "total_crimes_in_which_women_was_victim": 6990
+        },
+        "scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+        "evidence": [
+          "data/staged/history_2011_2015/raw/ncrb_2014_district_ipc.xlsx",
+          "data/staged/history_2011_2015/raw/ncrb_2014_district_sll.xlsx",
+          "data/staged/history_2011_2015/raw/ncrb_2014_district_women.xlsx"
+        ]
+      },
+      "notes": [
+        "NCRB revised proformae, added heads and changed sections. 19 units replace the earlier 17/18-unit lists; do not treat this as a stable district panel.",
+        "Revised Criminal Trespass/Burglary is distinct from old Burglary. Women basket expands to suicide abetment and domestic violence; women totals are not additive to IPC/SLL."
+      ],
+      "sourceLabel": "NCRB original-year district tables, as printed",
+      "map": {
+        "status": "reference_only",
+        "referenceYear": 2014,
+        "path": "data/staged/police_geography_history/districts_2014_reference.geojson"
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2015,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 5815,
+            "robbery": 382,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 689,
+            "burglary": null,
+            "total_ipc": 11859,
+            "total_sll": 750,
+            "total_crimes_against_women": 715,
+            "total_crimes_in_which_women_was_victim": 425
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "Central",
+              "sourceRow": 896,
+              "sourceSerial": 1,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "Central",
+              "sourceRow": 896,
+              "sourceSerial": 1
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "Central",
+              "sourceRow": 896,
+              "sourceSerial": 1
+            }
+          ]
+        },
+        {
+          "label": "Crime Branch",
+          "territorial": false,
+          "values": {
+            "theft": 4,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1,
+            "burglary": null,
+            "total_ipc": 77,
+            "total_sll": 110,
+            "total_crimes_against_women": 3,
+            "total_crimes_in_which_women_was_victim": 8
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "Crime Branch",
+              "sourceRow": 897,
+              "sourceSerial": 2,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "Crime Branch",
+              "sourceRow": 897,
+              "sourceSerial": 2
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "Crime Branch",
+              "sourceRow": 897,
+              "sourceSerial": 2
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 12295,
+            "robbery": 818,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1084,
+            "burglary": null,
+            "total_ipc": 21963,
+            "total_sll": 505,
+            "total_crimes_against_women": 1926,
+            "total_crimes_in_which_women_was_victim": 1338
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "East",
+              "sourceRow": 898,
+              "sourceSerial": 3,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "East",
+              "sourceRow": 898,
+              "sourceSerial": 3
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "East",
+              "sourceRow": 898,
+              "sourceSerial": 3
+            }
+          ]
+        },
+        {
+          "label": "EOW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 109,
+            "total_sll": 67,
+            "total_crimes_against_women": 6,
+            "total_crimes_in_which_women_was_victim": 26
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "EOW",
+              "sourceRow": 899,
+              "sourceSerial": 4,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "EOW",
+              "sourceRow": 899,
+              "sourceSerial": 4
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "EOW",
+              "sourceRow": 899,
+              "sourceSerial": 4
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 143,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 464,
+            "total_sll": 235,
+            "total_crimes_against_women": 20,
+            "total_crimes_in_which_women_was_victim": 1
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "IGI Airport",
+              "sourceRow": 900,
+              "sourceSerial": 5,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "IGI Airport",
+              "sourceRow": 900,
+              "sourceSerial": 5
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "IGI Airport",
+              "sourceRow": 900,
+              "sourceSerial": 5
+            }
+          ]
+        },
+        {
+          "label": "Metro",
+          "territorial": false,
+          "values": {
+            "theft": 3123,
+            "robbery": 8,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1,
+            "burglary": null,
+            "total_ipc": 3212,
+            "total_sll": 8,
+            "total_crimes_against_women": 24,
+            "total_crimes_in_which_women_was_victim": 380
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "Metro",
+              "sourceRow": 901,
+              "sourceSerial": 6,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "Metro",
+              "sourceRow": 901,
+              "sourceSerial": 6
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "Metro",
+              "sourceRow": 901,
+              "sourceSerial": 6
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 1338,
+            "robbery": 112,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 50,
+            "burglary": null,
+            "total_ipc": 2584,
+            "total_sll": 52,
+            "total_crimes_against_women": 114,
+            "total_crimes_in_which_women_was_victim": 108
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "New Delhi",
+              "sourceRow": 902,
+              "sourceSerial": 7,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "New Delhi",
+              "sourceRow": 902,
+              "sourceSerial": 7
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "New Delhi",
+              "sourceRow": 902,
+              "sourceSerial": 7
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 5512,
+            "robbery": 507,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 813,
+            "burglary": null,
+            "total_ipc": 10619,
+            "total_sll": 563,
+            "total_crimes_against_women": 517,
+            "total_crimes_in_which_women_was_victim": 333
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "North",
+              "sourceRow": 903,
+              "sourceSerial": 8,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "North",
+              "sourceRow": 903,
+              "sourceSerial": 8
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "North",
+              "sourceRow": 903,
+              "sourceSerial": 8
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 9585,
+            "robbery": 1301,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1269,
+            "burglary": null,
+            "total_ipc": 18831,
+            "total_sll": 716,
+            "total_crimes_against_women": 1796,
+            "total_crimes_in_which_women_was_victim": 787
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "North-East",
+              "sourceRow": 904,
+              "sourceSerial": 9,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "North-East",
+              "sourceRow": 904,
+              "sourceSerial": 9
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "North-East",
+              "sourceRow": 904,
+              "sourceSerial": 9
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 8895,
+            "robbery": 849,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1098,
+            "burglary": null,
+            "total_ipc": 16621,
+            "total_sll": 604,
+            "total_crimes_against_women": 1329,
+            "total_crimes_in_which_women_was_victim": 265
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "North-West",
+              "sourceRow": 905,
+              "sourceSerial": 10,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "North-West",
+              "sourceRow": 905,
+              "sourceSerial": 10
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "North-West",
+              "sourceRow": 905,
+              "sourceSerial": 10
+            }
+          ]
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 11808,
+            "robbery": 992,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 2105,
+            "burglary": null,
+            "total_ipc": 22754,
+            "total_sll": 1195,
+            "total_crimes_against_women": 2284,
+            "total_crimes_in_which_women_was_victim": 1469
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "Outer",
+              "sourceRow": 906,
+              "sourceSerial": 11,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "Outer",
+              "sourceRow": 906,
+              "sourceSerial": 11
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "Outer",
+              "sourceRow": 906,
+              "sourceSerial": 11
+            }
+          ]
+        },
+        {
+          "label": "RAILWAY",
+          "territorial": false,
+          "values": {
+            "theft": 2768,
+            "robbery": 102,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 3356,
+            "total_sll": 33,
+            "total_crimes_against_women": 41,
+            "total_crimes_in_which_women_was_victim": 41
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "RAILWAY",
+              "sourceRow": 907,
+              "sourceSerial": 12,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "RAILWAY",
+              "sourceRow": 907,
+              "sourceSerial": 12
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "RAILWAY",
+              "sourceRow": 907,
+              "sourceSerial": 12
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 12787,
+            "robbery": 658,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1811,
+            "burglary": null,
+            "total_ipc": 23379,
+            "total_sll": 1218,
+            "total_crimes_against_women": 2712,
+            "total_crimes_in_which_women_was_victim": 372
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "South",
+              "sourceRow": 908,
+              "sourceSerial": 13,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "South",
+              "sourceRow": 908,
+              "sourceSerial": 13
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "South",
+              "sourceRow": 908,
+              "sourceSerial": 13
+            }
+          ]
+        },
+        {
+          "label": "South-East",
+          "territorial": true,
+          "values": {
+            "theft": 10486,
+            "robbery": 375,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1302,
+            "burglary": null,
+            "total_ipc": 18148,
+            "total_sll": 915,
+            "total_crimes_against_women": 1741,
+            "total_crimes_in_which_women_was_victim": 405
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "South-East",
+              "sourceRow": 909,
+              "sourceSerial": 14,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "South-East",
+              "sourceRow": 909,
+              "sourceSerial": 14
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "South-East",
+              "sourceRow": 909,
+              "sourceSerial": 14
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 6076,
+            "robbery": 571,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1034,
+            "burglary": null,
+            "total_ipc": 13392,
+            "total_sll": 675,
+            "total_crimes_against_women": 1766,
+            "total_crimes_in_which_women_was_victim": 974
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "South-West",
+              "sourceRow": 910,
+              "sourceSerial": 15,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "South-West",
+              "sourceRow": 910,
+              "sourceSerial": 15
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "South-West",
+              "sourceRow": 910,
+              "sourceSerial": 15
+            }
+          ]
+        },
+        {
+          "label": "Spl Cell",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 13,
+            "total_sll": 55,
+            "total_crimes_against_women": 1,
+            "total_crimes_in_which_women_was_victim": 0
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "Spl Cell",
+              "sourceRow": 911,
+              "sourceSerial": 16,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "Spl Cell",
+              "sourceRow": 911,
+              "sourceSerial": 16
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "Spl Cell",
+              "sourceRow": 911,
+              "sourceSerial": 16
+            }
+          ]
+        },
+        {
+          "label": "SPUWAC",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 157,
+            "total_sll": 0,
+            "total_crimes_against_women": 157,
+            "total_crimes_in_which_women_was_victim": 0
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "SPUWAC",
+              "sourceRow": 912,
+              "sourceSerial": 17,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "SPUWAC",
+              "sourceRow": 912,
+              "sourceSerial": 17
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "SPUWAC",
+              "sourceRow": 912,
+              "sourceSerial": 17
+            }
+          ]
+        },
+        {
+          "label": "Vigilance",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 0,
+            "burglary": null,
+            "total_ipc": 0,
+            "total_sll": 11,
+            "total_crimes_against_women": 0,
+            "total_crimes_in_which_women_was_victim": 0
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "Vigilance",
+              "sourceRow": 913,
+              "sourceSerial": 18,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "Vigilance",
+              "sourceRow": 913,
+              "sourceSerial": 18
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "Vigilance",
+              "sourceRow": 913,
+              "sourceSerial": 18
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 13797,
+            "robbery": 732,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": 1605,
+            "burglary": null,
+            "total_ipc": 23839,
+            "total_sll": 887,
+            "total_crimes_against_women": 1952,
+            "total_crimes_in_which_women_was_victim": 1233
+          },
+          "evidence": [
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+              "sourceLabel": "West",
+              "sourceRow": 914,
+              "sourceSerial": 19,
+              "sourcePdfPages": null
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+              "sourceLabel": "West",
+              "sourceRow": 914,
+              "sourceSerial": 19
+            },
+            {
+              "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+              "sourceLabel": "West",
+              "sourceRow": 914,
+              "sourceSerial": 19
+            }
+          ]
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": 104432,
+          "robbery": 7407,
+          "burglary_old_definition": null,
+          "criminal_trespass_burglary_revised_definition": 12862,
+          "burglary": null,
+          "total_ipc": 191377,
+          "total_sll": 8599,
+          "total_crimes_against_women": 17104,
+          "total_crimes_in_which_women_was_victim": 8165
+        },
+        "scope": "NCRB state/UT aggregate as printed; not a mega-city table",
+        "evidence": [
+          "data/staged/history_2011_2015/raw/ncrb_2015_district_ipc.xlsx",
+          "data/staged/history_2011_2015/raw/ncrb_2015_district_sll.xlsx",
+          "data/staged/history_2011_2015/raw/ncrb_2015_district_women.xlsx"
+        ]
+      },
+      "notes": [
+        "19 reporting units as printed; unit names alone do not establish boundary continuity with 2014 or 2016 onward.",
+        "Retain revised offence heads, separate women aggregate versus women-victim total, and source corrigendum. Prior categories are not mechanically backfilled."
+      ],
+      "sourceLabel": "NCRB original-year district tables, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2016,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 6768,
+            "robbery": 208,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "Central",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 13901,
+            "robbery": 658,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 1830,
+            "robbery": 63,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "New Delhi",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 7280,
+            "robbery": 233,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "North",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 11615,
+            "robbery": 829,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "North-East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 12135,
+            "robbery": 597,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "North-West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 15033,
+            "robbery": 852,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "Outer",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 13965,
+            "robbery": 325,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "South",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "South-East",
+          "territorial": true,
+          "values": {
+            "theft": 10812,
+            "robbery": 265,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "South-East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 6872,
+            "robbery": 225,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "South-West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 16944,
+            "robbery": 442,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2016/district_crime.json",
+              "sourceLabel": "West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": "burglary/total IPC/crime against women/SLL omitted where definitions or schemas are incompatible"
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": null,
+          "robbery": null,
+          "burglary_old_definition": null,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": null,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null
+        },
+        "scope": "No independently extracted Delhi UT aggregate in this selected release. Territorial rows are not summed into a citywide total.",
+        "evidence": []
+      },
+      "notes": [
+        "The existing verified extract supplies theft and robbery. Burglary, total IPC, SLL and crimes-against-women aggregates remain null because of incompatible source definitions/schema.",
+        "The October 2016 reorganisation creates a transition-year boundary question. Eleven names in the annual extract do not certify an unchanged 2014 footprint."
+      ],
+      "sourceLabel": "Existing verified NCRB / India Data Portal extract",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "No cross-year district change or present-day area/population rates; transition-year geography requires source verification."
+    },
+    {
+      "year": 2017,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 7362,
+            "robbery": 165,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 529,
+            "total_ipc": 10983,
+            "total_sll": 710,
+            "total_crimes_against_women": 600,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "Central",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "Dwarka",
+          "territorial": true,
+          "values": {
+            "theft": 9521,
+            "robbery": 149,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 902,
+            "total_ipc": 13821,
+            "total_sll": 609,
+            "total_crimes_against_women": 1142,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "Dwarka",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 14186,
+            "robbery": 220,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 575,
+            "total_ipc": 17838,
+            "total_sll": 906,
+            "total_crimes_against_women": 847,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 2599,
+            "robbery": 33,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 62,
+            "total_ipc": 3514,
+            "total_sll": 57,
+            "total_crimes_against_women": 130,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "New Delhi",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 7713,
+            "robbery": 109,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 525,
+            "total_ipc": 11023,
+            "total_sll": 585,
+            "total_crimes_against_women": 544,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "North",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 11552,
+            "robbery": 473,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 532,
+            "total_ipc": 16623,
+            "total_sll": 2045,
+            "total_crimes_against_women": 1253,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "North-East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 15913,
+            "robbery": 348,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 906,
+            "total_ipc": 21911,
+            "total_sll": 1013,
+            "total_crimes_against_women": 1298,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "North-West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 10688,
+            "robbery": 216,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 971,
+            "total_ipc": 15324,
+            "total_sll": 981,
+            "total_crimes_against_women": 1109,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "Outer",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "Rohini",
+          "territorial": true,
+          "values": {
+            "theft": 14620,
+            "robbery": 334,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 1219,
+            "total_ipc": 20190,
+            "total_sll": 1038,
+            "total_crimes_against_women": 1370,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "Rohini",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "Shahdara",
+          "territorial": true,
+          "values": {
+            "theft": 11565,
+            "robbery": 258,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 551,
+            "total_ipc": 14662,
+            "total_sll": 1037,
+            "total_crimes_against_women": 667,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "Shahdara",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 15838,
+            "robbery": 255,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 795,
+            "total_ipc": 20825,
+            "total_sll": 1111,
+            "total_crimes_against_women": 1143,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "South",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "South-East",
+          "territorial": true,
+          "values": {
+            "theft": 14585,
+            "robbery": 188,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 813,
+            "total_ipc": 18837,
+            "total_sll": 755,
+            "total_crimes_against_women": 1083,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "South-East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 6864,
+            "robbery": 92,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 568,
+            "total_ipc": 10092,
+            "total_sll": 596,
+            "total_crimes_against_women": 727,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "South-West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 13790,
+            "robbery": 295,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 875,
+            "total_ipc": 18181,
+            "total_sll": 622,
+            "total_crimes_against_women": 912,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2017/district_crime.json",
+              "sourceLabel": "West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        }
+      ],
+      "territorialCount": 14,
+      "citywide": {
+        "values": {
+          "theft": null,
+          "robbery": null,
+          "burglary_old_definition": null,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": null,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null
+        },
+        "scope": "No independently extracted Delhi UT aggregate in this selected release. Territorial rows are not summed into a citywide total.",
+        "evidence": []
+      },
+      "notes": [
+        "These values are from the existing verified NCRB/India Data Portal series. IPC, SLL and crimes-against-women totals use its validated reconstruction method; they are not new original-table transcriptions.",
+        "Fourteen territorial units are separately reported. Outer North is absent as a reporting unit; no empty modern Outer North row is added.",
+        "Dwarka was notified in November 2017 and operational in December 2017. The full-year reporting basis must be established before mapping the annual count."
+      ],
+      "sourceLabel": "Existing verified NCRB / India Data Portal extract",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "No cross-year district change or present-day area/population rates; transition-year geography requires source verification."
+    },
+    {
+      "year": 2018,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 8047,
+            "robbery": 103,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 213,
+            "total_ipc": 11426,
+            "total_sll": 638,
+            "total_crimes_against_women": 646,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "Central",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "Dwarka",
+          "territorial": true,
+          "values": {
+            "theft": 12853,
+            "robbery": 100,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 306,
+            "total_ipc": 17012,
+            "total_sll": 1046,
+            "total_crimes_against_women": 1242,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "Dwarka",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 14514,
+            "robbery": 185,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 222,
+            "total_ipc": 17608,
+            "total_sll": 777,
+            "total_crimes_against_women": 975,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 2162,
+            "robbery": 12,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 32,
+            "total_ipc": 3026,
+            "total_sll": 60,
+            "total_crimes_against_women": 149,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "New Delhi",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 12269,
+            "robbery": 87,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 172,
+            "total_ipc": 14972,
+            "total_sll": 544,
+            "total_crimes_against_women": 575,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "North",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 13794,
+            "robbery": 314,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 150,
+            "total_ipc": 18114,
+            "total_sll": 2272,
+            "total_crimes_against_women": 1063,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "North-East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 20677,
+            "robbery": 307,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 455,
+            "total_ipc": 25960,
+            "total_sll": 1098,
+            "total_crimes_against_women": 1232,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "North-West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 12935,
+            "robbery": 212,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 496,
+            "total_ipc": 18194,
+            "total_sll": 1283,
+            "total_crimes_against_women": 1633,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "Outer",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "Rohini",
+          "territorial": true,
+          "values": {
+            "theft": 16863,
+            "robbery": 279,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 607,
+            "total_ipc": 21282,
+            "total_sll": 933,
+            "total_crimes_against_women": 1283,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "Rohini",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "Shahdara",
+          "territorial": true,
+          "values": {
+            "theft": 12251,
+            "robbery": 199,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 266,
+            "total_ipc": 14683,
+            "total_sll": 904,
+            "total_crimes_against_women": 685,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "Shahdara",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 18968,
+            "robbery": 185,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 318,
+            "total_ipc": 23484,
+            "total_sll": 1097,
+            "total_crimes_against_women": 1018,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "South",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "South-East",
+          "territorial": true,
+          "values": {
+            "theft": 18362,
+            "robbery": 165,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 301,
+            "total_ipc": 22645,
+            "total_sll": 873,
+            "total_crimes_against_women": 1061,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "South-East",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 8971,
+            "robbery": 85,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 185,
+            "total_ipc": 12170,
+            "total_sll": 600,
+            "total_crimes_against_women": 816,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "South-West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 13967,
+            "robbery": 194,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": 424,
+            "total_ipc": 18253,
+            "total_sll": 705,
+            "total_crimes_against_women": 1094,
+            "total_crimes_in_which_women_was_victim": null
+          },
+          "evidence": [
+            {
+              "path": "data/releases/2018/district_crime.json",
+              "sourceLabel": "West",
+              "coverage": "reported"
+            }
+          ],
+          "nullReason": null
+        }
+      ],
+      "territorialCount": 14,
+      "citywide": {
+        "values": {
+          "theft": null,
+          "robbery": null,
+          "burglary_old_definition": null,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": null,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null
+        },
+        "scope": "No independently extracted Delhi UT aggregate in this selected release. Territorial rows are not summed into a citywide total.",
+        "evidence": []
+      },
+      "notes": [
+        "These values are from the existing verified NCRB/India Data Portal series. IPC, SLL and crimes-against-women totals use its validated reconstruction method; they are not new original-table transcriptions.",
+        "Fourteen territorial units are separately reported. Outer North is absent as a reporting unit; no empty modern Outer North row is added.",
+        "Dwarka was notified in November 2017 and operational in December 2017. The full-year reporting basis must be established before mapping the annual count."
+      ],
+      "sourceLabel": "Existing verified NCRB / India Data Portal extract",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "No cross-year district change or present-day area/population rates; transition-year geography requires source verification."
+    }
+  ],
+  "policy": {
+    "countsOnly": true,
+    "currentDistrictAllocation": false,
+    "currentInfrastructureJoin": false,
+    "annualBoundariesVerified": false,
+    "nullMeans": "Unavailable from the selected source or definition incompatible; never zero."
+  }
+}

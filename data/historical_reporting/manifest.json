@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Historical reporting view, 2011–2018",
+  "status": "reference_view",
+  "dashboardLinked": true,
+  "currentDistrictMapIntegrated": false,
+  "productionReady": false,
+  "referenceYears": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018
+  ],
+  "geography": "Original annual reporting-unit labels; specialised units separate. No crosswalk to current districts.",
+  "mapCoverage": [
+    {
+      "year": 2011,
+      "status": "boundary_unverified",
+      "referenceYear": null,
+      "path": null
+    },
+    {
+      "year": 2012,
+      "status": "boundary_unverified",
+      "referenceYear": null,
+      "path": null
+    },
+    {
+      "year": 2013,
+      "status": "boundary_unverified",
+      "referenceYear": null,
+      "path": null
+    },
+    {
+      "year": 2014,
+      "status": "reference_only",
+      "referenceYear": 2014,
+      "path": "data/staged/police_geography_history/districts_2014_reference.geojson"
+    },
+    {
+      "year": 2015,
+      "status": "boundary_unverified",
+      "referenceYear": null,
+      "path": null
+    },
+    {
+      "year": 2016,
+      "status": "boundary_unverified",
+      "referenceYear": null,
+      "path": null
+    },
+    {
+      "year": 2017,
+      "status": "boundary_unverified",
+      "referenceYear": null,
+      "path": null
+    },
+    {
+      "year": 2018,
+      "status": "boundary_unverified",
+      "referenceYear": null,
+      "path": null
+    }
+  ],
+  "sourceInputs": [
+    {
+      "path": "data/releases/historical_2011_2015/citywide_crime.json",
+      "sha256": "06999b2028d353198c374067a67c5aef1a0fb5f9ebc4f09182cf2ba400d7e1ee"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2011_1_14.json",
+      "sha256": "5dceceb649e38ba597099da7d9900c65ea61f3bf4a2bd486522cc194c3cfe431"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2012_1_14.json",
+      "sha256": "6ff3b1749c93206b7c6d8cb77657a3df791bc6bd29e131215a66276e0938d40b"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2013_1_14.json",
+      "sha256": "65e56dee7e5a281e061a2d7764ff9e7017ebe1f04f67d07753074b7702ec806f"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_ipc.json",
+      "sha256": "e581316ce0ac6585c3674676433b43e1b97caed9af10ca62b0857ec461752e41"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_sll.json",
+      "sha256": "c46a6b736f8585fe11b62b9104c49cebda2270296b102c40adf627342b6202b8"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2014_women.json",
+      "sha256": "887b1dc143cf89f5fc703cbc8bc0927959652cd8a4efc8a32bc5fba5ce19423d"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_ipc.json",
+      "sha256": "5795c8d68edb462beaf38a61e310dca63b261eae24012e0b14848050b85b633d"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_sll.json",
+      "sha256": "6289319f9c751d42a520374208a165459652eb4d6b27f862e1838280021c7b48"
+    },
+    {
+      "path": "data/releases/historical_2011_2015/as_printed/ncrb_2015_women.json",
+      "sha256": "1457f9e1e54b2a78aea9abdc8a713e9e64c06591fc107bc18a5fce0fe3693a92"
+    },
+    {
+      "path": "data/releases/2016/district_crime.json",
+      "sha256": "b4af86b2172cf162efc0778aa783980950b77472fffa47c7e1ae43520f60da20"
+    },
+    {
+      "path": "data/releases/2017/district_crime.json",
+      "sha256": "7ed56d5b89e186cad6959b9cade5a1f1b935ac9b3c683e582e9c3fb0118db8fa"
+    },
+    {
+      "path": "data/releases/2018/district_crime.json",
+      "sha256": "d6d9a99c16850d7e2650a110aeec446f0430df910f238c35331b831c0a6b671d"
+    },
+    {
+      "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
+      "sha256": "df09639b17373595661470ec5bda816d978c572f2cdd2132f998f91f8d11d662"
+    },
+    {
+      "path": "data/staged/police_geography_history/validation.json",
+      "sha256": "535b09f94d01c46533db0d601f0943a490f05be101103a1bf41d0b3b9cdb5265"
+    }
+  ],
+  "definitionPolicy": "Old burglary (2011–2013), revised criminal trespass/burglary (2014–2015), and the later burglary series remain separate. Missing aggregates remain null.",
+  "sourcesManifest": "data/staged/history_2011_2015/manifest.json",
+  "existingSeriesSource": "data/delhi_crime_2016_2021_verified.json",
+  "mapManifest": "data/staged/police_geography_history/manifest.json",
+  "generatedBy": "scripts/build_historical_reporting_view.js"
+}

@@ -455,6 +455,7 @@ footer a { color: inherit; }
     </div>
     <button class="theme-btn" id="themeToggle" type="button" aria-label="Switch colour theme">◐</button>
     <a class="nav-cta" href="interactive_map.html">Interactive map →</a>
+    <a class="nav-cta" href="historical_crime.html">Historical crime · 2011–2018</a>
     <a class="nav-cta" href="map_3d.html" title="Prototype 3D ward view">3D view (prototype)</a>
     <a class="nav-cta" href="for_reporters.html" title="What you can and cannot say">Reporters &amp; researchers</a>
     <a class="nav-cta" href="irad_stations.html" title="Prototype: monthly road-accident counts for 2025 and 2026 from district iRAD reports">2025&ndash;26 road accidents (iRAD)</a>
@@ -1080,10 +1081,16 @@ function buildYearToggle() {
   const m = currentMetric();
   if (!m.prevKey && !m.yearVariants) { field.style.display = 'none'; return; }
   field.style.display = '';
-  const years = m.yearVariants ? Object.keys(m.yearVariants) : (m.historicalYears ? [...m.historicalYears, '2022', '2023', '2024'] : ['2022', '2023', '2024']);
+  const years = m.yearVariants ? Object.keys(m.yearVariants) : (m.prevKey ? ['2011','2012','2013','2014','2015','2016','2017','2018',...(m.historicalYears || []).filter(y => +y >= 2019), '2022', '2023', '2024'] : ['2022', '2023', '2024']);
   el.innerHTML = years.map(y => '<option value="' + y + '"' + (activeYear === y ? ' selected' : '') + '>' + y + '</option>').join('');
   el.title = m.historicalYears ? m.historicalSource : 'Available reporting years for ' + m.label;
-  el.onchange = () => { activeYear = el.value; render(); };
+  el.onchange = () => {
+    if (m.prevKey && +el.value <= 2018) {
+      location.href = 'historical_crime.html?year=' + encodeURIComponent(el.value) + '&metric=' + encodeURIComponent(m.key);
+      return;
+    }
+    activeYear = el.value; render();
+  };
 }
 
 function buildRateToggle() {
@@ -1460,12 +1467,9 @@ function yoyBadge(cur, prev, label) {
 function renderSparkline(d, baseKey) {
   const m = METRICS.find(x => x.key === baseKey);
   if (!m || !m.prevKey) return '';
-  // Every metric with a prevKey/key2024 also carries historicalYears (theft/robbery/burglary:
-  // 2016-2021; totalIPC/crimeAgainstWomen/totalSLL: 2017-2021) -- this used to be hardcoded to
-  // exactly 3 points (2022/2023/2024) and silently ignored that real, already-verified data.
-  // Build the full available year sequence instead: historicalYears, then 2022 (prevKey), 2023
-  // (the bare key), 2024 (key2024) -- whichever of those actually have a non-null value here.
-  const years = [...(m.historicalYears || []), '2022', '2023', '2024'];
+  // Earlier reporting geographies belong to the separate historical view. Do not connect
+  // their same-named district counts to this current-geography sparkline.
+  const years = [...(m.historicalYears || []).filter(y => +y >= 2019), '2022', '2023', '2024'];
   const points = years.map(y => {
     const key = y === '2022' ? m.prevKey : y === '2023' ? m.key : y === '2024' ? m.key2024 : baseKey + y;
     return { year: y, value: d[key] };
@@ -1658,7 +1662,7 @@ function renderDetail() {
     // theftPreviousYearComparable2017); its absence means "2022-2024 range", which was always
     // comparable, so treat a missing flag as comparable rather than as "no".
     const comparableFlagKey = baseKey + 'PreviousYearComparable' + detailYear;
-    const isComparable = !(comparableFlagKey in d) || d[comparableFlagKey];
+    const isComparable = +detailYear >= 2020 && (!(comparableFlagKey in d) || d[comparableFlagKey]);
     if (prevYear && isComparable) {
       const prevKey = yearField(baseKey, prevYear);
       const prevVal = d[prevKey];
