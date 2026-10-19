@@ -30,6 +30,17 @@
       "note": "2016 to 2024 each have a release manifest. Null means not reported, not zero."
     },
     {
+      "id": "citywide_road_trend",
+      "name": "Delhi Traffic Police citywide road trend",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2024",
+      "coverage_start": "2011",
+      "geography": "Delhi citywide; no district allocation",
+      "where": "data/releases/citywide_road_trend/manifest.json",
+      "note": "2011-2024 total crashes, fatal crashes and persons killed. Counts, not rates. Injury/category edition differences are excluded from the extension; victim-by-mode remains 2019-2024."
+    },
+    {
       "id": "ncrb_2025",
       "name": "NCRB Crime in India 2025",
       "status": "not_published",

@@ -414,8 +414,8 @@
       "datasetId": "road_safety_trends",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "fe58074ae82f039e5fbbb2e2ee141b29c5d83756befb806b43e67b5da1becfa8",
-      "bytes": 3157
+      "sha256": "7a779139db40185342df7b84dde5a87aa287c4fce4f2d86f97538032147ec4f7",
+      "bytes": 5670
     },
     {
       "file": "data/road_sizes.csv",
@@ -430,8 +430,8 @@
       "datasetId": "series_status",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "5591c2396ab05c750fcccedb1b6ad4ef8b17f1da0acc52003d5b8edcba9e3d0b",
-      "bytes": 9317
+      "sha256": "3adfac139a5497fc3dca990db1a1d93b115eeea12f151ad414513834cdc12858",
+      "bytes": 9883
     },
     {
       "file": "data/streetlight_grid.json",

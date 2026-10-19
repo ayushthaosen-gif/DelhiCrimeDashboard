@@ -4,6 +4,8 @@ How to load the research releases, what the manifests promise, and what to keep 
 
 ## Year-by-year research releases
 
+The [citywide road trend, 2011–2024](../data/releases/citywide_road_trend/README.md), is a separate citywide series of counts, not rates. The [NCRB 2011–2015 historical panel](../data/releases/historical_2011_2015/README.md) is staged off the dashboard, with original geography and definition breaks. See [the history guide](HISTORICAL_2011_2015.md); neither changes the nine production crime years below.
+
 Import-ready releases are organized like the audited 2025 folder:
 
 - [`data/releases/2016/`](../data/releases/2016/) through [`data/releases/2024/`](../data/releases/2024/): one folder per production year.

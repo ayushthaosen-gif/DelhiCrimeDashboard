@@ -59,7 +59,7 @@ downloadable Excel workbook (Sources & Methodology sheet), including:
 - Fatal road crashes & hit-and-run (2022): Delhi Traffic Police / Transport
   Department GNCTD, *2022 Delhi Road Crash Fatalities Report* — 11 of 15
   districts (Traffic Police's own reporting geography for that year).
-- Citywide road crash/fatality trends (2014-2023) and road deaths by mode of
+- Citywide road crash/fatality trends (2011-2024; counts, not rates) and road deaths by mode of
   travel (2019-2023): Delhi Traffic Police annual road crash data.
 - Crash-prone zone map coordinates: provided lat/lng for all 107 zones,
   cross-validated against the source table by rank and fatal-crash count

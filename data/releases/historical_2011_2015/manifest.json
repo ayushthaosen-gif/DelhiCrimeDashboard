@@ -1,0 +1,423 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi NCRB historical panel, 2011 to 2015",
+  "status": "staged",
+  "productionReady": false,
+  "dashboardIntegrated": false,
+  "referenceYears": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015
+  ],
+  "generatedBy": "scripts/build_historical_crime_release.js",
+  "generatedAt": null,
+  "geography": "Original Delhi UT reporting units, including specialised units: 17, 17, 18, 19, 19. Delhi UT printed summaries are separate, not another district.",
+  "districtMapping": null,
+  "joinKey": "reference_year + source_path + source row/serial + source_column; labels are not timeless geographic identifiers",
+  "unit": "Registered cases; counts, not rates. Not estimates of underlying prevalence.",
+  "nullPolicy": "Source blanks/dashes and missing aggregates remain null (empty CSV cells); never coerce null to zero or allocate totals among later districts.",
+  "offencePolicy": "Preserve original offence headers and source column positions. Rape/theft/kidnapping subheads and women categories overlap; do not sum all columns or add women totals to IPC/SLL.",
+  "comparability": {
+    "2011": [
+      "IPC Table 1.14 supplies 30 columns; SLL and a comparable aggregate of crimes against women are not supplied by this selected table and remain null.",
+      "Printed labels Molestation (354) and Sexual Harassment (509) are retained. Census 2011 provisional population underlies published rates; no rates are reconstructed."
+    ],
+    "2012": [
+      "Same 17-unit IPC layout; 354/509 header wording changes to assault on women/insult to modesty. No boundary equivalence is inferred.",
+      "SLL and comparable crimes-against-women aggregate are not supplied by this selected table and remain null. Additional multi-year catalogues are discovery leads, not extracted substitutes."
+    ],
+    "2013": [
+      "18 reporting units: METRO RAIL appears separately in 2013, compared with 17 units in 2011-2012.",
+      "Criminal Law (Amendment) Act 2013 may affect offence coverage; equal IPC section labels do not prove unchanged legal definitions across 2012/2013.",
+      "Published rate denominators for women and other segments change; staged values are counts only. SLL and comparable women aggregate absent from selected IPC table remain null."
+    ],
+    "2014": [
+      "NCRB revised proformae, added heads and changed sections. 19 units replace the earlier 17/18-unit lists; do not treat this as a stable district panel.",
+      "Revised Criminal Trespass/Burglary is distinct from old Burglary. Women basket expands to suicide abetment and domestic violence; women totals are not additive to IPC/SLL."
+    ],
+    "2015": [
+      "19 reporting units as printed; unit names alone do not establish boundary continuity with 2014 or 2016 onward.",
+      "Retain revised offence heads, separate women aggregate versus women-victim total, and source corrigendum. Prior categories are not mechanically backfilled."
+    ]
+  },
+  "publicationEvidence": {
+    "2011": {
+      "publication_date": null,
+      "foreword_date": "2012-06-28",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2012-06-28."
+    },
+    "2012": {
+      "publication_date": null,
+      "foreword_date": "2013-06-04",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2013-06-04."
+    },
+    "2013": {
+      "publication_date": null,
+      "foreword_date": "2014-06-16",
+      "basis": "Dated foreword, not independently verified release date.",
+      "display": "Exact release date unknown; foreword dated 2014-06-16."
+    },
+    "2014": {
+      "publication_date": null,
+      "foreword_date": null,
+      "basis": "Archived foreword undated; portal upload path is not a release date.",
+      "display": "Exact release date unknown; foreword undated."
+    },
+    "2015": {
+      "publication_date": "2016-08-30",
+      "foreword_date": null,
+      "basis": "PIB release states calendar-year 2015 Crime in India was released today. Archived files may incorporate later revisions.",
+      "url": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=149357",
+      "corrigendum_date": "2016-09-09",
+      "display": "Released 2016-08-30 (PIB); corrigendum dated 2016-09-09; archived edition retained."
+    }
+  },
+  "citywidePolicy": "Select Delhi UT TOTAL/Total District(s) as printed, not a sum of selected territorial districts and not the distinct NCRB mega-city geography.",
+  "sourceEditions": "The 2011-2013 PDF headers are readable transcriptions with sections, as declared by the extraction. The full PDFs remain authoritative. Workbook headers/cells and all source rows are retained in as_printed/.",
+  "extensionPolicy": "Separate historical panel; no append to the 2016-2024 current-district dashboard. Even identical labels or section numbers do not prove constant boundaries or definitions.",
+  "distributionStatus": "Local staged research; direct-source public redistribution terms not established. No new licence is granted by this compilation.",
+  "reuseTerms": [
+    {
+      "id": "ncrb",
+      "publisher": "NCRB",
+      "assessment": "2012 foreword explicitly permits free downloading from the NCRB website. No explicit open-data redistribution licence was established for these direct-hosted files; attribution and permission/terms review are required before public redistribution.",
+      "evidence_paths": [
+        "raw/ncrb_2012_foreword.pdf"
+      ],
+      "open_licence_verified": false
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14_2011.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14_2011.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 13 Mar 2023 07:45:36 GMT",
+      "bytes": 1212511,
+      "sha256": "bdfdf59c9b8af0b095fad1b8d9b6e65d38785400c9eb05d50af62444b5fadf4e",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2011_district_ipc.pdf",
+      "reference_years": [
+        2011
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "CRIME IN INDIA",
+        "/CreationDate": "D:20120621153734+05'30'",
+        "/ModDate": "D:20120621154230+05'30'",
+        "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
+        "/Title": "TABEL ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ 1"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 13 Mar 2023 07:45:36 GMT",
+      "bytes": 2463767,
+      "sha256": "55059f1c56627be89482d584171a7a9541551be34c124f4244fd751035da5985",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2012_district_ipc.pdf",
+      "reference_years": [
+        2012
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "CRIME IN INDIA",
+        "/CreationDate": "D:20130615143832+05'30'",
+        "/ModDate": "D:20130615145006+05'30'",
+        "/Producer": "Adobe PDF Library 10.0",
+        "/Title": "TABEL ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ 1"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14_2013.pdf",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.14_2013.pdf",
+      "http_status": 200,
+      "content_type": "application/pdf",
+      "last_modified": "Mon, 13 Mar 2023 07:45:36 GMT",
+      "bytes": 1082736,
+      "sha256": "a96494d8d57f2533ff6830a16f803b828aee85e0fbefea18a62b15a519ac83a7",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2013_district_ipc.pdf",
+      "reference_years": [
+        2013
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb",
+      "pdf_metadata": {
+        "/Author": "psk",
+        "/CreationDate": "D:20140702154314+05'30'",
+        "/ModDate": "D:20140702154314+05'30'",
+        "/Producer": "Acrobat Distiller 10.0.0 (Windows)",
+        "/Title": "Microsoft Word - Table 1.14.doc"
+      },
+      "pdf_metadata_warning": "File timestamps and embedded titles do not establish publication date or document identity."
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise%20IPC-Cases%20Reported_2014.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise%20IPC-Cases%20Reported_2014.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:40 GMT",
+      "bytes": 394549,
+      "sha256": "af7316d9904c91f0bbcd96d6398685b2fe457eae3ea4fc7a126a1c6596a6c671",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2014_district_ipc.xlsx",
+      "reference_years": [
+        2014
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/2District-wise-SLL-Cases-Reported_2014.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/2District-wise-SLL-Cases-Reported_2014.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:42 GMT",
+      "bytes": 280858,
+      "sha256": "eaf3608af774bbfc46b095a23c36ade1717d947bf5456301e14faba6cd2072ad",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2014_district_sll.xlsx",
+      "reference_years": [
+        2014
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/5District-wise-Crimes-committed-against-Women_2014.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/5District-wise-Crimes-committed-against-Women_2014.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:44 GMT",
+      "bytes": 274696,
+      "sha256": "3d71c50238161adab4ec4aa88f4a3eb943362e409c485629ddb81bf75122f75f",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2014_district_women.xlsx",
+      "reference_years": [
+        2014
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": null,
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise-IPC-Cases-Reported_2015.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/1-District-Wise-IPC-Cases-Reported_2015.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:42 GMT",
+      "bytes": 401236,
+      "sha256": "9bffff8f2fa3c85c0a6851e51a00328abe2b47d15eddf189f09ba360d27d8356",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2015_district_ipc.xlsx",
+      "reference_years": [
+        2015
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/2-District-wise-SLL-Cases-Reported_2015.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/2-District-wise-SLL-Cases-Reported_2015.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:42 GMT",
+      "bytes": 284346,
+      "sha256": "7dab22d9c66975eaf651c6552eeda203338a198486a2eecea4ad43aaf5853ccd",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2015_district_sll.xlsx",
+      "reference_years": [
+        2015
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    },
+    {
+      "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/5-District-wise-Crimes-committed-against-Women_2015.xlsx",
+      "retrieved_on": "2026-10-19",
+      "tls_verification": true,
+      "final_url": "https://www.ncrb.mha.gov.in/uploads/2022/July/11/custom/crime-in-india/5-District-wise-Crimes-committed-against-Women_2015.xlsx",
+      "http_status": 200,
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "last_modified": "Mon, 13 Mar 2023 06:56:44 GMT",
+      "bytes": 279426,
+      "sha256": "f0c049c0c0521888a8f387e7eba85376f0e0cd8ce6d1b462ae31c67c85cc001f",
+      "path": "data/staged/history_2011_2015/raw/ncrb_2015_district_women.xlsx",
+      "reference_years": [
+        2015
+      ],
+      "role": "primary_original_year_district_table",
+      "publication_date": "2016-08-30",
+      "publication_date_basis": "Report release evidence; not upload date. See publication_evidence.",
+      "reuse_terms_id": "ncrb"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2011_1_14.json",
+      "sha256": "5dceceb649e38ba597099da7d9900c65ea61f3bf4a2bd486522cc194c3cfe431"
+    },
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2012_1_14.json",
+      "sha256": "6ff3b1749c93206b7c6d8cb77657a3df791bc6bd29e131215a66276e0938d40b"
+    },
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2013_1_14.json",
+      "sha256": "65e56dee7e5a281e061a2d7764ff9e7017ebe1f04f67d07753074b7702ec806f"
+    },
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2014_ipc.json",
+      "sha256": "e581316ce0ac6585c3674676433b43e1b97caed9af10ca62b0857ec461752e41"
+    },
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2014_sll.json",
+      "sha256": "c46a6b736f8585fe11b62b9104c49cebda2270296b102c40adf627342b6202b8"
+    },
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2014_women.json",
+      "sha256": "887b1dc143cf89f5fc703cbc8bc0927959652cd8a4efc8a32bc5fba5ce19423d"
+    },
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2015_ipc.json",
+      "sha256": "5795c8d68edb462beaf38a61e310dca63b261eae24012e0b14848050b85b633d"
+    },
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2015_sll.json",
+      "sha256": "6289319f9c751d42a520374208a165459652eb4d6b27f862e1838280021c7b48"
+    },
+    {
+      "path": "data/staged/history_2011_2015/generated/ncrb_2015_women.json",
+      "sha256": "1457f9e1e54b2a78aea9abdc8a713e9e64c06591fc107bc18a5fce0fe3693a92"
+    }
+  ],
+  "evidenceInputs": [
+    {
+      "path": "data/staged/history_2011_2015/inputs/sources.json",
+      "sha256": "85f1fdfa03b74c218706735f8f9abfbcdbc05e42ce76de57753681b09b276892"
+    },
+    {
+      "path": "data/staged/history_2011_2015/manifest.json",
+      "sha256": "e62c8dc61f143101e38c730aa4cf0476bd7e81afe976a97bd6e1c50be02e8fba"
+    }
+  ],
+  "coverage": {
+    "citywideYears": 5,
+    "sourceTables": 9,
+    "originalUnitRowsAcrossTables": 166,
+    "districtOffenceRows": 9844,
+    "citywideOffenceRows": 526
+  },
+  "files": [
+    {
+      "path": "citywide_crime.json",
+      "bytes": 8424,
+      "sha256": "06999b2028d353198c374067a67c5aef1a0fb5f9ebc4f09182cf2ba400d7e1ee"
+    },
+    {
+      "path": "citywide_crime.csv",
+      "bytes": 5305,
+      "sha256": "426f891f784885a09891786bea5a8aecb26c36fcac363a61bd593c975eb0592d"
+    },
+    {
+      "path": "citywide_totals_as_printed.json",
+      "bytes": 57134,
+      "sha256": "fa14c04b04dab2727c1a47c40d70450f2bf9f77e2a0ff525c7c696ccfaf50c4e"
+    },
+    {
+      "path": "citywide_offence_counts_as_printed.csv",
+      "bytes": 123377,
+      "sha256": "30a184f80409dac19a784dbd4148a98f81c755555370ab82da981fed4694f566"
+    },
+    {
+      "path": "district_offence_counts_as_printed.csv",
+      "bytes": 2252274,
+      "sha256": "4a7e5c0fb3f4d6cf284dcbc0ab3c3589d94869eb75f093a147f6590dd7ce849a"
+    },
+    {
+      "path": "availability_comparability.json",
+      "bytes": 12376,
+      "sha256": "a72af9adf47cd2bed3e1f0132a3f264818e5434dd21999b4698f4aa66446b1c0"
+    },
+    {
+      "path": "as_printed/ncrb_2011_1_14.json",
+      "bytes": 16831,
+      "sha256": "5dceceb649e38ba597099da7d9900c65ea61f3bf4a2bd486522cc194c3cfe431"
+    },
+    {
+      "path": "as_printed/ncrb_2012_1_14.json",
+      "bytes": 16845,
+      "sha256": "6ff3b1749c93206b7c6d8cb77657a3df791bc6bd29e131215a66276e0938d40b"
+    },
+    {
+      "path": "as_printed/ncrb_2013_1_14.json",
+      "bytes": 17776,
+      "sha256": "65e56dee7e5a281e061a2d7764ff9e7017ebe1f04f67d07753074b7702ec806f"
+    },
+    {
+      "path": "as_printed/ncrb_2014_ipc.json",
+      "bytes": 76073,
+      "sha256": "e581316ce0ac6585c3674676433b43e1b97caed9af10ca62b0857ec461752e41"
+    },
+    {
+      "path": "as_printed/ncrb_2014_sll.json",
+      "bytes": 74380,
+      "sha256": "c46a6b736f8585fe11b62b9104c49cebda2270296b102c40adf627342b6202b8"
+    },
+    {
+      "path": "as_printed/ncrb_2014_women.json",
+      "bytes": 75971,
+      "sha256": "887b1dc143cf89f5fc703cbc8bc0927959652cd8a4efc8a32bc5fba5ce19423d"
+    },
+    {
+      "path": "as_printed/ncrb_2015_ipc.json",
+      "bytes": 76108,
+      "sha256": "5795c8d68edb462beaf38a61e310dca63b261eae24012e0b14848050b85b633d"
+    },
+    {
+      "path": "as_printed/ncrb_2015_sll.json",
+      "bytes": 74360,
+      "sha256": "6289319f9c751d42a520374208a165459652eb4d6b27f862e1838280021c7b48"
+    },
+    {
+      "path": "as_printed/ncrb_2015_women.json",
+      "bytes": 75995,
+      "sha256": "1457f9e1e54b2a78aea9abdc8a713e9e64c06591fc107bc18a5fce0fe3693a92"
+    }
+  ]
+}

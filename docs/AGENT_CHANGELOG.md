@@ -1,3 +1,9 @@
+## [2026-10-19] - Codex - Citywide road trend to 2011; separate staged NCRB historical panel
+
+- User-approved road extension adds 2011–2013 total crashes, fatal crashes and deaths only. All 2014–2024 figures and victim-by-mode rows are unchanged. The road chart, 2011=100 baseline, endpoint labels, annual-count table and CSV range agree. Visible notes say counts, not rates, citywide scope, edition differences and unconfirmed early fatality follow-up definition.
+- Reproducible `citywide_road_trend/` production release retains source/checksum evidence. `historical_2011_2015/` is a separate staged NCRB panel: Delhi UT summaries, nine original table extracts and offence-level CSVs. No current-district mapping, total allocation or historical crime dashboard integration.
+- Historical source editions, publication-date gaps, source identity warnings and reuse caveats remain recorded. The historical release sits outside the production year list; all nine existing district-crime releases stay unchanged.
+
 ## [2026-10-19] - Claude (Anthropic) - Weekly monitor smoke test, and the fixes it called for
 
 **What the live runs showed.** The scheduled run (after Phase 0) created issue #39, and a manual run added a comment to it instead of opening a second issue, so the issue-opening path works and the artifact (manifest, coverage report, `source_diff.md`) is uploaded. But the note was mostly noise: of 28 "new" links, 13 were gallery images, 7 unrelated news pages, 7 were the South East 2026 iRAD reports already staged, and 1 an unrelated handbook; the baseline dated from August, so everything since looked new. Two "previously selected links gone" and two reachability changes were timeouts from the GitHub runner. One finding is real: **from GitHub's runners the NCRB site fails TLS verification (self-signed certificate in the chain), so the monitor cannot see NCRB at all**, which is the series it exists to watch for.

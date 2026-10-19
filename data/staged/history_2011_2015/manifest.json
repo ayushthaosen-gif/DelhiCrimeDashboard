@@ -1563,8 +1563,8 @@
   "files": [
     {
       "path": "AVAILABILITY_AND_COMPARABILITY.md",
-      "sha256": "0eac88a7e10433b6bb694678c10cb9285eff0513bff589cc139ac7ef06330eb4",
-      "bytes": 30512
+      "sha256": "feed8b3107748d65bb45f898090a919d54d4ee4e6130a929c2723a71db217e48",
+      "bytes": 30821
     },
     {
       "path": "generated/availability_comparability.json",
@@ -1677,5 +1677,20 @@
       "open_licence_verified": false
     }
   ],
-  "validationInterpretation": "Source hashes, extraction schema, selected years and citywide arithmetic must pass. Original-source arithmetic contradictions remain explicit in quality_report.json; traffic district data are not approved for series extension."
+  "validationInterpretation": "Source hashes, extraction schema, selected years and citywide arithmetic must pass. Original-source arithmetic contradictions remain explicit in quality_report.json; traffic district data are not approved for series extension.",
+  "approvedDownstreamUse": {
+    "series": "citywide_road_trend",
+    "years": [
+      2011,
+      2012,
+      2013
+    ],
+    "measures": [
+      "total_accidents",
+      "fatal_accidents",
+      "persons_killed"
+    ],
+    "geography": "Delhi citywide only",
+    "note": "Subsequent user authorization permits these agreeing road measures on the trend chart. Historical crime and district series remain staged."
+  }
 }

@@ -17,6 +17,7 @@ Official crime and crash figures run **to 2024**. Newer material exists but is d
 | Series id | Series | Latest period | Status | Geography |
 |---|---|---|---|---|
 | `ncrb_district_crime` | NCRB district crime (IPC/BNS, SLL, crimes against women) | 2024 | production | 15 police districts |
+| `citywide_road_trend` | [Citywide road trend, 2011–2024](data/releases/citywide_road_trend/manifest.json) | 2024 | production | Delhi citywide; counts, not rates |
 | `ncrb_2025` | NCRB Crime in India 2025 | none | not_published | 15 police districts |
 | `crash_zones_2024` | Delhi Traffic Police crash-prone zones | 2024 | production | named locations (93 zones in 2024); 15 police districts |
 | `traffic_police_crash_report_2025` | Delhi Traffic Police annual Road Crash Report 2025 | none | not_published | 15 police districts |
@@ -45,7 +46,7 @@ Status values: `production` (on the dashboard, validated), `staged` (collected a
 
 ## Download and reuse
 
-Each year from 2016 to 2024 has a folder under [`data/releases/`](data/releases/) with `district_crime.csv`/`.json` and a `manifest.json` giving source URLs, SHA-256 checksums, coverage and what a null means. Read the manifest before analysing.
+Each year from 2016 to 2024 has a folder under [`data/releases/`](data/releases/) with `district_crime.csv`/`.json` and a `manifest.json` giving source URLs, SHA-256 checksums, coverage and what a null means. Read the manifest before analysing. The [separate 2011–2015 NCRB historical panel](data/releases/historical_2011_2015/README.md) is staged, with Delhi UT totals and original reporting units; it is not on the dashboard.
 
 ```python
 import json
@@ -63,6 +64,7 @@ Details, a worked notebook, the deprecated `exports/` folder and licensing cauti
 
 - [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md): every source, with original URLs and reuse notes
 - [`docs/DATA_RELEASES.md`](docs/DATA_RELEASES.md): how to use the yearly releases
+- [`docs/HISTORICAL_2011_2015.md`](docs/HISTORICAL_2011_2015.md): earlier citywide road counts and the separate staged NCRB panel
 - [`docs/PIPELINE_2025.md`](docs/PIPELINE_2025.md): the collection pipeline and the evidence archive
 - [`docs/IRAD_DISTRICT_REPORTS.md`](docs/IRAD_DISTRICT_REPORTS.md): district road-accident reports, coverage and caveats
 - [`docs/CRASH_ZONE_COORDINATES.md`](docs/CRASH_ZONE_COORDINATES.md) and [`docs/MPD_BUILT_UP_USE_TRIAL.md`](docs/MPD_BUILT_UP_USE_TRIAL.md): audits and negative results

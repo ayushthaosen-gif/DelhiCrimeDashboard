@@ -8,3 +8,8 @@ Choose a folder from `2016/` through `2024/`, then read its `manifest.json` befo
 - `2026/irad/` - provisional partial-year iRAD release; never compare with a full year
 
 Regenerate with `npm run build:releases`. Null never means zero.
+
+Separate series:
+
+- [Citywide road trend, 2011–2024](citywide_road_trend/manifest.json): counts, not rates; on the road chart only.
+- [NCRB historical panel, 2011–2015](historical_2011_2015/README.md): staged Delhi UT totals and original reporting units, off the dashboard. Never join these to current districts or add them to the production year list.

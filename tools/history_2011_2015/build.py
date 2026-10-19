@@ -213,7 +213,10 @@ def traffic_citywide():
     production = baseline['data']['trends']
     current_file = ROOT / baseline['source_path']
     if current_file.exists() and sha(current_file.read_bytes()) != baseline['sha256']:
-        raise ValueError('Production reference changed since staging; reassess the overlap explicitly')
+        current = json.loads(current_file.read_text(encoding='utf-8'))
+        expected_prefix = [{'year': r['reference_year'], 'crashes': r['values'][4], 'fatalities': r['values'][6], 'fatalCrashes': r['values'][3]} for r in chosen if r['reference_year'] <= 2013]
+        if current['trends'] != expected_prefix + production or any(current.get(k) != v for k, v in baseline['data'].items() if k != 'trends'):
+            raise ValueError('Production differs from the approved 2011-2013 prefix extension; reassess explicitly')
     overlap = []
     for row in all_rows:
         old = next((r for r in production if r['year'] == row['reference_year']), None)
@@ -337,7 +340,8 @@ def build(check=False):
                 'counts': {'ncrb_tables': len(tables), 'ncrb_reporting_unit_rows': sum(len(t['reporting_units']) for t in tables), 'ncrb_separate_printed_summaries': len(tables), 'traffic_citywide_rows': len(city['rows']), 'traffic_retrospective_district_rows': len(traffic['rows']), 'documented_arithmetic_diagnostics': len(issues), 'archived_statistics_editions': len(archives['editions']), 'archived_statistics_differing_cells': len(archives['differences_from_later_official_statistics'])},
                 'sources': registry['sources'], 'evidenceFiles': registry.get('evidence_files', []), 'derivedFrom': [{'path': 'data/staged/history_2011_2015/' + name, 'sha256': sha((BASE / name).read_bytes())} for name in ['inputs/sources.json', 'inputs/traffic_table_6_1.json', 'inputs/production_road_safety_baseline.json', 'inputs/archive_search_log.json']],
                 'files': [{'path': name, 'sha256': sha(data), 'bytes': len(data)} for name, data in sorted(products.items())], 'monitorVerification': registry['monitor_verification'], 'reuseTerms': registry['reuse_terms'],
-                'validationInterpretation': 'Source hashes, extraction schema, selected years and citywide arithmetic must pass. Original-source arithmetic contradictions remain explicit in quality_report.json; traffic district data are not approved for series extension.'}
+                'validationInterpretation': 'Source hashes, extraction schema, selected years and citywide arithmetic must pass. Original-source arithmetic contradictions remain explicit in quality_report.json; traffic district data are not approved for series extension.',
+                'approvedDownstreamUse': {'series': 'citywide_road_trend', 'years': [2011, 2012, 2013], 'measures': ['total_accidents', 'fatal_accidents', 'persons_killed'], 'geography': 'Delhi citywide only', 'note': 'Subsequent user authorization permits these agreeing road measures on the trend chart. Historical crime and district series remain staged.'}}
     products['manifest.json'] = encoded(manifest)
     for name, data in products.items():
         file = BASE / name
@@ -352,7 +356,7 @@ def build(check=False):
 
 
 def render_report(availability, city, tables, quality, registry):
-    lines = ['# Delhi 2011-2015: availability and comparability', '', 'Staged research only. Production files and the dashboard are unchanged.', '',
+    lines = ['# Delhi 2011-2015: availability and comparability', '', 'Historical crime remains staged in a separate 2011-2015 release, off the dashboard. The user subsequently authorized extending only the citywide road trend (total accidents, fatal accidents and deaths) to 2011; no historical district or crime data are integrated.', '',
              'Official NCRB original-year district tables are available for every requested year. They cannot be appended as if they described today\'s 15 police districts. Citywide Delhi Traffic Police published counts can support an earlier citywide trend; retrospective traffic-district data require a separate historical series.', '',
              '## Year-by-year findings', '', '| Reference year | NCRB geography and source | Crime metrics and definition breaks | Traffic sources and gaps | Existing-series assessment |', '|---|---|---|---|---|']
     for entry in availability:
@@ -392,7 +396,7 @@ def render_report(availability, city, tables, quality, registry):
     for source in registry['sources']:
         lines.append(f'| {source["path"]} | {source["reference_years"]}; {source["role"]} | {source["url"]} | {source["sha256"]} |')
     lines += ['', '## Reproduce and validate', '', 'Install tools/history_2011_2015/requirements.txt in an isolated environment and ensure Poppler pdftotext is available. Run:', '', '```text', 'python tools/history_2011_2015/build.py', 'python tools/history_2011_2015/build.py --check', 'python -m unittest discover -s tools/history_2011_2015 -p "test_*.py"', '```', '',
-              'The default build is offline and validates the immutable archived input bytes before extraction. --check compares every generated byte without writing it. Fetching missing originals is separate and refuses a changed SHA-256. Raw landing-page snapshots are historical evidence; a live page may have changed since capture. UI integration is outside this authorization.', '']
+              'The default build is offline and validates the immutable archived input bytes before extraction. --check compares every generated byte without writing it. Fetching missing originals is separate and refuses a changed SHA-256. Raw landing-page snapshots are historical evidence; a live page may have changed since capture. Historical crime and district UI integration remain outside this authorization; only the subsequently approved citywide road extension is used on the trend chart.', '']
     return '\n'.join(lines)
 
 
