@@ -63,6 +63,7 @@ def test_manifest_paths_rebase_after_repository_move(tmp_path):
     result = _download_manifest(SimpleNamespace(manifests=manifests, raw=raw), 2025)
 
     assert result["downloads"][0]["local_path"] == str(current)
+    # the manifest on disk stays machine-independent: raw/<source_id>/<file>, never an absolute path
     assert json.loads(manifest_path.read_text(encoding="utf-8"))["downloads"][0][
         "local_path"
-    ] == str(current)
+    ] == "raw/official_source/source.pdf"

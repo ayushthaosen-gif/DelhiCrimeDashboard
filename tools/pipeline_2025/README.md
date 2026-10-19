@@ -48,3 +48,7 @@ This writes only to `output/proposed_dashboard_patch/`: candidate mappings, sche
 ## Testing
 
 `pytest` runs entirely from local fixtures and skips the `live` marker. Run `pytest -m live` manually for small reachability-only checks; it does not download reports. GitHub Actions runs the offline suite on pull requests and weekly discovery-only monitoring with minimal permissions.
+
+## Reproducible outputs and raw files
+
+Committed reports and manifests under `output/` contain no machine-specific data: raw files are recorded as `raw/<source_id>/<file>` (never an absolute path), and missing-file messages do not quote a local path. `output/raw/` itself is not committed, but the exact official files are kept in `data/releases/2025/raw_sources/`; `python -m delhi_data_2025.raw_restore` copies each one back to `output/raw/` when its SHA-256 equals the one in the download manifest (a file whose checksum differs is never substituted). CI runs `raw_restore`, then `collect --offline`, and fails if the regenerated reports or manifests differ from the committed ones. Known gap: the checked-in copy of the Excise landing page is 37,997 bytes and its checksum differs from the manifest's (38,006 bytes), so it is not restored and its review row says the file is not present.

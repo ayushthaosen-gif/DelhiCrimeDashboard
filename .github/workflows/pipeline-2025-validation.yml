@@ -15,5 +15,7 @@ jobs:
       - run: pip install -e '.[dev]'
       - run: ruff check src tests
       - run: pytest
+      # output/raw is not committed; restore the checked-in official files (checksum-verified) so an offline run starts from the same inputs
+      - run: python -m delhi_data_2025.raw_restore
       - run: python -m delhi_data_2025 collect --year 2025 --offline
       - run: git diff --exit-code -- output/reports output/manifests

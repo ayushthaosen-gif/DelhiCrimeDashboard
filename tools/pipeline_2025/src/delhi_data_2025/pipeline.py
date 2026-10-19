@@ -7,7 +7,7 @@ import logging
 from datetime import UTC, datetime
 from pathlib import Path
 
-from .config import PACKAGE_ROOT, load_sources, load_yaml, output_paths
+from .config import PACKAGE_ROOT, load_sources, load_yaml, output_paths, portable_path
 from .discovery import discover_source
 from .download import download_candidate
 from .extraction.crime_monitor import monitor_crime
@@ -33,21 +33,32 @@ def _json(path: Path, default):
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else default
 
 
+def _reason(exc: Exception) -> str:
+    """Error text for a review row, without the absolute path of a missing-file message."""
+    if isinstance(exc, FileNotFoundError):
+        return "source file is not present in this checkout (raw files are not committed)"
+    return str(exc)
+
+
 def _download_manifest(paths, year):
     manifest_path = paths.manifests / f"download_manifest_{year}.json"
     manifest = _json(manifest_path, {"year": year, "downloads": []})
     changed = False
     for item in manifest.get("downloads", []):
-        saved = Path(item["local_path"])
-        if saved.exists():
-            continue
-        rebased = paths.raw / item["source_id"] / saved.name
-        if rebased.exists():
-            item["local_path"] = str(rebased)
+        relative = portable_path(item["local_path"])
+        if not relative.startswith("raw/"):
+            relative = f"raw/{item['source_id']}/{relative}"
+        if item["local_path"] != relative:
+            item["local_path"] = relative
             changed = True
     if changed:
         write_json(manifest_path, manifest)
-    return manifest
+    # in memory, local_path is the absolute path to open; portable_path is what gets recorded
+    resolved = json.loads(json.dumps(manifest))
+    for item in resolved.get("downloads", []):
+        item["portable_path"] = item["local_path"]
+        item["local_path"] = str(paths.raw.parent / item["portable_path"])
+    return resolved
 
 
 def _client(settings):
@@ -150,7 +161,7 @@ def _download_osm(source, client, paths) -> list[DownloadRecord]:
                 sha256=digest,
                 etag=response.headers.get("etag"),
                 last_modified=response.headers.get("last-modified"),
-                local_path=str(destination),
+                local_path=portable_path(destination),
                 licence_or_terms="OpenStreetMap contributors, ODbL",
                 snapshot_date=source.snapshot_time.isoformat(),
             )
@@ -231,7 +242,7 @@ def extract(year=2025, source_id=None, offline=False, root=None):
                     review.append(
                         {
                             "source_id": source.source_id,
-                            "source_file": str(path),
+                            "source_file": portable_path(path),
                             "reason": "insufficient extractable PDF text",
                         }
                     )
@@ -246,7 +257,7 @@ def extract(year=2025, source_id=None, offline=False, root=None):
                     review.append(
                         {
                             "source_id": source.source_id,
-                            "source_file": str(path),
+                            "source_file": portable_path(path),
                             "reason": "no supported iRAD table layout matched",
                         }
                     )
@@ -255,11 +266,15 @@ def extract(year=2025, source_id=None, offline=False, root=None):
                     tables, source.source_id, source.agency, source.mode.value == "collect"
                 )
                 for vend in vend_rows:
-                    vend["source_file"] = str(path)
+                    vend["source_file"] = portable_path(path)
                 extracted += vend_rows
         except Exception as exc:
             review.append(
-                {"source_id": source.source_id, "source_file": str(path), "reason": str(exc)}
+                {
+                    "source_id": source.source_id,
+                    "source_file": portable_path(path),
+                    "reason": _reason(exc),
+                }
             )
     write_json(paths.extracted / f"extracted_{year}.json", extracted)
     write_review_csv(
@@ -348,7 +363,7 @@ def normalize(year=2025, source_id=None, offline=False, root=None):
             source_title=item["dataset"],
             source_url=item["resolved_url"],
             landing_page_url=item["landing_page_url"],
-            source_file=item["local_path"],
+            source_file=item["portable_path"],
             source_year=item["year"],
             retrieval_date=str(item["retrieved_at_utc"]),
             extraction_method="automated download; dataset-specific parser",

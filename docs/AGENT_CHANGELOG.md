@@ -1,3 +1,12 @@
+## [2026-10-19] - Claude (Anthropic) - Pipeline outputs made path-independent so the validation check can pass
+
+The "Pipeline 2025 validation" CI job (which only runs when `tools/pipeline_2025/` or its workflows change) failed for reasons that predate Phase 0: the committed reports contained absolute Windows paths from a Codex session (a C:/Users/.../.codex/... folder), and CI had no raw files, so its offline regeneration was empty and never matched.
+
+- Raw files are recorded as `raw/<source_id>/<file>` in the download manifest, provenance, extraction rows and review queue; absolute paths and the path inside a missing-file error are gone (`portable_path`, `_reason`).
+- `python -m delhi_data_2025.raw_restore` copies the checked-in official files from `data/releases/2025/raw_sources/` into `output/raw/` by SHA-256 match; the workflow runs it before `collect --offline`. The reproducibility assertion is unchanged.
+- Committed outputs regenerated once. Substantive differences: one review row. The checked-in Excise landing page is 9 bytes smaller than the file its manifest checksum names, so it cannot be restored and now has a "source file is not present in this checkout" review row.
+- Tests: 4 new, one old test updated (it asserted that the manifest stored an absolute path).
+
 ## [2026-10-19] - Claude (Anthropic) - Phase 0 consolidation (from a Codex audit of the repository)
 
 Small, safe fixes that came out of an independent audit; the larger consolidation (one authoritative 2025/2026 release built from the iRAD data, a rebuilt station crosswalk, the 250-ward layer) is planned separately.

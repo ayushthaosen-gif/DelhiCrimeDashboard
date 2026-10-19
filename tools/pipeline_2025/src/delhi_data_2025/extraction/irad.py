@@ -5,6 +5,8 @@ from pathlib import Path
 
 import pdfplumber
 
+from ..config import portable_path
+
 INTEGER_FIELDS = [
     "fatal_accidents",
     "serious_injury_accidents",
@@ -130,7 +132,7 @@ def extract_irad_pdf_tables(path: Path, source_id: str) -> list[dict]:
                     rows.append(
                         {
                             "source_id": source_id,
-                            "source_file": str(path),
+                            "source_file": portable_path(path),
                             "source_page": page_number,
                             "revenue_district": None,
                             "police_station_raw": station,
