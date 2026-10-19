@@ -1,8 +1,46 @@
 {
+  "referenceInventory": [
+    {
+      "file": "data/reference/delhi_police_manual_1_2026_stations.csv",
+      "sha256": "aed83f695d3ec2206830c968eddcd4e3b0120f2cb2c5b77e41bce98a3281d18a",
+      "bytes": 370565,
+      "status": "staged; evidence pending human verification"
+    },
+    {
+      "file": "data/reference/delhi_police_manual_1_2026_stations.source.json",
+      "sha256": "89519ba335f94fdc817f67d675b99c0c378787cb6bc286af6d336d7c2589d0e3",
+      "bytes": 892,
+      "status": "staged; evidence pending human verification"
+    },
+    {
+      "file": "data/reference/irad_known_issues.json",
+      "sha256": "6ad50b1f629265daa0bca6627c20383c367d433a10e68b059acb2ceab0efce0c",
+      "bytes": 668,
+      "status": "staged; evidence pending human verification"
+    },
+    {
+      "file": "data/reference/police_station_crosswalk.csv",
+      "sha256": "3fe37d1f945fa79ebbbd4375939264b22876225f003c2c7e2825da7120f91a0a",
+      "bytes": 44615,
+      "status": "staged; evidence pending human verification"
+    },
+    {
+      "file": "data/reference/police_station_crosswalk_coverage.json",
+      "sha256": "2aa880540f8dc763aac95c692b01a4d2fc91a528cd3ae2642eeed1d2b3f36ba2",
+      "bytes": 14168,
+      "status": "staged; evidence pending human verification"
+    },
+    {
+      "file": "data/reference/police_station_decisions.csv",
+      "sha256": "4c59ede20ccdd652732b403427ac1884d9f9dcd69cf5a37ed62ea9f2a7470278",
+      "bytes": 6593,
+      "status": "staged; evidence pending human verification"
+    }
+  ],
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-10-19T05:51:19.659Z",
+  "generatedAt": "2026-10-19T00:00:00.000Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -363,8 +401,8 @@
       "datasetId": "series_status",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "8a18f52e72fe7def6e2474b37588b89ac76c718c311c4905195bb85c04373b38",
-      "bytes": 7625
+      "sha256": "0c954fded6c60ac145113b48b47e09471299f451b5f41f9341d41efc08400f1b",
+      "bytes": 8735
     },
     {
       "file": "data/streetlight_grid.json",

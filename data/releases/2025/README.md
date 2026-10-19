@@ -1,5 +1,8 @@
 # Delhi data collected for 2025
 
+**Authoritative staged iRAD data:** start with `irad/manifest.json`. The earlier files described below are retained for provenance; the older validated road-crash files are superseded.
+
+
 This folder is a staged research release. It does not replace the dashboard's production datasets automatically.
 
 ## Crosswalked crash data (partial)
@@ -30,3 +33,6 @@ The `audit/` directory contains source discovery, download URLs, SHA-256 checksu
 ## Integration guidance
 
 Do not integrate these 2025 crash files into the dashboard. They cover only three publishing administrative areas, map only 46 of 50 station rows, use a post-period Manual reference, and do not contain 2025 NCRB crime data. Keep nulls as null; do not infer districts, assign ambiguous station labels, or create `totalIPC2025`.
+## Authoritative staged iRAD release (hand-maintained note)
+
+The new `irad/manifest.json` is authoritative for staged 2025 iRAD data selected from the derived collection. The old `validated/`, `audit/`, and `needs_review/` files remain for provenance. The `validated/road_crashes_by_police_*` files are **superseded**: they cover only three districts. Nothing here is integrated into dashboard totals. See the generated manifest for counts and dated coverage; annual station windows overlap monthly windows.

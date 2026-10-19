@@ -1,0 +1,662 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": null,
+  "releaseMetadataDate": "2026-10-19",
+  "releaseStatus": "staged",
+  "productionReady": false,
+  "evidenceReviewStatus": "draft",
+  "identityPolicy": "Owner clarified: match unique station identities (normalized name plus police district); preserve repeated printed occurrences as evidence. Same name in different districts remains ambiguous.",
+  "measure": "Source-table rows, which include overlapping annual and monthly windows; not unique stations, incidents or geographic completeness.",
+  "overall": {
+    "labelsTotal": 174,
+    "mapped": 164,
+    "specialised": 2,
+    "ambiguous": 1,
+    "unmapped": 7
+  },
+  "byReportingDistrict": {
+    "Central": {
+      "labelsTotal": 15,
+      "mapped": 15,
+      "specialised": 0,
+      "ambiguous": 0,
+      "unmapped": 0
+    },
+    "Dwarka": {
+      "labelsTotal": 11,
+      "mapped": 11,
+      "specialised": 0,
+      "ambiguous": 0,
+      "unmapped": 0
+    },
+    "East": {
+      "labelsTotal": 12,
+      "mapped": 11,
+      "specialised": 1,
+      "ambiguous": 0,
+      "unmapped": 0
+    },
+    "New Delhi": {
+      "labelsTotal": 12,
+      "mapped": 10,
+      "specialised": 0,
+      "ambiguous": 0,
+      "unmapped": 2
+    },
+    "North East": {
+      "labelsTotal": 16,
+      "mapped": 16,
+      "specialised": 0,
+      "ambiguous": 0,
+      "unmapped": 0
+    },
+    "North West": {
+      "labelsTotal": 12,
+      "mapped": 11,
+      "specialised": 1,
+      "ambiguous": 0,
+      "unmapped": 0
+    },
+    "Rohini": {
+      "labelsTotal": 10,
+      "mapped": 10,
+      "specialised": 0,
+      "ambiguous": 0,
+      "unmapped": 0
+    },
+    "South": {
+      "labelsTotal": 32,
+      "mapped": 30,
+      "specialised": 0,
+      "ambiguous": 0,
+      "unmapped": 2
+    },
+    "South East": {
+      "labelsTotal": 19,
+      "mapped": 19,
+      "specialised": 0,
+      "ambiguous": 0,
+      "unmapped": 0
+    },
+    "South West": {
+      "labelsTotal": 12,
+      "mapped": 11,
+      "specialised": 0,
+      "ambiguous": 0,
+      "unmapped": 1
+    },
+    "West": {
+      "labelsTotal": 23,
+      "mapped": 20,
+      "specialised": 0,
+      "ambiguous": 1,
+      "unmapped": 2
+    }
+  },
+  "releaseCoverage": {
+    "2025": {
+      "overall": {
+        "mappedSourceTableRows": 560,
+        "totalSourceTableRows": 603,
+        "share": 0.9286898839137645
+      },
+      "byReportingDistrict": {
+        "Dwarka": {
+          "mappedSourceTableRows": 11,
+          "totalSourceTableRows": 11,
+          "share": 1
+        },
+        "East": {
+          "mappedSourceTableRows": 132,
+          "totalSourceTableRows": 144,
+          "share": 0.9166666666666666
+        },
+        "New Delhi": {
+          "mappedSourceTableRows": 10,
+          "totalSourceTableRows": 12,
+          "share": 0.8333333333333334
+        },
+        "North West": {
+          "mappedSourceTableRows": 11,
+          "totalSourceTableRows": 12,
+          "share": 0.9166666666666666
+        },
+        "Rohini": {
+          "mappedSourceTableRows": 10,
+          "totalSourceTableRows": 10,
+          "share": 1
+        },
+        "South East": {
+          "mappedSourceTableRows": 195,
+          "totalSourceTableRows": 195,
+          "share": 1
+        },
+        "South West": {
+          "mappedSourceTableRows": 11,
+          "totalSourceTableRows": 12,
+          "share": 0.9166666666666666
+        },
+        "West": {
+          "mappedSourceTableRows": 180,
+          "totalSourceTableRows": 207,
+          "share": 0.8695652173913043
+        }
+      }
+    },
+    "2026": {
+      "overall": {
+        "mappedSourceTableRows": 227,
+        "totalSourceTableRows": 229,
+        "share": 0.9912663755458515
+      },
+      "byReportingDistrict": {
+        "New Delhi": {
+          "mappedSourceTableRows": 10,
+          "totalSourceTableRows": 12,
+          "share": 0.8333333333333334
+        },
+        "North East": {
+          "mappedSourceTableRows": 112,
+          "totalSourceTableRows": 112,
+          "share": 1
+        },
+        "South East": {
+          "mappedSourceTableRows": 105,
+          "totalSourceTableRows": 105,
+          "share": 1
+        }
+      }
+    }
+  },
+  "legacyCompatibility": {
+    "rows": 46,
+    "matchingRule": "Normalize each legacy raw label and join to all matching source labels, without inventing a reporting district. Preserve canonical display name, police district and evidence page on every matched pair.",
+    "matches": [
+      {
+        "legacyRawLabel": "ADARSH NAGAR",
+        "matchedPairs": [
+          [
+            "North West",
+            "ADARSH NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "ANAND PARBAT",
+        "matchedPairs": [
+          [
+            "Central",
+            "Anand Parbat"
+          ],
+          [
+            "West",
+            "ANAND PARBAT"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "ASHOK VIHAR",
+        "matchedPairs": [
+          [
+            "North West",
+            "ASHOK VIHAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Amar Colony",
+        "matchedPairs": [
+          [
+            "South East",
+            "Amar Colony"
+          ],
+          [
+            "South",
+            "AMAR COLONY"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "BINDAPUR",
+        "matchedPairs": [
+          [
+            "Dwarka",
+            "Bindapur"
+          ],
+          [
+            "West",
+            "BINDAPUR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Badarpur",
+        "matchedPairs": [
+          [
+            "South East",
+            "Badarpur"
+          ],
+          [
+            "South",
+            "BADAR PUR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Bharat Nagar",
+        "matchedPairs": [
+          [
+            "North West",
+            "Bharat Nagar"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Govind Puri",
+        "matchedPairs": [
+          [
+            "South East",
+            "Govind Puri"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "HARI NAGAR",
+        "matchedPairs": [
+          [
+            "West",
+            "HARI NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Hazarat Nizamuddin",
+        "matchedPairs": [
+          [
+            "South East",
+            "Hazarat Nizamuddin"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Inderpuri Police Station",
+        "matchedPairs": [
+          [
+            "West",
+            "Inderpuri Police Station"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "JAHANGIR PURI",
+        "matchedPairs": [
+          [
+            "North West",
+            "JAHANGIR PURI"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "JANAK PURI",
+        "matchedPairs": [
+          [
+            "West",
+            "JANAK PURI"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Jait Pur",
+        "matchedPairs": [
+          [
+            "South East",
+            "Jait Pur"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Jamia Nagar",
+        "matchedPairs": [
+          [
+            "South East",
+            "Jamia Nagar"
+          ],
+          [
+            "South",
+            "JAMIA NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "KALINDI KUNJ",
+        "matchedPairs": [
+          [
+            "South East",
+            "KALINDI KUNJ"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "KESHAV PURAM",
+        "matchedPairs": [
+          [
+            "North West",
+            "KESHAV PURAM"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "KIRTI NAGAR",
+        "matchedPairs": [
+          [
+            "West",
+            "KIRTI NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Kalkaji",
+        "matchedPairs": [
+          [
+            "South East",
+            "Kalkaji"
+          ],
+          [
+            "South",
+            "KALKAJI"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Khyala",
+        "matchedPairs": [
+          [
+            "West",
+            "Khyala"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Lajpat Nagar",
+        "matchedPairs": [
+          [
+            "South East",
+            "Lajpat Nagar"
+          ],
+          [
+            "South",
+            "LAJPAT NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "MODEL TOWN",
+        "matchedPairs": [
+          [
+            "North West",
+            "MODEL TOWN"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "MOTI NAGAR",
+        "matchedPairs": [
+          [
+            "West",
+            "MOTI NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "MUKHERJEE NAGAR",
+        "matchedPairs": [
+          [
+            "North West",
+            "MUKHERJEE NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Maherdra Park",
+        "matchedPairs": [
+          [
+            "North West",
+            "Maherdra Park"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Maurya Enclave",
+        "matchedPairs": [
+          [
+            "North West",
+            "Maurya Enclave"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Maya Puri",
+        "matchedPairs": [
+          [
+            "West",
+            "Maya Puri"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Mundka",
+        "matchedPairs": [
+          [
+            "West",
+            "Mundka"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "NANGLOI",
+        "matchedPairs": [
+          [
+            "West",
+            "NANGLOI"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Naraina",
+        "matchedPairs": [
+          [
+            "West",
+            "Naraina"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "New Friends Colony",
+        "matchedPairs": [
+          [
+            "South East",
+            "New Friends Colony"
+          ],
+          [
+            "South",
+            "NEW FRIENDS COLONY"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Nihal Vihar",
+        "matchedPairs": [
+          [
+            "West",
+            "Nihal Vihar"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Okhla Industrial Area",
+        "matchedPairs": [
+          [
+            "South East",
+            "Okhla Industrial Area"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "PATEL NAGAR",
+        "matchedPairs": [
+          [
+            "Central",
+            "Patel Nagar"
+          ],
+          [
+            "West",
+            "PATEL NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "PUNJABI BAGH",
+        "matchedPairs": [
+          [
+            "West",
+            "PUNJABI BAGH"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Pul Prahlad Pur",
+        "matchedPairs": [
+          [
+            "South East",
+            "Pul Prahlad Pur"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "RAJOURI GARDEN",
+        "matchedPairs": [
+          [
+            "West",
+            "RAJOURI GARDEN"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Ranhola",
+        "matchedPairs": [
+          [
+            "West",
+            "Ranhola"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "SHAHEEN BAGH",
+        "matchedPairs": [
+          [
+            "South East",
+            "SHAHEEN BAGH"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "SHALIMAR BAGH",
+        "matchedPairs": [
+          [
+            "North West",
+            "SHALIMAR BAGH"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "SUBHASH PLACE",
+        "matchedPairs": [
+          [
+            "North West",
+            "SUBHASH PLACE"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Sarita Vihar",
+        "matchedPairs": [
+          [
+            "South East",
+            "Sarita Vihar"
+          ],
+          [
+            "South",
+            "SARITA VIHAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "Sunlight Colony",
+        "matchedPairs": [
+          [
+            "South East",
+            "Sunlight Colony"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "TILAK NAGAR",
+        "matchedPairs": [
+          [
+            "West",
+            "TILAK NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "UTTAM NAGAR",
+        "matchedPairs": [
+          [
+            "Dwarka",
+            "Uttam Nagar"
+          ],
+          [
+            "West",
+            "UTTAM NAGAR"
+          ]
+        ]
+      },
+      {
+        "legacyRawLabel": "VIKASPURI",
+        "matchedPairs": [
+          [
+            "West",
+            "VIKASPURI"
+          ]
+        ]
+      }
+    ]
+  },
+  "derivedFrom": [
+    {
+      "path": "data/derived/irad_monthly/irad_station_by_period.csv",
+      "sha256": "982d225835537addcddeb0c44589f6179ede7ff3e1db9b6e34a5e34132fd38b7",
+      "selectionRuleVersion": "police-station-phase1-v1"
+    },
+    {
+      "path": "data/reference/delhi_police_manual_1_2026_stations.csv",
+      "sha256": "aed83f695d3ec2206830c968eddcd4e3b0120f2cb2c5b77e41bce98a3281d18a",
+      "selectionRuleVersion": "police-station-phase1-v1"
+    },
+    {
+      "path": "data/reference/delhi_police_manual_1_2026_stations.source.json",
+      "sha256": "89519ba335f94fdc817f67d675b99c0c378787cb6bc286af6d336d7c2589d0e3",
+      "selectionRuleVersion": "police-station-phase1-v1"
+    },
+    {
+      "path": "data/reference/police_station_decisions.csv",
+      "sha256": "4c59ede20ccdd652732b403427ac1884d9f9dcd69cf5a37ed62ea9f2a7470278",
+      "selectionRuleVersion": "police-station-phase1-v1"
+    },
+    {
+      "path": "tools/pipeline_2025/config/police_station_crosswalk.csv",
+      "sha256": "774655ce22d5b9facb8f67b677a3cee23c0891aabeeed591666af0e5ce66119e",
+      "selectionRuleVersion": "police-station-phase1-v1"
+    }
+  ]
+}

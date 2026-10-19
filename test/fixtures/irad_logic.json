@@ -1,0 +1,18 @@
+{
+  "station": [
+    { "period_from": "", "period_to": "", "report_year": "2025", "period_inferred": "true", "expected": "release_2025" },
+    { "period_from": "", "period_to": "", "report_year": "", "period_inferred": "", "expected": "undated_no_year" },
+    { "period_from": "2022-01-01", "period_to": "2025-04-08", "report_year": "", "expected": "multi_year_window" },
+    { "period_from": "2025-01-01", "period_to": "", "report_year": "", "error": "one-sided" },
+    { "period_from": "2025-02-01", "period_to": "2025-01-01", "report_year": "", "error": "reversed" },
+    { "period_from": "2025-02-30", "period_to": "2025-03-01", "report_year": "", "error": "invalid ISO" },
+    { "period_from": "2025-01-01", "period_to": "2025-12-31", "report_year": "2026", "error": "inconsistent" },
+    { "period_from": "", "period_to": "", "report_year": "25", "error": "malformed" },
+    { "period_from": "", "period_to": "", "report_year": "2025", "period_inferred": "", "error": "fallback" }
+  ],
+  "monthly": [
+    { "district": "Central", "year": "2025", "month": "12", "report_period_from": "2025-01-01", "report_period_to": "2025-12-10", "period_inferred": "", "scope": "", "date_basis": "accident", "schema": "current", "source_file": "partial.pdf" },
+    { "district": "Central", "year": "2025", "month": "1", "report_period_from": "2025-01-01", "report_period_to": "2025-01-31", "period_inferred": "", "scope": "fir_registered_only", "date_basis": "reporting", "schema": "current", "source_file": "full.pdf" }
+  ],
+  "annual": { "district": "Central", "period_from": "2025-01-01", "period_to": "2025-12-31", "report_year": "2025", "period_inferred": "", "scope": "", "date_basis": "accident", "schema": "current", "source_file": "annual.pdf" }
+}

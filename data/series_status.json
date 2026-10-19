@@ -9,7 +9,14 @@
     "not_implemented": "an official source is archived but no usable layer has been built",
     "retained_legacy_year": "an older survey or geography kept for reference, not refreshed"
   },
-  "temporal_type_values": ["annual", "snapshot", "survey", "year_to_date", "latest_available", "multi_period"],
+  "temporal_type_values": [
+    "annual",
+    "snapshot",
+    "survey",
+    "year_to_date",
+    "latest_available",
+    "multi_period"
+  ],
   "series": [
     {
       "id": "ncrb_district_crime",
@@ -71,7 +78,7 @@
       "temporal_type": "year_to_date",
       "latest_reference_period": "2026-01 to 2026-08 (South East to July, North East to August, New Delhi to May)",
       "geography": "only the districts that publish 2026 reports",
-      "where": "data/derived/irad_monthly/irad_station_by_period.csv",
+      "where": "data/releases/2026/irad/manifest.json",
       "note": "Partial year and partial district coverage. Never compare with a full year."
     },
     {
@@ -153,6 +160,26 @@
       "geography": "290 legacy wards",
       "where": "data/derived/mpd2047_worldcover_comparison.json",
       "note": "Prototype page. Satellite sees cover, not use; a gap is a lead, not a violation."
+    },
+    {
+      "id": "irad_2025_release",
+      "name": "Staged iRAD 2025 release",
+      "status": "staged",
+      "temporal_type": "multi_period",
+      "latest_reference_period": "2025; coverage differs by reporting district and table",
+      "geography": "reporting districts and station labels; not the 15 police districts",
+      "where": "data/releases/2025/irad/manifest.json",
+      "note": "Authoritative staged release from derived iRAD tables; annual and monthly windows overlap. Not integrated into the dashboard."
+    },
+    {
+      "id": "police_station_crosswalk",
+      "name": "Police station crosswalk using the 2026 Manual",
+      "status": "staged",
+      "temporal_type": "snapshot",
+      "latest_reference_period": "Manual updated 2026-05-22 (post-period structural reference)",
+      "geography": "source reporting labels matched to current territorial station identities",
+      "where": "data/reference/police_station_crosswalk.csv",
+      "note": "Draft Manual evidence pending human verification; unresolved and specialised labels have no territorial assignment."
     }
   ]
 }

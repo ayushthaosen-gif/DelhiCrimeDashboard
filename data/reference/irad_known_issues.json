@@ -1,0 +1,7 @@
+{
+  "note": "Hand-maintained issue definitions. All counts are computed from the protected collection manifest and station rows, not this prose.",
+  "issues": [
+    { "id": "south-east-2025-annual-monthly-conflict", "district": "South East", "annualSource": "South_East__17676880854501.pdf", "summary": "Annual and twelve monthly station tables disagree within the official sources; neither replaces the other." },
+    { "id": "west-2025-annual-unreconciled", "district": "West", "annualSource": "West__17676875811215.pdf", "summary": "Annual station table cannot be reconciled with monthly station windows: January to April station tables are not published." }
+  ]
+}

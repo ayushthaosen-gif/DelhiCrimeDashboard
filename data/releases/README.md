@@ -4,6 +4,7 @@ Choose a folder from `2016/` through `2024/`, then read its `manifest.json` befo
 
 - `manifest.json` - machine-readable index
 - `shared/manifest.json` - infrastructure, boundaries and other non-year-specific production data
-- `2025/` - separate audited staging release; not automatically integrated into production
+- `2025/irad/` - authoritative staged iRAD release; older staging retained for provenance
+- `2026/irad/` - provisional partial-year iRAD release; never compare with a full year
 
 Regenerate with `npm run build:releases`. Null never means zero.

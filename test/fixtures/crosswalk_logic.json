@@ -1,0 +1,9 @@
+{
+  "authority": [
+    { "canonical_name": "Alpha Station", "police_district": "A", "printed_page": "1", "evidence_note": "Territorial roster" },
+    { "canonical_name": "ALPHA STATION", "police_district": "A", "printed_page": "2", "evidence_note": "Repeated occurrence, same identity" },
+    { "canonical_name": "Shared Station", "police_district": "A", "printed_page": "3", "evidence_note": "Territorial roster" },
+    { "canonical_name": "SHARED STATION", "police_district": "B", "printed_page": "4", "evidence_note": "Territorial roster" }
+  ],
+  "variant": { "decision": "documented_variant", "canonical_name": "Alpha Station", "evidence_page": "1" }
+}

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
+const { canonicalBytes, sha256, canonicalSize } = require('./lib/release_utils');
 
 const ROOT = path.resolve(__dirname, '..');
 const RELEASES = path.join(ROOT, 'data', 'releases');
@@ -51,14 +51,6 @@ function write(file, content) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, content);
 }
-function canonicalBytes(file) {
-  const bytes = fs.readFileSync(file);
-  // Release manifests must not vary when Git changes a text checkout from LF to CRLF.
-  if (/\.(csv|json|geojson|md|html)$/i.test(file)) return Buffer.from(bytes.toString('utf8').replace(/\r\n/g, '\n'), 'utf8');
-  return bytes;
-}
-function sha256(file) { return crypto.createHash('sha256').update(canonicalBytes(file)).digest('hex'); }
-function canonicalSize(file) { return canonicalBytes(file).length; }
 function stableGeneratedAt(file, manifest) {
   try {
     const previous = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -66,7 +58,7 @@ function stableGeneratedAt(file, manifest) {
     const after = { ...manifest }; delete after.generatedAt;
     if (JSON.stringify(before) === JSON.stringify(after) && previous.generatedAt) return previous.generatedAt;
   } catch (_) { /* First generation or malformed prior manifest. */ }
-  return new Date().toISOString();
+  return '2026-10-19T00:00:00.000Z'; // Deterministic metadata revision; never the build time.
 }
 function yearKey(metric, year) {
   if (year === 2023) return metric;
@@ -231,24 +223,12 @@ function buildShared() {
       };
     });
   const manifestPath = path.join(dir, 'manifest.json');
-  const manifest = { schemaVersion: '1.0.0', scope: 'shared and non-year-specific production datasets', generatedBy: 'scripts/build_yearly_releases.js', generatedAt: null, warning: 'Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.', datasets, productionFileInventory };
+  const referenceInventory = fs.readdirSync(path.join(ROOT, 'data/reference')).sort().map(name => { const file = `data/reference/${name}`; return { file, sha256: sha256(path.join(ROOT, file)), bytes: canonicalSize(path.join(ROOT, file)), status: 'staged; evidence pending human verification' }; });
+  const manifest = { referenceInventory, schemaVersion: '1.0.0', scope: 'shared and non-year-specific production datasets', generatedBy: 'scripts/build_yearly_releases.js', generatedAt: null, warning: 'Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.', datasets, productionFileInventory };
   manifest.generatedAt = stableGeneratedAt(manifestPath, manifest);
   write(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
   write(path.join(dir, 'README.md'), '# Shared production datasets\n\nMachine-readable provenance for infrastructure, boundaries and approximate-location layers that do not belong to a single crime year. See `manifest.json`.\n');
 }
 
-fs.mkdirSync(RELEASES, { recursive: true });
-const index = YEARS.map(buildYear);
-buildShared();
-write(path.join(RELEASES, 'manifest.json'), JSON.stringify({ schemaVersion: '1.0.0', title: 'Delhi Urban Safety Observatory yearly research releases', years: index, shared: 'shared/manifest.json', staged2025: '2025/README.md', importGuidance: 'Choose a year, read manifest.json, then import CSV or JSON. Do not join shared infrastructure as if it were measured in that year.' }, null, 2) + '\n');
-write(path.join(RELEASES, 'README.md'), `# Yearly research releases
-
-Choose a folder from \`2016/\` through \`2024/\`, then read its \`manifest.json\` before importing \`district_crime.csv\` or \`district_crime.json\`. Road-safety and crash-zone files are included only when that year has a compatible production dataset.
-
-- \`manifest.json\` - machine-readable index
-- \`shared/manifest.json\` - infrastructure, boundaries and other non-year-specific production data
-- \`2025/\` - separate audited staging release; not automatically integrated into production
-
-Regenerate with \`npm run build:releases\`. Null never means zero.
-`);
-console.log(`Generated ${YEARS.length} yearly releases plus shared manifest.`);
+module.exports = { buildYears: () => YEARS.map(buildYear), buildShared };
+if (require.main === module) require('./build_all_releases').build();

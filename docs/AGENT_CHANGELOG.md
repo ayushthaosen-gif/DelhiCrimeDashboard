@@ -1,3 +1,9 @@
+# 2026-10-19 - Phase 1 staged iRAD releases and canonical crosswalk
+
+Added deterministic staged/provisional releases, global row dispositions, coverage matrices and structured issues; one build orchestration serves both release and map commands. Added a draft Manual evidence extract and staged crosswalk, preserving the legacy config and required unresolved labels. Owner clarified identity matching across repeated printed occurrences. Protected source data and production meaning are unchanged. Validation and exact outputs are recorded in the external Phase 1 hand-back.
+
+The clean-status check exposed existing CSV writers emitting CRLF despite the repository LF contract. Those writers now emit LF, with normalized data unchanged. Coverage latest-period-end excludes inferred bounds.
+
 ## [2026-10-19] - Claude (Anthropic) - Pipeline outputs made path-independent so the validation check can pass
 
 The "Pipeline 2025 validation" CI job (which only runs when `tools/pipeline_2025/` or its workflows change) failed for reasons that predate Phase 0: the committed reports contained absolute Windows paths from a Codex session (a C:/Users/.../.codex/... folder), and CI had no raw files, so its offline regeneration was empty and never matched.
