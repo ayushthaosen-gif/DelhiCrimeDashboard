@@ -1,0 +1,288 @@
+[
+  {
+    "reference_year": 2011,
+    "crime": {
+      "availability": "official_original_year_district_data_staged",
+      "reporting_units": 17,
+      "reporting_unit_labels": [
+        "CAW",
+        "CENTRAL",
+        "CRIME BRANCH",
+        "EAST",
+        "EOW",
+        "GRP(RLY)",
+        "IGI AIRPORT",
+        "NEW DELHI",
+        "NORTH",
+        "NORTH-EAST",
+        "NORTH-WEST",
+        "OUTER",
+        "SOUTH",
+        "SOUTH-EAST",
+        "SOUTH-WEST",
+        "STF",
+        "WEST"
+      ],
+      "metrics": [
+        "theft",
+        "robbery",
+        "burglary_old_definition",
+        "total_ipc"
+      ],
+      "missing_metrics": [
+        "total_sll",
+        "comparable_total_crimes_against_women"
+      ],
+      "publication": {
+        "publication_date": null,
+        "foreword_date": "2012-06-28",
+        "basis": "Dated foreword, not independently verified release date.",
+        "display": "Exact release date unknown; foreword dated 2012-06-28."
+      },
+      "series_assessment": "Separate historical reporting-unit series. No safe append to current 15-district panel without boundary and offence-definition evidence.",
+      "definition_changes": [
+        "IPC Table 1.14 supplies 30 columns; SLL and a comparable aggregate of crimes against women are not supplied by this selected table and remain null.",
+        "Printed labels Molestation (354) and Sexual Harassment (509) are retained. Census 2011 provisional population underlies published rates; no rates are reconstructed."
+      ]
+    },
+    "road_crashes": {
+      "original_annual_report": "not located in current official archive during this investigation; this does not prove non-publication",
+      "citywide": "official citywide count series staged and arithmetic validated",
+      "traffic_districts": "2015-report retrospective table staged as printed; source inconsistencies and traffic-geography break prevent blind extension",
+      "non_null_traffic_districts_in_retrospective_table": 10,
+      "publication_date": null,
+      "publication_date_note": "2015 report front matter is undated; PDF file timestamps are recorded separately and are not treated as publication dates.",
+      "series_assessment": "Citywide counts: candidate extension for 2011-2013; 2014-2015 already in existing trend. District/circle data: separate historical series, with source issues unresolved."
+    }
+  },
+  {
+    "reference_year": 2012,
+    "crime": {
+      "availability": "official_original_year_district_data_staged",
+      "reporting_units": 17,
+      "reporting_unit_labels": [
+        "CAW",
+        "CENTRAL",
+        "CRIME BRANCH",
+        "EAST",
+        "EOW",
+        "GRP(RLY)",
+        "IGI AIRPORT",
+        "NEW DELHI",
+        "NORTH",
+        "NORTH-EAST",
+        "NORTH-WEST",
+        "OUTER",
+        "SOUTH",
+        "SOUTH-EAST",
+        "SOUTH-WEST",
+        "STF",
+        "WEST"
+      ],
+      "metrics": [
+        "theft",
+        "robbery",
+        "burglary_old_definition",
+        "total_ipc"
+      ],
+      "missing_metrics": [
+        "total_sll",
+        "comparable_total_crimes_against_women"
+      ],
+      "publication": {
+        "publication_date": null,
+        "foreword_date": "2013-06-04",
+        "basis": "Dated foreword, not independently verified release date.",
+        "display": "Exact release date unknown; foreword dated 2013-06-04."
+      },
+      "series_assessment": "Separate historical reporting-unit series. No safe append to current 15-district panel without boundary and offence-definition evidence.",
+      "definition_changes": [
+        "Same 17-unit IPC layout; 354/509 header wording changes to assault on women/insult to modesty. No boundary equivalence is inferred.",
+        "SLL and comparable crimes-against-women aggregate are not supplied by this selected table and remain null. Additional multi-year catalogues are discovery leads, not extracted substitutes."
+      ]
+    },
+    "road_crashes": {
+      "original_annual_report": "not located in current official archive during this investigation; this does not prove non-publication",
+      "citywide": "official citywide count series staged and arithmetic validated",
+      "traffic_districts": "2015-report retrospective table staged as printed; source inconsistencies and traffic-geography break prevent blind extension",
+      "non_null_traffic_districts_in_retrospective_table": 10,
+      "publication_date": null,
+      "publication_date_note": "2015 report front matter is undated; PDF file timestamps are recorded separately and are not treated as publication dates.",
+      "series_assessment": "Citywide counts: candidate extension for 2011-2013; 2014-2015 already in existing trend. District/circle data: separate historical series, with source issues unresolved."
+    }
+  },
+  {
+    "reference_year": 2013,
+    "crime": {
+      "availability": "official_original_year_district_data_staged",
+      "reporting_units": 18,
+      "reporting_unit_labels": [
+        "CAW",
+        "CENTRAL",
+        "CRIME BRANCH",
+        "EAST",
+        "EOW",
+        "GRP(RLY)",
+        "IGI AIRPORT",
+        "METRO RAIL",
+        "NEW DELHI",
+        "NORTH",
+        "NORTH-EAST",
+        "NORTH-WEST",
+        "OUTER",
+        "SOUTH",
+        "SOUTH-EAST",
+        "SOUTH-WEST",
+        "STF",
+        "WEST"
+      ],
+      "metrics": [
+        "theft",
+        "robbery",
+        "burglary_old_definition",
+        "total_ipc"
+      ],
+      "missing_metrics": [
+        "total_sll",
+        "comparable_total_crimes_against_women"
+      ],
+      "publication": {
+        "publication_date": null,
+        "foreword_date": "2014-06-16",
+        "basis": "Dated foreword, not independently verified release date.",
+        "display": "Exact release date unknown; foreword dated 2014-06-16."
+      },
+      "series_assessment": "Separate historical reporting-unit series. No safe append to current 15-district panel without boundary and offence-definition evidence.",
+      "definition_changes": [
+        "18 reporting units: METRO RAIL appears separately in 2013, compared with 17 units in 2011-2012.",
+        "Criminal Law (Amendment) Act 2013 may affect offence coverage; equal IPC section labels do not prove unchanged legal definitions across 2012/2013.",
+        "Published rate denominators for women and other segments change; staged values are counts only. SLL and comparable women aggregate absent from selected IPC table remain null."
+      ]
+    },
+    "road_crashes": {
+      "original_annual_report": "not located in current official archive during this investigation; this does not prove non-publication",
+      "citywide": "official citywide count series staged and arithmetic validated",
+      "traffic_districts": "2015-report retrospective table staged as printed; source inconsistencies and traffic-geography break prevent blind extension",
+      "non_null_traffic_districts_in_retrospective_table": 10,
+      "publication_date": null,
+      "publication_date_note": "2015 report front matter is undated; PDF file timestamps are recorded separately and are not treated as publication dates.",
+      "series_assessment": "Citywide counts: candidate extension for 2011-2013; 2014-2015 already in existing trend. District/circle data: separate historical series, with source issues unresolved."
+    }
+  },
+  {
+    "reference_year": 2014,
+    "crime": {
+      "availability": "official_original_year_district_data_staged",
+      "reporting_units": 19,
+      "reporting_unit_labels": [
+        "Central",
+        "Crime Branch",
+        "East",
+        "EOW",
+        "IGI Airport",
+        "Metro",
+        "New Delhi",
+        "North",
+        "North-East",
+        "North-West",
+        "Outer",
+        "RAILWAY",
+        "South",
+        "South-East",
+        "South-West",
+        "Spl Cell",
+        "SPUWAC",
+        "Vigilance",
+        "West"
+      ],
+      "metrics": [
+        "theft",
+        "robbery",
+        "criminal_trespass_burglary_revised_definition",
+        "total_ipc",
+        "total_sll",
+        "total_crimes_against_women"
+      ],
+      "missing_metrics": [],
+      "publication": {
+        "publication_date": null,
+        "foreword_date": null,
+        "basis": "Archived foreword undated; portal upload path is not a release date.",
+        "display": "Exact release date unknown; foreword undated."
+      },
+      "series_assessment": "Separate historical reporting-unit series. No safe append to current 15-district panel without boundary and offence-definition evidence.",
+      "definition_changes": [
+        "NCRB revised proformae, added heads and changed sections. 19 units replace the earlier 17/18-unit lists; do not treat this as a stable district panel.",
+        "Revised Criminal Trespass/Burglary is distinct from old Burglary. Women basket expands to suicide abetment and domestic violence; women totals are not additive to IPC/SLL."
+      ]
+    },
+    "road_crashes": {
+      "original_annual_report": "not located in current official archive during this investigation; this does not prove non-publication",
+      "citywide": "official citywide count series staged and arithmetic validated",
+      "traffic_districts": "2015-report retrospective table staged as printed; source inconsistencies and traffic-geography break prevent blind extension",
+      "non_null_traffic_districts_in_retrospective_table": 11,
+      "publication_date": null,
+      "publication_date_note": "2015 report front matter is undated; PDF file timestamps are recorded separately and are not treated as publication dates.",
+      "series_assessment": "Citywide counts: candidate extension for 2011-2013; 2014-2015 already in existing trend. District/circle data: separate historical series, with source issues unresolved."
+    }
+  },
+  {
+    "reference_year": 2015,
+    "crime": {
+      "availability": "official_original_year_district_data_staged",
+      "reporting_units": 19,
+      "reporting_unit_labels": [
+        "Central",
+        "Crime Branch",
+        "East",
+        "EOW",
+        "IGI Airport",
+        "Metro",
+        "New Delhi",
+        "North",
+        "North-East",
+        "North-West",
+        "Outer",
+        "RAILWAY",
+        "South",
+        "South-East",
+        "South-West",
+        "Spl Cell",
+        "SPUWAC",
+        "Vigilance",
+        "West"
+      ],
+      "metrics": [
+        "theft",
+        "robbery",
+        "criminal_trespass_burglary_revised_definition",
+        "total_ipc",
+        "total_sll",
+        "total_crimes_against_women"
+      ],
+      "missing_metrics": [],
+      "publication": {
+        "publication_date": "2016-08-30",
+        "foreword_date": null,
+        "basis": "PIB release states calendar-year 2015 Crime in India was released today. Archived files may incorporate later revisions.",
+        "url": "https://www.pib.gov.in/newsite/PrintRelease.aspx?lang=2&reg=48&relid=149357",
+        "corrigendum_date": "2016-09-09",
+        "display": "Released 2016-08-30 (PIB); corrigendum dated 2016-09-09; archived edition retained."
+      },
+      "series_assessment": "Separate historical reporting-unit series. No safe append to current 15-district panel without boundary and offence-definition evidence.",
+      "definition_changes": [
+        "19 reporting units as printed; unit names alone do not establish boundary continuity with 2014 or 2016 onward.",
+        "Retain revised offence heads, separate women aggregate versus women-victim total, and source corrigendum. Prior categories are not mechanically backfilled."
+      ]
+    },
+    "road_crashes": {
+      "original_annual_report": "official 2015 report archived in chapters",
+      "citywide": "official citywide count series staged and arithmetic validated",
+      "traffic_districts": "2015-report retrospective table staged as printed; source inconsistencies and traffic-geography break prevent blind extension",
+      "non_null_traffic_districts_in_retrospective_table": 11,
+      "publication_date": null,
+      "publication_date_note": "2015 report front matter is undated; PDF file timestamps are recorded separately and are not treated as publication dates.",
+      "series_assessment": "Citywide counts: candidate extension for 2011-2013; 2014-2015 already in existing trend. District/circle data: separate historical series, with source issues unresolved."
+    }
+  }
+]
