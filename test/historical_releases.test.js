@@ -75,11 +75,11 @@ test('rendered chart baseline and download filename are computed from the extend
   assert.deepEqual(Array.from(downloaded.content.rows[0]), [2011, 7280, 2110, 2047]);
 });
 
-test('staged historical release retains original units and all summary cells, outside production years', () => {
+test('historical release retains original units and all summary cells, outside the 2016-2024 district years', () => {
   const manifest = json(HIST + 'manifest.json');
-  assert.equal(manifest.status, 'staged');
-  assert.equal(manifest.productionReady, false);
-  assert.equal(manifest.dashboardIntegrated, false);
+  assert.equal(manifest.status, 'production');
+  assert.equal(manifest.productionReady, true);
+  assert.equal(manifest.dashboardIntegrated, true);
   assert.equal(manifest.districtMapping, null);
   const city = json(HIST + 'citywide_crime.json');
   assert.deepEqual(city.map(r => r.source_reporting_units), [17, 17, 18, 19, 19]);
@@ -93,7 +93,7 @@ test('staged historical release retains original units and all summary cells, ou
   for (const row of city.slice(3)) assert.equal(row.burglary_old_definition, null);
   const index = json('data/releases/manifest.json');
   assert.deepEqual(index.years.map(y => y.year), [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]);
-  assert.equal(index.historicalReleases[0].dashboardIntegrated, false);
+  assert.equal(index.historicalReleases[0].dashboardIntegrated, true);
   assert.equal(index.citywideRoadTrend.coverageStart, 2011);
   for (const input of manifest.inputs) {
     const original = json(input.path);

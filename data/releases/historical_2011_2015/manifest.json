@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0.0",
   "title": "Delhi NCRB historical panel, 2011 to 2015",
-  "status": "staged",
-  "productionReady": false,
-  "dashboardIntegrated": false,
+  "status": "production",
+  "productionReady": true,
+  "dashboardIntegrated": true,
   "referenceYears": [
     2011,
     2012,
@@ -79,7 +79,7 @@
   "citywidePolicy": "Select Delhi UT TOTAL/Total District(s) as printed, not a sum of selected territorial districts and not the distinct NCRB mega-city geography.",
   "sourceEditions": "The 2011-2013 PDF headers are readable transcriptions with sections, as declared by the extraction. The full PDFs remain authoritative. Workbook headers/cells and all source rows are retained in as_printed/.",
   "extensionPolicy": "Separate historical panel; no append to the 2016-2024 current-district dashboard. Even identical labels or section numbers do not prove constant boundaries or definitions.",
-  "distributionStatus": "Local staged research; direct-source public redistribution terms not established. No new licence is granted by this compilation.",
+  "distributionStatus": "Counts are published on the dashboard as printed. Direct-source redistribution terms are not established, and no new licence is granted by this compilation.",
   "reuseTerms": [
     {
       "id": "ncrb",

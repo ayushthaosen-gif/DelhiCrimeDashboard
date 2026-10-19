@@ -1,6 +1,6 @@
 {
   "note": "One place that says what each data series is, how far it goes, and whether it may be treated as current. Pages, docs and releases should agree with this file; test/series_status.test.js checks that every path exists and the README table lists every series. Change a status here only with the evidence in docs/DATA_CHANGELOG.md or docs/AGENT_CHANGELOG.md.",
-  "updated": "2026-10-19",
+  "updated": "2026-10-20",
   "status_values": {
     "production": "on the dashboard or map, validated against its source, with a release manifest",
     "staged": "collected and checked, kept out of the dashboard on purpose",
@@ -39,6 +39,28 @@
       "geography": "Delhi citywide; no district allocation",
       "where": "data/releases/citywide_road_trend/manifest.json",
       "note": "2011-2024 total crashes, fatal crashes and persons killed. Counts, not rates. Injury/category edition differences are excluded from the extension; victim-by-mode remains 2019-2024."
+    },
+    {
+      "id": "ncrb_historical_counts_2011_2018",
+      "name": "NCRB historical district crime counts, as printed",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2018",
+      "coverage_start": "2011",
+      "geography": "original annual reporting districts (11 in 2011-2016, 14 in 2017-2018); no allocation to current districts",
+      "where": "data/historical_reporting/manifest.json",
+      "note": "On historical_crime.html. Counts only, never trended across the 2013/2014 definition break or joined to modern districts, wards or infrastructure. Null means not reported, not zero. Offence definitions differ by year; see the manifest."
+    },
+    {
+      "id": "historical_police_district_maps",
+      "name": "Historical police-district reference maps, 2011-2018",
+      "status": "staged",
+      "temporal_type": "snapshot",
+      "latest_reference_period": "2018",
+      "coverage_start": "2011",
+      "geography": "2014 station polygons regrouped by the Dec 2014 roster (2011-2016, inferred) and the Nov 2017 gazette schedule (2017-2018)",
+      "where": "data/staged/police_geography_history/manifest.json",
+      "note": "Schematic, not to scale. Shown on historical_crime.html under 'inferred' or 'derived' labels; not certified annual boundaries."
     },
     {
       "id": "ncrb_2025",
