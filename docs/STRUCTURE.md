@@ -15,6 +15,7 @@ DelhiCrimeDashboard/
 ├── irad_stations.html                 # district iRAD monthly and police-station explorer (prototype)
 ├── data/                              # dashboard source and derived datasets
 │   ├── series_status.json            # what each data series is, how current, and its status (tested against the README table)
+│   ├── geography_registry.json       # which ward geography each ward-level file uses (legacy 290 vs the not-yet-available 250)
 │   └── releases/2025/                 # audited 2025 research release
 ├── exports/                           # legacy dashboard-independent CSV/JSON exports (deprecated)
 ├── fonts/                             # fonts embedded by the main build

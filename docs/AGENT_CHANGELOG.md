@@ -5,6 +5,14 @@
 **Fixes (`delhi_data_2025.source_diff`, with tests).** Images, media and low-scoring pages are left out; links already collected are left out; timeouts are not reported and an unreachable source is not said to have lost its links; an identical note is not posted twice (a digest in the note). Against the real run the note shrinks from 28 links + 2 gone + 3 status changes to 2 links + 1 status change; with the refreshed baseline it is the NCRB TLS failure only.
 
 **Baseline refreshed** from the 2026-10-19 CI run after review (nothing qualified: the iRAD 2026 reports are staged), with the NCRB error left out so the failure stays visible. The procedure for future refreshes is in the pipeline README.
+## [2026-10-19] - Claude (Anthropic) - Phase 2 (no new data): legacy ward labels, geography registry, coverage table
+
+- **250 wards: blocked on data, and the note says why.** The official 2022 ward map (GSDL/MCD/16.01.2023/01) is marked restricted, with reproduction prohibited without GSDL's written permission; its linework forms 921 faces, not 250 wards, so reconstruction is not viable. OpenCity's 2022 layer is no longer hosted and OpenStreetMap has no MCD wards. `series_status.json` now records this, names the next step (ask GSDL for the digital layer with written reuse terms; no request has been sent) and says nothing may be traced or invented meanwhile.
+- **`data/geography_registry.json`**: the legacy 290-ward geography (273 MCD polygons, 9 NDMC, 8 Cantonment; DataMeet, pre-2022, not an official boundary) and the 250-ward geography (not implemented), with every ward-level file registered and a join policy that blocks cross-geography joins. The shared release manifest lists both. `test/geography_registry.test.js` computes the ward count from the boundary file, requires every ward-level file in `data/` to be registered, and requires the labels below.
+- **Legacy labels where wards are shown**: the interactive map's ward mode, `map_3d.html`, `map_3d_mpd.html`, and the dashboard.
+- **Dashboard coverage table**: "How current is each data series?" (built from `series_status.json`), with a warning never to compare year-to-date or provisional series with a full year.
+- **iRAD page**: 2026 is labelled "year to date" and "provisional" in the chart legend, with a note not to compare its total with a full year.
+- Not done: any 250-ward layer, any cross-geography mapping; the draft ward register extracted from the restricted map is not in the repository (if a register is wanted, extract it from the public notification and verify it).
 
 ## [2026-10-19] - Claude (Anthropic) - Cleanup after Phase 1
 

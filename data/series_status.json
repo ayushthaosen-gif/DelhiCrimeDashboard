@@ -137,9 +137,10 @@
       "status": "retained_legacy_year",
       "temporal_type": "snapshot",
       "latest_reference_period": "pre-2022 delimitation",
-      "geography": "290 wards",
+      "geography": "290 legacy wards (273 MCD, 9 NDMC, 8 Cantonment polygons)",
       "where": "data/source/delhi_wards_boundaries.geojson",
-      "note": "All ward-level layers (land use, infrastructure, Master Plan comparison) use this geography."
+      "note": "Pre-2022 geography, kept as a finer grid for density aggregation; not an official or current boundary and not the current 250 wards. Every ward-level layer (land use, infrastructure, Master Plan comparison) uses it and is labelled legacy.",
+      "geography_id": "legacy_290_wards"
     },
     {
       "id": "wards_mcd_2022_250",
@@ -149,7 +150,8 @@
       "latest_reference_period": "2022 delimitation",
       "geography": "250 wards",
       "where": "data/raw/source_archive/wards/",
-      "note": "The official notification and an SEC ward-map index are archived; no boundary layer has been built, and none should be invented."
+      "note": "Official source is Geospatial Delhi Limited (GSDL). Its map is restricted (reproduction prohibited without written permission) and reconstruction is not viable: the linework forms 921 faces, not 250 wards. The notification is archived here. Next step: ask GSDL for the digital layer with written reuse terms; no request has been sent. Nothing should be traced or invented in the meantime.",
+      "geography_id": "mcd_2022_250_wards"
     },
     {
       "id": "mpd2047_comparison",
@@ -159,7 +161,8 @@
       "latest_reference_period": "plan 2026 draft; land cover 2021",
       "geography": "290 legacy wards",
       "where": "data/derived/mpd2047_worldcover_comparison.json",
-      "note": "Prototype page. Satellite sees cover, not use; a gap is a lead, not a violation."
+      "note": "Prototype page. Satellite sees cover, not use; a gap is a lead, not a violation.",
+      "geography_id": "legacy_290_wards"
     },
     {
       "id": "irad_2025_release",
