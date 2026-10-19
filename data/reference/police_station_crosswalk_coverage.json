@@ -9,10 +9,10 @@
   "measure": "Source-table rows, which include overlapping annual and monthly windows; not unique stations, incidents or geographic completeness.",
   "overall": {
     "labelsTotal": 174,
-    "mapped": 164,
+    "mapped": 165,
     "specialised": 2,
     "ambiguous": 1,
-    "unmapped": 7
+    "unmapped": 6
   },
   "byReportingDistrict": {
     "Central": {
@@ -80,10 +80,10 @@
     },
     "South West": {
       "labelsTotal": 12,
-      "mapped": 11,
+      "mapped": 12,
       "specialised": 0,
       "ambiguous": 0,
-      "unmapped": 1
+      "unmapped": 0
     },
     "West": {
       "labelsTotal": 23,
@@ -96,9 +96,9 @@
   "releaseCoverage": {
     "2025": {
       "overall": {
-        "mappedSourceTableRows": 560,
+        "mappedSourceTableRows": 561,
         "totalSourceTableRows": 603,
-        "share": 0.9286898839137645
+        "share": 0.9303482587064676
       },
       "byReportingDistrict": {
         "Dwarka": {
@@ -132,9 +132,9 @@
           "share": 1
         },
         "South West": {
-          "mappedSourceTableRows": 11,
+          "mappedSourceTableRows": 12,
           "totalSourceTableRows": 12,
-          "share": 0.9166666666666666
+          "share": 1
         },
         "West": {
           "mappedSourceTableRows": 180,
@@ -640,7 +640,7 @@
     },
     {
       "path": "data/reference/delhi_police_manual_1_2026_stations.csv",
-      "sha256": "aed83f695d3ec2206830c968eddcd4e3b0120f2cb2c5b77e41bce98a3281d18a",
+      "sha256": "5151e9b6b39a73eb83cfb0010944eab5577eed0c1099d6143eda5c3991e4d715",
       "selectionRuleVersion": "police-station-phase1-v1"
     },
     {
@@ -650,7 +650,7 @@
     },
     {
       "path": "data/reference/police_station_decisions.csv",
-      "sha256": "4c59ede20ccdd652732b403427ac1884d9f9dcd69cf5a37ed62ea9f2a7470278",
+      "sha256": "ea658d750e78efbec9fa4357c958f6efb7a7c18b19aae1cde4bb76e7453b8b33",
       "selectionRuleVersion": "police-station-phase1-v1"
     },
     {

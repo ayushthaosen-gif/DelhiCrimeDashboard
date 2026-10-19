@@ -1,3 +1,10 @@
+## [2026-10-19] - Claude (Anthropic) - Cleanup after Phase 1
+
+- **Palam Village resolved.** The Manual's roster (page 22) lists PALAM VIHAR in South-West (Delhi Cantt. sub-division) and the South-West district details (page 60) list a Palam police station at Palam Village in the same sub-division: one station under two spellings, South West either way. The source label now maps to South West as a `documented_variant`, `needs_review: true`, with both pages in the evidence extract. The crosswalk is now 165 mapped, 2 specialised, 1 ambiguous, 6 unmapped. Still a draft pending human verification.
+- **Frozen-hash pin replaced.** The Phase 1 test that pinned 72 file hashes (and would have failed on any legitimate later change) is gone. In its place: every manifest's file hashes and sizes must match the files; the staged iRAD manifests and the crosswalk coverage must match the iRAD inputs on disk; and no release or reference file may contain a machine-specific path.
+- **Machine paths removed** from seven legacy 2025 release copies (273 values), replaced by the portable `raw/<source_id>/<file>`; provenance (source, checksum, page) is unchanged. The Linux CI-reproducible pipeline outputs were fixed earlier.
+- Still open: human verification of the Manual extract and the documented variants; the weekly monitor's first live run.
+
 # 2026-10-19 - Phase 1 staged iRAD releases and canonical crosswalk
 
 Added deterministic staged/provisional releases, global row dispositions, coverage matrices and structured issues; one build orchestration serves both release and map commands. Added a draft Manual evidence extract and staged crosswalk, preserving the legacy config and required unresolved labels. Owner clarified identity matching across repeated printed occurrences. Protected source data and production meaning are unchanged. Validation and exact outputs are recorded in the external Phase 1 hand-back.
