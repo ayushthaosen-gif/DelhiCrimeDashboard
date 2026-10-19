@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import yaml
@@ -7,6 +8,18 @@ import yaml
 from .models import PipelinePaths, SourceConfig
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
+
+
+def portable_path(path) -> str:
+    """Machine-independent name of a raw file: ``raw/<source_id>/<file>``.
+
+    Absolute paths (``C:\\Users\\...`` or ``/home/...``) differ between machines and would make the
+    committed reports unreproducible, so only the part under ``raw`` is kept.
+    """
+    parts = [p for p in re.split(r"[\\/]+", str(path)) if p]
+    if len(parts) >= 3 and parts[-3] == "raw":
+        return "/".join(parts[-3:])
+    return parts[-1] if parts else ""
 
 
 def load_yaml(path: Path) -> dict:

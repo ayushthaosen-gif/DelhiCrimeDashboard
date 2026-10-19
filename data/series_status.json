@@ -1,0 +1,158 @@
+{
+  "note": "One place that says what each data series is, how far it goes, and whether it may be treated as current. Pages, docs and releases should agree with this file; test/series_status.test.js checks that every path exists and the README table lists every series. Change a status here only with the evidence in docs/DATA_CHANGELOG.md or docs/AGENT_CHANGELOG.md.",
+  "updated": "2026-10-19",
+  "status_values": {
+    "production": "on the dashboard or map, validated against its source, with a release manifest",
+    "staged": "collected and checked, kept out of the dashboard on purpose",
+    "provisional": "partial-period or partly verified; never to be compared with a full year",
+    "not_published": "the official release does not exist yet",
+    "not_implemented": "an official source is archived but no usable layer has been built",
+    "retained_legacy_year": "an older survey or geography kept for reference, not refreshed"
+  },
+  "temporal_type_values": ["annual", "snapshot", "survey", "year_to_date", "latest_available", "multi_period"],
+  "series": [
+    {
+      "id": "ncrb_district_crime",
+      "name": "NCRB district crime (IPC/BNS, SLL, crimes against women)",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2024",
+      "coverage_start": "2016",
+      "geography": "15 police districts",
+      "where": "data/releases/2024/manifest.json",
+      "note": "2016 to 2024 each have a release manifest. Null means not reported, not zero."
+    },
+    {
+      "id": "ncrb_2025",
+      "name": "NCRB Crime in India 2025",
+      "status": "not_published",
+      "temporal_type": "annual",
+      "latest_reference_period": null,
+      "geography": "15 police districts",
+      "where": "data/releases/2025/README.md",
+      "note": "The latest edition found is 2024 (published May 2026). No totalIPC2025 field is created."
+    },
+    {
+      "id": "crash_zones_2024",
+      "name": "Delhi Traffic Police crash-prone zones",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2024",
+      "coverage_start": "2023",
+      "geography": "named locations (93 zones in 2024); 15 police districts",
+      "where": "data/releases/2024/crash_prone_zones.csv",
+      "note": "Counts are from the report. Map positions are landmark-centre estimates, roughly 250 m to 1 km off, not police geotags."
+    },
+    {
+      "id": "traffic_police_crash_report_2025",
+      "name": "Delhi Traffic Police annual Road Crash Report 2025",
+      "status": "not_published",
+      "temporal_type": "annual",
+      "latest_reference_period": null,
+      "geography": "15 police districts",
+      "where": "data/releases/2025/README.md",
+      "note": "No qualifying full-year 2025 report was found."
+    },
+    {
+      "id": "irad_district_reports",
+      "name": "District iRAD road-accident reports",
+      "status": "staged",
+      "temporal_type": "multi_period",
+      "latest_reference_period": "2026-08 (varies by district)",
+      "coverage_start": "2022",
+      "geography": "revenue districts and police stations as printed; not mapped to the 15 police districts",
+      "where": "data/derived/irad_monthly/manifest.json",
+      "note": "A different series from the traffic police report. Periods, layouts and scope differ by report; see docs/IRAD_DISTRICT_REPORTS.md. Linked from the dashboard as a prototype page, not part of the maps."
+    },
+    {
+      "id": "irad_2026_year_to_date",
+      "name": "iRAD reports for 2026",
+      "status": "provisional",
+      "temporal_type": "year_to_date",
+      "latest_reference_period": "2026-01 to 2026-08 (South East to July, North East to August, New Delhi to May)",
+      "geography": "only the districts that publish 2026 reports",
+      "where": "data/derived/irad_monthly/irad_station_by_period.csv",
+      "note": "Partial year and partial district coverage. Never compare with a full year."
+    },
+    {
+      "id": "delhi_police_2025_citywide_counts",
+      "name": "Delhi Police 2025 citywide counts as reported by two news outlets",
+      "status": "staged",
+      "temporal_type": "annual",
+      "latest_reference_period": "2025",
+      "geography": "Delhi as a whole, 8 offences, no district split",
+      "where": "data/releases/2025/needs_review/crime_citywide_2025_news_reported.csv",
+      "note": "Unverified: no police table found. Not comparable with the NCRB series."
+    },
+    {
+      "id": "osm_infrastructure",
+      "name": "OpenStreetMap infrastructure snapshots (overbridges, signals, crossings, hospitals, cameras, police, footways)",
+      "status": "production",
+      "temporal_type": "snapshot",
+      "latest_reference_period": "2026-08",
+      "geography": "points and ways, assigned to districts and wards",
+      "where": "data/source/README.md",
+      "note": "Mapped by volunteers; incomplete. Low coverage means unmapped, not absent."
+    },
+    {
+      "id": "crash_zone_sidewalks",
+      "name": "Sidewalk, footway and crossing mapping around crash zones",
+      "status": "staged",
+      "temporal_type": "snapshot",
+      "latest_reference_period": "2026-10",
+      "geography": "250 m and 500 m around each 2024 crash zone",
+      "where": "data/derived/crash_zone_sidewalks_2024.json",
+      "note": "Measures how much is tagged on OpenStreetMap, not whether pavements exist."
+    },
+    {
+      "id": "papl_streetlights",
+      "name": "PAPL streetlight and underpass survey",
+      "status": "retained_legacy_year",
+      "temporal_type": "survey",
+      "latest_reference_period": "survey period, not re-measured",
+      "geography": "9 of 15 districts surveyed",
+      "where": "data/streetlights_combined_by_district.json",
+      "note": "No authoritative 2025 replacement was found."
+    },
+    {
+      "id": "liquor_vends",
+      "name": "Official liquor vend list",
+      "status": "production",
+      "temporal_type": "latest_available",
+      "latest_reference_period": "list date not established",
+      "geography": "points (positions mostly approximate)",
+      "where": "data/delhi_liquor_vends_all_coordinates_approx.geojson",
+      "note": "The list is incomplete and its snapshot date is unclear; do not label it a verified inventory for any year."
+    },
+    {
+      "id": "wards_legacy_290",
+      "name": "Delhi wards, legacy 290-ward geography",
+      "status": "retained_legacy_year",
+      "temporal_type": "snapshot",
+      "latest_reference_period": "pre-2022 delimitation",
+      "geography": "290 wards",
+      "where": "data/source/delhi_wards_boundaries.geojson",
+      "note": "All ward-level layers (land use, infrastructure, Master Plan comparison) use this geography."
+    },
+    {
+      "id": "wards_mcd_2022_250",
+      "name": "Delhi wards, current 250-ward geography (MCD delimitation 2022)",
+      "status": "not_implemented",
+      "temporal_type": "snapshot",
+      "latest_reference_period": "2022 delimitation",
+      "geography": "250 wards",
+      "where": "data/raw/source_archive/wards/",
+      "note": "The official notification and an SEC ward-map index are archived; no boundary layer has been built, and none should be invented."
+    },
+    {
+      "id": "mpd2047_comparison",
+      "name": "Master Plan 2047 against 2021 satellite land cover",
+      "status": "staged",
+      "temporal_type": "snapshot",
+      "latest_reference_period": "plan 2026 draft; land cover 2021",
+      "geography": "290 legacy wards",
+      "where": "data/derived/mpd2047_worldcover_comparison.json",
+      "note": "Prototype page. Satellite sees cover, not use; a gap is a lead, not a violation."
+    }
+  ]
+}

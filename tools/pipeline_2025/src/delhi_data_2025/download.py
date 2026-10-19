@@ -5,6 +5,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
+from .config import portable_path
 from .models import Candidate, DownloadRecord, SourceConfig
 
 
@@ -42,6 +43,6 @@ def download_candidate(
         sha256=digest,
         etag=response.headers.get("etag"),
         last_modified=response.headers.get("last-modified"),
-        local_path=str(destination),
+        local_path=portable_path(destination),
         snapshot_date=source.snapshot_time.isoformat() if source.snapshot_time else None,
     )

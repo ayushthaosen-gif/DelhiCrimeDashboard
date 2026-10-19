@@ -1,0 +1,49 @@
+# What's new
+
+History of additions, moved out of the README. Newest first within each block. The dated engineering log is [AGENT_CHANGELOG.md](AGENT_CHANGELOG.md); corrections to published figures are in [DATA_CHANGELOG.md](DATA_CHANGELOG.md).
+
+## Recent additions (2026-10)
+
+- **3D explorers**: `map_3d.html` and `map_3d_mpd.html` (MapLibre GL JS 4.7.1), with phone layout fixes and a Home link. Tests: `test/map_3d_page.test.js`, `test/map_3d_mpd_page.test.js`.
+- **Master Plan 2047 vs satellite**: ESA WorldCover 2021 (10 m) rasterised against plan polygons by `scripts/build_mpd_worldcover_comparison.py` into `data/derived/mpd2047_worldcover_comparison.json`; DDA settlement layers (Lal Dora, PM-UDAY colonies, JJ clusters) in `data/source/dda_settlements/`. A trial of splitting built-up land by use is written up, with its negative result, in [`docs/MPD_BUILT_UP_USE_TRIAL.md`](../docs/MPD_BUILT_UP_USE_TRIAL.md). Satellite sees cover, not use.
+- **Crash-zone coordinate audit**: `data/audits/crash_zones_2024/` and [`docs/CRASH_ZONE_COORDINATES.md`](../docs/CRASH_ZONE_COORDINATES.md). Public sources cannot place zones better than roughly 500 to 1000 m; production coordinates were not changed. A draft RTI for police geotags is in [`docs/RTI_REQUEST_DRAFT.md`](../docs/RTI_REQUEST_DRAFT.md) (two more RTI drafts for DDA and MCD land use sit beside it). Nothing has been filed.
+- **District iRAD data (staged, not in the dashboard)**: `data/derived/irad_monthly/` (296 monthly district rows, 1,275 police-station rows, 11 districts, manifest, issues, scanned-table transcriptions), built by `scripts/collect_irad_monthly.py` (needs pdfplumber). See [`docs/IRAD_DISTRICT_REPORTS.md`](../docs/IRAD_DISTRICT_REPORTS.md). iRAD is a different series from the Delhi Traffic Police crash report; do not mix them.
+
+## What's new in this version
+
+- **Cleaner research controls.** The main dashboard now uses grouped metric and year selectors, a separate display-mode control, active-layer counts and removable chips, responsive layer categories, and collapsed coverage notes so optional complexity no longer overwhelms the map.
+
+- **New identity and compact map hero.** The project is now the **Delhi Urban Safety Observatory**; its Leaflet page is the **Delhi Safety & Infrastructure Explorer**. The responsive header uses a shorter map-led safety visualization and a project favicon.
+- **Pedestrian-overbridge coverage.** A reproducible OpenStreetMap/Overpass snapshot is processed into 242 mapped pedestrian bridge groups, district counts/densities, an interactive clustered point layer, nearby-crash-zone context, and reusable exports. It is marked as mapped coverage rather than an official completeness register.
+
+- **Sharp charts on high-DPI screens.** The scatter, trends, and
+  road-deaths-by-mode charts now render at native device pixel density
+  instead of a fixed buffer stretched by CSS — no more blur on Retina
+  displays or modern phones.
+- **Custom tooltips** on the map (districts, police markers, crash zones,
+  district centers) replace OS-rendered SVG `<title>` tooltips — instant,
+  styled, no 1-2 second hover delay.
+- **Rank-based (percentile) color scale** on the map and ranked list instead
+  of linear min-max — one outlier district can no longer squash every other
+  district into the bottom of the color range and hide their real variance.
+- **Deselection**: clicking the already-selected district, or the map
+  background, clears the selection instead of it being sticky.
+- Fixed a table-parsing bug where one crash-prone zone had lost its name
+  entirely, and cleaned up OCR artifacts (e.g. "GTKRoad") that had leaked
+  into the *displayed* zone list text, not just the map-coordinate lookups.
+- Full 15-district 2023 crash data (crash-prone zones, fatal crashes, total
+  crashes) from the Delhi Road Crash Report 2023 — zero coverage gaps,
+  unlike the 2022 report's 11-district reporting geography.
+- All 107 named crash-prone zones now carry their 2023 severity counts and
+  mapped coordinates (cross-validated against the source table by rank and
+  fatal-crash count; the positions are estimates, not police geotags, with documented uncertainty); 105 of 107 plot on the map as a toggleable layer,
+  sized and shaded by fatal crash count.
+- District-center markers on the map — a ring-and-dot symbol at each
+  district's polygon centroid.
+- Citywide road-safety detail panel, consolidated into one tabbed section
+  (Trends / By Mode of Travel / Crash-Prone Zones).
+- Year comparison for crime data: a 2022 / 2023 / 2024 toggle on the map,
+  ranked list, and district detail panel, each with a "vs. previous year"
+  change badge.
+- Downloadable everything — CSV per dataset, plus a full Excel workbook for
+  citation.

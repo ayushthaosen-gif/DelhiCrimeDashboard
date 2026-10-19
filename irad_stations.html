@@ -51,7 +51,8 @@
   <p class="sub">Road-accident counts from the Integrated Road Accident Database reports that Delhi's district administrations post, staged for review in <code>data/derived/irad_monthly/</code>. Monthly tables by district and police-station tables where published.</p>
 
   <div class="panel warn" id="caveat">
-    <b>Read before comparing.</b> iRAD counts come from records with minimal information and are a different series from the Delhi Traffic Police Road Crash Report used elsewhere on this site. <b>Coverage differs by district.</b> Only districts whose sites publish iRAD reports appear (North and Shahdara have none online), one scanned East table is not loaded, and periods differ (see below). Older East reports print fewer columns, so some counts there are blank, not zero. Tables that print only a year have inferred months. Also, the earlier months of a year can be undercounts, and several revenue districts are not comparable with the 15 police districts. Rows marked <span class="tag">scan</span> were read from scanned PDFs by Claude and need a human spot-check.
+    <b>Read before comparing.</b> iRAD counts come from records with minimal information and are a different series from the Delhi Traffic Police Road Crash Report used elsewhere on this site. Several revenue districts are not comparable with the 15 police districts, and the earlier months of a year can be undercounts. Rows marked <span class="tag">scan</span> were read from scanned PDFs and need a human spot-check.
+    <span id="coverageDyn">Loading the coverage summary&hellip;</span>
   </div>
 
   <section class="panel" aria-labelledby="h-months">
@@ -217,8 +218,28 @@
   $('stTable').addEventListener('click', pick);
   $('stTable').addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(e); } });
 
-  Promise.all([load('data/derived/irad_monthly/irad_monthly_by_district.csv'), load('data/derived/irad_monthly/irad_station_by_period.csv')]).then(function (res) {
+  function getJson(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url + ' HTTP ' + r.status); return r.json(); }); }
+  function coverageText(manifest, unloaded, notes) {
+    var files = manifest.files || [], seen = {}, data = files.filter(function (f) { return f.rows > 0 && !seen[f.sha256] && (seen[f.sha256] = 1); });   // one per distinct file: some PDFs are listed on two district pages
+    var inferred = data.filter(function (f) { return f.period_inferred || (!f.period_from && f.rows > 0); }).length;
+    var firOnly = data.filter(function (f) { return f.scope === 'fir_registered_only'; }).length;
+    var dropped = files.reduce(function (a, f) { return a + Object.keys(f.out_of_range_months || {}).length; }, 0);
+    var droppedReports = files.filter(function (f) { return f.out_of_range_months && Object.keys(f.out_of_range_months).length; }).length;
+    var legacy = data.filter(function (f) { return f.schema && f.schema !== 'current' && f.schema !== 'scan'; }).length;
+    var parts = [];
+    parts.push('<b>Coverage, from the data files:</b> ' + data.length + ' reports are loaded, covering ' + uniq(months.map(function (r) { return r.district; })).length + ' districts with month-wise tables and ' + uniq(stations.map(function (r) { return r.district; })).length + ' with police-station tables.');
+    parts.push(unloaded.length ? unloaded.length + ' published report' + (unloaded.length === 1 ? ' is' : 's are') + ' not loaded yet (listed in unstaged_published_reports.csv).' : 'Every report found on the district pages is loaded.');
+    if (notes && (notes.no_accident_series_found || []).length) parts.push('No accident series was found for ' + notes.no_accident_series_found.map(function (d) { return esc(d.district); }).join(' and ') + ' (checked ' + esc(notes.checked_on) + ').');
+    if (inferred) parts.push(inferred + ' reports print only a year or nothing, so their months are inferred and months with no accidents are not shown.');
+    if (legacy) parts.push(legacy + ' older reports print fewer columns, so some counts there are blank, not zero.');
+    if (firOnly) parts.push(firOnly + ' tables count FIR-registered accidents only.');
+    if (droppedReports) parts.push(droppedReports + ' reporting-date reports print ' + dropped + ' month rows outside their stated period; those are kept out of the monthly series (see the manifest).');
+    return parts.join(' ');
+  }
+  Promise.all([load('data/derived/irad_monthly/irad_monthly_by_district.csv'), load('data/derived/irad_monthly/irad_station_by_period.csv'),
+    getJson('data/derived/irad_monthly/manifest.json'), load('data/derived/irad_monthly/unstaged_published_reports.csv'), getJson('data/derived/irad_monthly/coverage_notes.json').catch(function () { return null; })]).then(function (res) {
     months = res[0]; stations = res[1]; init();
+    $('coverageDyn').innerHTML = coverageText(res[2], res[3], res[4]);
   }).catch(function (e) {
     var el = $('err'); el.hidden = false;
     el.textContent = 'Could not load the data (' + e.message + '). This page needs to be served over http, not opened as a file: run python -m http.server 8000 in the repo folder and open http://localhost:8000/irad_stations.html';

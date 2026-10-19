@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "scope": "shared and non-year-specific production datasets",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-10-05T15:26:33.362Z",
+  "generatedAt": "2026-10-19T05:51:19.659Z",
   "warning": "Do not label these latest-available infrastructure snapshots as historical measurements for a crime year.",
   "datasets": [
     {
@@ -357,6 +357,14 @@
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
       "sha256": "97aaf84ec67d99b8f545e050ccbcec719097f8bbce5b0a394faeefb51a9302d4",
       "bytes": 391839
+    },
+    {
+      "file": "data/series_status.json",
+      "datasetId": "series_status",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "8a18f52e72fe7def6e2474b37588b89ac76c718c311c4905195bb85c04373b38",
+      "bytes": 7625
     },
     {
       "file": "data/streetlight_grid.json",

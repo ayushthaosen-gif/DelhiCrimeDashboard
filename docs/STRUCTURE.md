@@ -14,6 +14,7 @@ DelhiCrimeDashboard/
 ├── map_3d_mpd.html                    # Master Plan 2047 vs satellite 3D comparison (prototype)
 ├── irad_stations.html                 # district iRAD monthly and police-station explorer (prototype)
 ├── data/                              # dashboard source and derived datasets
+│   ├── series_status.json            # what each data series is, how current, and its status (tested against the README table)
 │   └── releases/2025/                 # audited 2025 research release
 ├── exports/                           # legacy dashboard-independent CSV/JSON exports (deprecated)
 ├── fonts/                             # fonts embedded by the main build
@@ -40,3 +41,20 @@ Run build and test tasks through `npm` from the repository root. Run the Python 
 ## Research releases
 
 `data/releases/2016/` through `data/releases/2024/` are generated, year-by-year import releases. Each has a machine-readable manifest and normalized CSV/JSON. `data/releases/shared/` catalogs non-year-specific production layers. `data/releases/2025/` remains the independently audited staging release.
+
+## What each build file does
+
+- **`delhi_safety_dashboard.html`** — the generated dashboard (the actual
+  deliverable).
+- **`scripts/build.js`** — the Node build script: one large template literal producing
+  the full HTML + CSS + JS, with no external libraries or CDN dependencies.
+- **`data/`** — district-level crime, infrastructure, road-safety, and
+  correlation data as JSON. Internal, purpose-built for `build.js` — if you
+  want to reuse the data yourself, use `data/releases/<year>/` instead (see
+  [Year-by-year research releases](#year-by-year-research-releases) above).
+- **`fonts/`** — the Big Shoulders webfont, embedded as base64 at build time.
+- **`scripts/build_yearly_releases.js`** / **`data/releases/`** — the manifest-documented,
+  checksummed CSV/JSON research releases, one folder per year, for anyone
+  integrating this data elsewhere.
+- **`scripts/export_data.js`** / **`exports/`** — older, flat CSV/JSON exports,
+  kept only for URL-compatibility; deprecated in favor of `data/releases/`.

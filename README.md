@@ -2,327 +2,93 @@
 
 [![JS build and test](https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/actions/workflows/js-build-test.yml/badge.svg)](https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/actions/workflows/js-build-test.yml)
 
-## Automated 2025 staging pipeline
+An open-data observatory for crime, road safety, infrastructure and urban form across Delhi: self-contained dashboards and interactive maps, reproducible year-by-year research releases, and a documented pipeline that collects newer official data without putting it on the dashboard until it is checked.
 
-`tools/pipeline_2025/` contains the separate, auditable Python 3.12 collection pipeline for official 2025 sources. It stages raw downloads, checksums, provenance, review queues and validation reports without modifying production dashboard data. See [`tools/pipeline_2025/README.md`](tools/pipeline_2025/README.md). Dashboard integration is always a separate human-approved proposal.
+**Open it:** [dashboard](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/) · [interactive map](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/interactive_map.html) · [for reporters and researchers](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/for_reporters.html)
 
-## Official evidence archive
+Prototypes (exploration tools, not citable sources): [3D crash-zone and ward explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d.html) · [Master Plan 2047 comparison](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d_mpd.html) · [district iRAD reports, 2025 and 2026](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/irad_stations.html)
 
-[`data/raw/source_archive/`](data/raw/source_archive/) is a separate, machine-readable archive of the original official pages and PDFs used to assess newer data. Its [`manifest.json`](data/raw/source_archive/manifest.json) records each source URL, retrieval time, publication date (where supplied by the agency), issuer, reference period, SHA-256 checksum, MIME type, filename and scope note. Refresh it with `node scripts/archive_official_sources.mjs`; use `--offline` to verify retained file checksums without downloading.
+The dashboard is one HTML file; open [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html) in a browser, with no server or build step.
 
-This archive is evidence, not automatic dashboard input. The 2025 iRAD/eDAR reports are published for only some administrative areas, and their police-station rows must be reconciled to the 15 police districts using a reviewed crosswalk before a citywide comparison is allowed. The source manifest makes that boundary inspectable rather than hiding it behind a map layer.
+## What data is here, and how current is it
 
-A self-contained, single-file dashboard analyzing crime and road-safety data
-across Delhi's 15 police districts (2022-2024) against real public
-infrastructure coverage — PAPL survey-cell and OpenStreetMap street-lamp layers, pedestrian underpasses, mapped pedestrian overbridges, metro station
-gates, and police infrastructure.
+Official crime and crash figures run **to 2024**. Newer material exists but is deliberately kept apart from the dashboard. The machine-readable version of this table is [`data/series_status.json`](data/series_status.json).
 
-Open [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html) directly in
-a browser — no server or build step required to view it.
+| Series id | Series | Latest period | Status | Geography |
+|---|---|---|---|---|
+| `ncrb_district_crime` | NCRB district crime (IPC/BNS, SLL, crimes against women) | 2024 | production | 15 police districts |
+| `ncrb_2025` | NCRB Crime in India 2025 | none | not_published | 15 police districts |
+| `crash_zones_2024` | Delhi Traffic Police crash-prone zones | 2024 | production | named locations (93 zones in 2024); 15 police districts |
+| `traffic_police_crash_report_2025` | Delhi Traffic Police annual Road Crash Report 2025 | none | not_published | 15 police districts |
+| `irad_district_reports` | District iRAD road-accident reports | 2026-08 (varies by district) | staged | revenue districts and police stations as printed; not mapped to the 15 police districts |
+| `irad_2026_year_to_date` | iRAD reports for 2026 | 2026-01 to 2026-08 (South East to July, North East to August, New Delhi to May) | provisional | only the districts that publish 2026 reports |
+| `delhi_police_2025_citywide_counts` | Delhi Police 2025 citywide counts as reported by two news outlets | 2025 | staged | Delhi as a whole, 8 offences, no district split |
+| `osm_infrastructure` | OpenStreetMap infrastructure snapshots (overbridges, signals, crossings, hospitals, cameras, police, footways) | 2026-08 | production | points and ways, assigned to districts and wards |
+| `crash_zone_sidewalks` | Sidewalk, footway and crossing mapping around crash zones | 2026-10 | staged | 250 m and 500 m around each 2024 crash zone |
+| `papl_streetlights` | PAPL streetlight and underpass survey | survey period, not re-measured | retained_legacy_year | 9 of 15 districts surveyed |
+| `liquor_vends` | Official liquor vend list | list date not established | production | points (positions mostly approximate) |
+| `wards_legacy_290` | Delhi wards, legacy 290-ward geography | pre-2022 delimitation | retained_legacy_year | 290 wards |
+| `wards_mcd_2022_250` | Delhi wards, current 250-ward geography (MCD delimitation 2022) | 2022 delimitation | not_implemented | 250 wards |
+| `mpd2047_comparison` | Master Plan 2047 against 2021 satellite land cover | plan 2026 draft; land cover 2021 | staged | 290 legacy wards |
 
-Code is [MIT-licensed](LICENSE); third-party data keeps its own source
-license (see "Data & sourcing" below). See [`CITATION.cff`](CITATION.cff)
-for how to cite this repository.
+Status values: `production` (on the dashboard, validated), `staged` (collected and checked, kept off the dashboard), `provisional` (partial period, never compare with a full year), `not_published` (no official release yet), `not_implemented` (source archived, no layer built), `retained_legacy_year` (older survey or geography kept for reference).
+
+## Main limitations
+
+- **Crash-zone map positions are estimates**, roughly 250 m to 1 km off, not police geotags. Counts come straight from the Delhi Road Crash Report. See [`docs/CRASH_ZONE_COORDINATES.md`](docs/CRASH_ZONE_COORDINATES.md).
+- **OpenStreetMap layers are incomplete.** A low count means little has been mapped, not that nothing is there. A zero from a survey-based layer can mean "not surveyed".
+- **2025 and 2026 have no official district crime or full crash report yet.** The iRAD reports are a different series (see the table) and must not be set beside the traffic-police figures.
+- **All ward layers use the legacy 290-ward geography**, not the current 250 wards.
+- This repository is a compilation, not a primary source: cite the agency report for any figure ([how](for_reporters.html)).
+
+## Download and reuse
+
+Each year from 2016 to 2024 has a folder under [`data/releases/`](data/releases/) with `district_crime.csv`/`.json` and a `manifest.json` giving source URLs, SHA-256 checksums, coverage and what a null means. Read the manifest before analysing.
+
+```python
+import json
+import pandas as pd
+from pathlib import Path
+
+release = Path('data/releases/2024')
+manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
+districts = pd.read_csv(release / 'district_crime.csv')
+```
+
+Details, a worked notebook, the deprecated `exports/` folder and licensing cautions: [`docs/DATA_RELEASES.md`](docs/DATA_RELEASES.md). Corrections to a published figure are logged in [`docs/DATA_CHANGELOG.md`](docs/DATA_CHANGELOG.md).
+
+## Documentation
+
+- [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md): every source, with original URLs and reuse notes
+- [`docs/DATA_RELEASES.md`](docs/DATA_RELEASES.md): how to use the yearly releases
+- [`docs/PIPELINE_2025.md`](docs/PIPELINE_2025.md): the collection pipeline and the evidence archive
+- [`docs/IRAD_DISTRICT_REPORTS.md`](docs/IRAD_DISTRICT_REPORTS.md): district road-accident reports, coverage and caveats
+- [`docs/CRASH_ZONE_COORDINATES.md`](docs/CRASH_ZONE_COORDINATES.md) and [`docs/MPD_BUILT_UP_USE_TRIAL.md`](docs/MPD_BUILT_UP_USE_TRIAL.md): audits and negative results
+- [`docs/ANALYSES.md`](docs/ANALYSES.md): liquor vends and crash zones
+- [`docs/STRUCTURE.md`](docs/STRUCTURE.md): the repository layout in detail
+- [`docs/WHATS_NEW.md`](docs/WHATS_NEW.md), [`docs/AGENT_CHANGELOG.md`](docs/AGENT_CHANGELOG.md): history
+- Right-to-information drafts (not filed): [`docs/RTI_REQUEST_DRAFT.md`](docs/RTI_REQUEST_DRAFT.md), [`docs/RTI_DDA_EXISTING_LAND_USE_DRAFT.md`](docs/RTI_DDA_EXISTING_LAND_USE_DRAFT.md), [`docs/RTI_MCD_PROPERTY_USE_DRAFT.md`](docs/RTI_MCD_PROPERTY_USE_DRAFT.md)
 
 ## Repository layout
 
-- `*.html` at the root: published GitHub Pages entry points; kept in place so existing public URLs remain stable.
-- [`scripts/`](scripts/): JavaScript build, export, geocoding, and analysis tools.
-- [`data/`](data/): production datasets, immutable source inputs, and audited yearly releases.
-- [`exports/`](exports/): legacy flat CSV/JSON outputs, deprecated in favor of `data/releases/<year>/` but kept for URL stability.
-- [`tools/pipeline_2025/`](tools/pipeline_2025/): isolated Python collection and validation pipeline for 2025.
-- [`docs/`](docs/): project article, changelog, and the detailed [repository structure guide](docs/STRUCTURE.md).
-- [`test/`](test/): JavaScript regression tests; the Python pipeline has its own tests beside its source.
+- `*.html` at the root: published GitHub Pages entry points; kept in place so public URLs stay stable. The dashboard and the interactive map are generated, so edit their build scripts, not the HTML.
+- [`scripts/`](scripts/): JavaScript build, export, geocoding and analysis tools, plus the iRAD collector.
+- [`data/`](data/): production datasets, immutable source inputs, audited yearly releases, staged and derived data.
+- [`exports/`](exports/): legacy flat files, deprecated, kept for URL stability.
+- [`tools/pipeline_2025/`](tools/pipeline_2025/): the Python collection and validation pipeline.
+- [`docs/`](docs/) and [`test/`](test/): documentation and regression tests.
 
-## Public pages
-
-- [Delhi Urban Safety Observatory](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/)
-- [Delhi Safety & Infrastructure Explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/interactive_map.html)
-- Prototypes (new, not linked from the main navigation except the first):
-  - [3D crash-zone and ward explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d.html) (`map_3d.html`): extruded wards, a top-10 crash-zone tour, and toggles for 3D buildings, mapped cameras, police stations and posts (OpenStreetMap), and liquor vends (official lists, approximate positions). View is saved in the link.
-  - [Master Plan 2047 3D comparison](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d_mpd.html) (`map_3d_mpd.html`): plan vs 2021 satellite land cover by ward (swipe, side by side, change), with four guided stories.
-  - [District iRAD reports](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/irad_stations.html) (`irad_stations.html`): monthly trends by district and police-station tables from the staged iRAD data. Scanned-PDF rows are tagged and need a human spot-check.
-
-## Recent additions (2026-10)
-
-- **3D explorers**: `map_3d.html` and `map_3d_mpd.html` (MapLibre GL JS 4.7.1), with phone layout fixes and a Home link. Tests: `test/map_3d_page.test.js`, `test/map_3d_mpd_page.test.js`.
-- **Master Plan 2047 vs satellite**: ESA WorldCover 2021 (10 m) rasterised against plan polygons by `scripts/build_mpd_worldcover_comparison.py` into `data/derived/mpd2047_worldcover_comparison.json`; DDA settlement layers (Lal Dora, PM-UDAY colonies, JJ clusters) in `data/source/dda_settlements/`. A trial of splitting built-up land by use is written up, with its negative result, in [`docs/MPD_BUILT_UP_USE_TRIAL.md`](docs/MPD_BUILT_UP_USE_TRIAL.md). Satellite sees cover, not use.
-- **Crash-zone coordinate audit**: `data/audits/crash_zones_2024/` and [`docs/CRASH_ZONE_COORDINATES.md`](docs/CRASH_ZONE_COORDINATES.md). Public sources cannot place zones better than roughly 500 to 1000 m; production coordinates were not changed. A draft RTI for police geotags is in [`docs/RTI_REQUEST_DRAFT.md`](docs/RTI_REQUEST_DRAFT.md) (two more RTI drafts for DDA and MCD land use sit beside it). Nothing has been filed.
-- **District iRAD data (staged, not in the dashboard)**: `data/derived/irad_monthly/` (296 monthly district rows, 1,275 police-station rows, 11 districts, manifest, issues, scanned-table transcriptions), built by `scripts/collect_irad_monthly.py` (needs pdfplumber). See [`docs/IRAD_DISTRICT_REPORTS.md`](docs/IRAD_DISTRICT_REPORTS.md). iRAD is a different series from the Delhi Traffic Police crash report; do not mix them.
-
-## What's new in this version
-
-- **Cleaner research controls.** The main dashboard now uses grouped metric and year selectors, a separate display-mode control, active-layer counts and removable chips, responsive layer categories, and collapsed coverage notes so optional complexity no longer overwhelms the map.
-
-- **New identity and compact map hero.** The project is now the **Delhi Urban Safety Observatory**; its Leaflet page is the **Delhi Safety & Infrastructure Explorer**. The responsive header uses a shorter map-led safety visualization and a project favicon.
-- **Pedestrian-overbridge coverage.** A reproducible OpenStreetMap/Overpass snapshot is processed into 242 mapped pedestrian bridge groups, district counts/densities, an interactive clustered point layer, nearby-crash-zone context, and reusable exports. It is marked as mapped coverage rather than an official completeness register.
-
-- **Sharp charts on high-DPI screens.** The scatter, trends, and
-  road-deaths-by-mode charts now render at native device pixel density
-  instead of a fixed buffer stretched by CSS — no more blur on Retina
-  displays or modern phones.
-- **Custom tooltips** on the map (districts, police markers, crash zones,
-  district centers) replace OS-rendered SVG `<title>` tooltips — instant,
-  styled, no 1-2 second hover delay.
-- **Rank-based (percentile) color scale** on the map and ranked list instead
-  of linear min-max — one outlier district can no longer squash every other
-  district into the bottom of the color range and hide their real variance.
-- **Deselection**: clicking the already-selected district, or the map
-  background, clears the selection instead of it being sticky.
-- Fixed a table-parsing bug where one crash-prone zone had lost its name
-  entirely, and cleaned up OCR artifacts (e.g. "GTKRoad") that had leaked
-  into the *displayed* zone list text, not just the map-coordinate lookups.
-- Full 15-district 2023 crash data (crash-prone zones, fatal crashes, total
-  crashes) from the Delhi Road Crash Report 2023 — zero coverage gaps,
-  unlike the 2022 report's 11-district reporting geography.
-- All 107 named crash-prone zones now carry real 2023 severity counts and
-  coordinates (cross-validated against the source table by rank and
-  fatal-crash count); 105 of 107 plot on the map as a toggleable layer,
-  sized and shaded by fatal crash count.
-- District-center markers on the map — a ring-and-dot symbol at each
-  district's polygon centroid.
-- Citywide road-safety detail panel, consolidated into one tabbed section
-  (Trends / By Mode of Travel / Crash-Prone Zones).
-- Year comparison for crime data: a 2022 / 2023 / 2024 toggle on the map,
-  ranked list, and district detail panel, each with a "vs. previous year"
-  change badge.
-- Downloadable everything — CSV per dataset, plus a full Excel workbook for
-  citation.
-
-## Year-by-year research releases
-
-Import-ready releases are organized like the audited 2025 folder:
-
-- [`data/releases/2016/`](data/releases/2016/) through [`data/releases/2024/`](data/releases/2024/): one folder per production year.
-- Every year contains `district_crime.csv`, `district_crime.json`, `manifest.json`, and a short README.
-- Compatible road-safety and crash-zone tables are included only for years in which those datasets exist.
-- [`data/releases/shared/manifest.json`](data/releases/shared/manifest.json) catalogs infrastructure, boundaries, approximate-location layers, derived analyses, checksums, source URLs and reuse caveats that do not belong to one year.
-- [`data/releases/manifest.json`](data/releases/manifest.json) is the machine-readable release index. The existing [`data/releases/2025/`](data/releases/2025/) remains a separate audited staging release and is not silently treated as production.
-
-Recommended import sequence:
-
-```python
-import json
-import pandas as pd
-from pathlib import Path
-
-year = 2024
-release = Path(f'data/releases/{year}')
-manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
-districts = pd.read_csv(release / 'district_crime.csv')
-```
-
-Read `manifest.json` before analysis: it defines source URLs, SHA-256 checksums, coverage, null meaning, and previous-year comparability. For a fuller worked example — loading all nine years into one long panel, checking coverage before aggregating, and a basic citywide trend plot — see [`notebooks/example_analysis.ipynb`](notebooks/example_analysis.ipynb).
-
-If a figure you've already cited from here changes in a later release, it will be logged in [`docs/DATA_CHANGELOG.md`](docs/DATA_CHANGELOG.md), separate from the dev-facing [`docs/AGENT_CHANGELOG.md`](docs/AGENT_CHANGELOG.md).
-
-Regenerate all yearly releases with:
+## Regenerate
 
 ```bash
+npm test
+npm run build
+npm run build:interactive-map
 npm run build:releases
 ```
 
-## Using this data in your own report or dashboard
+Edit `scripts/build.js` and `scripts/build_interactive_map.js` rather than the generated HTML. CI rebuilds everything and fails if a committed output differs.
 
-The dashboard's in-app CSV/Excel buttons are meant for a person clicking
-around in a browser. If you want to pull the data programmatically instead —
-into a report, a notebook, or your own dashboard — use the
-[year-by-year research releases](#year-by-year-research-releases) above
-(`data/releases/2016/` through `data/releases/2024/`). Each year has a
-`manifest.json` with source URLs, SHA-256 checksums, coverage flags, and
-null/comparability rules, so you never have to guess whether a missing value
-means zero or means "not reported."
+## Licence and citation
 
-```python
-import json
-import pandas as pd
-from pathlib import Path
-
-year = 2024
-release = Path(f'data/releases/{year}')
-manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
-districts = pd.read_csv(release / 'district_crime.csv')
-```
-
-```js
-const districts = await fetch(
-  'https://raw.githubusercontent.com/ayushthaosen-gif/DelhiCrimeDashboard/main/data/releases/2024/district_crime.json'
-).then(r => r.json());
-```
-
-### Legacy `exports/` (deprecated, kept for URL stability)
-
-`exports/districts.csv` / `.json` and the other flat files in
-[`exports/`](exports/) predate the year-by-year releases above. They are
-**stale** — they mix 2023 crime figures with a single infrastructure
-snapshot, don't include 2024, and carry no manifest or checksums. They are
-kept in place, unchanged, only so that existing links/scripts pointing at
-them don't break; do not build anything new on top of them.
-
-| Deprecated file | Superseded by |
-|---|---|
-| `exports/districts.csv` / `.json` | `data/releases/<year>/district_crime.csv` / `.json` (+ `district_road_safety.*` for 2022-2024) |
-| `exports/crash_prone_zones_2023.csv` / `.json` | `data/releases/2023/crash_prone_zones.csv` / `.json` (2024 also now available at `data/releases/2024/crash_prone_zones.*`) |
-| `exports/road_safety_trends_2014_2023.csv` / `.json` | `data/releases/<year>/citywide_road_safety.csv` / `.json` |
-| `exports/road_deaths_by_mode_2019_2023.csv` / `.json` | `data/releases/<year>/citywide_road_safety.csv` / `.json` |
-
-```bash
-# legacy — still works, but stale; prefer data/releases/2024/ instead
-curl -O https://raw.githubusercontent.com/ayushthaosen-gif/DelhiCrimeDashboard/main/exports/districts.csv
-```
-
-Regenerate the legacy exports (unchanged behavior) with:
-
-```bash
-node scripts/export_data.js
-```
-
-**Before you publish anything built on this data**, keep two things straight:
-
-1. **Cite the original source, not this repo**, for each figure — see
-   [Data & sourcing](#data--sourcing) below for exactly which agency/report
-   each column comes from. This repo is a compilation, not the primary
-   source, and the individual agencies (NCRB, Delhi Traffic Police) are who
-   should be credited.
-2. **OpenStreetMap data (crash-zone coordinates, metro gates, police
-   chowkis/outposts) is ODbL-licensed** — if you redistribute it, OSM's
-   [attribution and share-alike terms](https://www.openstreetmap.org/copyright)
-   apply, not just a casual mention.
-
-## Regenerating the dashboard
-
-The HTML file is generated from `scripts/build.js`, which reads the data in `data/`
-and the fonts in `fonts/`, and writes the finished `delhi_safety_dashboard.html`
-back to the repo root:
-
-```bash
-npm run build
-npm run build:interactive-map
-```
-
-Edit `scripts/build.js` and `scripts/build_interactive_map.js` rather than their generated HTML files, then run the corresponding build command above. `build:interactive-map` also refreshes the overbridge and ward-infrastructure derived data.
-
-## What's in here
-
-- **`delhi_safety_dashboard.html`** — the generated dashboard (the actual
-  deliverable).
-- **`scripts/build.js`** — the Node build script: one large template literal producing
-  the full HTML + CSS + JS, with no external libraries or CDN dependencies.
-- **`data/`** — district-level crime, infrastructure, road-safety, and
-  correlation data as JSON. Internal, purpose-built for `build.js` — if you
-  want to reuse the data yourself, use `data/releases/<year>/` instead (see
-  [Year-by-year research releases](#year-by-year-research-releases) above).
-- **`fonts/`** — the Big Shoulders webfont, embedded as base64 at build time.
-- **`scripts/build_yearly_releases.js`** / **`data/releases/`** — the manifest-documented,
-  checksummed CSV/JSON research releases, one folder per year, for anyone
-  integrating this data elsewhere.
-- **`scripts/export_data.js`** / **`exports/`** — older, flat CSV/JSON exports,
-  kept only for URL-compatibility; deprecated in favor of `data/releases/`.
-
-## Open-data locations and original URLs
-
-The links below are locations where researchers can inspect or retrieve the underlying public data. A public URL does **not** automatically grant an open-data licence: check each publisher's terms before redistribution. OpenStreetMap-derived files require OpenStreetMap attribution and ODbL compliance.
-
-| Dataset used by the dashboard | Publisher / original location | Direct data or landing-page URL | Format and coverage | Reuse note |
-|---|---|---|---|---|
-| District crime, 2024 | National Crime Records Bureau (NCRB), *Crime in India* district tables | [IPC/BNS crime XLSX](https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes2024.xlsx); [SLL crime XLSX](https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2024.xlsx); [Crime against women XLSX](https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2024.xlsx) | XLSX; district tables | Official public files; verify NCRB terms before redistribution. |
-| District crime, 2023 | NCRB, *Crime in India* district tables | [IPC crime XLSX](https://www.ncrb.gov.in/uploads/files/1DistrictwiseIPCCrimes20231.xlsx); [SLL crime XLSX](https://www.ncrb.gov.in/uploads/files/2DistrictwiseSLLCrimes2023.xlsx); [Crime against women XLSX](https://www.ncrb.gov.in/uploads/files/3DistrictwiseCrimeagainstWomen2023.xlsx) | XLSX; district tables | Official public files; verify NCRB terms before redistribution. |
-| District crime, 2022 | NCRB, *Crime in India* district tables | [IPC crime XLSX](https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016833111DistrictwiseIPCCrimes2022.xlsx); [SLL crime XLSX](https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016838002DistrictwiseSLLCrimes2022.xlsx); [Crime against women XLSX](https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/17016840143DistrictwiseCrimeagainstWomen2022.xlsx) | XLSX; district tables | Official public files; verify NCRB terms before redistribution. |
-| Historical crime, 2016-2021 | NCRB source tables distributed through India Data Portal | [2016 district IPC CSV](https://ckandev.indiadataportal.com/dataset/e311a510-ce48-4f4c-baf6-0ec5f9278285/resource/7d5e2cc6-a704-4248-aa44-13d7186f847c/download/districtwise-ipc-crimes-2016.csv); [2017 onward district IPC CSV](https://ckandev.indiadataportal.com/dataset/e311a510-ce48-4f4c-baf6-0ec5f9278285/resource/387dedad-5978-4f97-a6c5-60ca45f9405a/download/districtwise-ipc-crimes-2017-onwards.csv) | CSV; harmonized selectively in this project | See the compatibility/null rules in this README and the verified historical JSON metadata. |
-| Road crashes and crash-prone zones, 2023 | Delhi Traffic Police | [Delhi Crash Report 2023](https://traffic.delhipolice.gov.in/delhi-crash-report-2023) | Web landing page with report download; all 15 police districts | Official report; map coordinates include project validation/geocoding notes. |
-| Road crashes and crash-prone zones, 2024 | Delhi Traffic Police | [Delhi Crash Report 2024](https://traffic.delhipolice.gov.in/delhi-crash-report-2024) | Web landing page with report download; all 15 police districts | Official report; unresolved hyper-local locations remain flagged. |
-| Fatal crashes and hit-and-run, 2022 | Transport Department, GNCTD / Delhi Traffic Police | [2022 Delhi Road Crash Fatalities Report PDF](https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf) | PDF; Traffic Police's 11-district geography | Four dashboard districts are null, not zero, because this report used a different geography. |
-| Streetlights and pedestrian underpasses | Delhi Transport Stack Open Transit Data; PAPL survey | [Open Transit Data portal](https://otd.delhi.gov.in/) | Portal/API data; surveyed portions of 9 of 15 districts | Portal terms apply; unsurveyed districts are stored as coverage gaps. |
-| Pedestrian overbridges | OpenStreetMap via Overpass API | [Overpass API endpoint](https://overpass-api.de/api/interpreter); [exact query and processing notes](data/source/README.md); [project GeoJSON](data/delhi_pedestrian_overpasses_osm.geojson) | OSM ways grouped into 242 mapped bridge features; snapshot 2026-08-04 | ODbL; mapped inventory, not an official completeness register. |
-| Metro gates, bus stops, ATMs, liquor shops, surveillance and mapped police posts | OpenStreetMap contributors | [OpenStreetMap data and licence](https://www.openstreetmap.org/copyright); [Overpass Turbo query interface](https://overpass-turbo.eu/) | OSM point/way features; tag filters are documented in the dashboard footer and workbook | ODbL attribution/share-alike requirements apply. |
-| Traffic signals, pedestrian crossings, hospitals, street lamps, footway/sidewalk coverage (interactive map; street-lamp points also available on the main dashboard) | OpenStreetMap contributors | [OpenStreetMap data and licence](https://www.openstreetmap.org/copyright); [exact queries and processing notes](data/source/README.md) | Snapshot 2026-08-06, `scripts/fetch_osm_infra_snapshots.js` + `scripts/build_infra_extras.js`; footway coverage is a per-district length/density figure, not shipped as line geometry | ODbL; mapped inventory, not an official completeness register. |
-| Combined PAPL + OSM streetlights (`data/streetlights_combined_by_district.csv`) | PAPL Open Transit Survey + OpenStreetMap contributors | [processing notes](data/source/README.md) | District-level reconciliation: PAPL's number where surveyed (9 districts), OSM's street-lamp count as a fallback only where PAPL has nothing (3 districts); `combined_source` per row says which; 3 districts genuinely have neither and are left null | PAPL survey terms + OpenStreetMap ODbL; never blended into one unattributed figure. |
-| Road and footway size (`data/road_sizes.csv`, `data/footway_sizes.csv`) | OpenStreetMap contributors | [OpenStreetMap data and licence](https://www.openstreetmap.org/copyright); [processing notes](data/source/README.md) | Per-segment `highway=*` classification (always tagged), `lanes=*` (33.7% of roads), `width=*` (0.2% roads / 0.7% footways) -- no official Delhi per-segment width dataset was found; missing values left blank, never estimated | ODbL; sparse tagging, not a survey. |
-| Land use — ward CSV (`data/landuse_by_ward.csv`) and interactive-map polygon layer | OpenStreetMap contributors | [OpenStreetMap data and licence](https://www.openstreetmap.org/copyright); [processing notes and known limitations](data/source/README.md) | 290 wards, real polygon-overlap area by category, computed with @turf/turf; only ~23.4% of ward area is landuse-tagged in OSM on average -- see `mapped_pct` per row, never read the untagged remainder as "vacant" | ODbL; a community-extracted, unlicensed, PDF-derived DDA draft-plan alternative was found and deliberately not used -- see processing notes for why. |
-| Official licensed liquor-vend list | Delhi State Civil Supplies Corporation (DSCSC) / DCCWS | [DSCSC Liquor Vends page](https://dscsc.delhi.gov.in/dscsc/liquor-vends) | Published list; 374 official records in the project | Location coordinates are approximate unless explicitly marked as exact. |
-| Police stations and police-district boundaries | Delhi Police GSDL GIS export | [Community mirror of the GSDL export](https://gist.github.com/Vonter/a1f0f9d50a587ce059ddcfb086fc0fac) | GIS station points and jurisdiction polygons | Mirror is provided because a stable original download URL is not available; inspect provenance before reuse. |
-
-### 2025 sources staged for review
-
-These files are **not automatically integrated into the production dashboard**. Their collection status, checksums, resolved URLs and validation notes are recorded in [`data/releases/2025/audit/`](data/releases/2025/audit/) and [`tools/pipeline_2025/output/`](tools/pipeline_2025/output/). Current public landing pages include:
-
-- [NCRB](https://ncrb.gov.in/) - no unambiguous official *Crime in India 2025* district release was found by the pipeline.
-- [Delhi Traffic Police](https://traffic.delhipolice.gov.in/) - no qualifying full 2025 crash report was found by the pipeline.
-- [New Delhi district iRAD/eDAR](https://dmnewdelhi.delhi.gov.in/integrated-road-accident-cases-month-wise/)
-- [West Delhi district iRAD/eDAR](https://dmwest.delhi.gov.in/integrated-road-accident-cases-month-wise/)
-- [South-East Delhi district iRAD/eDAR](https://dmsoutheast.delhi.gov.in/irad-edar-south-east/)
-- [North-West Delhi district iRAD/eDAR](https://dmnorthwest.delhi.gov.in/irad-edar-north-west-delhi/)
-- [Delhi Excise preferred-vends page](https://excise.delhi.gov.in/excise/preferred-vends-purchaseprocurement-liquor-p-10-permit)
-- [DSCSC liquor-vends page](https://dscsc.delhi.gov.in/dscsc/liquor-vends)
-
-Use the audit manifests - not a copied URL alone - to determine whether a 2025 source was downloaded, validated, review-pending or unavailable.
-
-### Official reference archive (2024-2026)
-
-The evidence archive complements the 2025 staging pipeline with the current official indices, Delhi Police Manual 1 (updated 22 May 2026), the 2022 MCD delimitation notification and the 9 October 2025 Excise preferred-vend circular. See [`data/raw/source_archive/manifest.json`](data/raw/source_archive/manifest.json) for the exact original links and checksums. One source is intentionally recorded as unavailable when retrieval fails (rather than being replaced by a third-party mirror): the PIB page reporting the latest NCRB release returned HTTP 403 during archival. The dashboard continues to use its independently validated annual crime releases, not that blocked capture.
-
-## Data & sourcing
-
-Pedestrian-overbridge data is a reproducible OpenStreetMap Overpass snapshot from 4 August 2026. It selects pedestrian ways tagged as bridges, groups connected/nearby segments into 242 mapped bridge features, and assigns their centroids to the 15 district polygons. This is not an official completeness register; unmapped features and accessibility/status changes may be missing.
-
-Every figure is cited directly in the dashboard's footer and in its
-downloadable Excel workbook (Sources & Methodology sheet), including:
-
-- Crime data (2022, 2023 & 2024): National Crime Records Bureau (NCRB),
-  *Crime in India*, District Wise Reports.
-- District-wise crash-prone zones, fatal crashes, and total crashes (2023),
-  plus the 107-zone blackspot list: Delhi Traffic Police, *Delhi Road Crash
-  Report 2023* — all 15 districts, no reporting-geography gap.
-- Fatal road crashes & hit-and-run (2022): Delhi Traffic Police / Transport
-  Department GNCTD, *2022 Delhi Road Crash Fatalities Report* — 11 of 15
-  districts (Traffic Police's own reporting geography for that year).
-- Citywide road crash/fatality trends (2014-2023) and road deaths by mode of
-  travel (2019-2023): Delhi Traffic Police annual road crash data.
-- Crash-prone zone map coordinates: provided lat/lng for all 107 zones,
-  cross-validated against the source table by rank and fatal-crash count
-  before use (105 of 107 fall inside a district polygon and are plotted).
-- Streetlights & underpasses: PAPL survey, via Delhi Transport Stack Open
-  Transit Data.
-- Mapped pedestrian overbridges (242 OSM bridge groups), metro station gates & police chowkis/outposts: OpenStreetMap (ODbL).
-- Police stations & district boundaries: Delhi Police GSDL.
-
-Coverage gaps (e.g. districts the streetlight survey never drove through, or
-the 2022 road-crash report's 11-district geography) are treated as missing
-data, not zero — see the in-app confidence markers and the "How this is
-calculated" panel for details.
-
-## Liquor vends × crash-prone zones spatial exploration
-
-Both datasets — 374 official liquor vends and the 93 named 2024 crash-prone
-zones — live directly in `interactive_map.html` as two independent,
-toggleable point layers, and as a ward-level bivariate pairing option
-("Liquor Vends (official)" × "Crash Zones (2024)", under the ward bivariate
-mode's Infrastructure/Crime dropdown groups). This is the only place the
-main dashboard links to for this data — the earlier standalone page
-(`liquor_crash_analysis.html`) is no longer linked from the dashboard header,
-though its build script and the deeper proximity-band analysis/exports it
-produces still exist in the repo if needed directly. **Every coordinate is
-approximate** — locality/sector centroids for vends, landmark/intersection
-centres for crash zones, neither a verified vend entrance nor an official
-Delhi Traffic Police geotag. Both treat proximity/co-location as broad
-spatial association only, never causation, and say so persistently.
-
-To refresh this analysis (e.g. if updated source extracts become available):
-
-1. Replace the source files in `data/`: `delhi_liquor_vends_all_coordinates_approx.geojson`,
-   `delhi_crash_prone_zones_2024_all_named_approx.geojson`,
-   `delhi_crash_prone_zones_2024_250m_buffers_approx.geojson`,
-   `delhi_crash_report_relevant_metrics_2024.json` — keep the exact filenames.
-2. `npm install` once, if `node_modules/` isn't present (installs `@turf/turf`
-   for the spatial math; `scripts/build_liquor_crash_proximity.js` falls back to a
-   hand-rolled haversine/point-in-polygon implementation if `@turf/turf` isn't
-   installed, so this step is optional but recommended).
-3. `npm run build:liquor-crash` — runs `scripts/build_liquor_crash_proximity.js`
-   (produces the three derived files: `liquor_vend_crash_proximity_2024.geojson`,
-   `crash_zone_liquor_proximity_2024.geojson`, `liquor_crash_proximity_summary_2024.json`)
-   then `scripts/build_liquor_crash_analysis.js` (produces `liquor_crash_analysis.html`).
-4. `npm test` — runs the automated validation suite
-   (`test/liquor_crash_proximity.test.js`, Node's built-in test runner) covering
-   coordinate order/validity, official-vs-OSM record counts, monotonic
-   distance-band counts, no negative values, and a check that no built page
-   text uses causal language about liquor vends and crashes.
+Code is [MIT-licensed](LICENSE); third-party data keeps its own licence (see [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md)). OpenStreetMap-derived files need OSM attribution and ODbL compliance. See [`CITATION.cff`](CITATION.cff) for how to cite this repository, and always cite the original agency for a figure.

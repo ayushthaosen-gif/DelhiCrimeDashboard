@@ -1,0 +1,9 @@
+{
+  "note": "Hand-maintained statements about what the district sites publish that cannot be derived from the staged files. Update this file, not the iRAD page, when they change. The page builds its coverage sentence from manifest.json, issues.json, unstaged_published_reports.csv and this file.",
+  "checked_on": "2026-10-18",
+  "checked_by": "independent online check of the district pages (round 2) and a re-check of the supplied archive (round 3); see docs/IRAD_DISTRICT_REPORTS.md",
+  "no_accident_series_found": [
+    { "district": "North", "detail": "its page links one PDF that is not an accident table" },
+    { "district": "Shahdara", "detail": "the old site address does not resolve; the iRAD page on its successor site has headings but no downloads" }
+  ]
+}
