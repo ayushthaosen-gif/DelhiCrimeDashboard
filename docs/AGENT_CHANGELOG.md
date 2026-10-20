@@ -1192,3 +1192,12 @@ Prior to the divergence, Claude's contributions (now absorbed by Antigravity's r
 - Data & methods: geography changes, citation/version and a share link, series currency, coverage notes, calculation, downloads, and a plain-language glossary (IPC, BNS, SLL, NCRB, fatal crash vs persons killed, iRAD, reporting district, count vs rate).
 - Share links keep topic, measure, year, calculation and district (`?topic=&metric=&year=&calc=&district=`). View downloads carry dataset, geography, measure, year, calculation, source and data version.
 - Not done yet: a per-chart "Can I compare these years?" indicator, fixed colour scales across compatible years, break markers at district splits, and an independent Delhi-wide crime series.
+
+## [2026-10-20] - Claude - Continuity: "Can I compare these years?"
+
+- New `data/continuity.json` (documented availability gaps, definition breaks, geography breaks with affected/unaffected/new districts, road and series caveats) and `scripts/lib/continuity.js` (`compareYears`, `segmentOf`, `changeBetween`), injected into the dashboard so the page and the tests run the same source. See `docs/CONTINUITY.md`.
+- Map explainer: a "Can I compare these years?" answer with the state, the reason, and a district-specific line when a district is selected. View table: a "Change in cases from <year>" column that shows a percentage only for comparable pairs (marked ! for caution) and says Not comparable or Not available otherwise. Historical district panel: a change tile with the same rule, so South-West's 2016/2017 change is not read as an improvement after Dwarka was carved out.
+- Colour scale: "Rank in year" (default, labelled) or "Shared scale", one linear scale across the years that can be compared (2011-2013, 2014-2016, 2017-2018, 2019-2024 for crime). Disabled where no other year can share it.
+- Downloads from a view carry geography version, offence definition, reporting period, comparability with the previous year and the reason for any break; the historical counts export has the same columns appended.
+- Data & methods: a table of every documented break. Static charts say whether a comparison is documented (road trend and crash-zone lists: caution; others: one period at a time).
+- Not done: an independent Delhi-wide crime series from the printed UT totals, and revision history for earlier release versions.

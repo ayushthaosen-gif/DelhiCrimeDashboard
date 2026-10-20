@@ -138,6 +138,14 @@
       "bytes": 1456
     },
     {
+      "file": "data/continuity.json",
+      "datasetId": "continuity",
+      "provenanceStatus": "derived-or-compiled-production-file",
+      "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
+      "sha256": "5b25732750bdde7b46c3315f5a9e7b31c18bd0c7a7006df4f2a4007a280ef2fe",
+      "bytes": 6410
+    },
+    {
       "file": "data/correlations.json",
       "datasetId": "correlations",
       "provenanceStatus": "derived-or-compiled-production-file",

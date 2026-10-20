@@ -45,8 +45,12 @@ test('the download tabs hide the modern-geography exports in historical mode and
 test('the historical export is the selected year as printed: original units, printed Delhi total, blanks not zeros, no modern fields', () => {
   const hist = script.slice(script.indexOf('const HIST = '), script.indexOf('\n', script.indexOf('const HIST = ')));
   const fns = script.slice(script.indexOf('const HIST_KEYS'), script.indexOf('function histSelect('));
-  const context = vm.createContext({ currentMetric: () => ({}), Math });
-  vm.runInContext(hist + '\n' + fns + '\nglobalThis.out = year => histExport(year);', context);
+  const cut = (startMarker, endMarker) => script.slice(script.indexOf(startMarker), script.indexOf(endMarker, script.indexOf(startMarker)));
+  const continuity = cut('const CONTINUITY = ', '\n') + '\n' + cut('const compareYears = ', 'const segmentOf = ') + '\n' + cut('const segmentOf = ', 'const changeBetween = ') + '\n' + cut('const changeBetween = ', 'const GRID = ') + '\n' +
+    script.slice(script.indexOf('// ---- Can I compare these years?'), script.indexOf('\nfunction render() {')) + '\n' +
+    script.slice(script.indexOf('function histDefinition('), script.indexOf('\n}\n', script.indexOf('function histDefinition(')) + 3);
+  const context = vm.createContext({ currentMetric: () => ({}), Math, DATA: [], METRICS: [{ key: 'theft', prevKey: 'theft2022' }], esc: s => String(s), yearFieldKey: () => '', getRateVal: v => v, percentileScale: () => () => 0 });
+  vm.runInContext(hist + '\n' + fns + '\n' + continuity + '\nglobalThis.out = year => histExport(year);', context);
   const out = year => context.out(year);
 
   const y2014 = out(2014);
