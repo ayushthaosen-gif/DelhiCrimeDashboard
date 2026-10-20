@@ -8,6 +8,7 @@ const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_final.js
 // Historical years (2011-2018) are drawn on the same map with the districts reported at the time; see scripts/lib/historical_map_shapes.js.
 const histLib = require('./lib/historical_map_shapes');
 const contLib = require('./lib/continuity');
+const UT_SERIES = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/releases/delhi_ut_series/delhi_ut_crime.json'), 'utf8')).map(r => ({ year: r.year, status: r.status, offence_basis: r.offence_basis, theft: r.theft, robbery: r.robbery, burglary_old_head: r.burglary_old_head, criminal_trespass_burglary_revised_head: r.criminal_trespass_burglary_revised_head, burglary: r.burglary, total_ipc_bns: r.total_ipc_bns, total_sll: r.total_sll, total_crimes_against_women: r.total_crimes_against_women }));
 const CONTINUITY = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/continuity.json'), 'utf8'));
 // The page needs the rules and reasons, not the evidence paths (those stay in data/continuity.json).
 const CONTINUITY_PAGE = JSON.parse(JSON.stringify(CONTINUITY, (k, v) => k === 'evidence' ? undefined : v));
@@ -538,6 +539,54 @@ body:not(.topic-road) #roadSection { display: none; }
 .cont-warn { display: inline-block; width: 16px; height: 16px; line-height: 16px; text-align: center; border-radius: 50%; background: var(--amber); color: var(--night); font-size: 11px; font-weight: 800; cursor: help; }
 .cont-reason { font-size: 12px; color: var(--text-dim); }
 .metric-tab:disabled { opacity: .45; cursor: not-allowed; }
+.beta-banner { display: flex; gap: 10px; align-items: center; padding: 8px 0 10px; margin: 0 0 10px; border-bottom: 1px solid var(--border); font-size: 13px; }
+.beta-tag { background: var(--amber); color: var(--night); font-weight: 800; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; padding: 2px 8px; border-radius: 4px; }
+.last-updated { margin: 2px 0 8px; font-size: 13px; color: var(--text-dim); }
+.contents { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; margin: 0 0 16px; padding: 10px 14px; border-left: 4px solid var(--amber); background: var(--surface); border-radius: 0 8px 8px 0; font-size: 13px; }
+.contents-label { font-weight: 800; text-transform: uppercase; letter-spacing: .06em; font-size: 11.5px; color: var(--text-dim); }
+.topics-title { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 26px; font-weight: 800; margin: 20px 0 4px; }
+.topic-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.topic-card { text-align: left; display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border: 1px solid var(--border); border-left: 5px solid var(--amber); border-radius: 10px; background: var(--surface); color: var(--text); cursor: pointer; font: inherit; box-shadow: var(--shadow); }
+.topic-card:hover { border-color: var(--amber); }
+.topic-start.topic-card { background: var(--surface); color: var(--text); }
+.topic-card-title { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 22px; font-weight: 800; }
+.topic-card-desc { font-size: 13px; line-height: 1.5; color: var(--text-dim); }
+.topic-card-go { font-size: 13px; font-weight: 800; color: var(--accent-text); }
+.headline-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+.hcard { padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--amber); border-radius: 10px; box-shadow: var(--shadow); }
+.hcard-wide { grid-column: 1 / -1; }
+.hcard-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--text-dim); }
+.hcard-value { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace; font-size: 30px; font-weight: 600; line-height: 1.2; margin: 4px 0; font-variant-numeric: tabular-nums; }
+.hcard-none { font-size: 16px; font-style: italic; color: var(--text-dim); font-weight: 400; }
+.hcard-sub { font-size: 12.5px; color: var(--text-dim); }
+.hcard-change { margin-top: 8px; font-size: 12.5px; line-height: 1.45; }
+.cards-note { grid-column: 1 / -1; margin: 0; font-size: 12.5px; color: var(--text-dim); }
+.tabstrip { display: flex; flex-wrap: wrap; gap: 2px; margin: 10px 0 12px; border-bottom: 2px solid var(--border); align-items: flex-end; }
+.tab-btn { font: inherit; font-size: 13px; font-weight: 750; padding: 9px 16px; border: 1px solid transparent; border-bottom: none; border-radius: 8px 8px 0 0; background: transparent; color: var(--text-dim); cursor: pointer; min-height: 40px; margin-bottom: -2px; }
+.tab-btn[aria-selected="true"] { background: var(--surface); color: var(--text); border-color: var(--border); border-bottom: 2px solid var(--surface); }
+.tab-btn:hover { color: var(--text); }
+.tab-action { margin-left: auto; font: inherit; font-size: 12.5px; font-weight: 750; padding: 7px 12px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--text); cursor: pointer; margin-bottom: 4px; }
+.map-heading, .ut-block > h2 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 24px; font-weight: 800; margin: 0 0 4px; }
+.map-desc, .ut-desc { margin: 0; font-size: 13px; color: var(--text-dim); max-width: 76ch; }
+.map-continuity { margin-top: 10px; }
+.ut-block { margin: 0 0 20px; }
+.ut-chart { width: 100%; height: auto; display: block; }
+.ut-gap { fill: var(--map-nodata-stripe); opacity: .5; }
+.ut-grid { stroke: var(--border); stroke-width: 1; }
+.ut-axis { font-size: 11px; fill: var(--text-dim); }
+.ut-note { font-size: 11px; fill: var(--text-dim); font-style: italic; }
+.ut-line { stroke: var(--rust); stroke-width: 2.4; fill: none; }
+.ut-line.caution { stroke-dasharray: 6 4; }
+.ut-break { stroke: var(--slate); stroke-width: 1.4; stroke-dasharray: 2 4; cursor: help; }
+.ut-point { fill: var(--rust); stroke: var(--surface); stroke-width: 1.5; cursor: help; }
+.ut-point.sel { stroke: var(--text); stroke-width: 2.4; }
+.ut-legend { margin: 6px 0 0; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; }
+.ut-key { display: inline-block; width: 22px; height: 0; border-top: 2.4px solid var(--rust); vertical-align: middle; margin-right: 4px; }
+.ut-key.dashed { border-top-style: dashed; }
+.ut-key.none { border-top: 2px dotted var(--slate); }
+body.topic-road #utSection { display: none; }
+@media (max-width: 760px) { .topic-cards, .headline-cards { grid-template-columns: 1fr; } .hcard-value { font-size: 26px; } }
+:fullscreen.map-panel { overflow: auto; background: var(--bg); padding: 16px; }
 footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--text-dim); display: flex; flex-direction: column; gap: 4px; }
 footer a { color: inherit; }
 </style>
@@ -566,21 +615,24 @@ footer a { color: inherit; }
   </nav>
   <main id="main" data-version="${SERIES_STATUS.updated}">
   <section id="overview" class="site-section" aria-label="Overview">
+  <div class="beta-banner"><span class="beta-tag">Beta</span><span>This is a new design. Your <a href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/issues/new" target="_blank" rel="noopener">feedback</a> will help us improve it.</span></div>
   <header class="masthead">
     <div class="header-copy">
       <div class="eyebrow">Delhi Police &amp; Traffic Police district data · 2011–2024</div>
       <h1>Delhi Urban Safety Observatory</h1>
+      <p class="last-updated">Last updated on <time datetime="${SERIES_STATUS.updated}">${new Date(SERIES_STATUS.updated + 'T00:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</time></p>
       <p class="subhead">Official crime and road-safety figures for Delhi's 15 police districts, set against real public infrastructure: streetlights, underpasses, pedestrian overbridges, metro gates and police posts.</p>
       <p class="caveat-line"><b>Read before comparing:</b> a zero from a survey-based layer can mean "not surveyed", and OpenStreetMap layers are community-mapped. <a href="#about" id="aboutLink">See the coverage notes</a>.</p>
     </div>
     <img class="hero-image" src="assets/delhi-safety-hero.webp" width="960" height="540" loading="lazy" decoding="async" alt="Stylized map of Delhi showing districts, transport corridors, safety-risk circles and public-infrastructure markers">
   </header>
+  <nav class="contents" aria-label="Contents"><span class="contents-label">Contents</span><a href="#findings">What the data shows</a><a href="#keep-in-mind">What to keep in mind</a><a href="#explore">Explore the data</a><a href="#comparability">Can I compare these years?</a><a href="#data-methods">Data &amp; methods</a><a href="#glossary">Glossary</a></nav>
   <div class="overview-grid">
-    <div class="overview-card">
+    <div class="overview-card" id="findings">
       <h2>What the data shows</h2>
       <div id="findingList"></div>
     </div>
-    <div class="overview-card">
+    <div class="overview-card" id="keep-in-mind">
       <h2>What to keep in mind</h2>
       <ul class="limit-list">
         <li><b>Registered cases are not crime levels.</b> Counts depend on reporting and registration as well as on crime.</li>
@@ -590,10 +642,11 @@ footer a { color: inherit; }
       </ul>
     </div>
   </div>
-  <div class="start-row">
-    <span class="start-label">Start exploring</span>
-    <button type="button" class="topic-start" data-topic="crime">Crime by police district</button>
-    <button type="button" class="topic-start" data-topic="road">Road crashes</button>
+  <h2 class="topics-title">Topics</h2>
+  <p class="section-lede">Select a topic to explore. Each shows a headline figure, a chart you can read as a table, and where the data comes from.</p>
+  <div class="topic-cards">
+    <button type="button" class="topic-card topic-start" data-topic="crime"><span class="topic-card-title">Crime</span><span class="topic-card-desc">Registered IPC/BNS and Special and Local Laws cases: Delhi-wide totals by year, and a map of police districts.</span><span class="topic-card-go">Explore crime</span></button>
+    <button type="button" class="topic-card topic-start" data-topic="road"><span class="topic-card-title">Road crashes</span><span class="topic-card-desc">Crashes, fatal crashes and persons killed: Delhi-wide trend since 2011, district figures and crash-prone zones.</span><span class="topic-card-go">Explore road crashes</span></button>
   </div>
   </section>
 
@@ -604,6 +657,7 @@ footer a { color: inherit; }
     <button type="button" class="topic-btn" id="topicCrime" data-topic="crime" aria-pressed="true">Crime</button>
     <button type="button" class="topic-btn" id="topicRoad" data-topic="road" aria-pressed="false">Road crashes</button>
   </div>
+  <div class="headline-cards" id="headlineCards" aria-live="polite"></div>
   <section class="control-bar" id="mapSection" aria-label="Map controls">
     <div class="search-container">
       <div class="search-input-wrap">
@@ -670,6 +724,16 @@ footer a { color: inherit; }
 
   <div class="grid">
     <div class="panel map-panel">
+      <h2 class="map-heading" id="mapHeading"></h2>
+      <p class="map-desc" id="mapDesc"></p>
+      <div class="tabstrip" role="tablist" aria-label="Map views">
+        <button type="button" role="tab" class="tab-btn" id="map-tab-map" data-tabgroup="map" data-tab="map" aria-selected="true" aria-controls="mapTabMap">Map</button>
+        <button type="button" role="tab" class="tab-btn" id="map-tab-table" data-tabgroup="map" data-tab="table" aria-selected="false" aria-controls="mapTabTable" tabindex="-1">Table</button>
+        <button type="button" role="tab" class="tab-btn" id="map-tab-download" data-tabgroup="map" data-tab="download" aria-selected="false" aria-controls="mapTabDownload" tabindex="-1">Download</button>
+        <button type="button" role="tab" class="tab-btn" id="map-tab-about" data-tabgroup="map" data-tab="about" aria-selected="false" aria-controls="mapTabAbout" tabindex="-1">About</button>
+        <button type="button" class="tab-action" id="mapFullscreen" hidden>Enter fullscreen</button>
+      </div>
+      <div role="tabpanel" id="mapTabMap" data-tabgroup="map" data-tab="map" aria-labelledby="map-tab-map">
       <div class="map-stage">
         <svg id="map" viewBox="${data.viewBox}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Delhi's 15 police districts, shaded by the selected crime or road-safety metric"></svg>
         <svg id="mapHistory" viewBox="${HIST.viewBox}" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Delhi police districts as reported in the selected historical year, shaded by the selected crime metric" style="display:none"></svg>
@@ -710,7 +774,11 @@ footer a { color: inherit; }
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:#0891b2;border-radius:50%;"></span>CCTV / guard post</span>
         </span>
       </div>
-      <div class="explainer" id="mapExplainer"></div>
+      <div id="mapContinuity" class="map-continuity"></div>
+      </div>
+      <div role="tabpanel" id="mapTabTable" data-tabgroup="map" data-tab="table" aria-labelledby="map-tab-table" hidden></div>
+      <div role="tabpanel" id="mapTabDownload" data-tabgroup="map" data-tab="download" aria-labelledby="map-tab-download" hidden></div>
+      <div role="tabpanel" id="mapTabAbout" data-tabgroup="map" data-tab="about" aria-labelledby="map-tab-about" hidden><div class="explainer" id="mapExplainer"></div></div>
     </div>
 
     <div class="panel list-panel">
@@ -721,6 +789,21 @@ footer a { color: inherit; }
   </div>
 
   <div class="panel detail" id="detail" aria-live="polite"></div>
+
+  <div class="panel ut-block" id="utSection">
+    <h2 id="utTitle">Delhi-wide registered crime by year</h2>
+    <p class="ut-desc" id="utDesc"></p>
+    <div class="tabstrip" role="tablist" aria-label="Delhi-wide series views">
+      <button type="button" role="tab" class="tab-btn" id="ut-tab-chart" data-tabgroup="ut" data-tab="chart" aria-selected="true" aria-controls="utPanelChart">Chart</button>
+      <button type="button" role="tab" class="tab-btn" id="ut-tab-table" data-tabgroup="ut" data-tab="table" aria-selected="false" aria-controls="utPanelTable" tabindex="-1">Table</button>
+      <button type="button" role="tab" class="tab-btn" id="ut-tab-download" data-tabgroup="ut" data-tab="download" aria-selected="false" aria-controls="utPanelDownload" tabindex="-1">Download</button>
+      <button type="button" role="tab" class="tab-btn" id="ut-tab-about" data-tabgroup="ut" data-tab="about" aria-selected="false" aria-controls="utPanelAbout" tabindex="-1">About</button>
+    </div>
+    <div role="tabpanel" id="utPanelChart" data-tabgroup="ut" data-tab="chart" aria-labelledby="ut-tab-chart"></div>
+    <div role="tabpanel" id="utPanelTable" data-tabgroup="ut" data-tab="table" aria-labelledby="ut-tab-table" hidden></div>
+    <div role="tabpanel" id="utPanelDownload" data-tabgroup="ut" data-tab="download" aria-labelledby="ut-tab-download" hidden></div>
+    <div role="tabpanel" id="utPanelAbout" data-tabgroup="ut" data-tab="about" aria-labelledby="ut-tab-about" hidden></div>
+  </div>
 
   <div class="panel scatter-panel" id="scatterSection">
     <h2 id="scatterTitle">Infrastructure density vs. theft density</h2>
@@ -998,6 +1081,7 @@ footer a { color: inherit; }
 const DATA = ${JSON.stringify(data.districts)};
 const HIST = ${JSON.stringify(HIST).replace(/</g, '\\u003c')};
 const CONTINUITY = ${JSON.stringify(CONTINUITY_PAGE).replace(/</g, '\\u003c')};
+const UT_SERIES = ${JSON.stringify(UT_SERIES)};
 const compareYears = ${contLib.compareYears.toString()};
 const segmentOf = ${contLib.segmentOf.toString()};
 const changeBetween = ${contLib.changeBetween.toString()};
@@ -2708,17 +2792,24 @@ function copyText(text, done) {
   } catch (e) { finish(false); }
 }
 
+function compactContinuity() {
+  const m = currentMetric(), year = yearSuffix(m), prev = prevYearForCompare(m, year);
+  if (prev == null) return '<p class="cont-none">No earlier year is available for this measure, so there is nothing to compare it with.</p>';
+  const cmp = compareYears(CONTINUITY, m.key, prev, Number(year));
+  return '<div class="continuity ' + cmp.state + '">' + contBadge(cmp) + '<span class="cont-text"><b>Compared with ' + prev + '.</b> ' + (cmp.state === 'comparable' ? 'Same districts and definitions.' : 'See About for why.') + '</span></div>';
+}
 function renderMapExplainer() {
   const el = document.getElementById('mapExplainer');
   if (!el) return;
   const spec = mapExplainerSpec();
-  const actions = '<div class="explainer-actions">' +
-    '<button type="button" class="dl-mini-btn" id="exViewTable" aria-expanded="' + mapTableOpen + '" aria-controls="mapTableWrap">View table</button>' +
-    '<button type="button" class="dl-mini-btn" id="exDownload">Download data</button>' +
-    '<button type="button" class="dl-mini-btn" id="exCopyLink">Copy link to this view</button>' +
-    '<span class="explainer-status" id="exStatus" role="status" aria-live="polite"></span></div>' +
-    '<div id="mapTableWrap" class="table-wrap"' + (mapTableOpen ? '' : ' hidden') + '>' + (mapTableOpen ? viewTableHtml(spec.what) : '') + '</div>';
-  el.innerHTML = '<h2 class="explainer-title">' + esc(spec.what) + '</h2>' + explainerHtml(spec, actions);
+  document.getElementById('mapHeading').textContent = spec.what;
+  document.getElementById('mapDesc').textContent = spec.detail;
+  document.getElementById('mapContinuity').innerHTML = compactContinuity();
+  document.getElementById('mapTabTable').innerHTML = '<div class="table-wrap">' + viewTableHtml(spec.what) + '</div>';
+  document.getElementById('mapTabDownload').innerHTML = '<p>Download the districts shown on the map, with the geography version, offence definition, reporting period, whether the year is comparable with the one before and the reason for any break.</p>' +
+    '<div class="explainer-actions"><button type="button" class="dl-mini-btn" id="exDownload">Download CSV</button><button type="button" class="dl-mini-btn" id="exCopyLink">Copy link to this view</button><span class="explainer-status" id="exStatus" role="status" aria-live="polite"></span></div>';
+  el.innerHTML = explainerHtml(spec, '');
+  applyTabs('map');
 }
 
 const STATIC_EXPLAINERS = {
@@ -2869,6 +2960,26 @@ function applyUrlState() {
   } catch (e) {}
 }
 
+function wireTabsAndFullscreen() {
+  document.addEventListener('keydown', e => {
+    const tab = e.target.closest ? e.target.closest('[role="tab"][data-tabgroup]') : null;
+    if (!tab || ['ArrowLeft', 'ArrowRight', 'Home', 'End'].indexOf(e.key) < 0) return;
+    const tabs = Array.from(document.querySelectorAll('[role="tab"][data-tabgroup="' + tab.dataset.tabgroup + '"]'));
+    let i = tabs.indexOf(tab);
+    if (e.key === 'ArrowRight') i = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft') i = (i + tabs.length - 1) % tabs.length;
+    else if (e.key === 'Home') i = 0;
+    else i = tabs.length - 1;
+    e.preventDefault();
+    activateTab(tab.dataset.tabgroup, tabs[i].dataset.tab, true);
+  });
+  const fs = document.getElementById('mapFullscreen');
+  const panel = document.querySelector('.map-panel');
+  if (fs && panel && panel.requestFullscreen) {
+    fs.hidden = false;
+    document.addEventListener('fullscreenchange', () => { fs.textContent = document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen'; });
+  }
+}
 function wireRedesign() {
   document.querySelectorAll('.topic-btn, .topic-start').forEach(b => b.addEventListener('click', () => {
     setTopic(b.dataset.topic);
@@ -2883,7 +2994,11 @@ function wireRedesign() {
     const t = e.target.closest('button');
     const sc = e.target.closest('#scaleToggle button');
     if (sc && !sc.disabled) { colourMode = sc.dataset.scale; render(); return; }
-    if (t && t.id === 'exViewTable') { mapTableOpen = !mapTableOpen; renderMapExplainer(); return; }
+    const tab = e.target.closest('[role="tab"][data-tabgroup]');
+    if (tab) { activateTab(tab.dataset.tabgroup, tab.dataset.tab, false); return; }
+    if (t && t.dataset.utYear) { activeYear = t.dataset.utYear; render(); return; }
+    if (t && t.id === 'utDownload') { const key = UT_FIELDS[currentMetric().key] ? currentMetric().key : 'totalIPC'; const out = utCsv(key); triggerDownload('gaitway_delhi_wide_' + key + '.csv', toCSV(out.headers, out.rows)); return; }
+    if (t && t.id === 'mapFullscreen') { const panel = document.querySelector('.map-panel'); if (document.fullscreenElement) document.exitFullscreen(); else if (panel.requestFullscreen) panel.requestFullscreen(); return; }
     if (t && t.id === 'exDownload') { const out = viewCsv(); triggerDownload('gaitway_delhi_view_' + activeMetric + '_' + activeYear + '_' + rateMode + '.csv', toCSV(out.headers, out.rows)); return; }
     if (t && (t.id === 'exCopyLink' || t.dataset.act === 'copy' || t.id === 'copyViewLink')) {
       copyText(location.href, ok => { const s = t.parentNode.querySelector('.explainer-status') || document.getElementById('copyStatus'); if (s) s.textContent = ok ? 'Link copied' : 'Copy failed: copy the address bar instead'; });
@@ -3017,6 +3132,196 @@ function geoVersion(m, year) {
   return '15 police districts (current)';
 }
 
+// ---- Headline cards, tabbed chart blocks and the Delhi-wide series ----
+// Delhi-wide figures are the Delhi UT totals NCRB prints (UT_SERIES, data/releases/delhi_ut_series), independent of district boundaries.
+const UT_FIELDS = { totalIPC: ['total_ipc_bns'], theft: ['theft'], robbery: ['robbery'], burglary: ['burglary', 'criminal_trespass_burglary_revised_head', 'burglary_old_head'], crimeAgainstWomen: ['total_crimes_against_women'], totalSLL: ['total_sll'] };
+const UT_LABEL = { totalIPC: 'IPC/BNS crimes registered', theft: 'Theft', robbery: 'Robbery', burglary: 'Burglary', crimeAgainstWomen: 'Crimes against women', totalSLL: 'Special and Local Laws crimes' };
+const TAB_STATE = { map: 'map', ut: 'chart' };
+const UT_NOUN = { totalIPC: 'IPC/BNS crimes registered', theft: 'theft', robbery: 'robbery', burglary: 'burglary', crimeAgainstWomen: 'crimes against women', totalSLL: 'Special and Local Laws crimes' };
+
+function utRow(year) { return UT_SERIES.find(r => r.year === Number(year)); }
+function utValue(row, key) {
+  if (!row || row.status !== 'printed') return null;
+  const fields = UT_FIELDS[key] || [];
+  for (let i = 0; i < fields.length; i++) { if (row[fields[i]] != null) return row[fields[i]]; }
+  return null;
+}
+function utHead(row, key) {
+  if (key !== 'burglary' || !row || row.status !== 'printed') return '';
+  if (row.burglary != null) return 'later burglary definition';
+  if (row.criminal_trespass_burglary_revised_head != null) return 'revised criminal trespass/burglary head';
+  return row.burglary_old_head != null ? 'original burglary head' : '';
+}
+function utCompare(key, from, to) {
+  const cmp = compareYears(CONTINUITY, key, from, to, CONTINUITY.utSeries.scopeName);
+  const a = utValue(utRow(from), key), b = utValue(utRow(to), key);
+  return { cmp: cmp, from: a, to: b, change: changeBetween(cmp, a, b) };
+}
+function changeSentence(info, prev, short) {
+  const c = info.cmp;
+  if (c.state === 'unavailable') return 'No comparison with ' + prev + ': ' + (c.reasons[0] || 'a figure is missing');
+  if (c.state === 'not_comparable') return 'Not comparable with ' + prev + '.' + (short ? '' : ' ' + (c.reasons[0] || ''));
+  if (info.change == null) return 'No change figure for ' + prev + '.';
+  const diff = info.to - info.from;
+  return (diff >= 0 ? '▲ Up ' : '▼ Down ') + Math.abs(info.change).toFixed(1) + '% (' + (diff >= 0 ? '+' : '-') + fmtNum(Math.abs(diff)) + ') compared with ' + prev + (c.state === 'caution' && !short ? '. Compare with caution: ' + (c.reasons[0] || '') : '.');
+}
+function hcard(label, value, sub, change, state) {
+  return '<div class="hcard"><div class="hcard-label">' + esc(label) + '</div><div class="hcard-value">' + (value == null ? '<span class="hcard-none">Not available</span>' : fmtNum(value)) + '</div><div class="hcard-sub">' + esc(sub) + '</div>' +
+    (change ? '<div class="hcard-change ' + (state || '') + '">' + (state ? contBadge({ state: state }) + ' ' : '') + esc(change) + '</div>' : '') + '</div>';
+}
+function renderHeadlineCards() {
+  const el = document.getElementById('headlineCards');
+  if (!el) return;
+  const m = currentMetric(), year = Number(yearSuffix(m));
+  let html = '';
+  const notes = [];
+  if (topicOf(m) === 'crime') {
+    const row = utRow(year);
+    if (!row || row.status !== 'printed') {
+      const latest = UT_SERIES.filter(r => r.status === 'printed').slice(-1)[0].year;
+      html = '<div class="hcard hcard-wide"><div class="hcard-label">Delhi-wide registered crime, ' + year + '</div><div class="hcard-value"><span class="hcard-none">Not collected yet</span></div><div class="hcard-sub">The printed Delhi UT totals have not been collected for ' + year + ' (they exist for 2011 to 2015 and 2022 to 2024). The map and table below still show the districts.</div><div class="hcard-change"><button type="button" class="dl-mini-btn" data-ut-year="' + latest + '">Show ' + latest + '</button></div></div>';
+    } else {
+      html = ['totalIPC', 'theft', 'crimeAgainstWomen'].map(key => {
+        const v = utValue(row, key);
+        const sub = 'Delhi-wide, calendar year ' + year;
+        if (year <= CONTINUITY.yearRange[0]) return hcard(UT_LABEL[key], v, sub, '', '');
+        const info = utCompare(key, year - 1, year);
+        if (v != null && info.cmp.state !== 'comparable') info.cmp.reasons.forEach(x => { if (notes.indexOf(x) < 0) notes.push(x); });
+        return hcard(UT_LABEL[key], v, sub, v == null ? 'Not reported in the source tables for ' + year + '.' : changeSentence(info, year - 1, true), v == null ? 'unavailable' : info.cmp.state);
+      }).join('');
+    }
+  } else {
+    const row = TRENDS.find(t => t.year === year) || TRENDS[TRENDS.length - 1];
+    const prev = TRENDS.find(t => t.year === row.year - 1);
+    const st = CONTINUITY.series.roadTrend;
+    const card = (label, field) => {
+      let change = '', state = '';
+      if (prev && prev[field] != null) {
+        const diff = row[field] - prev[field];
+        change = (diff >= 0 ? '▲ Up ' : '▼ Down ') + Math.abs(diff / prev[field] * 100).toFixed(1) + '% (' + (diff >= 0 ? '+' : '-') + fmtNum(Math.abs(diff)) + ') compared with ' + prev.year + '.';
+        if (notes.indexOf(st.reasons[0]) < 0) notes.push(st.reasons[0]);
+        state = st.state;
+      }
+      return hcard(label, row[field], 'Delhi-wide, calendar year ' + row.year, change, state);
+    };
+    html = card('Road crashes', 'crashes') + card('Fatal crashes', 'fatalCrashes') + card('Persons killed', 'fatalities');
+  }
+  el.innerHTML = html + (notes.length ? '<p class="cards-note">' + notes.map(esc).join(' ') + '</p>' : '');
+}
+
+// Tabs: Chart / Table / Download / About, as on the UKHSA dashboard
+function applyTabs(group) {
+  const active = TAB_STATE[group];
+  document.querySelectorAll('[data-tabgroup="' + group + '"]').forEach(node => {
+    if (node.getAttribute('role') === 'tab') {
+      const on = node.dataset.tab === active;
+      node.setAttribute('aria-selected', String(on));
+      node.tabIndex = on ? 0 : -1;
+    } else {
+      node.hidden = node.dataset.tab !== active;
+    }
+  });
+}
+function activateTab(group, tab, focus) {
+  TAB_STATE[group] = tab;
+  applyTabs(group);
+  if (focus) { const b = document.querySelector('[role="tab"][data-tabgroup="' + group + '"][data-tab="' + tab + '"]'); if (b) b.focus(); }
+}
+
+function utChartHtml(key) {
+  const W = 640, H = 300, L = 62, R = 14, T = 16, B = 40;
+  const first = CONTINUITY.yearRange[0], last = CONTINUITY.yearRange[1], span = last - first;
+  const years = []; for (let y = first; y <= last; y++) years.push(y);
+  const vals = years.map(y => utValue(utRow(y), key));
+  const max = Math.max.apply(null, vals.filter(v => v != null).concat([1]));
+  const x = y => L + (y - first) / span * (W - L - R);
+  const yy = v => T + (1 - v / max) * (H - T - B);
+  const step = (W - L - R) / span;
+  const selected = Number(yearSuffix(currentMetric()));
+  let s = '<svg class="ut-chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc('Delhi-wide ' + UT_NOUN[key] + ' by year, 2011 to 2024. The table tab lists every value.') + '">';
+  // missing years
+  years.forEach((y, i) => {
+    if (vals[i] != null) return;
+    s += '<rect class="ut-gap" x="' + (x(y) - step / 2).toFixed(1) + '" y="' + T + '" width="' + step.toFixed(1) + '" height="' + (H - T - B) + '"></rect>';
+  });
+  const gapLabel = (from, to, text) => { if (vals[from - first] == null && vals[to - first] == null) s += '<text class="ut-note" x="' + ((x(from) + x(to)) / 2).toFixed(1) + '" y="' + (T + 14) + '" text-anchor="middle">' + text + '</text>'; };
+  gapLabel(2016, 2021, 'not collected yet');
+  gapLabel(2011, 2013, key === 'crimeAgainstWomen' || key === 'totalSLL' ? 'not reported in the source tables' : '');
+  // y axis
+  [0, 0.5, 1].forEach(f => {
+    const v = Math.round(max * f);
+    s += '<line class="ut-grid" x1="' + L + '" x2="' + (W - R) + '" y1="' + yy(v).toFixed(1) + '" y2="' + yy(v).toFixed(1) + '"></line><text class="ut-axis" x="' + (L - 6) + '" y="' + (yy(v) + 4).toFixed(1) + '" text-anchor="end">' + fmtNum(v) + '</text>';
+  });
+  years.forEach(y => { if ((y - first) % 2 === 0 || y === last) s += '<text class="ut-axis" x="' + x(y).toFixed(1) + '" y="' + (H - 18) + '" text-anchor="middle">' + y + '</text>'; });
+  // lines and breaks
+  for (let i = 0; i < years.length - 1; i++) {
+    const a = vals[i], b = vals[i + 1];
+    if (a == null || b == null) continue;
+    const info = utCompare(key, years[i], years[i + 1]);
+    if (info.cmp.state === 'not_comparable') {
+      const mx = (x(years[i]) + x(years[i + 1])) / 2;
+      s += '<line class="ut-break" x1="' + mx.toFixed(1) + '" x2="' + mx.toFixed(1) + '" y1="' + T + '" y2="' + (H - B) + '" data-tt-title="Break between ' + years[i] + ' and ' + years[i + 1] + '" data-tt-body="' + esc(info.cmp.reasons.join(' ')) + '"></line><text class="ut-note" x="' + (mx + 4).toFixed(1) + '" y="' + (T + 12) + '">break</text>';
+    } else if (info.cmp.state !== 'unavailable') {
+      s += '<line class="ut-line ' + info.cmp.state + '" x1="' + x(years[i]).toFixed(1) + '" y1="' + yy(a).toFixed(1) + '" x2="' + x(years[i + 1]).toFixed(1) + '" y2="' + yy(b).toFixed(1) + '"></line>';
+    }
+  }
+  // points
+  years.forEach((y, i) => {
+    const v = vals[i];
+    if (v == null) return;
+    const prevInfo = y > first ? utCompare(key, y - 1, y) : null;
+    const body = fmtNum(v) + ' registered cases' + (utHead(utRow(y), key) ? ' (' + utHead(utRow(y), key) + ')' : '') + '. ' + (prevInfo ? changeSentence(prevInfo, y - 1) : 'First year in the series.');
+    s += '<circle class="ut-point' + (y === selected ? ' sel' : '') + '" cx="' + x(y).toFixed(1) + '" cy="' + yy(v).toFixed(1) + '" r="' + (y === selected ? 6 : 4) + '" data-tt-title="' + y + ': ' + esc(UT_LABEL[key]) + '" data-tt-body="' + esc(body) + '"></circle>';
+  });
+  s += '</svg><p class="ut-legend small"><span class="ut-key solid"></span> comparable <span class="ut-key dashed"></span> compare with caution <span class="ut-key none"></span> no line: a break in definition, or a year without a figure</p>';
+  return s;
+}
+function utTableHtml(key) {
+  const first = CONTINUITY.yearRange[0], last = CONTINUITY.yearRange[1];
+  let body = '';
+  for (let y = first; y <= last; y++) {
+    const row = utRow(y), v = utValue(row, key);
+    let change = '<span class="cont-none-cell">First year</span>', badge = '';
+    if (y > first) {
+      const info = utCompare(key, y - 1, y);
+      badge = contBadge(info.cmp);
+      change = info.change == null ? '<span class="cont-none-cell" title="' + esc(info.cmp.reasons.join(' ')) + '">' + (info.cmp.state === 'unavailable' ? 'Not available' : 'Not comparable') + '</span>' : (info.change >= 0 ? '+' : '') + info.change.toFixed(1) + '%';
+    }
+    const note = row && row.status === 'not_collected' ? 'Not collected yet' : (v == null ? 'Not reported in the source tables' : utHead(row, key));
+    body += '<tr><th scope="row">' + y + '</th><td>' + (v == null ? 'Not available' : fmtNum(v)) + '</td><td>' + change + '</td><td>' + badge + '</td><td>' + esc(note) + '</td></tr>';
+  }
+  return '<div class="table-wrap"><table class="view-table"><caption>Delhi-wide ' + esc(UT_NOUN[key]) + ', calendar years 2011 to 2024</caption><thead><tr><th scope="col">Year</th><th scope="col">Registered cases</th><th scope="col">Change from previous year</th><th scope="col">Can I compare?</th><th scope="col">Note</th></tr></thead><tbody>' + body + '</tbody></table></div>';
+}
+function utCsv(key) {
+  const version = document.getElementById('main').dataset.version;
+  const headers = ['Dataset', 'Geography', 'Measure', 'Year', 'Reporting period', 'Registered cases', 'Offence definition', 'Status', 'Comparability with previous year', 'Reason for any break', 'Source', 'Dataset version'];
+  const rows = UT_SERIES.map(r => {
+    const v = utValue(r, key);
+    const info = r.year > CONTINUITY.yearRange[0] ? utCompare(key, r.year - 1, r.year) : null;
+    return ['Delhi Urban Safety Observatory', 'Delhi UT as printed by NCRB (all reporting units)', UT_LABEL[key], r.year, 'Calendar year', v, r.offence_basis + (utHead(r, key) ? '; ' + utHead(r, key) : ''), r.status === 'printed' ? (v == null ? 'printed, not reported' : 'printed') : 'not collected', info ? CONTINUITY.states[info.cmp.state] : 'First year', info ? info.cmp.reasons.join(' ') : '', r.status === 'printed' ? (r.year <= 2015 ? 'NCRB Crime in India, printed Delhi UT summary' : 'NCRB district-wise tables, printed Total Districts row for Delhi') : '', version];
+  });
+  return { headers: headers, rows: rows };
+}
+function renderUtBlock() {
+  const el = document.getElementById('utSection');
+  if (!el) return;
+  const m = currentMetric();
+  if (topicOf(m) !== 'crime') return;
+  const key = UT_FIELDS[m.key] ? m.key : 'totalIPC';
+  document.getElementById('utTitle').textContent = 'Delhi-wide ' + UT_NOUN[key] + ' by year';
+  document.getElementById('utDesc').textContent = 'Printed Delhi UT totals, calendar years 2011 to 2024. 2016 to 2021 have not been collected yet, so they are gaps, not zeros. Lines join only years that can be compared.';
+  document.getElementById('utPanelChart').innerHTML = utChartHtml(key);
+  document.getElementById('utPanelTable').innerHTML = utTableHtml(key);
+  document.getElementById('utPanelDownload').innerHTML = '<p>Download the Delhi-wide series for this measure, one row per year, with the offence definition, whether the year is comparable with the one before and the reason for any break.</p><p><button type="button" class="dl-mini-btn" id="utDownload">Download CSV (Delhi-wide, ' + esc(UT_NOUN[key]) + ')</button> <span class="explainer-status" id="utStatus" role="status" aria-live="polite"></span></p><p class="small">Full release with every measure: <a href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/tree/main/data/releases/delhi_ut_series" target="_blank" rel="noopener">data/releases/delhi_ut_series</a></p>';
+  document.getElementById('utPanelAbout').innerHTML =
+    '<div class="explainer-grid"><div><h3>What am I seeing?</h3><p>The Delhi UT total for ' + esc(UT_NOUN[key]) + ' exactly as NCRB prints it, one value per calendar year.</p></div>' +
+    '<div><h3>How do I read it?</h3><p>A point higher on the chart means more registered cases. A solid line joins years that can be compared, a dashed line joins years to compare with caution, and no line means a change in definition or a missing year.</p></div>' +
+    '<div><h3>What are the limits?</h3><p>It includes every reporting unit NCRB lists for Delhi, including specialised units such as Metro and Railway, so it is higher than the sum of the 15 districts. 2016 to 2021 are not collected yet. NCRB changed its reporting format in 2014 and the BNS replaced the IPC in 2024.</p></div>' +
+    '<div><h3>Where did it come from?</h3><p>2011 to 2015: the printed Delhi UT summaries of the original Crime in India tables. 2022 to 2024: the printed Total Districts row of the NCRB district-wise tables, which equals the sum of the printed unit rows.</p></div></div>' +
+    '<details class="explainer-more"><summary>Definitions</summary>' + glossaryHtml('IPC BNS SLL registered NCRB') + '<p>Burglary is three different definitions (original head to 2013, revised criminal trespass/burglary head 2014 to 2015, later definition from 2022), so the chart shows breaks between them.</p></details>';
+  applyTabs('ut');
+}
+
 function render() {
   const hist = isHistoryView();
   document.body.classList.toggle('history-mode', hist);
@@ -3043,6 +3348,8 @@ function render() {
   if (compareMode && !hist) renderCompareCard();
   renderTopicControls();
   renderScaleToggle();
+  renderHeadlineCards();
+  renderUtBlock();
   renderMapExplainer();
   syncUrl();
 }
@@ -3894,6 +4201,7 @@ renderGlossary();
 renderContinuityTable();
 renderStaticExplainers();
 wireRedesign();
+wireTabsAndFullscreen();
 render();
 renderRoadSafetyTabs();
 // The first trend render ran while its panel was hidden; draw once it has a width.
