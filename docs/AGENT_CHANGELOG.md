@@ -1183,3 +1183,12 @@ Prior to the divergence, Claude's contributions (now absorbed by Antigravity's r
 - Cause, confirmed on a GitHub runner: ncrb.gov.in chains to the emSign Root CA - G1. The current certifi bundle (2026.10.18) has no emSign entries, so Python verification failed with "self-signed certificate in certificate chain"; the runner's system store (ca-certificates) does contain the root and verifies the same chain.
 - Fix: the pipeline HTTP client now verifies against certifi plus the operating-system store (`tls_context()`). Verification stays on (certificate required, hostname checked). Two tests assert that and that nothing in the package turns verification off. certifi is now a declared dependency.
 - Proven on a runner before this change: the pipeline client fetched https://ncrb.gov.in/ (HTTP 200) and the new tests passed. #42 stays open until a monitor run on `main` reports NCRB.
+
+## [2026-10-20] - Claude - Dashboard redesign: Overview / Explore / Data & methods
+
+- Navigation reduced to three sections plus one "More pages" menu (interactive map, historical table, reporters, iRAD, 3D prototype).
+- Overview: four findings computed from the page's own data (2024 IPC/BNS total and highest district, road crashes and deaths since 2011, history and infrastructure-coverage cautions) and four plain limitations.
+- Explore: Crime and Road crashes are separate topics (one topic's measures in the dropdown at a time, each topic remembers its last measure and year). Counts are the default; per km² and per 100k are opt-in and hidden for historical years. Every visual has an explainer: what you are seeing, how to read it, the limits, the source, with View table, Download data and Copy link. The map's explainer states that colours are ranked within the selected year.
+- Data & methods: geography changes, citation/version and a share link, series currency, coverage notes, calculation, downloads, and a plain-language glossary (IPC, BNS, SLL, NCRB, fatal crash vs persons killed, iRAD, reporting district, count vs rate).
+- Share links keep topic, measure, year, calculation and district (`?topic=&metric=&year=&calc=&district=`). View downloads carry dataset, geography, measure, year, calculation, source and data version.
+- Not done yet: a per-chart "Can I compare these years?" indicator, fixed colour scales across compatible years, break markers at district splits, and an independent Delhi-wide crime series.
