@@ -6,6 +6,7 @@ function build() {
   const years = yearly.buildYears();
   const historical = require('./build_historical_crime_release').build();
   const citywideRoad = require('./build_citywide_road_release').build();
+  const delhiUt = require('./build_delhi_ut_series').build();
   require('./build_historical_reporting_view').build();
   require('./build_irad_releases').build();
   require('./build_police_station_crosswalk').build();
@@ -15,6 +16,7 @@ function build() {
   fs.writeFileSync(path.join(ROOT, 'data/releases/README.md'), '# Yearly research releases\n\nChoose a folder from `2016/` through `2024/`, then read its `manifest.json` before importing `district_crime.csv` or `district_crime.json`. Road-safety and crash-zone files are included only when that year has a compatible production dataset.\n\n- `manifest.json` - machine-readable index\n- `shared/manifest.json` - infrastructure, boundaries and other non-year-specific production data\n- `2025/irad/` - authoritative staged iRAD release; older staging retained for provenance\n- `2026/irad/` - provisional partial-year iRAD release; never compare with a full year\n\nRegenerate with `npm run build:releases`. Null never means zero.\n');
   index.historicalReleases = [historical];
   index.citywideRoadTrend = citywideRoad;
+  index.delhiUtSeries = delhiUt;
   fs.appendFileSync(path.join(ROOT, 'data/releases/README.md'), '\nSeparate series:\n\n- [Citywide road trend, 2011–2024](citywide_road_trend/manifest.json): counts, not rates; on the road chart only.\n- [NCRB historical panel, 2011–2015](historical_2011_2015/README.md): staged Delhi UT totals and original reporting units, off the dashboard. Never join these to current districts or add them to the production year list.\n');
   // Release index is written last, after all referenced targets exist.
   fs.writeFileSync(path.join(ROOT, 'data/releases/manifest.json'), JSON.stringify(index, null, 2) + '\n');

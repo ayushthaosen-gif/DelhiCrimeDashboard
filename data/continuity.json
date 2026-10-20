@@ -91,6 +91,12 @@
       }
     ]
   },
+  "utSeries": {
+    "scopeName": "Delhi UT",
+    "printedYears": [2011, 2012, 2013, 2014, 2015, 2022, 2023, 2024],
+    "gapReason": "The Delhi-wide totals for 2016-2021 have not been collected yet, so they are left blank rather than computed from districts.",
+    "note": "Delhi-wide totals do not depend on district boundaries, so geography breaks are skipped. Definition breaks and missing years still apply."
+  },
   "roadDistrict": {
     "reason2022": "The 2022 road-death and hit-and-run figures use the Traffic Police's 11 reporting districts, not the 15 police districts, so they cannot be compared with 2023 or 2024.",
     "cautionMeasures": ["crashProneZones2023"],

@@ -52,6 +52,17 @@
       "note": "On historical_crime.html. Counts only, never trended across the 2013/2014 definition break or joined to modern districts, wards or infrastructure. Null means not reported, not zero. Offence definitions differ by year; see the manifest."
     },
     {
+      "id": "ncrb_delhi_ut_totals",
+      "name": "Delhi-wide registered crime, NCRB Delhi UT totals as printed",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2024",
+      "coverage_start": "2011",
+      "geography": "Delhi UT as a whole, all reporting units; independent of district boundaries",
+      "where": "data/releases/delhi_ut_series/manifest.json",
+      "note": "2011-2015 and 2022-2024 are printed totals; 2016-2021 are rows marked not collected, never filled by summing districts. Three burglary definitions stay in separate columns. 2013 to 2014 is not comparable."
+    },
+    {
       "id": "historical_police_district_maps",
       "name": "Historical police-district reference maps, 2011-2018",
       "status": "staged",

@@ -1,0 +1,363 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi-wide registered crime, as NCRB prints the Delhi UT totals",
+  "status": "production",
+  "generatedBy": "scripts/build_delhi_ut_series.js",
+  "coverage": {
+    "printedYears": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2022,
+      2023,
+      2024
+    ],
+    "notCollectedYears": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021
+    ]
+  },
+  "geography": "Delhi UT as a whole. Independent of district boundaries, so the district splits of 2016, 2017 and 2019 do not affect it. It includes every reporting unit NCRB lists for Delhi (territorial districts plus specialised units such as Metro, Railway and Crime Branch), so it is higher than the sum of the territorial districts.",
+  "unit": "Registered cases; counts, not rates.",
+  "nullPolicy": "A blank or dash in a source is null, never zero. Missing years are rows with status not_collected, never filled.",
+  "definitions": [
+    "Burglary is three separate columns: the original head (2011-2013), the revised criminal-trespass/burglary head (2014-2015) and the later burglary definition (2022-2024). They are not one series.",
+    "NCRB changed its reporting format and offence groupings in 2014, so 2013 and 2014 are not comparable; the 2024 tables follow the BNS (in force from 1 July 2024), so 2023 to 2024 is a caution.",
+    "Special and Local Laws and crimes-against-women totals are not available for 2011-2013.",
+    "Total crimes against women is the head printed in each source: the original-year table for 2014-2015 and the IPC/BNS plus SLL total in the district table from 2022. Check the original table before comparing the two ranges. The separate printed \"crimes in which women was victim\" head is kept in its own column for 2014-2015."
+  ],
+  "comparability": "Read data/continuity.json: use compareYears with the district \"Delhi UT\", which skips district-boundary breaks and applies definition breaks and the missing years.",
+  "sources": [
+    {
+      "path": "data/releases/historical_2011_2015/manifest.json",
+      "role": "2011-2015 printed Delhi UT summaries (NCRB Crime in India, original-year tables)",
+      "sha256": "cfc5eb486e5e90437c640a1d8a826efcc73a8f7b23e3341078c1edb3643d4658"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_ipc_crimes_2022.xlsx",
+      "role": "2022 ipc district-wise table, printed Total Districts row",
+      "sha256": "6f7336d08b154f201996823175940749eca6a6a0299c6e3d0ba76149ecf143fe"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_sll_crimes_2022.xlsx",
+      "role": "2022 sll district-wise table, printed Total Districts row",
+      "sha256": "8a83900fe8ad12c7e4dde94d62cf2a667fcb4f0f03c64306dafa1e6e782b91d1"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_crime_against_women_2022.xlsx",
+      "role": "2022 women district-wise table, printed Total Districts row",
+      "sha256": "cf2f2ed9c033559eeb1d0d0edc09b4e13e3b129bb69c30cd1d861a1ca33d917c"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_ipc_crimes_2023.xlsx",
+      "role": "2023 ipc district-wise table, printed Total Districts row",
+      "sha256": "b8200269fc0033e18b29e9ab10417ed0d8d9aa6c8659ef7b3babab2b97e7799a"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_sll_crimes_2023.xlsx",
+      "role": "2023 sll district-wise table, printed Total Districts row",
+      "sha256": "cf99f686960b4fa3ec604d0d2b7c17219625192f306ec08905388ebab489df87"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_crime_against_women_2023.xlsx",
+      "role": "2023 women district-wise table, printed Total Districts row",
+      "sha256": "62013addc959929c01e771ba93663644565eae8a9609d9df8184d3b0875cef26"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_ipc_bns_crimes_2024.xlsx",
+      "role": "2024 ipc district-wise table, printed Total Districts row",
+      "sha256": "41a4270149aa44561c508cbba62f4c26799a375b1edb8baa1db33b399e6ff121"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_sll_crimes_2024.xlsx",
+      "role": "2024 sll district-wise table, printed Total Districts row",
+      "sha256": "9800f505564ca26d10f025e7e432ba44abdd65e6009cbb397662ef5a997a6122"
+    },
+    {
+      "path": "data/raw/source_archive/ncrb/districtwise_crime_against_women_2024.xlsx",
+      "role": "2024 women district-wise table, printed Total Districts row",
+      "sha256": "cf04a114bff10d9b712b326eda40a91eefa46f45aa1de6d8dcd4870d978895fb"
+    },
+    {
+      "path": "data/staged/delhi_ut_series/printed_totals_2022_2024.json",
+      "role": "extraction record with the column headers and the unit-sum agreement check",
+      "sha256": "24ff1a8a2a5df1382879b2e7204eba9f4a92457ab3f31c4cbc3d07d2e54b327b"
+    }
+  ],
+  "verification": [
+    {
+      "year": 2022,
+      "reportingUnits": 23,
+      "printedTotalEqualsSumOfPrintedUnits": true,
+      "specialisedUnits": [
+        "Crime Branch",
+        "EOW",
+        "IGI Airport",
+        "Metro",
+        "RAILWAY",
+        "Spl Cell",
+        "SPUWAC",
+        "Vigilance"
+      ],
+      "reconciliation": {
+        "theft": {
+          "printedDelhiTotal": 206650,
+          "sumOfFifteenDistricts": 199548,
+          "specialisedUnits": 7102
+        },
+        "robbery": {
+          "printedDelhiTotal": 1808,
+          "sumOfFifteenDistricts": 1794,
+          "specialisedUnits": 14
+        },
+        "burglary": {
+          "printedDelhiTotal": 6189,
+          "sumOfFifteenDistricts": 6185,
+          "specialisedUnits": 4
+        },
+        "total_ipc_bns": {
+          "printedDelhiTotal": 300429,
+          "sumOfFifteenDistricts": 291884,
+          "specialisedUnits": 8545
+        },
+        "total_sll": {
+          "printedDelhiTotal": 19845,
+          "sumOfFifteenDistricts": 19082,
+          "specialisedUnits": 763
+        },
+        "total_crimes_against_women": {
+          "printedDelhiTotal": 14247,
+          "sumOfFifteenDistricts": 14119,
+          "specialisedUnits": 128
+        }
+      },
+      "columns": {
+        "theft": {
+          "table": "ipc",
+          "column": "CM",
+          "header": "Offences against Property / Theft (Section 379 IPC) / Theft (Total) (Col.92+Col.93) / 91",
+          "row": 1004
+        },
+        "robbery": {
+          "table": "ipc",
+          "column": "CT",
+          "header": "Robbery (Sec.392/394/397 IPC) / 98",
+          "row": 1004
+        },
+        "burglary": {
+          "table": "ipc",
+          "column": "CP",
+          "header": "Burglary (Sec.454 to 460 r/w Sec.380 IPC) / Burglary (Total) (Col.95 + Col.96) / 94",
+          "row": 1004
+        },
+        "total_ipc_bns": {
+          "table": "ipc",
+          "column": "EN",
+          "header": "Total Cognizable IPC crimes / 144",
+          "row": 1004
+        },
+        "total_sll": {
+          "table": "sll",
+          "column": "CO",
+          "header": "Total Cognizable SLL Crimes / 93 / 987 / 2333",
+          "row": 1002
+        },
+        "total_crimes_against_women": {
+          "table": "women",
+          "column": "BB",
+          "header": "Total Crime against Women (IPC+SLL) / 54 / 138 / 709",
+          "row": 1002
+        }
+      }
+    },
+    {
+      "year": 2023,
+      "reportingUnits": 23,
+      "printedTotalEqualsSumOfPrintedUnits": true,
+      "specialisedUnits": [
+        "Crime Branch",
+        "EOW",
+        "IGI Airport",
+        "Metro",
+        "RAILWAY",
+        "Spl Cell",
+        "SPUWAC",
+        "Vigilance"
+      ],
+      "reconciliation": {
+        "theft": {
+          "printedDelhiTotal": 228537,
+          "sumOfFifteenDistricts": 217578,
+          "specialisedUnits": 10959
+        },
+        "robbery": {
+          "printedDelhiTotal": 1654,
+          "sumOfFifteenDistricts": 1627,
+          "specialisedUnits": 27
+        },
+        "burglary": {
+          "printedDelhiTotal": 6916,
+          "sumOfFifteenDistricts": 6911,
+          "specialisedUnits": 5
+        },
+        "total_ipc_bns": {
+          "printedDelhiTotal": 324257,
+          "sumOfFifteenDistricts": 311806,
+          "specialisedUnits": 12451
+        },
+        "total_sll": {
+          "printedDelhiTotal": 20006,
+          "sumOfFifteenDistricts": 18998,
+          "specialisedUnits": 1008
+        },
+        "total_crimes_against_women": {
+          "printedDelhiTotal": 13439,
+          "sumOfFifteenDistricts": 13243,
+          "specialisedUnits": 196
+        }
+      },
+      "columns": {
+        "theft": {
+          "table": "ipc",
+          "column": "CM",
+          "header": "Offences against Property / Theft (Section 379 IPC) / Theft (Total) (Col.92+Col.93) / 91",
+          "row": 1029
+        },
+        "robbery": {
+          "table": "ipc",
+          "column": "CT",
+          "header": "Robbery (Sec.392/394/397 IPC) / 98",
+          "row": 1029
+        },
+        "burglary": {
+          "table": "ipc",
+          "column": "CP",
+          "header": "Burglary (Sec.454 to 460 r/w Sec.380 IPC) / Burglary (Total) (Col.95 + Col.96) / 94",
+          "row": 1029
+        },
+        "total_ipc_bns": {
+          "table": "ipc",
+          "column": "EN",
+          "header": "Total Cognizable IPC crimes / 144",
+          "row": 1029
+        },
+        "total_sll": {
+          "table": "sll",
+          "column": "CO",
+          "header": "Total Cognizable SLL Crimes / 93 / 547 / 1603",
+          "row": 1027
+        },
+        "total_crimes_against_women": {
+          "table": "women",
+          "column": "BB",
+          "header": "Total Crime against Women (IPC+SLL) / 54 / 106 / 548",
+          "row": 1027
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "reportingUnits": 23,
+      "printedTotalEqualsSumOfPrintedUnits": true,
+      "specialisedUnits": [
+        "Crime Branch",
+        "EOW",
+        "IGI Airport",
+        "Metro",
+        "RAILWAY",
+        "Spl Cell",
+        "SPUWAC",
+        "Vigilance"
+      ],
+      "reconciliation": {
+        "theft": {
+          "printedDelhiTotal": 180973,
+          "sumOfFifteenDistricts": 168830,
+          "specialisedUnits": 12143
+        },
+        "robbery": {
+          "printedDelhiTotal": 1510,
+          "sumOfFifteenDistricts": 1478,
+          "specialisedUnits": 32
+        },
+        "burglary": {
+          "printedDelhiTotal": 8968,
+          "sumOfFifteenDistricts": 8956,
+          "specialisedUnits": 12
+        },
+        "total_ipc_bns": {
+          "printedDelhiTotal": 275402,
+          "sumOfFifteenDistricts": 261527,
+          "specialisedUnits": 13875
+        },
+        "total_sll": {
+          "printedDelhiTotal": 22264,
+          "sumOfFifteenDistricts": 21065,
+          "specialisedUnits": 1199
+        },
+        "total_crimes_against_women": {
+          "printedDelhiTotal": 13396,
+          "sumOfFifteenDistricts": 13230,
+          "specialisedUnits": 166
+        }
+      },
+      "columns": {
+        "theft": {
+          "table": "ipc",
+          "column": "CY",
+          "header": "Offences against Property / Theft (Section 303,305-307 BNS/Section 379-382 IPC) / Theft (Total a to g) / [103] / 37",
+          "row": 1033
+        },
+        "robbery": {
+          "table": "ipc",
+          "column": "DI",
+          "header": "Robbery (Section 309 (4), 309(6), 311 BNS/Section 392/394/397 IPC) / [113] / 0",
+          "row": 1033
+        },
+        "burglary": {
+          "table": "ipc",
+          "column": "DR",
+          "header": "Burglary (Section 329(4),332-334 r/w Section 303 or 331 r/w 305 BNS/Section 454-460 r/w 380 IPC) / Burglary (Total a+b) / [122] / 15",
+          "row": 1033
+        },
+        "total_ipc_bns": {
+          "table": "ipc",
+          "column": "EZ",
+          "header": "Total Cognizable IPC/BNS crimes / [156] / 795",
+          "row": 1033
+        },
+        "total_sll": {
+          "table": "sll",
+          "column": "CQ",
+          "header": "Total Cognizable SLL Crimes / 95 / 1043 / 3406",
+          "row": 1032
+        },
+        "total_crimes_against_women": {
+          "table": "women",
+          "column": "BO",
+          "header": "Total Crime against Women (IPC/BNS + SLL Crimes) / [67] / 107",
+          "row": 1033
+        }
+      }
+    }
+  ],
+  "externalCheck": "The 2022 total of 300,429 IPC crimes matches the Delhi row of the NCRB Crime in India 2022 state/UT table as quoted in a web search on 2026-10-20; this is a spot check, not a full comparison.",
+  "files": [
+    {
+      "path": "delhi_ut_crime.json",
+      "bytes": 11320,
+      "sha256": "1c58a7e74dd5ec9406a1a5f2d53c92ba24ee7f7a86dbe76ed27b92ba133e9e5b"
+    },
+    {
+      "path": "delhi_ut_crime.csv",
+      "bytes": 5781,
+      "sha256": "183a039b19d21500b84a41823139820499bebae77475af6b55d047e55d0bb052"
+    }
+  ]
+}

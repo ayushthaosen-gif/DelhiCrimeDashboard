@@ -98,5 +98,20 @@
     "status": "production",
     "coverageStart": 2011,
     "coverageEnd": 2024
+  },
+  "delhiUtSeries": {
+    "id": "ncrb_delhi_ut_totals",
+    "status": "production",
+    "path": "delhi_ut_series/manifest.json",
+    "printedYears": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2022,
+      2023,
+      2024
+    ]
   }
 }
