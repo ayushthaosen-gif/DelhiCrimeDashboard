@@ -21,6 +21,12 @@ function compareYears(c, key, from, to, district) {
     if (rd.cautionMeasures.indexOf(key) >= 0) add('caution', rd.cautionReason);
     return out;
   }
+  var utScope = district === c.utSeries.scopeName;
+  if (utScope) {
+    [from, to].forEach(function (y) {
+      if (c.utSeries.printedYears.indexOf(y) < 0) add('unavailable', c.utSeries.gapReason);
+    });
+  }
   // 1. values that do not exist
   c.availability.forEach(function (a) {
     if (a.measures.indexOf(key) >= 0 && (inRange(from, a.years) || inRange(to, a.years))) add('unavailable', a.reason);
@@ -32,7 +38,8 @@ function compareYears(c, key, from, to, district) {
   c.definitionBreaks.forEach(function (b) {
     if (b.measures.indexOf(key) >= 0 && from <= b.between[0] && b.between[1] <= to) add(b.state, b.reason);
   });
-  // 3. changes in geography, district by district when a district is named
+  // 3. changes in geography, district by district when a district is named (Delhi-wide totals ignore district boundaries)
+  if (utScope) return out;
   c.geography.breaks.forEach(function (g) {
     if (!(from <= g.between[0] && g.between[1] <= to)) return;
     if (!district) {

@@ -1201,3 +1201,11 @@ Prior to the divergence, Claude's contributions (now absorbed by Antigravity's r
 - Downloads from a view carry geography version, offence definition, reporting period, comparability with the previous year and the reason for any break; the historical counts export has the same columns appended.
 - Data & methods: a table of every documented break. Static charts say whether a comparison is documented (road trend and crash-zone lists: caution; others: one period at a time).
 - Not done: an independent Delhi-wide crime series from the printed UT totals, and revision history for earlier release versions.
+
+## [2026-10-20] - Claude - Delhi-wide crime series (Delhi UT totals as printed)
+
+- New release `data/releases/delhi_ut_series/` (CSV, JSON, manifest, README), series id `ncrb_delhi_ut_totals`, production. One row per year 2011-2024.
+- 2011-2015: the printed Delhi UT summaries already extracted for the historical release. 2022-2024: the printed "Total Districts" row of the Delhi block in NCRB's district-wise tables, read from the archived workbooks by `tools/delhi_ut_series/extract.py` (standard library only, `--check` mode, unit tests). The printed total equals the sum of the printed unit rows for every figure.
+- 2016-2021 are rows with status `not_collected`: gaps, not zeros, never filled by summing districts (the district-level extract for those years omits totals on purpose). Collecting them needs the NCRB state/UT tables for those years.
+- Cross-check of both releases: for every figure and year 2022-2024, the printed Delhi total minus the 15 territorial districts equals the specialised units' printed rows (Crime Branch, EOW, IGI Airport, Metro, Railway, Special Cell, SPUWAC, Vigilance), asserted by the builder.
+- Burglary is three separate columns (original head, revised criminal-trespass/burglary head, later definition). `data/continuity.json` gained a `utSeries` scope: Delhi-wide comparisons skip district-boundary breaks but keep definition breaks and the missing years (2013 to 2014 not comparable, 2023 to 2024 caution).

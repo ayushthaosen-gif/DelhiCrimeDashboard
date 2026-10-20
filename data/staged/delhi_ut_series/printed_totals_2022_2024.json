@@ -1,0 +1,908 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "Delhi UT totals as NCRB prints them in the district-wise tables (\"Total Districts\" row of the Delhi block). The row covers every reporting unit, including specialised units, so it is the printed Delhi-wide figure and is higher than the sum of the 15 territorial districts.",
+  "nullPolicy": "A blank or dash in the source is null, never zero.",
+  "generatedBy": "tools/delhi_ut_series/extract.py",
+  "years": [
+    {
+      "year": 2022,
+      "sources": [
+        {
+          "table": "ipc",
+          "path": "data/raw/source_archive/ncrb/districtwise_ipc_crimes_2022.xlsx",
+          "sha256": "6f7336d08b154f201996823175940749eca6a6a0299c6e3d0ba76149ecf143fe",
+          "delhiBlockStartRow": 980,
+          "printedTotalRow": 1004
+        },
+        {
+          "table": "sll",
+          "path": "data/raw/source_archive/ncrb/districtwise_sll_crimes_2022.xlsx",
+          "sha256": "8a83900fe8ad12c7e4dde94d62cf2a667fcb4f0f03c64306dafa1e6e782b91d1",
+          "delhiBlockStartRow": 978,
+          "printedTotalRow": 1002
+        },
+        {
+          "table": "women",
+          "path": "data/raw/source_archive/ncrb/districtwise_crime_against_women_2022.xlsx",
+          "sha256": "cf2f2ed9c033559eeb1d0d0edc09b4e13e3b129bb69c30cd1d861a1ca33d917c",
+          "delhiBlockStartRow": 978,
+          "printedTotalRow": 1002
+        }
+      ],
+      "unitCount": 23,
+      "unitLabels": [
+        "Central",
+        "Crime Branch",
+        "East",
+        "EOW",
+        "IGI Airport",
+        "Metro",
+        "New Delhi",
+        "North",
+        "North-East",
+        "North-West",
+        "Outer",
+        "RAILWAY",
+        "South",
+        "South-East",
+        "South-West",
+        "Spl Cell",
+        "SPUWAC",
+        "Vigilance",
+        "West",
+        "Rohini",
+        "Shahdara",
+        "Dwarka",
+        "Outer North"
+      ],
+      "printedTotal": {
+        "theft": 206650,
+        "robbery": 1808,
+        "burglary": 6189,
+        "total_ipc_bns": 300429,
+        "total_sll": 19845,
+        "total_crimes_against_women": 14247
+      },
+      "sumOfPrintedUnits": {
+        "theft": 206650,
+        "robbery": 1808,
+        "burglary": 6189,
+        "total_ipc_bns": 300429,
+        "total_sll": 19845,
+        "total_crimes_against_women": 14247
+      },
+      "agreement": {
+        "theft": true,
+        "robbery": true,
+        "burglary": true,
+        "total_ipc_bns": true,
+        "total_sll": true,
+        "total_crimes_against_women": true
+      },
+      "printedTotalRow": {
+        "theft": {
+          "table": "ipc",
+          "column": "CM",
+          "header": "Offences against Property / Theft (Section 379 IPC) / Theft (Total) (Col.92+Col.93) / 91",
+          "row": 1004
+        },
+        "robbery": {
+          "table": "ipc",
+          "column": "CT",
+          "header": "Robbery (Sec.392/394/397 IPC) / 98",
+          "row": 1004
+        },
+        "burglary": {
+          "table": "ipc",
+          "column": "CP",
+          "header": "Burglary (Sec.454 to 460 r/w Sec.380 IPC) / Burglary (Total) (Col.95 + Col.96) / 94",
+          "row": 1004
+        },
+        "total_ipc_bns": {
+          "table": "ipc",
+          "column": "EN",
+          "header": "Total Cognizable IPC crimes / 144",
+          "row": 1004
+        },
+        "total_sll": {
+          "table": "sll",
+          "column": "CO",
+          "header": "Total Cognizable SLL Crimes / 93 / 987 / 2333",
+          "row": 1002
+        },
+        "total_crimes_against_women": {
+          "table": "women",
+          "column": "BB",
+          "header": "Total Crime against Women (IPC+SLL) / 54 / 138 / 709",
+          "row": 1002
+        }
+      },
+      "units": {
+        "Central": {
+          "theft": 9370,
+          "robbery": 93,
+          "burglary": 317,
+          "total_ipc_bns": 17566,
+          "total_sll": 663,
+          "total_crimes_against_women": 625
+        },
+        "Crime Branch": {
+          "theft": 2,
+          "robbery": 1,
+          "burglary": 0,
+          "total_ipc_bns": 99,
+          "total_sll": 199,
+          "total_crimes_against_women": 0
+        },
+        "East": {
+          "theft": 14828,
+          "robbery": 121,
+          "burglary": 513,
+          "total_ipc_bns": 20785,
+          "total_sll": 783,
+          "total_crimes_against_women": 840
+        },
+        "EOW": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 185,
+          "total_sll": 3,
+          "total_crimes_against_women": 0
+        },
+        "IGI Airport": {
+          "theft": 282,
+          "robbery": 2,
+          "burglary": 0,
+          "total_ipc_bns": 610,
+          "total_sll": 320,
+          "total_crimes_against_women": 16
+        },
+        "Metro": {
+          "theft": 3729,
+          "robbery": 0,
+          "burglary": 4,
+          "total_ipc_bns": 4194,
+          "total_sll": 20,
+          "total_crimes_against_women": 27
+        },
+        "New Delhi": {
+          "theft": 1350,
+          "robbery": 9,
+          "burglary": 24,
+          "total_ipc_bns": 2681,
+          "total_sll": 84,
+          "total_crimes_against_women": 103
+        },
+        "North": {
+          "theft": 14023,
+          "robbery": 150,
+          "burglary": 503,
+          "total_ipc_bns": 20790,
+          "total_sll": 1025,
+          "total_crimes_against_women": 734
+        },
+        "North-East": {
+          "theft": 19364,
+          "robbery": 195,
+          "burglary": 274,
+          "total_ipc_bns": 26164,
+          "total_sll": 1779,
+          "total_crimes_against_women": 1156
+        },
+        "North-West": {
+          "theft": 18480,
+          "robbery": 114,
+          "burglary": 234,
+          "total_ipc_bns": 27575,
+          "total_sll": 1614,
+          "total_crimes_against_women": 786
+        },
+        "Outer": {
+          "theft": 15120,
+          "robbery": 151,
+          "burglary": 613,
+          "total_ipc_bns": 23759,
+          "total_sll": 1697,
+          "total_crimes_against_women": 1054
+        },
+        "RAILWAY": {
+          "theft": 3089,
+          "robbery": 11,
+          "burglary": 0,
+          "total_ipc_bns": 3183,
+          "total_sll": 60,
+          "total_crimes_against_women": 26
+        },
+        "South": {
+          "theft": 15243,
+          "robbery": 116,
+          "burglary": 348,
+          "total_ipc_bns": 21155,
+          "total_sll": 1593,
+          "total_crimes_against_women": 1253
+        },
+        "South-East": {
+          "theft": 17144,
+          "robbery": 111,
+          "burglary": 650,
+          "total_ipc_bns": 23833,
+          "total_sll": 1793,
+          "total_crimes_against_women": 1284
+        },
+        "South-West": {
+          "theft": 7461,
+          "robbery": 58,
+          "burglary": 352,
+          "total_ipc_bns": 12522,
+          "total_sll": 1195,
+          "total_crimes_against_women": 790
+        },
+        "Spl Cell": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 226,
+          "total_sll": 156,
+          "total_crimes_against_women": 11
+        },
+        "SPUWAC": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 48,
+          "total_sll": 0,
+          "total_crimes_against_women": 48
+        },
+        "Vigilance": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 0,
+          "total_sll": 5,
+          "total_crimes_against_women": 0
+        },
+        "West": {
+          "theft": 18360,
+          "robbery": 121,
+          "burglary": 467,
+          "total_ipc_bns": 24303,
+          "total_sll": 1383,
+          "total_crimes_against_women": 957
+        },
+        "Rohini": {
+          "theft": 12058,
+          "robbery": 112,
+          "burglary": 433,
+          "total_ipc_bns": 18158,
+          "total_sll": 1135,
+          "total_crimes_against_women": 1109
+        },
+        "Shahdara": {
+          "theft": 11122,
+          "robbery": 88,
+          "burglary": 360,
+          "total_ipc_bns": 15818,
+          "total_sll": 1177,
+          "total_crimes_against_women": 850
+        },
+        "Dwarka": {
+          "theft": 16581,
+          "robbery": 172,
+          "burglary": 765,
+          "total_ipc_bns": 22580,
+          "total_sll": 1731,
+          "total_crimes_against_women": 1411
+        },
+        "Outer North": {
+          "theft": 9044,
+          "robbery": 183,
+          "burglary": 332,
+          "total_ipc_bns": 14195,
+          "total_sll": 1430,
+          "total_crimes_against_women": 1167
+        }
+      }
+    },
+    {
+      "year": 2023,
+      "sources": [
+        {
+          "table": "ipc",
+          "path": "data/raw/source_archive/ncrb/districtwise_ipc_crimes_2023.xlsx",
+          "sha256": "b8200269fc0033e18b29e9ab10417ed0d8d9aa6c8659ef7b3babab2b97e7799a",
+          "delhiBlockStartRow": 1005,
+          "printedTotalRow": 1029
+        },
+        {
+          "table": "sll",
+          "path": "data/raw/source_archive/ncrb/districtwise_sll_crimes_2023.xlsx",
+          "sha256": "cf99f686960b4fa3ec604d0d2b7c17219625192f306ec08905388ebab489df87",
+          "delhiBlockStartRow": 1003,
+          "printedTotalRow": 1027
+        },
+        {
+          "table": "women",
+          "path": "data/raw/source_archive/ncrb/districtwise_crime_against_women_2023.xlsx",
+          "sha256": "62013addc959929c01e771ba93663644565eae8a9609d9df8184d3b0875cef26",
+          "delhiBlockStartRow": 1003,
+          "printedTotalRow": 1027
+        }
+      ],
+      "unitCount": 23,
+      "unitLabels": [
+        "Central",
+        "Crime Branch",
+        "East",
+        "EOW",
+        "IGI Airport",
+        "Metro",
+        "New Delhi",
+        "North",
+        "North-East",
+        "North-West",
+        "Outer",
+        "RAILWAY",
+        "South",
+        "South-East",
+        "South-West",
+        "Spl Cell",
+        "SPUWAC",
+        "Vigilance",
+        "West",
+        "Rohini",
+        "Shahdara",
+        "Dwarka",
+        "Outer North"
+      ],
+      "printedTotal": {
+        "theft": 228537,
+        "robbery": 1654,
+        "burglary": 6916,
+        "total_ipc_bns": 324257,
+        "total_sll": 20006,
+        "total_crimes_against_women": 13439
+      },
+      "sumOfPrintedUnits": {
+        "theft": 228537,
+        "robbery": 1654,
+        "burglary": 6916,
+        "total_ipc_bns": 324257,
+        "total_sll": 20006,
+        "total_crimes_against_women": 13439
+      },
+      "agreement": {
+        "theft": true,
+        "robbery": true,
+        "burglary": true,
+        "total_ipc_bns": true,
+        "total_sll": true,
+        "total_crimes_against_women": true
+      },
+      "printedTotalRow": {
+        "theft": {
+          "table": "ipc",
+          "column": "CM",
+          "header": "Offences against Property / Theft (Section 379 IPC) / Theft (Total) (Col.92+Col.93) / 91",
+          "row": 1029
+        },
+        "robbery": {
+          "table": "ipc",
+          "column": "CT",
+          "header": "Robbery (Sec.392/394/397 IPC) / 98",
+          "row": 1029
+        },
+        "burglary": {
+          "table": "ipc",
+          "column": "CP",
+          "header": "Burglary (Sec.454 to 460 r/w Sec.380 IPC) / Burglary (Total) (Col.95 + Col.96) / 94",
+          "row": 1029
+        },
+        "total_ipc_bns": {
+          "table": "ipc",
+          "column": "EN",
+          "header": "Total Cognizable IPC crimes / 144",
+          "row": 1029
+        },
+        "total_sll": {
+          "table": "sll",
+          "column": "CO",
+          "header": "Total Cognizable SLL Crimes / 93 / 547 / 1603",
+          "row": 1027
+        },
+        "total_crimes_against_women": {
+          "table": "women",
+          "column": "BB",
+          "header": "Total Crime against Women (IPC+SLL) / 54 / 106 / 548",
+          "row": 1027
+        }
+      },
+      "units": {
+        "Central": {
+          "theft": 9697,
+          "robbery": 88,
+          "burglary": 324,
+          "total_ipc_bns": 18567,
+          "total_sll": 829,
+          "total_crimes_against_women": 587
+        },
+        "Crime Branch": {
+          "theft": 1,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 123,
+          "total_sll": 170,
+          "total_crimes_against_women": 2
+        },
+        "East": {
+          "theft": 15169,
+          "robbery": 99,
+          "burglary": 568,
+          "total_ipc_bns": 21875,
+          "total_sll": 794,
+          "total_crimes_against_women": 709
+        },
+        "EOW": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 94,
+          "total_sll": 0,
+          "total_crimes_against_women": 0
+        },
+        "IGI Airport": {
+          "theft": 319,
+          "robbery": 1,
+          "burglary": 0,
+          "total_ipc_bns": 680,
+          "total_sll": 516,
+          "total_crimes_against_women": 31
+        },
+        "Metro": {
+          "theft": 5826,
+          "robbery": 2,
+          "burglary": 5,
+          "total_ipc_bns": 6262,
+          "total_sll": 18,
+          "total_crimes_against_women": 25
+        },
+        "New Delhi": {
+          "theft": 1436,
+          "robbery": 19,
+          "burglary": 29,
+          "total_ipc_bns": 2784,
+          "total_sll": 86,
+          "total_crimes_against_women": 93
+        },
+        "North": {
+          "theft": 18450,
+          "robbery": 154,
+          "burglary": 605,
+          "total_ipc_bns": 27193,
+          "total_sll": 991,
+          "total_crimes_against_women": 638
+        },
+        "North-East": {
+          "theft": 19610,
+          "robbery": 110,
+          "burglary": 403,
+          "total_ipc_bns": 26663,
+          "total_sll": 1318,
+          "total_crimes_against_women": 1176
+        },
+        "North-West": {
+          "theft": 21436,
+          "robbery": 120,
+          "burglary": 280,
+          "total_ipc_bns": 28431,
+          "total_sll": 1492,
+          "total_crimes_against_women": 803
+        },
+        "Outer": {
+          "theft": 14716,
+          "robbery": 91,
+          "burglary": 524,
+          "total_ipc_bns": 23750,
+          "total_sll": 1929,
+          "total_crimes_against_women": 1063
+        },
+        "RAILWAY": {
+          "theft": 4813,
+          "robbery": 24,
+          "burglary": 0,
+          "total_ipc_bns": 5008,
+          "total_sll": 168,
+          "total_crimes_against_women": 26
+        },
+        "South": {
+          "theft": 17800,
+          "robbery": 98,
+          "burglary": 434,
+          "total_ipc_bns": 24309,
+          "total_sll": 1840,
+          "total_crimes_against_women": 1073
+        },
+        "South-East": {
+          "theft": 19591,
+          "robbery": 127,
+          "burglary": 658,
+          "total_ipc_bns": 25732,
+          "total_sll": 2152,
+          "total_crimes_against_women": 1166
+        },
+        "South-West": {
+          "theft": 7594,
+          "robbery": 53,
+          "burglary": 452,
+          "total_ipc_bns": 12083,
+          "total_sll": 1196,
+          "total_crimes_against_women": 702
+        },
+        "Spl Cell": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 173,
+          "total_sll": 132,
+          "total_crimes_against_women": 1
+        },
+        "SPUWAC": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 111,
+          "total_sll": 0,
+          "total_crimes_against_women": 111
+        },
+        "Vigilance": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 0,
+          "total_sll": 4,
+          "total_crimes_against_women": 0
+        },
+        "West": {
+          "theft": 21084,
+          "robbery": 99,
+          "burglary": 724,
+          "total_ipc_bns": 27606,
+          "total_sll": 1465,
+          "total_crimes_against_women": 904
+        },
+        "Rohini": {
+          "theft": 13042,
+          "robbery": 83,
+          "burglary": 449,
+          "total_ipc_bns": 18264,
+          "total_sll": 1188,
+          "total_crimes_against_women": 882
+        },
+        "Shahdara": {
+          "theft": 9968,
+          "robbery": 145,
+          "burglary": 401,
+          "total_ipc_bns": 15210,
+          "total_sll": 584,
+          "total_crimes_against_women": 903
+        },
+        "Dwarka": {
+          "theft": 17856,
+          "robbery": 173,
+          "burglary": 699,
+          "total_ipc_bns": 23346,
+          "total_sll": 1781,
+          "total_crimes_against_women": 1329
+        },
+        "Outer North": {
+          "theft": 10129,
+          "robbery": 168,
+          "burglary": 361,
+          "total_ipc_bns": 15993,
+          "total_sll": 1353,
+          "total_crimes_against_women": 1215
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "sources": [
+        {
+          "table": "ipc",
+          "path": "data/raw/source_archive/ncrb/districtwise_ipc_bns_crimes_2024.xlsx",
+          "sha256": "41a4270149aa44561c508cbba62f4c26799a375b1edb8baa1db33b399e6ff121",
+          "delhiBlockStartRow": 1009,
+          "printedTotalRow": 1033
+        },
+        {
+          "table": "sll",
+          "path": "data/raw/source_archive/ncrb/districtwise_sll_crimes_2024.xlsx",
+          "sha256": "9800f505564ca26d10f025e7e432ba44abdd65e6009cbb397662ef5a997a6122",
+          "delhiBlockStartRow": 1008,
+          "printedTotalRow": 1032
+        },
+        {
+          "table": "women",
+          "path": "data/raw/source_archive/ncrb/districtwise_crime_against_women_2024.xlsx",
+          "sha256": "cf04a114bff10d9b712b326eda40a91eefa46f45aa1de6d8dcd4870d978895fb",
+          "delhiBlockStartRow": 1009,
+          "printedTotalRow": 1033
+        }
+      ],
+      "unitCount": 23,
+      "unitLabels": [
+        "Central",
+        "Crime Branch",
+        "East",
+        "EOW",
+        "IGI Airport",
+        "Metro",
+        "New Delhi",
+        "North",
+        "North-East",
+        "North-West",
+        "Outer",
+        "RAILWAY",
+        "South",
+        "South-East",
+        "South-West",
+        "Spl Cell",
+        "SPUWAC",
+        "Vigilance",
+        "West",
+        "Rohini",
+        "Shahdara",
+        "Dwarka",
+        "Outer North"
+      ],
+      "printedTotal": {
+        "theft": 180973,
+        "robbery": 1510,
+        "burglary": 8968,
+        "total_ipc_bns": 275402,
+        "total_sll": 22264,
+        "total_crimes_against_women": 13396
+      },
+      "sumOfPrintedUnits": {
+        "theft": 180973,
+        "robbery": 1510,
+        "burglary": 8968,
+        "total_ipc_bns": 275402,
+        "total_sll": 22264,
+        "total_crimes_against_women": 13396
+      },
+      "agreement": {
+        "theft": true,
+        "robbery": true,
+        "burglary": true,
+        "total_ipc_bns": true,
+        "total_sll": true,
+        "total_crimes_against_women": true
+      },
+      "printedTotalRow": {
+        "theft": {
+          "table": "ipc",
+          "column": "CY",
+          "header": "Offences against Property / Theft (Section 303,305-307 BNS/Section 379-382 IPC) / Theft (Total a to g) / [103] / 37",
+          "row": 1033
+        },
+        "robbery": {
+          "table": "ipc",
+          "column": "DI",
+          "header": "Robbery (Section 309 (4), 309(6), 311 BNS/Section 392/394/397 IPC) / [113] / 0",
+          "row": 1033
+        },
+        "burglary": {
+          "table": "ipc",
+          "column": "DR",
+          "header": "Burglary (Section 329(4),332-334 r/w Section 303 or 331 r/w 305 BNS/Section 454-460 r/w 380 IPC) / Burglary (Total a+b) / [122] / 15",
+          "row": 1033
+        },
+        "total_ipc_bns": {
+          "table": "ipc",
+          "column": "EZ",
+          "header": "Total Cognizable IPC/BNS crimes / [156] / 795",
+          "row": 1033
+        },
+        "total_sll": {
+          "table": "sll",
+          "column": "CQ",
+          "header": "Total Cognizable SLL Crimes / 95 / 1043 / 3406",
+          "row": 1032
+        },
+        "total_crimes_against_women": {
+          "table": "women",
+          "column": "BO",
+          "header": "Total Crime against Women (IPC/BNS + SLL Crimes) / [67] / 107",
+          "row": 1033
+        }
+      },
+      "units": {
+        "Central": {
+          "theft": 6770,
+          "robbery": 131,
+          "burglary": 352,
+          "total_ipc_bns": 13690,
+          "total_sll": 910,
+          "total_crimes_against_women": 541
+        },
+        "Crime Branch": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 80,
+          "total_sll": 192,
+          "total_crimes_against_women": 1
+        },
+        "East": {
+          "theft": 13510,
+          "robbery": 79,
+          "burglary": 759,
+          "total_ipc_bns": 19711,
+          "total_sll": 900,
+          "total_crimes_against_women": 766
+        },
+        "EOW": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 144,
+          "total_sll": 0,
+          "total_crimes_against_women": 0
+        },
+        "IGI Airport": {
+          "theft": 350,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 716,
+          "total_sll": 664,
+          "total_crimes_against_women": 22
+        },
+        "Metro": {
+          "theft": 6806,
+          "robbery": 6,
+          "burglary": 12,
+          "total_ipc_bns": 7249,
+          "total_sll": 31,
+          "total_crimes_against_women": 24
+        },
+        "New Delhi": {
+          "theft": 1142,
+          "robbery": 11,
+          "burglary": 28,
+          "total_ipc_bns": 2385,
+          "total_sll": 65,
+          "total_crimes_against_women": 98
+        },
+        "North": {
+          "theft": 15084,
+          "robbery": 148,
+          "burglary": 688,
+          "total_ipc_bns": 24275,
+          "total_sll": 1059,
+          "total_crimes_against_women": 621
+        },
+        "North-East": {
+          "theft": 16434,
+          "robbery": 117,
+          "burglary": 404,
+          "total_ipc_bns": 22786,
+          "total_sll": 1719,
+          "total_crimes_against_women": 1145
+        },
+        "North-West": {
+          "theft": 17357,
+          "robbery": 142,
+          "burglary": 358,
+          "total_ipc_bns": 24329,
+          "total_sll": 1718,
+          "total_crimes_against_women": 748
+        },
+        "Outer": {
+          "theft": 13432,
+          "robbery": 129,
+          "burglary": 926,
+          "total_ipc_bns": 21699,
+          "total_sll": 2081,
+          "total_crimes_against_women": 1179
+        },
+        "RAILWAY": {
+          "theft": 4987,
+          "robbery": 26,
+          "burglary": 0,
+          "total_ipc_bns": 5147,
+          "total_sll": 168,
+          "total_crimes_against_women": 21
+        },
+        "South": {
+          "theft": 11868,
+          "robbery": 67,
+          "burglary": 423,
+          "total_ipc_bns": 18913,
+          "total_sll": 1588,
+          "total_crimes_against_women": 1227
+        },
+        "South-East": {
+          "theft": 16299,
+          "robbery": 96,
+          "burglary": 841,
+          "total_ipc_bns": 22363,
+          "total_sll": 1988,
+          "total_crimes_against_women": 1280
+        },
+        "South-West": {
+          "theft": 5388,
+          "robbery": 68,
+          "burglary": 492,
+          "total_ipc_bns": 9899,
+          "total_sll": 1139,
+          "total_crimes_against_women": 716
+        },
+        "Spl Cell": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 444,
+          "total_sll": 136,
+          "total_crimes_against_women": 3
+        },
+        "SPUWAC": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 95,
+          "total_sll": 0,
+          "total_crimes_against_women": 95
+        },
+        "Vigilance": {
+          "theft": 0,
+          "robbery": 0,
+          "burglary": 0,
+          "total_ipc_bns": 0,
+          "total_sll": 8,
+          "total_crimes_against_women": 0
+        },
+        "West": {
+          "theft": 12997,
+          "robbery": 128,
+          "burglary": 926,
+          "total_ipc_bns": 19383,
+          "total_sll": 1762,
+          "total_crimes_against_women": 825
+        },
+        "Rohini": {
+          "theft": 10023,
+          "robbery": 59,
+          "burglary": 672,
+          "total_ipc_bns": 16479,
+          "total_sll": 1562,
+          "total_crimes_against_women": 883
+        },
+        "Shahdara": {
+          "theft": 8128,
+          "robbery": 71,
+          "burglary": 333,
+          "total_ipc_bns": 13982,
+          "total_sll": 1179,
+          "total_crimes_against_women": 808
+        },
+        "Dwarka": {
+          "theft": 12082,
+          "robbery": 96,
+          "burglary": 1089,
+          "total_ipc_bns": 17317,
+          "total_sll": 1641,
+          "total_crimes_against_women": 1177
+        },
+        "Outer North": {
+          "theft": 8316,
+          "robbery": 136,
+          "burglary": 665,
+          "total_ipc_bns": 14316,
+          "total_sll": 1754,
+          "total_crimes_against_women": 1216
+        }
+      }
+    }
+  ]
+}
