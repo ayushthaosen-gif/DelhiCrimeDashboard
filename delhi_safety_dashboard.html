@@ -412,30 +412,97 @@ details.method-detail code { font-family: "IBM Plex Mono", monospace; background
 .dl-sheet-list li { margin-bottom: 3px; }
 .dl-sheet-list b { color: var(--text); }
 
+/* Overview / Explore / Data & methods */
+.site-section { margin: 0 0 40px; }
+.section-title { font-family: 'Big Shoulders', -apple-system, sans-serif; font-weight: 800; font-size: 34px; line-height: 1.05; margin: 0 0 6px; letter-spacing: -.01em; }
+.section-lede { margin: 0 0 16px; color: var(--text-dim); max-width: 76ch; font-size: 14px; }
+.nav-more { position: relative; flex: none; }
+.nav-more summary { list-style: none; cursor: pointer; font-size: 12.5px; font-weight: 750; padding: 8px 13px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface); color: var(--text); white-space: nowrap; }
+.nav-more summary::-webkit-details-marker { display: none; }
+.nav-more[open] .nav-more-menu { position: fixed; top: 58px; right: 14px; z-index: 600; min-width: 260px; display: flex; flex-direction: column; padding: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); }
+.nav-more-menu a { color: var(--text); text-decoration: none; font-size: 13px; font-weight: 650; padding: 10px 12px; border-radius: 6px; }
+.nav-more-menu a:hover { background: var(--bg); }
+.overview-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 16px; margin: 0 0 16px; }
+.overview-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow); }
+.overview-card h2 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 24px; font-weight: 800; margin: 0 0 10px; }
+.finding { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.finding:last-child { border-bottom: none; padding-bottom: 0; }
+.finding h3 { margin: 0 0 3px; font-size: 13px; font-weight: 800; }
+.finding p, .limit-list li { margin: 0; font-size: 13px; line-height: 1.5; color: var(--text-dim); }
+.limit-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.limit-list b { color: var(--text); }
+.start-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.start-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); }
+.topic-start, .topic-btn { font: inherit; font-size: 13px; font-weight: 750; padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; min-height: 40px; }
+.topic-start { background: var(--amber); border-color: var(--amber); color: var(--night); }
+.topic-start:hover { background: var(--amber-dim); }
+.topic-switch { display: inline-flex; gap: 6px; padding: 4px; margin: 0 0 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.topic-btn { border-color: transparent; }
+.topic-btn[aria-pressed="true"] { background: var(--amber); color: var(--night); }
+body.topic-road #roadSection { display: block; }
+body:not(.topic-road) #roadSection { display: none; }
+.explainer { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
+.explainer-title { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 20px; font-weight: 800; margin: 0 0 10px; }
+.explainer-title-sm { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); margin: 0 0 8px; }
+.explainer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; }
+.explainer-grid h3 { margin: 0 0 2px; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 800; }
+.explainer-grid p { margin: 0; font-size: 13px; line-height: 1.5; }
+.explainer-more { margin-top: 10px; font-size: 13px; }
+.explainer-more summary { cursor: pointer; font-weight: 750; color: var(--accent-text); }
+.explainer-more p { margin: 8px 0 0; line-height: 1.5; color: var(--text-dim); }
+.mini-glossary { margin: 8px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 12.5px; }
+.mini-glossary dt, #glossaryList dt { font-weight: 800; }
+.mini-glossary dd, #glossaryList dd { margin: 0; color: var(--text-dim); }
+.explainer-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+.explainer-status { font-size: 12px; color: var(--text-dim); }
+.table-wrap { margin-top: 12px; max-height: 360px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; }
+.view-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.view-table caption { text-align: left; font-weight: 750; padding: 10px 12px; }
+.view-table th, .view-table td { text-align: left; padding: 7px 12px; border-top: 1px solid var(--border); }
+.view-table td { text-align: right; font-variant-numeric: tabular-nums; }
+.dm-jump { margin: 0 0 14px; font-size: 13px; }
+.dm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 16px; }
+.dm-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow); }
+.dm-card h3 { font-family: 'Big Shoulders', -apple-system, sans-serif; font-size: 20px; font-weight: 800; margin: 0 0 8px; }
+.dm-card p, .dm-card li { font-size: 13px; line-height: 1.5; color: var(--text-dim); margin: 0 0 8px; }
+.dm-card ul { margin: 0; padding-left: 18px; }
+.cite-box { margin: 8px 0; padding: 10px 12px; border: 1px dashed var(--border); border-radius: 8px; font-size: 12.5px; color: var(--text); word-break: break-word; }
+#glossaryList { margin: 10px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; font-size: 13px; }
+@media (max-width: 760px) {
+  .overview-grid, .dm-grid, .explainer-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 28px; }
+  #glossaryList, .mini-glossary { grid-template-columns: 1fr; }
+  #glossaryList dd, .mini-glossary dd { margin-bottom: 6px; }
+}
+
 footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--text-dim); display: flex; flex-direction: column; gap: 4px; }
 footer a { color: inherit; }
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to the map</a>
+<a class="skip-link" href="#main">Skip to the content</a>
 <div class="wrap">
   <nav class="topnav" aria-label="Page sections">
     <a class="brand" href="#main">Delhi Urban Safety Observatory</a>
     <div class="topnav-links">
-      <a href="#mapSection">Map</a>
-      <a href="#detail">District</a>
-      <a href="#methodSection">Method</a>
-      <a href="#scatterSection">Charts</a>
-      <a href="#roadSection">Road safety</a>
-      <a href="#downloadSection">Data</a>
+      <a href="#overview">Overview</a>
+      <a href="#explore">Explore</a>
+      <a href="#data-methods">Data &amp; methods</a>
     </div>
     <button class="theme-btn" id="themeToggle" type="button" aria-label="Switch colour theme">◐</button>
-    <a class="nav-cta" href="interactive_map.html">Interactive map →</a>
-    <a class="nav-cta" href="historical_crime.html">Historical crime · 2011–2018</a>
-    <a class="nav-cta" href="map_3d.html" title="Prototype 3D ward view">3D view (prototype)</a>
-    <a class="nav-cta" href="for_reporters.html" title="What you can and cannot say">Reporters &amp; researchers</a>
-    <a class="nav-cta" href="irad_stations.html" title="Prototype: monthly road-accident counts for 2025 and 2026 from district iRAD reports">2025&ndash;26 road accidents (iRAD)</a>
+    <details class="nav-more" id="navMore">
+      <summary>More pages</summary>
+      <div class="nav-more-menu">
+        <a href="interactive_map.html">Interactive map</a>
+        <a href="historical_crime.html">Historical crime table, 2011–2018</a>
+        <a href="for_reporters.html" title="What you can and cannot say">Reporters &amp; researchers</a>
+        <a href="irad_stations.html" title="Prototype: monthly road-accident counts for 2025 and 2026 from district iRAD reports">2025&ndash;26 road accidents (iRAD)</a>
+        <a href="map_3d.html" title="Prototype 3D ward view">3D view (prototype)</a>
+      </div>
+    </details>
   </nav>
+  <main id="main" data-version="2026-10-20">
+  <section id="overview" class="site-section" aria-label="Overview">
   <header class="masthead">
     <div class="header-copy">
       <div class="eyebrow">Delhi Police &amp; Traffic Police district data · 2011–2024</div>
@@ -445,32 +512,35 @@ footer a { color: inherit; }
     </div>
     <img class="hero-image" src="assets/delhi-safety-hero.webp" width="960" height="540" loading="lazy" decoding="async" alt="Stylized map of Delhi showing districts, transport corridors, safety-risk circles and public-infrastructure markers">
   </header>
-
-  <main id="main">
-  <details class="datanote" id="coverage">
-    <summary>How current is each data series?</summary>
-    <div class="datanote-body">
-      <p class="about-lede">Official crime and crash figures stop at <b>2024</b>. Newer material exists but is kept off the maps on purpose. <b>Never compare a year-to-date or provisional series with a full year.</b> Source: <code>data/series_status.json</code>.</p>
-      <div class="cov-wrap"><table class="cov-table"><thead><tr><th scope="col">Series</th><th scope="col">Latest period</th><th scope="col">Status</th><th scope="col">Geography</th></tr></thead><tbody><tr><th scope="row">NCRB district crime (IPC/BNS, SLL, crimes against women)</th><td>2024</td><td><span class="cov-status cov-production">production</span></td><td>15 police districts</td></tr><tr><th scope="row">Delhi Traffic Police citywide road trend</th><td>2024</td><td><span class="cov-status cov-production">production</span></td><td>Delhi citywide; no district allocation</td></tr><tr><th scope="row">NCRB historical district crime counts, as printed</th><td>2018</td><td><span class="cov-status cov-production">production</span></td><td>original annual reporting districts (11 in 2011-2016, 14 in 2017-2018); no allocation to current districts</td></tr><tr><th scope="row">Historical police-district reference maps, 2011-2018</th><td>2018</td><td><span class="cov-status cov-staged">staged</span></td><td>2014 station polygons regrouped by the Dec 2014 roster (2011-2016, inferred) and the Nov 2017 gazette schedule (2017-2018)</td></tr><tr><th scope="row">NCRB Crime in India 2025</th><td>none</td><td><span class="cov-status cov-not_published">not published</span></td><td>15 police districts</td></tr><tr><th scope="row">Delhi Traffic Police crash-prone zones</th><td>2024</td><td><span class="cov-status cov-production">production</span></td><td>named locations (93 zones in 2024); 15 police districts</td></tr><tr><th scope="row">Delhi Traffic Police annual Road Crash Report 2025</th><td>none</td><td><span class="cov-status cov-not_published">not published</span></td><td>15 police districts</td></tr><tr><th scope="row">District iRAD road-accident reports</th><td>2026-08 (varies by district)</td><td><span class="cov-status cov-staged">staged</span></td><td>revenue districts and police stations as printed; not mapped to the 15 police districts</td></tr><tr><th scope="row">iRAD reports for 2026</th><td>2026-01 to 2026-08 (South East to July, North East to August, New Delhi to May)</td><td><span class="cov-status cov-provisional">provisional</span></td><td>only the districts that publish 2026 reports</td></tr><tr><th scope="row">Delhi Police 2025 citywide counts as reported by two news outlets</th><td>2025</td><td><span class="cov-status cov-staged">staged</span></td><td>Delhi as a whole, 8 offences, no district split</td></tr><tr><th scope="row">OpenStreetMap infrastructure snapshots (overbridges, signals, crossings, hospitals, cameras, police, footways)</th><td>2026-08</td><td><span class="cov-status cov-production">production</span></td><td>points and ways, assigned to districts and wards</td></tr><tr><th scope="row">Sidewalk, footway and crossing mapping around crash zones</th><td>2026-10</td><td><span class="cov-status cov-staged">staged</span></td><td>250 m and 500 m around each 2024 crash zone</td></tr><tr><th scope="row">PAPL streetlight and underpass survey</th><td>survey period, not re-measured</td><td><span class="cov-status cov-retained_legacy_year">retained legacy year</span></td><td>9 of 15 districts surveyed</td></tr><tr><th scope="row">Official liquor vend list</th><td>list date not established</td><td><span class="cov-status cov-production">production</span></td><td>points (positions mostly approximate)</td></tr><tr><th scope="row">Delhi wards, legacy 290-ward geography</th><td>pre-2022 delimitation</td><td><span class="cov-status cov-retained_legacy_year">retained legacy year</span></td><td>290 legacy wards (273 MCD, 9 NDMC, 8 Cantonment polygons)</td></tr><tr><th scope="row">Delhi wards, current 250-ward geography (MCD delimitation 2022)</th><td>2022 delimitation</td><td><span class="cov-status cov-not_implemented">not implemented</span></td><td>250 wards</td></tr><tr><th scope="row">Master Plan 2047 against 2021 satellite land cover</th><td>plan 2026 draft; land cover 2021</td><td><span class="cov-status cov-staged">staged</span></td><td>290 legacy wards</td></tr><tr><th scope="row">Staged iRAD 2025 release</th><td>2025; coverage differs by reporting district and table</td><td><span class="cov-status cov-staged">staged</span></td><td>reporting districts and station labels; not the 15 police districts</td></tr><tr><th scope="row">Police station crosswalk using the 2026 Manual</th><td>Manual updated 2026-05-22 (post-period structural reference)</td><td><span class="cov-status cov-staged">staged</span></td><td>source reporting labels matched to current territorial station identities</td></tr></tbody></table></div>
-      <p class="cov-note">Ward-level layers use the <b>legacy 290-ward geography</b> (before the 2022 delimitation), not the current 250 MCD wards.</p>
+  <div class="overview-grid">
+    <div class="overview-card">
+      <h2>What the data shows</h2>
+      <div id="findingList"></div>
     </div>
-  </details>
-
-  <details class="datanote" id="about">
-    <summary>About this project and data coverage notes</summary>
-    <div class="datanote-body">
-      <p class="about-lede">This dashboard puts <b>NCRB crime reports (2011-2024; 2011-2018 in the districts reported at the time)</b>, <b>Delhi Traffic Police crash data</b> and <b>public-infrastructure counts</b> side by side for Delhi's 15 police districts, so citizens, planners and researchers can see where safety and infrastructure coverage line up, and where they do not. It describes patterns. It does not show cause and effect.</p>
-      <ul>
-        <li><b>Streetlights</b> (PAPL survey, ~40k points) and <b>underpasses</b> (PAPL survey, 417 points) share the exact same gap: <b>Dwarka, North-East, North-West, Outer, Outer North and Rohini were never driven through.</b> Zero there means "not surveyed," not "not present."</li>
-        <li><b>Pedestrian overbridges</b> (OpenStreetMap/Overpass snapshot, 242 connected mapped bridge groups) are available across all district polygons, but this is a mapped inventory rather than an official completeness register. A zero means no matching OSM feature was mapped, not verified absence.</li>
-        <li><b>Metro station gates</b> (OpenStreetMap, 529 points), <b>bus stops</b> (OpenStreetMap, 3,199 points), and <b>ATMs</b> (OpenStreetMap via Overpass API, 666 points) have real, complete coverage across all 15 districts.</li>
-        <li><b>Police Infra</b> combines two sources: full <b>police stations</b> (Delhi Police GSDL, official geocoded list, 224 points — complete for all 15 districts) plus <b>chowkis, outposts &amp; booths</b> (OpenStreetMap community mapping, 120 points — no official geocoded chowki dataset exists publicly, confirmed against the same GSDL source). The combined figure is fully trustworthy for 14 of 15 districts; <b>Outer</b> shows 12 real stations but zero mapped chowkis, almost certainly an OSM under-mapping gap, so its combined count is flagged as an undercount.</li>
-        <li><b>Road Deaths &amp; Hit-and-Run</b> (Delhi Traffic Police, 2022 Delhi Road Crash Fatalities Report) can be plotted on the map and scatter chart alongside the 2023 crime figures. It's a year older and uses Traffic Police's own <b>11-district reporting geography</b>, not the 15 Delhi Police districts — <b>Outer, Outer North, Rohini and South-West have no separate entry</b> and show hatched on the map, not zero deaths.</li>
-        <li><b>Year comparison</b>: the six NCRB crime metrics (theft, robbery, burglary, total IPC, crime against women, SLL crimes) each have a matching figure for <b>2022, 2023 and 2024</b> from the same NCRB district-wise tables. Use the <b>Year</b> selector above the map to switch the map, ranked list, and district detail panel to that year — the road-safety metrics have no equivalent multi-year series, so that toggle is hidden when they're selected. Selecting a year shows the percent change from the previous year in the district detail panel. The 2024 IPC table also switched to the new BNS section numbering alongside the old IPC references — the offence categories carry over, it's the legal citation that changed. All six crime metrics additionally extend back to <b>2017</b> via a separately verified NCRB extract (sourced from the full district-wise offence-category tables and cross-checked by reproducing the official 2022 totals exactly, 45/45, before extending backward), and <b>theft &amp; robbery</b> go one year further back to <b>2016</b>. Burglary, total IPC, crime against women and SLL crime all omit 2016 — an older, non-matching category schema with no 2016-era known-correct total to validate the reconstruction against, so those four rows show "—" in 2016 rather than a number nobody's checked. Infrastructure-correlation text is suppressed for any year before 2022 regardless of metric, since today's streetlight/underpass/police survey data can't be meaningfully compared against a different decade's crime figures. Year-over-year change is hidden wherever the underlying source data isn't comparable across the boundary (e.g. the 2016→2017 burglary definition break, or a district that didn't yet exist as its own reporting zone).</li>
+    <div class="overview-card">
+      <h2>What to keep in mind</h2>
+      <ul class="limit-list">
+        <li><b>Registered cases are not crime levels.</b> Counts depend on reporting and registration as well as on crime.</li>
+        <li><b>Boundaries changed.</b> Older years use the districts reported at the time, drawn on schematic reference shapes that are labelled inferred or derived.</li>
+        <li><b>A zero can mean not surveyed.</b> Survey-based layers did not cover every district; OpenStreetMap layers are community-mapped.</li>
+        <li><b>Crash data uses other districts.</b> Some Traffic Police tables use 11 reporting districts, not the 15 police districts.</li>
       </ul>
     </div>
-  </details>
+  </div>
+  <div class="start-row">
+    <span class="start-label">Start exploring</span>
+    <button type="button" class="topic-start" data-topic="crime">Crime by police district</button>
+    <button type="button" class="topic-start" data-topic="road">Road crashes</button>
+  </div>
+  </section>
 
+  <section id="explore" class="site-section" aria-labelledby="exploreTitle">
+  <h2 class="section-title" id="exploreTitle">Explore the data</h2>
+  <p class="section-lede">Choose what to look at, then a year and a measure. The map, ranked list and district detail stay together, and every view explains what it shows, how to read it, its limits and its source.</p>
+  <div class="topic-switch" role="group" aria-label="Topic">
+    <button type="button" class="topic-btn" id="topicCrime" data-topic="crime" aria-pressed="true">Crime</button>
+    <button type="button" class="topic-btn" id="topicRoad" data-topic="road" aria-pressed="false">Road crashes</button>
+  </div>
   <section class="control-bar" id="mapSection" aria-label="Map controls">
     <div class="search-container">
       <div class="search-input-wrap">
@@ -570,6 +640,7 @@ footer a { color: inherit; }
           <span style="display:flex;align-items:center;gap:5px;"><span class="legend-swatch" style="background:#0891b2;border-radius:50%;"></span>CCTV / guard post</span>
         </span>
       </div>
+      <div class="explainer" id="mapExplainer"></div>
     </div>
 
     <div class="panel list-panel">
@@ -580,25 +651,6 @@ footer a { color: inherit; }
   </div>
 
   <div class="panel detail" id="detail" aria-live="polite"></div>
-
-  <div class="panel method-panel" id="methodSection">
-    <h2>How this is calculated & Dynamic Correlation Matrix</h2>
-    <p class="method-sub">The exact formulas behind every number above, and the real statistical correlations they produce — updated dynamically for the selected metric and year.</p>
-    <div class="method-grid" id="methodGrid"></div>
-    <div id="correlationMatrixCard" style="margin-top:20px;padding:16px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;"></div>
-    <details class="method-detail">
-      <summary>Full methodology — ranks, percentiles, and confidence thresholds</summary>
-      <div class="body">
-        <p><b>Density</b> for any infrastructure count is <code>count ÷ district area (km²)</code> — this is what's actually plotted and ranked, not the raw count, so bigger districts aren't unfairly flattered for having more of everything.</p>
-        <p><b>Rank</b> is a district's position when all 15 are sorted by a metric, descending — "1st" is the highest value in Delhi.</p>
-        <p><b>Percent vs. citywide average</b> is <code>(district value − mean of all 15) ÷ mean × 100</code>.</p>
-        <p><b>Correlation (r)</b> is the Pearson correlation coefficient between an infrastructure density and theft density, computed only across districts with real survey coverage for that infrastructure type. r ranges from −1 (perfect inverse relationship) to +1 (perfect direct relationship); values near 0 mean no linear relationship. With only 9 or 15 districts, these r values have wide uncertainty — treat them as suggestive, not conclusive, and never as proof of cause and effect.</p>
-        <p><b>Confidence tiers</b>: <code>High</code> = the infrastructure type has real survey/mapping coverage for that specific district. <code>Partial</code> = the district falls in the unsurveyed gap (streetlights/underpasses) or has too sparse a sample (fewer than 10 points) to trust.</p>
-        <p><b>Important caveat on the police station correlation</b>: a positive r here almost certainly reflects <i>reactive</i> resource allocation — stations are sited where crime and population already are — not a failure of policing to prevent crime. Don't read it backwards.</p>
-        <p><b>How OpenStreetMap-derived layers are treated</b>: pedestrian overbridges, bus stops, ATMs, liquor shops, metro gates and CCTV/guard posts are community-mapped inventories, not official registers. Unlike the streetlight and underpass survey — which has a known district-level gap and is therefore excluded from r for uncovered districts — these layers have no authoritative coverage map to check against, so a district counted as zero is kept in the correlation as a genuine zero. That is a deliberate choice, and it cuts both ways: it keeps all 15 districts in the sample, but a zero means <i>nothing mapped here</i>, which is not the same as nothing present. Where mapping is thin, r is measuring mapping effort as much as the thing being mapped. Treat these coefficients as weaker evidence than the surveyed-infrastructure ones.</p>
-      </div>
-    </details>
-  </div>
 
   <div class="panel scatter-panel" id="scatterSection">
     <h2 id="scatterTitle">Infrastructure density vs. theft density</h2>
@@ -621,6 +673,7 @@ footer a { color: inherit; }
         <div class="scatter-read" id="scatterRead"></div>
       </div>
     </div>
+    <div class="explainer" id="scatterExplainer"></div>
   </div>
 
   <div class="panel scatter-panel road-safety-panel" id="roadSection">
@@ -649,6 +702,7 @@ footer a { color: inherit; }
         <div class="cov-wrap"><table class="cov-table" id="roadTrendCounts"><caption>Delhi citywide annual counts, not rates</caption><thead><tr><th scope="col">Year</th><th scope="col">Total crashes</th><th scope="col">Fatal crashes</th><th scope="col">Persons killed</th></tr></thead><tbody><tr><th scope="row">2011</th><td>7,280</td><td>2,047</td><td>2,110</td></tr><tr><th scope="row">2012</th><td>6,937</td><td>1,822</td><td>1,866</td></tr><tr><th scope="row">2013</th><td>7,566</td><td>1,778</td><td>1,820</td></tr><tr><th scope="row">2014</th><td>8,623</td><td>1,629</td><td>1,671</td></tr><tr><th scope="row">2015</th><td>8,085</td><td>1,582</td><td>1,622</td></tr><tr><th scope="row">2016</th><td>7,375</td><td>1,548</td><td>1,591</td></tr><tr><th scope="row">2017</th><td>6,673</td><td>1,565</td><td>1,584</td></tr><tr><th scope="row">2018</th><td>6,515</td><td>1,657</td><td>1,690</td></tr><tr><th scope="row">2019</th><td>5,610</td><td>1,433</td><td>1,463</td></tr><tr><th scope="row">2020</th><td>4,178</td><td>1,163</td><td>1,196</td></tr><tr><th scope="row">2021</th><td>4,720</td><td>1,206</td><td>1,239</td></tr><tr><th scope="row">2022</th><td>5,652</td><td>1,428</td><td>1,461</td></tr><tr><th scope="row">2023</th><td>5,834</td><td>1,432</td><td>1,457</td></tr><tr><th scope="row">2024</th><td>5,657</td><td>1,504</td><td>1,551</td></tr></tbody></table></div>
       </details>
       <button type="button" class="dl-download-btn" id="dlTrendsDownload" style="margin-top:14px;">⬇ Download CSV — Citywide Road Safety Trends</button>
+      <div class="explainer" id="trendsExplainer"></div>
     </div>
 
     <div id="rsVictimsPanel" class="rs-tab-panel">
@@ -668,30 +722,102 @@ footer a { color: inherit; }
         </div>
       </div>
       <button type="button" class="dl-download-btn" id="dlVictimsDownload" style="margin-top:14px;">⬇ Download CSV — Road Deaths by Mode of Travel</button>
+      <div class="explainer" id="victimsExplainer"></div>
     </div>
 
     <div id="rsZonesPanel" class="rs-tab-panel">
       <p class="scatter-sub">Delhi Traffic Police's official blackspot list from the <b>Delhi Road Crash Report 2023</b> — 107 identified crash-prone zones, each with its actual 2023 crash counts (not just a name), matched to specific coordinates and cross-checked against every zone's rank and fatal-crash count from the source table (all 107 matched exactly). <b>105 of 107</b> fall inside one of the 15 district polygons and are plotted on the map above — toggle "Show accident-prone zones" to see them, sized and shaded by fatal crash count. The remaining 2 sit just outside every simplified district boundary and are listed here with their real severity numbers instead of being force-placed. Sorted fatal-crashes descending, as in the source report.</p>
       <div class="zone-grid" id="zoneGrid"></div>
       <button type="button" class="dl-download-btn" id="dlZonesDownload" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List</button>
+      <div class="explainer" id="zonesExplainer"></div>
     </div>
 
     <div id="rsZones2024Panel" class="rs-tab-panel">
       <p class="scatter-sub">Delhi Traffic Police's blackspot list from the <b>Delhi Road Crash Report 2024</b> — 93 named crash-prone zones, each with real 2024 crash counts and (where the report itself flags it) a breakdown by pedestrian/two-wheeler/HTV/hit-and-run and day/night crashes. None of the 2024 report's zones have published coordinates — <b>54 of 93</b> were matched to a coordinate (42 shared a name with an already-geocoded 2023 zone, 12 resolved via OpenStreetMap geocoding) and are plotted on the map above under the 2024 zone-year option; the remaining 39 are hyper-local names a geocoder can't resolve on free text alone, listed here with their real severity numbers rather than force-placed. Sorted fatal-crashes descending, as in the source report.</p>
       <div class="zone-grid" id="zoneGrid2024"></div>
       <button type="button" class="dl-download-btn" id="dlZones2024Download" style="margin-top:14px;">⬇ Download CSV — Accident-Prone Zones List (2024)</button>
+      <div class="explainer" id="zones2024Explainer"></div>
     </div>
 
     <div id="rsEnforcementPanel" class="rs-tab-panel">
       <p class="scatter-sub">Citywide enforcement and hit-and-run figures, 2023 vs 2024 — not broken down by district in the source, so kept here rather than on the map.</p>
       <div id="enforcementGrid"></div>
+      <div class="explainer" id="enforcementExplainer"></div>
     </div>
 
     <div id="rsRoadsPanel" class="rs-tab-panel">
       <p class="scatter-sub">Roads with the most identified crash-prone zones, 2023 vs 2024 (Table 6.33) — crashes recorded specifically within those zones on each road, not the road's full crash count. Sorted by 2024 fatal crashes descending.</p>
       <div id="roadSummaryGrid"></div>
       <button type="button" class="dl-download-btn" id="dlRoadsDownload" style="margin-top:14px;">⬇ Download CSV — Top Roads by Crash-Prone Zones</button>
+      <div class="explainer" id="roadsExplainer"></div>
     </div>
+  </div>
+
+  </section>
+
+  <section id="data-methods" class="site-section" aria-labelledby="dmTitle">
+  <h2 class="section-title" id="dmTitle">Data &amp; methods</h2>
+  <p class="section-lede">Original sources, definitions, how geography changed, downloads and how to cite or reproduce a view. Everything in Explore is built from the files described here.</p>
+  <p class="dm-jump"><b>On this page:</b> <a href="#coverage">How current is each series</a> &middot; <a href="#about">Coverage notes</a> &middot; <a href="#methodSection">How it is calculated</a> &middot; <a href="#downloadSection">Downloads</a> &middot; <a href="#glossary">Glossary</a></p>
+  <div class="dm-grid">
+    <div class="dm-card">
+      <h3>How the geography changed</h3>
+      <ul>
+        <li>Delhi had 11 police districts until 2016. Rohini and Shahdara were notified on 14 October 2016 and reported as newly created in early December 2016; Dwarka followed on 9 November 2017 (14 districts in 2017 and 2018); Outer North began on 1 January 2019 (15 districts).</li>
+        <li>2011 to 2013, 2015 and 2016 are drawn on 2014 reference shapes, labelled inferred. 2017 and 2018 apply the November 2017 gazette station schedule to the same shapes, labelled derived. The outlines are schematic and not to scale.</li>
+        <li>Older counts are never divided among today's districts, and rates and infrastructure are not shown for them.</li>
+      </ul>
+      <p><a href="historical_crime.html">Full historical table with source rows</a> &middot; <a href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/tree/main/data/staged/police_geography_history" target="_blank" rel="noopener">Boundary evidence</a></p>
+    </div>
+    <div class="dm-card">
+      <h3>Cite or reproduce a view</h3>
+      <p>Data version (series status updated): <b>2026-10-20</b>. Every figure is rebuilt from the files in the repository.</p>
+      <div class="cite-box" id="citeText"></div>
+      <p><button type="button" class="dl-mini-btn" id="copyViewLink">Copy link to the current view</button> <span class="explainer-status" id="copyStatus" role="status" aria-live="polite"></span></p>
+      <p>The link keeps the topic, measure, year, calculation and selected district. <a href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard" target="_blank" rel="noopener">Code and data on GitHub</a></p>
+    </div>
+  </div>
+  <details class="datanote" id="coverage">
+    <summary>How current is each data series?</summary>
+    <div class="datanote-body">
+      <p class="about-lede">Official crime and crash figures stop at <b>2024</b>. Newer material exists but is kept off the maps on purpose. <b>Never compare a year-to-date or provisional series with a full year.</b> Source: <code>data/series_status.json</code>.</p>
+      <div class="cov-wrap"><table class="cov-table"><thead><tr><th scope="col">Series</th><th scope="col">Latest period</th><th scope="col">Status</th><th scope="col">Geography</th></tr></thead><tbody><tr><th scope="row">NCRB district crime (IPC/BNS, SLL, crimes against women)</th><td>2024</td><td><span class="cov-status cov-production">production</span></td><td>15 police districts</td></tr><tr><th scope="row">Delhi Traffic Police citywide road trend</th><td>2024</td><td><span class="cov-status cov-production">production</span></td><td>Delhi citywide; no district allocation</td></tr><tr><th scope="row">NCRB historical district crime counts, as printed</th><td>2018</td><td><span class="cov-status cov-production">production</span></td><td>original annual reporting districts (11 in 2011-2016, 14 in 2017-2018); no allocation to current districts</td></tr><tr><th scope="row">Historical police-district reference maps, 2011-2018</th><td>2018</td><td><span class="cov-status cov-staged">staged</span></td><td>2014 station polygons regrouped by the Dec 2014 roster (2011-2016, inferred) and the Nov 2017 gazette schedule (2017-2018)</td></tr><tr><th scope="row">NCRB Crime in India 2025</th><td>none</td><td><span class="cov-status cov-not_published">not published</span></td><td>15 police districts</td></tr><tr><th scope="row">Delhi Traffic Police crash-prone zones</th><td>2024</td><td><span class="cov-status cov-production">production</span></td><td>named locations (93 zones in 2024); 15 police districts</td></tr><tr><th scope="row">Delhi Traffic Police annual Road Crash Report 2025</th><td>none</td><td><span class="cov-status cov-not_published">not published</span></td><td>15 police districts</td></tr><tr><th scope="row">District iRAD road-accident reports</th><td>2026-08 (varies by district)</td><td><span class="cov-status cov-staged">staged</span></td><td>revenue districts and police stations as printed; not mapped to the 15 police districts</td></tr><tr><th scope="row">iRAD reports for 2026</th><td>2026-01 to 2026-08 (South East to July, North East to August, New Delhi to May)</td><td><span class="cov-status cov-provisional">provisional</span></td><td>only the districts that publish 2026 reports</td></tr><tr><th scope="row">Delhi Police 2025 citywide counts as reported by two news outlets</th><td>2025</td><td><span class="cov-status cov-staged">staged</span></td><td>Delhi as a whole, 8 offences, no district split</td></tr><tr><th scope="row">OpenStreetMap infrastructure snapshots (overbridges, signals, crossings, hospitals, cameras, police, footways)</th><td>2026-08</td><td><span class="cov-status cov-production">production</span></td><td>points and ways, assigned to districts and wards</td></tr><tr><th scope="row">Sidewalk, footway and crossing mapping around crash zones</th><td>2026-10</td><td><span class="cov-status cov-staged">staged</span></td><td>250 m and 500 m around each 2024 crash zone</td></tr><tr><th scope="row">PAPL streetlight and underpass survey</th><td>survey period, not re-measured</td><td><span class="cov-status cov-retained_legacy_year">retained legacy year</span></td><td>9 of 15 districts surveyed</td></tr><tr><th scope="row">Official liquor vend list</th><td>list date not established</td><td><span class="cov-status cov-production">production</span></td><td>points (positions mostly approximate)</td></tr><tr><th scope="row">Delhi wards, legacy 290-ward geography</th><td>pre-2022 delimitation</td><td><span class="cov-status cov-retained_legacy_year">retained legacy year</span></td><td>290 legacy wards (273 MCD, 9 NDMC, 8 Cantonment polygons)</td></tr><tr><th scope="row">Delhi wards, current 250-ward geography (MCD delimitation 2022)</th><td>2022 delimitation</td><td><span class="cov-status cov-not_implemented">not implemented</span></td><td>250 wards</td></tr><tr><th scope="row">Master Plan 2047 against 2021 satellite land cover</th><td>plan 2026 draft; land cover 2021</td><td><span class="cov-status cov-staged">staged</span></td><td>290 legacy wards</td></tr><tr><th scope="row">Staged iRAD 2025 release</th><td>2025; coverage differs by reporting district and table</td><td><span class="cov-status cov-staged">staged</span></td><td>reporting districts and station labels; not the 15 police districts</td></tr><tr><th scope="row">Police station crosswalk using the 2026 Manual</th><td>Manual updated 2026-05-22 (post-period structural reference)</td><td><span class="cov-status cov-staged">staged</span></td><td>source reporting labels matched to current territorial station identities</td></tr></tbody></table></div>
+      <p class="cov-note">Ward-level layers use the <b>legacy 290-ward geography</b> (before the 2022 delimitation), not the current 250 MCD wards.</p>
+    </div>
+  </details>
+
+  <details class="datanote" id="about">
+    <summary>About this project and data coverage notes</summary>
+    <div class="datanote-body">
+      <p class="about-lede">This dashboard puts <b>NCRB crime reports (2011-2024; 2011-2018 in the districts reported at the time)</b>, <b>Delhi Traffic Police crash data</b> and <b>public-infrastructure counts</b> side by side for Delhi's 15 police districts, so citizens, planners and researchers can see where safety and infrastructure coverage line up, and where they do not. It describes patterns. It does not show cause and effect.</p>
+      <ul>
+        <li><b>Streetlights</b> (PAPL survey, ~40k points) and <b>underpasses</b> (PAPL survey, 417 points) share the exact same gap: <b>Dwarka, North-East, North-West, Outer, Outer North and Rohini were never driven through.</b> Zero there means "not surveyed," not "not present."</li>
+        <li><b>Pedestrian overbridges</b> (OpenStreetMap/Overpass snapshot, 242 connected mapped bridge groups) are available across all district polygons, but this is a mapped inventory rather than an official completeness register. A zero means no matching OSM feature was mapped, not verified absence.</li>
+        <li><b>Metro station gates</b> (OpenStreetMap, 529 points), <b>bus stops</b> (OpenStreetMap, 3,199 points), and <b>ATMs</b> (OpenStreetMap via Overpass API, 666 points) have real, complete coverage across all 15 districts.</li>
+        <li><b>Police Infra</b> combines two sources: full <b>police stations</b> (Delhi Police GSDL, official geocoded list, 224 points — complete for all 15 districts) plus <b>chowkis, outposts &amp; booths</b> (OpenStreetMap community mapping, 120 points — no official geocoded chowki dataset exists publicly, confirmed against the same GSDL source). The combined figure is fully trustworthy for 14 of 15 districts; <b>Outer</b> shows 12 real stations but zero mapped chowkis, almost certainly an OSM under-mapping gap, so its combined count is flagged as an undercount.</li>
+        <li><b>Road Deaths &amp; Hit-and-Run</b> (Delhi Traffic Police, 2022 Delhi Road Crash Fatalities Report) can be plotted on the map and scatter chart alongside the 2023 crime figures. It's a year older and uses Traffic Police's own <b>11-district reporting geography</b>, not the 15 Delhi Police districts — <b>Outer, Outer North, Rohini and South-West have no separate entry</b> and show hatched on the map, not zero deaths.</li>
+        <li><b>Year comparison</b>: the six NCRB crime metrics (theft, robbery, burglary, total IPC, crime against women, SLL crimes) each have a matching figure for <b>2022, 2023 and 2024</b> from the same NCRB district-wise tables. Use the <b>Year</b> selector above the map to switch the map, ranked list, and district detail panel to that year — the road-safety metrics have no equivalent multi-year series, so that toggle is hidden when they're selected. Selecting a year shows the percent change from the previous year in the district detail panel. The 2024 IPC table also switched to the new BNS section numbering alongside the old IPC references — the offence categories carry over, it's the legal citation that changed. All six crime metrics additionally extend back to <b>2017</b> via a separately verified NCRB extract (sourced from the full district-wise offence-category tables and cross-checked by reproducing the official 2022 totals exactly, 45/45, before extending backward), and <b>theft &amp; robbery</b> go one year further back to <b>2016</b>. Burglary, total IPC, crime against women and SLL crime all omit 2016 — an older, non-matching category schema with no 2016-era known-correct total to validate the reconstruction against, so those four rows show "—" in 2016 rather than a number nobody's checked. Infrastructure-correlation text is suppressed for any year before 2022 regardless of metric, since today's streetlight/underpass/police survey data can't be meaningfully compared against a different decade's crime figures. Year-over-year change is hidden wherever the underlying source data isn't comparable across the boundary (e.g. the 2016→2017 burglary definition break, or a district that didn't yet exist as its own reporting zone).</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="panel method-panel" id="methodSection">
+    <h2>How this is calculated & Dynamic Correlation Matrix</h2>
+    <p class="method-sub">The exact formulas behind every number above, and the real statistical correlations they produce — updated dynamically for the selected metric and year.</p>
+    <div class="method-grid" id="methodGrid"></div>
+    <div id="correlationMatrixCard" style="margin-top:20px;padding:16px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;"></div>
+    <details class="method-detail">
+      <summary>Full methodology — ranks, percentiles, and confidence thresholds</summary>
+      <div class="body">
+        <p><b>Density</b> for any infrastructure count is <code>count ÷ district area (km²)</code> — this is what's actually plotted and ranked, not the raw count, so bigger districts aren't unfairly flattered for having more of everything.</p>
+        <p><b>Rank</b> is a district's position when all 15 are sorted by a metric, descending — "1st" is the highest value in Delhi.</p>
+        <p><b>Percent vs. citywide average</b> is <code>(district value − mean of all 15) ÷ mean × 100</code>.</p>
+        <p><b>Correlation (r)</b> is the Pearson correlation coefficient between an infrastructure density and theft density, computed only across districts with real survey coverage for that infrastructure type. r ranges from −1 (perfect inverse relationship) to +1 (perfect direct relationship); values near 0 mean no linear relationship. With only 9 or 15 districts, these r values have wide uncertainty — treat them as suggestive, not conclusive, and never as proof of cause and effect.</p>
+        <p><b>Confidence tiers</b>: <code>High</code> = the infrastructure type has real survey/mapping coverage for that specific district. <code>Partial</code> = the district falls in the unsurveyed gap (streetlights/underpasses) or has too sparse a sample (fewer than 10 points) to trust.</p>
+        <p><b>Important caveat on the police station correlation</b>: a positive r here almost certainly reflects <i>reactive</i> resource allocation — stations are sited where crime and population already are — not a failure of policing to prevent crime. Don't read it backwards.</p>
+        <p><b>How OpenStreetMap-derived layers are treated</b>: pedestrian overbridges, bus stops, ATMs, liquor shops, metro gates and CCTV/guard posts are community-mapped inventories, not official registers. Unlike the streetlight and underpass survey — which has a known district-level gap and is therefore excluded from r for uncovered districts — these layers have no authoritative coverage map to check against, so a district counted as zero is kept in the correlation as a genuine zero. That is a deliberate choice, and it cuts both ways: it keeps all 15 districts in the sample, but a zero means <i>nothing mapped here</i>, which is not the same as nothing present. Where mapping is thin, r is measuring mapping effort as much as the thing being mapped. Treat these coefficients as weaker evidence than the surveyed-infrastructure ones.</p>
+      </div>
+    </details>
   </div>
 
   <div class="panel download-panel" id="downloadSection">
@@ -758,6 +884,11 @@ footer a { color: inherit; }
       </ul>
       <button type="button" class="dl-download-btn" id="dlExcelDownload">⬇ Download Excel Workbook (.xml, 5 sheets)</button>
     </div>
+  <div class="panel" id="glossary">
+    <h2>Plain-language glossary</h2>
+    <dl id="glossaryList"></dl>
+  </div>
+  </section>
   </main>
 
   <footer>
@@ -845,7 +976,7 @@ function infraCovered(d, infraKey) {
 
 let activeMetric = 'theft';
 let activeYear = '2024'; // most recent year with complete data for all 15 districts on every metric
-let rateMode = 'density'; // 'density' (per km²) or 'perCapita' (per 100k residents)
+let rateMode = 'counts'; // 'counts' (default), 'density' (per km²) or 'perCapita' (per 100k residents)
 let corrCoeffMode = 'pearson'; // 'pearson' (linear) or 'spearman' (rank)
 let showStreetlightPoints = false;
 let showOsmStreetLamps = false;
@@ -922,6 +1053,7 @@ function computeZScore(val, mean, stdDev) {
 
 function getRateVal(rawCount, d) {
   if (rawCount == null) return null;
+  if (rateMode === 'counts') return rawCount;
   if (rateMode === 'perCapita') {
     return Math.round((rawCount / d.population) * 100000 * 10) / 10;
   }
@@ -1042,7 +1174,7 @@ function buildMetricTabs() {
   const crime = visible.filter(m => !!m.prevKey);
   const road = visible.filter(m => !m.prevKey);
   const options = group => group.map(m => '<option value="' + m.key + '"' + (m.key === activeMetric ? ' selected' : '') + '>' + m.label + '</option>').join('');
-  el.innerHTML = '<optgroup label="Crime">' + options(crime) + '</optgroup><optgroup label="Road safety">' + options(road) + '</optgroup>';
+  el.innerHTML = options(topicOf(currentMetric()) === 'crime' ? crime : road);
   const m = currentMetric();
   el.title = m.title + ' — ' + m.desc + ' Source: ' + metricSource(m);
   el.onchange = () => {
@@ -1076,7 +1208,7 @@ function buildYearToggle() {
 function buildRateToggle() {
   const el = document.getElementById('rateToggle');
   if (!el) return;
-  const opts = [['density', 'Per km²'], ['perCapita', 'Per 100k']];
+  const opts = [['counts', 'Count'], ['density', 'Per km²'], ['perCapita', 'Per 100k']];
   el.innerHTML = opts.map(([val, label]) => '<button class="metric-tab' + (rateMode===val?' active':'') + '" data-val="' + val + '" aria-pressed="' + (rateMode===val) + '">' + label + '</button>').join('');
   el.querySelectorAll('.metric-tab').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1390,7 +1522,7 @@ function renderMap() {
     if (xLabel) xLabel.textContent = m.short + ' →';
     if (yLabel) yLabel.textContent = inf.label + ' →';
   } else {
-    document.getElementById('legendLabel').textContent = yearLabel(m);
+    document.getElementById('legendLabel').textContent = yearLabel(m) + ' · ' + unitPhrase(m);
     document.getElementById('legendMin').textContent = fmtNum(lo);
     document.getElementById('legendMax').textContent = fmtNum(hi);
     const legendScale = document.getElementById('legendScale');
@@ -2324,6 +2456,314 @@ function renderHistoryView() {
       '<p><a href="historical_crime.html?year=' + d.year + '&metric=' + encodeURIComponent(key) + '">Open the full table, original source rows and evidence →</a></p></div>';
 }
 
+// ---- Overview, topics, explainers and shareable views ----
+// Plain-language layer: every visual says what it shows, how to read it, its limits and its source.
+const GLOSSARY = [
+  ['IPC', 'Indian Penal Code, the main criminal law until 30 June 2024.', 'IPC'],
+  ['BNS', 'Bharatiya Nyaya Sanhita, which replaced the IPC from 1 July 2024. The 2024 tables use BNS numbering.', 'BNS'],
+  ['SLL', 'Special and Local Laws: offences under laws other than the IPC or BNS.', 'SLL|Special and Local'],
+  ['NCRB', 'National Crime Records Bureau, which publishes Crime in India, the source of the district crime counts.', 'NCRB'],
+  ['Registered case', 'A case recorded by the police. Counts reflect how crime is reported and registered, not only how much crime happens.', 'registered'],
+  ['Fatal crash', 'A road crash in which at least one person died.', 'fatal crash'],
+  ['Persons killed', 'The number of people who died in road crashes. One fatal crash can kill several people, so this can exceed the number of fatal crashes.', 'persons killed|killed'],
+  ['Hit-and-run', 'A crash in which the driver leaves the scene without stopping to help.', 'hit-and-run|hit and run'],
+  ['Crash-prone zone', 'A location the Delhi Traffic Police crash report lists as having repeated serious crashes.', 'crash-prone'],
+  ['iRAD', 'Integrated Road Accident Database, the national road-accident reporting system.', 'iRAD'],
+  ['Police district / reporting district', 'The unit a source reports by. Delhi had 11 police districts until 2016, 14 in 2017 and 2018, and 15 from 2019, so older years use the districts reported at the time.', 'police district|reporting district'],
+  ['Count, per km², per 100k', 'A count is the number of cases. Per km² divides by the district area and per 100k by its population, using the current districts only.', 'per km|per 100|per square']
+];
+const CRIME_NOUN = { theft: 'theft cases', robbery: 'robbery cases', burglary: 'burglary cases', totalIPC: 'IPC/BNS cases (all offences)', crimeAgainstWomen: 'cases of crime against women', totalSLL: 'Special and Local Laws cases' };
+
+function topicOf(m) { return m.prevKey ? 'crime' : 'road'; }
+const TOPIC_MEMORY = {};
+const TOPIC_DEFAULT_METRIC = { crime: 'theft', road: 'totalCrashes2023' };
+function setTopic(topic) {
+  if (topicOf(currentMetric()) !== topic) {
+    TOPIC_MEMORY[topicOf(currentMetric())] = { metric: activeMetric, year: activeYear };
+    const saved = TOPIC_MEMORY[topic];
+    const target = METRICS.find(m => m.key === (saved ? saved.metric : TOPIC_DEFAULT_METRIC[topic])) || METRICS.find(m => !m.hiddenFromSelector && topicOf(m) === topic);
+    activeMetric = target.key;
+    if (saved && metricSupportsYear(target, saved.year)) {
+      activeYear = saved.year;
+    } else if (!metricSupportsYear(target, activeYear)) {
+      const supported = target.yearVariants ? Object.keys(target.yearVariants) : (target.historicalYears ? [...target.historicalYears, '2022', '2023', '2024'] : [target.year]);
+      activeYear = supported[supported.length - 1];
+    }
+  }
+  render();
+}
+function renderTopicControls() {
+  const topic = topicOf(currentMetric());
+  document.body.classList.toggle('topic-road', topic === 'road');
+  document.querySelectorAll('.topic-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.topic === topic)));
+}
+
+function unitPhrase(m) {
+  if (rateMode === 'perCapita') return 'per 100,000 residents';
+  if (rateMode === 'density') return 'per square kilometre';
+  return topicOf(m) === 'crime' ? 'registered cases' : 'reported counts';
+}
+
+function termsFor(text) {
+  const t = String(text);
+  return GLOSSARY.filter(g => new RegExp(g[2], 'i').test(t));
+}
+
+function histMapPhrase(d) {
+  if (d.map.status === 'reference_only') return 'on a 2014 reference map, a reconstruction that is not certified';
+  if (d.map.status === 'inferred_reference') return 'on 2014 reference shapes, inferred and not verified for this year';
+  return 'on 2014 station shapes regrouped by the November 2017 gazette schedule (derived)';
+}
+
+function mapExplainerSpec() {
+  const m = currentMetric(), hist = isHistoryView(), crime = topicOf(m) === 'crime';
+  if (hist) {
+    const d = histYearData(), key = histKey(m, d.year), measure = histMeasureName(key);
+    return {
+      what: 'Registered ' + (CRIME_NOUN[m.key] || measure.toLowerCase()) + ' by reporting district, ' + d.year + ', as printed in the source.',
+      detail: 'Each district is shaded by its registered cases as printed in the source. The ranked list, the district panel and the table show the same figures.',
+      how: 'Darker colours mean more registered cases, ranked within this year only: a district can turn darker because its rank rose, not because its count did. The colours show how many cases were registered, not how dangerous a district is.',
+      limits: d.year + ' counts are shown ' + histMapPhrase(d) + '. The outlines are schematic, and offence definitions differ by year. Grey means not reported in the source, not zero.',
+      source: d.sourceLabel + '.',
+      more: '<p>' + esc(m.desc) + '</p><p>' + esc(histMapNote(d)) + '</p>'
+    };
+  }
+  const s = dataStatusFor(m), year = yearSuffix(m);
+  const noun = crime ? (CRIME_NOUN[m.key] || m.short) : m.short;
+  const what = (crime ? 'Registered ' : 'Reported ') + noun + (rateMode === 'counts' ? '' : ' ' + unitPhrase(m)) + ' by police district, ' + year + '.';
+  const how = crime
+    ? 'Darker colours mean more ' + (rateMode === 'counts' ? 'registered cases' : 'cases ' + unitPhrase(m)) + ', ranked within this year only: a district can turn darker because its rank rose, not because its count did. The colours show how many cases were registered, not how dangerous a district is.'
+    : 'Darker colours mean a higher ' + (rateMode === 'counts' ? 'count' : 'figure ' + unitPhrase(m)) + '. They do not by themselves show which roads or districts are riskiest.';
+  return {
+    what: what,
+    detail: 'Each district is shaded by its value. The ranked list, the district panel and the table show the same figures.',
+    how: how,
+    limits: s.coverage + '. ' + (s.comparable || '') + ((s.comparable || '').slice(-1) === '.' ? '' : '.') + ' Hatched or grey districts have no data for this measure, which is not the same as zero.',
+    source: metricSource(m) + '.',
+    more: '<p>' + esc(m.desc) + '</p>'
+  };
+}
+
+function glossaryHtml(text) {
+  const terms = termsFor(text);
+  return terms.length ? '<dl class="mini-glossary">' + terms.map(g => '<dt>' + esc(g[0]) + '</dt><dd>' + esc(g[1]) + '</dd>').join('') + '</dl>' : '';
+}
+
+function explainerHtml(spec, actions) {
+  return '<div class="explainer-grid">' +
+    '<div><h3>What am I seeing?</h3><p>' + esc(spec.detail || spec.what) + '</p></div>' +
+    '<div><h3>How do I read it?</h3><p>' + esc(spec.how) + '</p></div>' +
+    '<div><h3>What are the limits?</h3><p>' + esc(spec.limits) + '</p></div>' +
+    '<div><h3>Where did it come from?</h3><p>' + esc(spec.source) + '</p></div></div>' +
+    '<details class="explainer-more"><summary>Source &amp; definitions</summary>' + (spec.more || '') + glossaryHtml(spec.what + ' ' + (spec.more || '') + ' ' + spec.limits) + '<p><a href="#data-methods">All sources, definitions and downloads</a></p></details>' +
+    (actions || '');
+}
+
+let mapTableOpen = false;
+function viewRows() {
+  const m = currentMetric();
+  if (isHistoryView()) {
+    const d = histYearData(), key = histKey(m, d.year);
+    return d.units.filter(u => u.territorial).map(u => [u.label, u.values[key]]);
+  }
+  return DATA.map(x => [x.name, metricValue(x, m)]);
+}
+function viewTableHtml(title) {
+  const rows = viewRows().slice().sort((a, b) => (b[1] == null ? -Infinity : b[1]) - (a[1] == null ? -Infinity : a[1]));
+  return '<table class="view-table"><caption>' + esc(title) + '</caption><thead><tr><th scope="col">District</th><th scope="col">Value</th></tr></thead><tbody>' +
+    rows.map(r => '<tr><th scope="row">' + esc(r[0]) + '</th><td>' + (r[1] == null ? 'Not reported' : fmtNum(r[1])) + '</td></tr>').join('') + '</tbody></table>';
+}
+function viewCsv() {
+  const m = currentMetric(), hist = isHistoryView();
+  const spec = mapExplainerSpec();
+  const headers = ['Dataset', 'Geography', 'Measure', 'Year', 'Calculation', 'District', 'Value', 'Source', 'Dataset version'];
+  const version = document.getElementById('main').dataset.version;
+  const geo = hist ? histMapStatus(histYearData()) : dataStatusFor(m).coverage;
+  const calc = hist ? 'count, as printed' : (rateMode === 'counts' ? 'count' : unitPhrase(m));
+  const rows = viewRows().map(r => ['Delhi Urban Safety Observatory', geo, m.title, activeYear, calc, r[0], r[1], spec.source, version]);
+  return { headers: headers, rows: rows };
+}
+function copyText(text, done) {
+  const finish = ok => { if (done) done(ok); };
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(() => finish(true), () => finish(false)); return; }
+  } catch (e) {}
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta); finish(ok);
+  } catch (e) { finish(false); }
+}
+
+function renderMapExplainer() {
+  const el = document.getElementById('mapExplainer');
+  if (!el) return;
+  const spec = mapExplainerSpec();
+  const actions = '<div class="explainer-actions">' +
+    '<button type="button" class="dl-mini-btn" id="exViewTable" aria-expanded="' + mapTableOpen + '" aria-controls="mapTableWrap">View table</button>' +
+    '<button type="button" class="dl-mini-btn" id="exDownload">Download data</button>' +
+    '<button type="button" class="dl-mini-btn" id="exCopyLink">Copy link to this view</button>' +
+    '<span class="explainer-status" id="exStatus" role="status" aria-live="polite"></span></div>' +
+    '<div id="mapTableWrap" class="table-wrap"' + (mapTableOpen ? '' : ' hidden') + '>' + (mapTableOpen ? viewTableHtml(spec.what) : '') + '</div>';
+  el.innerHTML = '<h2 class="explainer-title">' + esc(spec.what) + '</h2>' + explainerHtml(spec, actions);
+}
+
+const STATIC_EXPLAINERS = {
+  scatterExplainer: {
+    what: 'Each dot is a police district: infrastructure density against crime or road-safety density, per square kilometre or per 100,000 residents.',
+    how: 'A dot higher and further right means more of both. A relationship between two measures does not show that one causes the other.',
+    limits: 'Current 15 districts only. The streetlight and underpass surveys did not cover six districts, so those dots are missing, not zero. Police stations tend to follow crime rather than prevent it.',
+    source: 'District counts from NCRB and the Delhi Traffic Police; infrastructure from the sources listed in Data & methods.',
+    more: '<p>Density divides a count by the district area in square kilometres.</p>',
+    download: 'dlVersusDownload'
+  },
+  trendsExplainer: {
+    what: 'Delhi-wide road crashes, fatal crashes and persons killed each year from 2011 to 2024.',
+    how: 'The chart sets 2011 to 100, so a line at 78 means 22% below 2011. Use Show annual counts for the actual numbers.',
+    limits: 'Counts, not rates: traffic and population changed over the period. Delhi-wide only, with no district split. Report editions classify injuries differently, so injuries are left out.',
+    source: 'Delhi Traffic Police annual road crash statistics.',
+    more: '<p>A fatal crash has at least one death; persons killed counts people.</p>',
+    download: 'dlTrendsDownload',
+    table: 'roadTrendCounts'
+  },
+  victimsExplainer: {
+    what: 'Road deaths in Delhi by the mode of travel of the person killed, 2019 to 2024.',
+    how: 'Larger shares mean more deaths in that group. Figures are counts of people, not rates per trip or per kilometre.',
+    limits: 'Delhi-wide only. Categories follow the Traffic Police report and are not split by district.',
+    source: 'Delhi Traffic Police annual road crash data.',
+    more: '',
+    download: 'dlVictimsDownload'
+  },
+  zonesExplainer: {
+    what: 'Locations listed as crash-prone in the 2023 Delhi Road Crash Report.',
+    how: 'Each card is one zone with its fatal and total crashes.',
+    limits: 'A zone is a location named in the report, not a measured level of risk. The 2023 and 2024 lists come from separate reports.',
+    source: 'Delhi Road Crash Report 2023.',
+    more: '',
+    download: 'dlZonesDownload'
+  },
+  zones2024Explainer: {
+    what: 'Locations listed as crash-prone in the 2024 Delhi Road Crash Report.',
+    how: 'Each card is one zone with its fatal and total crashes.',
+    limits: 'A zone is a location named in the report, not a measured level of risk. The 2023 and 2024 lists come from separate reports.',
+    source: 'Delhi Road Crash Report 2024.',
+    more: '',
+    download: 'dlZones2024Download'
+  },
+  enforcementExplainer: {
+    what: 'Citywide enforcement figures from the road crash reports.',
+    how: 'These are annual totals for Delhi as a whole.',
+    limits: 'Not split by district. Prosecutions measure enforcement activity, not safety outcomes.',
+    source: 'Delhi Road Crash Report 2023 and 2024.',
+    more: ''
+  },
+  roadsExplainer: {
+    what: 'Roads with the most crash-prone zones.',
+    how: 'Each row is a road and the number of zones on it.',
+    limits: 'This counts zones, not crashes, so a long road can list many zones.',
+    source: 'Delhi Road Crash Report 2023 and 2024.',
+    more: '',
+    download: 'dlRoadsDownload'
+  }
+};
+function renderStaticExplainers() {
+  Object.keys(STATIC_EXPLAINERS).forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const spec = STATIC_EXPLAINERS[id];
+    const buttons = (spec.table ? '<button type="button" class="dl-mini-btn" data-act="table" data-target="' + spec.table + '">View table</button>' : '') +
+      (spec.download ? '<button type="button" class="dl-mini-btn" data-act="download" data-target="' + spec.download + '">Download data</button>' : '') +
+      '<button type="button" class="dl-mini-btn" data-act="copy">Copy link to this view</button><span class="explainer-status" role="status" aria-live="polite"></span>';
+    el.innerHTML = '<h3 class="explainer-title-sm">About this chart</h3>' + explainerHtml(spec, '<div class="explainer-actions">' + buttons + '</div>');
+  });
+}
+
+function renderOverview() {
+  const el = document.getElementById('findingList');
+  if (!el) return;
+  const items = [];
+  const withTotal = DATA.filter(d => d.totalIPC2024 != null);
+  if (withTotal.length) {
+    const top = withTotal.slice().sort((a, b) => b.totalIPC2024 - a.totalIPC2024)[0];
+    const sum = withTotal.reduce((s, d) => s + d.totalIPC2024, 0);
+    items.push(['Registered crime, 2024', fmtNum(sum) + ' IPC/BNS cases were registered across the ' + withTotal.length + ' police districts. ' + top.name + ' registered the most (' + fmtNum(top.totalIPC2024) + '). These are registered cases, which reflect reporting as well as crime.']);
+  }
+  if (TRENDS.length > 1) {
+    const a = TRENDS[0], b = TRENDS[TRENDS.length - 1];
+    const pct = (x, y) => Math.round((y - x) / x * 100);
+    items.push(['Road crashes, ' + a.year + ' to ' + b.year, 'Delhi-wide road crashes are ' + Math.abs(pct(a.crashes, b.crashes)) + '% ' + (b.crashes < a.crashes ? 'lower' : 'higher') + ' and persons killed ' + Math.abs(pct(a.fatalities, b.fatalities)) + '% ' + (b.fatalities < a.fatalities ? 'lower' : 'higher') + ' than in ' + a.year + '. These are counts, not rates.']);
+  }
+  items.push(['Crime counts go back to 2011', 'Older years use the districts reported at the time: 11 until 2016, then 14, and 15 from 2019. Their maps are schematic and labelled inferred or derived.']);
+  items.push(['Infrastructure coverage is uneven', 'The streetlight and underpass surveys did not cover Dwarka, North-East, North-West, Outer, Outer North and Rohini. A zero there means not surveyed.']);
+  el.innerHTML = items.map(i => '<div class="finding"><h3>' + esc(i[0]) + '</h3><p>' + esc(i[1]) + '</p></div>').join('');
+  const cite = document.getElementById('citeText');
+  if (cite) cite.textContent = 'Delhi Urban Safety Observatory. Data version ' + document.getElementById('main').dataset.version + '. ' + location.origin + location.pathname;
+}
+
+function renderGlossary() {
+  const el = document.getElementById('glossaryList');
+  if (el) el.innerHTML = GLOSSARY.map(g => '<dt>' + esc(g[0]) + '</dt><dd>' + esc(g[1]) + '</dd>').join('');
+}
+
+function syncUrl() {
+  try {
+    const u = new URL(location.href), p = u.searchParams;
+    ['topic', 'metric', 'year', 'calc', 'district'].forEach(k => p.delete(k));
+    p.set('topic', topicOf(currentMetric()));
+    p.set('metric', activeMetric);
+    p.set('year', String(activeYear));
+    if (rateMode !== 'counts') p.set('calc', rateMode);
+    const dn = isHistoryView() ? histSelected : selected;
+    if (dn) p.set('district', dn);
+    history.replaceState(null, '', u.pathname + '?' + p.toString() + u.hash);
+  } catch (e) {}
+}
+function applyUrlState() {
+  try {
+    const p = new URLSearchParams(location.search);
+    const mk = p.get('metric'), m = mk && METRICS.find(x => x.key === mk && !x.hiddenFromSelector);
+    if (m) activeMetric = m.key;
+    const cur = currentMetric(), yr = p.get('year');
+    if (yr && metricSupportsYear(cur, yr)) {
+      activeYear = yr;
+    } else if (m && !metricSupportsYear(cur, activeYear)) {
+      const supported = cur.yearVariants ? Object.keys(cur.yearVariants) : (cur.historicalYears ? [...cur.historicalYears, '2022', '2023', '2024'] : [cur.year]);
+      activeYear = supported[supported.length - 1];
+    }
+    const calc = p.get('calc');
+    if (calc === 'counts' || calc === 'density' || calc === 'perCapita') rateMode = calc;
+    const dn = p.get('district');
+    if (dn) { if (DATA.some(d => d.name === dn)) selected = dn; histSelected = dn; }
+  } catch (e) {}
+}
+
+function wireRedesign() {
+  document.querySelectorAll('.topic-btn, .topic-start').forEach(b => b.addEventListener('click', () => {
+    setTopic(b.dataset.topic);
+    if (b.classList.contains('topic-start')) document.getElementById('explore').scrollIntoView({ behavior: 'smooth' });
+  }));
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href^="#"]');
+    if (link && link.getAttribute('href').length > 1) {
+      const target = document.getElementById(link.getAttribute('href').slice(1));
+      if (target && target.tagName === 'DETAILS') target.open = true;
+    }
+    const t = e.target.closest('button');
+    if (t && t.id === 'exViewTable') { mapTableOpen = !mapTableOpen; renderMapExplainer(); return; }
+    if (t && t.id === 'exDownload') { const out = viewCsv(); triggerDownload('gaitway_delhi_view_' + activeMetric + '_' + activeYear + '_' + rateMode + '.csv', toCSV(out.headers, out.rows)); return; }
+    if (t && (t.id === 'exCopyLink' || t.dataset.act === 'copy' || t.id === 'copyViewLink')) {
+      copyText(location.href, ok => { const s = t.parentNode.querySelector('.explainer-status') || document.getElementById('copyStatus'); if (s) s.textContent = ok ? 'Link copied' : 'Copy failed: copy the address bar instead'; });
+      return;
+    }
+    if (t && t.dataset.act === 'download') { const b = document.getElementById(t.dataset.target); if (b) b.click(); return; }
+    if (t && t.dataset.act === 'table') { const tbl = document.getElementById(t.dataset.target); const det = tbl && tbl.closest('details'); if (det) { det.open = true; det.scrollIntoView({ behavior: 'smooth', block: 'center' }); } return; }
+    const more = document.getElementById('navMore');
+    if (more && more.open && !e.target.closest('#navMore')) more.open = false;
+  });
+}
+
 function render() {
   const hist = isHistoryView();
   document.body.classList.toggle('history-mode', hist);
@@ -2348,6 +2788,9 @@ function render() {
   renderEnforcement();
   renderRoadSummary();
   if (compareMode && !hist) renderCompareCard();
+  renderTopicControls();
+  renderMapExplainer();
+  syncUrl();
 }
 
 const MAP_LAYER_CONTROLS = [
@@ -3191,6 +3634,11 @@ renderScatter();
   });
   sync();
 })();
+applyUrlState();
+renderOverview();
+renderGlossary();
+renderStaticExplainers();
+wireRedesign();
 render();
 renderRoadSafetyTabs();
 // The first trend render ran while its panel was hidden; draw once it has a width.
