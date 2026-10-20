@@ -7,6 +7,10 @@ const covEsc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').repla
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/dashboard_final.json'), 'utf8'));
 // Historical years (2011-2018) are drawn on the same map with the districts reported at the time; see scripts/lib/historical_map_shapes.js.
 const histLib = require('./lib/historical_map_shapes');
+const contLib = require('./lib/continuity');
+const CONTINUITY = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/continuity.json'), 'utf8'));
+// The page needs the rules and reasons, not the evidence paths (those stay in data/continuity.json).
+const CONTINUITY_PAGE = JSON.parse(JSON.stringify(CONTINUITY, (k, v) => k === 'evidence' ? undefined : v));
 const histCounts = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/historical_reporting/counts_2011_2018.json'), 'utf8'));
 const HIST = {
   viewBox: histLib.VIEW_BOX,
@@ -517,6 +521,23 @@ body:not(.topic-road) #roadSection { display: none; }
   #glossaryList dd, .mini-glossary dd { margin-bottom: 6px; }
 }
 
+.continuity { display: flex; gap: 10px; align-items: flex-start; margin: 6px 0; padding: 8px 10px; border: 1px solid var(--border); border-left-width: 4px; border-radius: 8px; font-size: 13px; line-height: 1.5; }
+.continuity.comparable { border-left-color: var(--good); }
+.continuity.caution { border-left-color: var(--amber); }
+.continuity.not_comparable { border-left-color: var(--rust); }
+.continuity.unavailable { border-left-color: var(--slate); }
+.cont-badge { flex: none; font-size: 11.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); white-space: nowrap; }
+.cont-badge.comparable { color: var(--good); border-color: var(--good); }
+.cont-badge.caution { color: var(--accent-text); border-color: var(--amber); }
+.cont-badge.not_comparable { color: var(--rust); border-color: var(--rust); }
+.cont-text { min-width: 0; }
+.explainer-compare { margin-top: 12px; }
+.explainer-compare h3 { margin: 0 0 4px; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 800; }
+.cont-none, .cont-note { margin: 4px 0 0; font-size: 12.5px; color: var(--text-dim); }
+.cont-none-cell { color: var(--text-dim); font-style: italic; cursor: help; }
+.cont-warn { display: inline-block; width: 16px; height: 16px; line-height: 16px; text-align: center; border-radius: 50%; background: var(--amber); color: var(--night); font-size: 11px; font-weight: 800; cursor: help; }
+.cont-reason { font-size: 12px; color: var(--text-dim); }
+.metric-tab:disabled { opacity: .45; cursor: not-allowed; }
 footer { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11.5px; color: var(--text-dim); display: flex; flex-direction: column; gap: 4px; }
 footer a { color: inherit; }
 </style>
@@ -602,6 +623,13 @@ footer a { color: inherit; }
     <div class="control-field rate-field">
       <span class="control-label">Calculation</span>
       <div class="metric-tabs control-segment" id="rateToggle"></div>
+    </div>
+    <div class="control-field scale-field">
+      <span class="control-label">Colours</span>
+      <div class="metric-tabs control-segment" id="scaleToggle">
+        <button type="button" class="metric-tab active" data-scale="rank" aria-pressed="true">Rank in year</button>
+        <button type="button" class="metric-tab" data-scale="fixed" aria-pressed="false">Shared scale</button>
+      </div>
     </div>
     <div class="control-field display-field">
       <span class="control-label">Display</span>
@@ -800,7 +828,14 @@ footer a { color: inherit; }
   <section id="data-methods" class="site-section" aria-labelledby="dmTitle">
   <h2 class="section-title" id="dmTitle">Data &amp; methods</h2>
   <p class="section-lede">Original sources, definitions, how geography changed, downloads and how to cite or reproduce a view. Everything in Explore is built from the files described here.</p>
-  <p class="dm-jump"><b>On this page:</b> <a href="#coverage">How current is each series</a> &middot; <a href="#about">Coverage notes</a> &middot; <a href="#methodSection">How it is calculated</a> &middot; <a href="#downloadSection">Downloads</a> &middot; <a href="#glossary">Glossary</a></p>
+  <p class="dm-jump"><b>On this page:</b> <a href="#coverage">How current is each series</a> &middot; <a href="#about">Coverage notes</a> &middot; <a href="#methodSection">How it is calculated</a> &middot; <a href="#comparability">Can I compare years</a> &middot; <a href="#downloadSection">Downloads</a> &middot; <a href="#glossary">Glossary</a></p>
+  <div class="panel" id="comparability">
+    <h2>Can I compare these years?</h2>
+    <p class="method-sub">Having a value for every year does not make a valid trend: a change can come from how the data was collected, defined or mapped rather than from what happened. These are the documented breaks the charts, tables and downloads use. The rules live in <a href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/blob/main/data/continuity.json" target="_blank" rel="noopener">data/continuity.json</a>.</p>
+    <div class="cov-wrap"><table class="cov-table" id="continuityTable"><caption>Documented breaks, by years compared</caption><thead><tr><th scope="col">Years</th><th scope="col">Measures</th><th scope="col">Effect</th><th scope="col">Why</th></tr></thead><tbody></tbody></table></div>
+    <p class="cov-note">Comparable: a change figure is shown. Compare with caution: shown with a warning. Not comparable: both values stay visible, the change is not calculated and trend lines are not joined. Unavailable: left blank, never zero.</p>
+  </div>
+
   <div class="dm-grid">
     <div class="dm-card">
       <h3>How the geography changed</h3>
@@ -962,6 +997,10 @@ footer a { color: inherit; }
 <script>
 const DATA = ${JSON.stringify(data.districts)};
 const HIST = ${JSON.stringify(HIST).replace(/</g, '\\u003c')};
+const CONTINUITY = ${JSON.stringify(CONTINUITY_PAGE).replace(/</g, '\\u003c')};
+const compareYears = ${contLib.compareYears.toString()};
+const segmentOf = ${contLib.segmentOf.toString()};
+const changeBetween = ${contLib.changeBetween.toString()};
 const GRID = ${JSON.stringify(grid)};
 const OSM_STREET_LAMP_MARKERS = ${JSON.stringify(osmStreetLampMarkers)};
 const CORR = ${JSON.stringify(correlations)};
@@ -1475,8 +1514,9 @@ function renderMap() {
   initMap();
   const m = currentMetric();
   const inf = INFRA.find(x => x.key === scatterType);
-  const [lo, hi] = currentDomain();
-  const scale = percentileScale(DATA.map(d => metricValue(d, m)).filter(v => v != null));
+  const vs = viewScale(DATA.map(d => metricValue(d, m)).filter(v => v != null), m, yearSuffix(m));
+  const [lo, hi] = vs.fixed ? [vs.lo, vs.hi] : currentDomain();
+  const scale = vs.scale;
 
   document.querySelectorAll('#map path.district').forEach(path => {
     const name = path.dataset.name;
@@ -1564,7 +1604,8 @@ function renderMap() {
     if (xLabel) xLabel.textContent = m.short + ' →';
     if (yLabel) yLabel.textContent = inf.label + ' →';
   } else {
-    document.getElementById('legendLabel').textContent = yearLabel(m) + ' · ' + unitPhrase(m);
+    document.getElementById('legendLabel').textContent = yearLabel(m) + ' · ' + unitPhrase(m) + (vs.fixed ? ' · ' + vs.note : '');
+    document.querySelector('#singleLegend .legend-scale-note').textContent = vs.fixed ? '(one linear scale shared by these years, so colours can be compared across them)' : "(ranked within this year, not linear: an outlier district can't wash out the rest of the scale)";
     document.getElementById('legendMin').textContent = fmtNum(lo);
     document.getElementById('legendMax').textContent = fmtNum(hi);
     const legendScale = document.getElementById('legendScale');
@@ -1577,8 +1618,9 @@ function renderMap() {
 function renderList() {
   const m = currentMetric();
   document.getElementById('listSub').textContent = 'Districts by ' + m.short + ', ' + yearSuffix(m);
-  const [lo, hi] = currentDomain();
-  const scale = percentileScale(DATA.map(d => metricValue(d, m)).filter(v => v != null));
+  const vs = viewScale(DATA.map(d => metricValue(d, m)).filter(v => v != null), m, yearSuffix(m));
+  const [lo, hi] = vs.fixed ? [vs.lo, vs.hi] : currentDomain();
+  const scale = vs.scale;
   const sorted = [...DATA].sort((a,b) => (metricValue(b,m)??-Infinity) - (metricValue(a,m)??-Infinity));
   const el = document.getElementById('rankList');
   el.innerHTML = sorted.map((d, i) => {
@@ -2413,8 +2455,13 @@ function histMapNote(d) {
 function histExport(year) {
   const d = HIST.years.find(y => y.year === +year);
   const bKey = histKey({ key: 'burglary' }, d.year);
-  const headers = ['Reference year', 'Reporting unit (as printed)', 'Unit type', 'Theft', 'Robbery', 'Burglary measure', 'Burglary', 'Total IPC', 'Crimes against women', 'SLL crimes', 'Map status', 'Source', 'Note'];
-  const row = (label, type, v, note) => [d.year, label, type, v.theft, v.robbery, histMeasureName(bKey), v[bKey], v.total_ipc, v.total_crimes_against_women, v.total_sll, type === 'Territorial district' ? histMapStatus(d) : '', d.sourceLabel, note];
+  const headers = ['Reference year', 'Reporting unit (as printed)', 'Unit type', 'Theft', 'Robbery', 'Burglary measure', 'Burglary', 'Total IPC', 'Crimes against women', 'SLL crimes', 'Map status', 'Source', 'Note', 'Geography version', 'Offence definition', 'Reporting period', 'Comparability with previous year (theft and robbery)', 'Reason for any break'];
+  const theft = METRICS.find(x => x.key === 'theft');
+  const row = (label, type, v, note) => {
+    const info = type === 'Territorial district' && d.year > CONTINUITY.yearRange[0] ? contFor(theft, label, d.year) : null;
+    return [d.year, label, type, v.theft, v.robbery, histMeasureName(bKey), v[bKey], v.total_ipc, v.total_crimes_against_women, v.total_sll, type === 'Territorial district' ? histMapStatus(d) : '', d.sourceLabel, note,
+      geoVersion(theft, d.year), histDefinition(d.year, false), 'Calendar year', info ? CONTINUITY.states[info.cmp.state] : (type === 'Territorial district' ? 'No earlier year' : 'Not applicable'), info ? info.cmp.reasons.join(' ') : ''];
+  };
   const rows = d.units.map(u => row(u.label, u.territorial ? 'Territorial district' : 'Other reporting unit', u.values, ''));
   rows.push(row('Delhi UT total', 'Printed total', d.citywide.values, 'Printed Delhi total; not the sum of the rows above. Blank means not reported, never zero.'));
   return { headers, rows };
@@ -2442,8 +2489,9 @@ function renderHistoryView() {
   const units = d.units.filter(u => u.territorial);
   const find = name => d.units.find(u => histCanon(u.label) === histCanon(name));
   const vals = units.map(u => u.values[key]).filter(v => v != null);
-  const scale = percentileScale(vals);
-  const lo = vals.length ? Math.min.apply(null, vals) : null, hi = vals.length ? Math.max.apply(null, vals) : null;
+  const vs = viewScale(vals, m, d.year);
+  const scale = vs.scale;
+  const lo = vs.lo, hi = vs.hi;
   const measure = histMeasureName(key);
   svg.querySelectorAll('g[data-ref="' + ref + '"] path').forEach(p => {
     const f = HIST.maps[ref][Number(p.dataset.i)], u = f.properties.territorial ? find(f.properties.name) : null;
@@ -2460,7 +2508,8 @@ function renderHistoryView() {
   });
   document.getElementById('singleLegend').style.display = '';
   document.getElementById('bivariateLegend').style.display = 'none';
-  document.getElementById('legendLabel').textContent = measure + ', ' + d.year + ' (as printed)';
+  document.getElementById('legendLabel').textContent = measure + ', ' + d.year + ' (as printed)' + (vs.fixed ? ' · ' + vs.note : '');
+  document.querySelector('#singleLegend .legend-scale-note').textContent = vs.fixed ? '(one linear scale shared by these years, so colours can be compared across them)' : "(ranked within this year, not linear: an outlier district can't wash out the rest of the scale)";
   document.getElementById('legendMin').textContent = lo == null ? 'Not reported' : fmtNum(lo);
   document.getElementById('legendMax').textContent = hi == null ? '' : fmtNum(hi);
   document.getElementById('legendScale').innerHTML = Array.from({length: 10}, (_, i) => '<span style="background:' + rustScale(i / 9) + '"></span>').join('');
@@ -2486,7 +2535,7 @@ function renderHistoryView() {
   const specialRows = special.length ? '<div class="section-divider"></div><div class="stat-label">Other reporting units, as printed</div>' + special.map(u => '<div class="stat"><span class="stat-label">' + esc(u.label) + '</span>' + (u.values[key] == null ? '<span class="stat-val nodata">Not reported</span>' : '<span class="stat-val">' + fmtNum(u.values[key]) + '</span>') + '</div>').join('') : '';
   document.getElementById('detail').innerHTML =
     '<div class="detail-head"><h2>' + esc(sel ? sel.label : 'Delhi, ' + d.year + ', as reported') + '</h2><span class="area">' + (sel ? 'reporting district' : d.territorialCount + ' districts') + '</span></div>' +
-    (sel ? tiles : '<p style="margin:0;color:var(--text-dim);">Select a district on the map or in the list to see its counts for ' + d.year + '.</p>') +
+    (sel ? tiles + changeTile(m, sel.label, d.year) : '<p style="margin:0;color:var(--text-dim);">Select a district on the map or in the list to see its counts for ' + d.year + '.</p>') +
     '<div class="section-divider"></div>' +
     '<div class="stat"><span class="stat-label">Delhi UT total, ' + esc(measure) + ' (' + d.year + ')</span>' + (city == null ? '<span class="stat-val nodata">Not reported</span>' : '<span class="stat-val">' + fmtNum(city) + '</span>') + '</div>' +
     '<p class="small" style="color:var(--text-dim);margin:4px 0 0;">The printed Delhi total is separate from the district rows; it is not their sum.</p>' +
@@ -2557,6 +2606,10 @@ function histMapPhrase(d) {
   return 'on 2014 station shapes regrouped by the November 2017 gazette schedule (derived)';
 }
 
+function scaleSentence(m, year) {
+  if (colourMode === 'fixed' && fixedScaleAvailable(m, year)) return 'on one scale shared by ' + segmentOf(CONTINUITY, m.key, Number(year)).join(' to ') + ', so colours can be compared across those years.';
+  return 'ranked within this year only: a district can turn darker because its rank rose, not because its count did.';
+}
 function mapExplainerSpec() {
   const m = currentMetric(), hist = isHistoryView(), crime = topicOf(m) === 'crime';
   if (hist) {
@@ -2564,17 +2617,18 @@ function mapExplainerSpec() {
     return {
       what: 'Registered ' + (CRIME_NOUN[m.key] || measure.toLowerCase()) + ' by reporting district, ' + d.year + ', as printed in the source.',
       detail: 'Each district is shaded by its registered cases as printed in the source. The ranked list, the district panel and the table show the same figures.',
-      how: 'Darker colours mean more registered cases, ranked within this year only: a district can turn darker because its rank rose, not because its count did. The colours show how many cases were registered, not how dangerous a district is.',
+      how: 'Darker colours mean more registered cases, ' + scaleSentence(m, d.year) + ' The colours show how many cases were registered, not how dangerous a district is.',
       limits: d.year + ' counts are shown ' + histMapPhrase(d) + '. The outlines are schematic, and offence definitions differ by year. Grey means not reported in the source, not zero.',
       source: d.sourceLabel + '.',
-      more: '<p>' + esc(m.desc) + '</p><p>' + esc(histMapNote(d)) + '</p>'
+      more: '<p>' + esc(m.desc) + '</p><p>' + esc(histMapNote(d)) + '</p>',
+      continuity: mapContinuityHtml()
     };
   }
   const s = dataStatusFor(m), year = yearSuffix(m);
   const noun = crime ? (CRIME_NOUN[m.key] || m.short) : m.short;
   const what = (crime ? 'Registered ' : 'Reported ') + noun + (rateMode === 'counts' ? '' : ' ' + unitPhrase(m)) + ' by police district, ' + year + '.';
   const how = crime
-    ? 'Darker colours mean more ' + (rateMode === 'counts' ? 'registered cases' : 'cases ' + unitPhrase(m)) + ', ranked within this year only: a district can turn darker because its rank rose, not because its count did. The colours show how many cases were registered, not how dangerous a district is.'
+    ? 'Darker colours mean more ' + (rateMode === 'counts' ? 'registered cases' : 'cases ' + unitPhrase(m)) + ', ' + scaleSentence(m, year) + ' The colours show how many cases were registered, not how dangerous a district is.'
     : 'Darker colours mean a higher ' + (rateMode === 'counts' ? 'count' : 'figure ' + unitPhrase(m)) + '. They do not by themselves show which roads or districts are riskiest.';
   return {
     what: what,
@@ -2582,7 +2636,8 @@ function mapExplainerSpec() {
     how: how,
     limits: s.coverage + '. ' + (s.comparable || '') + ((s.comparable || '').slice(-1) === '.' ? '' : '.') + ' Hatched or grey districts have no data for this measure, which is not the same as zero.',
     source: metricSource(m) + '.',
-    more: '<p>' + esc(m.desc) + '</p>'
+    more: '<p>' + esc(m.desc) + '</p>',
+    continuity: mapContinuityHtml()
   };
 }
 
@@ -2597,33 +2652,47 @@ function explainerHtml(spec, actions) {
     '<div><h3>How do I read it?</h3><p>' + esc(spec.how) + '</p></div>' +
     '<div><h3>What are the limits?</h3><p>' + esc(spec.limits) + '</p></div>' +
     '<div><h3>Where did it come from?</h3><p>' + esc(spec.source) + '</p></div></div>' +
+    (spec.continuity ? '<div class="explainer-compare"><h3>Can I compare these years?</h3>' + spec.continuity + '</div>' : '') +
     '<details class="explainer-more"><summary>Source &amp; definitions</summary>' + (spec.more || '') + glossaryHtml(spec.what + ' ' + (spec.more || '') + ' ' + spec.limits) + '<p><a href="#data-methods">All sources, definitions and downloads</a></p></details>' +
     (actions || '');
 }
 
 let mapTableOpen = false;
 function viewRows() {
-  const m = currentMetric();
-  if (isHistoryView()) {
-    const d = histYearData(), key = histKey(m, d.year);
-    return d.units.filter(u => u.territorial).map(u => [u.label, u.values[key]]);
-  }
-  return DATA.map(x => [x.name, metricValue(x, m)]);
+  const m = currentMetric(), year = yearSuffix(m), hist = isHistoryView();
+  const names = hist ? histYearData().units.filter(u => u.territorial).map(u => u.label) : DATA.map(x => x.name);
+  return names.map(name => ({
+    name: name,
+    value: hist ? rawFor(m, name, year) : metricValue(DATA.find(x => x.name === name), m),
+    info: contFor(m, name, year)
+  }));
 }
 function viewTableHtml(title) {
-  const rows = viewRows().slice().sort((a, b) => (b[1] == null ? -Infinity : b[1]) - (a[1] == null ? -Infinity : a[1]));
-  return '<table class="view-table"><caption>' + esc(title) + '</caption><thead><tr><th scope="col">District</th><th scope="col">Value</th></tr></thead><tbody>' +
-    rows.map(r => '<tr><th scope="row">' + esc(r[0]) + '</th><td>' + (r[1] == null ? 'Not reported' : fmtNum(r[1])) + '</td></tr>').join('') + '</tbody></table>';
+  const m = currentMetric(), prev = prevYearForCompare(m, yearSuffix(m));
+  const rows = viewRows().sort((a, b) => (b.value == null ? -Infinity : b.value) - (a.value == null ? -Infinity : a.value));
+  return '<table class="view-table"><caption>' + esc(title) + '</caption><thead><tr><th scope="col">District</th><th scope="col">Value</th>' + (prev != null ? '<th scope="col">Change in cases from ' + prev + '</th>' : '') + '</tr></thead><tbody>' +
+    rows.map(r => '<tr><th scope="row">' + esc(r.name) + '</th><td>' + (r.value == null ? 'Not reported' : fmtNum(r.value)) + '</td>' + (prev != null ? '<td>' + changeCellHtml(r.info) + '</td>' : '') + '</tr>').join('') + '</tbody></table>';
 }
 function viewCsv() {
-  const m = currentMetric(), hist = isHistoryView();
+  const m = currentMetric(), hist = isHistoryView(), year = yearSuffix(m);
   const spec = mapExplainerSpec();
-  const headers = ['Dataset', 'Geography', 'Measure', 'Year', 'Calculation', 'District', 'Value', 'Source', 'Dataset version'];
+  const headers = ['Dataset', 'Geography', 'Geography version', 'Measure', 'Offence definition', 'Year', 'Reporting period', 'Calculation', 'District', 'Value', 'Comparability with previous year', 'Reason for any break', 'Source', 'Dataset version'];
   const version = document.getElementById('main').dataset.version;
   const geo = hist ? histMapStatus(histYearData()) : dataStatusFor(m).coverage;
   const calc = hist ? 'count, as printed' : (rateMode === 'counts' ? 'count' : unitPhrase(m));
-  const rows = viewRows().map(r => ['Delhi Urban Safety Observatory', geo, m.title, activeYear, calc, r[0], r[1], spec.source, version]);
+  const definition = hist ? histMeasureName(histKey(m, Number(year))) + ' (' + histDefinition(Number(year), m.key === 'burglary') + ')' : m.title + (Number(year) >= 2024 && m.prevKey ? ' (BNS numbering)' : '');
+  const rows = viewRows().map(r => {
+    const state = r.info ? CONTINUITY.states[r.info.cmp.state] : 'No earlier year';
+    const reason = r.info ? r.info.cmp.reasons.join(' ') : '';
+    return ['Delhi Urban Safety Observatory', geo, geoVersion(m, year), m.title, definition, year, 'Calendar year', calc, r.name, r.value, state, reason, spec.source, version];
+  });
   return { headers: headers, rows: rows };
+}
+function histDefinition(year, burglary) {
+  if (year <= 2013) return 'NCRB format before 2014' + (burglary ? ', original burglary head' : '');
+  if (year <= 2015) return 'NCRB format revised in 2014' + (burglary ? ', criminal trespass/burglary head' : '');
+  if (year === 2016) return 'India Data Portal extract, theft and robbery only';
+  return 'India Data Portal extract' + (burglary ? ', day-plus-night burglary definition' : '');
 }
 function copyText(text, done) {
   const finish = ok => { if (done) done(ok); };
@@ -2718,7 +2787,7 @@ function renderStaticExplainers() {
     const buttons = (spec.table ? '<button type="button" class="dl-mini-btn" data-act="table" data-target="' + spec.table + '">View table</button>' : '') +
       (spec.download ? '<button type="button" class="dl-mini-btn" data-act="download" data-target="' + spec.download + '">Download data</button>' : '') +
       '<button type="button" class="dl-mini-btn" data-act="copy">Copy link to this view</button><span class="explainer-status" role="status" aria-live="polite"></span>';
-    el.innerHTML = '<h3 class="explainer-title-sm">About this chart</h3>' + explainerHtml(spec, '<div class="explainer-actions">' + buttons + '</div>');
+    el.innerHTML = '<h3 class="explainer-title-sm">About this chart</h3>' + explainerHtml(Object.assign({}, spec, { continuity: staticContinuityHtml(id) }), '<div class="explainer-actions">' + buttons + '</div>');
   });
 }
 
@@ -2744,6 +2813,23 @@ function renderOverview() {
   if (cite) cite.textContent = 'Delhi Urban Safety Observatory. Data version ' + document.getElementById('main').dataset.version + '. ' + location.origin + location.pathname;
 }
 
+function renderContinuityTable() {
+  const body = document.querySelector('#continuityTable tbody');
+  if (!body) return;
+  const names = { theft: 'Theft', robbery: 'Robbery', burglary: 'Burglary', totalIPC: 'Total IPC', crimeAgainstWomen: 'Crimes against women', totalSLL: 'SLL crimes' };
+  const list = ms => ms.length === CONTINUITY.crimeMeasures.length ? 'All crime measures' : ms.map(x => names[x] || x).join(', ');
+  const range = r => r[0] === r[1] ? String(r[0]) : r[0] + ' to ' + r[1];
+  const rows = [];
+  CONTINUITY.availability.forEach(a => rows.push([range(a.years), list(a.measures), 'unavailable', a.reason]));
+  CONTINUITY.definitionBreaks.forEach(b => rows.push([b.between[0] + ' vs ' + b.between[1], list(b.measures), b.state, b.reason]));
+  CONTINUITY.geography.breaks.forEach(g => rows.push([g.between[0] + ' vs ' + g.between[1], 'All crime measures, by district. Affected: ' + g.affected.join(', ') + (g.newDistricts.length ? '. New: ' + g.newDistricts.join(', ') : ''), 'not_comparable', g.reason]));
+  CONTINUITY.geography.epochs.forEach(e => rows.push([range(e.years), 'All crime measures', e.state, e.reason]));
+  rows.push(['2022 vs 2023', 'Road deaths and hit-and-run (2022 series)', 'not_comparable', CONTINUITY.roadDistrict.reason2022]);
+  rows.push(['2011 to 2024', 'Citywide road crashes and deaths', CONTINUITY.series.roadTrend.state, CONTINUITY.series.roadTrend.reasons.join(' ')]);
+  rows.push(['Part of a year', 'Year-to-date series', CONTINUITY.series.partialYear.state, CONTINUITY.series.partialYear.reasons.join(' ')]);
+  body.innerHTML = rows.map(r => '<tr><th scope="row">' + esc(r[0]) + '</th><td>' + esc(r[1]) + '</td><td>' + contBadge({ state: r[2] }) + '</td><td>' + esc(r[3]) + '</td></tr>').join('');
+}
+
 function renderGlossary() {
   const el = document.getElementById('glossaryList');
   if (el) el.innerHTML = GLOSSARY.map(g => '<dt>' + esc(g[0]) + '</dt><dd>' + esc(g[1]) + '</dd>').join('');
@@ -2757,6 +2843,7 @@ function syncUrl() {
     p.set('metric', activeMetric);
     p.set('year', String(activeYear));
     if (rateMode !== 'counts') p.set('calc', rateMode);
+    if (colourMode === 'fixed') p.set('scale', 'fixed');
     const dn = isHistoryView() ? histSelected : selected;
     if (dn) p.set('district', dn);
     history.replaceState(null, '', u.pathname + '?' + p.toString() + u.hash);
@@ -2776,6 +2863,7 @@ function applyUrlState() {
     }
     const calc = p.get('calc');
     if (calc === 'counts' || calc === 'density' || calc === 'perCapita') rateMode = calc;
+    if (p.get('scale') === 'fixed') colourMode = 'fixed';
     const dn = p.get('district');
     if (dn) { if (DATA.some(d => d.name === dn)) selected = dn; histSelected = dn; }
   } catch (e) {}
@@ -2793,6 +2881,8 @@ function wireRedesign() {
       if (target && target.tagName === 'DETAILS') target.open = true;
     }
     const t = e.target.closest('button');
+    const sc = e.target.closest('#scaleToggle button');
+    if (sc && !sc.disabled) { colourMode = sc.dataset.scale; render(); return; }
     if (t && t.id === 'exViewTable') { mapTableOpen = !mapTableOpen; renderMapExplainer(); return; }
     if (t && t.id === 'exDownload') { const out = viewCsv(); triggerDownload('gaitway_delhi_view_' + activeMetric + '_' + activeYear + '_' + rateMode + '.csv', toCSV(out.headers, out.rows)); return; }
     if (t && (t.id === 'exCopyLink' || t.dataset.act === 'copy' || t.id === 'copyViewLink')) {
@@ -2804,6 +2894,127 @@ function wireRedesign() {
     const more = document.getElementById('navMore');
     if (more && more.open && !e.target.closest('#navMore')) more.open = false;
   });
+}
+
+// ---- Can I compare these years? ----
+// Reads CONTINUITY (data/continuity.json). A change figure is only ever shown when the pair is comparable or marked with caution.
+const CONT_ICON = { comparable: '✓', caution: '!', not_comparable: '✕', unavailable: '–' };
+let colourMode = 'rank';
+
+function contBadge(cmp) {
+  return '<span class="cont-badge ' + cmp.state + '"><span aria-hidden="true">' + CONT_ICON[cmp.state] + '</span> ' + esc(CONTINUITY.states[cmp.state]) + '</span>';
+}
+function contBlock(cmp, lead) {
+  const text = cmp.reasons.length ? cmp.reasons.map(esc).join(' ') : (cmp.state === 'comparable' ? 'Same districts and offence definitions, so a change calculation is available.' : '');
+  return '<div class="continuity ' + cmp.state + '">' + contBadge(cmp) + '<span class="cont-text">' + (lead ? '<b>' + esc(lead) + '</b> ' : '') + text + '</span></div>';
+}
+function prevYearForCompare(m, year) {
+  if (m.yearVariants) { const ys = Object.keys(m.yearVariants).map(Number).sort(); const i = ys.indexOf(Number(year)); return i > 0 ? ys[i - 1] : null; }
+  if (!m.prevKey) return null;
+  return Number(year) > CONTINUITY.yearRange[0] ? Number(year) - 1 : null;
+}
+function rawFor(m, name, year) {
+  const y = Number(year);
+  if (m.prevKey && y <= 2018) {
+    const hy = HIST.years.find(z => z.year === y);
+    if (!hy) return null;
+    const u = hy.units.find(x => x.territorial && histCanon(x.label) === histCanon(name));
+    return u && u.values[histKey(m, y)] != null ? u.values[histKey(m, y)] : null;
+  }
+  const d = DATA.find(x => x.name === name);
+  if (!d) return null;
+  const v = m.yearVariants ? d[m.yearVariants[String(y)]] : d[yearFieldKey(m, String(y))];
+  return v == null ? null : v;
+}
+function changeTile(m, name, year) {
+  const info = contFor(m, name, year);
+  if (!info) return '';
+  const ch = changeBetween(info.cmp, info.from, info.to);
+  const word = info.cmp.state === 'unavailable' ? 'Not available' : (info.cmp.state === 'not_comparable' ? 'Not comparable' : 'Not calculated');
+  return '<div class="stat"><span class="stat-label">Change in cases from ' + info.prev + '</span>' +
+    (ch == null ? '<span class="stat-val nodata">' + word + '</span>' : '<span class="stat-val">' + (ch >= 0 ? '+' : '') + ch.toFixed(1) + '%</span>') +
+    '<span class="stat-sub">' + contBadge(info.cmp) + '</span>' +
+    (info.cmp.reasons.length ? '<span class="stat-sub cont-reason">' + esc(info.cmp.reasons[0]) + '</span>' : '') + '</div>';
+}
+function contFor(m, name, year) {
+  const prev = prevYearForCompare(m, year);
+  if (prev == null) return null;
+  const cmp = compareYears(CONTINUITY, m.key, prev, Number(year), name);
+  const flagKey = m.key + 'PreviousYearComparable' + year;
+  const d = DATA.find(x => x.name === name);
+  if (d && flagKey in d && d[flagKey] === false && cmp.state !== 'unavailable' && cmp.state !== 'not_comparable') {
+    cmp.state = 'not_comparable';
+    cmp.reasons = ['The source data flags the change from the previous year for this district as not comparable.'];
+  }
+  return { prev: prev, cmp: cmp, from: rawFor(m, name, prev), to: rawFor(m, name, year) };
+}
+function changeCellHtml(info) {
+  if (!info) return 'n/a';
+  const ch = changeBetween(info.cmp, info.from, info.to);
+  if (ch == null) {
+    const word = info.cmp.state === 'unavailable' ? 'Not available' : (info.cmp.state === 'not_comparable' ? 'Not comparable' : 'Not calculated');
+    return '<span class="cont-none-cell" title="' + esc(info.cmp.reasons.join(' ')) + '">' + word + '</span>';
+  }
+  return (ch >= 0 ? '+' : '') + ch.toFixed(1) + '%' + (info.cmp.state === 'caution' ? ' <span class="cont-warn" title="' + esc(info.cmp.reasons.join(' ')) + '">!</span>' : '');
+}
+function mapContinuityHtml() {
+  const m = currentMetric(), year = yearSuffix(m);
+  const prev = prevYearForCompare(m, year);
+  if (prev == null) return '<p class="cont-none">No earlier year is available for this measure, so there is nothing to compare it with.</p>';
+  let out = contBlock(compareYears(CONTINUITY, m.key, prev, Number(year)), 'Compared with ' + prev + ':');
+  const dn = isHistoryView() ? histSelected : selected;
+  if (dn) { const info = contFor(m, dn, year); if (info) out += contBlock(info.cmp, dn + ' compared with ' + prev + ':'); }
+  return out + '<p class="small cont-note">Change figures appear only where the comparison is comparable or marked with caution; they are changes in registered cases, not in risk.</p>';
+}
+function staticContinuityHtml(id) {
+  const s = CONTINUITY.series;
+  if (id === 'trendsExplainer') return contBlock({ state: s.roadTrend.state, reasons: s.roadTrend.reasons }, 'Comparing 2011 to 2024:');
+  if (id === 'zonesExplainer' || id === 'zones2024Explainer') return contBlock({ state: s.roadZones.state, reasons: s.roadZones.reasons }, 'Comparing 2023 and 2024:');
+  if (id === 'victimsExplainer') return '<p class="cont-none">Years are shown side by side, but no comparability check has been documented for this chart yet, so treat changes between years with care.</p>';
+  return '<p class="cont-none">This view shows one year or one report at a time. No year-to-year comparison is offered.</p>';
+}
+
+// Colour scale: rank within the year, or one linear scale shared by the years that can honestly be compared.
+function rowsForYear(m, y) {
+  if (m.prevKey && y <= 2018) {
+    const hy = HIST.years.find(z => z.year === y);
+    return hy ? hy.units.filter(u => u.territorial).map(u => u.values[histKey(m, y)]) : [];
+  }
+  return DATA.map(d => {
+    const raw = m.yearVariants ? d[m.yearVariants[String(y)]] : d[yearFieldKey(m, String(y))];
+    return getRateVal(raw == null ? null : raw, d);
+  });
+}
+function fixedScaleAvailable(m, year) {
+  const seg = segmentOf(CONTINUITY, m.key, Number(year));
+  return seg[0] !== seg[1];
+}
+function viewScale(vals, m, year) {
+  const base = { scale: percentileScale(vals), lo: vals.length ? Math.min.apply(null, vals) : null, hi: vals.length ? Math.max.apply(null, vals) : null, fixed: false, note: '' };
+  if (colourMode !== 'fixed' || !vals.length || !fixedScaleAvailable(m, year)) return base;
+  const seg = segmentOf(CONTINUITY, m.key, Number(year));
+  let hi = 0;
+  for (let y = seg[0]; y <= seg[1]; y++) rowsForYear(m, y).forEach(v => { if (v != null && v > hi) hi = v; });
+  if (!hi) return base;
+  return { scale: v => Math.min(1, Math.max(0, v / hi)), lo: 0, hi: hi, fixed: true, note: 'same scale across ' + seg[0] + ' to ' + seg[1] };
+}
+function renderScaleToggle() {
+  const el = document.getElementById('scaleToggle');
+  if (!el) return;
+  const m = currentMetric(), year = yearSuffix(m), ok = fixedScaleAvailable(m, year);
+  el.querySelectorAll('button').forEach(b => {
+    const on = (b.dataset.scale === 'fixed') ? (colourMode === 'fixed' && ok) : !(colourMode === 'fixed' && ok);
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-pressed', String(on));
+    if (b.dataset.scale === 'fixed') { b.disabled = !ok; b.title = ok ? 'One scale for ' + segmentOf(CONTINUITY, m.key, Number(year)).join(' to ') + ', so colours can be compared across those years' : 'No other year can share a scale with this one'; }
+  });
+}
+function geoVersion(m, year) {
+  const y = Number(year);
+  if (!m.prevKey) return y <= 2022 ? '11 Traffic Police reporting districts' : '15 Delhi Police districts';
+  if (y <= 2016) return '11 police districts (2014 roster, inferred)';
+  if (y <= 2018) return '14 police districts (November 2017 gazette schedule)';
+  return '15 police districts (current)';
 }
 
 function render() {
@@ -2831,6 +3042,7 @@ function render() {
   renderRoadSummary();
   if (compareMode && !hist) renderCompareCard();
   renderTopicControls();
+  renderScaleToggle();
   renderMapExplainer();
   syncUrl();
 }
@@ -3679,6 +3891,7 @@ renderScatter();
 applyUrlState();
 renderOverview();
 renderGlossary();
+renderContinuityTable();
 renderStaticExplainers();
 wireRedesign();
 render();

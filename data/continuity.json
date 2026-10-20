@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.0.0",
+  "updated": "2026-10-20",
+  "purpose": "One place that says whether two years of a measure can be compared. The dashboard's comparability indicators, the suppressed change figures, the colour-scale segments and the continuity columns in downloads all read this file. Having a value for every year does not make a valid trend: a change can come from how the data was collected, defined or mapped rather than from what happened.",
+  "states": {
+    "comparable": "Comparable",
+    "caution": "Compare with caution",
+    "not_comparable": "Not comparable",
+    "unavailable": "Unavailable"
+  },
+  "yearRange": [2011, 2024],
+  "crimeMeasures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
+  "availability": [
+    {
+      "measures": ["crimeAgainstWomen", "totalSLL"],
+      "years": [2011, 2013],
+      "reason": "The selected 2011-2013 source tables supply no comparable Special and Local Laws or crimes-against-women aggregates, so they are left blank, not zero."
+    },
+    {
+      "measures": ["burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
+      "years": [2016, 2016],
+      "reason": "The 2016 extract supplies theft and robbery only. Its burglary figure combines criminal trespass and burglary, and its other aggregates use incompatible source definitions, so they are left blank."
+    }
+  ],
+  "definitionBreaks": [
+    {
+      "between": [2013, 2014],
+      "measures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
+      "state": "not_comparable",
+      "reason": "NCRB changed its reporting format and offence groupings in 2014, after the 2013 criminal-law changes. 2014 counts are not on the same basis as 2013, and the old burglary head and the revised criminal-trespass/burglary head are different measures.",
+      "evidence": "data/releases/historical_2011_2015/manifest.json"
+    },
+    {
+      "between": [2015, 2016],
+      "measures": ["theft", "robbery"],
+      "state": "caution",
+      "reason": "2016 comes from a different compilation (the India Data Portal extract of NCRB data) than the 2011-2015 NCRB tables.",
+      "evidence": "data/delhi_crime_2016_2021_verified.json"
+    },
+    {
+      "between": [2016, 2017],
+      "measures": ["burglary"],
+      "state": "not_comparable",
+      "reason": "Burglary up to 2015 is the revised criminal-trespass/burglary head; from 2017 it is the day-plus-night burglary definition.",
+      "evidence": "docs/AGENT_CHANGELOG.md"
+    },
+    {
+      "between": [2021, 2022],
+      "measures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
+      "state": "caution",
+      "reason": "2016-2021 come from the India Data Portal extract and 2022 onward from NCRB's own district-wise tables.",
+      "evidence": "data/releases/2022/manifest.json"
+    },
+    {
+      "between": [2023, 2024],
+      "measures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
+      "state": "caution",
+      "reason": "The Bharatiya Nyaya Sanhita replaced the Indian Penal Code on 1 July 2024, so the 2024 tables use BNS numbering and offence groupings follow the source table.",
+      "evidence": "data/releases/2024/manifest.json"
+    }
+  ],
+  "geography": {
+    "firstYear": { "Dwarka": 2017, "Rohini": 2017, "Shahdara": 2017, "Outer North": 2019 },
+    "epochs": [
+      {
+        "years": [2011, 2016],
+        "districts": 11,
+        "state": "caution",
+        "reason": "The same 11 district names are used, but no station-by-station roster exists for these years (the December 2014 roster is the only dated one), so a station moving between districts cannot be ruled out."
+      }
+    ],
+    "breaks": [
+      {
+        "between": [2016, 2017],
+        "reason": "Delhi Police districts were reorganised. Rohini and Shahdara were notified on 14 October 2016 and reported as newly created in early December 2016, and Dwarka followed on 9 November 2017. 48 of the 161 stations with archived shapes sit in a different district in the November 2017 schedule than in the December 2014 roster.",
+        "affected": ["East", "North-East", "Outer", "South", "South-East", "South-West", "West"],
+        "unaffected": ["Central", "New Delhi", "North", "North-West"],
+        "unaffectedNote": "These four have the same station list in the December 2014 roster and the November 2017 schedule.",
+        "newDistricts": ["Dwarka", "Rohini", "Shahdara"],
+        "evidence": "data/staged/police_geography_history/validation_2017.json"
+      },
+      {
+        "between": [2018, 2019],
+        "reason": "Outer North was created on 1 January 2019 from parts of Rohini, North-West and Outer.",
+        "affected": ["Rohini", "North-West", "Outer"],
+        "unaffected": [],
+        "othersState": "caution",
+        "othersReason": "Other station reassignments around 2019 are not documented.",
+        "newDistricts": ["Outer North"],
+        "evidence": "https://www.business-standard.com/article/pti-stories/delhi-police-s-new-district-outer-north-to-function-from-monday-118123100961_1.html"
+      }
+    ]
+  },
+  "roadDistrict": {
+    "reason2022": "The 2022 road-death and hit-and-run figures use the Traffic Police's 11 reporting districts, not the 15 police districts, so they cannot be compared with 2023 or 2024.",
+    "cautionMeasures": ["crashProneZones2023"],
+    "cautionReason": "The 2023 and 2024 crash-prone zone lists come from separate reports and list different zones; a change in the number of zones is not a change in risk."
+  },
+  "series": {
+    "roadTrend": {
+      "state": "caution",
+      "years": [2011, 2024],
+      "reasons": [
+        "Counts, not rates: traffic and population changed over the period.",
+        "Injury and simple/non-injury figures differ by source edition and are excluded.",
+        "The early reports' standardized 30-day fatality definition could not be confirmed."
+      ],
+      "evidence": "data/releases/citywide_road_trend/manifest.json"
+    },
+    "roadZones": {
+      "state": "caution",
+      "reasons": ["The 2023 and 2024 lists come from separate reports and list different zones; a change in the number of zones is not a change in risk."]
+    },
+    "partialYear": {
+      "state": "not_comparable",
+      "reasons": ["Year-to-date series (for example iRAD 2026) cover part of a year and are never compared with full years."]
+    }
+  }
+}
