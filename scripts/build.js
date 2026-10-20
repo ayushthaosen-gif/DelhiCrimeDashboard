@@ -480,7 +480,7 @@ footer a { color: inherit; }
   </nav>
   <header class="masthead">
     <div class="header-copy">
-      <div class="eyebrow">Delhi Police &amp; Traffic Police district data · 2016–2024</div>
+      <div class="eyebrow">Delhi Police &amp; Traffic Police district data · 2011–2024</div>
       <h1>Delhi Urban Safety Observatory</h1>
       <p class="subhead">Official crime and road-safety figures for Delhi's 15 police districts, set against real public infrastructure: streetlights, underpasses, pedestrian overbridges, metro gates and police posts.</p>
       <p class="caveat-line"><b>Read before comparing:</b> a zero from a survey-based layer can mean "not surveyed", and OpenStreetMap layers are community-mapped. <a href="#about" id="aboutLink">See the coverage notes</a>.</p>
@@ -501,7 +501,7 @@ footer a { color: inherit; }
   <details class="datanote" id="about">
     <summary>About this project and data coverage notes</summary>
     <div class="datanote-body">
-      <p class="about-lede">This dashboard puts <b>NCRB crime reports (2016-2024)</b>, <b>Delhi Traffic Police crash data</b> and <b>public-infrastructure counts</b> side by side for Delhi's 15 police districts, so citizens, planners and researchers can see where safety and infrastructure coverage line up, and where they do not. It describes patterns. It does not show cause and effect.</p>
+      <p class="about-lede">This dashboard puts <b>NCRB crime reports (2011-2024; 2011-2018 in the districts reported at the time)</b>, <b>Delhi Traffic Police crash data</b> and <b>public-infrastructure counts</b> side by side for Delhi's 15 police districts, so citizens, planners and researchers can see where safety and infrastructure coverage line up, and where they do not. It describes patterns. It does not show cause and effect.</p>
       <ul>
         <li><b>Streetlights</b> (PAPL survey, ~40k points) and <b>underpasses</b> (PAPL survey, 417 points) share the exact same gap: <b>Dwarka, North-East, North-West, Outer, Outer North and Rohini were never driven through.</b> Zero there means "not surveyed," not "not present."</li>
         <li><b>Pedestrian overbridges</b> (OpenStreetMap/Overpass snapshot, 242 connected mapped bridge groups) are available across all district polygons, but this is a mapped inventory rather than an official completeness register. A zero means no matching OSM feature was mapped, not verified absence.</li>
