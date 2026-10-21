@@ -101,8 +101,8 @@
   },
   {
     "year": 2016,
-    "status": "not_collected",
-    "scope": "Delhi UT",
+    "status": "printed_totals_only",
+    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
     "reporting_units": null,
     "offence_basis": "IPC",
     "theft": null,
@@ -110,17 +110,19 @@
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
     "burglary": null,
-    "total_ipc_bns": null,
-    "total_sll": null,
-    "total_crimes_against_women": null,
+    "total_ipc_bns": 209519,
+    "total_sll": 7401,
+    "total_crimes_against_women": 15310,
     "total_crimes_in_which_women_was_victim": null,
-    "sources": [],
-    "note": "Not collected yet. The NCRB state/UT tables for this year are not archived in this repository, and the district-level extract for 2016-2021 omits totals on purpose, so no Delhi-wide figure is shown or computed."
+    "sources": [
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+    ],
+    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2017; SLL cii2017; crimes against women cii2017."
   },
   {
     "year": 2017,
-    "status": "not_collected",
-    "scope": "Delhi UT",
+    "status": "printed_totals_only",
+    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
     "reporting_units": null,
     "offence_basis": "IPC",
     "theft": null,
@@ -128,17 +130,19 @@
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
     "burglary": null,
-    "total_ipc_bns": null,
-    "total_sll": null,
-    "total_crimes_against_women": null,
+    "total_ipc_bns": 232066,
+    "total_sll": 12648,
+    "total_crimes_against_women": 13076,
     "total_crimes_in_which_women_was_victim": null,
-    "sources": [],
-    "note": "Not collected yet. The NCRB state/UT tables for this year are not archived in this repository, and the district-level extract for 2016-2021 omits totals on purpose, so no Delhi-wide figure is shown or computed."
+    "sources": [
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+    ],
+    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2017, cii2019; SLL cii2017, cii2019; crimes against women cii2017, cii2019."
   },
   {
     "year": 2018,
-    "status": "not_collected",
-    "scope": "Delhi UT",
+    "status": "printed_totals_only",
+    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
     "reporting_units": null,
     "offence_basis": "IPC",
     "theft": null,
@@ -146,17 +150,19 @@
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
     "burglary": null,
-    "total_ipc_bns": null,
-    "total_sll": null,
-    "total_crimes_against_women": null,
+    "total_ipc_bns": 249012,
+    "total_sll": 13600,
+    "total_crimes_against_women": 13640,
     "total_crimes_in_which_women_was_victim": null,
-    "sources": [],
-    "note": "Not collected yet. The NCRB state/UT tables for this year are not archived in this repository, and the district-level extract for 2016-2021 omits totals on purpose, so no Delhi-wide figure is shown or computed."
+    "sources": [
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+    ],
+    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2019, cii2020; SLL cii2019, cii2020; crimes against women cii2019, cii2020."
   },
   {
     "year": 2019,
-    "status": "not_collected",
-    "scope": "Delhi UT",
+    "status": "printed_totals_only",
+    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
     "reporting_units": null,
     "offence_basis": "IPC",
     "theft": null,
@@ -164,17 +170,19 @@
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
     "burglary": null,
-    "total_ipc_bns": null,
-    "total_sll": null,
-    "total_crimes_against_women": null,
+    "total_ipc_bns": 299475,
+    "total_sll": 16786,
+    "total_crimes_against_women": 13395,
     "total_crimes_in_which_women_was_victim": null,
-    "sources": [],
-    "note": "Not collected yet. The NCRB state/UT tables for this year are not archived in this repository, and the district-level extract for 2016-2021 omits totals on purpose, so no Delhi-wide figure is shown or computed."
+    "sources": [
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+    ],
+    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2019, cii2020, cii2021; SLL cii2019, cii2020, cii2021; crimes against women cii2019, cii2020, cii2021."
   },
   {
     "year": 2020,
-    "status": "not_collected",
-    "scope": "Delhi UT",
+    "status": "printed_totals_only",
+    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
     "reporting_units": null,
     "offence_basis": "IPC",
     "theft": null,
@@ -182,30 +190,36 @@
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
     "burglary": null,
-    "total_ipc_bns": null,
-    "total_sll": null,
-    "total_crimes_against_women": null,
+    "total_ipc_bns": 249192,
+    "total_sll": 16878,
+    "total_crimes_against_women": 10093,
     "total_crimes_in_which_women_was_victim": null,
-    "sources": [],
-    "note": "Not collected yet. The NCRB state/UT tables for this year are not archived in this repository, and the district-level extract for 2016-2021 omits totals on purpose, so no Delhi-wide figure is shown or computed."
+    "sources": [
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+    ],
+    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2021; SLL cii2020, cii2021; crimes against women cii2020, cii2021."
   },
   {
     "year": 2021,
-    "status": "not_collected",
-    "scope": "Delhi UT",
-    "reporting_units": null,
+    "status": "printed",
+    "scope": "Delhi UT: printed \"Total Districts\" row of the Delhi block, covering every reporting unit including specialised units; not a sum of the 15 districts",
+    "reporting_units": 23,
     "offence_basis": "IPC",
-    "theft": null,
-    "robbery": null,
+    "theft": 199981,
+    "robbery": 2333,
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
-    "burglary": null,
-    "total_ipc_bns": null,
-    "total_sll": null,
-    "total_crimes_against_women": null,
+    "burglary": 2637,
+    "total_ipc_bns": 291904,
+    "total_sll": 14485,
+    "total_crimes_against_women": 14277,
     "total_crimes_in_which_women_was_victim": null,
-    "sources": [],
-    "note": "Not collected yet. The NCRB state/UT tables for this year are not archived in this repository, and the district-level extract for 2016-2021 omits totals on purpose, so no Delhi-wide figure is shown or computed."
+    "sources": [
+      "data/raw/ncrb_wayback/cii2021_district_workbooks/districtwise_ipc_crimes_2021.xlsx",
+      "data/raw/ncrb_wayback/cii2021_district_workbooks/districtwise_sll_crimes_2021.xlsx",
+      "data/raw/ncrb_wayback/cii2021_district_workbooks/districtwise_crime_against_women_2021.xlsx"
+    ],
+    "note": "Total crimes against women is the IPC/BNS plus SLL total. The printed total equals the sum of the printed unit rows for every figure. The 2021 totals also equal the State/UT tables of Crime in India 2021."
   },
   {
     "year": 2022,

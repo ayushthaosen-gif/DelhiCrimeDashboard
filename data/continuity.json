@@ -19,6 +19,7 @@
     {
       "measures": ["burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
       "years": [2016, 2016],
+      "districtsOnly": true,
       "reason": "The 2016 extract supplies theft and robbery only. Its burglary figure combines criminal trespass and burglary, and its other aggregates use incompatible source definitions, so they are left blank."
     }
   ],
@@ -34,6 +35,7 @@
       "between": [2015, 2016],
       "measures": ["theft", "robbery"],
       "state": "caution",
+      "districtsOnly": true,
       "reason": "2016 comes from a different compilation (the India Data Portal extract of NCRB data) than the 2011-2015 NCRB tables.",
       "evidence": "data/delhi_crime_2016_2021_verified.json"
     },
@@ -45,9 +47,24 @@
       "evidence": "docs/AGENT_CHANGELOG.md"
     },
     {
+      "between": [2015, 2016],
+      "measures": ["crimeAgainstWomen"],
+      "state": "caution",
+      "reason": "Up to 2015 the figure is the total printed in the original-year table; from 2016 it is the IPC plus SLL total of the State/UT tables. Crime in India 2017 prints 17,222 for 2015 where the original-year table gives 17,104, so the two heads are not identical.",
+      "evidence": "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+    },
+    {
+      "between": [2021, 2022],
+      "measures": ["burglary"],
+      "state": "caution",
+      "reason": "NCRB prints 2,637 Delhi burglary cases for 2021 and 6,189 for 2022 (2.3 times as many) under the same heading. The cause has not been established, so read the change with caution.",
+      "evidence": "data/releases/delhi_ut_series/manifest.json"
+    },
+    {
       "between": [2021, 2022],
       "measures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
       "state": "caution",
+      "districtsOnly": true,
       "reason": "2016-2021 come from the India Data Portal extract and 2022 onward from NCRB's own district-wise tables.",
       "evidence": "data/releases/2022/manifest.json"
     },
@@ -93,8 +110,13 @@
   },
   "utSeries": {
     "scopeName": "Delhi UT",
-    "printedYears": [2011, 2012, 2013, 2014, 2015, 2022, 2023, 2024],
-    "gapReason": "The Delhi-wide totals for 2016-2021 have not been collected yet, so they are left blank rather than computed from districts.",
+    "printedYears": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    "gapReason": "No Delhi-wide figure has been collected for this year, so it is left blank rather than computed from districts.",
+    "headsUnavailable": {
+      "years": [2016, 2020],
+      "measures": ["theft", "robbery", "burglary"],
+      "reason": "Delhi-wide theft, robbery and burglary for 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet, so they are blank, not zero."
+    },
     "note": "Delhi-wide totals do not depend on district boundaries, so geography breaks are skipped. Definition breaks and missing years still apply."
   },
   "roadDistrict": {

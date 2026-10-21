@@ -1,0 +1,553 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "Delhi UT totals from NCRB Crime in India State/UT-wise tables, 2015-2021, with every edition that prints each year compared.",
+  "method": "Delhi row of Table 1A.1 (IPC), 1A.2 (SLL), 1A.3 or the combined IPC+SLL table, and the crime-against-women table, read from table-page excerpts of the 2017, 2019 and 2020 Volume 1 PDFs and from the 2021 xlsx tables. Overlapping editions must agree exactly.",
+  "generatedBy": "tools/delhi_ut_series/extract_state_tables.py",
+  "measures": {
+    "ipc": "IPC crimes",
+    "sll": "SLL crimes",
+    "ipc_sll": "IPC and SLL crimes together",
+    "women": "Crimes against women (IPC + SLL)"
+  },
+  "observations": [
+    {
+      "measure": "ipc",
+      "edition": "cii2017",
+      "label": "Crime in India 2017, Volume 1",
+      "page": 37,
+      "years": [
+        2015,
+        2016,
+        2017
+      ],
+      "values": [
+        191377,
+        209519,
+        232066
+      ],
+      "row": "34 Delhi 191377 209519 232066 7.6 221.0 1049.9",
+      "complete": true
+    },
+    {
+      "measure": "sll",
+      "edition": "cii2017",
+      "label": "Crime in India 2017, Volume 1",
+      "page": 38,
+      "years": [
+        2015,
+        2016,
+        2017
+      ],
+      "values": [
+        8599,
+        7401,
+        12648
+      ],
+      "row": "34 Delhi 8599 7401 12648 0.7 221.0 57.2",
+      "complete": true
+    },
+    {
+      "measure": "women",
+      "edition": "cii2017",
+      "label": "Crime in India 2017, Volume 1",
+      "page": 237,
+      "years": [
+        2015,
+        2016,
+        2017
+      ],
+      "values": [
+        17222,
+        15310,
+        13076
+      ],
+      "row": "34 Delhi UT 17222 15310 13076 3.6 98.1 133.3",
+      "complete": true
+    },
+    {
+      "measure": "ipc",
+      "edition": "cii2019",
+      "label": "Crime in India 2019, Volume 1",
+      "page": 43,
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "values": [
+        232066,
+        249012,
+        299475
+      ],
+      "row": "34 Delhi 232066 249012 299475 9.3 199.4 1501.9",
+      "complete": true
+    },
+    {
+      "measure": "sll",
+      "edition": "cii2019",
+      "label": "Crime in India 2019, Volume 1",
+      "page": 44,
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "values": [
+        12648,
+        13600,
+        16786
+      ],
+      "row": "34 Delhi 12648 13600 16786 0.9 199.4 84.2",
+      "complete": true
+    },
+    {
+      "measure": "ipc_sll",
+      "edition": "cii2019",
+      "label": "Crime in India 2019, Volume 1",
+      "page": 45,
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "values": [
+        244714,
+        262612,
+        316261
+      ],
+      "row": "34 Delhi 244714 262612 316261 6.1 199.4 1586.1",
+      "complete": true
+    },
+    {
+      "measure": "women",
+      "edition": "cii2019",
+      "label": "Crime in India 2019, Volume 1",
+      "page": 243,
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "values": [
+        13076,
+        13640,
+        13395
+      ],
+      "row": "34 Delhi UT 13076 13640 13395 3.3 93.1 144.0",
+      "complete": true
+    },
+    {
+      "measure": "ipc",
+      "edition": "cii2020",
+      "label": "Crime in India 2020, Volume 1",
+      "page": 43,
+      "years": [
+        2018,
+        2019,
+        2020
+      ],
+      "values": [
+        249012,
+        299475
+      ],
+      "row": "32 Delhi 249012 299475 1226.4 27.7",
+      "complete": false
+    },
+    {
+      "measure": "sll",
+      "edition": "cii2020",
+      "label": "Crime in India 2020, Volume 1",
+      "page": 44,
+      "years": [
+        2018,
+        2019,
+        2020
+      ],
+      "values": [
+        13600,
+        16786,
+        16878
+      ],
+      "row": "32 Delhi 13600 16786 16878 203.2 83.1 97.8",
+      "complete": true
+    },
+    {
+      "measure": "ipc_sll",
+      "edition": "cii2020",
+      "label": "Crime in India 2020, Volume 1",
+      "page": 45,
+      "years": [
+        2018,
+        2019,
+        2020
+      ],
+      "values": [
+        262612,
+        316261,
+        266070
+      ],
+      "row": "32 Delhi 262612 316261 266070 203.2 1309.5 31.7",
+      "complete": true
+    },
+    {
+      "measure": "women",
+      "edition": "cii2020",
+      "label": "Crime in India 2020, Volume 1",
+      "page": 247,
+      "years": [
+        2018,
+        2019,
+        2020
+      ],
+      "values": [
+        13640,
+        13395,
+        10093
+      ],
+      "row": "32 Delhi 13640 13395 10093 94.9 106.4 75.0",
+      "complete": true
+    },
+    {
+      "measure": "ipc",
+      "edition": "cii2021",
+      "label": "Crime in India 2021, Table 1A.1",
+      "page": null,
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "values": [
+        299475,
+        249192,
+        291904
+      ],
+      "row": "Delhi 299475 249192 291904",
+      "complete": true
+    },
+    {
+      "measure": "sll",
+      "edition": "cii2021",
+      "label": "Crime in India 2021, Table 1A.2",
+      "page": null,
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "values": [
+        16786,
+        16878,
+        14485
+      ],
+      "row": "Delhi 16786 16878 14485",
+      "complete": true
+    },
+    {
+      "measure": "ipc_sll",
+      "edition": "cii2021",
+      "label": "Crime in India 2021, Table 1A.3",
+      "page": null,
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "values": [
+        316261,
+        266070,
+        306389
+      ],
+      "row": "Delhi 316261 266070 306389",
+      "complete": true
+    },
+    {
+      "measure": "women",
+      "edition": "cii2021",
+      "label": "Crime in India 2021, Table 3A.1",
+      "page": null,
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "values": [
+        13395,
+        10093,
+        14277
+      ],
+      "row": "Delhi 13395 10093 14277",
+      "complete": true
+    }
+  ],
+  "years": {
+    "2015": {
+      "ipc": {
+        "value": 191377,
+        "editions": [
+          "cii2017"
+        ],
+        "agree": true
+      },
+      "sll": {
+        "value": 8599,
+        "editions": [
+          "cii2017"
+        ],
+        "agree": true
+      },
+      "women": {
+        "value": 17222,
+        "editions": [
+          "cii2017"
+        ],
+        "agree": true
+      }
+    },
+    "2016": {
+      "ipc": {
+        "value": 209519,
+        "editions": [
+          "cii2017"
+        ],
+        "agree": true
+      },
+      "sll": {
+        "value": 7401,
+        "editions": [
+          "cii2017"
+        ],
+        "agree": true
+      },
+      "women": {
+        "value": 15310,
+        "editions": [
+          "cii2017"
+        ],
+        "agree": true
+      }
+    },
+    "2017": {
+      "ipc": {
+        "value": 232066,
+        "editions": [
+          "cii2017",
+          "cii2019"
+        ],
+        "agree": true
+      },
+      "sll": {
+        "value": 12648,
+        "editions": [
+          "cii2017",
+          "cii2019"
+        ],
+        "agree": true
+      },
+      "women": {
+        "value": 13076,
+        "editions": [
+          "cii2017",
+          "cii2019"
+        ],
+        "agree": true
+      },
+      "ipc_sll": {
+        "value": 244714,
+        "editions": [
+          "cii2019"
+        ],
+        "agree": true
+      }
+    },
+    "2018": {
+      "ipc": {
+        "value": 249012,
+        "editions": [
+          "cii2019",
+          "cii2020"
+        ],
+        "agree": true
+      },
+      "sll": {
+        "value": 13600,
+        "editions": [
+          "cii2019",
+          "cii2020"
+        ],
+        "agree": true
+      },
+      "women": {
+        "value": 13640,
+        "editions": [
+          "cii2019",
+          "cii2020"
+        ],
+        "agree": true
+      },
+      "ipc_sll": {
+        "value": 262612,
+        "editions": [
+          "cii2019",
+          "cii2020"
+        ],
+        "agree": true
+      }
+    },
+    "2019": {
+      "ipc": {
+        "value": 299475,
+        "editions": [
+          "cii2019",
+          "cii2020",
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "sll": {
+        "value": 16786,
+        "editions": [
+          "cii2019",
+          "cii2020",
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "women": {
+        "value": 13395,
+        "editions": [
+          "cii2019",
+          "cii2020",
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "ipc_sll": {
+        "value": 316261,
+        "editions": [
+          "cii2019",
+          "cii2020",
+          "cii2021"
+        ],
+        "agree": true
+      }
+    },
+    "2020": {
+      "ipc": {
+        "value": 249192,
+        "editions": [
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "sll": {
+        "value": 16878,
+        "editions": [
+          "cii2020",
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "women": {
+        "value": 10093,
+        "editions": [
+          "cii2020",
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "ipc_sll": {
+        "value": 266070,
+        "editions": [
+          "cii2020",
+          "cii2021"
+        ],
+        "agree": true
+      }
+    },
+    "2021": {
+      "ipc": {
+        "value": 291904,
+        "editions": [
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "sll": {
+        "value": 14485,
+        "editions": [
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "women": {
+        "value": 14277,
+        "editions": [
+          "cii2021"
+        ],
+        "agree": true
+      },
+      "ipc_sll": {
+        "value": 306389,
+        "editions": [
+          "cii2021"
+        ],
+        "agree": true
+      }
+    }
+  },
+  "ipcPlusSllCheck": {
+    "2017": {
+      "ipc": 232066,
+      "sll": 12648,
+      "printedCombined": 244714,
+      "ipcPlusSllEqualsCombined": true
+    },
+    "2018": {
+      "ipc": 249012,
+      "sll": 13600,
+      "printedCombined": 262612,
+      "ipcPlusSllEqualsCombined": true
+    },
+    "2019": {
+      "ipc": 299475,
+      "sll": 16786,
+      "printedCombined": 316261,
+      "ipcPlusSllEqualsCombined": true
+    },
+    "2020": {
+      "ipc": 249192,
+      "sll": 16878,
+      "printedCombined": 266070,
+      "ipcPlusSllEqualsCombined": true
+    },
+    "2021": {
+      "ipc": 291904,
+      "sll": 14485,
+      "printedCombined": 306389,
+      "ipcPlusSllEqualsCombined": true
+    }
+  },
+  "singleEditionYears": {
+    "ipc": [
+      2015,
+      2016,
+      2020,
+      2021
+    ],
+    "sll": [
+      2015,
+      2016,
+      2021
+    ],
+    "women": [
+      2015,
+      2016,
+      2021
+    ],
+    "ipc_sll": [
+      2017,
+      2021
+    ]
+  }
+}

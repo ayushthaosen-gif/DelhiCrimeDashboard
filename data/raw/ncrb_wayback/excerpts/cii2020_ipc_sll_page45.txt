@@ -1,0 +1,112 @@
+                                                               TABLE 1A.3
+
+                                     Total IPC & SLL Crimes (State/UT-wise) - 2018-2020
+
+                                                                                    Mid-Year     Rate of
+
+                                                                                    Projected Cognizable Chargesheeti
+
+SL       State/UT                    2018        2019                    2020       Population Crimes         ng Rate
+
+                                                                                    (in Lakhs) (IPC+SLL)      (2020)
+
+[1]         [2]                      [3]         [4]                     [5]        (2020)       (2020)       [8]
+                                                                                      [6]          [7]
+STATES:                               144703      145751                  238105                                   90.1
+                                         2817        2877                    2503        526.0        452.7        55.3
+1 Andhra Pradesh                                                                           15.2       164.5        47.8
+                                      120573      132783                  121609                      349.5        79.2
+2 Arunachal Pradesh                   262815      269109                  257512         347.9        211.3        87.3
+                                                                          103173        1219.0        352.9        87.0
+3 Assam                                 98233       96561                                             281.1        98.3
+                                         3884        3727                    4366        292.4       1011.4        39.7
+4 Bihar                                                                   699619           15.5       658.6        87.5
+                                      393194      431066                  192395                      280.2        68.8
+5 Chhattisgarh                        191229      166336                                 691.7        166.8        82.9
+                                                                            20630        292.1        225.7        98.4
+6 Goa                                   19594       19924                   63570                    1568.4        92.0
+                                        55664       62206                 150080           73.6       511.1        80.5
+7 Gujarat                             163416      163691                  554724         381.2        435.8        23.5
+                                      512167      453083                  428046         665.0                     23.8
+8 Haryana                             405129      395619                  539003         353.7          95.0       72.4
+                                      515674      509433                                 837.6        114.7        70.8
+9 Himachal Pradesh                                                           2986       1236.8        189.6        75.9
+                                         3781        3661                    3744                                  82.0
+10 Jharkhand                             3482        3897                    2289          31.4         69.4       65.1
+                                         2351        2880                    1511          32.6       295.2        70.9
+11 Karnataka                             1775        1661                 134230           12.1       274.6        93.5
+                                      107408      121525                    82875          21.8       331.2        83.7
+12 Kerala                               70318       72855                 260378         454.7        100.4        71.7
+                                      250546      304394                                 301.8       1808.8        83.1
+13 Madhya Pradesh                                                              675       786.1        393.0        94.3
+                                           869         821               1377681                      115.1        88.0
+14 Maharashtra                        499188      455094                                    6.7       287.4        85.2
+                                      126858      131254                  147504         761.7        506.8
+15 Manipur                                                                   4653        375.4        186.6        97.8
+                                         6078        5988                                             478.4        66.9
+16 Meghalaya                          585157      628578                  657925           40.4
+                                                                            57332       2289.3        637.1
+17 Mizoram                              34715       28268                                             271.6
+                                      188063      188049                  182367         113.1
+18 Nagaland                          4769681     4801091                 6291485         977.2
+                                                                                      13151.8
+19 Odisha                                3699        4034                    2542
+                                         5967        4518                    3254           4.0
+20 Punjab                                                                                  12.0
+
+21 Rajasthan
+
+22 Sikkim
+
+23 Tamil Nadu
+
+24 Telangana
+
+25 Tripura
+
+26 Uttar Pradesh
+
+27 Uttarakhand
+
+28 West Bengal
+
+     TOTAL STATE(S)
+
+UNION TERRITORIES :
+
+29 A&N Islands
+
+30 Chandigarh
+
+31 D&N Haveli and                          649+                660+            533  10.4         51.3                          75.6
+    Daman & Diu@
+
+32 Delhi                             262612      316261                   266070       203.2     1309.5                        31.7
+33 Jammu & Kashmir@                  27276*      25408*                     28911      133.4
+34 Ladakh @                                                                    403               216.7                         81.9
+                                             -           -                     147        3.0
+                                                                             7940         0.7    136.1                         88.1
+                                                                                        15.5
+35 Lakshadweep                             77                  182        309800       382.1     216.2                         84.2
+                                                                         6601285    13533.9
+36 Puducherry                              4674                4004                              512.6                         60.3
+
+     TOTAL UT(S)                     304954      355067                                          810.8                         37.1
+
+     TOTAL ALL INDIA                 5074635     5156158                                         487.8                         82.5
+
+ Crime Rate is calculated as Crime per one lakh of popula on.                                    TABLE 1A.3 Page 1 of 1
+
+ Popula on Source: Report of the Technical group on Popula on Projec ons (July, 2020), Na onal Commission on Popula on, MoHFW
+
+ As per data provided by States/Uts
+
+States/Uts may not be compared purely on the basis of crime figures
+
+'+' Combined data of erstwhile D&N Haveli UT and Daman & Diu UT
+
+'*' Data of erstwhile Jammu & Kashmir State including Ladakh
+
+'@' Data of newly created Union Territory
+
+                                                                     11

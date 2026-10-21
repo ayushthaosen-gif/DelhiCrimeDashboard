@@ -1,0 +1,100 @@
+                                                    TABLE 1A.2
+
+                     SLL Crimes (State/UT-wise) - 2015-2017
+
+                                            SLL Cognizable Crimes             Percentage                            Mid-Year       Rate of
+                                                                                                                   Projected    Cognizable
+S. State/UT          2015                        2016              2017       Share of                             Population   Crimes (SLL)
+No                                                                             State                               (in Lakhs)+
+                                                                                                                                      8
+1             2      3                           4                 5          6                                          7
+
+STATES:
+
+1 Andhra Pradesh     15755                       22615             15666                                     0.8      521.3        30.1
+                                                                                                                       13.3        13.6
+2 Arunachal Pradesh                         181        166               181                                 0.0                   17.1
+                                                                                                                      329.3        52.6
+3 Assam                 3849                        4764              5628                                   0.3    1054.5       121.9
+                                                                                                                                   48.0
+4 Bihar              18439                       25533             55482                                     2.9      262.9      323.1
+                                                                                                                       20.4      453.2
+5 Chhattisgarh       30563                       29163             32035                                     1.6                   66.8
+                                                                                                                      637.7        23.4
+6 Goa                   1482                        1014                 978                                 0.1      280.0        23.6
+                                                                                                                                   59.8
+7 Gujarat            307108                      288300            206024                                    10.6      71.7     1162.1
+                                                                                                                      125.9      138.9
+8 Haryana            47523                       54584             126892                                    6.5      342.1      146.6
+                                                                                                                      630.9        31.7
+9 Himachal Pradesh      3214                        3863              4789                                   0.2      359.4        15.3
+                                                                                                                      793.3        57.5
+10 Jammu & Kashmir      1727                        2123              2941                                   0.2    1219.9         20.1
+                                                                                                                                   47.3
+11 Jharkhand            7861                        7107              8069                                   0.4       26.3      106.5
+                                                                                                                       28.1      101.8
+12 Karnataka         32019                       31077             37709                                     1.9       10.8        39.6
+                                                                                                                       24.1      346.6
+13 Kerala            396334                      447773            417654                                    21.5     429.2        35.9
+                                                                                                                      294.6         8.2
+14 Madhya Pradesh    89891                       100736            110170                                    5.7      742.5      130.3
+                                                                                                                                 147.8
+15 Maharashtra       147765                      169152            178874                                    9.2         6.6       33.3
+                                                                                                                      698.4      152.7
+16 Manipur              1004                           928               834                                 0.0      371.3
+
+17 Meghalaya                                327        216               431                                 0.0       38.8
+                                                                                                                    2226.1
+18 Mizoram                                  347        375               620                                 0.0
+                                                                                                                      108.0
+19 Nagaland                                 626        532               485                                 0.0      946.0
+                                                                                                                   12613.4
+20 Odisha            19848                       22105             20283                                     1.0
+
+21 Punjab            22253                       17732             31385                                     1.6
+
+22 Rajasthan         64096                       70749             75612                                     3.9
+
+23 Sikkim                                   184        211               260                                 0.0
+
+24 Tamil Nadu        254604                      287473            242040                                    12.4
+
+25 Telangana         16496                       11282             13339                                     0.7
+
+26 Tripura                                  172        148               320                                 0.0
+
+27 Uttar Pradesh     232639                      211854            289998                                    14.9
+
+28 Uttarakhand          4796                        5207           15972                                     0.8
+
+29 West Bengal       26777                       27831             31538                                     1.6
+
+   TOTAL STATE(S)    1747880 1844613 1926209                                                                 99.1
+
+UNION TERRITORIES:
+
+30 A&N Islands          2197                        1689              2376                                   0.1   5.7          419.0
+
+31 Chandigarh           1865                        1260              2222                                   0.1   18.9         117.8
+
+32 D&N Haveli                               34         12                43                                  0.0   4.4          9.7
+
+33 Daman & Diu                              17         16                15                                  0.0   3.5          4.3
+
+34 Delhi                8599                        7401           12648                                     0.7   221.0        57.2
+
+35 Lakshadweep                              15         14                36                                  0.0   0.8          43.9
+
+36 Puducherry                               669        799               916                                 0.0   17.6         52.2
+
+   TOTAL UT(S)       13396                       11191             18256                                     0.9   271.9        67.2
+
+   TOTAL ALL INDIA   1761276 1855804 1944465                                     100.0                             12885.3      150.9
+
+Note: i) + Population Source: Registrar General of India estimated population of 2017 based on 2001 Census.        TABLE 1A.2 Page 1 of 1
+
+   ii) Crime Rate has not been calculated as SLL Cases also depict Enforcement efforts by Police
+
+   iii) As per data provided by States/UTs
+
+                                                       10

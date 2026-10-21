@@ -1,0 +1,49 @@
+{
+  "cii2017": {
+    "label": "Crime in India 2017, Volume 1",
+    "years": "2015-2017",
+    "pdfPages": 503,
+    "tablePages": {
+      "ipc": 37,
+      "sll": 38,
+      "women": 237
+    },
+    "originalUrl": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653885627_Crime in India 2017 - Volume 1_0_0.pdf",
+    "captureTimestamp": "20250504112556",
+    "bytes": 26768900,
+    "sha256": "48a18576d8908fbeb4a9946057ad007b0df6af7d837913c22fd86fb125cfd776",
+    "archiveUrl": "https://web.archive.org/web/20250504112556id_/https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653885627_Crime%20in%20India%202017%20-%20Volume%201_0_0.pdf"
+  },
+  "cii2019": {
+    "label": "Crime in India 2019, Volume 1",
+    "years": "2017-2019",
+    "pdfPages": 519,
+    "tablePages": {
+      "ipc": 43,
+      "sll": 44,
+      "ipc_sll": 45,
+      "women": 243
+    },
+    "originalUrl": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653730573_CII 2019 Volume 1.pdf",
+    "captureTimestamp": "20250915063616",
+    "bytes": 31983430,
+    "sha256": "84a381dc748716ef97dafdd44b202102bc43d833b5f67c10799f667f03ce6bd0",
+    "archiveUrl": "https://web.archive.org/web/20250915063616id_/https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653730573_CII%202019%20Volume%201.pdf"
+  },
+  "cii2020": {
+    "label": "Crime in India 2020, Volume 1",
+    "years": "2018-2020",
+    "pdfPages": 527,
+    "tablePages": {
+      "ipc": 43,
+      "sll": 44,
+      "ipc_sll": 45,
+      "women": 247
+    },
+    "originalUrl": "https://ncrb.gov.in/sites/default/files/CII 2020 Volume 1.pdf",
+    "captureTimestamp": "20230101125408",
+    "bytes": 7250741,
+    "sha256": "6c9679d089b6ac384fbd61beeea25026ba4bd78be563df35af591de7f7aaf193",
+    "archiveUrl": "https://web.archive.org/web/20230101125408id_/https://ncrb.gov.in/sites/default/files/CII%202020%20Volume%201.pdf"
+  }
+}
