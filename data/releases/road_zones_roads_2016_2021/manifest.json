@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi Traffic Police named accident-prone zones and road-wise zone summaries, 2016 to 2021, as printed",
+  "status": "staged",
+  "scope": "Named selected zones (one row per zone) and selected zones grouped by road (not whole-road crash counts). Counts, not rates.",
+  "sources": [
+    {
+      "report_year": 2016,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-10-a.pdf",
+      "sha256": "ae7850cab28bfeb14b7cc1df37786f78773959c48b778d7caacfac86b3de097c"
+    },
+    {
+      "report_year": 2017,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-10-A.pdf",
+      "sha256": "a09353b7cdb990be28173ae61873229c8d12775c81ce5a47e9a55f0fc1bcfbfb"
+    },
+    {
+      "report_year": 2018,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-10%20Accident%20Prone%20Zones.pdf",
+      "sha256": "eb1e86de926b7df79203912c93e6cfc9aab1cc9ca68aba30aef75a30a63818a0"
+    },
+    {
+      "report_year": 2019,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-accident-in-delhi-2019.pdf",
+      "sha256": "a098b47774b834a5beeec9ed664826e174fd170cd17d577b860d9c29c81c02a0"
+    },
+    {
+      "report_year": 2020,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-Accidents-in-Delhi-2020.pdf",
+      "sha256": "203c9e7a65f44d422179ebe09331f64e5c3f3892b706605b66be001d261b98e6"
+    },
+    {
+      "report_year": 2021,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2021/Delhi-Crash-Report-Final-2021.pdf",
+      "sha256": "525e8634fa21a4359ed583c651bb4819614f262424a3b00e4ef394e3a6608646"
+    }
+  ],
+  "printedTotals": {
+    "2016": {
+      "zones": 108,
+      "simple": 907,
+      "fatal": 389,
+      "total": 1296
+    },
+    "2017": {
+      "zones": 145,
+      "simple": 1002,
+      "fatal": 503,
+      "total": 1505
+    },
+    "2018": {
+      "zones": 110,
+      "simple": 817,
+      "fatal": 429,
+      "total": 1246
+    },
+    "2019": {
+      "zones": 119,
+      "simple": 755,
+      "fatal": 437,
+      "total": 1192
+    },
+    "2020": {
+      "zones": 77,
+      "simple": 537,
+      "fatal": 287,
+      "total": 824
+    },
+    "2021": {
+      "zones": 87,
+      "simple": 538,
+      "fatal": 294,
+      "total": 832
+    }
+  },
+  "checks": {
+    "2016": {
+      "zones": 108,
+      "simple": 907,
+      "fatal": 389,
+      "total": 1296,
+      "matchesPrintedTotal": true,
+      "rowArithmeticHolds": true
+    },
+    "2017": {
+      "zones": 145,
+      "simple": 1002,
+      "fatal": 503,
+      "total": 1505,
+      "matchesPrintedTotal": true,
+      "rowArithmeticHolds": true,
+      "roads": {
+        "rows": 45,
+        "zones": 145,
+        "simple": 1002,
+        "fatal": 503,
+        "total": 1505,
+        "matchesPrintedTotal": true
+      }
+    },
+    "2018": {
+      "zones": 110,
+      "simple": 817,
+      "fatal": 429,
+      "total": 1246,
+      "matchesPrintedTotal": true,
+      "rowArithmeticHolds": true,
+      "roads": {
+        "rows": 33,
+        "zones": 110,
+        "simple": 817,
+        "fatal": 429,
+        "total": 1246,
+        "matchesPrintedTotal": true
+      }
+    },
+    "2019": {
+      "zones": 119,
+      "simple": 755,
+      "fatal": 437,
+      "total": 1192,
+      "matchesPrintedTotal": true,
+      "rowArithmeticHolds": true,
+      "roads": {
+        "rows": 32,
+        "zones": 119,
+        "simple": 755,
+        "fatal": 437,
+        "total": 1192,
+        "matchesPrintedTotal": true
+      }
+    },
+    "2020": {
+      "zones": 77,
+      "simple": 537,
+      "fatal": 287,
+      "total": 824,
+      "matchesPrintedTotal": true,
+      "rowArithmeticHolds": true,
+      "roads": {
+        "rows": 24,
+        "zones": 77,
+        "simple": 537,
+        "fatal": 287,
+        "total": 824,
+        "matchesPrintedTotal": true
+      }
+    },
+    "2021": {
+      "zones": 87,
+      "simple": 538,
+      "fatal": 294,
+      "total": 832,
+      "matchesPrintedTotal": true,
+      "rowArithmeticHolds": true,
+      "roads": {
+        "rows": 29,
+        "zones": 87,
+        "simple": 538,
+        "fatal": 294,
+        "total": 832,
+        "matchesPrintedTotal": true
+      }
+    }
+  },
+  "printedSubtotalRowsNotIncluded": {
+    "2017": {
+      "afterRank": 17,
+      "note": "The 2017 road table prints a subtotal row after its first 17 roads.",
+      "zones": 111,
+      "simple": 789,
+      "fatal": 409,
+      "total": 1198
+    },
+    "2018": {
+      "afterRank": 19,
+      "note": "The 2018 road table prints a subtotal row after its first 19 roads.",
+      "zones": 96,
+      "simple": 715,
+      "fatal": 376,
+      "total": 1091
+    },
+    "2019": {
+      "afterRank": 19,
+      "note": "The 2019 road table prints a subtotal row after its first 19 roads.",
+      "zones": 106,
+      "simple": 693,
+      "fatal": 398,
+      "total": 1091
+    }
+  },
+  "crossChecks": [
+    "For 2017 to 2020 the road named in each zone row, grouped by road, reproduces the report road table (zone counts and fatal crashes) apart from spelling variants of the same road name.",
+    "The 2016 report prints no road table; its text says Ring Road 27, Outer Ring Road 17, GTK Road 11, Wazirabad Road 6 and Mathura Road 6 zones, which the transcribed road column reproduces.",
+    "The 2020 road table narrative (top ten roads: 63 zones, 246 fatal) matches the table."
+  ],
+  "discrepanciesInTheSource": [
+    "The 2019 road-table narrative says the top 19 roads have 376 fatal accidents; the table and its own subtotal row say 398 and the rows add to 398. The table values are kept.",
+    "The 2017 road table lists \"ROAD NO 51\" and \"ROAD NO. 51\" as two rows; both are kept as printed.",
+    "Source spellings are kept (for example MUKHARBA CHOWK, MONESTRY RING ROAD, GOKAL PURI and GOKALPURI)."
+  ],
+  "notIncluded": [
+    "2021 named zones have no road in the source table, so road is null for 2021.",
+    "No coordinates: none of these tables prints any.",
+    "No 2016 road-wise table exists in the 2016 report."
+  ],
+  "caveats": [
+    "These are crashes within the zones identified each year, not all crashes in the district or on the road. Selected locations change every year, so a count that changes between years is not a change in risk at a fixed place.",
+    "2016 to 2020 are transcribed from page images by one agent; 2021 is read from the PDF text layer. Every year ties to its printed totals; none has had an independent second review.",
+    "No open reuse licence has been verified for these reports."
+  ]
+}
