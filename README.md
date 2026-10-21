@@ -4,11 +4,11 @@
 
 An open-data observatory for crime, road safety, infrastructure and urban form across Delhi: self-contained dashboards and interactive maps, reproducible year-by-year research releases, and a documented pipeline that collects newer official data without putting it on the dashboard until it is checked.
 
-**Open it:** [dashboard](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/) · [interactive map](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/interactive_map.html) · [for reporters and researchers](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/for_reporters.html)
+**Open it:** [overview](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/) · [explore by district](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/explore.html) · [road safety](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/road-safety.html) · [3D map](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/3d-map.html) · [data and methods](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/data-methods.html) · [earlier single-page dashboard](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/delhi_safety_dashboard.html) · [interactive map](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/interactive_map.html) · [for reporters and researchers](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/for_reporters.html)
 
 Prototypes (exploration tools, not citable sources): [3D crash-zone and ward explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d.html) · [Master Plan 2047 comparison](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d_mpd.html) · [district iRAD reports, 2025 and 2026](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/irad_stations.html)
 
-The dashboard is one HTML file; open [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html) in a browser, with no server or build step.
+The site is five pages that share a header, a theme (light or dark) and a data file: [`index.html`](index.html) (overview), [`explore.html`](explore.html), [`road-safety.html`](road-safety.html), [`3d-map.html`](3d-map.html) and [`data-methods.html`](data-methods.html). Serve the folder (for example `python -m http.server`) and open `index.html`; the pages read `assets/site-data.js` and, for the 3D map, files under `data/`. The earlier one-file dashboard, [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html), still opens straight from disk with no server.
 
 ## What data is here, and how current is it
 
@@ -94,7 +94,7 @@ npm run build:interactive-map
 npm run build:releases
 ```
 
-Edit `scripts/build.js` and `scripts/build_interactive_map.js` rather than the generated HTML. CI rebuilds everything and fails if a committed output differs.
+Edit `scripts/build.js`, `scripts/build_interactive_map.js` and `scripts/build_site.js` rather than the generated HTML (the site's styles and behaviour are hand-written in `assets/site.css`, `assets/site.js` and `assets/page-*.js`). `npm run build:site` regenerates the five pages and `assets/site-data.js`. CI rebuilds everything and fails if a committed output differs.
 
 ## Licence and citation
 
