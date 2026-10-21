@@ -127,7 +127,7 @@ test('2022 road tables are on the site: selected-zone counts by district, 117 na
   assert.equal(dz.length, 15);
   assert.equal(siteData.ROADS.zones2022.length, 117);
   assert.equal(siteData.ROADS.roads['2022'].length, 12);
-  assert.deepEqual(Object.keys(siteData.ROADS.roads), ['2022', '2023', '2024']);
+  assert.deepEqual(Object.keys(siteData.ROADS.roads), ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']);
   const originals = json(rel + 'crash_prone_zones.json');
   const overlay = json(rel + 'zones_2022_roads_from_later_reports.json');
   let filled = 0;
@@ -173,7 +173,7 @@ test('the 2024 zone list is the named-zone file: 93 zones, ranked ones first, un
   assert.equal(ranked.length, 88);
   assert.ok(z.slice(0, 88).every(r => r[3] != null) && z.slice(88).every(r => r[2] == null && r[3] == null), 'ranked zones come first; the rest keep null counts');
   for (let i = 1; i < 88; i++) assert.ok(z[i - 1][2] >= z[i][2], 'sorted by fatal crashes as in Table 6.29');
-  assert.ok(read('assets/page-road.js').includes("[2024, '2024']], st.zoneYear"), 'the zone table offers 2022, 2023 and 2024');
+  assert.ok(read('assets/page-road.js').includes('YEARS_ALL.map') && read('assets/page-road.js').includes('2023, 2024]'), 'the zone table offers every year from 2016 to 2024');
 });
 
 test('historical district tables: every year has its printed geography, rows add up to the printed totals, omissions are named, nothing is zero by default', () => {
@@ -236,6 +236,43 @@ test('enforcement history: 2019 to 2022 are the release values with their source
   assert.ok(src.includes('Enforcement, 2019 to 2024') && src.includes('delhi_road_enforcement_2019_2024.csv'));
   assert.ok(src.includes('do not read the jump as a change in drinking and driving'));
   assert.ok(src.includes('not zero'), 'a dash is explained as no figure, not zero');
+});
+
+test('named zones and roads 2016 to 2021: every year ties to its printed totals, ranks are sequential, the 2016 and 2021 gaps are explicit, the page offers every year', () => {
+  const rel = 'data/releases/road_zones_roads_2016_2021/';
+  const named = json(rel + 'named_zones_2016_2021.json'), roadsAll = json(rel + 'roads_selected_zones_2017_2021.json'), man = json(rel + 'manifest.json');
+  const R = siteData.ROADS;
+  assert.equal(named.length, 646);
+  assert.equal(roadsAll.length, 163);
+  for (let y = 2016; y <= 2021; y++) {
+    const rows = named.filter(z => z.reference_year === y), t = man.printedTotals[String(y)];
+    assert.equal(rows.length, t.zones, y + ' zone rows equal the printed zone count');
+    assert.equal(rows.reduce((a, z) => a + z.simple_crashes, 0), t.simple);
+    assert.equal(rows.reduce((a, z) => a + z.fatal_crashes, 0), t.fatal);
+    assert.equal(rows.reduce((a, z) => a + z.total_crashes, 0), t.total);
+    assert.ok(rows.every(z => z.simple_crashes + z.fatal_crashes === z.total_crashes), y + ' row arithmetic');
+    assert.deepEqual(rows.map(z => z.serial), rows.map((z, i) => i + 1));
+    assert.ok(rows.every(z => z.latitude === null && z.longitude === null && z.source_sha256 && z.source_pdf_page > 0 && /not independently reviewed/.test(z.review_status)), y + ' no invented coordinates; source and review stated');
+    assert.equal(R['zones' + y].length, t.zones, 'the page data has every row for ' + y);
+    if (y >= 2017) {
+      const rr = roadsAll.filter(r => r.reference_year === y);
+      assert.deepEqual([0, 1, 2, 3].map(k => rr.reduce((a, r) => a + [r.crash_prone_zones, r.simple_crashes, r.fatal_crashes, r.total_crashes][k], 0)), [t.zones, t.simple, t.fatal, t.total], y + ' road table adds up to the printed total');
+      assert.equal(R.roadRows[y], rr.length);
+      assert.equal(R.roads[y].length, 12);
+      for (let i = 1; i < 12; i++) assert.ok(R.roads[y][i - 1][2] >= R.roads[y][i][2], y + ' roads sorted by fatal crashes');
+    }
+  }
+  assert.ok(!R.roads[2016] && !roadsAll.some(r => r.reference_year === 2016), 'the 2016 report prints no road table');
+  assert.ok(named.filter(z => z.reference_year === 2021).every(z => z.road_as_printed === null), 'the 2021 zone table prints no road');
+  assert.ok(named.filter(z => z.reference_year >= 2016 && z.reference_year <= 2020).every(z => z.road_as_printed), 'zone tables 2016 to 2020 print a road');
+  assert.equal(named.find(z => z.reference_year === 2016 && z.serial === 1).name_as_printed, 'AGGARWAL MILLENIUM TOWER', 'source spellings are kept');
+  assert.equal(named.filter(z => z.reference_year === 2017).length, 145);
+  assert.ok(man.discrepanciesInTheSource.some(d => /376/.test(d) && /398/.test(d)), 'the 2019 narrative discrepancy is recorded');
+  const src = read('assets/page-road.js');
+  assert.ok(src.includes('YEARS_ALL = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]'));
+  assert.ok(src.includes('prints no road-wise table'), 'the 2016 roads gap is explained on the page');
+  assert.ok(src.includes('listed alphabetically'), 'the 2016 list order is stated');
+  assert.ok(src.includes("(z.road || '')"), 'a missing road is never searched as the word null');
 });
 
 test('the continuity file blocks district changes across the 2017-2018 and 2021-2022 breaks and asks for caution everywhere else', () => {

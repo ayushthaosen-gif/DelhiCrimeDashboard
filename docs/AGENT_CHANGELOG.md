@@ -1,3 +1,10 @@
+## [2026-10-21] - Claude (Anthropic) - Named zones and roads 2016 to 2021 on Road safety
+
+- The zone table and the roads table on Road safety now offer every year from 2016 to 2024. New release `data/releases/road_zones_roads_2016_2021/`: 646 named zones (2016 108, 2017 145, 2018 110, 2019 119, 2020 77, 2021 87) and 163 road rows (2017 45, 2018 33, 2019 32, 2020 24, 2021 29), each with report, table, PDF and printed page, file hash and review status. Codex committed the transcription inputs and an arithmetic validator beside the data.
+- **How it was checked.** 2021 was read from the PDF text layer; 2016 to 2020 were transcribed from the rendered pages (the tables are images). Every year's rows add up to the report's printed zone totals and satisfy simple plus fatal equals total; the road column inside each zone table reproduces that year's road table (2017 to 2020, apart from spelling variants), and the 2016 and 2020 narratives agree with the data. One source discrepancy is recorded: the 2019 narrative says 376 fatal for the top 19 roads, the table says 398.
+- **Gaps stated on the page:** 2016 prints no road table; the 2021 zone table prints no road; the 2016 zone list is alphabetical (the number is list position, not a rank); no coordinates for any of these years. Printed subtotal rows inside the road tables are in the manifest, not in the rows. Counts are within each year's selected zones, which change every year.
+- Not independently reviewed. The roads table shows the top 12 by fatal crashes of the N printed.
+
 ## [2026-10-21] - Codex - Publish 2022 derived road labels and stage older lists
 
 - Road safety shows 67 later-report-supported road labels for 2022, marked with a dagger and an explanation. The source counts remain unchanged; possible matches stay blank.
