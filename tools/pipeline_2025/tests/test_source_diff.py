@@ -124,3 +124,29 @@ def test_cli_writes_the_note_and_the_github_output(tmp_path):
     assert "changed=true" in gh.read_text(encoding="utf-8")
     assert "digest=" in gh.read_text(encoding="utf-8")
     assert "https://s/new.pdf" in out.read_text(encoding="utf-8")
+
+
+def exact(sid, url="https://a/report.pdf", error=None):
+    s = source(sid, [(url, 90, True)], error)
+    s["candidates"][0]["reasons"] = ["dataset title pattern", "requested year"]
+    return s
+
+
+def test_release_watch_reports_each_family_and_a_new_lead_triggers_the_note():
+    old = manifest(source("ncrb_crime_monitor", []), source("delhi_traffic_report_monitor", [], "timed out"))
+    new = manifest(exact("ncrb_crime_monitor"), source("delhi_traffic_report_monitor", [], "timed out"))
+    r = diff_sources(old, new)
+    assert r["new_release_leads"] == ["NCRB Crime in India"]
+    assert r["changed"]
+    states = {w["family"]: (w["before"], w["now"]) for w in r["release_watch"]}
+    assert states["NCRB Crime in India"] == ("none", "lead")
+    assert states["Delhi Traffic Police annual road crash report"] == ("unreachable", "unreachable")
+    text = render(r, "baseline.json")
+    assert "## Release watch" in text and "a link matches the dataset and the year" in text
+    assert "not proof of a release" in text
+
+
+def test_a_lead_that_was_already_in_the_baseline_does_not_trigger_again():
+    m = manifest(exact("ncrb_crime_monitor"))
+    r = diff_sources(m, m)
+    assert r["new_release_leads"] == [] and r["changed"] is False
