@@ -189,7 +189,7 @@
   // ---------- detail: Why this place? and the evidence pack ----------
   function ctxFor(w) {
     var fatal = ranking_for('crash_zone_fatal_crashes_2024');
-    return { row: w.row, zones: w.zones, rank: { fatal: fatal.rank[w.no] ? [fatal.rank[w.no], fatal.n] : null } };
+    return { row: w.row, zones: w.zones, rank: { fatal: fatal.rank[w.no] ? [fatal.rank[w.no], fatal.n] : null }, audit: PL.interventions.audit.filter(function (a) { return a.ward_no === w.no; }) };
   }
   function ranking_for(field) {
     var rows = wards.filter(function (w) { return w.row[field] != null && w.row[field] > 0; }).sort(function (a, b) { return b.row[field] - a.row[field]; });
@@ -253,7 +253,84 @@
     if (st.hover) setHover(st.hover);
   }
 
+  // ---------- intervention views: where the reports keep pointing ----------
+  var IV = PL.interventions, vs = { tab: 'audit', tier: 0, rec: 'all', q: '' };
+  var TIER_NAMES = { 1: 'Tier 1', 2: 'Tier 2', 3: 'Tier 3', 4: 'Tier 4' };
+  var views = D.$('#plViews');
+  function viewTabs() {
+    return h('div', { class: 'tabs', role: 'tablist', 'aria-label': 'Intervention views' }, [['audit', 'Field-audit areas'], ['recurring', 'Recurring locations'], ['corridors', 'Pedestrian corridors']].map(function (t) {
+      return h('button', { type: 'button', role: 'tab', 'aria-selected': String(vs.tab === t[0]), 'data-key': 'vt-' + t[0], onclick: function () { vs.tab = t[0]; keepFocus(renderViews); } }, t[1]);
+    }));
+  }
+  function openWard(no) { if (!no) return; set({ sel: no }); var w = D.$('#plWork'); if (w && w.scrollIntoView) w.scrollIntoView(); }
+  function strip(years) {
+    var all = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+    return h('span', { class: 'ystrip', role: 'img', 'aria-label': 'Listed in ' + years.length + ' of 9 reports: ' + years.join(', ') }, all.map(function (y) { return h('i', { class: years.indexOf(y) >= 0 ? 'on' : '', title: String(y) }); }));
+  }
+  function auditView() {
+    var rows = IV.audit.filter(function (a) { return (!vs.tier || a.evidence_tier === vs.tier) && (!vs.q || (a.zone + ' ' + (a.road_printed || '') + ' ' + (a.ward_name || '')).toLowerCase().indexOf(vs.q) >= 0); });
+    var counts = [0, 1, 2, 3, 4].map(function (t) { return t === 0 ? IV.audit.length : IV.audit.filter(function (a) { return a.evidence_tier === t; }).length; });
+    var filters = h('div', { class: 'chips' }, [0, 1, 2, 3, 4].map(function (t) { return h('button', { type: 'button', class: 'chip', 'aria-pressed': String(vs.tier === t), 'data-key': 'vtier-' + t, onclick: function () { vs.tier = t; keepFocus(renderViews); } }, (t === 0 ? 'All' : TIER_NAMES[t]) + ' · ' + counts[t]); }));
+    var table = h('div', { class: 'overflow' }, h('table', { class: 'tbl zone-tbl', style: 'min-width:760px' },
+      h('thead', null, h('tr', null, ['Tier', 'Zone', 'Road', 'Ward', 'Reports', 'Fatal / all 2024', 'Pedestrian', 'Position ±', 'Mapped around it', ''].map(function (c, i) { return h('th', { scope: 'col', class: i >= 4 && i <= 7 ? 'n' : null }, c); }))),
+      h('tbody', null, rows.map(function (a) {
+        return h('tr', null, h('td', { class: 'rk' }, a.evidence_tier), h('td', { style: 'font-weight:500' }, a.zone, h('details', { class: 'why-audit' }, h('summary', null, 'Reasons and field checklist'), h('p', { class: 'muted', style: 'font-size:13px' }, a.evidence_tier_label + '. ' + a.reasons), list(a.checklist))),
+          h('td', { class: 'muted' }, a.road_printed || '—'), h('td', { class: 'muted' }, a.ward_name || '—'), h('td', { class: 'n' }, a.reports_listed_of_9 + ' of 9'),
+          h('td', { class: 'n' }, (a.fatal_crashes_2024 == null ? '—' : a.fatal_crashes_2024) + ' / ' + (a.total_crashes_2024 == null ? '—' : a.total_crashes_2024)),
+          h('td', { class: 'n' }, a.pedestrian_crash_prone_2024 ? (a.pedestrian_fatal_crashes_2024 == null ? 'yes' : a.pedestrian_fatal_crashes_2024 + ' fatal') : '—'),
+          h('td', { class: 'n' }, a.position_accuracy_m == null ? '—' : D.n(a.position_accuracy_m) + ' m'),
+          h('td', { class: 'muted', style: 'font-size:12.5px' }, a.sparsely_mapped_surroundings ? 'Sparsely mapped' : (a.crossings_mapped_250m || 0) + ' crossings, ' + (a.signals_mapped_250m || 0) + ' signals within 250 m'),
+          h('td', null, a.ward_no ? h('button', { type: 'button', class: 'btn', onclick: function () { openWard(a.ward_no); } }, 'Open ward') : null));
+      }))));
+    return h('div', { style: 'display:flex;flex-direction:column;gap:12px' },
+      h('p', { class: 'callout' }, h('strong', null, 'Areas, not points. '), 'The 93 named 2024 crash-prone zones, ordered by how strong the crash evidence is: how many of the nine reports (2016 to 2024) list the place, and whether it is also on the pedestrian list. A tier is not a danger rating. Map context is from OpenStreetMap: 80 of the 93 zones have no mapped crossing within 250 m, so absence on the map is not used to rank. Positions are hand-placed (accurate to 150 m up to 5 km).'),
+      h('div', { class: 'row-between' }, filters, h('input', { type: 'search', class: 'search', placeholder: 'Search zone, road or ward', 'aria-label': 'Search audit areas', oninput: function (e) { vs.q = e.target.value.trim().toLowerCase(); renderViewBody(); } })),
+      table, h('p', { class: 'muted', style: 'font-size:13px' }, rows.length + ' of ' + IV.audit.length + ' areas. ', h('a', { href: 'data/profiles/audit_candidates_2024.csv' }, 'Download all (CSV)'), ' · ', h('a', { href: 'data/profiles/audit_candidates_2024.json' }, 'JSON'), ' · ', h('a', { href: 'data/profiles/interventions_manifest.json' }, 'rules and caveats')));
+  }
+  function recurringView() {
+    var rows = IV.recurring.filter(function (p) { return (vs.rec === 'all' || p.rec === vs.rec) && (!vs.q || (p.name + ' ' + p.roads.join(' ')).toLowerCase().indexOf(vs.q) >= 0); });
+    var filters = h('div', { class: 'chips' }, [['all', 'All (3+ reports)'], ['persistent', 'Persistent (7–9)'], ['frequent', 'Frequent (5–6)'], ['repeated', 'Repeated (3–4)']].map(function (f) {
+      return h('button', { type: 'button', class: 'chip', 'aria-pressed': String(vs.rec === f[0]), 'data-key': 'vrec-' + f[0], onclick: function () { vs.rec = f[0]; keepFocus(renderViews); } }, f[1]);
+    }));
+    return h('div', { style: 'display:flex;flex-direction:column;gap:12px' },
+      h('p', { class: 'callout' }, h('strong', null, 'The same place name, again and again. '), 'Crash-prone zones are re-drawn every year, so a repeated name is the same place name, not a proven identical footprint. A place leaving the list is not a place becoming safe. Twelve reviewed spelling variants are merged; similar names that fail that test are not.'),
+      h('div', { class: 'row-between' }, filters, h('input', { type: 'search', class: 'search', placeholder: 'Search place or road', 'aria-label': 'Search recurring locations', oninput: function (e) { vs.q = e.target.value.trim().toLowerCase(); renderViewBody(); } })),
+      h('div', { class: 'overflow' }, h('table', { class: 'tbl zone-tbl', style: 'min-width:600px' },
+        h('thead', null, h('tr', null, ['Place', 'Reports', '2016–2024', 'Road printed', 'Most fatal crashes in a year'].map(function (c, i) { return h('th', { scope: 'col', class: i === 1 || i === 4 ? 'n' : null }, c); }))),
+        h('tbody', null, rows.map(function (p) {
+          return h('tr', null, h('td', { style: 'font-weight:500' }, p.name, p.aliases.length ? h('span', { class: 'muted', style: 'font-size:12px;display:block' }, 'also printed: ' + p.aliases.join(', ')) : null), h('td', { class: 'n' }, p.n + ' of 9'), h('td', null, strip(p.y)),
+            h('td', { class: 'muted' }, p.roads.join(', ') || '—'), h('td', { class: 'n' }, p.max == null ? '—' : p.max));
+        })))),
+      h('p', { class: 'muted', style: 'font-size:13px' }, rows.length + ' places shown; ' + IV.recurringTotal + ' places in all. A blank means a report prints no count for that year. ', h('a', { href: 'data/profiles/recurring_locations.csv' }, 'Download all (CSV)'), ' · ', h('a', { href: 'data/profiles/recurring_locations.json' }, 'JSON')));
+  }
+  function corridorsView() {
+    return h('div', { style: 'display:flex;flex-direction:column;gap:12px' },
+      h('p', { class: 'callout' }, h('strong', null, 'Roads with repeated pedestrian zones, 2024. '), 'Only the 2024 report\'s pedestrian crash-prone list is in this repository, so this view has one year. A corridor here is a road with two or more such zones by the road name printed beside each; it is not a measured stretch.'),
+      h('div', { class: 'overflow' }, h('table', { class: 'tbl zone-tbl', style: 'min-width:560px' },
+        h('thead', null, h('tr', null, ['Road', 'Pedestrian zones', 'Pedestrian fatal crashes', 'Zones listed in 5+ reports', 'Zones', 'Wards'].map(function (c, i) { return h('th', { scope: 'col', class: i >= 1 && i <= 3 ? 'n' : null }, c); }))),
+        h('tbody', null, IV.corridors.map(function (c) {
+          return h('tr', null, h('td', { style: 'font-weight:500' }, c.road_printed), h('td', { class: 'n' }, c.pedestrian_crash_prone_zones_2024), h('td', { class: 'n' }, c.pedestrian_fatal_crashes_2024 == null ? c.pedestrian_fatal_crashes_counted + '+' : c.pedestrian_fatal_crashes_2024),
+            h('td', { class: 'n' }, c.zones_persistent_or_frequent), h('td', { class: 'muted', style: 'font-size:13px' }, c.zones.split(' | ').join(', ')), h('td', { class: 'muted', style: 'font-size:13px' }, c.wards.split(' | ').join(', ')));
+        })))),
+      h('p', { class: 'muted', style: 'font-size:13px' }, h('a', { href: 'data/profiles/pedestrian_corridors_2024.csv' }, 'Download (CSV)'), ' · ', h('a', { href: 'data/profiles/pedestrian_corridors_2024.json' }, 'JSON')));
+  }
+  function list(items) { return h('ul', { class: 'why-list' }, items.map(function (t) { return h('li', null, t); })); }
+  var viewBody = null;
+  function renderViewBody() {
+    if (!viewBody) return;
+    D.clear(viewBody).appendChild(vs.tab === 'audit' ? auditView() : vs.tab === 'recurring' ? recurringView() : corridorsView());
+  }
+  function renderViews() {
+    D.clear(views);
+    views.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Where the reports keep pointing'), D.tip('About these views', 'Rules, not scores. They show where nine annual Traffic Police reports keep naming the same places, how strong that crash evidence is, how well the surroundings are mapped, and what to look at on the ground. They do not say why a place is dangerous or what to build; field verification comes first.')));
+    views.appendChild(viewTabs());
+    viewBody = h('div', { class: 'pl-view-body' });
+    views.appendChild(viewBody);
+    renderViewBody();
+  }
+
   readHash();
   render();
+  if (views) renderViews();
   window.addEventListener('hashchange', function () { readHash(); render(); });
 })();

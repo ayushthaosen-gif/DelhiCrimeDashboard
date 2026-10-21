@@ -1,0 +1,39 @@
+{
+ "schemaVersion": "1.0.0",
+ "note": "Roads with two or more pedestrian crash-prone zones in the 2024 report. The road is the name printed beside each zone; a corridor here is a road with repeated pedestrian zones, not a measured segment.",
+ "rows": [
+  {
+   "road_printed": "Ring Road",
+   "pedestrian_crash_prone_zones_2024": 6,
+   "zones": "ISBT Kashmiri Gate | Britannia Chowk | Monastery Ring Road | Sarai Kale Khan | Prem Bari Pull | Chhatra Marg Crossing",
+   "pedestrian_fatal_crashes_2024": 21,
+   "pedestrian_fatal_crashes_counted": 21,
+   "all_fatal_crashes_in_these_zones_2024": 30,
+   "zones_persistent_or_frequent": 4,
+   "wards": "ASHOK VIHAR | KASHMERE GATE | MAJNU KA TILA | NIZAMUDDIN | TIMAR PUR",
+   "crossings_mapped_within_250m_of_any_zone": 15
+  },
+  {
+   "road_printed": "GTK Road",
+   "pedestrian_crash_prone_zones_2024": 4,
+   "zones": "Azadpur Sabzi Mandi | Libaspur Bus Stand | Adarsh Nagar | Azad Pur Chowk",
+   "pedestrian_fatal_crashes_2024": 17,
+   "pedestrian_fatal_crashes_counted": 17,
+   "all_fatal_crashes_in_these_zones_2024": 25,
+   "zones_persistent_or_frequent": 4,
+   "wards": "ADARASH  NAGAR | SAMAYPUR BADLI | SARAI PIPAL THALA",
+   "crossings_mapped_within_250m_of_any_zone": 4
+  },
+  {
+   "road_printed": "Rohtak Road",
+   "pedestrian_crash_prone_zones_2024": 2,
+   "zones": "Metro Station Madipur | Ghewra More",
+   "pedestrian_fatal_crashes_2024": 6,
+   "pedestrian_fatal_crashes_counted": 6,
+   "all_fatal_crashes_in_these_zones_2024": 7,
+   "zones_persistent_or_frequent": 1,
+   "wards": "MUNDAKA | PUNJABI BAGH",
+   "crossings_mapped_within_250m_of_any_zone": 3
+  }
+ ]
+}

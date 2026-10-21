@@ -67,7 +67,9 @@
     var cannot = P.cannotEstablish.general.slice();
     Object.keys(used).forEach(function (c) { var t = P.cannotEstablish.byClass[c]; if (t && cannot.indexOf(t) < 0) cannot.push(t); });
 
-    return { kind: 'ward', title: r.ward_name, subtitle: (r.assigned_district || 'No assigned district') + ' district · ' + fmt(r.area_km2, 'km²') + ' km² · legacy 290-ward geography (not the current 250 wards)', issue: issue, nearby: nearby, landuse: landuse, zones: z, provenance: provenance, uncertainty: uncertainty, flags: flags, cannot: cannot, dataVersion: P.dataVersion };
+    var auditRows = ctx.audit || [];
+    if (auditRows.length) flags.push(plural(auditRows.length, 'field-audit area', 'field-audit areas') + ' in this ward (below). A tier says how strong the crash evidence is, not how dangerous the place is.');
+    return { kind: 'ward', audit: auditRows, title: r.ward_name, subtitle: (r.assigned_district || 'No assigned district') + ' district · ' + fmt(r.area_km2, 'km²') + ' km² · legacy 290-ward geography (not the current 250 wards)', issue: issue, nearby: nearby, landuse: landuse, zones: z, provenance: provenance, uncertainty: uncertainty, flags: flags, cannot: cannot, dataVersion: P.dataVersion };
   };
 
   // ---------- district ----------
@@ -117,6 +119,13 @@
               h('td', null, f(q.crossings_250m) + ' / ' + f(q.crossings_500m)), h('td', null, f(q.signals_250m) + ' / ' + f(q.signals_500m)), h('td', null, q.footway_km_250m == null ? '—' : (Math.round(q.footway_km_250m * 10) / 10) + ' km'));
           }))), h('p', { class: 'muted', style: 'font-size:12.5px' }, 'Mapped in OpenStreetMap: a zero or a low figure often means the area is not mapped. "Position ±" is the estimated accuracy of the hand-placed zone centre.'))));
     }
+    if (w.audit && w.audit.length) {
+      root.appendChild(h('div', { class: 'why-sec' }, h('h3', null, 'Field-audit areas in this ward'),
+        w.audit.map(function (a) {
+          return h('details', { class: 'why-audit' }, h('summary', null, a.zone + ' — tier ' + a.evidence_tier + ' (' + a.recurrence + ', ' + a.reports_listed_of_9 + ' of 9 reports)'),
+            h('p', { class: 'muted', style: 'font-size:13px' }, a.evidence_tier_label + '. ' + a.reasons), h('p', { style: 'font-size:13px;font-weight:600;margin:6px 0 2px' }, 'To check on site'), list(a.checklist));
+        })));
+    }
     root.appendChild(h('div', { class: 'why-sec' }, h('h3', null, 'Uncertainty'),
       h('div', { class: 'chips' }, w.uncertainty.map(function (u) { return h('span', { class: 'why-chip', title: u.meaning }, u.label); })),
       list(w.uncertainty.map(function (u) { return u.label + ': ' + u.meaning; }), 'why-list small'), w.flags.length ? h('div', { class: 'callout warn', style: 'font-size:13.5px;margin-top:8px' }, list(w.flags)) : null));
@@ -141,6 +150,10 @@
         var f = function (v) { return v == null ? '–' : v; };
         L.push('| ' + q.name + ' | ' + f(q.fatal_crashes) + ' / ' + f(q.total_crashes) + ' | ' + (q.position_accuracy_m == null ? '–' : q.position_accuracy_m + ' m') + ' | ' + f(q.crossings_250m) + ' / ' + f(q.crossings_500m) + ' | ' + f(q.signals_250m) + ' / ' + f(q.signals_500m) + ' | ' + (q.footway_km_250m == null ? '–' : q.footway_km_250m + ' km') + ' |');
       });
+    }
+    if (w.audit && w.audit.length) {
+      L.push('', '## Field-audit areas in this ward', '');
+      w.audit.forEach(function (a) { L.push('### ' + a.zone + ' (evidence tier ' + a.evidence_tier + ': ' + a.evidence_tier_label + ')', '', a.reasons, '', 'To check on site:'); a.checklist.forEach(function (t) { L.push('- ' + t); }); L.push(''); });
     }
     L.push('', '## Uncertainty', '');
     w.uncertainty.forEach(function (u) { L.push('- **' + u.label + '.** ' + u.meaning); });
