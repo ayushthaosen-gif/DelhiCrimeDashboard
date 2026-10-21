@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Road safety, citywide · Delhi Urban Safety Observatory</title>
+<meta name="description" content="Delhi road crashes, deaths by mode of travel, enforcement and crash-prone zones.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("dso-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=3eed45be">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap"><a class="brand" href="index.html"><span class="brand-mark"><i></i></span><span class="brand-name">Delhi Urban Safety Observatory</span></a><button type="button" class="theme-btn" id="themeBtn" aria-label="Switch colour theme"><i></i>Dark theme</button></div></header>
+<nav class="site-nav" aria-label="Sections"><div class="wrap"><div class="nav-links"><a href="index.html">Overview</a><a href="explore.html">Explore</a><a href="road-safety.html" aria-current="page">Road safety</a><a href="3d-map.html">3D map</a><a href="data-methods.html">Data &amp; methods</a></div><span class="nav-meta"><span class="pill-data">Data</span>Official figures up to 2024 · version 2026-10-20</span></div></nav>
+<main id="main" class="page">
+<div class="page-head"><h1>Road safety, citywide</h1><p>These figures are published for Delhi as a whole, not per district, so they sit here rather than on the map. District-level crashes, fatal crashes and crash-prone zones for 2023 and 2024 are in <a href="explore.html#topic=road">Explore</a>.</p></div>
+<div class="rs-kpis" id="rsKpis"></div>
+<section id="trend" class="card" style="scroll-margin-top:16px"></section>
+<div class="two-col"><section id="modes" class="card" style="flex:1 1 420px;scroll-margin-top:16px"></section><section id="enforcement" class="card" style="flex:1 1 420px"></section></div>
+<div class="two-col"><section id="zones" class="card" style="flex:3 1 520px"></section><section id="roads" class="card" style="flex:2 1 360px"></section></div>
+<footer class="site-footer" style="border-top:1px solid var(--line)"><span>Sources: Delhi Traffic Police statistics and Delhi Road Crash Reports 2023 and 2024. <a href="data-methods.html#sources">Sources and caveats</a>. Data version 2026-10-20.</span></footer>
+</main>
+<noscript><p class="noscript">These pages draw their charts and maps with JavaScript. The same figures are in the downloads on <a href="data-methods.html#downloads">Data &amp; methods</a>, and the earlier <a href="delhi_safety_dashboard.html">single-page dashboard</a> works without it for the tables.</p></noscript>
+<script src="assets/site.js?v=5d93b6e6"></script>
+<script src="assets/site-data.js?v=24c097b5"></script>
+<script src="assets/page-road.js?v=e48dbe3d"></script>
+</body>
+</html>
