@@ -136,6 +136,7 @@ test('the Planning page: shared shell, six pages in the nav, scripts in order, l
   assert.ok(!src.includes('mousemove') && src.includes('pl-cau') && why.includes('pl-cau'), 'hover card is fixed in the map corner; warnings use the yellow callout');
   assert.ok(src.includes('window.scrollTo') && /Open ward/.test(src), 'Open ward scrolls with an offset for the sticky toolbar');
   const css = read('assets/site.css');
+  assert.ok(css.includes('@media (min-width: 1140px) {\n  #plWork > .panel.detail { position: sticky; top: var(--pl-sticky-top, 110px); max-height: calc(100vh - var(--pl-sticky-top, 110px) - 16px); overflow-y: auto; overscroll-behavior: contain; }'), 'the ward panel is sticky beside the map and scrolls inside itself');
   assert.ok(src.includes('--pl-sticky-top') && src.includes('syncStickyTop'), 'the sticky offset follows the real toolbar height');
   assert.ok(files['explore.html'].includes('assets/profiles-data.js') && files['explore.html'].includes('assets/why.js'));
 });
