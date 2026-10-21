@@ -99,7 +99,7 @@ test('the Planning page shows the three views with their caveats, links the file
   assert.ok(why.includes('Field-audit areas in this ward') && why.includes('To check on site'));
   assert.ok(!/innerHTML/.test(src + why));
   const plan = fs.readFileSync(path.join(ROOT, 'assets/planning-data.js'), 'utf8');
-  assert.ok(plan.includes('"interventions"') && plan.includes('"recurringTotal":324'));
+  assert.ok(plan.includes('"interventions"') && plan.includes('"recurringTotal":323'));
   assert.ok(plan.length < 450 * 1024);
   assert.ok(read('package.json').includes('node scripts/build_interventions.js'));
 });

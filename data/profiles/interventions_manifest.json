@@ -6,11 +6,11 @@
   "files": [
     {
       "path": "data/profiles/recurring_locations.json",
-      "sha256": "51ddf3592fc7848063123e17f72daed4cbd9ec7c1059de746b63d2df136d004f"
+      "sha256": "729dc3b067fa6dd08d6a73f758f00e5fe731da42fd4020a274fb3d2cc39c2e94"
     },
     {
       "path": "data/profiles/recurring_locations.csv",
-      "sha256": "95d893fddca1423598809c169ce4e51565f9107285ee63c23c5043ecb0bec8b1"
+      "sha256": "69933f4c0a9d4adf4112fa27c2050cdc7fcc5578b7796d3dbd5c566ab512c92c"
     },
     {
       "path": "data/profiles/pedestrian_corridors_2024.json",
@@ -22,11 +22,11 @@
     },
     {
       "path": "data/profiles/audit_candidates_2024.json",
-      "sha256": "e6bc35f5dae750519ab67c928ac07873d53b71e89e2101dc59a996d660bbc876"
+      "sha256": "b32142c764ddf121f69eb53d6d90d41fb6e1b19bd5925bdcda7b543dce5472d9"
     },
     {
       "path": "data/profiles/audit_candidates_2024.csv",
-      "sha256": "c65a42695b14dff15b996738a783fb431773b0a20b7b15f193296415da31f665"
+      "sha256": "188f8a1bebf40e5937cb62b79ded68feea0fd219e5a2aab0a29f740842d02ced"
     }
   ],
   "inputs": [
@@ -40,7 +40,7 @@
     },
     {
       "path": "data/crash_zones_2023_raw.json",
-      "sha256": "501e3c3da73deef689cb9f24a823d866bc8a46502827b0e078921753338ca0d2"
+      "sha256": "537a3d4ae64412ba145b8aa0c743dd9d6e52f4e374d4ae707cda8fd22f037e78"
     },
     {
       "path": "data/delhi_crash_prone_zones_2024_all_named_approx.geojson",
@@ -86,7 +86,7 @@
     ]
   ],
   "summary": {
-    "places": 324,
+    "places": 323,
     "persistent": 35,
     "frequent": 46,
     "repeated": 65,
