@@ -38,6 +38,7 @@ jobs:
       - run: npm test
       - run: npm run build
       - run: npm run build:site
+      - run: npm run build:profiles
       - run: npm run build:interactive-map
       - name: Verify generated output is reproducible from source
         run: |

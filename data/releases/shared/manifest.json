@@ -5,6 +5,9 @@
       "status": "legacy",
       "wardCount": 290,
       "files": [
+        "data/profiles/ward_profiles.csv",
+        "data/profiles/ward_profiles.geojson",
+        "data/profiles/ward_profiles.json",
         "data/source/delhi_wards_boundaries.geojson",
         "data/delhi_wards_infra.geojson",
         "data/landuse_by_ward.csv",
@@ -318,8 +321,8 @@
       "datasetId": "geography_registry",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "ad327b900fd9777366c4576b0f99979d30f7d6636ee0b417da95420ebc5d2921",
-      "bytes": 2785
+      "sha256": "6c997c4fbb1d1ed6c5ba75d046bfaa8711a7a424e721bce9261672dc4244f813",
+      "bytes": 2919
     },
     {
       "file": "data/landuse_by_ward.csv",
@@ -438,8 +441,8 @@
       "datasetId": "series_status",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "fb6b91ecdc1f7b92e135f00856461ef23c48b906a52884d189ef15d1f40a7b3a",
-      "bytes": 15408
+      "sha256": "e81588531b453aca2f46e9dce4b254f936e83bbbe9051fef3a79902cb44fa75f",
+      "bytes": 16356
     },
     {
       "file": "data/streetlight_grid.json",
