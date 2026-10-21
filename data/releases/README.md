@@ -12,4 +12,5 @@ Regenerate with `npm run build:releases`. Null never means zero.
 Separate series:
 
 - [Citywide road trend, 2011–2024](citywide_road_trend/manifest.json): counts, not rates; on the road chart only.
+- [Road crash report 2022, district and zone tables](road_crash_report_2022/README.md): selected-zone counts by district, 117 named zones and the roads table, from the 2022 report; shown on Road safety and Explore with a caution beside 2023.
 - [NCRB historical panel, 2011–2015](historical_2011_2015/README.md): staged Delhi UT totals and original reporting units, off the dashboard. Never join these to current districts or add them to the production year list.

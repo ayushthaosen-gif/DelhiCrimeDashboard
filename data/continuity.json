@@ -121,8 +121,10 @@
   },
   "roadDistrict": {
     "reason2022": "The 2022 road-death and hit-and-run figures use the Traffic Police's 11 reporting districts, not the 15 police districts, so they cannot be compared with 2023 or 2024.",
-    "cautionMeasures": ["crashProneZones2023"],
-    "cautionReason": "The 2023 and 2024 crash-prone zone lists come from separate reports and list different zones; a change in the number of zones is not a change in risk."
+    "zoneMeasures": ["totalCrashes", "fatalCrashes", "crashProneZones", "totalCrashes2023", "fatalCrashes2023", "crashProneZones2023"],
+    "zoneReason2022": "The 2022 report prints 15 Traffic Police districts under the same names as the police districts, but boundary identity has not been verified, and its crash-prone zones differ from those of 2023. Compare 2022 with 2023 with caution.",
+    "cautionMeasures": ["totalCrashes", "fatalCrashes", "crashProneZones", "totalCrashes2023", "fatalCrashes2023", "crashProneZones2023"],
+    "cautionReason": "These counts cover only each year's identified crash-prone zones, and the zone lists come from separate annual reports and list different zones; a change in a count is not a change in risk."
   },
   "series": {
     "roadTrend": {

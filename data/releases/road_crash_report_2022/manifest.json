@@ -1,0 +1,38 @@
+{
+  "source": {
+    "url": "https://web.archive.org/web/20240115175041id_/https://traffic.delhipolice.gov.in/sites/default/files/uploads/2022/Delhi-Crash-Report-2022.pdf",
+    "final_url": "https://web.archive.org/web/20240115175041id_/https://traffic.delhipolice.gov.in/sites/default/files/uploads/2022/Delhi-Crash-Report-2022.pdf",
+    "http_status": 200,
+    "content_type": "application/pdf",
+    "retrieved_at": "2026-10-21T08:02:02.228484+00:00",
+    "server_last_modified": null,
+    "publication_date": null,
+    "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+    "path": "archive_2022/dtp_2022_archived.pdf",
+    "bytes": 9647816,
+    "sha256": "721706d46500c59576c30d080e37bc7f5a77dbae9e83f3f4358ebe4282c421b7",
+    "original_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2022/Delhi-Crash-Report-2022.pdf",
+    "archive_capture_timestamp": "20240115175041",
+    "archive_custodian": "Internet Archive Wayback Machine",
+    "cdx_sha1_base32": "CCMW46G2UL46K5B3HLHCKVHZHFV6B5JP",
+    "cdx_payload_digest_matches": true,
+    "page_count": 270,
+    "identity_check": "Cover and Tables 6.2 and 6.43 visually checked: Delhi Road Crash Report 2022, Accident Research Cell-Traffic.",
+    "reuse_terms": "No open reuse licence verified. Original official-site terms apply; archive access does not grant a new licence.",
+    "text_path": "archive_2022/dtp_2022_archived.txt",
+    "text_sha256": "5f75e1e14651e171fa8110b1b57abac1607fdf3451490fc985aa1d3ddb1e08e6"
+  },
+  "reproduction": "python ../build_dashboard_bundle.py",
+  "files": {
+    "crash_prone_zones.csv": "30abb1b30553df24e00975469a6535936f31c74fed29f8b8e3bfafe77f1a6c3c",
+    "crash_prone_zones.json": "4ba01b6c9159ae608dc665ebeebeb50ca32d7a00949f0dfb052c0b1ccc145b90",
+    "dashboard_2022.json": "b9b16121f4f9f9d29a265c1225567d6259728027be71dde7aa4d7060fa83101e",
+    "district_crashes.csv": "638db4fba2fa28725faa30dc91e9869786d70b69050e2c3307940e22a2d0da76",
+    "district_crashes.json": "50466a50953047b2356219f646475b235e49de2ac45e648f83d3e6bbda45bdc3",
+    "district_selected_zones.csv": "e651dc2d103e087444901f9a25e9f806a5ddf1ba2327634e15a6d1409fb96020",
+    "district_selected_zones.json": "3655d6b2dc57eaed1a3fbad8cc2c59fce224ef928c917f0cad1eea34e28b66e4",
+    "roads_selected_zones.csv": "2348f729b3486d3d39edde3ee1acc9f3db0704ddfc5bd76a055d9be2fd7a8a47",
+    "roads_selected_zones.json": "371dda8a2b224c622c3b6c27da65e814ff198722209727ff3a691cf84994a2cb",
+    "validation.json": "b08688e5ec8301c40cf28a3b7c6e6ba7814229eb4cbbe6e6920eefca26876342"
+  }
+}
