@@ -1,3 +1,7 @@
+## [2026-10-22] - Claude (Anthropic) - Planning ward panel sticks beside the map
+
+- The ward detail panel (`#plWork > .panel.detail`) is now `position: sticky` with `overflow-y: auto`, `overscroll-behavior: contain` and a max-height of the viewport minus its offset, so it scrolls inside itself instead of making the page longer. Offset: `top: var(--pl-sticky-top, 110px)`; the page script sets the variable to the measured toolbar height plus 14 px (110 px when the toolbar is one line), because the toolbar wraps to about 100 to 200 px depending on width and a fixed 110 px would sit under it. Only at 1140 px and wider: below that the list drops under the map and a sticky panel would overlap it, so the panel scrolls with the page. No content change.
+
 ## [2026-10-22] - Claude (Anthropic) - Trends and patterns page and planner brief
 
 - New page `patterns.html` (nav: Patterns) and `assets/patterns-data.js`, from `scripts/lib/patterns.js`: Delhi-wide registered crime 2011 to 2024 with each step's comparison state from the continuity engine (gap where not comparable or blank, dashed where caution); 2024 registered cases per lakh residents by district with rank correlations to seven mapped densities (all within what 15 districts cannot distinguish from chance; the partly surveyed streetlight measure is left out); persistent places by printed road, 2023 fatal crashes by road, 2024 evidence-tier concentration; a labelled general-practice list of what tends to help. No causal claims.

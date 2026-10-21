@@ -323,8 +323,16 @@
     renderViewBody();
   }
 
+  // the ward panel sticks just below the toolbar, whatever height the toolbar wraps to (CSS falls back to 110px)
+  function syncStickyTop() { var tb = D.$('.toolbar'); if (tb) document.documentElement.style.setProperty('--pl-sticky-top', Math.round(tb.getBoundingClientRect().height + 14) + 'px'); }
+  window.addEventListener('resize', syncStickyTop);
+  window.addEventListener('load', syncStickyTop);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncStickyTop);
+
   readHash();
   render();
   if (views) renderViews();
+  syncStickyTop();
+  if (window.ResizeObserver && D.$('.toolbar')) new ResizeObserver(syncStickyTop).observe(D.$('.toolbar'));
   window.addEventListener('hashchange', function () { readHash(); render(); });
 })();
