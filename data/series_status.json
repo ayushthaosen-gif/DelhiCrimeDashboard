@@ -240,6 +240,17 @@
       "note": "Counts within crash-prone zones only, as for 2023 and 2024; 2022 beside 2023 is compare-with-caution because the zone lists differ. People killed by district is not in the 2022 tables. Extracted and visually checked by one agent; no independent second review."
     },
     {
+      "id": "road_enforcement_2019_2022",
+      "name": "Traffic Police enforcement figures 2019 to 2022 (hit-and-run, drink-driving, over-speeding), as printed",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2022",
+      "coverage_start": "2019",
+      "geography": "Delhi citywide; not split by district",
+      "where": "data/releases/road_enforcement_2019_2022/manifest.json",
+      "note": "On Road safety beside the 2023 and 2024 values. Read from the annual reports' text (three figures also checked on the page image); not independently reviewed. Drink-driving 2023 and 2024 are about seven times the 2022 figure on a basis not established as the same. Camera counts are blank before 2023: the reports give inconsistent installation counts."
+    },
+    {
       "id": "traffic_districts_2016_2020",
       "name": "Traffic Police district crashes and selected-zone counts, 2016 to 2021, as printed",
       "status": "production",

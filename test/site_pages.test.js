@@ -193,6 +193,36 @@ test('historical district tables: every year has its printed geography, rows add
   for (const y of [2016, 2017]) assert.ok(!H.whole[y].rows.some(r => /dwarka/i.test(r[0])), y);
 });
 
+test('enforcement history: 2019 to 2022 are the release values with their sources, 2023 and 2024 are unchanged, camera counts stay blank', () => {
+  const rel = 'data/releases/road_enforcement_2019_2022/';
+  const obs = json(rel + 'enforcement.json'), E = siteData.SITE.enforcementHistory;
+  assert.equal(obs.length, 16);
+  assert.equal(E.length, 16);
+  const get = (m, y) => obs.find(o => o.measure === m && o.reference_year === y);
+  assert.deepEqual([2019, 2020, 2021, 2022].map(y => get('hit_and_run_fatal_crashes', y).value), [674, 579, 555, 668]);
+  assert.deepEqual([2019, 2020, 2021, 2022].map(y => get('drink_driving_prosecutions', y).value), [36065, 3986, 2831, 2255]);
+  assert.deepEqual([2019, 2020, 2021, 2022].map(y => get('overspeed_notices', y).value), [2531894, 7927515, 3529090, 2860073]);
+  const trends = json('data/road_safety_trends.json').trends;
+  const share22 = get('hit_and_run_share_of_fatal_crashes_percent', 2022);
+  assert.equal(share22.value_kind, 'derived');
+  assert.equal(share22.value, Math.round(668 / trends.find(t => t.year === 2022).fatalCrashes * 10000) / 100, 'the derived 2022 share is 668 of the citywide fatal crashes');
+  const hashes = new Set(json(rel + 'manifest.json').sources.map(s => s.sha256));
+  for (const o of obs) {
+    assert.ok(hashes.has(o.source_sha256) && o.source_url && o.source_pdf_page > 0 && o.review_status.includes('not independently reviewed') || o.review_status.includes('checked visually'), o.measure + ' ' + o.reference_year + ' names its source and review status');
+    assert.ok(o.value > 0 && o.value != null);
+  }
+  assert.ok(!obs.some(o => /camera|rlvd|osvd/.test(o.measure)), 'no camera counts before 2023: the reports are inconsistent');
+  const csv = fs.readFileSync(path.join(ROOT, rel, 'enforcement.csv'), 'utf8').trim().split('\n');
+  assert.equal(csv.length, 17, 'the CSV has one row per observation');
+  const x = json('data/road_safety_extra_2023_2024.json').enforcement;
+  assert.equal(siteData.SITE.enforcement[2023].drinkDriving, x['2023'].drinkingDrivingProsecutions);
+  assert.equal(siteData.SITE.enforcement[2024].overspeed, x['2024'].overspeedNotices);
+  const src = read('assets/page-road.js');
+  assert.ok(src.includes('Enforcement, 2019 to 2024') && src.includes('delhi_road_enforcement_2019_2024.csv'));
+  assert.ok(src.includes('do not read the jump as a change in drinking and driving'));
+  assert.ok(src.includes('not zero'), 'a dash is explained as no figure, not zero');
+});
+
 test('the continuity file blocks district changes across the 2017-2018 and 2021-2022 breaks and asks for caution everywhere else', () => {
   const c = json('data/continuity.json').roadHistory;
   const state = (a, b) => (c.breaks.find(x => x.between[0] === a && x.between[1] === b) || {}).state;
