@@ -1,3 +1,9 @@
+## [2026-10-21] - Codex - Publish 2022 derived road labels and stage older lists
+
+- Road safety shows 67 later-report-supported road labels for 2022, marked with a dagger and an explanation. The source counts remain unchanged; possible matches stay blank.
+- Stage 646 named-zone rows (2016–2021) and 163 road-summary rows (2017–2021), with original transcription inputs and an arithmetic validator. These historical lists are not wired into the page yet.
+- Rebuild site assets and test derived labels, retained counts and source nulls. All 237 tests pass.
+
 ## [2026-10-21] - Claude (Anthropic) - Enforcement table extended to 2019 to 2024
 
 - The Road safety "Enforcement" table now has six year columns. 2019 to 2022 come from the annual reports (2019, 2020, 2021 and 2022): hit-and-run fatal crashes and their share of fatal crashes, drink-driving prosecutions, and over-speeding notices (OSVD and tripod cameras). The values, report, PDF page, file hash and review status are in `data/releases/road_enforcement_2019_2022/` (JSON, CSV, manifest) and in the page's CSV download. Three figures were checked on the page image; the rest were read from the PDF text layers; none is independently reviewed.

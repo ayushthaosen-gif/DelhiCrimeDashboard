@@ -129,7 +129,16 @@ function buildRoads() {
   const extra = read('data/road_safety_extra_2023_2024.json');
   const zones2023 = raw.slice().sort((a, b) => a.rank - b.rank).map(z => [z.name, z.road, z.fatal, z.total]);
   // 2022: named zones as printed (no road and no coordinates in that table) and the roads table (selected zones on each road)
-  const zones2022 = read(R22 + 'crash_prone_zones.json').slice().sort((a, b) => a.rank - b.rank).map(z => [z.name_as_printed, z.road, z.fatal_crashes, z.total_crashes]);
+  // The 2022 zone table prints no road. A road is added only where a later report (2023 or 2024, Table 6.29) assigns one to the same normalised
+  // place name; it is derived metadata (flag true in the fifth place), never a printed 2022 value. Possible matches stay out until reviewed.
+  const enrich = {};
+  read(R22 + 'zones_2022_roads_from_later_reports.json').forEach(e => { enrich[e.rank + '|' + e.name_as_printed] = e; });
+  const zones2022 = read(R22 + 'crash_prone_zones.json').slice().sort((a, b) => a.rank - b.rank).map(z => {
+    const e = enrich[z.rank + '|' + z.name_as_printed];
+    if (!e) throw new Error('2022 zone ' + z.rank + ' is missing from the road enrichment file');
+    const derived = e.road_match_status === 'exact_name_later_report' && e.road;
+    return [z.name_as_printed, derived ? e.road : null, z.fatal_crashes, z.total_crashes, derived ? 1 : 0];
+  });
   // 2024: the named zones in the repository's zone file. Zones ranked in Table 6.29 carry crash counts; the others appear only in the
   // report's category lists (pedestrian, two-wheeler, and so on), so their all-crash counts are null here, never zero.
   const z24 = read('data/delhi_crash_prone_zones_2024_all_named_approx.geojson').features.map(f => f.properties);

@@ -155,7 +155,7 @@
     var sec = D.$('#zones');
     var q = st.query.trim().toLowerCase();
     var list = R['zones' + st.zoneYear], count0 = list.length;
-    var all = list.map(function (z, i) { return { rank: i + 1, name: z[0], road: z[1], fatal: z[2], total: z[3] }; });
+    var all = list.map(function (z, i) { return { rank: i + 1, name: z[0], road: z[1], fatal: z[2], total: z[3], derived: z[4] === 1 }; });
     var filt = q ? all.filter(function (z) { return (z.name + ' ' + z.road).toLowerCase().indexOf(q) >= 0; }) : all;
     var zones = st.allZones || q ? filt : filt.slice(0, 10);
     var body = sec.querySelector('tbody'), count = sec.querySelector('.zcount'), toggle = sec.querySelector('.ztoggle');
@@ -176,13 +176,13 @@
     if (tipHost.getAttribute('data-year') !== String(st.zoneYear)) {
       tipHost.setAttribute('data-year', String(st.zoneYear));
       D.clear(tipHost).appendChild(D.tip('About crash-prone zones', st.zoneYear === 2022
-        ? 'The official Delhi Traffic Police list of 117 zones in the 2022 report (Table 6.41), sorted by fatal crashes as in the source. That table gives no road and no coordinates, so the road column is blank and none is plotted on the map. Zones differ from year to year, so a change in a count is not a change in risk.'
+        ? 'The official Delhi Traffic Police list of 117 zones in the 2022 report (Table 6.41), sorted by fatal crashes as in the source. That table prints no road and no coordinates. A road is shown (marked †) only where a later report assigns one to the same place name; otherwise it is blank, and none is plotted on the map. Zones differ from year to year, so a change in a count is not a change in risk.'
         : st.zoneYear === 2024
         ? 'The 93 named zones of the 2024 report. The 88 ranked in Table 6.29 are sorted by fatal crashes as in the source; the other 5 appear only in the report\'s category lists (pedestrian, two-wheeler and so on), so their crash counts are blank, not zero. The report\'s district table counts 111 zones, more than the 93 names recovered. Zones differ from year to year, so a change in a count is not a change in risk.'
         : 'The official Delhi Traffic Police list of 107 zones, sorted by fatal crashes as in the source. 105 of 107 fall inside a district and are plotted on the map; 2 sit just outside the simplified boundaries. The 2024 list names different zones, so a change in the count is not a change in risk.'));
     }
     D.clear(body);
-    zones.forEach(function (z) { body.appendChild(h('tr', null, h('td', { class: 'rk' }, z.rank), h('td', { style: 'font-weight:500' }, z.name), h('td', { class: 'muted' }, z.road == null ? '—' : z.road), h('td', { class: 'n' }, z.fatal == null ? '—' : z.fatal), h('td', { class: 'n' }, z.total == null ? '—' : z.total))); });
+    zones.forEach(function (z) { body.appendChild(h('tr', null, h('td', { class: 'rk' }, z.rank), h('td', { style: 'font-weight:500' }, z.name), h('td', { class: 'muted', title: z.derived ? 'Road identified from a later report; the 2022 table prints no road' : null }, z.road == null ? '—' : z.road, z.derived ? h('sup', null, '†') : null), h('td', { class: 'n' }, z.fatal == null ? '—' : z.fatal), h('td', { class: 'n' }, z.total == null ? '—' : z.total))); });
     count.textContent = q ? filt.length + ' of ' + count0 + ' zones match' : 'Showing ' + zones.length + ' of ' + count0 + ' zones';
     toggle.hidden = !!q;
     toggle.textContent = st.allZones ? 'Show top 10' : 'Show all ' + count0;

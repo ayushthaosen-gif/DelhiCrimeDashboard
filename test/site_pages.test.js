@@ -128,7 +128,22 @@ test('2022 road tables are on the site: selected-zone counts by district, 117 na
   assert.equal(siteData.ROADS.zones2022.length, 117);
   assert.equal(siteData.ROADS.roads['2022'].length, 12);
   assert.deepEqual(Object.keys(siteData.ROADS.roads), ['2022', '2023', '2024']);
-  for (const [name, road, fatal, total] of siteData.ROADS.zones2022) { assert.equal(road, null, name + ': the 2022 zone table has no road'); assert.ok(total >= fatal, name); }
+  const originals = json(rel + 'crash_prone_zones.json');
+  const overlay = json(rel + 'zones_2022_roads_from_later_reports.json');
+  let filled = 0;
+  siteData.ROADS.zones2022.forEach(([name, road, fatal, total, derived], i) => {
+    const original = originals.find(r => r.rank === i + 1 && r.name_as_printed === name);
+    const e = overlay.find(r => r.rank === i + 1 && r.name_as_printed === name);
+    assert.ok(original && e, name);
+    assert.equal(original.road, null, 'printed source stays untouched');
+    assert.equal(fatal, original.fatal_crashes); assert.equal(total, original.total_crashes);
+    if (road != null) {
+      filled++;
+      assert.equal(derived, 1); assert.equal(e.road_match_status, 'exact_name_later_report');
+      assert.equal(road, e.road); assert.ok(e.road_evidence.length > 0);
+    } else { assert.equal(derived, 0); }
+  });
+  assert.equal(filled, 67);
   const alias = { 'North-East': 'North East', 'North-West': 'North West', 'South-East': 'South East', 'South-West': 'South West' };
   let totals = 0, fatalSum = 0;
   for (const d of siteData.DELHI.districts) {
