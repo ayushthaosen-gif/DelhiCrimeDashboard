@@ -1,3 +1,8 @@
+## [2026-10-22] - Claude (Anthropic) - Audited 2014 supplement
+
+- All 39 supplement files matched CHECKSUMS.json; its 2014 zone table is identical to the one already shipped (the builder now asserts this). Added to `data/releases/road_zones_roads_2011_2015/`: 44 derived 2014 road groups (one with a blank road, left out of the page top 12), 13 retrospective 2014 stretches, and staged-only 2014 district rows (11 districts, 8,623 crashes, 1,629 fatal; kept off the district tables, which start in 2016), circle sums and the list reconciliation.
+- **Source discrepancy:** two 2014 stretch rows of Table 6.5 do not add up (I.P. Depot to I.P. College prints 76, parts sum to 84; I.P. College to Azad Pur prints 91, parts sum to 94). Printed values are kept, the page marks them with a double dagger and the sum, and no change figure is made from them. Road safety: the roads panel now shows calculated 2014 groups (2013 still has none); the stretches card adds 2014. Single-agent second pass, not independent review.
+
 ## [2026-10-22] - Claude (Anthropic) - Planning page restyle (design handoff 2)
 
 - Compared the Planning prototype and prompt with the live page: sticky toolbar, class chip and data line, three flex-wrap panels, five-band legend with Zero and No figure, ranked rows with bars, ward header and buttons, details sections, underline tabs, pill chips and the year strip were already in place. Changed the four gaps: intro split into a lead sentence and a smaller muted note; map and ward-panel warnings use the yellow callout (--cauBg); the map hover card is fixed in the map top-left corner instead of following the cursor; Open ward scrolls with an offset for the sticky toolbar. No copy, hash state, evidence pack or data changes.

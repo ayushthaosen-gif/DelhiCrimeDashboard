@@ -127,7 +127,7 @@ test('2022 road tables are on the site: selected-zone counts by district, 117 na
   assert.equal(dz.length, 15);
   assert.equal(siteData.ROADS.zones2022.length, 117);
   assert.equal(siteData.ROADS.roads['2022'].length, 12);
-  assert.deepEqual(Object.keys(siteData.ROADS.roads), ['2015', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']);
+  assert.deepEqual(Object.keys(siteData.ROADS.roads), ['2014', '2015', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']);
   const originals = json(rel + 'crash_prone_zones.json');
   const overlay = json(rel + 'zones_2022_roads_from_later_reports.json');
   let filled = 0;

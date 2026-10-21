@@ -75,6 +75,41 @@
     "groups": 45,
     "derivation": "Calculated by exact printed road label from Table 10.1. Not a printed road-summary table; printed spelling variants of one road remain separate groups, so this is not necessarily 45 unique roads."
   },
+  "roads2014": {
+    "groups": 44,
+    "withRoad": 43,
+    "derivation": "Calculated by exact printed label from the 2014 zone table. Not a printed road-summary table; spelling variants stay separate; the one zone with a blank road is its own null group."
+  },
+  "supplement2014": {
+    "note": "Audited supplement of 22 October 2026 (single-agent second pass: all nine pages reviewed, 137 simple and fatal pairs re-transcribed; not independent external review). Its 2014 zone table is identical to the one used here.",
+    "stretches2014": {
+      "rows": 13,
+      "arithmeticDiscrepancies": [
+        {
+          "road": "I.P. DEPOT TO I. P. COLLEGE",
+          "fatal": 25,
+          "simple": 55,
+          "nonInjury": 4,
+          "printedTotal": 76,
+          "componentSum": 84
+        },
+        {
+          "road": "I. P. COLLEGE TO AZAD PUR",
+          "fatal": 27,
+          "simple": 64,
+          "nonInjury": 3,
+          "printedTotal": 91,
+          "componentSum": 94
+        }
+      ],
+      "note": "Two 2014 stretch rows of Table 6.5 do not add up in the source. Printed values are kept, the discrepancy is shown on the page, and the rows are on hold for source review: no change figure is made from them."
+    },
+    "stagedNotOnPage": [
+      "traffic_districts_2014_retrospective: 11 district rows from the 2015 report Table 6.1 (8,623 crashes, 1,629 fatal), a retrospective geography; no 2015 table to sit beside it, so kept off the district tables",
+      "circles_selected_zones_2014_derived: circle sums of selected zones",
+      "list_reconciliation_2014: the 137 names compared with a separate Traffic Police 2014 list (124 exact, 11 spelling variants, 2 tentative); evidence only, no range or location is imported"
+    ]
+  },
   "roads2011to2012": {
     "rows": 26,
     "note": "Six national highways, four Ring Road stretches and three Outer Ring Road stretches per year. Simple is separate from non-injury in this source; fatal + simple + non-injury = total. Not selected-zone sums. Original annual reports and zone tables for 2011 and 2012 were not located."
@@ -84,7 +119,7 @@
     "Each year selects its own zones and the list changes every year; a longer list or a larger sum is not a worse year.",
     "The 2013 and 2014 compilation gives printed district and circle names; 2014 uses circle codes with no district assignment. They are kept as printed and are not mapped to any later district.",
     "No coordinates; a repeated name does not prove an unchanged location.",
-    "Selected-page visual review was done for 2013 and 2014; no independent second transcription review is claimed. 2015 was visually transcribed by the extracting agent and not independently reviewed.",
+    "Selected-page visual review was done for 2013; for 2014 all nine pages were reviewed and re-transcribed in a second pass by one agent; no independent second transcription review is claimed. 2015 was visually transcribed by the extracting agent and not independently reviewed.",
     "Archive timestamps and upload folders are not publication dates."
   ],
   "inputPackages": [
@@ -109,6 +144,30 @@
       "sha256": "a687c120ed900041bd4f3bc1116e06580c523ca8b6799d22a22b2b7f2f99012d"
     },
     {
+      "file": "supplement_2014/named_zones_2014.json",
+      "sha256": "bb89144e1b73251d98e350010c0b17efa9c66567eed1a67352d8e961d60af679"
+    },
+    {
+      "file": "supplement_2014/roads_selected_zones_2014_derived.json",
+      "sha256": "474ad6df47ed383a7bc0b30b771167bf9c54c01888c5707bd1b1b0b4f6fd12d6"
+    },
+    {
+      "file": "supplement_2014/circles_selected_zones_2014_derived.json",
+      "sha256": "e1609a42bc545f5306d78c1eaef34fe6d4e91584054fbb1ea65b05263e9eb598"
+    },
+    {
+      "file": "supplement_2014/list_reconciliation.json",
+      "sha256": "3437e97a3930dd90a945bc0a833c56cedbd245def7abc355b835aacb11d2179a"
+    },
+    {
+      "file": "supplement_2014/traffic_districts_2014_retrospective.json",
+      "sha256": "03b9829287e4ff5a22fc0411ff984d99a69084849a09a5aeb4cffc5454d2f586"
+    },
+    {
+      "file": "supplement_2014/road_stretches_2014_retrospective.json",
+      "sha256": "243a819909cbec2098740f0676cfd36c312146ad4f14bd758d08b710d2bb399a"
+    },
+    {
       "file": "road_2013_2014_recovery/validation.json",
       "sha256": "1cad33b82e9b2eb83536ed58133cca63606a422009ec1ba4d487a73f231ad915"
     },
@@ -131,6 +190,14 @@
       "sha256": "5c560d64c63ec8f60fe83ba58ad7989a909c7a16815cccf4f77ba5662b31346c"
     },
     {
+      "file": "road_stretches_2014_retrospective.csv",
+      "sha256": "62e5af6a0e2e1e0a1650478ac7da240d4fb84ebf3898a84eb9e39ceb7405c7d9"
+    },
+    {
+      "file": "road_stretches_2014_retrospective.json",
+      "sha256": "243a819909cbec2098740f0676cfd36c312146ad4f14bd758d08b710d2bb399a"
+    },
+    {
       "file": "roads_2011_2012_retrospective.csv",
       "sha256": "ce837c96352143361597e3a1ea54a4244f6e768009ca7ed63f6877e0cd6f8ba2"
     },
@@ -139,12 +206,44 @@
       "sha256": "a687c120ed900041bd4f3bc1116e06580c523ca8b6799d22a22b2b7f2f99012d"
     },
     {
+      "file": "roads_2014_derived_exact_labels.csv",
+      "sha256": "08626012e7bbbccedf3b567cff9c64dfc3ad6bac2b5c8606d988221c88db0ae1"
+    },
+    {
+      "file": "roads_2014_derived_exact_labels.json",
+      "sha256": "f63b352da4117d41d33d427519b11f3fc3d2a2ef6c4f7b64c5dcf2620f7b9104"
+    },
+    {
       "file": "roads_2015_derived_exact_labels.csv",
       "sha256": "694a53183d7afa4104d9818292737b28efafe6b734c880543004c0e0a086a5cf"
     },
     {
       "file": "roads_2015_derived_exact_labels.json",
       "sha256": "f6065b78e1ce71f8dab96822d6c498f7bfa94c0bf9f8814e8726f2cda4f01966"
+    },
+    {
+      "file": "staged_2014/circles_selected_zones_2014_derived.csv",
+      "sha256": "66f1211720a78516054238ad2d2ef6b72f1cd0ee17178f93fda98a6cd6e74fde"
+    },
+    {
+      "file": "staged_2014/circles_selected_zones_2014_derived.json",
+      "sha256": "e1609a42bc545f5306d78c1eaef34fe6d4e91584054fbb1ea65b05263e9eb598"
+    },
+    {
+      "file": "staged_2014/list_reconciliation_2014.csv",
+      "sha256": "3d7dfc81afeed3381bb7d871edba5f4c6507f4ee0b8f71c0045f39b9cac6aa71"
+    },
+    {
+      "file": "staged_2014/list_reconciliation_2014.json",
+      "sha256": "3437e97a3930dd90a945bc0a833c56cedbd245def7abc355b835aacb11d2179a"
+    },
+    {
+      "file": "staged_2014/traffic_districts_2014_retrospective.csv",
+      "sha256": "8d3e20536a05d850eb272e33dc94422264eb82a8f0d5ee57510a4b7840de0289"
+    },
+    {
+      "file": "staged_2014/traffic_districts_2014_retrospective.json",
+      "sha256": "03b9829287e4ff5a22fc0411ff984d99a69084849a09a5aeb4cffc5454d2f586"
     }
   ]
 }

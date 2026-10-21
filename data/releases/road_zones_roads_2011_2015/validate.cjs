@@ -5,6 +5,7 @@ const root = __dirname;
 const read = f => JSON.parse(fs.readFileSync(path.join(root, f), 'utf8'));
 const manifest = read('manifest.json');
 const named = read('named_zones_2013_2015.json'), roads15 = read('roads_2015_derived_exact_labels.json'), roads11 = read('roads_2011_2012_retrospective.json');
+const roads14 = read('roads_2014_derived_exact_labels.json'), str14 = read('road_stretches_2014_retrospective.json'), dist14 = read('staged_2014/traffic_districts_2014_retrospective.json');
 const fail = m => { throw Error(m); };
 
 for (const o of manifest.outputs) {
@@ -32,4 +33,11 @@ for (const r of roads11) {
   if (r.fatal_crashes + r.simple_crashes + r.noninjury_crashes !== r.total_crashes) fail('2011-12 arithmetic: ' + r.reference_year + ' ' + r.road_as_printed);
   if (r.latitude != null || r.longitude != null) fail('Unexpected coordinates');
 }
+if (roads14.reduce((a, r) => a + r.crash_prone_zones, 0) !== manifest.derivedTotals[2014].zones || roads14.reduce((a, r) => a + r.fatal_crashes, 0) !== manifest.derivedTotals[2014].fatal || roads14.reduce((a, r) => a + r.simple_crashes, 0) !== manifest.derivedTotals[2014].simple) fail('2014 road groups do not cover the zones');
+if (roads14.filter(r => !r.road_as_printed).length !== 1) fail('2014 expects one null-road group');
+const bad14 = str14.filter(r => r.fatal_crashes + r.simple_crashes + r.noninjury_crashes !== r.total_crashes_as_printed).map(r => r.road_as_printed);
+const flagged14 = str14.filter(r => r.source_arithmetic_discrepancy).map(r => r.road_as_printed);
+if (JSON.stringify(bad14.sort()) !== JSON.stringify(flagged14.sort()) || bad14.length !== 2) fail('2014 stretch discrepancies must be exactly the two flagged rows');
+if (str14.length !== 13) fail('2014 stretches');
+if (dist14.length !== 11 || dist14.reduce((a, r) => a + r.total_accidents, 0) !== 8623 || dist14.reduce((a, r) => a + r.fatal_accidents, 0) !== 1629 || dist14.some(r => r.fatal_accidents + r.injury_accidents + r.non_injury_accidents !== r.total_accidents)) fail('2014 district table');
 console.log('named_zones_2013_2015.json: ' + named.length + ' rows validated; roads_2015: ' + roads15.length + ' groups; roads_2011_2012: ' + roads11.length + ' rows');
