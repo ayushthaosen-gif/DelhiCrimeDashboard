@@ -117,7 +117,11 @@ function buildSite(continuity) {
     status: String(s.status).replace(/_/g, ' '),
     geo: s.geography
   }));
-  return { trends, victims, enforcement, series, updated: status.updated };
+  const enforcementHistory = read('data/releases/road_enforcement_2019_2022/enforcement.json').map(r => ({
+    measure: r.measure, year: r.reference_year, value: r.value, kind: r.value_kind, reportYear: r.report_year, pdfPage: r.source_pdf_page, printedPage: r.source_printed_page,
+    url: r.source_url, sha256: r.source_sha256, review: r.review_status, note: r.note
+  }));
+  return { trends, victims, enforcement, enforcementHistory, series, updated: status.updated };
 }
 
 function buildRoads() {

@@ -92,21 +92,62 @@
     sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Pedestrians are unprotected road users, which makes their share relevant to walkability. Delhi Traffic Police, 2019–2024, citywide.'));
   }
 
-  // ---- enforcement ----
+  // ---- enforcement, 2019 to 2024 (citywide; 2019 to 2022 are read from the annual reports, 2023 and 2024 from the road-crash-report release) ----
+  var EH = S.enforcementHistory, EYEARS = [2019, 2020, 2021, 2022, 2023, 2024];
+  function ehGet(measure, y) { return EH.filter(function (r) { return r.measure === measure && r.year === y; })[0] || null; }
+  var ENF_ROWS = [
+    { label: 'Hit-and-run fatal crashes', key: 'hit_and_run_fatal_crashes', modern: 'hitAndRunFatal', fmt: n },
+    { label: 'Hit-and-run share of fatal crashes', key: 'hit_and_run_share_of_fatal_crashes_percent', modern: 'hitAndRunShare', fmt: function (v) { return v.toFixed(1) + '%'; } },
+    { label: 'Drink-driving prosecutions', key: 'drink_driving_prosecutions', modern: 'drinkDriving', fmt: n, flag: 'drink' },
+    { label: 'Over-speeding notices', key: 'overspeed_notices', modern: 'overspeed', fmt: n },
+    { label: 'Red-light cameras (junctions)', modern: 'rlvd', pair: 'rlvdJunctions' },
+    { label: 'Speed cameras (locations)', modern: 'osvd', pair: 'osvdLocations' }
+  ];
+  function enfCell(row, y) {
+    if (y >= 2023) {
+      var e = E[y];
+      if (row.pair) return { text: e[row.modern] + ' (' + e[row.pair] + ')' };
+      return { text: row.fmt(e[row.modern]) };
+    }
+    if (!row.key) return { text: '—', none: true };
+    var o = ehGet(row.key, y);
+    return o ? { text: row.fmt(o.value), derived: o.kind === 'derived', o: o } : { text: '—', none: true };
+  }
+  function enfCsv() {
+    var head = ['measure', 'reference_year', 'value', 'unit', 'value_kind', 'source_report_year', 'source_pdf_page', 'source_printed_page', 'source_url', 'source_sha256', 'review_status', 'note', 'data_version'];
+    var rows = [head];
+    var UNITS = { hit_and_run_fatal_crashes: 'fatal crashes', hit_and_run_share_of_fatal_crashes_percent: 'percent of fatal crashes', drink_driving_prosecutions: 'persons prosecuted', overspeed_notices: 'notices' };
+    EYEARS.forEach(function (y) {
+      ENF_ROWS.forEach(function (row) {
+        if (row.pair) {
+          var vals = y >= 2023 ? [[row.modern === 'rlvd' ? 'red_light_camera_systems' : 'speed_camera_systems', E[y][row.modern]], [row.modern === 'rlvd' ? 'red_light_junctions' : 'speed_camera_locations', E[y][row.pair]]] : [[row.modern === 'rlvd' ? 'red_light_camera_systems' : 'speed_camera_systems', null], [row.modern === 'rlvd' ? 'red_light_junctions' : 'speed_camera_locations', null]];
+          vals.forEach(function (v) { rows.push([v[0], y, v[1] == null ? '' : v[1], v[0].indexOf('systems') > 0 ? 'camera systems' : v[0].indexOf('junctions') > 0 ? 'junctions' : 'locations', y >= 2023 ? 'printed' : '', y >= 2023 ? y : '', '', '', '', '', y >= 2023 ? 'production release (data/road_safety_extra_2023_2024.json)' : '', v[1] == null ? 'Not given on a consistent basis in the report for this year.' : '', data.updated]); });
+          return;
+        }
+        if (y >= 2023) { rows.push([row.key, y, E[y][row.modern], UNITS[row.key], 'printed', y, '', '', '', '', 'production release (data/road_safety_extra_2023_2024.json)', '', data.updated]); return; }
+        var o = ehGet(row.key, y);
+        rows.push([row.key, y, o ? o.value : '', UNITS[row.key], o ? o.kind : '', o ? o.reportYear : '', o ? o.pdfPage : '', o && o.printedPage != null ? o.printedPage : '', o ? o.url : '', o ? o.sha256 : '', o ? o.review : '', o ? o.note : '', data.updated]);
+      });
+    });
+    return D.csv(rows);
+  }
   function renderEnforcement() {
     var sec = D.clear(D.$('#enforcement'));
-    var rows = [
-      ['Hit-and-run fatal crashes', n(E[2023].hitAndRunFatal), n(E[2024].hitAndRunFatal)],
-      ['Drink-driving prosecutions', n(E[2023].drinkDriving), n(E[2024].drinkDriving)],
-      ['Over-speeding notices', n(E[2023].overspeed), n(E[2024].overspeed)],
-      ['Red-light cameras (junctions)', E[2023].rlvd + ' (' + E[2023].rlvdJunctions + ')', E[2024].rlvd + ' (' + E[2024].rlvdJunctions + ')'],
-      ['Speed cameras (locations)', E[2023].osvd + ' (' + E[2023].osvdLocations + ')', E[2024].osvd + ' (' + E[2024].osvdLocations + ')']
-    ];
-    sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Enforcement, 2023 and 2024')));
-    sec.appendChild(h('div', { style: 'display:flex;flex-direction:column' },
-      h('div', { class: 'enf-row h' }, h('span', null, 'Measure'), h('span', null, '2023'), h('span', null, '2024')),
-      rows.map(function (r) { return h('div', { class: 'enf-row' }, h('span', null, r[0]), h('span', null, r[1]), h('span', null, r[2])); })));
-    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Citywide totals from the Delhi Road Crash Report 2023 and 2024; not split by district in the source.'));
+    sec.appendChild(h('div', { class: 'row-between' },
+      h('div', { class: 'title-row' }, h('h2', null, 'Enforcement, 2019 to 2024'),
+        D.tip('About these figures', ['Citywide counts from the Traffic Police annual reports, not split by district. Prosecutions and notices depend on enforcement effort and on how many cameras were working, not only on behaviour.',
+          'Drink-driving prosecutions fell from 36,065 to 3,986 in 2020, when alcometer tests were reduced because of the pandemic. The 2023 and 2024 figures are about seven times the 2022 one, and it has not been established that they are counted the same way: do not read the jump as a change in drinking and driving.',
+          'Camera counts are given only for 2023 and 2024: the older reports give inconsistent installation counts.'], { right: true })),
+      h('button', { type: 'button', class: 'btn', 'data-key': 'enfcsv', onclick: function () { D.download('delhi_road_enforcement_2019_2024.csv', enfCsv()); } }, 'Download CSV')));
+    var head = h('tr', null, h('th', { scope: 'col' }, 'Measure'), EYEARS.map(function (y) { return h('th', { scope: 'col' }, y); }));
+    var any = false;
+    var body = ENF_ROWS.map(function (row) {
+      return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, row.label),
+        EYEARS.map(function (y) { var c = enfCell(row, y); if (c.derived) any = true; return h('td', { class: c.none ? 'muted' : null, title: c.o ? 'Delhi Road Crash Report ' + c.o.reportYear + ', PDF page ' + c.o.pdfPage : null }, c.text, c.derived ? h('sup', null, '†') : null); }));
+    });
+    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:560px' }, h('caption', { class: 'sr-only' }, 'Enforcement figures by year, citywide'), h('thead', null, head), h('tbody', null, body))));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'A dash means the report gives no figure on a consistent basis, not zero. † Computed here (668 of 1,428 fatal crashes in 2022; the report says about 47%). The 2019 over-speeding figure is the one the 2020 report prints for 2019. Sources: Delhi Road Crash Reports 2019 to 2024; pages, hashes and review status are in the CSV and the ',
+      h('a', { href: 'data/releases/road_enforcement_2019_2022/manifest.json' }, 'release manifest'), '. Not independently reviewed.'));
   }
 
   // ---- crash-prone zones (2023 list, 107 zones, sorted as in the source) ----

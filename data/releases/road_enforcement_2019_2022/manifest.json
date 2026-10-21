@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi Traffic Police enforcement figures, 2019 to 2022, as printed in the annual reports",
+  "status": "production",
+  "scope": "Delhi citywide; not split by district. Counts, not rates.",
+  "measures": {
+    "hit_and_run_fatal_crashes": "fatal crashes",
+    "hit_and_run_share_of_fatal_crashes_percent": "percent of fatal crashes",
+    "drink_driving_prosecutions": "persons prosecuted",
+    "overspeed_notices": "notices"
+  },
+  "sources": [
+    {
+      "report_year": 2019,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-accident-in-delhi-2019.pdf",
+      "sha256": "a098b47774b834a5beeec9ed664826e174fd170cd17d577b860d9c29c81c02a0",
+      "bytes": 22746055,
+      "how": "official site download, retrieved 2026-10-20"
+    },
+    {
+      "report_year": 2020,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-Accidents-in-Delhi-2020.pdf",
+      "sha256": "203c9e7a65f44d422179ebe09331f64e5c3f3892b706605b66be001d261b98e6",
+      "bytes": 142094989,
+      "how": "official site download, retrieved 2026-10-20"
+    },
+    {
+      "report_year": 2021,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2021/Delhi-Crash-Report-Final-2021.pdf",
+      "sha256": "525e8634fa21a4359ed583c651bb4819614f262424a3b00e4ef394e3a6608646",
+      "bytes": 12590307,
+      "how": "official site download, retrieved 2026-10-20"
+    },
+    {
+      "report_year": 2022,
+      "url": "https://web.archive.org/web/20240115175041id_/https://traffic.delhipolice.gov.in/sites/default/files/uploads/2022/Delhi-Crash-Report-2022.pdf",
+      "sha256": "721706d46500c59576c30d080e37bc7f5a77dbae9e83f3f4358ebe4282c421b7",
+      "bytes": 9647816,
+      "how": "Internet Archive capture of 2024-01-15 (see data/releases/road_crash_report_2022/manifest.json)"
+    }
+  ],
+  "caveats": [
+    "Citywide counts. Prosecutions and notices depend on enforcement effort and on how many cameras were working, not only on behaviour.",
+    "Drink-driving prosecutions fell from 36,065 (2019) to 3,986 (2020); the 2020 and 2021 reports say alcometer tests were reduced because of the pandemic. The 2023 and 2024 figures in road_safety_extra_2023_2024.json (15,972 and 22,952) are about seven times the 2022 figure, and this repository has not established whether the counting basis is the same. Do not read the jump as a change in drinking and driving.",
+    "Over-speeding notices come from OSVD and tripod-mounted cameras. The 2019 value is read from the 2020 report, which prints it as the previous year.",
+    "Camera counts are not given: the 2020 to 2022 reports say 37 red-light-camera junctions and 100 speed-camera locations, the 2021 report elsewhere says 125 OSVD cameras at 66 locations and 43 RLVD junctions, and the 2023 and 2024 values (209 and 125 systems) use a third basis. They are left blank for 2019 to 2022 rather than reconciled.",
+    "Hit-and-run share for 2022 is computed here (668 of 1,428); the other shares are printed.",
+    "Values were read from the PDF text layers. Three (drink-driving 2019, over-speeding 2019 and 2020) were also checked on the page image; none has had an independent second review. No open reuse licence has been verified."
+  ]
+}
