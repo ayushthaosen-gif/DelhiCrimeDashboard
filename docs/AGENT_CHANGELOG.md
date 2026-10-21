@@ -1,3 +1,7 @@
+## [2026-10-22] - Claude (Anthropic) - Planning ward panel sticks beside the map
+
+- The ward detail panel (`#plWork > .panel.detail`) is now `position: sticky` with `overflow-y: auto`, `overscroll-behavior: contain` and a max-height of the viewport minus its offset, so it scrolls inside itself instead of making the page longer. Offset: `top: var(--pl-sticky-top, 110px)`; the page script sets the variable to the measured toolbar height plus 14 px (110 px when the toolbar is one line), because the toolbar wraps to about 100 to 200 px depending on width and a fixed 110 px would sit under it. Only at 1140 px and wider: below that the list drops under the map and a sticky panel would overlap it, so the panel scrolls with the page. No content change.
+
 ## [2026-10-22] - Claude (Anthropic) - 2023 zone rank 4 label corrected
 
 - `data/crash_zones_2023_raw.json`, `_geocoded.json` and `_mapped.json` now read name "Kashmiri Gate Chowk Boulevard Road" and road "Boulevard Road" for rank 4 (was "Boulevard Road" / "Kashmiri Gate Area"), as printed in Table 6.29 (PDF page 120). Counts, rank, coordinates and district untouched. Regenerated the dashboards, 2023 release (and its manifest hashes), the deprecated 2023 export, the profile files and the site data; other exports were left as they were. Recurring locations go from 324 to 323 places because this zone now merges with its 2024 namesake. Logged in DATA_CHANGELOG.

@@ -135,5 +135,7 @@ test('the Planning page: shared shell, six pages in the nav, scripts in order, l
   assert.ok(html.includes('class="lead"') && html.includes('class="pl-sub"'), 'intro: first sentence is the lead, the rest is smaller');
   assert.ok(!src.includes('mousemove') && src.includes('pl-cau') && why.includes('pl-cau'), 'hover card is fixed in the map corner; warnings use the yellow callout');
   assert.ok(src.includes('window.scrollTo') && /Open ward/.test(src), 'Open ward scrolls with an offset for the sticky toolbar');
+  const css = read('assets/site.css');
+  assert.ok(src.includes('--pl-sticky-top') && src.includes('syncStickyTop'), 'the sticky offset follows the real toolbar height');
   assert.ok(files['explore.html'].includes('assets/profiles-data.js') && files['explore.html'].includes('assets/why.js'));
 });
