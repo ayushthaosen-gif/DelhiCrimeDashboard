@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "annual_district_rows": 58,
+  "annual_district_rows_by_year": {
+    "2016": 11,
+    "2017": 11,
+    "2018": 12,
+    "2019": 12,
+    "2020": 12
+  },
+  "selected_zone_district_rows": 46,
+  "selected_zone_rows_by_year": {
+    "2016": 0,
+    "2017": 11,
+    "2018": 12,
+    "2019": 11,
+    "2020": 12
+  },
+  "retrospective_rows": 60,
+  "vintage_cell_comparisons": 328,
+  "vintage_differences": 0,
+  "original_and_retrospective_totals_reconcile": true,
+  "zone_districts_reconcile_to_separate_citywide_summary": true,
+  "missing_person_counts_remain_null": true,
+  "missing_zone_districts_remain_null": true,
+  "existing_citywide_comparisons": 10,
+  "existing_citywide_differences": 0,
+  "review": "Author visual transcription of ten source pages; no independent second reviewer.",
+  "production_data_changed": false,
+  "dashboard_changed": false
+}

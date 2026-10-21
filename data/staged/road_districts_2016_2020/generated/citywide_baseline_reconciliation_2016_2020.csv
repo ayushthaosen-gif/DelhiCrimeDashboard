@@ -1,0 +1,11 @@
+reference_year,metric,printed_value,existing_citywide_value,equal
+2016,fatal_accidents,1548,1548,True
+2016,total_accidents,7375,7375,True
+2017,fatal_accidents,1565,1565,True
+2017,total_accidents,6673,6673,True
+2018,fatal_accidents,1657,1657,True
+2018,total_accidents,6515,6515,True
+2019,fatal_accidents,1433,1433,True
+2019,total_accidents,5610,5610,True
+2020,fatal_accidents,1163,1163,True
+2020,total_accidents,4178,4178,True

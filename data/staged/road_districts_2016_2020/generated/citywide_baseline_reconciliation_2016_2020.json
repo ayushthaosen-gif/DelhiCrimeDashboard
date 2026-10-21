@@ -1,0 +1,72 @@
+[
+  {
+    "reference_year": 2016,
+    "metric": "fatal_accidents",
+    "printed_value": 1548,
+    "existing_citywide_value": 1548,
+    "equal": true
+  },
+  {
+    "reference_year": 2016,
+    "metric": "total_accidents",
+    "printed_value": 7375,
+    "existing_citywide_value": 7375,
+    "equal": true
+  },
+  {
+    "reference_year": 2017,
+    "metric": "fatal_accidents",
+    "printed_value": 1565,
+    "existing_citywide_value": 1565,
+    "equal": true
+  },
+  {
+    "reference_year": 2017,
+    "metric": "total_accidents",
+    "printed_value": 6673,
+    "existing_citywide_value": 6673,
+    "equal": true
+  },
+  {
+    "reference_year": 2018,
+    "metric": "fatal_accidents",
+    "printed_value": 1657,
+    "existing_citywide_value": 1657,
+    "equal": true
+  },
+  {
+    "reference_year": 2018,
+    "metric": "total_accidents",
+    "printed_value": 6515,
+    "existing_citywide_value": 6515,
+    "equal": true
+  },
+  {
+    "reference_year": 2019,
+    "metric": "fatal_accidents",
+    "printed_value": 1433,
+    "existing_citywide_value": 1433,
+    "equal": true
+  },
+  {
+    "reference_year": 2019,
+    "metric": "total_accidents",
+    "printed_value": 5610,
+    "existing_citywide_value": 5610,
+    "equal": true
+  },
+  {
+    "reference_year": 2020,
+    "metric": "fatal_accidents",
+    "printed_value": 1163,
+    "existing_citywide_value": 1163,
+    "equal": true
+  },
+  {
+    "reference_year": 2020,
+    "metric": "total_accidents",
+    "printed_value": 4178,
+    "existing_citywide_value": 4178,
+    "equal": true
+  }
+]

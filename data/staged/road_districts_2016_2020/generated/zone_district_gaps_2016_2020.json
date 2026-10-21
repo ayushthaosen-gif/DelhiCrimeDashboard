@@ -1,0 +1,110 @@
+[
+  {
+    "reference_year": 2016,
+    "reporting_unit": "CENTRAL",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "NEW DELHI",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "EAST",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "NORTH EAST",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "NORTH WEST",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "NORTH",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "OUTER",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "SOUTH",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "SOUTH-EAST",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "SOUTH WEST",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2016,
+    "reporting_unit": "WEST",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No district-level selected-zone table transcribed for 2016; citywide summary only."
+  },
+  {
+    "reference_year": 2019,
+    "reporting_unit": "NEW DELHI",
+    "accident_prone_zones": null,
+    "simple_accidents": null,
+    "fatal_accidents": null,
+    "total_accidents": null,
+    "reason": "No row in the printed selected-zone district table; absence is not zero."
+  }
+]

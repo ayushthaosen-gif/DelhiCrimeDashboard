@@ -1,0 +1,329 @@
+reference_year,unit,metric,original_report_year,later_report_year,original_value,later_value,equal,note
+2016,CENTRAL,fatal_accidents,2016,2020,55,55,True,Matching values do not prove matching geography.
+2016,CENTRAL,injury_accidents,2016,2020,207,207,True,Matching values do not prove matching geography.
+2016,CENTRAL,non_injury_accidents,2016,2020,7,7,True,Matching values do not prove matching geography.
+2016,CENTRAL,total_accidents,2016,2020,269,269,True,Matching values do not prove matching geography.
+2016,NEW DELHI,fatal_accidents,2016,2020,57,57,True,Matching values do not prove matching geography.
+2016,NEW DELHI,injury_accidents,2016,2020,191,191,True,Matching values do not prove matching geography.
+2016,NEW DELHI,non_injury_accidents,2016,2020,17,17,True,Matching values do not prove matching geography.
+2016,NEW DELHI,total_accidents,2016,2020,265,265,True,Matching values do not prove matching geography.
+2016,EAST,fatal_accidents,2016,2020,96,96,True,Matching values do not prove matching geography.
+2016,EAST,injury_accidents,2016,2020,581,581,True,Matching values do not prove matching geography.
+2016,EAST,non_injury_accidents,2016,2020,17,17,True,Matching values do not prove matching geography.
+2016,EAST,total_accidents,2016,2020,694,694,True,Matching values do not prove matching geography.
+2016,NORTH EAST,fatal_accidents,2016,2020,100,100,True,Matching values do not prove matching geography.
+2016,NORTH EAST,injury_accidents,2016,2020,511,511,True,Matching values do not prove matching geography.
+2016,NORTH EAST,non_injury_accidents,2016,2020,1,1,True,Matching values do not prove matching geography.
+2016,NORTH EAST,total_accidents,2016,2020,612,612,True,Matching values do not prove matching geography.
+2016,NORTH WEST,fatal_accidents,2016,2020,282,282,True,Matching values do not prove matching geography.
+2016,NORTH WEST,injury_accidents,2016,2020,684,684,True,Matching values do not prove matching geography.
+2016,NORTH WEST,non_injury_accidents,2016,2020,15,15,True,Matching values do not prove matching geography.
+2016,NORTH WEST,total_accidents,2016,2020,981,981,True,Matching values do not prove matching geography.
+2016,NORTH,fatal_accidents,2016,2020,105,105,True,Matching values do not prove matching geography.
+2016,NORTH,injury_accidents,2016,2020,327,327,True,Matching values do not prove matching geography.
+2016,NORTH,non_injury_accidents,2016,2020,1,1,True,Matching values do not prove matching geography.
+2016,NORTH,total_accidents,2016,2020,433,433,True,Matching values do not prove matching geography.
+2016,OUTER,fatal_accidents,2016,2020,155,155,True,Matching values do not prove matching geography.
+2016,OUTER,injury_accidents,2016,2020,528,528,True,Matching values do not prove matching geography.
+2016,OUTER,non_injury_accidents,2016,2020,0,0,True,Matching values do not prove matching geography.
+2016,OUTER,total_accidents,2016,2020,683,683,True,Matching values do not prove matching geography.
+2016,SOUTH,fatal_accidents,2016,2020,131,131,True,Matching values do not prove matching geography.
+2016,SOUTH,injury_accidents,2016,2020,499,499,True,Matching values do not prove matching geography.
+2016,SOUTH,non_injury_accidents,2016,2020,15,15,True,Matching values do not prove matching geography.
+2016,SOUTH,total_accidents,2016,2020,645,645,True,Matching values do not prove matching geography.
+2016,SOUTH-EAST,fatal_accidents,2016,2020,200,200,True,Matching values do not prove matching geography.
+2016,SOUTH-EAST,injury_accidents,2016,2020,898,898,True,Matching values do not prove matching geography.
+2016,SOUTH-EAST,non_injury_accidents,2016,2020,40,40,True,Matching values do not prove matching geography.
+2016,SOUTH-EAST,total_accidents,2016,2020,1138,1138,True,Matching values do not prove matching geography.
+2016,SOUTH WEST,fatal_accidents,2016,2020,163,163,True,Matching values do not prove matching geography.
+2016,SOUTH WEST,injury_accidents,2016,2020,574,574,True,Matching values do not prove matching geography.
+2016,SOUTH WEST,non_injury_accidents,2016,2020,12,12,True,Matching values do not prove matching geography.
+2016,SOUTH WEST,total_accidents,2016,2020,749,749,True,Matching values do not prove matching geography.
+2016,WEST,fatal_accidents,2016,2020,204,204,True,Matching values do not prove matching geography.
+2016,WEST,injury_accidents,2016,2020,698,698,True,Matching values do not prove matching geography.
+2016,WEST,non_injury_accidents,2016,2020,4,4,True,Matching values do not prove matching geography.
+2016,WEST,total_accidents,2016,2020,906,906,True,Matching values do not prove matching geography.
+2017,CENTRAL,fatal_accidents,2017,2020,55,55,True,Matching values do not prove matching geography.
+2017,CENTRAL,injury_accidents,2017,2020,184,184,True,Matching values do not prove matching geography.
+2017,CENTRAL,non_injury_accidents,2017,2020,6,6,True,Matching values do not prove matching geography.
+2017,CENTRAL,total_accidents,2017,2020,245,245,True,Matching values do not prove matching geography.
+2017,NEW DELHI,fatal_accidents,2017,2020,65,65,True,Matching values do not prove matching geography.
+2017,NEW DELHI,injury_accidents,2017,2020,176,176,True,Matching values do not prove matching geography.
+2017,NEW DELHI,non_injury_accidents,2017,2020,13,13,True,Matching values do not prove matching geography.
+2017,NEW DELHI,total_accidents,2017,2020,254,254,True,Matching values do not prove matching geography.
+2017,EAST,fatal_accidents,2017,2020,131,131,True,Matching values do not prove matching geography.
+2017,EAST,injury_accidents,2017,2020,462,462,True,Matching values do not prove matching geography.
+2017,EAST,non_injury_accidents,2017,2020,14,14,True,Matching values do not prove matching geography.
+2017,EAST,total_accidents,2017,2020,607,607,True,Matching values do not prove matching geography.
+2017,NORTH EAST,fatal_accidents,2017,2020,91,91,True,Matching values do not prove matching geography.
+2017,NORTH EAST,injury_accidents,2017,2020,468,468,True,Matching values do not prove matching geography.
+2017,NORTH EAST,non_injury_accidents,2017,2020,1,1,True,Matching values do not prove matching geography.
+2017,NORTH EAST,total_accidents,2017,2020,560,560,True,Matching values do not prove matching geography.
+2017,NORTH WEST,fatal_accidents,2017,2020,284,284,True,Matching values do not prove matching geography.
+2017,NORTH WEST,injury_accidents,2017,2020,567,567,True,Matching values do not prove matching geography.
+2017,NORTH WEST,non_injury_accidents,2017,2020,8,8,True,Matching values do not prove matching geography.
+2017,NORTH WEST,total_accidents,2017,2020,859,859,True,Matching values do not prove matching geography.
+2017,NORTH,fatal_accidents,2017,2020,79,79,True,Matching values do not prove matching geography.
+2017,NORTH,injury_accidents,2017,2020,329,329,True,Matching values do not prove matching geography.
+2017,NORTH,non_injury_accidents,2017,2020,4,4,True,Matching values do not prove matching geography.
+2017,NORTH,total_accidents,2017,2020,412,412,True,Matching values do not prove matching geography.
+2017,OUTER,fatal_accidents,2017,2020,169,169,True,Matching values do not prove matching geography.
+2017,OUTER,injury_accidents,2017,2020,492,492,True,Matching values do not prove matching geography.
+2017,OUTER,non_injury_accidents,2017,2020,0,0,True,Matching values do not prove matching geography.
+2017,OUTER,total_accidents,2017,2020,661,661,True,Matching values do not prove matching geography.
+2017,SOUTH,fatal_accidents,2017,2020,103,103,True,Matching values do not prove matching geography.
+2017,SOUTH,injury_accidents,2017,2020,431,431,True,Matching values do not prove matching geography.
+2017,SOUTH,non_injury_accidents,2017,2020,12,12,True,Matching values do not prove matching geography.
+2017,SOUTH,total_accidents,2017,2020,546,546,True,Matching values do not prove matching geography.
+2017,SOUTH-EAST,fatal_accidents,2017,2020,199,199,True,Matching values do not prove matching geography.
+2017,SOUTH-EAST,injury_accidents,2017,2020,784,784,True,Matching values do not prove matching geography.
+2017,SOUTH-EAST,non_injury_accidents,2017,2020,24,24,True,Matching values do not prove matching geography.
+2017,SOUTH-EAST,total_accidents,2017,2020,1007,1007,True,Matching values do not prove matching geography.
+2017,SOUTH WEST,fatal_accidents,2017,2020,171,171,True,Matching values do not prove matching geography.
+2017,SOUTH WEST,injury_accidents,2017,2020,518,518,True,Matching values do not prove matching geography.
+2017,SOUTH WEST,non_injury_accidents,2017,2020,4,4,True,Matching values do not prove matching geography.
+2017,SOUTH WEST,total_accidents,2017,2020,693,693,True,Matching values do not prove matching geography.
+2017,WEST,fatal_accidents,2017,2020,218,218,True,Matching values do not prove matching geography.
+2017,WEST,injury_accidents,2017,2020,606,606,True,Matching values do not prove matching geography.
+2017,WEST,non_injury_accidents,2017,2020,5,5,True,Matching values do not prove matching geography.
+2017,WEST,total_accidents,2017,2020,829,829,True,Matching values do not prove matching geography.
+2018,CENTRAL,fatal_accidents,2018,2020,58,58,True,Matching values do not prove matching geography.
+2018,CENTRAL,injury_accidents,2018,2020,157,157,True,Matching values do not prove matching geography.
+2018,CENTRAL,non_injury_accidents,2018,2020,4,4,True,Matching values do not prove matching geography.
+2018,CENTRAL,total_accidents,2018,2020,219,219,True,Matching values do not prove matching geography.
+2018,DWARKA,fatal_accidents,2018,2020,112,112,True,Matching values do not prove matching geography.
+2018,DWARKA,injury_accidents,2018,2020,254,254,True,Matching values do not prove matching geography.
+2018,DWARKA,non_injury_accidents,2018,2020,6,6,True,Matching values do not prove matching geography.
+2018,DWARKA,total_accidents,2018,2020,372,372,True,Matching values do not prove matching geography.
+2018,NEW DELHI,fatal_accidents,2018,2020,69,69,True,Matching values do not prove matching geography.
+2018,NEW DELHI,injury_accidents,2018,2020,149,149,True,Matching values do not prove matching geography.
+2018,NEW DELHI,non_injury_accidents,2018,2020,6,6,True,Matching values do not prove matching geography.
+2018,NEW DELHI,total_accidents,2018,2020,224,224,True,Matching values do not prove matching geography.
+2018,EAST,fatal_accidents,2018,2020,132,132,True,Matching values do not prove matching geography.
+2018,EAST,injury_accidents,2018,2020,407,407,True,Matching values do not prove matching geography.
+2018,EAST,non_injury_accidents,2018,2020,8,8,True,Matching values do not prove matching geography.
+2018,EAST,total_accidents,2018,2020,547,547,True,Matching values do not prove matching geography.
+2018,NORTH EAST,fatal_accidents,2018,2020,126,126,True,Matching values do not prove matching geography.
+2018,NORTH EAST,injury_accidents,2018,2020,442,442,True,Matching values do not prove matching geography.
+2018,NORTH EAST,non_injury_accidents,2018,2020,3,3,True,Matching values do not prove matching geography.
+2018,NORTH EAST,total_accidents,2018,2020,571,571,True,Matching values do not prove matching geography.
+2018,NORTH WEST,fatal_accidents,2018,2020,265,265,True,Matching values do not prove matching geography.
+2018,NORTH WEST,injury_accidents,2018,2020,535,535,True,Matching values do not prove matching geography.
+2018,NORTH WEST,non_injury_accidents,2018,2020,3,3,True,Matching values do not prove matching geography.
+2018,NORTH WEST,total_accidents,2018,2020,803,803,True,Matching values do not prove matching geography.
+2018,NORTH,fatal_accidents,2018,2020,108,108,True,Matching values do not prove matching geography.
+2018,NORTH,injury_accidents,2018,2020,295,295,True,Matching values do not prove matching geography.
+2018,NORTH,non_injury_accidents,2018,2020,1,1,True,Matching values do not prove matching geography.
+2018,NORTH,total_accidents,2018,2020,404,404,True,Matching values do not prove matching geography.
+2018,OUTER,fatal_accidents,2018,2020,166,166,True,Matching values do not prove matching geography.
+2018,OUTER,injury_accidents,2018,2020,491,491,True,Matching values do not prove matching geography.
+2018,OUTER,non_injury_accidents,2018,2020,2,2,True,Matching values do not prove matching geography.
+2018,OUTER,total_accidents,2018,2020,659,659,True,Matching values do not prove matching geography.
+2018,SOUTH,fatal_accidents,2018,2020,119,119,True,Matching values do not prove matching geography.
+2018,SOUTH,injury_accidents,2018,2020,510,510,True,Matching values do not prove matching geography.
+2018,SOUTH,non_injury_accidents,2018,2020,5,5,True,Matching values do not prove matching geography.
+2018,SOUTH,total_accidents,2018,2020,634,634,True,Matching values do not prove matching geography.
+2018,SOUTH-EAST,fatal_accidents,2018,2020,146,146,True,Matching values do not prove matching geography.
+2018,SOUTH-EAST,injury_accidents,2018,2020,542,542,True,Matching values do not prove matching geography.
+2018,SOUTH-EAST,non_injury_accidents,2018,2020,30,30,True,Matching values do not prove matching geography.
+2018,SOUTH-EAST,total_accidents,2018,2020,718,718,True,Matching values do not prove matching geography.
+2018,SOUTH WEST,fatal_accidents,2018,2020,108,108,True,Matching values do not prove matching geography.
+2018,SOUTH WEST,injury_accidents,2018,2020,372,372,True,Matching values do not prove matching geography.
+2018,SOUTH WEST,non_injury_accidents,2018,2020,4,4,True,Matching values do not prove matching geography.
+2018,SOUTH WEST,total_accidents,2018,2020,484,484,True,Matching values do not prove matching geography.
+2018,WEST,fatal_accidents,2018,2020,248,248,True,Matching values do not prove matching geography.
+2018,WEST,injury_accidents,2018,2020,629,629,True,Matching values do not prove matching geography.
+2018,WEST,non_injury_accidents,2018,2020,3,3,True,Matching values do not prove matching geography.
+2018,WEST,total_accidents,2018,2020,880,880,True,Matching values do not prove matching geography.
+2019,CENTRAL,fatal_accidents,2019,2020,50,50,True,Matching values do not prove matching geography.
+2019,CENTRAL,injury_accidents,2019,2020,136,136,True,Matching values do not prove matching geography.
+2019,CENTRAL,non_injury_accidents,2019,2020,2,2,True,Matching values do not prove matching geography.
+2019,CENTRAL,total_accidents,2019,2020,188,188,True,Matching values do not prove matching geography.
+2019,DWARKA,fatal_accidents,2019,2020,69,69,True,Matching values do not prove matching geography.
+2019,DWARKA,injury_accidents,2019,2020,240,240,True,Matching values do not prove matching geography.
+2019,DWARKA,non_injury_accidents,2019,2020,6,6,True,Matching values do not prove matching geography.
+2019,DWARKA,total_accidents,2019,2020,315,315,True,Matching values do not prove matching geography.
+2019,NEW DELHI,fatal_accidents,2019,2020,43,43,True,Matching values do not prove matching geography.
+2019,NEW DELHI,injury_accidents,2019,2020,128,128,True,Matching values do not prove matching geography.
+2019,NEW DELHI,non_injury_accidents,2019,2020,8,8,True,Matching values do not prove matching geography.
+2019,NEW DELHI,total_accidents,2019,2020,179,179,True,Matching values do not prove matching geography.
+2019,EAST,fatal_accidents,2019,2020,132,132,True,Matching values do not prove matching geography.
+2019,EAST,injury_accidents,2019,2020,293,293,True,Matching values do not prove matching geography.
+2019,EAST,non_injury_accidents,2019,2020,8,8,True,Matching values do not prove matching geography.
+2019,EAST,total_accidents,2019,2020,433,433,True,Matching values do not prove matching geography.
+2019,NORTH EAST,fatal_accidents,2019,2020,113,113,True,Matching values do not prove matching geography.
+2019,NORTH EAST,injury_accidents,2019,2020,372,372,True,Matching values do not prove matching geography.
+2019,NORTH EAST,non_injury_accidents,2019,2020,2,2,True,Matching values do not prove matching geography.
+2019,NORTH EAST,total_accidents,2019,2020,487,487,True,Matching values do not prove matching geography.
+2019,NORTH WEST,fatal_accidents,2019,2020,211,211,True,Matching values do not prove matching geography.
+2019,NORTH WEST,injury_accidents,2019,2020,528,528,True,Matching values do not prove matching geography.
+2019,NORTH WEST,non_injury_accidents,2019,2020,2,2,True,Matching values do not prove matching geography.
+2019,NORTH WEST,total_accidents,2019,2020,741,741,True,Matching values do not prove matching geography.
+2019,NORTH,fatal_accidents,2019,2020,123,123,True,Matching values do not prove matching geography.
+2019,NORTH,injury_accidents,2019,2020,266,266,True,Matching values do not prove matching geography.
+2019,NORTH,non_injury_accidents,2019,2020,1,1,True,Matching values do not prove matching geography.
+2019,NORTH,total_accidents,2019,2020,390,390,True,Matching values do not prove matching geography.
+2019,OUTER,fatal_accidents,2019,2020,146,146,True,Matching values do not prove matching geography.
+2019,OUTER,injury_accidents,2019,2020,453,453,True,Matching values do not prove matching geography.
+2019,OUTER,non_injury_accidents,2019,2020,4,4,True,Matching values do not prove matching geography.
+2019,OUTER,total_accidents,2019,2020,603,603,True,Matching values do not prove matching geography.
+2019,SOUTH,fatal_accidents,2019,2020,109,109,True,Matching values do not prove matching geography.
+2019,SOUTH,injury_accidents,2019,2020,393,393,True,Matching values do not prove matching geography.
+2019,SOUTH,non_injury_accidents,2019,2020,9,9,True,Matching values do not prove matching geography.
+2019,SOUTH,total_accidents,2019,2020,511,511,True,Matching values do not prove matching geography.
+2019,SOUTH-EAST,fatal_accidents,2019,2020,155,155,True,Matching values do not prove matching geography.
+2019,SOUTH-EAST,injury_accidents,2019,2020,476,476,True,Matching values do not prove matching geography.
+2019,SOUTH-EAST,non_injury_accidents,2019,2020,4,4,True,Matching values do not prove matching geography.
+2019,SOUTH-EAST,total_accidents,2019,2020,635,635,True,Matching values do not prove matching geography.
+2019,SOUTH WEST,fatal_accidents,2019,2020,106,106,True,Matching values do not prove matching geography.
+2019,SOUTH WEST,injury_accidents,2019,2020,280,280,True,Matching values do not prove matching geography.
+2019,SOUTH WEST,non_injury_accidents,2019,2020,0,0,True,Matching values do not prove matching geography.
+2019,SOUTH WEST,total_accidents,2019,2020,386,386,True,Matching values do not prove matching geography.
+2019,WEST,fatal_accidents,2019,2020,176,176,True,Matching values do not prove matching geography.
+2019,WEST,injury_accidents,2019,2020,560,560,True,Matching values do not prove matching geography.
+2019,WEST,non_injury_accidents,2019,2020,6,6,True,Matching values do not prove matching geography.
+2019,WEST,total_accidents,2019,2020,742,742,True,Matching values do not prove matching geography.
+2020,CENTRAL,fatal_accidents,2020,2020,36,36,True,Matching values do not prove matching geography.
+2020,CENTRAL,injury_accidents,2020,2020,105,105,True,Matching values do not prove matching geography.
+2020,CENTRAL,non_injury_accidents,2020,2020,0,0,True,Matching values do not prove matching geography.
+2020,CENTRAL,total_accidents,2020,2020,141,141,True,Matching values do not prove matching geography.
+2020,DWARKA,fatal_accidents,2020,2020,59,59,True,Matching values do not prove matching geography.
+2020,DWARKA,injury_accidents,2020,2020,218,218,True,Matching values do not prove matching geography.
+2020,DWARKA,non_injury_accidents,2020,2020,2,2,True,Matching values do not prove matching geography.
+2020,DWARKA,total_accidents,2020,2020,279,279,True,Matching values do not prove matching geography.
+2020,NEW DELHI,fatal_accidents,2020,2020,28,28,True,Matching values do not prove matching geography.
+2020,NEW DELHI,injury_accidents,2020,2020,89,89,True,Matching values do not prove matching geography.
+2020,NEW DELHI,non_injury_accidents,2020,2020,3,3,True,Matching values do not prove matching geography.
+2020,NEW DELHI,total_accidents,2020,2020,120,120,True,Matching values do not prove matching geography.
+2020,EAST,fatal_accidents,2020,2020,81,81,True,Matching values do not prove matching geography.
+2020,EAST,injury_accidents,2020,2020,256,256,True,Matching values do not prove matching geography.
+2020,EAST,non_injury_accidents,2020,2020,1,1,True,Matching values do not prove matching geography.
+2020,EAST,total_accidents,2020,2020,338,338,True,Matching values do not prove matching geography.
+2020,NORTH EAST,fatal_accidents,2020,2020,72,72,True,Matching values do not prove matching geography.
+2020,NORTH EAST,injury_accidents,2020,2020,209,209,True,Matching values do not prove matching geography.
+2020,NORTH EAST,non_injury_accidents,2020,2020,1,1,True,Matching values do not prove matching geography.
+2020,NORTH EAST,total_accidents,2020,2020,282,282,True,Matching values do not prove matching geography.
+2020,NORTH WEST,fatal_accidents,2020,2020,194,194,True,Matching values do not prove matching geography.
+2020,NORTH WEST,injury_accidents,2020,2020,346,346,True,Matching values do not prove matching geography.
+2020,NORTH WEST,non_injury_accidents,2020,2020,4,4,True,Matching values do not prove matching geography.
+2020,NORTH WEST,total_accidents,2020,2020,544,544,True,Matching values do not prove matching geography.
+2020,NORTH,fatal_accidents,2020,2020,64,64,True,Matching values do not prove matching geography.
+2020,NORTH,injury_accidents,2020,2020,174,174,True,Matching values do not prove matching geography.
+2020,NORTH,non_injury_accidents,2020,2020,0,0,True,Matching values do not prove matching geography.
+2020,NORTH,total_accidents,2020,2020,238,238,True,Matching values do not prove matching geography.
+2020,OUTER,fatal_accidents,2020,2020,156,156,True,Matching values do not prove matching geography.
+2020,OUTER,injury_accidents,2020,2020,336,336,True,Matching values do not prove matching geography.
+2020,OUTER,non_injury_accidents,2020,2020,2,2,True,Matching values do not prove matching geography.
+2020,OUTER,total_accidents,2020,2020,494,494,True,Matching values do not prove matching geography.
+2020,SOUTH,fatal_accidents,2020,2020,89,89,True,Matching values do not prove matching geography.
+2020,SOUTH,injury_accidents,2020,2020,275,275,True,Matching values do not prove matching geography.
+2020,SOUTH,non_injury_accidents,2020,2020,1,1,True,Matching values do not prove matching geography.
+2020,SOUTH,total_accidents,2020,2020,365,365,True,Matching values do not prove matching geography.
+2020,SOUTH-EAST,fatal_accidents,2020,2020,108,108,True,Matching values do not prove matching geography.
+2020,SOUTH-EAST,injury_accidents,2020,2020,343,343,True,Matching values do not prove matching geography.
+2020,SOUTH-EAST,non_injury_accidents,2020,2020,3,3,True,Matching values do not prove matching geography.
+2020,SOUTH-EAST,total_accidents,2020,2020,454,454,True,Matching values do not prove matching geography.
+2020,SOUTH WEST,fatal_accidents,2020,2020,98,98,True,Matching values do not prove matching geography.
+2020,SOUTH WEST,injury_accidents,2020,2020,216,216,True,Matching values do not prove matching geography.
+2020,SOUTH WEST,non_injury_accidents,2020,2020,0,0,True,Matching values do not prove matching geography.
+2020,SOUTH WEST,total_accidents,2020,2020,314,314,True,Matching values do not prove matching geography.
+2020,WEST,fatal_accidents,2020,2020,178,178,True,Matching values do not prove matching geography.
+2020,WEST,injury_accidents,2020,2020,430,430,True,Matching values do not prove matching geography.
+2020,WEST,non_injury_accidents,2020,2020,1,1,True,Matching values do not prove matching geography.
+2020,WEST,total_accidents,2020,2020,609,609,True,Matching values do not prove matching geography.
+2019,CENTRAL,fatal_accidents,2019,2021,50,50,True,Matching values do not prove matching geography.
+2019,CENTRAL,injury_accidents,2019,2021,136,136,True,Matching values do not prove matching geography.
+2019,CENTRAL,non_injury_accidents,2019,2021,2,2,True,Matching values do not prove matching geography.
+2019,CENTRAL,total_accidents,2019,2021,188,188,True,Matching values do not prove matching geography.
+2019,DWARKA,fatal_accidents,2019,2021,69,69,True,Matching values do not prove matching geography.
+2019,DWARKA,injury_accidents,2019,2021,240,240,True,Matching values do not prove matching geography.
+2019,DWARKA,non_injury_accidents,2019,2021,6,6,True,Matching values do not prove matching geography.
+2019,DWARKA,total_accidents,2019,2021,315,315,True,Matching values do not prove matching geography.
+2019,NEW DELHI,fatal_accidents,2019,2021,43,43,True,Matching values do not prove matching geography.
+2019,NEW DELHI,injury_accidents,2019,2021,128,128,True,Matching values do not prove matching geography.
+2019,NEW DELHI,non_injury_accidents,2019,2021,8,8,True,Matching values do not prove matching geography.
+2019,NEW DELHI,total_accidents,2019,2021,179,179,True,Matching values do not prove matching geography.
+2019,EAST,fatal_accidents,2019,2021,132,132,True,Matching values do not prove matching geography.
+2019,EAST,injury_accidents,2019,2021,293,293,True,Matching values do not prove matching geography.
+2019,EAST,non_injury_accidents,2019,2021,8,8,True,Matching values do not prove matching geography.
+2019,EAST,total_accidents,2019,2021,433,433,True,Matching values do not prove matching geography.
+2019,NORTH EAST,fatal_accidents,2019,2021,113,113,True,Matching values do not prove matching geography.
+2019,NORTH EAST,injury_accidents,2019,2021,372,372,True,Matching values do not prove matching geography.
+2019,NORTH EAST,non_injury_accidents,2019,2021,2,2,True,Matching values do not prove matching geography.
+2019,NORTH EAST,total_accidents,2019,2021,487,487,True,Matching values do not prove matching geography.
+2019,NORTH WEST,fatal_accidents,2019,2021,211,211,True,Matching values do not prove matching geography.
+2019,NORTH WEST,injury_accidents,2019,2021,528,528,True,Matching values do not prove matching geography.
+2019,NORTH WEST,non_injury_accidents,2019,2021,2,2,True,Matching values do not prove matching geography.
+2019,NORTH WEST,total_accidents,2019,2021,741,741,True,Matching values do not prove matching geography.
+2019,NORTH,fatal_accidents,2019,2021,123,123,True,Matching values do not prove matching geography.
+2019,NORTH,injury_accidents,2019,2021,266,266,True,Matching values do not prove matching geography.
+2019,NORTH,non_injury_accidents,2019,2021,1,1,True,Matching values do not prove matching geography.
+2019,NORTH,total_accidents,2019,2021,390,390,True,Matching values do not prove matching geography.
+2019,OUTER,fatal_accidents,2019,2021,146,146,True,Matching values do not prove matching geography.
+2019,OUTER,injury_accidents,2019,2021,453,453,True,Matching values do not prove matching geography.
+2019,OUTER,non_injury_accidents,2019,2021,4,4,True,Matching values do not prove matching geography.
+2019,OUTER,total_accidents,2019,2021,603,603,True,Matching values do not prove matching geography.
+2019,SOUTH,fatal_accidents,2019,2021,109,109,True,Matching values do not prove matching geography.
+2019,SOUTH,injury_accidents,2019,2021,393,393,True,Matching values do not prove matching geography.
+2019,SOUTH,non_injury_accidents,2019,2021,9,9,True,Matching values do not prove matching geography.
+2019,SOUTH,total_accidents,2019,2021,511,511,True,Matching values do not prove matching geography.
+2019,SOUTH-EAST,fatal_accidents,2019,2021,155,155,True,Matching values do not prove matching geography.
+2019,SOUTH-EAST,injury_accidents,2019,2021,476,476,True,Matching values do not prove matching geography.
+2019,SOUTH-EAST,non_injury_accidents,2019,2021,4,4,True,Matching values do not prove matching geography.
+2019,SOUTH-EAST,total_accidents,2019,2021,635,635,True,Matching values do not prove matching geography.
+2019,SOUTH WEST,fatal_accidents,2019,2021,106,106,True,Matching values do not prove matching geography.
+2019,SOUTH WEST,injury_accidents,2019,2021,280,280,True,Matching values do not prove matching geography.
+2019,SOUTH WEST,non_injury_accidents,2019,2021,0,0,True,Matching values do not prove matching geography.
+2019,SOUTH WEST,total_accidents,2019,2021,386,386,True,Matching values do not prove matching geography.
+2019,WEST,fatal_accidents,2019,2021,176,176,True,Matching values do not prove matching geography.
+2019,WEST,injury_accidents,2019,2021,560,560,True,Matching values do not prove matching geography.
+2019,WEST,non_injury_accidents,2019,2021,6,6,True,Matching values do not prove matching geography.
+2019,WEST,total_accidents,2019,2021,742,742,True,Matching values do not prove matching geography.
+2020,CENTRAL,fatal_accidents,2020,2021,36,36,True,Matching values do not prove matching geography.
+2020,CENTRAL,injury_accidents,2020,2021,105,105,True,Matching values do not prove matching geography.
+2020,CENTRAL,non_injury_accidents,2020,2021,0,0,True,Matching values do not prove matching geography.
+2020,CENTRAL,total_accidents,2020,2021,141,141,True,Matching values do not prove matching geography.
+2020,DWARKA,fatal_accidents,2020,2021,59,59,True,Matching values do not prove matching geography.
+2020,DWARKA,injury_accidents,2020,2021,218,218,True,Matching values do not prove matching geography.
+2020,DWARKA,non_injury_accidents,2020,2021,2,2,True,Matching values do not prove matching geography.
+2020,DWARKA,total_accidents,2020,2021,279,279,True,Matching values do not prove matching geography.
+2020,NEW DELHI,fatal_accidents,2020,2021,28,28,True,Matching values do not prove matching geography.
+2020,NEW DELHI,injury_accidents,2020,2021,89,89,True,Matching values do not prove matching geography.
+2020,NEW DELHI,non_injury_accidents,2020,2021,3,3,True,Matching values do not prove matching geography.
+2020,NEW DELHI,total_accidents,2020,2021,120,120,True,Matching values do not prove matching geography.
+2020,EAST,fatal_accidents,2020,2021,81,81,True,Matching values do not prove matching geography.
+2020,EAST,injury_accidents,2020,2021,256,256,True,Matching values do not prove matching geography.
+2020,EAST,non_injury_accidents,2020,2021,1,1,True,Matching values do not prove matching geography.
+2020,EAST,total_accidents,2020,2021,338,338,True,Matching values do not prove matching geography.
+2020,NORTH EAST,fatal_accidents,2020,2021,72,72,True,Matching values do not prove matching geography.
+2020,NORTH EAST,injury_accidents,2020,2021,209,209,True,Matching values do not prove matching geography.
+2020,NORTH EAST,non_injury_accidents,2020,2021,1,1,True,Matching values do not prove matching geography.
+2020,NORTH EAST,total_accidents,2020,2021,282,282,True,Matching values do not prove matching geography.
+2020,NORTH WEST,fatal_accidents,2020,2021,194,194,True,Matching values do not prove matching geography.
+2020,NORTH WEST,injury_accidents,2020,2021,346,346,True,Matching values do not prove matching geography.
+2020,NORTH WEST,non_injury_accidents,2020,2021,4,4,True,Matching values do not prove matching geography.
+2020,NORTH WEST,total_accidents,2020,2021,544,544,True,Matching values do not prove matching geography.
+2020,NORTH,fatal_accidents,2020,2021,64,64,True,Matching values do not prove matching geography.
+2020,NORTH,injury_accidents,2020,2021,174,174,True,Matching values do not prove matching geography.
+2020,NORTH,non_injury_accidents,2020,2021,0,0,True,Matching values do not prove matching geography.
+2020,NORTH,total_accidents,2020,2021,238,238,True,Matching values do not prove matching geography.
+2020,OUTER,fatal_accidents,2020,2021,156,156,True,Matching values do not prove matching geography.
+2020,OUTER,injury_accidents,2020,2021,336,336,True,Matching values do not prove matching geography.
+2020,OUTER,non_injury_accidents,2020,2021,2,2,True,Matching values do not prove matching geography.
+2020,OUTER,total_accidents,2020,2021,494,494,True,Matching values do not prove matching geography.
+2020,SOUTH,fatal_accidents,2020,2021,89,89,True,Matching values do not prove matching geography.
+2020,SOUTH,injury_accidents,2020,2021,275,275,True,Matching values do not prove matching geography.
+2020,SOUTH,non_injury_accidents,2020,2021,1,1,True,Matching values do not prove matching geography.
+2020,SOUTH,total_accidents,2020,2021,365,365,True,Matching values do not prove matching geography.
+2020,SOUTH-EAST,fatal_accidents,2020,2021,108,108,True,Matching values do not prove matching geography.
+2020,SOUTH-EAST,injury_accidents,2020,2021,343,343,True,Matching values do not prove matching geography.
+2020,SOUTH-EAST,non_injury_accidents,2020,2021,3,3,True,Matching values do not prove matching geography.
+2020,SOUTH-EAST,total_accidents,2020,2021,454,454,True,Matching values do not prove matching geography.
+2020,SOUTH WEST,fatal_accidents,2020,2021,98,98,True,Matching values do not prove matching geography.
+2020,SOUTH WEST,injury_accidents,2020,2021,216,216,True,Matching values do not prove matching geography.
+2020,SOUTH WEST,non_injury_accidents,2020,2021,0,0,True,Matching values do not prove matching geography.
+2020,SOUTH WEST,total_accidents,2020,2021,314,314,True,Matching values do not prove matching geography.
+2020,WEST,fatal_accidents,2020,2021,178,178,True,Matching values do not prove matching geography.
+2020,WEST,injury_accidents,2020,2021,430,430,True,Matching values do not prove matching geography.
+2020,WEST,non_injury_accidents,2020,2021,1,1,True,Matching values do not prove matching geography.
+2020,WEST,total_accidents,2020,2021,609,609,True,Matching values do not prove matching geography.
