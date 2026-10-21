@@ -17,7 +17,11 @@ function compareYears(c, key, from, to, district) {
   var isCrime = c.crimeMeasures.indexOf(key) >= 0;
   if (!isCrime) {
     var rd = c.roadDistrict;
-    if (from <= 2022 && to > 2022) add('not_comparable', rd.reason2022);
+    var zoneScoped = rd.zoneMeasures && rd.zoneMeasures.indexOf(key) >= 0;
+    if (from <= 2022 && to > 2022) {
+      if (zoneScoped) add('caution', rd.zoneReason2022);
+      else add('not_comparable', rd.reason2022);
+    }
     if (rd.cautionMeasures.indexOf(key) >= 0) add('caution', rd.cautionReason);
     return out;
   }

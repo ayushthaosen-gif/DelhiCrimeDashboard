@@ -1,0 +1,21 @@
+{
+  "status": "pass",
+  "zone_rows": 117,
+  "road_rows": 32,
+  "district_rows": 15,
+  "zone_totals": {
+    "simple": 782,
+    "fatal": 427,
+    "total": 1209
+  },
+  "district_total_crashes": 5652,
+  "checks": [
+    "PDF hash and CDX digest",
+    "text hash",
+    "sequential source ranks",
+    "row arithmetic",
+    "zone and road totals reconcile to district selected-zone table",
+    "missing coordinates remain null"
+  ],
+  "review": "source pages visually inspected by extracting agent; no independent second review"
+}

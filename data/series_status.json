@@ -229,6 +229,17 @@
       "note": "Draft Manual evidence pending human verification; unresolved and specialised labels have no territorial assignment."
     },
     {
+      "id": "road_crash_report_2022",
+      "name": "Delhi Road Crash Report 2022: district selected-zone counts, named zones and roads",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2022",
+      "coverage_start": "2022",
+      "geography": "15 Traffic Police districts printed under the police-district names; named zones have no road or coordinates",
+      "where": "data/releases/road_crash_report_2022/manifest.json",
+      "note": "Counts within crash-prone zones only, as for 2023 and 2024; 2022 beside 2023 is compare-with-caution because the zone lists differ. People killed by district is not in the 2022 tables. Extracted and visually checked by one agent; no independent second review."
+    },
+    {
       "id": "traffic_districts_2016_2020",
       "name": "Traffic Police district crashes and selected crash zones, 2016 to 2020, as printed",
       "status": "staged",

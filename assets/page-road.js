@@ -7,7 +7,7 @@
   if (!data) return;
   var S = data.SITE, R = data.ROADS, T = S.trends, E = S.enforcement, V = S.victims;
   var last = T[T.length - 1], prev = T[T.length - 2];
-  var st = { measure: 'killed', index: false, hy: null, modeYear: 2024, roadYear: 2024, query: '', allZones: false };
+  var st = { measure: 'killed', index: false, hy: null, modeYear: 2024, roadYear: 2024, zoneYear: 2023, query: '', allZones: false };
 
   function seg(items, cur, pick, key) {
     return h('div', { class: 'seg' }, items.map(function (it) {
@@ -113,15 +113,16 @@
   function renderZones() {
     var sec = D.$('#zones');
     var q = st.query.trim().toLowerCase();
-    var all = R.zones2023.map(function (z, i) { return { rank: i + 1, name: z[0], road: z[1], fatal: z[2], total: z[3] }; });
+    var list = st.zoneYear === 2022 ? R.zones2022 : R.zones2023, count0 = list.length;
+    var all = list.map(function (z, i) { return { rank: i + 1, name: z[0], road: z[1], fatal: z[2], total: z[3] }; });
     var filt = q ? all.filter(function (z) { return (z.name + ' ' + z.road).toLowerCase().indexOf(q) >= 0; }) : all;
     var zones = st.allZones || q ? filt : filt.slice(0, 10);
     var body = sec.querySelector('tbody'), count = sec.querySelector('.zcount'), toggle = sec.querySelector('.ztoggle');
     if (!body) {
       D.clear(sec);
       var input = h('input', { type: 'search', class: 'search', placeholder: 'Search location or road', 'aria-label': 'Search crash-prone zones', oninput: function (e) { st.query = e.target.value; renderZones(); } });
-      sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', null, 'Crash-prone zones, 2023'),
-        D.tip('About crash-prone zones', 'The official Delhi Traffic Police list of 107 zones, sorted by fatal crashes as in the source. 105 of 107 fall inside a district and are plotted on the map; 2 sit just outside the simplified boundaries. The 2024 list names different zones, so a change in the count is not a change in risk.')), input));
+      sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', { class: 'ztitle' }), h('span', { class: 'ztip' }),
+        seg([[2022, '2022'], [2023, '2023']], st.zoneYear, function (y) { st.zoneYear = y; st.query = ''; input.value = ''; renderZones(); syncZoneSeg(); }, 'zy')), input));
       sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl zone-tbl', style: 'min-width:480px' },
         h('thead', null, h('tr', null, h('th', { scope: 'col' }, '#'), h('th', { scope: 'col' }, 'Location'), h('th', { scope: 'col' }, 'Road'), h('th', { scope: 'col', class: 'n' }, 'Fatal'), h('th', { scope: 'col', class: 'n' }, 'All crashes'))),
         h('tbody', null))));
@@ -129,23 +130,35 @@
         h('button', { type: 'button', class: 'btn ztoggle', onclick: function () { st.allZones = !st.allZones; renderZones(); } })));
       body = sec.querySelector('tbody'); count = sec.querySelector('.zcount'); toggle = sec.querySelector('.ztoggle');
     }
+    sec.querySelector('.ztitle').textContent = 'Crash-prone zones, ' + st.zoneYear;
+    var tipHost = sec.querySelector('.ztip');
+    if (tipHost.getAttribute('data-year') !== String(st.zoneYear)) {
+      tipHost.setAttribute('data-year', String(st.zoneYear));
+      D.clear(tipHost).appendChild(D.tip('About crash-prone zones', st.zoneYear === 2022
+        ? 'The official Delhi Traffic Police list of 117 zones in the 2022 report (Table 6.41), sorted by fatal crashes as in the source. That table gives no road and no coordinates, so the road column is blank and none is plotted on the map. Zones differ from year to year, so a change in a count is not a change in risk.'
+        : 'The official Delhi Traffic Police list of 107 zones, sorted by fatal crashes as in the source. 105 of 107 fall inside a district and are plotted on the map; 2 sit just outside the simplified boundaries. The 2024 list names different zones, so a change in the count is not a change in risk.'));
+    }
     D.clear(body);
-    zones.forEach(function (z) { body.appendChild(h('tr', null, h('td', { class: 'rk' }, z.rank), h('td', { style: 'font-weight:500' }, z.name), h('td', { class: 'muted' }, z.road), h('td', { class: 'n' }, z.fatal), h('td', { class: 'n' }, z.total))); });
-    count.textContent = q ? filt.length + ' of 107 zones match' : 'Showing ' + zones.length + ' of 107 zones';
+    zones.forEach(function (z) { body.appendChild(h('tr', null, h('td', { class: 'rk' }, z.rank), h('td', { style: 'font-weight:500' }, z.name), h('td', { class: 'muted' }, z.road == null ? '—' : z.road), h('td', { class: 'n' }, z.fatal), h('td', { class: 'n' }, z.total))); });
+    count.textContent = q ? filt.length + ' of ' + count0 + ' zones match' : 'Showing ' + zones.length + ' of ' + count0 + ' zones';
     toggle.hidden = !!q;
-    toggle.textContent = st.allZones ? 'Show top 10' : 'Show all 107';
+    toggle.textContent = st.allZones ? 'Show top 10' : 'Show all ' + count0;
   }
 
   // ---- roads with most zones ----
   function renderRoads() {
     var sec = D.clear(D.$('#roads'));
     sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', null, 'Roads with most zones'),
-      D.tip('About this table', 'Crashes recorded within the identified zones on each road, not the road\'s full crash count. Table 6.33, Delhi Road Crash Report. Sorted by fatal crashes.', { right: true })),
-      seg([[2023, '2023'], [2024, '2024']], st.roadYear, function (y) { st.roadYear = y; keepFocus(renderRoads); }, 'ry')));
+      D.tip('About this table', 'Crashes recorded within the identified zones on each road, not the road\'s full crash count. Table 6.33 of the 2023 and 2024 reports, Table 6.45 of the 2022 report. Sorted by fatal crashes; top 12 shown.', { right: true })),
+      seg([[2022, '2022'], [2023, '2023'], [2024, '2024']], st.roadYear, function (y) { st.roadYear = y; keepFocus(renderRoads); }, 'ry')));
     sec.appendChild(h('div', { style: 'display:flex;flex-direction:column' },
       h('div', { class: 'road-row h' }, h('span', null, 'Road'), h('span', null, 'Zones'), h('span', null, 'Fatal'), h('span', null, 'All')),
       R.roads[st.roadYear].map(function (r) { return h('div', { class: 'road-row' }, h('span', { title: r[0] }, r[0]), h('span', null, r[1]), h('span', null, r[2]), h('span', null, r[3])); })));
   }
 
+  // the zone-year buttons are built once with the section; keep their pressed state in step with the choice
+  function syncZoneSeg() {
+    D.$('#zones').querySelectorAll('[data-key^="zy-"]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-key') === 'zy-' + st.zoneYear)); });
+  }
   renderTrend(); renderModes(); renderEnforcement(); renderZones(); renderRoads();
 })();

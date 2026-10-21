@@ -120,7 +120,7 @@ function explore() {
 
 function roadSafety(updated) {
   return '<main id="main" class="page">\n'
-    + '<div class="page-head"><h1>Road safety, citywide</h1><p>These figures are published for Delhi as a whole, not per district, so they sit here rather than on the map. District-level crashes, fatal crashes and crash-prone zones for 2023 and 2024 are in <a href="explore.html#topic=road">Explore</a>.</p></div>\n'
+    + '<div class="page-head"><h1>Road safety, citywide</h1><p>These figures are published for Delhi as a whole, not per district, so they sit here rather than on the map. District-level counts for 2022 to 2024 (crashes and fatal crashes within the crash-prone zones of each district, crash-prone zones, and persons killed) are in <a href="explore.html#topic=road">Explore</a>.</p></div>\n'
     + '<div class="rs-kpis" id="rsKpis"></div>\n'
     + '<section id="trend" class="card" style="scroll-margin-top:16px"></section>\n'
     + '<div class="two-col"><section id="modes" class="card" style="flex:1 1 420px;scroll-margin-top:16px"></section><section id="enforcement" class="card" style="flex:1 1 420px"></section></div>\n'
@@ -179,7 +179,7 @@ function dataMethods(updated) {
     + '<li><strong>Crime, 2022–2024</strong><span>National Crime Records Bureau, Crime in India, district-wise IPC, SLL and crime against women tables. <a href="https://www.ncrb.gov.in/">ncrb.gov.in</a></span></li>'
     + '<li><strong>Crime, 2016–2021</strong><span>NCRB via <a href="https://indiadataportal.com">India Data Portal</a>; totals reconstructed and verified against the official 2022 totals.</span></li>'
     + '<li><strong>Delhi-wide totals, 2011–2024</strong><span>NCRB Crime in India State/UT-wise tables and the Delhi district tables, as printed. 2016–2020 are totals only; head-wise figures are not extracted yet.</span></li>'
-    + '<li><strong>Road crashes and crash-prone zones, 2023–2024</strong><span>Delhi Traffic Police, <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023">Delhi Road Crash Report 2023</a> and <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2024">2024</a>.</span></li>'
+    + '<li><strong>Road crashes and crash-prone zones, 2022–2024</strong><span>Delhi Traffic Police, <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2023">Delhi Road Crash Report 2023</a> and <a href="https://traffic.delhipolice.gov.in/delhi-crash-report-2024">2024</a>; the 2022 report, read from its Internet Archive capture (<a href="data/releases/road_crash_report_2022/README.md">release notes</a>). District crash counts are within the crash-prone zones of each district only.</span></li>'
     + '<li><strong>Citywide road trends, 2011–2024</strong><span><a href="https://traffic.delhipolice.gov.in/statistics">Delhi Traffic Police statistics</a>.</span></li>'
     + '<li><strong>Streetlights and underpasses</strong><span>PAPL, via <a href="https://otd.delhi.gov.in/">Delhi Transport Stack Open Transit Data</a>.</span></li>'
     + '<li><strong>Police stations and district boundaries</strong><span>Delhi Police GSDL, via a community mirror. Boundaries simplified for display (~165 m tolerance), not survey-grade.</span></li>'

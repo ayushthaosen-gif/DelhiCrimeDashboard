@@ -17,7 +17,7 @@ function build() {
   index.historicalReleases = [historical];
   index.citywideRoadTrend = citywideRoad;
   index.delhiUtSeries = delhiUt;
-  fs.appendFileSync(path.join(ROOT, 'data/releases/README.md'), '\nSeparate series:\n\n- [Citywide road trend, 2011–2024](citywide_road_trend/manifest.json): counts, not rates; on the road chart only.\n- [NCRB historical panel, 2011–2015](historical_2011_2015/README.md): staged Delhi UT totals and original reporting units, off the dashboard. Never join these to current districts or add them to the production year list.\n');
+  fs.appendFileSync(path.join(ROOT, 'data/releases/README.md'), '\nSeparate series:\n\n- [Citywide road trend, 2011–2024](citywide_road_trend/manifest.json): counts, not rates; on the road chart only.\n- [Road crash report 2022, district and zone tables](road_crash_report_2022/README.md): selected-zone counts by district, 117 named zones and the roads table, from the 2022 report; shown on Road safety and Explore with a caution beside 2023.\n- [NCRB historical panel, 2011–2015](historical_2011_2015/README.md): staged Delhi UT totals and original reporting units, off the dashboard. Never join these to current districts or add them to the production year list.\n');
   // Release index is written last, after all referenced targets exist.
   fs.writeFileSync(path.join(ROOT, 'data/releases/manifest.json'), JSON.stringify(index, null, 2) + '\n');
   console.log(`Generated ${years.length} production years, shared inventory, staged releases and final index.`);

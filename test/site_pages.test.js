@@ -121,6 +121,36 @@ test('citywide road data equals the road files; the zone list has 107 zones; the
   assert.equal(siteData.updated, status.updated);
 });
 
+test('2022 road tables are on the site: selected-zone counts by district, 117 named zones, roads; people killed stays null; scope and caution are stated', () => {
+  const rel = 'data/releases/road_crash_report_2022/';
+  const dz = json(rel + 'district_selected_zones.json');
+  assert.equal(dz.length, 15);
+  assert.equal(siteData.ROADS.zones2022.length, 117);
+  assert.equal(siteData.ROADS.roads['2022'].length, 12);
+  assert.deepEqual(Object.keys(siteData.ROADS.roads), ['2022', '2023', '2024']);
+  for (const [name, road, fatal, total] of siteData.ROADS.zones2022) { assert.equal(road, null, name + ': the 2022 zone table has no road'); assert.ok(total >= fatal, name); }
+  const alias = { 'North-East': 'North East', 'North-West': 'North West', 'South-East': 'South East', 'South-West': 'South West' };
+  let totals = 0, fatalSum = 0;
+  for (const d of siteData.DELHI.districts) {
+    const r = dz.find(x => x.reporting_unit_as_printed === (alias[d.name] || d.name));
+    assert.ok(r, d.name);
+    assert.equal(d.s.totalCrashes[2022], r.total_crashes); assert.equal(d.s.fatalCrashes[2022], r.fatal_crashes); assert.equal(d.s.crashProneZones[2022], r.crash_prone_zones);
+    assert.equal(d.s.personsKilled[2022], null, d.name + ': people killed is not in the 2022 tables');
+    totals += d.s.totalCrashes[2022]; fatalSum += d.s.fatalCrashes[2022];
+  }
+  assert.equal(totals, 1209); assert.equal(fatalSum, 427);
+  assert.equal(siteData.ROADS.zones2022.reduce((a, z) => a + z[3], 0), 1209, 'the zone list sums to the district selected-zone table');
+  const c = siteData.CONTINUITY, cmp = (...a) => siteData.compareYears(c, ...a);
+  assert.equal(cmp('totalCrashes', 2022, 2023, 'Central').state, 'caution');
+  assert.equal(cmp('totalCrashes', 2023, 2024, 'Central').state, 'caution', 'zone-scoped counts always carry the zone-list caution');
+  assert.equal(cmp('personsKilled', 2022, 2023, 'Central').state, 'not_comparable');
+  const explore = read('assets/page-explore.js');
+  assert.ok(explore.includes('road: [2022, 2023, 2024]'));
+  assert.ok(!explore.includes('All road crashes recorded by Delhi Traffic Police in the district'), 'district crash counts are zone-scoped and must not be described as all crashes');
+  assert.ok(explore.includes('identified crash-prone zones of the district only'));
+  assert.ok(files['road-safety.html'].includes('within the crash-prone zones of each district'));
+});
+
 test('the comparison rules in the page are the ones the tests run (data/continuity.json through compareYears)', () => {
   const c = siteData.CONTINUITY, cmp = (...a) => siteData.compareYears(c, ...a);
   assert.equal(cmp('theft', 2022, 2023).state, 'comparable');
@@ -167,7 +197,7 @@ test('Explore offers only measures and years that exist in the data, and passes 
   assert.deepEqual(years('totalIPC'), [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024], '2016 has no all-crime total');
   assert.deepEqual(years('personsKilled'), [2023, 2024]);
   for (const k of ['topic', 'metric', 'year', 'calc', 'district']) assert.ok(src.includes(k + ': st.'), 'hash carries ' + k);
-  assert.ok(src.includes("'crashProneZones2023'"), 'the zone list is compared with its own continuity key');
+  assert.ok(src.includes("cmp(mk, y0, y1, name)"), 'comparisons go straight to the continuity rules');
 });
 
 test('the 3D map reads only ward fields that exist, loads its data by relative path, and keeps the legacy-ward and exploratory caveats', () => {

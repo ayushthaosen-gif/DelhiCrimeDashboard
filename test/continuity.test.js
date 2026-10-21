@@ -58,12 +58,16 @@ test('the documented breaks interrupt comparisons for the right measures and dis
   assert.equal(state('theft', 2023, 2024), 'caution');
   // road measures
   assert.equal(state('fatalRoadCrashes2022', 2022, 2023), 'not_comparable');
-  assert.equal(state('totalCrashes2023', 2023, 2024), 'comparable');
+  assert.equal(state('totalCrashes2023', 2023, 2024), 'caution', 'counts within selected zones change with the zone list');
+  assert.equal(state('totalCrashes', 2022, 2023), 'caution', 'the 2022 zone tables are usable beside 2023, with caution');
+  assert.equal(state('fatalCrashes', 2022, 2023), 'caution');
+  assert.equal(state('personsKilled', 2022, 2023), 'not_comparable', 'full-district 2022 figures stay a separate series');
+  assert.equal(state('personsKilled', 2023, 2024), 'comparable');
   assert.equal(state('crashProneZones2023', 2023, 2024), 'caution');
 });
 
 test('every reason shown is one of the documented sentences, and a worse state hides milder ones', () => {
-  const all = new Set([...c.availability.map(a => a.reason), ...c.definitionBreaks.map(b => b.reason), ...c.geography.epochs.map(e => e.reason), c.roadDistrict.reason2022, c.roadDistrict.cautionReason]);
+  const all = new Set([...c.availability.map(a => a.reason), ...c.definitionBreaks.map(b => b.reason), ...c.geography.epochs.map(e => e.reason), c.roadDistrict.reason2022, c.roadDistrict.zoneReason2022, c.roadDistrict.cautionReason]);
   const r = compareYears(c, 'totalSLL', 2012, 2013);
   assert.equal(r.state, 'unavailable');
   assert.deepEqual(r.reasons, [c.availability[0].reason]);

@@ -37,8 +37,20 @@ function roadValue(d, key, year) {
   return typeof v === 'number' ? v : null;
 }
 
+// 2022 Delhi Road Crash Report (Tables 6.43, 6.41, 6.45), in data/releases/road_crash_report_2022/. The 2022 report prints the same
+// 15 district names as the police districts, with the printed hyphen-less spellings for the compound names.
+const R22 = 'data/releases/road_crash_report_2022/';
+const NAME22 = { 'North East': 'North-East', 'North West': 'North-West', 'South East': 'South-East', 'South West': 'South-West' };
+function zones2022ByDistrict() {
+  const out = {};
+  read(R22 + 'district_selected_zones.json').forEach(r => { out[NAME22[r.reporting_unit_as_printed] || r.reporting_unit_as_printed] = r; });
+  return out;
+}
+
 function buildDelhi(continuity) {
   const data = read('data/dashboard_final.json');
+  const z22 = zones2022ByDistrict();
+  data.districts.forEach(d => { if (!z22[d.name]) throw new Error('2022 selected-zone table has no row for ' + d.name); });
   const districts = data.districts.map(d => {
     const s = {};
     CRIME.forEach(key => {
@@ -52,6 +64,9 @@ function buildDelhi(continuity) {
       s[key] = {};
       [2023, 2024].forEach(y => { s[key][y] = roadValue(d, key, y); });
     });
+    // 2022: selected-zone counts only. People killed is not in the 2022 tables, so it stays null (never zero).
+    const r22 = z22[d.name];
+    s.totalCrashes[2022] = r22.total_crashes; s.fatalCrashes[2022] = r22.fatal_crashes; s.crashProneZones[2022] = r22.crash_prone_zones; s.personsKilled[2022] = null;
     return {
       name: d.name,
       path: d.path,
@@ -108,7 +123,11 @@ function buildRoads() {
   const raw = read('data/crash_zones_2023_raw.json');
   const extra = read('data/road_safety_extra_2023_2024.json');
   const zones2023 = raw.slice().sort((a, b) => a.rank - b.rank).map(z => [z.name, z.road, z.fatal, z.total]);
-  const roads = {};
+  // 2022: named zones as printed (no road and no coordinates in that table) and the roads table (selected zones on each road)
+  const zones2022 = read(R22 + 'crash_prone_zones.json').slice().sort((a, b) => a.rank - b.rank).map(z => [z.name_as_printed, z.road, z.fatal_crashes, z.total_crashes]);
+  const roads = {
+    2022: read(R22 + 'roads_selected_zones.json').map((r, i) => ({ r, i })).sort((a, b) => b.r.fatal_crashes - a.r.fatal_crashes || a.i - b.i).slice(0, 12).map(o => [o.r.road_as_printed, o.r.crash_prone_zones, o.r.fatal_crashes, o.r.total_crashes])
+  };
   Object.keys(extra.roadSummary).forEach(y => {
     roads[y] = extra.roadSummary[y]
       .map((r, i) => ({ r, i }))
@@ -116,7 +135,7 @@ function buildRoads() {
       .slice(0, 12)
       .map(o => [o.r.road, o.r.zones, o.r.fatal, o.r.total]);
   });
-  return { roads, zones2023 };
+  return { roads, zones2023, zones2022 };
 }
 
 // The continuity file with the evidence paths removed, plus the comparison functions' source (the page runs the same code the tests run).

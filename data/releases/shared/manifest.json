@@ -142,8 +142,8 @@
       "datasetId": "continuity",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "686360e77babee93cb6ece8136fca7e46d1b4f830070030aca03ab3c521a608e",
-      "bytes": 8079
+      "sha256": "1670d2d195ae0733282911776ea6d9d67a1f1bb21fd2ff94d4cce6e06b39eda1",
+      "bytes": 8602
     },
     {
       "file": "data/correlations.json",
@@ -438,8 +438,8 @@
       "datasetId": "series_status",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "2f84735e5e8f69a8cf834213f1f765f6bc9c4f3cfdf5a4bcb62161a2a555d369",
-      "bytes": 12687
+      "sha256": "c22df21f731e9306e27212d2a33beb3c27c49906703af62fcd23c575deace9c7",
+      "bytes": 13450
     },
     {
       "file": "data/streetlight_grid.json",

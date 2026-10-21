@@ -18,13 +18,13 @@
       { k: 'totalSLL', label: 'Special & local laws', note: 'Cases under Special and Local Laws, such as the Arms Act, NDPS Act and Excise Act.' }
     ],
     road: [
-      { k: 'totalCrashes', label: 'Total crashes', note: 'All road crashes recorded by Delhi Traffic Police in the district.', unit: 'crashes' },
-      { k: 'fatalCrashes', label: 'Fatal crashes', note: 'Crashes with at least one death. Not the same as persons killed: one crash can kill several people.', unit: 'fatal crashes' },
-      { k: 'personsKilled', label: 'Persons killed', note: 'People killed in road crashes in the district.', unit: 'people killed' },
-      { k: 'crashProneZones', label: 'Crash-prone zones', note: 'Locations on the Traffic Police crash-prone zone (blackspot) list.', unit: 'crash-prone zones' }
+      { k: 'totalCrashes', label: 'Total crashes', zone: true, note: 'Crashes recorded within the identified crash-prone zones of the district only, not all crashes in the district. The zone tables in the Road Crash Report list different zones each year.', unit: 'crashes in crash-prone zones' },
+      { k: 'fatalCrashes', label: 'Fatal crashes', zone: true, note: 'Crashes with at least one death, within the identified crash-prone zones of the district only. Not the same as persons killed: one crash can kill several people.', unit: 'fatal crashes in crash-prone zones' },
+      { k: 'personsKilled', label: 'Persons killed', note: 'People killed in road crashes in the whole district. Not published in the 2022 tables, so 2022 is blank.', unit: 'people killed' },
+      { k: 'crashProneZones', label: 'Crash-prone zones', zone: true, note: 'Locations on the Traffic Police crash-prone zone (blackspot) list for that year in the report.', unit: 'crash-prone zones' }
     ]
   };
-  var YEARS = { crime: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024], road: [2023, 2024] };
+  var YEARS = { crime: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024], road: [2022, 2023, 2024] };
   var UNSURVEYED = ['Dwarka', 'North-East', 'North-West', 'Outer', 'Outer North', 'Rohini'];
   var SHORT = { 'North-East': 'NE', 'North-West': 'NW', 'South-East': 'SE', 'South-West': 'SW', 'Outer North': 'Outer N' };
   var CALCS = [['count', 'Count'], ['pop', 'Per 1 lakh people'], ['area', 'Per km²']];
@@ -57,7 +57,7 @@
     return ds.map(function (d) { return { name: d.name, d: d, v: val(d, mk, y) }; }).filter(function (r) { return r.v != null; }).sort(function (a, b) { return b.v - a.v; });
   }
   // The comparison engine (data/continuity.json, the same code the tests run) decides whether year-1 and year may be joined.
-  function cmp(mk, y0, y1, name) { return data.compareYears(CONT, mk === 'crashProneZones' ? 'crashProneZones2023' : mk, y0, y1, name); }
+  function cmp(mk, y0, y1, name) { return data.compareYears(CONT, mk, y0, y1, name); }
   function joinable(c) { return c.state === 'comparable' || c.state === 'caution'; }
   function bbox() {
     var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9, p = 12;
@@ -70,7 +70,8 @@
     return st.topic === 'crime' ? 'NCRB, Crime in India, district-wise tables (' + st.year + ')' : 'Delhi Traffic Police, Delhi Road Crash Report ' + st.year;
   }
   function caseNote() {
-    return st.topic === 'crime' ? 'Registered cases are not crime levels: counts depend on reporting and registration as well as on crime.' : 'Counts, not risk rates. Not adjusted for traffic volume.';
+    if (st.topic === 'crime') return 'Registered cases are not crime levels: counts depend on reporting and registration as well as on crime.';
+    return metricOf().zone ? 'Counts within the crash-prone zones of each district only, not all crashes in the district. Counts, not risk rates; not adjusted for traffic volume.' : 'Counts, not risk rates. Not adjusted for traffic volume.';
   }
 
   // ---------- URL hash ----------

@@ -20,6 +20,7 @@ Official crime and crash figures run **to 2024**. Newer material exists but is d
 | `citywide_road_trend` | [Citywide road trend, 2011–2024](data/releases/citywide_road_trend/manifest.json) | 2024 | production | Delhi citywide; counts, not rates |
 | `ncrb_historical_counts_2011_2018` | [Historical district crime counts, 2011–2018](data/historical_reporting/manifest.json) | 2018 | production | Original reporting districts; counts only, no allocation to current districts |
 | `ncrb_delhi_ut_totals` | [Delhi-wide registered crime, printed Delhi UT totals](data/releases/delhi_ut_series/manifest.json) | 2024 | production | Delhi UT as a whole; 2016–2021 not yet collected |
+| `road_crash_report_2022` | [Road Crash Report 2022: district selected-zone counts, zones and roads](data/releases/road_crash_report_2022/README.md) | 2022 | production | 15 Traffic Police districts under the police-district names; counts within crash-prone zones |
 | `traffic_districts_2016_2020` | [Traffic Police district crashes and selected crash zones, 2016-2020](data/staged/road_districts_2016_2020/FINDINGS.md) | 2020 | staged | Traffic Police districts as printed (11, then 12); not the 15 police districts |
 | `historical_police_district_maps` | [Historical police-district reference maps](data/staged/police_geography_history/manifest.json) | 2018 | staged | Schematic reference shapes, labelled inferred or derived |
 | `ncrb_2025` | NCRB Crime in India 2025 | none | not_published | 15 police districts |
