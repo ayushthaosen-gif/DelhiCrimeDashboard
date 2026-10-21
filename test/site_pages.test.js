@@ -151,6 +151,16 @@ test('2022 road tables are on the site: selected-zone counts by district, 117 na
   assert.ok(files['road-safety.html'].includes('within the crash-prone zones of each district'));
 });
 
+test('the 2024 zone list is the named-zone file: 93 zones, ranked ones first, unranked counts null', () => {
+  const z = siteData.ROADS.zones2024;
+  assert.equal(z.length, 93);
+  const ranked = z.filter(r => r[3] != null);
+  assert.equal(ranked.length, 88);
+  assert.ok(z.slice(0, 88).every(r => r[3] != null) && z.slice(88).every(r => r[2] == null && r[3] == null), 'ranked zones come first; the rest keep null counts');
+  for (let i = 1; i < 88; i++) assert.ok(z[i - 1][2] >= z[i][2], 'sorted by fatal crashes as in Table 6.29');
+  assert.ok(read('assets/page-road.js').includes("[2024, '2024']], st.zoneYear"), 'the zone table offers 2022, 2023 and 2024');
+});
+
 test('the comparison rules in the page are the ones the tests run (data/continuity.json through compareYears)', () => {
   const c = siteData.CONTINUITY, cmp = (...a) => siteData.compareYears(c, ...a);
   assert.equal(cmp('theft', 2022, 2023).state, 'comparable');

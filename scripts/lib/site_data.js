@@ -125,6 +125,12 @@ function buildRoads() {
   const zones2023 = raw.slice().sort((a, b) => a.rank - b.rank).map(z => [z.name, z.road, z.fatal, z.total]);
   // 2022: named zones as printed (no road and no coordinates in that table) and the roads table (selected zones on each road)
   const zones2022 = read(R22 + 'crash_prone_zones.json').slice().sort((a, b) => a.rank - b.rank).map(z => [z.name_as_printed, z.road, z.fatal_crashes, z.total_crashes]);
+  // 2024: the named zones in the repository's zone file. Zones ranked in Table 6.29 carry crash counts; the others appear only in the
+  // report's category lists (pedestrian, two-wheeler, and so on), so their all-crash counts are null here, never zero.
+  const z24 = read('data/delhi_crash_prone_zones_2024_all_named_approx.geojson').features.map(f => f.properties);
+  const zones2024 = z24.map((p, i) => ({ p, i }))
+    .sort((a, b) => (a.p.table_6_29_rank == null) - (b.p.table_6_29_rank == null) || a.p.table_6_29_rank - b.p.table_6_29_rank || a.i - b.i)
+    .map(o => [o.p.location_name, o.p.road_name, o.p.all_fatal_crashes, o.p.all_total_crashes]);
   const roads = {
     2022: read(R22 + 'roads_selected_zones.json').map((r, i) => ({ r, i })).sort((a, b) => b.r.fatal_crashes - a.r.fatal_crashes || a.i - b.i).slice(0, 12).map(o => [o.r.road_as_printed, o.r.crash_prone_zones, o.r.fatal_crashes, o.r.total_crashes])
   };
@@ -135,7 +141,7 @@ function buildRoads() {
       .slice(0, 12)
       .map(o => [o.r.road, o.r.zones, o.r.fatal, o.r.total]);
   });
-  return { roads, zones2023, zones2022 };
+  return { roads, zones2023, zones2022, zones2024 };
 }
 
 // The continuity file with the evidence paths removed, plus the comparison functions' source (the page runs the same code the tests run).
