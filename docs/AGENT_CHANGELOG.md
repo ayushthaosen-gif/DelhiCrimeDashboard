@@ -1,3 +1,7 @@
+## [2026-10-22] - Claude (Anthropic) - Phase 3, step 6: documentation
+
+- New: docs/METHODOLOGY.md (source to figure, the rules behind the views), docs/COVERAGE.md (which series for which years), docs/LIMITATIONS.md (what the data cannot establish, known gaps), docs/CHANGELOG.md (which of the three logs answers which question). DATA_SOURCES.md gains the 2016 to 2022 Road Crash Report row. README stays a short landing page (under the size limit): six pages, a three-line limitations summary, a documentation index. No data or code changed.
+
 ## [2026-10-22] - Claude (Anthropic) - Phase 3, step 5: release watch in the source monitor
 
 - The weekly monitor already covered NCRB, Delhi Traffic Police, iRAD and Excise for 2025 (discovery only, one issue, nothing integrated). Added a **Release watch** table at the top of the note: for each of the four families, whether a link matches both the dataset title and the year, nothing matches yet, or the source could not be reached. A lead not present in the baseline now opens or updates the issue by itself. A match is a lead, not proof; an unreachable source says nothing either way. Documented in `tools/pipeline_2025/README.md`, including moving the monitor to 2026 and refreshing the baseline once 2025 is integrated.
