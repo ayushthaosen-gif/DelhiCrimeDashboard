@@ -8,7 +8,7 @@ An open-data observatory for crime, road safety, infrastructure and urban form a
 
 Prototypes (exploration tools, not citable sources): [3D crash-zone and ward explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d.html) · [Master Plan 2047 comparison](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d_mpd.html) · [district iRAD reports, 2025 and 2026](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/irad_stations.html)
 
-The site is five pages that share a header, a theme (light or dark) and a data file: [`index.html`](index.html) (overview), [`explore.html`](explore.html), [`road-safety.html`](road-safety.html), [`3d-map.html`](3d-map.html) and [`data-methods.html`](data-methods.html). Serve the folder (for example `python -m http.server`) and open `index.html`; the pages read `assets/site-data.js` and, for the 3D map, files under `data/`. The earlier one-file dashboard, [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html), still opens straight from disk with no server.
+The site is six pages that share a header, a theme (light or dark) and a data file: [`index.html`](index.html) (overview), [`explore.html`](explore.html), [`road-safety.html`](road-safety.html), [`planning.html`](planning.html), [`3d-map.html`](3d-map.html) and [`data-methods.html`](data-methods.html). Serve the folder (for example `python -m http.server`) and open `index.html`; the pages read `assets/site-data.js` and, for the 3D map, files under `data/`. The earlier one-file dashboard, [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html), still opens straight from disk with no server.
 
 ## What data is here, and how current is it
 
@@ -46,39 +46,29 @@ Status values: `production` (on the dashboard, validated), `staged` (collected a
 
 ## Main limitations
 
-- **Crash-zone map positions are estimates**, roughly 250 m to 1 km off, not police geotags. Counts come straight from the Delhi Road Crash Report. See [`docs/CRASH_ZONE_COORDINATES.md`](docs/CRASH_ZONE_COORDINATES.md).
-- **OpenStreetMap layers are incomplete.** A low count means little has been mapped, not that nothing is there. A zero from a survey-based layer can mean "not surveyed".
-- **2025 and 2026 have no official district crime or full crash report yet.** The iRAD reports are a different series (see the table) and must not be set beside the traffic-police figures.
-- **All ward layers use the legacy 290-ward geography**, not the current 250 wards.
-- This repository is a compilation, not a primary source: cite the agency report for any figure ([how](for_reporters.html)).
+Full list: [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md). In short:
+
+- **Crash-zone positions are hand-placed estimates** (150 m to 5 km), not police geotags.
+- **OpenStreetMap layers are incomplete.** A low count may mean little has been mapped; a survey zero may mean not surveyed.
+- **No official 2025 or 2026 district crime or full crash report yet.** iRAD is a different series and is never set beside Traffic Police figures.
+- **Wards are the legacy 290**, not the current 250. Nothing here says why a place has crashes or what should be built.
+- This repository is a compilation, not a primary source: cite the agency report ([how](for_reporters.html)).
 
 ## Download and reuse
 
 Each year from 2016 to 2024 has a folder under [`data/releases/`](data/releases/) with `district_crime.csv`/`.json` and a `manifest.json` giving source URLs, SHA-256 checksums, coverage and what a null means. Read the manifest before analysing. The [separate 2011–2015 NCRB historical panel](data/releases/historical_2011_2015/README.md) is staged, with Delhi UT totals and original reporting units; it is not on the dashboard.
 
-```python
-import json
-import pandas as pd
-from pathlib import Path
-
-release = Path('data/releases/2024')
-manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
-districts = pd.read_csv(release / 'district_crime.csv')
-```
-
 Details, a worked notebook, the deprecated `exports/` folder and licensing cautions: [`docs/DATA_RELEASES.md`](docs/DATA_RELEASES.md). Corrections to a published figure are logged in [`docs/DATA_CHANGELOG.md`](docs/DATA_CHANGELOG.md).
 
 ## Documentation
 
+- [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md): how a figure gets from a source to the site, and the rules behind the views
+- [`docs/COVERAGE.md`](docs/COVERAGE.md): which series exist for which years
+- [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md): what the data cannot establish
 - [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md): every source, with original URLs and reuse notes
-- [`docs/DATA_RELEASES.md`](docs/DATA_RELEASES.md): how to use the yearly releases
-- [`docs/HISTORICAL_2011_2015.md`](docs/HISTORICAL_2011_2015.md): earlier citywide road counts and the separate staged NCRB panel
-- [`docs/PIPELINE_2025.md`](docs/PIPELINE_2025.md): the collection pipeline and the evidence archive
-- [`docs/IRAD_DISTRICT_REPORTS.md`](docs/IRAD_DISTRICT_REPORTS.md): district road-accident reports, coverage and caveats
-- [`docs/CRASH_ZONE_COORDINATES.md`](docs/CRASH_ZONE_COORDINATES.md) and [`docs/MPD_BUILT_UP_USE_TRIAL.md`](docs/MPD_BUILT_UP_USE_TRIAL.md): audits and negative results
-- [`docs/ANALYSES.md`](docs/ANALYSES.md): liquor vends and crash zones
-- [`docs/STRUCTURE.md`](docs/STRUCTURE.md): the repository layout in detail
-- [`docs/WHATS_NEW.md`](docs/WHATS_NEW.md), [`docs/AGENT_CHANGELOG.md`](docs/AGENT_CHANGELOG.md): history
+- [`docs/CHANGELOG.md`](docs/CHANGELOG.md): which log to read ([data revisions](docs/DATA_CHANGELOG.md), [what's new](docs/WHATS_NEW.md), [engineering log](docs/AGENT_CHANGELOG.md))
+- [`docs/CONTINUITY.md`](docs/CONTINUITY.md): can two years be compared; [`docs/DATA_RELEASES.md`](docs/DATA_RELEASES.md): using the yearly releases
+- More: [`docs/STRUCTURE.md`](docs/STRUCTURE.md), [`docs/PIPELINE_2025.md`](docs/PIPELINE_2025.md), [`docs/IRAD_DISTRICT_REPORTS.md`](docs/IRAD_DISTRICT_REPORTS.md), [`docs/HISTORICAL_2011_2015.md`](docs/HISTORICAL_2011_2015.md), [`docs/ANALYSES.md`](docs/ANALYSES.md), [`docs/CRASH_ZONE_COORDINATES.md`](docs/CRASH_ZONE_COORDINATES.md), [`docs/MPD_BUILT_UP_USE_TRIAL.md`](docs/MPD_BUILT_UP_USE_TRIAL.md)
 - Right-to-information drafts (not filed): [`docs/RTI_REQUEST_DRAFT.md`](docs/RTI_REQUEST_DRAFT.md), [`docs/RTI_DDA_EXISTING_LAND_USE_DRAFT.md`](docs/RTI_DDA_EXISTING_LAND_USE_DRAFT.md), [`docs/RTI_MCD_PROPERTY_USE_DRAFT.md`](docs/RTI_MCD_PROPERTY_USE_DRAFT.md)
 
 ## Repository layout
@@ -99,7 +89,7 @@ npm run build:interactive-map
 npm run build:releases
 ```
 
-Edit `scripts/build.js`, `scripts/build_interactive_map.js` and `scripts/build_site.js` rather than the generated HTML (the site's styles and behaviour are hand-written in `assets/site.css`, `assets/site.js` and `assets/page-*.js`). `npm run build:site` regenerates the five pages and `assets/site-data.js`. CI rebuilds everything and fails if a committed output differs.
+Edit `scripts/build.js`, `scripts/build_interactive_map.js` and `scripts/build_site.js` rather than the generated HTML (the site's styles and behaviour are hand-written in `assets/site.css`, `assets/site.js` and `assets/page-*.js`). `npm run build:site` regenerates the six pages and `assets/site-data.js`. CI rebuilds everything and fails if a committed output differs.
 
 ## Licence and citation
 
