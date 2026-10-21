@@ -241,14 +241,14 @@
     },
     {
       "id": "traffic_districts_2016_2020",
-      "name": "Traffic Police district crashes and selected crash zones, 2016 to 2020, as printed",
-      "status": "staged",
+      "name": "Traffic Police district crashes and selected-zone counts, 2016 to 2021, as printed",
+      "status": "production",
       "temporal_type": "annual",
-      "latest_reference_period": "2020",
+      "latest_reference_period": "2021",
       "coverage_start": "2016",
-      "geography": "Traffic Police reporting districts as printed (11 in 2016-2017, 12 from 2018); not the 15 police districts",
+      "geography": "Traffic Police reporting districts as printed in each year's report (11 in 2016-2017, 12 in 2018-2021); not the 15 police districts",
       "where": "data/staged/road_districts_2016_2020/FINDINGS.md",
-      "note": "Counts, not rates; fatal crashes, not people killed. Author checked, not independently reviewed against the PDFs. Whole-district rows sum to the citywide trend for every year. Not joined to the maps: Dwarka appears in 2018, selected zones change each year, and the units are not today's districts. Missing values are null, never zero."
+      "note": "Tables on Road safety (Districts, 2016 to 2024): whole-district crashes 2016 to 2021 and crashes within selected zones 2017 to 2021 (2016 has no district table; 2019 omits New Delhi and 2021 omits Central, shown as not in the table, never zero). Counts, not rates; fatal crashes, not people killed. No change figures are calculated and nothing is joined to the maps. Named-zone and road lists for 2016 to 2021 are not transcribed. Visually checked by one agent, not independently reviewed."
     }
   ]
 }

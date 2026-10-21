@@ -158,9 +158,110 @@
       R.roads[st.roadYear].map(function (r) { return h('div', { class: 'road-row' }, h('span', { title: r[0] }, r[0]), h('span', null, r[1]), h('span', null, r[2]), h('span', null, r[3])); })));
   }
 
+  // ---- district tables, 2016 to 2024: whole-district crashes and crashes within selected zones ----
+  // Each year keeps its own printed districts (11, 12 or 15 traffic districts); nothing is allocated to other districts, and no change
+  // figures are calculated here. Totals are printed separately and are never rows. A district missing from a printed table is "not in the table", not zero.
+  var HIST = R.history, CH = data.CONTINUITY.roadHistory;
+  var HYEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+  var hs = { measure: 'zones', year: 2022 };
+  (function () {
+    var p = D.parseHash();
+    if (p.dm === 'zones' || p.dm === 'whole') hs.measure = p.dm;
+    if (HYEARS.indexOf(+p.dy) >= 0) hs.year = +p.dy;
+  })();
+  var STATE_LABEL = { not_comparable: 'Not compared', caution: 'Compare with caution', unavailable: 'No comparison' };
+  var COLS = {
+    whole: ['Fatal', 'Injury', 'Non-injury', 'Total'],
+    zones: ['Zones', 'Simple', 'Fatal', 'Total']
+  };
+  var CSV_COLS = {
+    whole: ['fatal_crashes', 'injury_crashes', 'non_injury_crashes', 'total_crashes'],
+    zones: ['crash_prone_zones', 'simple_crashes_at_zones', 'fatal_crashes_at_zones', 'total_crashes_at_zones']
+  };
+  function histTable(m, y) { var t = (m === 'whole' ? HIST.whole : HIST.zones)[y]; return t && !t.unavailable ? t : null; }
+  function histNotes(m, y) {
+    var out = [];
+    if (y === 2016) return [{ state: 'unavailable', text: 'First year in this table.' }];
+    if (!histTable(m, y - 1)) out.push({ state: 'unavailable', text: 'The previous year has no district table for this measure, so there is nothing to compare with.' });
+    else {
+      var b = CH.breaks.filter(function (x) { return x.between[1] === y; })[0];
+      out.push(b ? { state: b.state, text: b.reason } : { state: 'caution', text: CH.sameSetReason });
+    }
+    if (m === 'zones') out.push({ state: 'caution', text: CH.zoneReason });
+    if (CH.pandemicYears.indexOf(y) >= 0 || CH.pandemicYears.indexOf(y - 1) >= 0) out.push({ state: 'caution', text: CH.pandemicReason });
+    return out;
+  }
+  function histUnavailable(m, y) {
+    if (m === 'whole') return 'Whole-district crash counts are shown for 2016 to 2022. For ' + y + ' this dashboard holds the district tables for crashes within selected zones (choose that measure above) and persons killed by district (in Explore), not whole-district crash counts.';
+    var z = HIST.zones[y];
+    return z && z.unavailable ? z.unavailable : 'No district table is available for ' + y + '.';
+  }
+  function histSource(t) {
+    var s = t.source, bits = ['Delhi Road Crash Report ' + s.reportYear];
+    if (s.table) bits.push('Table ' + s.table);
+    if (s.pdfPage) bits.push('PDF page ' + s.pdfPage);
+    if (s.printedPage) bits.push('printed page ' + s.printedPage);
+    return bits.join(', ');
+  }
+  function histCsv(m, y) {
+    var t = histTable(m, y), notes = histNotes(m, y);
+    var cmpState = notes.some(function (x) { return x.state === 'not_comparable'; }) ? 'not_comparable' : notes[0].state;
+    var cmpText = notes.map(function (x) { return x.text; }).join(' ');
+    var head = ['row_type', 'reference_year', 'report_year', 'measure_scope', 'geography', 'reporting_unit_as_printed'].concat(CSV_COLS[m], ['missing_reason', 'comparison_with_previous_year', 'comparison_reason', 'source_table', 'source_pdf_page', 'source_printed_page', 'source_url', 'source_sha256', 'review_status', 'data_version']);
+    var scope = m === 'whole' ? 'whole traffic district' : 'selected crash-prone zones only';
+    var rows = [head];
+    var blank = ['', '', '', ''];
+    if (!t) { rows.push(['unavailable', y, '', scope, '', ''].concat(blank, [histUnavailable(m, y), '', '', '', '', '', '', '', '', data.updated])); return D.csv(rows); }
+    var s = t.source;
+    function meta(extra, src) { return [extra, src.table || '', src.pdfPage == null ? '' : src.pdfPage, src.printedPage == null ? '' : src.printedPage, src.url || '', src.sha256 || '', src.review, data.updated]; }
+    t.rows.forEach(function (r) { rows.push(['district', y, s.reportYear, scope, t.geography, r[0]].concat(r.slice(1), [''], [cmpState, cmpText], meta(null, s).slice(1))); });
+    (t.omitted || []).forEach(function (n) { rows.push(['district_not_in_table', y, s.reportYear, scope, t.geography, n].concat(blank, ['Not in the printed table for this year; unreported, not zero.', cmpState, cmpText], meta(null, s).slice(1))); });
+    if (t.total) rows.push(['printed_total', y, s.reportYear, scope, t.geography, 'Printed total'].concat(t.total, ['', '', ''], meta(null, t.totalSource).slice(1)));
+    return D.csv(rows);
+  }
+  function renderDistrictTables() {
+    var sec = D.clear(D.$('#district-tables'));
+    var m = hs.measure, y = hs.year, t = histTable(m, y), notes = histNotes(m, y);
+    try { history.replaceState(null, '', D.hashOf({ dm: m, dy: y })); } catch (e) { /* the link just will not update */ }
+    sec.appendChild(h('div', { class: 'row-between' },
+      h('div', { class: 'title-row' }, h('h2', null, 'Districts, 2016 to 2024'),
+        D.tip('About these tables', 'Each year shows the districts printed in that year\'s Traffic Police report: 11, 12 or 15 traffic districts, with their printed names. They are not today\'s 15 police districts, so they are not drawn on the map and nothing is allocated between years. No change figures are calculated here. Fatal crashes are events, not people killed; simple crashes are the report\'s category, not injury crashes.')),
+      h('div', { style: 'display:flex;flex-wrap:wrap;gap:8px' },
+        h('button', { type: 'button', class: 'btn', 'data-key': 'hcopy', onclick: function (e) { D.copy(location.href.split('#')[0] + D.hashOf({ dm: m, dy: y }), e.currentTarget, 'Link copied', 'Copy link to view'); } }, 'Copy link to view'),
+        h('button', { type: 'button', class: 'btn primary', 'data-key': 'hcsv', onclick: function () { D.download('delhi_road_' + m + '_' + y + '.csv', histCsv(m, y)); } }, 'Download CSV'))));
+    sec.appendChild(h('div', { style: 'display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center' },
+      seg([['zones', 'Crashes within selected zones'], ['whole', 'Whole-district crashes']], m, function (k) { hs.measure = k; keepFocus(renderDistrictTables); }, 'hm'),
+      h('div', { class: 'years', role: 'group', 'aria-label': 'Year' }, HYEARS.map(function (yr) {
+        return h('button', { type: 'button', 'aria-pressed': String(yr === y), 'data-key': 'hy-' + yr, title: histTable(m, yr) ? String(yr) : yr + ': no table for this measure', onclick: function () { hs.year = yr; keepFocus(renderDistrictTables); } }, yr);
+      }))));
+    var scopeNote = m === 'zones'
+      ? 'These are crashes within the zones identified that year, not all crashes in the district or on the road. The selected locations can change each year. Simple crashes are the report\'s category, not injury crashes.'
+      : 'All crash events in each district, as printed in the report\'s district table. Fatal, injury and non-injury are crash events, not people killed or injured.';
+    sec.appendChild(h('p', { class: 'callout' }, h('strong', null, m === 'zones' ? 'Crashes within selected zones. ' : 'Whole-district crashes. '), scopeNote));
+    if (!t) {
+      sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, y + ': no district table. '), histUnavailable(m, y)));
+      var z = HIST.zones[y];
+      if (m === 'zones' && z && z.total) sec.appendChild(h('p', { class: 'muted' }, 'Citywide selected-zone total for ' + y + ' (not a district row): ' + z.total[0] + ' zones, ' + n(z.total[1]) + ' simple, ' + n(z.total[2]) + ' fatal, ' + n(z.total[3]) + ' crashes in all. ' + histSource({ source: z.totalSource }) + '.'));
+      return;
+    }
+    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:480px' },
+      h('caption', { class: 'muted', style: 'text-align:left;padding-bottom:8px' }, (m === 'zones' ? 'Crashes within selected zones' : 'Whole-district crashes') + ', ' + y + ' · ' + t.geography + ' as printed'),
+      h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Reporting unit as printed'), COLS[m].map(function (c) { return h('th', { scope: 'col' }, c); }))),
+      h('tbody', null,
+        t.rows.map(function (r) { return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, r[0]), r.slice(1).map(function (v) { return h('td', null, v == null ? '—' : n(v)); })); }),
+        (t.omitted || []).map(function (nm) { return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, nm), h('td', { colspan: 4, class: 'muted', style: 'text-align:left' }, 'Not in the printed table for this year (unreported, not zero)')); })),
+      t.total ? h('tfoot', null, h('tr', null, h('th', { scope: 'row', style: 'text-align:left' }, 'Printed total (not a district)'), t.total.map(function (v) { return h('td', { style: 'font-weight:700' }, n(v)); }))) : null)));
+    var blocked = notes.some(function (x) { return x.state === 'not_comparable'; });
+    sec.appendChild(h('div', { class: 'callout' + (blocked ? ' warn' : ''), style: 'font-size:13.5px' },
+      h('strong', null, y === 2016 ? 'Comparison' : 'Compared with ' + (y - 1) + (blocked ? ': district counts are not compared' : ': compare with caution')),
+      h('ul', { style: 'margin:4px 0 0 18px;list-style:disc' }, notes.map(function (x) { return h('li', null, h('strong', null, STATE_LABEL[x.state] + '. '), x.text); }))));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Source: ' + histSource(t) + '. ' + t.source.review + (t.source.url ? ' ' : ''), t.source.url ? h('a', { href: t.source.url }, 'Report file') : null,
+      '. Page, hash and review status are in the CSV. No open reuse licence has been verified for these reports.'));
+  }
+
   // the zone-year buttons are built once with the section; keep their pressed state in step with the choice
   function syncZoneSeg() {
     D.$('#zones').querySelectorAll('[data-key^="zy-"]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-key') === 'zy-' + st.zoneYear)); });
   }
-  renderTrend(); renderModes(); renderEnforcement(); renderZones(); renderRoads();
+  renderTrend(); renderModes(); renderEnforcement(); renderDistrictTables(); renderZones(); renderRoads();
 })();

@@ -6,6 +6,7 @@
 // Nothing here invents a number: a figure the source does not hold stays null and is never turned into zero.
 
 const fs = require('fs');
+const roadHistory = require('./road_history');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..', '..');
@@ -141,7 +142,7 @@ function buildRoads() {
       .slice(0, 12)
       .map(o => [o.r.road, o.r.zones, o.r.fatal, o.r.total]);
   });
-  return { roads, zones2023, zones2022, zones2024 };
+  return { roads, zones2023, zones2022, zones2024, history: roadHistory.build() };
 }
 
 // The continuity file with the evidence paths removed, plus the comparison functions' source (the page runs the same code the tests run).

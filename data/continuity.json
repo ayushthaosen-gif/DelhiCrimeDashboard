@@ -126,6 +126,17 @@
     "cautionMeasures": ["totalCrashes", "fatalCrashes", "crashProneZones", "totalCrashes2023", "fatalCrashes2023", "crashProneZones2023"],
     "cautionReason": "These counts cover only each year's identified crash-prone zones, and the zone lists come from separate annual reports and list different zones; a change in a count is not a change in risk."
   },
+  "roadHistory": {
+    "breaks": [
+      { "between": [2017, 2018], "state": "not_comparable", "reason": "Dwarka appears as a separate Traffic Police reporting row from 2018 (11 districts before, 12 after). District counts across this break are not compared, and no crosswalk to the earlier districts is documented." },
+      { "between": [2021, 2022], "state": "not_comparable", "reason": "The Traffic Police district tables go from 12 reporting units in 2021 to 15 in 2022. District counts across this break are not compared, and no crosswalk is documented." },
+      { "between": [2022, 2023], "state": "caution", "reason": "The 2022 and 2023 tables both print 15 districts under the same names, but boundary continuity has not been verified." }
+    ],
+    "sameSetReason": "The same set of printed districts as the year before, but exact annual boundaries are not verified.",
+    "zoneReason": "These are crashes within the zones identified that year, not all crashes in the district or on the road. The selected locations can change each year, so a change is not a change in risk at fixed places.",
+    "pandemicYears": [2020, 2021],
+    "pandemicReason": "2020 and 2021 were affected by pandemic restrictions, which changes how raw counts should be read."
+  },
   "series": {
     "roadTrend": {
       "state": "caution",
