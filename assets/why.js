@@ -128,7 +128,7 @@
     }
     root.appendChild(h('div', { class: 'why-sec' }, h('h3', null, 'Uncertainty'),
       h('div', { class: 'chips' }, w.uncertainty.map(function (u) { return h('span', { class: 'why-chip', title: u.meaning }, u.label); })),
-      list(w.uncertainty.map(function (u) { return u.label + ': ' + u.meaning; }), 'why-list small'), w.flags.length ? h('div', { class: 'callout warn', style: 'font-size:13.5px;margin-top:8px' }, list(w.flags)) : null));
+      list(w.uncertainty.map(function (u) { return u.label + ': ' + u.meaning; }), 'why-list small'), w.flags.length ? h('div', { class: 'callout warn pl-cau', style: 'font-size:13.5px;margin-top:8px' }, list(w.flags)) : null));
     root.appendChild(h('details', { class: 'why-sec why-src' }, h('summary', null, 'Data year and source of each figure (' + w.provenance.length + ')'),
       h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:480px' }, h('thead', null, h('tr', null, h('th', null, 'Figure'), h('th', null, 'Year'), h('th', null, 'Source'), h('th', null, 'Class'))),
         h('tbody', null, w.provenance.map(function (p) { return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, p.label), h('td', { style: 'text-align:left' }, p.year), h('td', { style: 'text-align:left;font:13px var(--sans)' }, p.source), h('td', { style: 'text-align:left;font:13px var(--sans)' }, clsLabel(p.cls))); }))))));

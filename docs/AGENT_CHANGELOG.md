@@ -1,3 +1,7 @@
+## [2026-10-22] - Claude (Anthropic) - Planning page restyle (design handoff 2)
+
+- Compared the Planning prototype and prompt with the live page: sticky toolbar, class chip and data line, three flex-wrap panels, five-band legend with Zero and No figure, ranked rows with bars, ward header and buttons, details sections, underline tabs, pill chips and the year strip were already in place. Changed the four gaps: intro split into a lead sentence and a smaller muted note; map and ward-panel warnings use the yellow callout (--cauBg); the map hover card is fixed in the map top-left corner instead of following the cursor; Open ward scrolls with an offset for the sticky toolbar. No copy, hash state, evidence pack or data changes.
+
 ## [2026-10-22] - Claude (Anthropic) - Road history 2011 to 2015 integrated
 
 - From the reviewed recovery bundle (all 321 packaged files matched CHECKSUMS.json before use): new release `data/releases/road_zones_roads_2011_2015/` with 441 named zones (2013 128, 2014 137, 2015 176), 45 road groups for 2015 calculated by exact printed label, and 26 retrospective highway and ring-road stretch rows for 2011 and 2012. Assembled by `scripts/build_road_history_2011_2015.js` (not run in CI; the packages are not in the repository) and checked by `validate.cjs`.
