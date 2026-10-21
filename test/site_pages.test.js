@@ -30,7 +30,7 @@ test('the committed pages and data file are exactly what the build produces', ()
 });
 
 test('every page has the shared shell: skip link, one current page in the section nav, theme button, language, viewport, title', () => {
-  assert.deepEqual(PAGES.map(p => p.file), ['index.html', 'explore.html', 'road-safety.html', '3d-map.html', 'data-methods.html']);
+  assert.deepEqual(PAGES.map(p => p.file), ['index.html', 'explore.html', 'road-safety.html', 'planning.html', '3d-map.html', 'data-methods.html']);
   for (const p of PAGES) {
     const html = files[p.file];
     assert.match(html, /^<!doctype html>\n<html lang="en"/);
@@ -317,7 +317,7 @@ test('the comparison rules in the page are the ones the tests run (data/continui
 });
 
 test('page scripts parse, build their DOM with text nodes (no innerHTML), and every id they look up exists in the page', () => {
-  const pages = { 'assets/page-overview.js': 'index.html', 'assets/page-explore.js': 'explore.html', 'assets/page-road.js': 'road-safety.html', 'assets/page-3d.js': '3d-map.html', 'assets/page-methods.js': 'data-methods.html' };
+  const pages = { 'assets/page-overview.js': 'index.html', 'assets/page-explore.js': 'explore.html', 'assets/page-road.js': 'road-safety.html', 'assets/page-3d.js': '3d-map.html', 'assets/page-methods.js': 'data-methods.html', 'assets/page-planning.js': 'planning.html' };
   for (const [script, page] of Object.entries(pages)) {
     const src = read(script);
     assert.doesNotThrow(() => new vm.Script(src, { filename: script }), script);

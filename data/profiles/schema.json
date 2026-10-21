@@ -270,7 +270,7 @@
       "label": "Police stations",
       "unit": "stations",
       "group": "infrastructure",
-      "uncertainty": "mapped_osm",
+      "uncertainty": "official_count",
       "source": "Delhi Police GSDL station list via a community mirror",
       "dataYear": "list date not established",
       "blankMeans": "Zero means no station position falls in the ward."
@@ -692,7 +692,7 @@
       "label": "Police stations",
       "unit": "stations",
       "group": "infrastructure",
-      "uncertainty": "mapped_osm",
+      "uncertainty": "official_count",
       "source": "Delhi Police GSDL list via a community mirror",
       "dataYear": "list date not established",
       "blankMeans": "Not applicable."

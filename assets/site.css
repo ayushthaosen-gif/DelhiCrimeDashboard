@@ -437,3 +437,38 @@ body.map3d { display: flex; flex-direction: column; }
 .tbl tbody th[scope="row"] { font-size: 14px; }
 .card { min-width: 0; }
 .seg { flex-wrap: wrap; max-width: 100%; }
+
+/* ---------- Why this place? ---------- */
+.why { display: flex; flex-direction: column; gap: 14px; }
+.why h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.why-sec { display: flex; flex-direction: column; gap: 6px; }
+.why-list { margin: 0 0 0 18px; list-style: disc; color: var(--ink2); font-size: 14px; display: flex; flex-direction: column; gap: 4px; }
+.why-list.small { font-size: 12.5px; color: var(--ink3); }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.why-cell { background: var(--surface2); border-radius: 8px; padding: 8px 10px; display: flex; flex-direction: column; gap: 1px; }
+.why-cell .l { font-size: 11.5px; color: var(--ink3); font-weight: 600; }
+.why-cell .v { font-size: 16px; font-weight: 600; }
+.why-cell .s { font-size: 11.5px; color: var(--ink3); }
+.why-cell.zero .v { color: var(--ink3); }
+.why-chip { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; font-weight: 600; background: var(--surface); }
+.why-src summary { cursor: pointer; font-size: 14px; font-weight: 600; }
+.why-src .tbl th, .why-src .tbl td { padding: 5px 8px; }
+
+/* ---------- Planning ---------- */
+.pl-map svg { display: block; width: 100%; height: auto; max-height: 78vh; }
+.pl-map .wpath { stroke: var(--surface); stroke-width: .5; stroke-linejoin: round; cursor: pointer; }
+.pl-map .wpath:focus-visible { outline: none; stroke: var(--ink); stroke-width: 2; }
+.pl-map .wsel { fill: none; stroke: var(--hl); stroke-width: 2.5; pointer-events: none; stroke-linejoin: round; }
+.pl-map .whov { fill: none; stroke: var(--ink); stroke-width: 1.5; pointer-events: none; stroke-linejoin: round; }
+.pl-map .zdot { fill: #fff; stroke: #c4252d; stroke-width: 1.6; }
+.pl-map .zring { fill: rgba(196,37,45,.08); stroke: #c4252d; stroke-width: 1; stroke-dasharray: 3 2; pointer-events: none; }
+.pl-badges { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: 13px; color: var(--ink2); }
+.pl-badges .why-chip { font-size: 12px; }
+.pl-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.pl-note { font-size: 13px; color: var(--ink3); }
+.pl-search { display: flex; gap: 6px; }
+.pl-search input { flex: 1 1 auto; min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); font-size: 14px; }
+
+.workspace > * { min-width: 0; }
+.pl-badges > span { min-width: 0; overflow-wrap: anywhere; }
+.detail-body { min-width: 0; }

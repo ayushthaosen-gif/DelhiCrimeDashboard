@@ -18,7 +18,7 @@
   "files": [
     {
       "path": "data/profiles/schema.json",
-      "sha256": "40a9d8c171144c61492b52551e8fbc24ad20e377df93a955592f442049ab8888"
+      "sha256": "bf413b34e83ea9a61551599838eefb035b776f22abd3e506be63aab548f4d194"
     },
     {
       "path": "data/profiles/ward_profiles.json",

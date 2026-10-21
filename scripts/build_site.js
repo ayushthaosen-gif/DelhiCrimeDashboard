@@ -12,6 +12,7 @@ const crypto = require('crypto');
 const path = require('path');
 const { buildAll } = require('./lib/site_data');
 const { compareYears, segmentOf, changeBetween } = require('./lib/continuity');
+const profileAssets = require('./lib/profile_assets');
 
 const ROOT = path.join(__dirname, '..');
 const GITHUB = 'https://github.com/ayushthaosen-gif/DelhiCrimeDashboard';
@@ -21,6 +22,7 @@ const PAGES = [
   { file: 'index.html', nav: 'Overview' },
   { file: 'explore.html', nav: 'Explore' },
   { file: 'road-safety.html', nav: 'Road safety' },
+  { file: 'planning.html', nav: 'Planning' },
   { file: '3d-map.html', nav: '3D map' },
   { file: 'data-methods.html', nav: 'Data & methods' }
 ];
@@ -128,6 +130,13 @@ function roadSafety(updated) {
     + '<footer class="site-footer" style="border-top:1px solid var(--line)"><span>Sources: Delhi Traffic Police statistics and Delhi Road Crash Reports 2023 and 2024. <a href="data-methods.html#sources">Sources and caveats</a>. Data version ' + esc(updated) + '.</span></footer>\n</main>';
 }
 
+function planning() {
+  return '<div class="toolbar" role="region" aria-label="Choose a layer"><div class="wrap" id="plToolbar"></div></div>\n'
+    + '<main id="main" class="page" style="padding-top:20px">\n'
+    + '<div class="page-head"><h1>Planning mode</h1><p>For urban planners, journalists and researchers: see the crash and infrastructure context the data holds for a ward, with its year, source, coverage and uncertainty stated beside it, then take an evidence pack to a field visit. Crash layers show the locations the Traffic Police list as crash-prone, placed approximately; infrastructure layers are what volunteers have mapped in OpenStreetMap. Nothing here says what caused a crash or what should be built.</p></div>\n'
+    + '<div class="workspace" id="plWork"></div>\n</main>';
+}
+
 function map3d() {
   return '<main class="m3" id="main">\n'
     + '<aside class="m3-panel" aria-label="Map controls" id="m3panel"></aside>\n'
@@ -197,10 +206,11 @@ function dataMethods(updated) {
 function render() {
   const all = buildAll();
   const u = all.updated;
-  generated = { 'assets/site-data.js': dataFile(all) };
+  generated = Object.assign({ 'assets/site-data.js': dataFile(all) }, profileAssets.build());
   const pages = {
     'index.html': { title: 'Delhi Urban Safety Observatory', description: 'Official crime and road-safety figures for the 15 Delhi Police districts, set against public infrastructure.', body: overview(u), scripts: ['assets/page-overview.js'] },
-    'explore.html': { title: 'Explore by police district · Delhi Urban Safety Observatory', description: 'Crime and road crashes by Delhi police district: map, ranking, table and district detail.', body: explore(), scripts: ['assets/page-explore.js'] },
+    'explore.html': { title: 'Explore by police district · Delhi Urban Safety Observatory', description: 'Crime and road crashes by Delhi police district: map, ranking, table and district detail.', body: explore(), scripts: ['assets/profiles-data.js', 'assets/why.js', 'assets/page-explore.js'] },
+    'planning.html': { title: 'Planning mode · Delhi Urban Safety Observatory', description: 'Ward-level crash and infrastructure context for planners, with data years, coverage and uncertainty, and an evidence pack for field audits.', body: planning(), scripts: ['assets/profiles-data.js', 'assets/planning-data.js', 'assets/why.js', 'assets/page-planning.js'] },
     'road-safety.html': { title: 'Road safety, citywide · Delhi Urban Safety Observatory', description: 'Delhi road crashes, deaths by mode of travel, enforcement and crash-prone zones.', body: roadSafety(u), scripts: ['assets/page-road.js'] },
     '3d-map.html': {
       title: '3D ward view · Delhi Urban Safety Observatory', description: 'A 3D map of the 290 legacy Delhi wards: crash zones, infrastructure and district crime rates.', body: map3d(), fullWidth: true, bodyClass: 'map3d',
@@ -215,7 +225,9 @@ function render() {
     o.updated = u;
     files[p.file] = shell(p, o);
   });
-  files['assets/site-data.js'] = dataFile(all);
+  files['assets/site-data.js'] = generated['assets/site-data.js'];
+  files['assets/profiles-data.js'] = generated['assets/profiles-data.js'];
+  files['assets/planning-data.js'] = generated['assets/planning-data.js'];
   return files;
 }
 
