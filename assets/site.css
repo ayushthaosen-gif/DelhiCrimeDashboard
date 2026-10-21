@@ -432,3 +432,8 @@ body.map3d { display: flex; flex-direction: column; }
   .tile { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+.tbl tfoot tr { border-top: 2px solid var(--ink); }
+.tbl tfoot th, .tbl tfoot td { padding-top: 8px; }
+.tbl tbody th[scope="row"] { font-size: 14px; }
+.card { min-width: 0; }
+.seg { flex-wrap: wrap; max-width: 100%; }

@@ -124,7 +124,7 @@ function roadSafety(updated) {
     + '<div class="rs-kpis" id="rsKpis"></div>\n'
     + '<section id="trend" class="card" style="scroll-margin-top:16px"></section>\n'
     + '<div class="two-col"><section id="modes" class="card" style="flex:1 1 420px;scroll-margin-top:16px"></section><section id="enforcement" class="card" style="flex:1 1 420px"></section></div>\n'
-    + '<div class="two-col"><section id="zones" class="card" style="flex:3 1 520px"></section><section id="roads" class="card" style="flex:2 1 360px"></section></div>\n'
+    + '<section id="district-tables" class="card" style="scroll-margin-top:16px"></section>\n<div class="two-col"><section id="zones" class="card" style="flex:3 1 520px"></section><section id="roads" class="card" style="flex:2 1 360px"></section></div>\n'
     + '<footer class="site-footer" style="border-top:1px solid var(--line)"><span>Sources: Delhi Traffic Police statistics and Delhi Road Crash Reports 2023 and 2024. <a href="data-methods.html#sources">Sources and caveats</a>. Data version ' + esc(updated) + '.</span></footer>\n</main>';
 }
 

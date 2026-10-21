@@ -161,6 +161,62 @@ test('the 2024 zone list is the named-zone file: 93 zones, ranked ones first, un
   assert.ok(read('assets/page-road.js').includes("[2024, '2024']], st.zoneYear"), 'the zone table offers 2022, 2023 and 2024');
 });
 
+test('historical district tables: every year has its printed geography, rows add up to the printed totals, omissions are named, nothing is zero by default', () => {
+  const H = siteData.ROADS.history, trends = json('data/road_safety_trends.json').trends;
+  assert.deepEqual(Object.keys(H.whole).map(Number), [2016, 2017, 2018, 2019, 2020, 2021, 2022], 'whole-district crashes exist for 2016 to 2022 only');
+  const geo = { 2016: 11, 2017: 11, 2018: 12, 2019: 12, 2020: 12, 2021: 12, 2022: 15 };
+  for (const [y, w] of Object.entries(H.whole)) {
+    assert.equal(w.rows.length, geo[y], y + ' printed districts');
+    assert.equal(w.geography, geo[y] + ' traffic districts');
+    assert.ok(w.rowsAddUp, y + ': fatal + injury + non-injury = total in every row');
+    assert.ok(w.rowsMatchTotal, y + ': rows add up to the printed total');
+    assert.ok(w.rows.every(r => !/^total$/i.test(r[0])), y + ': the printed total is not a district row');
+    const t = trends.find(x => x.year === Number(y));
+    assert.equal(w.total[3], t.crashes, y + ' whole-district total equals the citywide crashes');
+    assert.equal(w.total[0], t.fatalCrashes, y + ' fatal crashes equal the citywide fatal crashes');
+    assert.ok(w.source.sha256 && w.source.url && w.source.review.includes('not independently reviewed'), y + ' source identity');
+  }
+  assert.deepEqual(Object.keys(H.zones).map(Number), [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]);
+  assert.ok(H.zones[2016].unavailable && H.zones[2016].rows.length === 0, '2016 has no district zone table');
+  assert.deepEqual(H.zones[2016].total, [108, 907, 389, 1296], '2016 keeps its citywide zone total, separate from districts');
+  for (let y = 2017; y <= 2022; y++) assert.equal(H.zones[y].rowsMatchTotal, true, y + ' zone rows add up to the printed total');
+  const omitted = Object.fromEntries(Object.entries(H.zones).map(([y, z]) => [y, z.omitted]));
+  assert.deepEqual(omitted, { 2016: [], 2017: [], 2018: [], 2019: ['NEW DELHI'], 2020: [], 2021: ['Central'], 2022: [], 2023: [], 2024: [] });
+  assert.deepEqual([H.zones[2022].total, H.zones[2021].total, H.zones[2020].total[3]], [[117, 782, 427, 1209], [87, 538, 294, 832], 824]);
+  // modern years are the production values, untouched
+  const final = json('data/dashboard_final.json').districts;
+  for (const y of [2023, 2024]) for (const d of final) {
+    const r = H.zones[y].rows.find(x => x[0] === d.name);
+    assert.deepEqual(r.slice(1), [d['crashProneZones' + y], d['simpleCrashes' + y], d['fatalCrashes' + y], d['totalCrashes' + y]], d.name + ' ' + y);
+  }
+  // the Dwarka zeroes of the 2020 retrospective table are not original observations: no Dwarka row before 2018
+  for (const y of [2016, 2017]) assert.ok(!H.whole[y].rows.some(r => /dwarka/i.test(r[0])), y);
+});
+
+test('the continuity file blocks district changes across the 2017-2018 and 2021-2022 breaks and asks for caution everywhere else', () => {
+  const c = json('data/continuity.json').roadHistory;
+  const state = (a, b) => (c.breaks.find(x => x.between[0] === a && x.between[1] === b) || {}).state;
+  assert.equal(state(2017, 2018), 'not_comparable');
+  assert.equal(state(2021, 2022), 'not_comparable');
+  assert.equal(state(2022, 2023), 'caution');
+  assert.deepEqual(c.pandemicYears, [2020, 2021]);
+  assert.match(c.zoneReason, /not all crashes in the district or on the road/);
+  assert.match(c.zoneReason, /selected locations can change each year/);
+});
+
+test('the district tables on Road safety keep scope, geography, nulls and exports honest', () => {
+  const src = read('assets/page-road.js');
+  for (const k of ['hm', 'hy-']) assert.ok(src.includes("'" + k + "'"), k);
+  assert.ok(src.includes('dm: m, dy: y'), 'the share link carries measure and year');
+  assert.ok(src.includes("'delhi_road_' + m + '_' + y + '.csv'"), 'the download name carries scope and year');
+  for (const col of ['row_type', 'reporting_unit_as_printed', 'missing_reason', 'comparison_with_previous_year', 'comparison_reason', 'source_pdf_page', 'source_sha256', 'review_status', 'data_version', 'crash_prone_zones', 'simple_crashes_at_zones', 'fatal_crashes_at_zones', 'total_crashes_at_zones', 'injury_crashes', 'non_injury_crashes']) assert.ok(src.includes("'" + col + "'"), col);
+  for (const t of ['district_not_in_table', 'printed_total', 'unreported, not zero', 'Printed total (not a district)']) assert.ok(src.includes(t), t);
+  assert.ok(src.includes('These are crashes within the zones identified that year, not all crashes in the district or on the road. The selected locations can change each year.'));
+  assert.ok(src.includes('not today'), 'the geography caveat is in the tooltip');
+  assert.ok(src.includes('no change figures are calculated here') || src.includes('No change figures are calculated here'));
+  assert.ok(files['road-safety.html'].includes('id="district-tables"'));
+});
+
 test('the comparison rules in the page are the ones the tests run (data/continuity.json through compareYears)', () => {
   const c = siteData.CONTINUITY, cmp = (...a) => siteData.compareYears(c, ...a);
   assert.equal(cmp('theft', 2022, 2023).state, 'comparable');
