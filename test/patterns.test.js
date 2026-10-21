@@ -1,0 +1,90 @@
+// Guards the "Trends and patterns" page and the planner brief: every figure is computed from committed data, gaps are not drawn as lines,
+// the correlations are honest about 15 districts, wording does not claim causes, and the brief is generated from the same numbers.
+//
+//   node --test test/patterns.test.js
+
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const patterns = require('../scripts/lib/patterns');
+const { render } = require('../scripts/build_site');
+
+const ROOT = path.join(__dirname, '..');
+const read = f => fs.readFileSync(path.join(ROOT, f), 'utf8').replace(/\r\n/g, '\n');
+const files = render();
+const P = patterns.build();
+
+test('crime series: Delhi-wide printed values, comparison states from the continuity engine, gaps stay null', () => {
+  const t = P.crime.series.totalIPC;
+  assert.equal(t.values.length, 14);
+  assert.equal(t.values[P.crime.years.indexOf(2016)], 209519);
+  assert.equal(t.values[P.crime.years.indexOf(2023)], 324257);
+  const pair = (S, a) => S.pairs.find(p => p.from === a);
+  assert.equal(pair(t, 2013).state, 'not_comparable', 'the 2013 to 2014 format change breaks the line');
+  assert.equal(pair(t, 2023).state, 'caution');
+  assert.match(pair(t, 2023).reason, /Bharatiya Nyaya Sanhita/);
+  const theft = P.crime.series.theft;
+  for (const y of [2016, 2017, 2018, 2019, 2020]) assert.equal(theft.values[P.crime.years.indexOf(y)], null, 'theft 2016 to 2020 is blank, not zero');
+  assert.equal(pair(theft, 2015).state, 'unavailable');
+  assert.ok(P.crime.series.crimeAgainstWomen.values.slice(0, 3).every(v => v === null));
+  assert.equal(P.crime.facts.theftShare2023, Math.round(228537 / 324257 * 100));
+});
+
+test('districts: 15 districts ranked by registered cases per lakh residents; the rank correlations are recomputed and small', () => {
+  assert.equal(P.districts.ranked.length, 15);
+  for (let i = 1; i < 15; i++) assert.ok(P.districts.ranked[i - 1].perLakh >= P.districts.ranked[i].perLakh);
+  assert.equal(P.districts.ranked[0].district, 'North');
+  assert.equal(P.districts.ranked[14].district, 'South-West');
+  assert.ok(P.districts.ranked.every(r => Math.abs(r.perLakh - Math.round(r.count / r.population * 1e5)) <= 1));
+  assert.ok(P.districts.correlations.length >= 7);
+  for (const c of P.districts.correlations) { assert.equal(c.n, 15); assert.ok(Math.abs(c.rho) < 0.52, c.label + ' stays inside what 15 districts cannot distinguish from chance'); }
+  assert.ok(!P.districts.correlations.some(c => /streetlight/i.test(c.label)), 'a partly surveyed measure is not compared');
+  // spearman: perfect, inverse and tied cases
+  assert.equal(patterns.spearman([1, 2, 3, 4], [10, 20, 30, 40]), 1);
+  assert.equal(patterns.spearman([1, 2, 3, 4], [4, 3, 2, 1]), -1);
+  assert.ok(Math.abs(patterns.spearman([1, 2, 2, 3], [1, 2, 3, 4]) - 0.9487) < 0.001);
+});
+
+test('roads: persistent places by printed road, 2023 fatal crashes by road, 2024 concentration, all tied to the committed files', () => {
+  const rec = JSON.parse(read('data/profiles/recurring_locations.json')).places;
+  assert.equal(P.roads.totalPlaces, rec.length);
+  assert.equal(P.roads.placesInFiveOrMoreLists, rec.filter(p => p.reports_listed_of_9 >= 5).length);
+  assert.equal(P.roads.byRoad.reduce((a, r) => a + r.places, 0) <= P.roads.placesInFiveOrMoreLists, true);
+  assert.deepEqual(P.roads.byRoad.slice(0, 3).map(r => r.road), ['Ring Road', 'Outer Ring Road', 'GTK Road']);
+  const raw = JSON.parse(read('data/crash_zones_2023_raw.json'));
+  assert.equal(P.roads.fatal2023.total, raw.reduce((a, z) => a + z.fatal, 0));
+  assert.ok(P.roads.fatal2023.top3 < P.roads.fatal2023.total && P.roads.fatal2023.top3 === P.roads.fatal2023.byRoad.reduce((a, r) => a + r.fatal, 0));
+  const aud = JSON.parse(read('data/profiles/audit_candidates_2024.json')).rows;
+  const A = P.roads.areas2024;
+  assert.deepEqual([A.zones, A.tier1or2, A.sparselyMapped], [93, aud.filter(z => z.evidence_tier <= 2).length, aud.filter(z => z.sparsely_mapped_surroundings).length]);
+  assert.ok(A.fatalTier1or2 <= A.fatalAll);
+  assert.equal(P.roads.firstAreas.length, 8);
+  assert.ok(P.roads.firstAreas.every(z => z.lists >= 5));
+});
+
+test('the page: seven pages in the nav, scripts in order, the chart leaves gaps, every claim carries its limit, no innerHTML', () => {
+  const html = files['patterns.html'], src = read('assets/page-patterns.js');
+  assert.ok(html.includes('id="ptCrime"') && html.includes('id="ptDistricts"') && html.includes('id="ptRoads"') && html.includes('id="ptHelp"'));
+  assert.ok(html.indexOf('assets/patterns-data.js') > 0 && html.indexOf('assets/patterns-data.js') < html.indexOf('assets/page-patterns.js'));
+  assert.ok(/aria-current="page">Patterns</.test(html));
+  assert.ok(src.includes("p.state === 'not_comparable' || p.state === 'unavailable'") && src.includes("p.state === 'caution' ? '5 4'"), 'not-comparable steps are not drawn; caution is dashed');
+  for (const t of ['not a fall in crime', 'cannot be told apart from chance', 'does not show that any of them drives crime', 'not a finding from this data', 'Measure before and after at the same locations', 'shows where to look first, not why']) assert.ok(src.includes(t), t);
+  assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|eval\(/.test(src));
+  assert.ok(!/\bcauses? (crime|crashes)\b/i.test(src.replace(/does not show that any of them drives crime|crash causes/g, '')), 'no causal claim');
+  const ctx = vm.createContext({ window: {} });
+  vm.runInContext(files['assets/patterns-data.js'], ctx);
+  assert.deepEqual(JSON.parse(JSON.stringify(ctx.window.DSO_PATTERNS)), JSON.parse(JSON.stringify(P)));
+});
+
+test('the planner brief is generated from the same numbers, lists eight tier-1 areas, and states what it cannot tell', () => {
+  const b = files['planner-brief.html'];
+  assert.ok(b.includes('Delhi road safety: where to look first'));
+  assert.equal((b.match(/<tr><td>/g) || []).length, 8);
+  assert.ok(b.includes(String(P.roads.placesInFiveOrMoreLists)) && b.includes(String(P.roads.areas2024.tier1or2)));
+  for (const t of ['does not say why a crash happens or what should be built', 'there are no traffic or pedestrian counts', 'a repeated name is not a proven identical footprint'.replace('a repeated', 'A repeated')]) assert.ok(b.includes(t), t);
+  assert.ok(/Ward \(legacy\)/.test(b) && /not the current 250/.test(b));
+  assert.ok(files['patterns.html'].includes('href="planner-brief.html"'));
+  assert.ok(/@media print/.test(read('assets/site.css')));
+});

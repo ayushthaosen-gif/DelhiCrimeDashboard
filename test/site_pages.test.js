@@ -30,7 +30,7 @@ test('the committed pages and data file are exactly what the build produces', ()
 });
 
 test('every page has the shared shell: skip link, one current page in the section nav, theme button, language, viewport, title', () => {
-  assert.deepEqual(PAGES.map(p => p.file), ['index.html', 'explore.html', 'road-safety.html', 'planning.html', '3d-map.html', 'data-methods.html']);
+  assert.deepEqual(PAGES.map(p => p.file), ['index.html', 'explore.html', 'road-safety.html', 'patterns.html', 'planning.html', '3d-map.html', 'data-methods.html']);
   for (const p of PAGES) {
     const html = files[p.file];
     assert.match(html, /^<!doctype html>\n<html lang="en"/);

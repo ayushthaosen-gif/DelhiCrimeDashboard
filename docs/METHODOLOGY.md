@@ -51,6 +51,10 @@ The intervention views (`scripts/build_interventions.js`) are rules, not scores:
 - **Pedestrian corridors**: roads printed against two or more pedestrian-prone 2024 zones. A printed road name, not a measured stretch.
 - **Sparsely mapped surroundings** is shown for context only and not used to rank, because 80 of 93 zones have no mapped crossing within 250 m.
 
-## 8. Monitoring newer data
+## 8. Trends and patterns
+
+`scripts/lib/patterns.js` computes every figure on the Trends and patterns page and the planner brief from committed files. Crime over time uses the Delhi-wide printed totals; each step between years takes its state (comparable, caution, not comparable, no figure) from `data/continuity.json`, and the chart leaves a gap where a step is not comparable or a figure is missing. District crime is registered IPC/BNS cases per 1 lakh residents (approximate resident population, which excludes visitors). Mapped densities are compared with it by Spearman rank correlation over the 15 districts; with 15 districts a value between about -0.5 and +0.5 cannot be told apart from chance, and the page says so. Places and roads come from the recurrence rules in section 7. The page describes patterns; it makes no causal claim, and its "what tends to help" list is labelled general practice, not a finding from this data.
+
+## 9. Monitoring newer data
 
 A weekly job (`.github/workflows/pipeline-2025-monitor.yml`) looks for new NCRB, Delhi Traffic Police, iRAD and Excise releases and opens or updates one issue. It downloads and integrates nothing; a person reviews, collects, validates and opens a pull request ([pipeline README](../tools/pipeline_2025/README.md)).
