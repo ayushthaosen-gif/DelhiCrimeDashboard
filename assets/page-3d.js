@@ -204,6 +204,7 @@
       hin ? h('span', { class: 'hin' }, 'High-injury network #' + p.highInjuryNetworkRank) : null,
       h('div', null, rows),
       h('span', { class: 'src' }, 'Rank is among wards with a value above zero. Crime figures are district-level, not ward-level.'),
+      p.Ward_No != null ? h('a', { href: 'planning.html' + D.hashOf({ layer: 'zfatal', ward: String(p.Ward_No) }), style: 'font-size:14px' }, 'Why this place? Open in Planning mode') : null,
       p.assignedDistrict ? h('a', { href: 'explore.html' + D.hashOf({ topic: 'crime', metric: 'theft', year: 2024, district: p.assignedDistrict }), style: 'font-size:14px' }, 'See ' + p.assignedDistrict + ' district in Explore') : null);
     overlays.appendChild(ui.detail);
   }

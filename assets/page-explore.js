@@ -330,6 +330,9 @@
       rows.map(function (r) {
         return h('div', { class: 'infra-row' }, h('span', null, r.label, h('span', { class: 'src' }, r.src)), h('span', null, r.flag ? h('span', { class: 'flag' }, r.flag) : null, h('span', { class: 'v' }, r.value)));
       })));
+    var prof = window.DSO_PROFILES && D.why ? window.DSO_PROFILES.districtRows.filter(function (r) { return r.district === sd.name; })[0] : null;
+    if (prof) body.appendChild(h('details', { class: 'why-details' }, h('summary', { style: 'cursor:pointer;font-weight:600' }, 'Why this place? Sources, uncertainty and limits'), D.why.render(D.why.buildDistrict(prof))));
+    body.appendChild(h('a', { href: 'data/profiles/district_profiles.csv', style: 'font-size:13.5px' }, 'Download all district profiles (CSV)'));
     sec.appendChild(body);
     return sec;
   }
