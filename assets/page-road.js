@@ -150,20 +150,30 @@
       h('a', { href: 'data/releases/road_enforcement_2019_2022/manifest.json' }, 'release manifest'), '. Not independently reviewed.'));
   }
 
-  // ---- crash-prone zones (2023 list, 107 zones, sorted as in the source) ----
+  // ---- crash-prone zones, 2016 to 2024 ----
+  var YEARS_ALL = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+  var ZONE_TABLE = { 2016: 'Table 10.1', 2017: 'Table 10.1(a)', 2018: 'Table 10.2', 2019: 'Table 10.2', 2020: 'Table 7.2', 2021: 'Table 6.28' };
+  function zoneTip(y) {
+    var n = (R['zones' + y] || []).length, tail = ' Zones differ from year to year, so a change in a count is not a change in risk.';
+    if (y === 2022) return 'The official Delhi Traffic Police list of 117 zones in the 2022 report (Table 6.41), sorted by fatal crashes as in the source. That table prints no road and no coordinates. A road is shown (marked †) only where a later report assigns one to the same place name; otherwise it is blank, and none is plotted on the map.' + tail;
+    if (y === 2024) return 'The 93 named zones of the 2024 report. The 88 ranked in Table 6.29 are sorted by fatal crashes as in the source; the other 5 appear only in the report\'s category lists (pedestrian, two-wheeler and so on), so their crash counts are blank, not zero. The report\'s district table counts 111 zones, more than the 93 names recovered.' + tail;
+    if (y === 2023) return 'The official Delhi Traffic Police list of 107 zones, sorted by fatal crashes as in the source. 105 of 107 fall inside a district and are plotted on the map; 2 sit just outside the simplified boundaries. The 2024 list names different zones, so a change in the count is not a change in risk.';
+    if (y === 2016) return 'The ' + n + ' named zones of the 2016 report (' + ZONE_TABLE[y] + '), listed alphabetically as printed (the number is the list position, not a rank), with the road printed beside each. No coordinates are given.' + tail;
+    return 'The ' + n + ' named zones of the ' + y + ' report (' + ZONE_TABLE[y] + '), sorted by fatal crashes as printed. ' + (y === 2021 ? 'That table prints no road, so the road column is blank. ' : 'The road is the one printed beside each zone. ') + 'No coordinates are given.' + tail;
+  }
   function renderZones() {
     var sec = D.$('#zones');
     var q = st.query.trim().toLowerCase();
     var list = R['zones' + st.zoneYear], count0 = list.length;
     var all = list.map(function (z, i) { return { rank: i + 1, name: z[0], road: z[1], fatal: z[2], total: z[3], derived: z[4] === 1 }; });
-    var filt = q ? all.filter(function (z) { return (z.name + ' ' + z.road).toLowerCase().indexOf(q) >= 0; }) : all;
+    var filt = q ? all.filter(function (z) { return (z.name + ' ' + (z.road || '')).toLowerCase().indexOf(q) >= 0; }) : all;
     var zones = st.allZones || q ? filt : filt.slice(0, 10);
     var body = sec.querySelector('tbody'), count = sec.querySelector('.zcount'), toggle = sec.querySelector('.ztoggle');
     if (!body) {
       D.clear(sec);
       var input = h('input', { type: 'search', class: 'search', placeholder: 'Search location or road', 'aria-label': 'Search crash-prone zones', oninput: function (e) { st.query = e.target.value; renderZones(); } });
       sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', { class: 'ztitle' }), h('span', { class: 'ztip' }),
-        seg([[2022, '2022'], [2023, '2023'], [2024, '2024']], st.zoneYear, function (y) { st.zoneYear = y; st.query = ''; input.value = ''; renderZones(); syncZoneSeg(); }, 'zy')), input));
+        seg(YEARS_ALL.map(function (y) { return [y, String(y)]; }), st.zoneYear, function (y) { st.zoneYear = y; st.query = ''; input.value = ''; renderZones(); syncZoneSeg(); }, 'zy')), input));
       sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl zone-tbl', style: 'min-width:480px' },
         h('thead', null, h('tr', null, h('th', { scope: 'col' }, '#'), h('th', { scope: 'col' }, 'Location'), h('th', { scope: 'col' }, 'Road'), h('th', { scope: 'col', class: 'n' }, 'Fatal'), h('th', { scope: 'col', class: 'n' }, 'All crashes'))),
         h('tbody', null))));
@@ -175,15 +185,11 @@
     var tipHost = sec.querySelector('.ztip');
     if (tipHost.getAttribute('data-year') !== String(st.zoneYear)) {
       tipHost.setAttribute('data-year', String(st.zoneYear));
-      D.clear(tipHost).appendChild(D.tip('About crash-prone zones', st.zoneYear === 2022
-        ? 'The official Delhi Traffic Police list of 117 zones in the 2022 report (Table 6.41), sorted by fatal crashes as in the source. That table prints no road and no coordinates. A road is shown (marked †) only where a later report assigns one to the same place name; otherwise it is blank, and none is plotted on the map. Zones differ from year to year, so a change in a count is not a change in risk.'
-        : st.zoneYear === 2024
-        ? 'The 93 named zones of the 2024 report. The 88 ranked in Table 6.29 are sorted by fatal crashes as in the source; the other 5 appear only in the report\'s category lists (pedestrian, two-wheeler and so on), so their crash counts are blank, not zero. The report\'s district table counts 111 zones, more than the 93 names recovered. Zones differ from year to year, so a change in a count is not a change in risk.'
-        : 'The official Delhi Traffic Police list of 107 zones, sorted by fatal crashes as in the source. 105 of 107 fall inside a district and are plotted on the map; 2 sit just outside the simplified boundaries. The 2024 list names different zones, so a change in the count is not a change in risk.'));
+      D.clear(tipHost).appendChild(D.tip('About crash-prone zones', zoneTip(st.zoneYear)));
     }
     D.clear(body);
     zones.forEach(function (z) { body.appendChild(h('tr', null, h('td', { class: 'rk' }, z.rank), h('td', { style: 'font-weight:500' }, z.name), h('td', { class: 'muted', title: z.derived ? 'Road identified from a later report; the 2022 table prints no road' : null }, z.road == null ? '—' : z.road, z.derived ? h('sup', null, '†') : null), h('td', { class: 'n' }, z.fatal == null ? '—' : z.fatal), h('td', { class: 'n' }, z.total == null ? '—' : z.total))); });
-    count.textContent = q ? filt.length + ' of ' + count0 + ' zones match' : 'Showing ' + zones.length + ' of ' + count0 + ' zones';
+    count.textContent = (q ? filt.length + ' of ' + count0 + ' zones match' : 'Showing ' + zones.length + ' of ' + count0 + ' zones') + (st.zoneYear === 2016 ? ' · listed alphabetically' : '') + (st.zoneYear === 2022 ? ' · † road from a later report' : '');
     toggle.hidden = !!q;
     toggle.textContent = st.allZones ? 'Show top 10' : 'Show all ' + count0;
   }
@@ -192,11 +198,13 @@
   function renderRoads() {
     var sec = D.clear(D.$('#roads'));
     sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', null, 'Roads with most zones'),
-      D.tip('About this table', 'Crashes recorded within the identified zones on each road, not the road\'s full crash count. Table 6.33 of the 2023 and 2024 reports, Table 6.45 of the 2022 report. Sorted by fatal crashes; top 12 shown.', { right: true })),
-      seg([[2022, '2022'], [2023, '2023'], [2024, '2024']], st.roadYear, function (y) { st.roadYear = y; keepFocus(renderRoads); }, 'ry')));
+      D.tip('About this table', 'Crashes recorded within the identified zones on each road, not the road\'s full crash count. The road-wise zone table of each report (Table 10.5 in 2017, 10.6 in 2018 and 2019, 7.6 in 2020, 6.32 in 2021, 6.45 in 2022, 6.33 in 2023 and 2024), sorted by fatal crashes here; the top 12 are shown. The 2016 report prints no road table.', { right: true })),
+      seg(YEARS_ALL.map(function (y) { return [y, String(y)]; }), st.roadYear, function (y) { st.roadYear = y; keepFocus(renderRoads); }, 'ry')));
+    if (!R.roads[st.roadYear]) { sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.roadYear + ': no road table. '), 'The 2016 report prints no road-wise table of crash-prone zones, so none is shown. Its text names the roads with most zones (Ring Road 27, Outer Ring Road 17, GTK Road 11, Wazirabad Road 6, Mathura Road 6); the road printed beside each 2016 zone is in the zone table above.')); return; }
     sec.appendChild(h('div', { style: 'display:flex;flex-direction:column' },
       h('div', { class: 'road-row h' }, h('span', null, 'Road'), h('span', null, 'Zones'), h('span', null, 'Fatal'), h('span', null, 'All')),
       R.roads[st.roadYear].map(function (r) { return h('div', { class: 'road-row' }, h('span', { title: r[0] }, r[0]), h('span', null, r[1]), h('span', null, r[2]), h('span', null, r[3])); })));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Top 12 of ' + R.roadRows[st.roadYear] + ' roads printed in the ' + st.roadYear + ' report. Selected zones on each road, not whole-road counts.'));
   }
 
   // ---- district tables, 2016 to 2024: whole-district crashes and crashes within selected zones ----
