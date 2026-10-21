@@ -130,7 +130,6 @@
     }
     var card = h('div', { class: 'hover-card', hidden: true });
     var box = h('div', { class: 'map-box' }, svg, card);
-    box.addEventListener('mousemove', function (e) { var r = box.getBoundingClientRect(); card._x = e.clientX - r.left; card._y = e.clientY - r.top; card._w = r.width; place(); });
     box.addEventListener('mouseleave', function () { setHover(null); });
     mapEls = { paths: paths, hov: hov, card: card, l: l, rk: rk };
 
@@ -145,13 +144,8 @@
       h('div', { class: 'none' }, h('svg', { width: 22, height: 12, 'aria-hidden': 'true' }, h('rect', { width: 22, height: 12, rx: 2, style: 'fill:url(#plHatch)' })), 'No figure'));
     var s = P.schema.ward[fieldOf(l)];
     var warn = (l.g === 'Crash severity') ? 'Crash-zone positions were placed by hand (accurate to 150 m up to 5 km), so a zone can belong to a neighbouring ward. Counts are within zones, not ward totals.' : (s && s[2] === 'mapped_osm') ? 'Mapped in OpenStreetMap: a low or zero value often means the area is not mapped.' : '';
-    return h('section', { class: 'panel map pl-map', 'aria-label': 'Ward map' }, h('div', { class: 'map-body' }, box, legend, warn ? h('p', { class: 'callout warn', style: 'font-size:13.5px' }, warn) : null,
+    return h('section', { class: 'panel map pl-map', 'aria-label': 'Ward map' }, h('div', { class: 'map-body' }, box, legend, warn ? h('p', { class: 'callout warn pl-cau', style: 'font-size:13.5px' }, warn) : null,
       h('p', { class: 'pl-note' }, 'Legacy ward geography (290 wards, before the 2022 delimitation), not the current 250 MCD wards. Boundaries are simplified for display.')));
-  }
-  function place() {
-    if (!mapEls || !st.hover) return;
-    var c = mapEls.card;
-    c.style.left = Math.max(0, Math.min((c._x || 0) + 16, (c._w || 600) - 220)) + 'px'; c.style.top = Math.max(0, (c._y || 0) + 16) + 'px';
   }
   function setHover(no) {
     st.hover = no;
@@ -164,7 +158,7 @@
       c.appendChild(h('span', null, w.row.assigned_district || 'No assigned district'));
       c.appendChild(h('span', { class: 'v' }, fmtV(v, mapEls.l)));
       c.appendChild(h('span', null, v > 0 ? D.ord(mapEls.rk.rank[no]) + ' of ' + mapEls.rk.rows.length + ' wards with a value' : v === 0 ? mapEls.l.zero : 'no figure'));
-      c.hidden = false; place();
+      c.hidden = false;
     } else c.hidden = true;
   }
 
@@ -262,7 +256,7 @@
       return h('button', { type: 'button', role: 'tab', 'aria-selected': String(vs.tab === t[0]), 'data-key': 'vt-' + t[0], onclick: function () { vs.tab = t[0]; keepFocus(renderViews); } }, t[1]);
     }));
   }
-  function openWard(no) { if (!no) return; set({ sel: no }); var w = D.$('#plWork'); if (w && w.scrollIntoView) w.scrollIntoView(); }
+  function openWard(no) { if (!no) return; set({ sel: no }); var w = D.$('#plWork'), tb = D.$('.toolbar'); if (w) window.scrollTo({ top: Math.max(0, w.getBoundingClientRect().top + window.pageYOffset - (tb ? tb.offsetHeight : 0) - 8), behavior: 'smooth' }); }
   function strip(years) {
     var all = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
     return h('span', { class: 'ystrip', role: 'img', 'aria-label': 'Listed in ' + years.length + ' of 9 reports: ' + years.join(', ') }, all.map(function (y) { return h('i', { class: years.indexOf(y) >= 0 ? 'on' : '', title: String(y) }); }));

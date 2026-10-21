@@ -478,3 +478,8 @@ body.map3d { display: flex; flex-direction: column; }
 .ystrip i.on { background: var(--bar); border-color: var(--bar); }
 .why-audit { margin-top: 4px; }
 .why-audit summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent); }
+.page-head .lead { font-size: 17px; color: var(--ink); }
+.page-head .pl-sub { font-size: 13.5px; color: var(--ink3); }
+.pl-cau { background: var(--cauBg); padding: 8px 12px 8px 16px; border-radius: 0 6px 6px 0; color: var(--ink); }
+.pl-cau .why-list { color: var(--ink); }
+.pl-map .hover-card { top: 10px; left: 10px; }

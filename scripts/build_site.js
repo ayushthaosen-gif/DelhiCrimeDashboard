@@ -133,7 +133,7 @@ function roadSafety(updated) {
 function planning() {
   return '<div class="toolbar" role="region" aria-label="Choose a layer"><div class="wrap" id="plToolbar"></div></div>\n'
     + '<main id="main" class="page" style="padding-top:20px">\n'
-    + '<div class="page-head"><h1>Planning mode</h1><p>For urban planners, journalists and researchers: see the crash and infrastructure context the data holds for a ward, with its year, source, coverage and uncertainty stated beside it, then take an evidence pack to a field visit. Crash layers show the locations the Traffic Police list as crash-prone, placed approximately; infrastructure layers are what volunteers have mapped in OpenStreetMap. Nothing here says what caused a crash or what should be built.</p></div>\n'
+    + '<div class="page-head"><h1>Planning mode</h1><p class="lead">For urban planners, journalists and researchers: see the crash and infrastructure context the data holds for a ward, with its year, source, coverage and uncertainty stated beside it, then take an evidence pack to a field visit.</p><p class="pl-sub">Crash layers show the locations the Traffic Police list as crash-prone, placed approximately; infrastructure layers are what volunteers have mapped in OpenStreetMap. Nothing here says what caused a crash or what should be built.</p></div>\n'
     + '<div class="workspace" id="plWork"></div>\n'
     + '<section id="plViews" class="card" aria-label="Where the reports keep pointing" style="scroll-margin-top:16px"></section>\n</main>';
 }
