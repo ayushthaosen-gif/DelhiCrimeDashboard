@@ -27,7 +27,7 @@ District crime comes from NCRB *Crime in India* district tables (2022 to 2024 di
 
 - **Citywide trend** (2011 to 2024): counts from Delhi Traffic Police annual data; not rates.
 - **District and crash-prone-zone counts** (2016 to 2024): from the annual Road Crash Reports. These are counts *within the crash-prone zones the report selected that year*, not all crashes in the district. The zone list changes every year, so totals are comparable only with caution.
-- **Named zones and roads** (2016 to 2024): the printed zone names and, where printed, the road they are on. 2022 shows 67 road labels supplied by later reports, marked as such.
+- **Named zones and roads** (2013 to 2024): the printed zone names and, where printed, the road they are on. 2013 and 2014 come from an official Delhi PWD compilation (no grand total; sums are of the rows); 2015 road groups are calculated by exact printed label and shown as calculated. 2011 and 2012 appear only as 13 retrospective highway and ring-road stretches. 2022 shows 67 road labels supplied by later reports, marked as such.
 - **Enforcement** (2019 to 2024): hit-and-run fatal crashes, drink-driving prosecutions and over-speeding notices, citywide.
 - **Zone positions.** Only 2023 and 2024 zones are mapped. Their coordinates were placed by hand from public sources and carry a stated accuracy of 150 m to 5 km. They are not police geotags ([audit](CRASH_ZONE_COORDINATES.md)).
 - **iRAD** district reports are a different series, collected by revenue district, and are never combined with Traffic Police figures.

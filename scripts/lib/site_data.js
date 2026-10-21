@@ -169,6 +169,19 @@ function buildRoads() {
     roads[y] = rows.map((r, i) => ({ r, i })).sort((a, b) => b.r.fatal_crashes - a.r.fatal_crashes || a.i - b.i).slice(0, 12).map(o => [o.r.road_as_printed, o.r.crash_prone_zones, o.r.fatal_crashes, o.r.total_crashes]);
   }
   [2022, 2023, 2024].forEach(y => { out.roadRows[y] = out.roadRows[y] || (y === 2022 ? 32 : 35); });
+  // 2013 to 2015 and 2011 to 2012 (data/releases/road_zones_roads_2011_2015/): named zones as printed (2013 and 2014 from the PWD compilation, 2015 from
+  // Table 10.1), 2015 road groups calculated by exact printed label (derived, not a printed table), and the retrospective 2011 and 2012 stretches.
+  // 2013 and 2014 print no road table and 2011 and 2012 no zone list; those stay unavailable, not zero.
+  const RE = 'data/releases/road_zones_roads_2011_2015/';
+  const early = read(RE + 'named_zones_2013_2015.json'), road15 = read(RE + 'roads_2015_derived_exact_labels.json'), stretch = read(RE + 'roads_2011_2012_retrospective.json');
+  for (let y = 2013; y <= 2015; y++) {
+    out['zones' + y] = early.filter(z => z.reference_year === y).sort((a, b) => a.serial - b.serial).map(z => [z.name_as_printed, z.road_as_printed, z.fatal_crashes, z.total_crashes, 0]);
+  }
+  roads[2015] = road15.map((r, i) => ({ r, i })).sort((a, b) => b.r.fatal_crashes - a.r.fatal_crashes || a.i - b.i).slice(0, 12).map(o => [o.r.road_as_printed, o.r.crash_prone_zones, o.r.fatal_crashes, o.r.total_crashes]);
+  out.roadRows[2015] = road15.length;
+  out.roadsDerived = { 2015: true };
+  out.stretches = {};
+  [2011, 2012].forEach(y => { out.stretches[y] = stretch.filter(r => r.reference_year === y).map(r => [r.road_group_as_printed, r.road_as_printed, r.fatal_crashes, r.simple_crashes, r.noninjury_crashes, r.total_crashes]); });
   return out;
 }
 

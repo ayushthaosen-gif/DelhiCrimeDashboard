@@ -127,7 +127,7 @@ test('2022 road tables are on the site: selected-zone counts by district, 117 na
   assert.equal(dz.length, 15);
   assert.equal(siteData.ROADS.zones2022.length, 117);
   assert.equal(siteData.ROADS.roads['2022'].length, 12);
-  assert.deepEqual(Object.keys(siteData.ROADS.roads), ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']);
+  assert.deepEqual(Object.keys(siteData.ROADS.roads), ['2015', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024']);
   const originals = json(rel + 'crash_prone_zones.json');
   const overlay = json(rel + 'zones_2022_roads_from_later_reports.json');
   let filled = 0;
@@ -173,7 +173,7 @@ test('the 2024 zone list is the named-zone file: 93 zones, ranked ones first, un
   assert.equal(ranked.length, 88);
   assert.ok(z.slice(0, 88).every(r => r[3] != null) && z.slice(88).every(r => r[2] == null && r[3] == null), 'ranked zones come first; the rest keep null counts');
   for (let i = 1; i < 88; i++) assert.ok(z[i - 1][2] >= z[i][2], 'sorted by fatal crashes as in Table 6.29');
-  assert.ok(read('assets/page-road.js').includes('YEARS_ALL.map') && read('assets/page-road.js').includes('2023, 2024]'), 'the zone table offers every year from 2016 to 2024');
+  assert.ok(read('assets/page-road.js').includes('YEARS_ZONES.map') && read('assets/page-road.js').includes('2023, 2024]'), 'the zone table offers every year from 2013 to 2024');
 });
 
 test('historical district tables: every year has its printed geography, rows add up to the printed totals, omissions are named, nothing is zero by default', () => {
