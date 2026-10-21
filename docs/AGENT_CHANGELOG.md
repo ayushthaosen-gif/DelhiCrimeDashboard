@@ -1,3 +1,9 @@
+## [2026-10-22] - Claude (Anthropic) - Phase 3, step 5: release watch in the source monitor
+
+- The weekly monitor already covered NCRB, Delhi Traffic Police, iRAD and Excise for 2025 (discovery only, one issue, nothing integrated). Added a **Release watch** table at the top of the note: for each of the four families, whether a link matches both the dataset title and the year, nothing matches yet, or the source could not be reached. A lead not present in the baseline now opens or updates the issue by itself. A match is a lead, not proof; an unreachable source says nothing either way. Documented in `tools/pipeline_2025/README.md`, including moving the monitor to 2026 and refreshing the baseline once 2025 is integrated.
+- `source_diff.py` (`release_watch`, extended `diff_sources` and `render`) and two new tests in `tests/test_source_diff.py`. The pipeline's pytest suite was not run locally (pytest and its dependencies are not installed here; the module is standard-library only and its test functions were run directly: 11 pass). CI runs the full suite.
+- No change to what is collected or integrated; certificate verification stays on.
+
 ## [2026-10-22] - Claude (Anthropic) - Phase 3, step 4: field-audit areas, recurring locations, pedestrian corridors
 
 - **Planning mode now has three intervention views** (`scripts/build_interventions.js`, outputs in `data/profiles/`, hashes in `interventions_manifest.json`):

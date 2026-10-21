@@ -56,6 +56,49 @@ def load_known_urls(path: str | Path) -> set[str]:
     return urls
 
 
+FAMILIES = (
+    ("ncrb", "NCRB Crime in India"),
+    ("delhi_traffic", "Delhi Traffic Police annual road crash report"),
+    ("irad", "iRAD / eDAR district reports"),
+    ("excise", "Delhi Excise preferred-vend lists"),
+    ("dscsc", "Delhi Excise preferred-vend lists"),
+)
+
+
+def _family(source_id: str) -> str | None:
+    for prefix, label in FAMILIES:
+        if (source_id or "").startswith(prefix):
+            return label
+    return None
+
+
+def release_watch(manifest: dict) -> dict:
+    """Per family: unreachable, a link that matches both the dataset title and the year, or nothing yet.
+
+    A title-and-year match is a lead for a person to open, not proof that a release exists.
+    """
+    state = {}
+    for source in manifest.get("sources", []):
+        label = _family(source.get("source_id"))
+        if not label:
+            continue
+        exact = [
+            c
+            for c in source.get("candidates") or []
+            if {"dataset title pattern", "requested year"} <= set(c.get("reasons") or [])
+        ]
+        if exact:
+            status = "lead"
+        elif source.get("error"):
+            status = "unreachable"
+        else:
+            status = "none"
+        rank = {"lead": 2, "none": 1, "unreachable": 0}
+        if label not in state or rank[status] > rank[state[label]]:
+            state[label] = status
+    return state
+
+
 def _index(manifest: dict) -> tuple[dict, dict]:
     """-> ({(source_id, url): candidate}, {source_id: error or None})"""
     candidates, errors = {}, {}
@@ -109,14 +152,19 @@ def diff_sources(baseline: dict, current: dict, known_urls: set[str] | None = No
     added.sort(
         key=lambda c: (not c["selected"], -(c["score"] or 0), c["source_id"], c["url"] or "")
     )
+    watch_old, watch_new = release_watch(baseline), release_watch(current)
+    watch = [{"family": k, "before": watch_old.get(k), "now": v} for k, v in watch_new.items()]
+    new_leads = [w for w in watch if w["now"] == "lead" and w["before"] != "lead"]
     return {
+        "release_watch": watch,
+        "new_release_leads": [w["family"] for w in new_leads],
         "added": added,
         "removed_selected": removed,
         "status_changed": status,
         "skipped_noise": skipped_noise,
         "skipped_known": skipped_known,
         "unverifiable_removed": unverifiable,
-        "changed": bool(added or removed or status),
+        "changed": bool(added or removed or status or new_leads),
     }
 
 
@@ -132,6 +180,22 @@ def render(result: dict, baseline_path: str, limit: int = 25) -> str:
         "dashboard changes only after that is approved.",
         "",
     ]
+    if result.get("release_watch"):
+        words = {
+            "lead": "a link matches the dataset and the year: open it",
+            "none": "no matching release found yet",
+            "unreachable": "could not be reached this week",
+        }
+        lines += ["## Release watch", "", "| Source | Now | Last reviewed |", "|---|---|---|"]
+        for w in result["release_watch"]:
+            before = words.get(w["before"], "not in the baseline")
+            lines.append(f"| {w['family']} | {words[w['now']]} | {before} |")
+        lines += [
+            "",
+            "A match is a lead to open and read, not proof of a release; an unreachable source "
+            "says nothing either way.",
+            "",
+        ]
     if result["added"]:
         shown = min(limit, len(result["added"]))
         lines += [
