@@ -8,7 +8,7 @@ An open-data observatory for crime, road safety, infrastructure and urban form a
 
 Prototypes (exploration tools, not citable sources): [3D crash-zone and ward explorer](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d.html) · [Master Plan 2047 comparison](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/map_3d_mpd.html) · [district iRAD reports, 2025 and 2026](https://ayushthaosen-gif.github.io/DelhiCrimeDashboard/irad_stations.html)
 
-The site is six pages that share a header, a theme (light or dark) and a data file: [`index.html`](index.html) (overview), [`explore.html`](explore.html), [`road-safety.html`](road-safety.html), [`planning.html`](planning.html), [`3d-map.html`](3d-map.html) and [`data-methods.html`](data-methods.html). Serve the folder (for example `python -m http.server`) and open `index.html`; the pages read `assets/site-data.js` and, for the 3D map, files under `data/`. The earlier one-file dashboard, [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html), still opens straight from disk with no server.
+The site is seven pages sharing a header, theme and data file: `index` (overview), `explore`, `road-safety`, `patterns`, `planning`, `3d-map` and `data-methods` (each `.html`). Serve the folder (for example `python -m http.server`) and open `index.html`; the pages read `assets/site-data.js` and, for the 3D map, files under `data/`. The earlier one-file dashboard, [`delhi_safety_dashboard.html`](delhi_safety_dashboard.html), still opens straight from disk with no server.
 
 ## What data is here, and how current is it
 
@@ -90,7 +90,7 @@ npm run build:interactive-map
 npm run build:releases
 ```
 
-Edit `scripts/build.js`, `scripts/build_interactive_map.js` and `scripts/build_site.js` rather than the generated HTML (the site's styles and behaviour are hand-written in `assets/site.css`, `assets/site.js` and `assets/page-*.js`). `npm run build:site` regenerates the six pages and `assets/site-data.js`. CI rebuilds everything and fails if a committed output differs.
+Edit `scripts/build.js`, `scripts/build_interactive_map.js` and `scripts/build_site.js` rather than the generated HTML (the site's styles and behaviour are hand-written in `assets/site.css`, `assets/site.js` and `assets/page-*.js`). `npm run build:site` regenerates the seven pages and `assets/site-data.js`. CI rebuilds everything and fails if a committed output differs.
 
 ## Licence and citation
 
