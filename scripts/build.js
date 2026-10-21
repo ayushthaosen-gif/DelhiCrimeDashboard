@@ -3141,13 +3141,13 @@ const UT_NOUN = { totalIPC: 'IPC/BNS crimes registered', theft: 'theft', robbery
 
 function utRow(year) { return UT_SERIES.find(r => r.year === Number(year)); }
 function utValue(row, key) {
-  if (!row || row.status !== 'printed') return null;
+  if (!row || row.status === 'not_collected') return null;
   const fields = UT_FIELDS[key] || [];
   for (let i = 0; i < fields.length; i++) { if (row[fields[i]] != null) return row[fields[i]]; }
   return null;
 }
 function utHead(row, key) {
-  if (key !== 'burglary' || !row || row.status !== 'printed') return '';
+  if (key !== 'burglary' || !row || row.status === 'not_collected') return '';
   if (row.burglary != null) return 'later burglary definition';
   if (row.criminal_trespass_burglary_revised_head != null) return 'revised criminal trespass/burglary head';
   return row.burglary_old_head != null ? 'original burglary head' : '';
@@ -3177,13 +3177,14 @@ function renderHeadlineCards() {
   const notes = [];
   if (topicOf(m) === 'crime') {
     const row = utRow(year);
-    if (!row || row.status !== 'printed') {
-      const latest = UT_SERIES.filter(r => r.status === 'printed').slice(-1)[0].year;
-      html = '<div class="hcard hcard-wide"><div class="hcard-label">Delhi-wide registered crime, ' + year + '</div><div class="hcard-value"><span class="hcard-none">Not collected yet</span></div><div class="hcard-sub">The printed Delhi UT totals have not been collected for ' + year + ' (they exist for 2011 to 2015 and 2022 to 2024). The map and table below still show the districts.</div><div class="hcard-change"><button type="button" class="dl-mini-btn" data-ut-year="' + latest + '">Show ' + latest + '</button></div></div>';
+    if (!row || row.status === 'not_collected') {
+      const latest = UT_SERIES.filter(r => r.status !== 'not_collected').slice(-1)[0].year;
+      html = '<div class="hcard hcard-wide"><div class="hcard-label">Delhi-wide registered crime, ' + year + '</div><div class="hcard-value"><span class="hcard-none">Not collected yet</span></div><div class="hcard-sub">The printed Delhi UT totals have not been collected for ' + year + '. The map and table below still show the districts.</div><div class="hcard-change"><button type="button" class="dl-mini-btn" data-ut-year="' + latest + '">Show ' + latest + '</button></div></div>';
     } else {
       html = ['totalIPC', 'theft', 'crimeAgainstWomen'].map(key => {
         const v = utValue(row, key);
         const sub = 'Delhi-wide, calendar year ' + year;
+        if (v == null && row.status === 'printed_totals_only') return hcard(UT_LABEL[key], null, sub, 'Head-wise figures for 2016 to 2020 are not extracted yet; the total is printed.', 'unavailable');
         if (year <= CONTINUITY.yearRange[0]) return hcard(UT_LABEL[key], v, sub, '', '');
         const info = utCompare(key, year - 1, year);
         if (v != null && info.cmp.state !== 'comparable') info.cmp.reasons.forEach(x => { if (notes.indexOf(x) < 0) notes.push(x); });
@@ -3245,7 +3246,7 @@ function utChartHtml(key) {
     s += '<rect class="ut-gap" x="' + (x(y) - step / 2).toFixed(1) + '" y="' + T + '" width="' + step.toFixed(1) + '" height="' + (H - T - B) + '"></rect>';
   });
   const gapLabel = (from, to, text) => { if (vals[from - first] == null && vals[to - first] == null) s += '<text class="ut-note" x="' + ((x(from) + x(to)) / 2).toFixed(1) + '" y="' + (T + 14) + '" text-anchor="middle">' + text + '</text>'; };
-  gapLabel(2016, 2021, 'not collected yet');
+  if (['theft', 'robbery', 'burglary'].indexOf(key) >= 0) gapLabel(2016, 2020, 'head-wise figures not extracted yet');
   gapLabel(2011, 2013, key === 'crimeAgainstWomen' || key === 'totalSLL' ? 'not reported in the source tables' : '');
   // y axis
   [0, 0.5, 1].forEach(f => {
@@ -3287,7 +3288,7 @@ function utTableHtml(key) {
       badge = contBadge(info.cmp);
       change = info.change == null ? '<span class="cont-none-cell" title="' + esc(info.cmp.reasons.join(' ')) + '">' + (info.cmp.state === 'unavailable' ? 'Not available' : 'Not comparable') + '</span>' : (info.change >= 0 ? '+' : '') + info.change.toFixed(1) + '%';
     }
-    const note = row && row.status === 'not_collected' ? 'Not collected yet' : (v == null ? 'Not reported in the source tables' : utHead(row, key));
+    const note = row && row.status === 'not_collected' ? 'Not collected yet' : (v == null ? (row && row.status === 'printed_totals_only' ? 'Head-wise figure not extracted yet' : 'Not reported in the source tables') : utHead(row, key));
     body += '<tr><th scope="row">' + y + '</th><td>' + (v == null ? 'Not available' : fmtNum(v)) + '</td><td>' + change + '</td><td>' + badge + '</td><td>' + esc(note) + '</td></tr>';
   }
   return '<div class="table-wrap"><table class="view-table"><caption>Delhi-wide ' + esc(UT_NOUN[key]) + ', calendar years 2011 to 2024</caption><thead><tr><th scope="col">Year</th><th scope="col">Registered cases</th><th scope="col">Change from previous year</th><th scope="col">Can I compare?</th><th scope="col">Note</th></tr></thead><tbody>' + body + '</tbody></table></div>';
@@ -3298,7 +3299,7 @@ function utCsv(key) {
   const rows = UT_SERIES.map(r => {
     const v = utValue(r, key);
     const info = r.year > CONTINUITY.yearRange[0] ? utCompare(key, r.year - 1, r.year) : null;
-    return ['Delhi Urban Safety Observatory', 'Delhi UT as printed by NCRB (all reporting units)', UT_LABEL[key], r.year, 'Calendar year', v, r.offence_basis + (utHead(r, key) ? '; ' + utHead(r, key) : ''), r.status === 'printed' ? (v == null ? 'printed, not reported' : 'printed') : 'not collected', info ? CONTINUITY.states[info.cmp.state] : 'First year', info ? info.cmp.reasons.join(' ') : '', r.status === 'printed' ? (r.year <= 2015 ? 'NCRB Crime in India, printed Delhi UT summary' : 'NCRB district-wise tables, printed Total Districts row for Delhi') : '', version];
+    return ['Delhi Urban Safety Observatory', 'Delhi UT as printed by NCRB (all reporting units)', UT_LABEL[key], r.year, 'Calendar year', v, r.offence_basis + (utHead(r, key) ? '; ' + utHead(r, key) : ''), r.status === 'not_collected' ? 'not collected' : (v == null ? (r.status === 'printed_totals_only' ? 'totals printed; head-wise figure not extracted' : 'printed, not reported') : (r.status === 'printed_totals_only' ? 'printed (totals only)' : 'printed')), info ? CONTINUITY.states[info.cmp.state] : 'First year', info ? info.cmp.reasons.join(' ') : '', r.status === 'not_collected' ? '' : (r.year <= 2015 ? 'NCRB Crime in India, printed Delhi UT summary' : (r.year <= 2020 ? 'NCRB Crime in India, State/UT-wise tables (editions compared)' : 'NCRB district-wise tables, printed Total Districts row for Delhi')), version];
   });
   return { headers: headers, rows: rows };
 }
@@ -3309,14 +3310,14 @@ function renderUtBlock() {
   if (topicOf(m) !== 'crime') return;
   const key = UT_FIELDS[m.key] ? m.key : 'totalIPC';
   document.getElementById('utTitle').textContent = 'Delhi-wide ' + UT_NOUN[key] + ' by year';
-  document.getElementById('utDesc').textContent = 'Printed Delhi UT totals, calendar years 2011 to 2024. 2016 to 2021 have not been collected yet, so they are gaps, not zeros. Lines join only years that can be compared.';
+  document.getElementById('utDesc').textContent = 'Printed Delhi UT totals, calendar years 2011 to 2024. Totals are printed for every year; theft, robbery and burglary for 2016 to 2020 are not extracted yet, so they are gaps, not zeros. Lines join only years that can be compared.';
   document.getElementById('utPanelChart').innerHTML = utChartHtml(key);
   document.getElementById('utPanelTable').innerHTML = utTableHtml(key);
   document.getElementById('utPanelDownload').innerHTML = '<p>Download the Delhi-wide series for this measure, one row per year, with the offence definition, whether the year is comparable with the one before and the reason for any break.</p><p><button type="button" class="dl-mini-btn" id="utDownload">Download CSV (Delhi-wide, ' + esc(UT_NOUN[key]) + ')</button> <span class="explainer-status" id="utStatus" role="status" aria-live="polite"></span></p><p class="small">Full release with every measure: <a href="https://github.com/ayushthaosen-gif/DelhiCrimeDashboard/tree/main/data/releases/delhi_ut_series" target="_blank" rel="noopener">data/releases/delhi_ut_series</a></p>';
   document.getElementById('utPanelAbout').innerHTML =
     '<div class="explainer-grid"><div><h3>What am I seeing?</h3><p>The Delhi UT total for ' + esc(UT_NOUN[key]) + ' exactly as NCRB prints it, one value per calendar year.</p></div>' +
     '<div><h3>How do I read it?</h3><p>A point higher on the chart means more registered cases. A solid line joins years that can be compared, a dashed line joins years to compare with caution, and no line means a change in definition or a missing year.</p></div>' +
-    '<div><h3>What are the limits?</h3><p>It includes every reporting unit NCRB lists for Delhi, including specialised units such as Metro and Railway, so it is higher than the sum of the 15 districts. 2016 to 2021 are not collected yet. NCRB changed its reporting format in 2014 and the BNS replaced the IPC in 2024.</p></div>' +
+    '<div><h3>What are the limits?</h3><p>It includes every reporting unit NCRB lists for Delhi, including specialised units such as Metro and Railway, so it is higher than the sum of the 15 districts. Theft, robbery and burglary for 2016 to 2020 are not extracted yet. NCRB changed its reporting format in 2014 and the BNS replaced the IPC in 2024.</p></div>' +
     '<div><h3>Where did it come from?</h3><p>2011 to 2015: the printed Delhi UT summaries of the original Crime in India tables. 2022 to 2024: the printed Total Districts row of the NCRB district-wise tables, which equals the sum of the printed unit rows.</p></div></div>' +
     '<details class="explainer-more"><summary>Definitions</summary>' + glossaryHtml('IPC BNS SLL registered NCRB') + '<p>Burglary is three different definitions (original head to 2013, revised criminal trespass/burglary head 2014 to 2015, later definition from 2022), so the chart shows breaks between them.</p></details>';
   applyTabs('ut');

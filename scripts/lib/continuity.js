@@ -26,9 +26,12 @@ function compareYears(c, key, from, to, district) {
     [from, to].forEach(function (y) {
       if (c.utSeries.printedYears.indexOf(y) < 0) add('unavailable', c.utSeries.gapReason);
     });
+    var hu = c.utSeries.headsUnavailable;
+    if (hu && hu.measures.indexOf(key) >= 0 && (inRange(from, hu.years) || inRange(to, hu.years))) add('unavailable', hu.reason);
   }
   // 1. values that do not exist
   c.availability.forEach(function (a) {
+    if (utScope && a.districtsOnly) return;
     if (a.measures.indexOf(key) >= 0 && (inRange(from, a.years) || inRange(to, a.years))) add('unavailable', a.reason);
   });
   // 1b. a district that did not yet exist
@@ -36,6 +39,7 @@ function compareYears(c, key, from, to, district) {
   if (born && from < born) add('unavailable', district + ' did not exist as a district before ' + born + '.');
   // 2. changes in definition or compilation
   c.definitionBreaks.forEach(function (b) {
+    if (utScope && b.districtsOnly) return;
     if (b.measures.indexOf(key) >= 0 && from <= b.between[0] && b.between[1] <= to) add(b.state, b.reason);
   });
   // 3. changes in geography, district by district when a district is named (Delhi-wide totals ignore district boundaries)

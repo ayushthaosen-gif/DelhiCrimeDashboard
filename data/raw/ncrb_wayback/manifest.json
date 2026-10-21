@@ -1,0 +1,70 @@
+{
+  "purpose": "Official NCRB table files recovered from Internet Archive captures of the original ncrb.gov.in URLs (raw bytes, id_ captures). The live ncrb.gov.in certificate fails the Windows revocation check, so nothing was fetched from it directly.",
+  "fetchedOn": "2026-10-21",
+  "note": "NCRB publishes no checksums. These files are trusted because overlapping years agree across independent editions and with the district workbooks; see data/staged/delhi_ut_series/.",
+  "files": [
+    {
+      "path": "data/raw/ncrb_wayback/cii2021_district_workbooks/districtwise_ipc_crimes_2021.xlsx",
+      "role": "district-wise IPC crimes 2021 (Delhi block, Total Districts row)",
+      "originalUrl": "https://ncrb.gov.in/sites/default/files/CII-2021/1%20Districtwise%20IPC%20Crimes_2021.xlsx",
+      "captureTimestamp": "20230614075536",
+      "archiveUrl": "https://web.archive.org/web/20230614075536id_/https://ncrb.gov.in/sites/default/files/CII-2021/1%20Districtwise%20IPC%20Crimes_2021.xlsx",
+      "bytes": 666132,
+      "sha256": "cb106e68e1368b0748c30c8008580669877a428ba6e77f631cf7fa332e6dd519"
+    },
+    {
+      "path": "data/raw/ncrb_wayback/cii2021_district_workbooks/districtwise_sll_crimes_2021.xlsx",
+      "role": "district-wise SLL crimes 2021",
+      "originalUrl": "https://ncrb.gov.in/sites/default/files/CII-2021/2%20Districtwise%20SLL%20Crimes_2021.xlsx",
+      "captureTimestamp": "20230614075600",
+      "archiveUrl": "https://web.archive.org/web/20230614075600id_/https://ncrb.gov.in/sites/default/files/CII-2021/2%20Districtwise%20SLL%20Crimes_2021.xlsx",
+      "bytes": 410598,
+      "sha256": "9d662b8b6114d409ef38aeb98f0ecfbfca2a1f5d8b3924edadd434f97af88b5d"
+    },
+    {
+      "path": "data/raw/ncrb_wayback/cii2021_district_workbooks/districtwise_crime_against_women_2021.xlsx",
+      "role": "district-wise crime against women 2021",
+      "originalUrl": "https://ncrb.gov.in/sites/default/files/CII-2021/3%20Districtwise%20Crime%20against%20Women_2021.xlsx",
+      "captureTimestamp": "20230614075611",
+      "archiveUrl": "https://web.archive.org/web/20230614075611id_/https://ncrb.gov.in/sites/default/files/CII-2021/3%20Districtwise%20Crime%20against%20Women_2021.xlsx",
+      "bytes": 255073,
+      "sha256": "6e92ac42251503951dee27730e49692e86d9ec77a16238afd4a2360c0f29c0cd"
+    },
+    {
+      "path": "data/raw/ncrb_wayback/cii2021_state_tables/TABLE_1A.1.xlsx",
+      "role": "Table 1A.1 IPC crimes (State/UT-wise) 2019-2021",
+      "originalUrl": "https://ncrb.gov.in/sites/default/files/CII-2021/TABLE%201A.1.xlsx",
+      "captureTimestamp": "20221028041313",
+      "archiveUrl": "https://web.archive.org/web/20221028041313id_/https://ncrb.gov.in/sites/default/files/CII-2021/TABLE%201A.1.xlsx",
+      "bytes": 13493,
+      "sha256": "c41786d90b6d707a7d885ba66572b7bf8feef9decbbfc9fabc39f9b79e4f22a5"
+    },
+    {
+      "path": "data/raw/ncrb_wayback/cii2021_state_tables/TABLE_1A.2.xlsx",
+      "role": "Table 1A.2 SLL crimes (State/UT-wise) 2019-2021",
+      "originalUrl": "https://ncrb.gov.in/sites/default/files/CII-2021/TABLE%201A.2.xlsx",
+      "captureTimestamp": "20221028041341",
+      "archiveUrl": "https://web.archive.org/web/20221028041341id_/https://ncrb.gov.in/sites/default/files/CII-2021/TABLE%201A.2.xlsx",
+      "bytes": 13419,
+      "sha256": "4100361c0bcbbc19f90d9cf2b1175d7256aecc14a741b36583d2fb90440873db"
+    },
+    {
+      "path": "data/raw/ncrb_wayback/cii2021_state_tables/TABLE_1A.3.xlsx",
+      "role": "Table 1A.3 total IPC and SLL crimes (State/UT-wise) 2019-2021",
+      "originalUrl": "https://ncrb.gov.in/sites/default/files/CII-2021/TABLE%201A.3.xlsx",
+      "captureTimestamp": "20221028041501",
+      "archiveUrl": "https://web.archive.org/web/20221028041501id_/https://ncrb.gov.in/sites/default/files/CII-2021/TABLE%201A.3.xlsx",
+      "bytes": 13571,
+      "sha256": "2e526a5272d9c578f021b12d4f48966a53f79f87d70a388f58119082a0688de7"
+    },
+    {
+      "path": "data/raw/ncrb_wayback/cii2021_state_tables/TABLE_3A.1.xlsx",
+      "role": "Table 3A.1 crime against women, IPC+SLL (State/UT-wise) 2019-2021",
+      "originalUrl": "https://ncrb.gov.in/sites/default/files/CII-2021/TABLE%203A.1.xlsx",
+      "captureTimestamp": "20221028041332",
+      "archiveUrl": "https://web.archive.org/web/20221028041332id_/https://ncrb.gov.in/sites/default/files/CII-2021/TABLE%203A.1.xlsx",
+      "bytes": 13350,
+      "sha256": "04678bcb29ffbdcfffc155cf11983f1fbcd364fc08bcb75540b092c81424da35"
+    }
+  ]
+}

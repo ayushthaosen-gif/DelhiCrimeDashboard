@@ -1,8 +1,11 @@
 // Delhi-wide crime series: the Delhi UT totals as NCRB prints them, collected independently of the district tables' sums.
 //   2011-2015: the printed Delhi UT summaries already extracted into data/releases/historical_2011_2015/citywide_crime.json
-//   2022-2024: the printed "Total Districts" row of the Delhi block in NCRB's district-wise tables
-//              (data/staged/delhi_ut_series/printed_totals_2022_2024.json, from tools/delhi_ut_series/extract.py)
-//   2016-2021: not collected yet. The district-level extract for those years deliberately omits totals and is never summed here.
+//   2021-2024: the printed "Total Districts" row of the Delhi block in NCRB's district-wise tables
+//              (data/staged/delhi_ut_series/printed_totals_2021_2024.json, from tools/delhi_ut_series/extract.py)
+//   2016-2020: the Delhi UT totals (IPC, SLL, crimes against women) printed in NCRB's State/UT-wise tables, compared across editions
+//              (data/staged/delhi_ut_series/state_tables_2015_2021.json, from tools/delhi_ut_series/extract_state_tables.py).
+//              Theft, robbery and burglary for those years are blank: the head-wise state tables have not been extracted.
+// The district-level extract for 2016-2021 deliberately omits totals and is never summed here.
 // A blank or dash is null, never zero. Definitions are kept apart: the old burglary head, the revised criminal-trespass/burglary
 // head and the later burglary definition are three different columns.
 const fs = require('node:fs');
@@ -21,7 +24,7 @@ const sha = file => {
 };
 
 const COLUMNS = ['year', 'status', 'scope', 'reporting_units', 'offence_basis', 'theft', 'robbery', 'burglary_old_head', 'criminal_trespass_burglary_revised_head', 'burglary', 'total_ipc_bns', 'total_sll', 'total_crimes_against_women', 'total_crimes_in_which_women_was_victim', 'sources', 'note'];
-const GAP_REASON = 'Not collected yet. The NCRB state/UT tables for this year are not archived in this repository, and the district-level extract for 2016-2021 omits totals on purpose, so no Delhi-wide figure is shown or computed.';
+const HEADS_REASON = 'Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed.';
 
 function basis(year) {
   if (year <= 2013) return 'IPC, NCRB format before 2014';
@@ -32,7 +35,8 @@ function basis(year) {
 
 function build() {
   const hist = read('data/releases/historical_2011_2015/citywide_crime.json');
-  const printed = read('data/staged/delhi_ut_series/printed_totals_2022_2024.json');
+  const printed = read('data/staged/delhi_ut_series/printed_totals_2021_2024.json');
+  const state = read('data/staged/delhi_ut_series/state_tables_2015_2021.json');
   const histManifest = 'data/releases/historical_2011_2015/manifest.json';
   const rows = [];
   for (const r of hist) {
@@ -45,20 +49,33 @@ function build() {
       sources: [histManifest], note: Object.values(r.null_reasons || {}).join(' ')
     });
   }
-  for (let year = 2016; year <= 2021; year++) {
-    rows.push({ year, status: 'not_collected', scope: 'Delhi UT', reporting_units: null, offence_basis: basis(year), theft: null, robbery: null, burglary_old_head: null, criminal_trespass_burglary_revised_head: null, burglary: null, total_ipc_bns: null, total_sll: null, total_crimes_against_women: null, total_crimes_in_which_women_was_victim: null, sources: [], note: GAP_REASON });
+  for (let year = 2016; year <= 2020; year++) {
+    const t = state.years[String(year)];
+    assert(t && t.ipc && t.sll && t.women, `state tables are missing a total for ${year}`);
+    for (const m of ['ipc', 'sll', 'women']) assert.equal(t[m].agree, true, `${year} ${m}: editions disagree`);
+    rows.push({
+      year, status: 'printed_totals_only', scope: 'Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted', reporting_units: null, offence_basis: basis(year),
+      theft: null, robbery: null, burglary_old_head: null, criminal_trespass_burglary_revised_head: null, burglary: null,
+      total_ipc_bns: t.ipc.value, total_sll: t.sll.value, total_crimes_against_women: t.women.value, total_crimes_in_which_women_was_victim: null,
+      sources: ['data/staged/delhi_ut_series/state_tables_2015_2021.json'],
+      note: HEADS_REASON + ' Editions that print this year: IPC ' + t.ipc.editions.join(', ') + '; SLL ' + t.sll.editions.join(', ') + '; crimes against women ' + t.women.editions.join(', ') + '.'
+    });
   }
   const checks = [];
   for (const y of printed.years) {
     const t = y.printedTotal;
     for (const m of Object.keys(t)) assert.equal(y.agreement[m], true, `${y.year} ${m}: printed total does not equal the sum of the printed unit rows`);
     for (const s of y.sources) assert.equal(sha(s.path), s.sha256, `${s.path} changed since extraction`);
+    if (y.year === 2021) {
+      const t = state.years['2021'];
+      assert.deepEqual([y.printedTotal.total_ipc_bns, y.printedTotal.total_sll, y.printedTotal.total_crimes_against_women], [t.ipc.value, t.sll.value, t.women.value], '2021: the district workbooks and the State/UT tables must print the same Delhi totals');
+    }
     rows.push({
       year: y.year, status: 'printed', scope: 'Delhi UT: printed "Total Districts" row of the Delhi block, covering every reporting unit including specialised units; not a sum of the 15 districts',
       reporting_units: y.unitCount, offence_basis: basis(y.year),
       theft: t.theft, robbery: t.robbery, burglary_old_head: null, criminal_trespass_burglary_revised_head: null, burglary: t.burglary,
       total_ipc_bns: t.total_ipc_bns, total_sll: t.total_sll, total_crimes_against_women: t.total_crimes_against_women, total_crimes_in_which_women_was_victim: null,
-      sources: y.sources.map(s => s.path), note: 'Total crimes against women is the IPC/BNS plus SLL total. The printed total equals the sum of the printed unit rows for every figure.'
+      sources: y.sources.map(s => s.path), note: 'Total crimes against women is the IPC/BNS plus SLL total. The printed total equals the sum of the printed unit rows for every figure.' + (y.year === 2021 ? ' The 2021 totals also equal the State/UT tables of Crime in India 2021.' : '')
     });
     // Cross-check against the separately built district release: the printed Delhi total minus the 15 territorial districts must equal the specialised units' printed rows.
     const districts = read(`data/releases/${y.year}/district_crime.json`);
@@ -66,6 +83,7 @@ function build() {
     const map = { theft: 'theft', robbery: 'robbery', burglary: 'burglary', total_ipc_bns: 'total_ipc_bns', total_sll: 'total_sll', total_crimes_against_women: 'crime_against_women' };
     const reconciliation = {};
     for (const [measure, field] of Object.entries(map)) {
+      if (districts.some(d => d[field] == null)) continue; // the 2021 district release has no totals for these figures
       const districtSum = districts.reduce((n, d) => n + d[field], 0);
       const specialised = Object.entries(y.units).filter(([label]) => !territorial.has(label)).reduce((n, [, v]) => n + v[measure], 0);
       assert.equal(t[measure] - districtSum, specialised, `${y.year} ${measure}: printed Delhi total minus the 15 districts must equal the specialised units`);
@@ -86,7 +104,7 @@ function build() {
   for (const [file, text] of Object.entries(files)) fs.writeFileSync(path.join(ROOT, DIR + file), text);
   const manifest = {
     schemaVersion: '1.0.0', title: 'Delhi-wide registered crime, as NCRB prints the Delhi UT totals', status: 'production', generatedBy: 'scripts/build_delhi_ut_series.js',
-    coverage: { printedYears: rows.filter(r => r.status === 'printed').map(r => r.year), notCollectedYears: rows.filter(r => r.status === 'not_collected').map(r => r.year) },
+    coverage: { printedYears: rows.filter(r => r.status === 'printed').map(r => r.year), totalsOnlyYears: rows.filter(r => r.status === 'printed_totals_only').map(r => r.year), notCollectedYears: rows.filter(r => r.status === 'not_collected').map(r => r.year) },
     geography: 'Delhi UT as a whole. Independent of district boundaries, so the district splits of 2016, 2017 and 2019 do not affect it. It includes every reporting unit NCRB lists for Delhi (territorial districts plus specialised units such as Metro, Railway and Crime Branch), so it is higher than the sum of the territorial districts.',
     unit: 'Registered cases; counts, not rates.',
     nullPolicy: 'A blank or dash in a source is null, never zero. Missing years are rows with status not_collected, never filled.',
@@ -100,7 +118,7 @@ function build() {
     sources: [
       { path: histManifest, role: '2011-2015 printed Delhi UT summaries (NCRB Crime in India, original-year tables)', sha256: sha(histManifest) },
       ...printed.years.flatMap(y => y.sources.map(s => ({ path: s.path, role: `${y.year} ${s.table} district-wise table, printed Total Districts row`, sha256: s.sha256 }))),
-      { path: 'data/staged/delhi_ut_series/printed_totals_2022_2024.json', role: 'extraction record with the column headers and the unit-sum agreement check', sha256: sha('data/staged/delhi_ut_series/printed_totals_2022_2024.json') }
+      { path: 'data/staged/delhi_ut_series/printed_totals_2021_2024.json', role: 'extraction record with the column headers and the unit-sum agreement check', sha256: sha('data/staged/delhi_ut_series/printed_totals_2021_2024.json') }
     ],
     verification: checks,
     externalCheck: 'The 2022 total of 300,429 IPC crimes matches the Delhi row of the NCRB Crime in India 2022 state/UT table as quoted in a web search on 2026-10-20; this is a spot check, not a full comparison.',
@@ -112,11 +130,13 @@ function build() {
 **Production.** Delhi UT totals exactly as NCRB prints them, independent of district boundaries. Start with [manifest.json](manifest.json).
 
 - [delhi_ut_crime.csv](delhi_ut_crime.csv) / [JSON](delhi_ut_crime.json): one row per year, 2011 to 2024.
-- 2011-2015 come from the printed Delhi UT summaries; 2022-2024 from the printed "Total Districts" row of NCRB's district-wise tables, which equals the sum of the printed unit rows for every figure.
-- **2016-2021 are rows with status \`not_collected\`.** They are gaps, not zeros, and are never filled by summing districts.
+- 2011-2015 come from the printed Delhi UT summaries; 2021-2024 from the printed "Total Districts" row of NCRB's district-wise tables, which equals the sum of the printed unit rows for every figure (2021 also equals the State/UT tables of Crime in India 2021).
+- **2016-2020 are \`printed_totals_only\`:** IPC, SLL and crimes-against-women totals from NCRB's State/UT-wise tables, with every edition that prints a year compared (they agree exactly). Theft, robbery and burglary for those years are blank, not zero: the head-wise state tables have not been extracted. Nothing is summed from districts.
+- 2015 crimes against women is 17,104 in the original-year table and 17,222 in the later IPC+SLL table, so 2015 to 2016 is a caution for that measure. Burglary jumps from 2,637 (2021) to 6,189 (2022) with the same heading and the cause is unknown, so that change is a caution too.
 - Burglary is three separate columns because the definition changed. 2013 to 2014 is not comparable and 2023 to 2024 is a caution; see [data/continuity.json](../../continuity.json).
+- Sources and hashes: [data/raw/ncrb_wayback/](../../raw/ncrb_wayback/manifest.json). They were recovered from Internet Archive captures of NCRB's own files, because the live ncrb.gov.in certificate fails the Windows revocation check.
 
-Regenerate with \`python tools/delhi_ut_series/extract.py\` then \`node scripts/build_delhi_ut_series.js\` (also part of \`npm run build:releases\`).
+Regenerate with \`python tools/delhi_ut_series/extract.py\`, \`python tools/delhi_ut_series/extract_state_tables.py\`, then \`node scripts/build_delhi_ut_series.js\` (also part of \`npm run build:releases\`).
 `);
   return { id: 'ncrb_delhi_ut_totals', status: 'production', path: 'delhi_ut_series/manifest.json', printedYears: manifest.coverage.printedYears };
 }
