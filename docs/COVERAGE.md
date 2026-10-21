@@ -17,8 +17,9 @@ What exists for which years. The machine-readable record is [`data/series_status
 |---|---|---|---|
 | Citywide road trend | 2011 to 2024 | Delhi | Counts, not rates. |
 | District crashes and selected-zone counts | 2016 to 2024 | Traffic Police districts as printed | Counts within crash-prone zones only. |
-| Named zones | 2016 to 2024 | 108, 145, 110, 119, 77, 87, 117, 107, 93 zones | The 2016 list is alphabetical (position is not a rank). |
-| Roads tables | 2017 to 2024 | Roads | 2016 prints none; the 2021 zone table prints no road. |
+| Named zones | 2013 to 2024 | 128, 137, 176, 108, 145, 110, 119, 77, 87, 117, 107, 93 zones | 2013 and 2014 are from a PWD compilation, not an annual report, and print no grand total. The 2015 and 2016 lists are alphabetical (position is not a rank). |
+| Roads tables | 2017 to 2024 (printed); 2015 (calculated) | Roads | 2016 prints none; 2013 and 2014 none; the 2015 groups are calculated by exact printed label, not a printed table. The 2021 zone table prints no road. |
+| Highway and ring-road stretches | 2011 and 2012 | 13 printed stretches a year | From a retrospective table in the 2015 report; not zone sums; no zone lists recovered for these years. |
 | Zone positions on the map | 2023, 2024 | Points | Hand-placed, 150 m to 5 km. |
 | Enforcement | 2019 to 2024 | Delhi | Not split by district. |
 | iRAD district reports | 2025 and 2026 (varies by district) | Revenue districts, stations | Staged or provisional. |

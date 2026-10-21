@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi Traffic Police named accident-prone zones 2013 to 2015 and early road stretches 2011 to 2012, as printed",
+  "status": "staged",
+  "scope": "Named selected accident-prone zones (one row per zone) and, for 2011 and 2012, printed highway and ring-road stretch statistics. Counts within selected zones or stretches, not whole-city or whole-road counts. Counts, not rates.",
+  "sources": [
+    {
+      "report_year": 2013,
+      "note": "Delhi PWD compilation of the Traffic Police accident-prone locations (archived PDF, pages 133-141). An official compilation, not a recovered annual report.",
+      "url": "https://web.archive.org/web/20190406041113id_/https://pwddelhi.gov.in/writeread/Other/201711141523027383New.pdf",
+      "sha256": "2932de927faede39f603db05dba2af83b63ae382f847d8268ae82e7278e20bc3"
+    },
+    {
+      "report_year": 2014,
+      "note": "Same compilation, pages 142-150.",
+      "url": "https://web.archive.org/web/20190406041113id_/https://pwddelhi.gov.in/writeread/Other/201711141523027383New.pdf",
+      "sha256": "2932de927faede39f603db05dba2af83b63ae382f847d8268ae82e7278e20bc3"
+    },
+    {
+      "report_year": 2015,
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-10-ACCIDENT-PRONE-ZONES-AND-CIRCLE-WISE-ANALYSIS.pdf",
+      "sha256": "1fb404b6af11ce46b7e26e00aabb9ec809876b2574f274a98876c75825ebedc5",
+      "note": "Delhi Traffic Police Road Accidents in Delhi 2015, chapter 10 (Table 10.1)."
+    },
+    {
+      "report_year": "2011 and 2012",
+      "note": "Road Accidents in Delhi 2015, Table 6.5 (printed page 42, PDF page 5): a retrospective table of highway and ring-road stretches that includes 2011 and 2012.",
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-6-SPATIAL-TRENDS.pdf",
+      "sha256": "c286cd138729c3827baf2d18724ab7b1ddac07aaae190f4277fc8844bb1c119a"
+    }
+  ],
+  "derivedTotals": {
+    "2013": {
+      "zones": 128,
+      "simple": 1094,
+      "fatal": 544,
+      "total": 1638
+    },
+    "2014": {
+      "zones": 137,
+      "simple": 1616,
+      "fatal": 505,
+      "total": 2121
+    },
+    "2015": {
+      "zones": 176,
+      "simple": 1572,
+      "fatal": 552,
+      "total": 2124
+    },
+    "note": "Sums of the printed rows. 2013 and 2014 print no grand total in the compilation; 2015 does not reconcile to a printed total either, apart from the cross-checks below."
+  },
+  "printedCrossChecks": {
+    "2014_zone_count": 137,
+    "2015_zone_count": 176,
+    "2015_zone_fatal_crashes": 552
+  },
+  "blankRoads": {
+    "2013": [
+      {
+        "serial": 40
+      },
+      {
+        "serial": 108
+      }
+    ],
+    "2014": [
+      {
+        "serial": 93
+      }
+    ],
+    "note": "Serials whose road cell is blank in the source; the road stays null."
+  },
+  "roads2015": {
+    "groups": 45,
+    "derivation": "Calculated by exact printed road label from Table 10.1. Not a printed road-summary table; printed spelling variants of one road remain separate groups, so this is not necessarily 45 unique roads."
+  },
+  "roads2011to2012": {
+    "rows": 26,
+    "note": "Six national highways, four Ring Road stretches and three Outer Ring Road stretches per year. Simple is separate from non-injury in this source; fatal + simple + non-injury = total. Not selected-zone sums. Original annual reports and zone tables for 2011 and 2012 were not located."
+  },
+  "supersession": "2014 named zones come only from the PWD compilation (137 rows with counts). An older name-only 2014 list (137 names, null counts, different serial order and spellings) exists in the recovery package and is not used; serial numbers are never joined across the two.",
+  "caveats": [
+    "Each year selects its own zones and the list changes every year; a longer list or a larger sum is not a worse year.",
+    "The 2013 and 2014 compilation gives printed district and circle names; 2014 uses circle codes with no district assignment. They are kept as printed and are not mapped to any later district.",
+    "No coordinates; a repeated name does not prove an unchanged location.",
+    "Selected-page visual review was done for 2013 and 2014; no independent second transcription review is claimed. 2015 was visually transcribed by the extracting agent and not independently reviewed.",
+    "Archive timestamps and upload folders are not publication dates."
+  ],
+  "inputPackages": [
+    {
+      "file": "road_2013_2014_recovery/named_zones_2013.json",
+      "sha256": "5f684d7453a5e2735844678cd4c55e44276794fc8c08735a4a04dd2b78b1debd"
+    },
+    {
+      "file": "road_2013_2014_recovery/named_zones_2014.json",
+      "sha256": "61d932ff4e42748c10be82166e29e01121519bd934a287144c9626cb033472e7"
+    },
+    {
+      "file": "road_2014_2015/named_zones_2015.json",
+      "sha256": "0f55f035e6ee2b95f4dd9ca9d3f0be6a07a403a74c69710a756790ad8fc4535f"
+    },
+    {
+      "file": "road_2014_2015/roads_2015_derived_exact_labels.json",
+      "sha256": "f6065b78e1ce71f8dab96822d6c498f7bfa94c0bf9f8814e8726f2cda4f01966"
+    },
+    {
+      "file": "road_2011_2012_recovery/roads_2011_2012_retrospective.json",
+      "sha256": "a687c120ed900041bd4f3bc1116e06580c523ca8b6799d22a22b2b7f2f99012d"
+    },
+    {
+      "file": "road_2013_2014_recovery/validation.json",
+      "sha256": "1cad33b82e9b2eb83536ed58133cca63606a422009ec1ba4d487a73f231ad915"
+    },
+    {
+      "file": "road_2014_2015/validation.json",
+      "sha256": "0bca0989fb5872f68a9d7fefab0aa44bceb48b0e19787a545ac283f60fab7ab7"
+    },
+    {
+      "file": "road_2013_2014_recovery/source_manifest.json",
+      "sha256": "fd5d214a92dda5684ab1d0a1f4ec0362760d093a76219fc4aedd95a541f41a23"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "named_zones_2013_2015.csv",
+      "sha256": "570fe7594268d481fd4ef102594700ac221b004ceee09d271d51837364b71a55"
+    },
+    {
+      "file": "named_zones_2013_2015.json",
+      "sha256": "5c560d64c63ec8f60fe83ba58ad7989a909c7a16815cccf4f77ba5662b31346c"
+    },
+    {
+      "file": "roads_2011_2012_retrospective.csv",
+      "sha256": "ce837c96352143361597e3a1ea54a4244f6e768009ca7ed63f6877e0cd6f8ba2"
+    },
+    {
+      "file": "roads_2011_2012_retrospective.json",
+      "sha256": "a687c120ed900041bd4f3bc1116e06580c523ca8b6799d22a22b2b7f2f99012d"
+    },
+    {
+      "file": "roads_2015_derived_exact_labels.csv",
+      "sha256": "694a53183d7afa4104d9818292737b28efafe6b734c880543004c0e0a086a5cf"
+    },
+    {
+      "file": "roads_2015_derived_exact_labels.json",
+      "sha256": "f6065b78e1ce71f8dab96822d6c498f7bfa94c0bf9f8814e8726f2cda4f01966"
+    }
+  ]
+}

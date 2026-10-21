@@ -263,6 +263,17 @@
       "note": "Generated from the repository's own data by scripts/build_profiles.js, with a field contract (schema.json) giving each column's source, data year, uncertainty class and what a blank means. Ward crash figures depend on approximate zone positions; OpenStreetMap counts are lower bounds; crime is district-level only. Built for planners, journalists and researchers; evidence for a field audit, not a finding."
     },
     {
+      "id": "crash_zones_roads_2011_2015",
+      "name": "Named accident-prone zones 2013 to 2015 and early highway and ring-road stretches 2011 to 2012, as printed",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2015",
+      "coverage_start": "2011",
+      "geography": "Named locations with the road printed beside each; no coordinates; not mapped. 2011 and 2012: 13 printed highway and ring-road stretches, not zones",
+      "where": "data/releases/road_zones_roads_2011_2015/manifest.json",
+      "note": "On Road safety: 441 named zones (2013 128, 2014 137, 2015 176), 45 road groups for 2015 calculated by exact printed label (not a printed table), and 26 retrospective stretch rows for 2011 and 2012 (Table 6.5 of the 2015 report). 2013 and 2014 come from an official Delhi PWD compilation, not a recovered annual report, and print no grand total (sums are of the rows); 2015 matches the report narrative (176 zones, 552 fatal). Visually transcribed or extracted by agents; not independently reviewed. Zone lists change every year: counts are not a fixed-location trend."
+    },
+    {
       "id": "crash_zones_roads_2016_2021",
       "name": "Named accident-prone zones and road-wise zone tables, 2016 to 2021, as printed",
       "status": "production",

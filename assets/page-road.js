@@ -7,7 +7,7 @@
   if (!data) return;
   var S = data.SITE, R = data.ROADS, T = S.trends, E = S.enforcement, V = S.victims;
   var last = T[T.length - 1], prev = T[T.length - 2];
-  var st = { measure: 'killed', index: false, hy: null, modeYear: 2024, roadYear: 2024, zoneYear: 2023, query: '', allZones: false };
+  var st = { measure: 'killed', index: false, hy: null, modeYear: 2024, roadYear: 2024, zoneYear: 2023, stretchYear: 2012, query: '', allZones: false };
 
   function seg(items, cur, pick, key) {
     return h('div', { class: 'seg' }, items.map(function (it) {
@@ -152,12 +152,15 @@
 
   // ---- crash-prone zones, 2016 to 2024 ----
   var YEARS_ALL = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
-  var ZONE_TABLE = { 2016: 'Table 10.1', 2017: 'Table 10.1(a)', 2018: 'Table 10.2', 2019: 'Table 10.2', 2020: 'Table 7.2', 2021: 'Table 6.28' };
+  var YEARS_ZONES = [2013, 2014, 2015].concat(YEARS_ALL);
+  var ZONE_TABLE = { 2013: 'PWD compilation, PDF pages 133-141', 2014: 'PWD compilation, PDF pages 142-150', 2015: 'Table 10.1', 2016: 'Table 10.1', 2017: 'Table 10.1(a)', 2018: 'Table 10.2', 2019: 'Table 10.2', 2020: 'Table 7.2', 2021: 'Table 6.28' };
   function zoneTip(y) {
     var n = (R['zones' + y] || []).length, tail = ' Zones differ from year to year, so a change in a count is not a change in risk.';
     if (y === 2022) return 'The official Delhi Traffic Police list of 117 zones in the 2022 report (Table 6.41), sorted by fatal crashes as in the source. That table prints no road and no coordinates. A road is shown (marked †) only where a later report assigns one to the same place name; otherwise it is blank, and none is plotted on the map.' + tail;
     if (y === 2024) return 'The 93 named zones of the 2024 report. The 88 ranked in Table 6.29 are sorted by fatal crashes as in the source; the other 5 appear only in the report\'s category lists (pedestrian, two-wheeler and so on), so their crash counts are blank, not zero. The report\'s district table counts 111 zones, more than the 93 names recovered.' + tail;
     if (y === 2023) return 'The official Delhi Traffic Police list of 107 zones, sorted by fatal crashes as in the source. 105 of 107 fall inside a district and are plotted on the map; 2 sit just outside the simplified boundaries. The 2024 list names different zones, so a change in the count is not a change in risk.';
+    if (y === 2013 || y === 2014) return 'The ' + n + ' named zones of ' + y + ' from the Delhi PWD compilation of the Traffic Police accident-prone locations (' + ZONE_TABLE[y] + '), in the order printed (descending by fatal crashes). This is an official compilation, not a recovered annual report; it prints no grand total, so sums are the sum of the rows. ' + (y === 2013 ? 'Two rows print no road. ' : 'One row prints no road. ') + 'The compilation gives district and circle names, kept in the download; they are not mapped to later districts. No coordinates.' + tail;
+    if (y === 2015) return 'The ' + n + ' named zones of the 2015 report (' + ZONE_TABLE[y] + '), listed alphabetically as printed (the number is the list position, not a rank), with the road printed beside each. The report confirms 176 zones and 552 fatal crashes. No coordinates.' + tail;
     if (y === 2016) return 'The ' + n + ' named zones of the 2016 report (' + ZONE_TABLE[y] + '), listed alphabetically as printed (the number is the list position, not a rank), with the road printed beside each. No coordinates are given.' + tail;
     return 'The ' + n + ' named zones of the ' + y + ' report (' + ZONE_TABLE[y] + '), sorted by fatal crashes as printed. ' + (y === 2021 ? 'That table prints no road, so the road column is blank. ' : 'The road is the one printed beside each zone. ') + 'No coordinates are given.' + tail;
   }
@@ -173,7 +176,7 @@
       D.clear(sec);
       var input = h('input', { type: 'search', class: 'search', placeholder: 'Search location or road', 'aria-label': 'Search crash-prone zones', oninput: function (e) { st.query = e.target.value; renderZones(); } });
       sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', { class: 'ztitle' }), h('span', { class: 'ztip' }),
-        seg(YEARS_ALL.map(function (y) { return [y, String(y)]; }), st.zoneYear, function (y) { st.zoneYear = y; st.query = ''; input.value = ''; renderZones(); syncZoneSeg(); }, 'zy')), input));
+        seg(YEARS_ZONES.map(function (y) { return [y, String(y)]; }), st.zoneYear, function (y) { st.zoneYear = y; st.query = ''; input.value = ''; renderZones(); syncZoneSeg(); }, 'zy')), input));
       sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl zone-tbl', style: 'min-width:480px' },
         h('thead', null, h('tr', null, h('th', { scope: 'col' }, '#'), h('th', { scope: 'col' }, 'Location'), h('th', { scope: 'col' }, 'Road'), h('th', { scope: 'col', class: 'n' }, 'Fatal'), h('th', { scope: 'col', class: 'n' }, 'All crashes'))),
         h('tbody', null))));
@@ -189,7 +192,7 @@
     }
     D.clear(body);
     zones.forEach(function (z) { body.appendChild(h('tr', null, h('td', { class: 'rk' }, z.rank), h('td', { style: 'font-weight:500' }, z.name), h('td', { class: 'muted', title: z.derived ? 'Road identified from a later report; the 2022 table prints no road' : null }, z.road == null ? '—' : z.road, z.derived ? h('sup', null, '†') : null), h('td', { class: 'n' }, z.fatal == null ? '—' : z.fatal), h('td', { class: 'n' }, z.total == null ? '—' : z.total))); });
-    count.textContent = (q ? filt.length + ' of ' + count0 + ' zones match' : 'Showing ' + zones.length + ' of ' + count0 + ' zones') + (st.zoneYear === 2016 ? ' · listed alphabetically' : '') + (st.zoneYear === 2022 ? ' · † road from a later report' : '');
+    count.textContent = (q ? filt.length + ' of ' + count0 + ' zones match' : 'Showing ' + zones.length + ' of ' + count0 + ' zones') + (st.zoneYear === 2016 || st.zoneYear === 2015 ? ' · listed alphabetically' : '') + (st.zoneYear === 2022 ? ' · † road from a later report' : '');
     toggle.hidden = !!q;
     toggle.textContent = st.allZones ? 'Show top 10' : 'Show all ' + count0;
   }
@@ -198,13 +201,27 @@
   function renderRoads() {
     var sec = D.clear(D.$('#roads'));
     sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', null, 'Roads with most zones'),
-      D.tip('About this table', 'Crashes recorded within the identified zones on each road, not the road\'s full crash count. The road-wise zone table of each report (Table 10.5 in 2017, 10.6 in 2018 and 2019, 7.6 in 2020, 6.32 in 2021, 6.45 in 2022, 6.33 in 2023 and 2024), sorted by fatal crashes here; the top 12 are shown. The 2016 report prints no road table.', { right: true })),
-      seg(YEARS_ALL.map(function (y) { return [y, String(y)]; }), st.roadYear, function (y) { st.roadYear = y; keepFocus(renderRoads); }, 'ry')));
+      D.tip('About this table', 'Crashes recorded within the identified zones on each road, not the road\'s full crash count. The road-wise zone table of each report (Table 10.5 in 2017, 10.6 in 2018 and 2019, 7.6 in 2020, 6.32 in 2021, 6.45 in 2022, 6.33 in 2023 and 2024), sorted by fatal crashes here; the top 12 are shown. The 2016 report prints no road table. For 2015 the groups are calculated here by exact printed road label from the zone table (Table 10.1), so spelling variants of one road stay separate.', { right: true })),
+      seg(YEARS_ZONES.map(function (y) { return [y, String(y)]; }), st.roadYear, function (y) { st.roadYear = y; keepFocus(renderRoads); }, 'ry')));
+    if (!R.roads[st.roadYear] && st.roadYear < 2016) { sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.roadYear + ': no road table. '), 'The 2013 and 2014 compilation prints no road-wise summary, so none is shown. The road printed beside each zone is in the zone table.')); return; }
     if (!R.roads[st.roadYear]) { sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.roadYear + ': no road table. '), 'The 2016 report prints no road-wise table of crash-prone zones, so none is shown. Its text names the roads with most zones (Ring Road 27, Outer Ring Road 17, GTK Road 11, Wazirabad Road 6, Mathura Road 6); the road printed beside each 2016 zone is in the zone table above.')); return; }
     sec.appendChild(h('div', { style: 'display:flex;flex-direction:column' },
       h('div', { class: 'road-row h' }, h('span', null, 'Road'), h('span', null, 'Zones'), h('span', null, 'Fatal'), h('span', null, 'All')),
       R.roads[st.roadYear].map(function (r) { return h('div', { class: 'road-row' }, h('span', { title: r[0] }, r[0]), h('span', null, r[1]), h('span', null, r[2]), h('span', null, r[3])); })));
+    if (R.roadsDerived && R.roadsDerived[st.roadYear]) { sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, 'Calculated, not printed. '), 'The 2015 report prints no road-wise table. These ' + R.roadRows[st.roadYear] + ' groups add up the zones that print the same road label in Table 10.1, so they are not necessarily 45 different roads. Top 12 by fatal crashes.')); return; }
     sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Top 12 of ' + R.roadRows[st.roadYear] + ' roads printed in the ' + st.roadYear + ' report. Selected zones on each road, not whole-road counts.'));
+  }
+
+  // ---- highway and ring-road stretches, 2011 and 2012 (retrospective table in the 2015 report) ----
+  function renderStretches() {
+    var sec = D.clear(D.$('#stretches')), rows = R.stretches[st.stretchYear];
+    sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', null, 'Highway and ring-road stretches, 2011 and 2012'),
+      D.tip('About this table', 'Thirteen printed stretches (six national highways, four Ring Road stretches, three Outer Ring Road stretches) from Table 6.5 of the Road Accidents in Delhi 2015 report, which looks back to 2011 and 2012. These are stretch statistics, not sums of selected zones, and not comparable with the zone tables above. Simple injury and non-injury crashes are separate columns here. The original 2011 and 2012 annual reports and zone lists were not located. The same stretches may not cover identical extents in every year.')),
+      seg([[2011, '2011'], [2012, '2012']], st.stretchYear, function (y) { st.stretchYear = y; keepFocus(renderStretches); }, 'sy')));
+    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:480px' },
+      h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Stretch'), h('th', { scope: 'col', class: 'n' }, 'Fatal'), h('th', { scope: 'col', class: 'n' }, 'Simple'), h('th', { scope: 'col', class: 'n' }, 'Non-injury'), h('th', { scope: 'col', class: 'n' }, 'All'))),
+      h('tbody', null, rows.map(function (r) { return h('tr', null, h('td', null, h('span', { style: 'font-weight:500' }, r[1]), h('span', { class: 'muted', style: 'font-size:12px;display:block' }, r[0])), h('td', { class: 'n' }, r[2]), h('td', { class: 'n' }, r[3]), h('td', { class: 'n' }, r[4]), h('td', { class: 'n' }, r[5])); })))));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Printed in the 2015 report (Table 6.5, page 42), as a retrospective table. Counts for the stretch, not for selected zones. ', h('a', { href: 'data/releases/road_zones_roads_2011_2015/roads_2011_2012_retrospective.csv' }, 'Download (CSV)'), ' · ', h('a', { href: 'data/releases/road_zones_roads_2011_2015/manifest.json' }, 'sources and checks'), '.'));
   }
 
   // ---- district tables, 2016 to 2024: whole-district crashes and crashes within selected zones ----
@@ -312,5 +329,5 @@
   function syncZoneSeg() {
     D.$('#zones').querySelectorAll('[data-key^="zy-"]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-key') === 'zy-' + st.zoneYear)); });
   }
-  renderTrend(); renderModes(); renderEnforcement(); renderDistrictTables(); renderZones(); renderRoads();
+  renderTrend(); renderModes(); renderEnforcement(); renderDistrictTables(); renderZones(); renderRoads(); renderStretches();
 })();
