@@ -2065,6 +2065,57 @@
    ]
   },
   {
+   "place_key": "KASHMIRIGATECHOWKBOULEVARDROAD",
+   "name": "Kashmiri Gate Chowk Boulevard Road",
+   "aliases_merged": [],
+   "years_listed": [
+    2018,
+    2019,
+    2020,
+    2022,
+    2023,
+    2024
+   ],
+   "reports_listed_of_9": 6,
+   "recurrence": "frequent",
+   "first_year": 2018,
+   "last_year": 2024,
+   "listed_in_2024": true,
+   "roads_printed": [
+    "Boulevard Road"
+   ],
+   "max_fatal_crashes_in_a_year": 9,
+   "by_year": [
+    null,
+    null,
+    {
+     "fatal": 9,
+     "total": 21
+    },
+    {
+     "fatal": 3,
+     "total": 13
+    },
+    {
+     "fatal": 3,
+     "total": 12
+    },
+    null,
+    {
+     "fatal": 1,
+     "total": 11
+    },
+    {
+     "fatal": 6,
+     "total": 18
+    },
+    {
+     "fatal": 4,
+     "total": 18
+    }
+   ]
+  },
+  {
    "place_key": "AKSHARDHAMMANDIR",
    "name": "Akshardham Mandir",
    "aliases_merged": [],
@@ -2666,53 +2717,6 @@
     {
      "fatal": 4,
      "total": 14
-    }
-   ]
-  },
-  {
-   "place_key": "KASHMIRIGATECHOWKBOULEVARDROAD",
-   "name": "Kashmiri Gate Chowk Boulevard Road",
-   "aliases_merged": [],
-   "years_listed": [
-    2018,
-    2019,
-    2020,
-    2022,
-    2024
-   ],
-   "reports_listed_of_9": 5,
-   "recurrence": "frequent",
-   "first_year": 2018,
-   "last_year": 2024,
-   "listed_in_2024": true,
-   "roads_printed": [
-    "Boulevard Road"
-   ],
-   "max_fatal_crashes_in_a_year": 9,
-   "by_year": [
-    null,
-    null,
-    {
-     "fatal": 9,
-     "total": 21
-    },
-    {
-     "fatal": 3,
-     "total": 13
-    },
-    {
-     "fatal": 3,
-     "total": 12
-    },
-    null,
-    {
-     "fatal": 1,
-     "total": 11
-    },
-    null,
-    {
-     "fatal": 4,
-     "total": 18
     }
    ]
   },
@@ -8916,37 +8920,6 @@
      "fatal": 7,
      "total": 12
     }
-   ]
-  },
-  {
-   "place_key": "BOULEVARDROAD",
-   "name": "Boulevard Road",
-   "aliases_merged": [],
-   "years_listed": [
-    2023
-   ],
-   "reports_listed_of_9": 1,
-   "recurrence": "occasional",
-   "first_year": 2023,
-   "last_year": 2023,
-   "listed_in_2024": false,
-   "roads_printed": [
-    "Kashmiri Gate Area"
-   ],
-   "max_fatal_crashes_in_a_year": 6,
-   "by_year": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    {
-     "fatal": 6,
-     "total": 18
-    },
-    null
    ]
   },
   {

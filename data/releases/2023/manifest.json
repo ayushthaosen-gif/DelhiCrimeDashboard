@@ -5,7 +5,7 @@
   "geography": "15 current territorial police-district names",
   "joinKey": "district",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-09-26T07:09:16.402Z",
+  "generatedAt": "2026-10-19T00:00:00.000Z",
   "productionStatus": "production dashboard data",
   "nullPolicy": "Null is unknown, unavailable, incompatible, or not separately reported; never coerce null to zero.",
   "comparability": "Inspect per-metric previous-year comparability flags before calculating change.",
@@ -140,8 +140,8 @@
       "path": "crash_prone_zones.json",
       "datasetId": "delhi_crash_prone_zones_2023",
       "mediaType": "application/json",
-      "sha256": "35ea253b3021184bed57bcd8e91c361561a9fa3658a6f07efe35efdd6f3af251",
-      "bytes": 157026,
+      "sha256": "0255602cb78a2831e0042385634619eb9217bfc768d91beec3b9a65938e616c2",
+      "bytes": 157062,
       "derivedFrom": [
         "data/crash_zones_2023_geocoded.json"
       ]
@@ -150,8 +150,8 @@
       "path": "crash_prone_zones.csv",
       "datasetId": "delhi_crash_prone_zones_2023",
       "mediaType": "text/csv",
-      "sha256": "54e5ebd5671cfcd3cbf34c0c33bb72a7fe45ddfd546b898e27d9c5db0b066644",
-      "bytes": 23303,
+      "sha256": "16fef4bc6c23adccabc335b052fda657ac59b0a3b9a557f21ff69715ebcb3382",
+      "bytes": 23339,
       "derivedFrom": [
         "data/crash_zones_2023_geocoded.json"
       ]

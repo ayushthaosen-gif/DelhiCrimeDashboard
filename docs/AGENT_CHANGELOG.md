@@ -1,3 +1,7 @@
+## [2026-10-22] - Claude (Anthropic) - 2023 zone rank 4 label corrected
+
+- `data/crash_zones_2023_raw.json`, `_geocoded.json` and `_mapped.json` now read name "Kashmiri Gate Chowk Boulevard Road" and road "Boulevard Road" for rank 4 (was "Boulevard Road" / "Kashmiri Gate Area"), as printed in Table 6.29 (PDF page 120). Counts, rank, coordinates and district untouched. Regenerated the dashboards, 2023 release (and its manifest hashes), the deprecated 2023 export, the profile files and the site data; other exports were left as they were. Recurring locations go from 324 to 323 places because this zone now merges with its 2024 namesake. Logged in DATA_CHANGELOG.
+
 ## [2026-10-22] - Claude (Anthropic) - Audited 2014 supplement
 
 - All 39 supplement files matched CHECKSUMS.json; its 2014 zone table is identical to the one already shipped (the builder now asserts this). Added to `data/releases/road_zones_roads_2011_2015/`: 44 derived 2014 road groups (one with a blank road, left out of the page top 12), 13 retrospective 2014 stretches, and staged-only 2014 district rows (11 districts, 8,623 crashes, 1,629 fatal; kept off the district tables, which start in 2016), circle sums and the list reconciliation.

@@ -32,6 +32,19 @@ Affected releases: data/releases/<years>/...
 
 ---
 
+## 2026-10-22 - crash_prone_zones_2023 - rank 4 name and road labels corrected
+
+| Field | Old value | New value | Why |
+|---|---|---|---|
+| Rank 4 `name` | Boulevard Road | Kashmiri Gate Chowk Boulevard Road | Table 6.29 of the Delhi Road Crash Report 2023 prints this zone as "Kashmiri Gate Chowk Boulevard Road". The earlier extraction kept only the last words as the name. |
+| Rank 4 `road` | Kashmiri Gate Area | Boulevard Road | The report's Road Name column prints "Boulevard Road" for this row. "Kashmiri Gate Area" was not in the report. |
+
+Counts (12 simple, 6 fatal, 18 total), rank, coordinates and district are unchanged. Checked against the page image of the report (PDF page 120). The recurring-location file now treats this zone and the 2024 zone of the same printed name as one place.
+
+Affected releases: data/releases/2023/crash_prone_zones.csv and .json (and the deprecated exports/crash_prone_zones_2023.*).
+
+---
+
 ## 2026-10-05 - mpd2047_ward_comparison / landuse_by_ward - parks and agriculture compared separately
 
 | Field | Old value | New value | Why |

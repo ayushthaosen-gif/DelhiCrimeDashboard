@@ -34,6 +34,7 @@ Udyog Nagar,7,persistent,2016 2017 2018 2019 2020 2023 2024,2016,2024,true,Rohta
 AIIMS,7,persistent,2016 2017 2018 2019 2020 2022 2024,2016,2024,true,Ring Road,4,,3,3,2,3,3,,4,,3,13,11,13,7,11,,17,,6
 Gokalpuri,7,persistent,2016 2017 2018 2019 2020 2021 2022,2016,2022,false,WAZIRABAD ROAD,4,,1,2,0,4,3,2,3,,,15,11,18,11,7,14,9,,
 Hyaat Hotel,7,persistent,2016 2017 2018 2019 2020 2021 2022,2016,2022,false,RING ROAD,3,Hyatt Hotel,3,1,3,2,3,2,3,,,11,11,10,14,6,11,8,,
+Kashmiri Gate Chowk Boulevard Road,6,frequent,2018 2019 2020 2022 2023 2024,2018,2024,true,Boulevard Road,9,,,,9,3,3,,1,6,4,,,21,13,12,,11,18,18
 Akshardham Mandir,6,frequent,2018 2019 2021 2022 2023 2024,2018,2024,true,NH-24,8,,,,4,4,,3,6,5,8,,,13,8,,12,23,10,19
 Siraspur,6,frequent,2017 2018 2019 2021 2023 2024,2017,2024,true,GTK Road,8,,,8,5,3,,5,,3,4,,13,11,9,,7,,4,10
 Delhi Gate,6,frequent,2017 2018 2019 2020 2022 2024,2017,2024,true,N. Subhash Marg,7,,,7,2,4,4,,3,,4,,19,11,12,7,,11,,10
@@ -46,7 +47,6 @@ DTC Bus Depot Nand Nagri,6,frequent,2016 2017 2019 2020 2021 2023,2016,2023,fals
 Anand Vihar Railway Flyover,6,frequent,2016 2017 2018 2019 2020 2023,2016,2023,false,Road No. 56,3,,3,3,2,3,1,,,3,,6,9,10,5,10,,,6,
 Jahangir Puri Bus Stand Outer Ring Road,5,frequent,2016 2017 2019 2021 2022,2016,2022,false,OUTER RING ROAD,10,,10,10,,3,,3,4,,,23,19,,6,,7,8,,
 Shastri Nagar Metro Station,5,frequent,2016 2017 2018 2019 2024,2016,2024,true,VIR BANDA BAIRAGI MR | Vir Banda Bairagi Marg,10,,10,3,3,3,,,,,4,28,17,18,13,,,,,14
-Kashmiri Gate Chowk Boulevard Road,5,frequent,2018 2019 2020 2022 2024,2018,2024,true,Boulevard Road,9,,,,9,3,3,,1,,4,,,21,13,12,,11,,18
 Majnu Ka Tila,5,frequent,2016 2017 2019 2020 2021,2016,2021,false,OUTER RING ROAD,8,MAJNU KA TILLA,8,4,,7,7,4,,,,14,18,,20,12,14,,,
 Shani Mandir NH-1,5,frequent,2016 2017 2022 2023 2024,2016,2024,true,GTK Road,8,,8,8,,,,,4,3,3,17,9,,,,,6,12,6
 Ashram Chowk,5,frequent,2016 2017 2018 2022 2023,2016,2023,false,Ring Road,7,,2,4,3,,,,7,2,,12,13,10,,,,14,14,
@@ -203,7 +203,6 @@ Durgapuri Chowk,2,occasional,2021 2022,2021,2022,false,,2,,,,,,,2,1,,,,,,,,10,10
 Sec 10 Red Light Dwarka,2,occasional,2019 2022,2019,2022,false,ROAD NO 224,1,,,,,1,,,0,,,,,,10,,,12,,
 SIGNATURE BRIDGE TIMARPUR,1,occasional,2019,2019,2019,false,WAZIRABAD ROAD,8,,,,,8,,,,,,,,,13,,,,,
 Near Yashobhoomi Convention Centre Dwarka,1,occasional,2024,2024,2024,true,UER II,7,,,,,,,,,,7,,,,,,,,,12
-Boulevard Road,1,occasional,2023,2023,2023,false,Kashmiri Gate Area,6,,,,,,,,,6,,,,,,,,,18,
 Round About Mori Gate,1,occasional,2023,2023,2023,false,Hamilton Road,6,,,,,,,,,6,,,,,,,,,8,
 ALI VILLAGE,1,occasional,2019,2019,2019,false,MATHURA ROAD,5,,,,,5,,,,,,,,,11,,,,,
 Archana Cinema Red Light,1,occasional,2024,2024,2024,true,Josef Broz Tito Marg,5,,,,,,,,,,5,,,,,,,,,7

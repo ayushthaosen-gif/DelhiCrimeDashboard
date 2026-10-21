@@ -169,24 +169,24 @@
       "datasetId": "crash_zones_2023_geocoded",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "b5491d717262a8f6e5c069264ef5014ebd940e1802a8d2d6410f41777f79fcef",
-      "bytes": 120873
+      "sha256": "40a828a8c6b7fedee2a8f545effa3a37df4fea0cff39b84c6f599b7140ee1ea6",
+      "bytes": 120889
     },
     {
       "file": "data/crash_zones_2023_mapped.json",
       "datasetId": "crash_zones_2023_mapped",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "754381567c8db2d2a6ef61f4496413da9e06b1c419bcad951103d91c2d6bcc3c",
-      "bytes": 15812
+      "sha256": "fbbd5292a4c369f0138a84565791972dba79f0617d9a3b6a8dafef6637789088",
+      "bytes": 15828
     },
     {
       "file": "data/crash_zones_2023_raw.json",
       "datasetId": "crash_zones_2023_raw",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "501e3c3da73deef689cb9f24a823d866bc8a46502827b0e078921753338ca0d2",
-      "bytes": 9991
+      "sha256": "537a3d4ae64412ba145b8aa0c743dd9d6e52f4e374d4ae707cda8fd22f037e78",
+      "bytes": 10007
     },
     {
       "file": "data/crash_zones_2024_geocoded.json",
