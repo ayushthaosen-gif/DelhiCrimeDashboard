@@ -50,8 +50,16 @@ function build() {
     return [p.location_name, f.geometry.coordinates[1], f.geometry.coordinates[0], p.all_fatal_crashes == null ? null : p.all_fatal_crashes, p.all_total_crashes == null ? null : p.all_total_crashes, p.estimated_accuracy_m == null ? null : p.estimated_accuracy_m, p.coordinate_confidence || null]
       .concat(proj(f.geometry.coordinates));
   });
+  // intervention views: places listed in 3 or more reports, the corridors, and every 2024 audit area
+  const rec = read('data/profiles/recurring_locations.json'), cor = read('data/profiles/pedestrian_corridors_2024.json'), aud = read('data/profiles/audit_candidates_2024.json');
+  const interventions = {
+    recurring: rec.places.filter(p => p.reports_listed_of_9 >= 3).map(p => ({ name: p.name, n: p.reports_listed_of_9, rec: p.recurrence, y: p.years_listed, roads: p.roads_printed, max: p.max_fatal_crashes_in_a_year, in24: p.listed_in_2024, aliases: p.aliases_merged })),
+    recurringTotal: rec.places.length,
+    corridors: cor.rows,
+    audit: aud.rows.map(r => { const o = Object.assign({}, r); o.checklist = r.field_checklist.split(' | '); delete o.field_checklist; delete o.latitude; delete o.longitude; return o; })
+  };
   const planning = {
-    dataVersion: schema.dataVersion, viewBox: '0 0 1000 ' + height, metersPerUnit: mPerUnit, cols: cols,
+    dataVersion: schema.dataVersion, interventions: interventions, viewBox: '0 0 1000 ' + height, metersPerUnit: mPerUnit, cols: cols,
     wards: wards.rows.map((r, i) => ({ no: r.ward_no, path: pathOf(simple.features[i]), v: cols.map(c => r[c]), zones: r.zones })),
     zonePoints: zones
   };

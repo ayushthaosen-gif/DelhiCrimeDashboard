@@ -472,3 +472,9 @@ body.map3d { display: flex; flex-direction: column; }
 .workspace > * { min-width: 0; }
 .pl-badges > span { min-width: 0; overflow-wrap: anywhere; }
 .detail-body { min-width: 0; }
+
+.ystrip { display: inline-flex; gap: 2px; vertical-align: middle; }
+.ystrip i { width: 9px; height: 14px; border-radius: 2px; background: var(--surface2); border: 1px solid var(--line); display: inline-block; }
+.ystrip i.on { background: var(--bar); border-color: var(--bar); }
+.why-audit { margin-top: 4px; }
+.why-audit summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent); }

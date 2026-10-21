@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Intervention-oriented views: recurring locations, pedestrian corridors and audit candidates",
+  "generatedBy": "scripts/build_interventions.js",
+  "dataVersion": "2026-10-20",
+  "files": [
+    {
+      "path": "data/profiles/recurring_locations.json",
+      "sha256": "51ddf3592fc7848063123e17f72daed4cbd9ec7c1059de746b63d2df136d004f"
+    },
+    {
+      "path": "data/profiles/recurring_locations.csv",
+      "sha256": "95d893fddca1423598809c169ce4e51565f9107285ee63c23c5043ecb0bec8b1"
+    },
+    {
+      "path": "data/profiles/pedestrian_corridors_2024.json",
+      "sha256": "f6a33370c2606938986fc0322865366e7636cd66da8750bc7b699bd782511d76"
+    },
+    {
+      "path": "data/profiles/pedestrian_corridors_2024.csv",
+      "sha256": "4ada5590099aa4392a9803f8e84d3d827ca5adcdb7896a74d896146b88ccc6f7"
+    },
+    {
+      "path": "data/profiles/audit_candidates_2024.json",
+      "sha256": "e6bc35f5dae750519ab67c928ac07873d53b71e89e2101dc59a996d660bbc876"
+    },
+    {
+      "path": "data/profiles/audit_candidates_2024.csv",
+      "sha256": "c65a42695b14dff15b996738a783fb431773b0a20b7b15f193296415da31f665"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "data/releases/road_zones_roads_2016_2021/named_zones_2016_2021.json",
+      "sha256": "c704c68c5fbb3e6a09711c8915488e2045d0f98638f4113d5cd15a3af949e517"
+    },
+    {
+      "path": "data/releases/road_crash_report_2022/zones_2022_roads_from_later_reports.json",
+      "sha256": "b265ef2bc4d0b4826b5b6fc3bd3c4221f16e11af05b0a25bac08a4a330b3c1d6"
+    },
+    {
+      "path": "data/crash_zones_2023_raw.json",
+      "sha256": "501e3c3da73deef689cb9f24a823d866bc8a46502827b0e078921753338ca0d2"
+    },
+    {
+      "path": "data/delhi_crash_prone_zones_2024_all_named_approx.geojson",
+      "sha256": "ade5cbe4ba0dbb4d26186495a24bb1c46210b374bf6e0d4c5b738528925a82d0"
+    },
+    {
+      "path": "data/derived/crash_zone_sidewalks_2024.json",
+      "sha256": "318c296da048d3b7799b036f74f2ae9b67d2a63c3aa62b4f93f69b5e60b01841"
+    },
+    {
+      "path": "data/profiles/ward_profiles.json",
+      "sha256": "3ba85164a508823b02c53d5d6ff1a17644f5cc92be7bfb4b7d3e1e677a3042ba"
+    }
+  ],
+  "rules": {
+    "recurrence": "Reports (of 9, 2016 to 2024) that list the place name: 7 or more = persistent, 5 to 6 = frequent, 3 to 4 = repeated, 1 to 2 = occasional.",
+    "nameMatching": "Names are matched after removing case, spaces and punctuation. Twelve reviewed spelling pairs are merged (listed in aliasesMerged); similar names that fail the test are listed in notMerged.",
+    "evidenceTier": "Tier 1: pedestrian crash-prone in 2024 and listed in 5 or more reports. Tier 2: listed in 5 or more reports, or pedestrian crash-prone and listed in 3 or more. Tier 3: pedestrian crash-prone or listed in 3 or more. Tier 4: otherwise. A tier says how strong the crash evidence is, not how dangerous a place is.",
+    "pedestrianCorridor": "A road with two or more 2024 pedestrian crash-prone zones, by the road name printed beside each zone.",
+    "sparselyMapped": "No mapped crossing and no mapped signal within 250 m, and under 0.2 km of mapped footway within 250 m. It describes the map, not the street: 80 of 93 zones have no mapped crossing within 250 m, so absence on the map is not used to rank."
+  },
+  "aliasesMerged": 12,
+  "notMerged": [
+    [
+      "NEHRU PALACE",
+      "NEHRU PLACE",
+      "different places may be meant"
+    ],
+    [
+      "SEC-1,2 RED LIGHT DWARKA",
+      "SEC 10 RED LIGHT DWARKA",
+      "different sectors"
+    ],
+    [
+      "KIRARI MORE",
+      "KARKARI MORE",
+      "listed together in one year"
+    ],
+    [
+      "KHICHADI PUR",
+      "Khichripur",
+      "plausibly the same locality, not confirmed"
+    ]
+  ],
+  "summary": {
+    "places": 324,
+    "persistent": 35,
+    "frequent": 46,
+    "repeated": 65,
+    "corridors": 3,
+    "auditTiers": {
+      "1": 13,
+      "2": 38,
+      "3": 16,
+      "4": 26
+    }
+  },
+  "caveats": [
+    "Zone positions are hand-placed with an estimated accuracy of 150 m to 5 km; an audit area is an area, not a point.",
+    "The Traffic Police re-draw the zone list every year and apply a count threshold, so a place leaving the list is not a place becoming safe, and a place joining it is not proof of a new hazard.",
+    "Crash counts are within each zone, not all crashes on a road or in a ward. The 2022 list prints no road: roads there are those a later report assigns to the same name.",
+    "Mapped infrastructure comes from OpenStreetMap and is a lower bound.",
+    "Nothing here establishes cause, responsibility or what should be built. Field verification is needed first."
+  ]
+}

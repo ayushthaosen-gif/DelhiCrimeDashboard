@@ -1,0 +1,325 @@
+name,reports_listed_of_9,recurrence,years_listed,first_year,last_year,listed_in_2024,roads_printed,max_fatal_crashes_in_a_year,aliases_merged,fatal_2016,fatal_2017,fatal_2018,fatal_2019,fatal_2020,fatal_2021,fatal_2022,fatal_2023,fatal_2024,total_2016,total_2017,total_2018,total_2019,total_2020,total_2021,total_2022,total_2023,total_2024
+Mukarba Chowk,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,GTK Road,12,MUKHARBA CHOWK,5,6,7,8,8,7,12,7,5,24,18,16,19,14,18,23,18,8
+Azadpur Sabzi Mandi,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,GTK Road,11,AZADPUR SABJI MANDI,4,2,3,8,5,3,3,4,11,11,10,10,18,11,6,14,9,20
+Mukundpur Chowk,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,Outer Ring Road,11,MUKHAND PUR CHOWK,6,10,8,11,6,6,5,3,6,19,26,24,23,13,13,21,13,14
+Bhalswa Chowk,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,Outer Ring Road,9,,6,9,9,4,8,8,7,6,6,22,15,17,12,16,11,21,11,19
+Wazirabad,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,Outer Ring Road,9,,3,3,6,7,4,4,3,3,9,17,13,22,17,12,9,9,13,15
+Burari Chowk,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,Outer Ring Road,8,,6,8,5,5,8,4,2,6,4,28,23,15,17,14,8,11,14,16
+Punjabi Bagh Chowk,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,Ring Road,7,,6,5,5,4,6,7,7,4,5,18,12,20,13,23,18,15,13,9
+Khajoori Chowk,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,Wazirabad Road,5,,4,4,2,2,2,0,2,3,5,20,21,16,15,10,12,12,14,14
+Shastri Park/IT Park,9,persistent,2016 2017 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,G.T. Road,5,,5,4,5,4,4,4,3,4,,15,23,22,24,12,25,25,24,
+Libaspur Bus Stand,8,persistent,2016 2017 2018 2019 2021 2022 2023 2024,2016,2024,true,GTK Road,10,,10,3,8,3,,6,4,7,6,16,10,18,7,,16,9,18,18
+Azad Pur Chowk,8,persistent,2016 2017 2018 2019 2020 2022 2023 2024,2016,2024,true,GTK Road,9,,2,9,5,7,9,,3,2,4,15,19,8,13,23,,12,12,11
+Dhaula Kuan,8,persistent,2016 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,Ring Road,8,,4,,0,2,3,3,8,2,4,10,,10,14,17,11,17,12,9
+Rajoukari Flyover,8,persistent,2016 2017 2018 2019 2020 2022 2023 2024,2016,2024,true,NH-8,8,Rajokari Flyover,8,2,3,5,6,,5,1,7,18,11,9,16,10,,11,10,16
+Gandhi Vihar Bus Stand,8,persistent,2017 2018 2019 2020 2021 2022 2023 2024,2017,2024,true,Outer Ring Road,7,,,2,2,5,3,3,7,5,5,,12,12,24,7,26,25,16,7
+Peeragarhi Chowk,8,persistent,2016 2017 2018 2019 2020 2021 2022 2023,2016,2023,false,Outer Ring Road,7,,3,5,5,1,4,3,7,3,,17,14,20,19,22,13,16,16,
+Rajouri Garden,8,persistent,2016 2018 2019 2020 2021 2022 2023 2024,2016,2024,true,Ring Road,6,,6,,4,3,2,3,2,4,,12,,11,8,10,11,10,16,
+Swaroop Nagar,8,persistent,2016 2017 2018 2019 2020 2021 2022 2023,2016,2023,false,GTK Road,6,,6,2,5,3,3,4,2,4,,16,11,18,7,7,13,13,14,
+Seelampur T Point,8,persistent,2016 2017 2018 2019 2020 2021 2023 2024,2016,2024,true,G.T. Road,5,,3,2,3,4,4,4,,2,5,17,11,13,12,12,12,,15,17
+Mool Chand,8,persistent,2016 2017 2018 2019 2020 2021 2022 2023,2016,2023,false,Ring Road,4,,4,2,4,4,3,3,2,0,,17,11,16,9,9,17,14,15,
+Toll Plaza Badarpur,8,persistent,2016 2017 2018 2019 2020 2021 2022 2023,2016,2023,false,Mathura Road,4,,3,2,3,1,3,3,4,4,,13,14,13,12,18,10,10,6,
+ISBT Kashmiri Gate,7,persistent,2016 2017 2018 2019 2020 2023 2024,2016,2024,true,Ring Road,10,,7,6,10,5,1,,,7,8,18,15,24,15,13,,,19,17
+Nirankari Colony,7,persistent,2017 2018 2019 2020 2021 2022 2024,2017,2024,true,Outer Ring Road,9,,,3,6,9,5,1,5,,3,,18,17,12,11,10,16,,6
+Anand Vihar ISBT,7,persistent,2016 2017 2018 2019 2021 2023 2024,2016,2024,true,Road No.56,8,,3,2,6,5,,3,,5,8,13,11,15,13,,10,,16,16
+Britannia Chowk,7,persistent,2016 2017 2018 2020 2022 2023 2024,2016,2024,true,Ring Road,8,,1,8,3,,4,,7,6,5,12,13,9,,11,,14,15,13
+Maya Puri Chowk,7,persistent,2016 2018 2019 2020 2021 2022 2023,2016,2023,false,Ring Road,8,,3,,4,4,2,4,8,3,,8,,11,12,10,9,16,12,
+Mahipalpur Flyover,7,persistent,2016 2017 2018 2019 2021 2022 2023,2016,2023,false,NH-8,7,,2,6,7,1,,2,4,2,,19,18,12,11,,10,11,11,
+SGT Nagar,7,persistent,2016 2017 2019 2020 2022 2023 2024,2016,2024,true,GTK Road,7,,7,5,,5,5,,5,5,7,13,9,,5,9,,7,11,18
+Hanuman Mandir Yamuna Bazar,7,persistent,2016 2018 2019 2020 2021 2022 2024,2016,2024,true,Ring Road,6,,3,,6,3,5,2,3,,5,7,,13,9,10,10,7,,9
+Metro Station Madipur,7,persistent,2016 2017 2018 2021 2022 2023 2024,2016,2024,true,Rohtak Road,6,,4,6,5,,,4,5,5,4,12,21,15,,,9,10,9,7
+Wazir Pur Depot,7,persistent,2017 2018 2019 2020 2022 2023 2024,2017,2024,true,Ring Road,6,,,3,4,6,4,,5,6,3,,5,8,12,10,,11,10,7
+Zakhira Flyover,7,persistent,2016 2019 2020 2021 2022 2023 2024,2016,2024,true,Rohtak Road,6,,3,,,1,4,6,4,1,5,10,,,11,14,16,13,14,11
+Udyog Nagar,7,persistent,2016 2017 2018 2019 2020 2023 2024,2016,2024,true,Rohtak Road,5,,4,5,3,0,2,,,3,3,13,11,7,10,10,,,13,9
+AIIMS,7,persistent,2016 2017 2018 2019 2020 2022 2024,2016,2024,true,Ring Road,4,,3,3,2,3,3,,4,,3,13,11,13,7,11,,17,,6
+Gokalpuri,7,persistent,2016 2017 2018 2019 2020 2021 2022,2016,2022,false,WAZIRABAD ROAD,4,,1,2,0,4,3,2,3,,,15,11,18,11,7,14,9,,
+Hyaat Hotel,7,persistent,2016 2017 2018 2019 2020 2021 2022,2016,2022,false,RING ROAD,3,Hyatt Hotel,3,1,3,2,3,2,3,,,11,11,10,14,6,11,8,,
+Akshardham Mandir,6,frequent,2018 2019 2021 2022 2023 2024,2018,2024,true,NH-24,8,,,,4,4,,3,6,5,8,,,13,8,,12,23,10,19
+Siraspur,6,frequent,2017 2018 2019 2021 2023 2024,2017,2024,true,GTK Road,8,,,8,5,3,,5,,3,4,,13,11,9,,7,,4,10
+Delhi Gate,6,frequent,2017 2018 2019 2020 2022 2024,2017,2024,true,N. Subhash Marg,7,,,7,2,4,4,,3,,4,,19,11,12,7,,11,,10
+Kalindi Kunj,6,frequent,2016 2017 2018 2019 2020 2022,2016,2022,false,ROAD NO 13A,5,,3,4,2,3,1,,5,,,22,7,11,11,17,,12,,
+Loni Road Crossing,6,frequent,2017 2019 2021 2022 2023 2024,2017,2024,true,Wazirabad Road,5,,,0,,3,,3,5,5,3,,10,,13,,11,16,10,11
+Metro Station Haider Pur,6,frequent,2017 2019 2020 2021 2023 2024,2017,2024,true,Outer Ring Road,5,,,5,,2,4,4,,5,5,,8,,14,8,13,,10,13
+Nigam Bodh Ghat,6,frequent,2016 2017 2018 2019 2021 2023,2016,2023,false,Ring Road,5,,3,5,4,3,,3,,3,,8,9,10,11,,8,,7,
+Shalimar Bagh,6,frequent,2016 2019 2020 2022 2023 2024,2016,2024,true,Ring Road,5,,3,,,4,2,,5,5,3,5,,,12,12,,13,10,6
+DTC Bus Depot Nand Nagri,6,frequent,2016 2017 2019 2020 2021 2023,2016,2023,false,Wazirabad Road,4,,2,0,,4,2,1,,3,,12,11,,8,10,16,,11,
+Anand Vihar Railway Flyover,6,frequent,2016 2017 2018 2019 2020 2023,2016,2023,false,Road No. 56,3,,3,3,2,3,1,,,3,,6,9,10,5,10,,,6,
+Jahangir Puri Bus Stand Outer Ring Road,5,frequent,2016 2017 2019 2021 2022,2016,2022,false,OUTER RING ROAD,10,,10,10,,3,,3,4,,,23,19,,6,,7,8,,
+Shastri Nagar Metro Station,5,frequent,2016 2017 2018 2019 2024,2016,2024,true,VIR BANDA BAIRAGI MR | Vir Banda Bairagi Marg,10,,10,3,3,3,,,,,4,28,17,18,13,,,,,14
+Kashmiri Gate Chowk Boulevard Road,5,frequent,2018 2019 2020 2022 2024,2018,2024,true,Boulevard Road,9,,,,9,3,3,,1,,4,,,21,13,12,,11,,18
+Majnu Ka Tila,5,frequent,2016 2017 2019 2020 2021,2016,2021,false,OUTER RING ROAD,8,MAJNU KA TILLA,8,4,,7,7,4,,,,14,18,,20,12,14,,,
+Shani Mandir NH-1,5,frequent,2016 2017 2022 2023 2024,2016,2024,true,GTK Road,8,,8,8,,,,,4,3,3,17,9,,,,,6,12,6
+Ashram Chowk,5,frequent,2016 2017 2018 2022 2023,2016,2023,false,Ring Road,7,,2,4,3,,,,7,2,,12,13,10,,,,14,14,
+Rajdhani Park,5,frequent,2017 2018 2019 2021 2022,2017,2022,false,ROHTAK ROAD,7,,,4,7,3,,4,3,,,,8,11,12,,5,7,,
+Adarsh Nagar,5,frequent,2017 2019 2022 2023 2024,2017,2024,true,GTK Road,6,,,4,,3,,,6,3,4,,11,,6,,,10,7,16
+ITO/I P Flyover,5,frequent,2016 2018 2019 2020 2022,2016,2022,false,RING ROAD,6,,1,,6,4,4,,4,,,11,,11,8,15,,19,,
+Mangolpuri Flyover,5,frequent,2016 2017 2019 2020 2021,2016,2021,false,OUTER RING ROAD,6,,3,4,,6,3,4,,,,7,15,,11,13,9,,,
+Murga Mandi Flyover,5,frequent,2017 2018 2020 2021 2022,2017,2022,false,NH-24,6,,,4,3,,6,2,5,,,,7,9,,19,10,13,,
+Rajghat,5,frequent,2016 2017 2018 2020 2023,2016,2023,false,Ring Road,6,,6,2,4,,3,,,3,,17,10,11,,10,,,8,
+"Sec-1,2 Red Light Dwarka",5,frequent,2016 2017 2018 2020 2021,2016,2021,false,ROAD NO.201,6,"SEC-1,2 RED LIGHT DWARAKA",1,1,6,,0,1,,,,13,10,11,,11,12,,,
+Under Pass Gajipur,5,frequent,2017 2018 2021 2022 2024,2017,2024,true,NH-24,6,,,6,3,,,3,5,,3,,14,13,,,13,8,,7
+Deepali Chowk,5,frequent,2018 2019 2020 2023 2024,2018,2024,true,Outer Ring Road,5,,,,3,5,4,,,3,3,,,8,8,10,,,8,8
+Madhuban Chowk,5,frequent,2016 2019 2020 2022 2023,2016,2023,false,Outer Ring Road,5,,3,,,5,5,,4,3,,11,,,13,13,,6,14,
+Monastery Ring Road,5,frequent,2018 2019 2020 2022 2024,2018,2024,true,Ring Road,5,MONESTRY RING ROAD | Monestry Ring Road,,,3,4,4,,5,,4,,,8,6,8,,11,,9
+Moti Bagh Flyover,5,frequent,2016 2017 2021 2022 2023,2016,2023,false,Ring Road,5,,4,3,,,,5,1,2,,14,10,,,,12,11,14,
+Nangli Poona,5,frequent,2017 2021 2022 2023 2024,2017,2024,true,GTK Road,5,,,4,,,,5,5,4,,,9,,,,9,11,7,
+Naraina,5,frequent,2017 2018 2019 2020 2021,2017,2021,false,RING ROAD,5,,,3,5,3,5,3,,,,,9,14,11,11,10,,,
+Okhla More,5,frequent,2016 2017 2018 2021 2022,2016,2022,false,MEHRAULI BADARPUR RD,5,,1,1,3,,,4,5,,,10,11,12,,,7,7,,
+Sarita Vihar Metro Station,5,frequent,2016 2017 2018 2019 2022,2016,2022,false,MATHURA ROAD,5,,3,3,5,5,,,1,,,15,5,9,12,,,10,,
+Shamshan Ghat Punjabi Bagh,5,frequent,2018 2019 2020 2022 2023,2018,2023,false,Ring Road,5,,,,4,2,5,,4,5,,,,6,10,7,,6,7,
+Singhu Border,5,frequent,2017 2018 2020 2022 2024,2017,2024,true,GTK Road,5,,,5,4,,4,,4,,5,,8,8,,7,,5,,15
+Chirag Delhi Flyover,5,frequent,2017 2018 2019 2021 2022,2017,2022,false,JOSEF BRIJ TITO MARG,4,,,4,3,0,,3,1,,,,9,15,11,,7,11,,
+ITI Dheerpur,5,frequent,2016 2017 2018 2019 2023,2016,2023,false,Outer Ring Road,4,,3,3,4,3,,,,3,,11,6,8,4,,,,8,
+Khajoori Khas Pusta Road,5,frequent,2017 2018 2019 2020 2021,2017,2021,false,PUSTA ROAD,4,,,2,0,3,3,4,,,,,12,11,11,6,6,,,
+Kirari More,5,frequent,2016 2017 2018 2019 2024,2016,2024,true,Rohtak Road,4,,0,3,3,4,,,,,3,10,10,9,7,,,,,7
+Modi Mill Flyover,5,frequent,2018 2020 2021 2022 2023,2018,2023,false,Outer Ring Road,4,,,,4,,4,3,1,4,,,,4,,10,7,10,14,
+Near Haldiram Wazirpur,5,frequent,2016 2017 2021 2023 2024,2016,2024,true,Ring Road,4,,4,3,,,,4,,3,3,9,10,,,,6,,3,6
+RML Hospital,5,frequent,2016 2017 2018 2021 2022,2016,2022,false,BKS MARG,4,,4,1,3,,,4,3,,,10,14,8,,,9,13,,
+Sarai Kale Khan,5,frequent,2016 2020 2022 2023 2024,2016,2024,true,Ring Road,4,,3,,,,3,,3,3,4,11,,,,11,,6,6,20
+Shanti Van,5,frequent,2016 2017 2020 2022 2023,2016,2023,false,Ring Road,4,,0,1,,,4,,4,2,,12,12,,,12,,20,10,
+Telco Gajipur,5,frequent,2016 2018 2021 2022 2024,2016,2024,true,Road No.56,4,Telco Gazipur,3,,3,,,4,4,,3,7,,6,,,7,8,,12
+Sai Baba Mandir NH-1,5,frequent,2018 2019 2022 2023 2024,2018,2024,true,GTK Road,3,,,,3,3,,,3,3,3,,,5,7,,,5,10,7
+Subhash Nagar Metro Station,5,frequent,2018 2019 2021 2022 2023,2018,2023,false,Najafgarh Road,3,,,,3,3,,3,3,1,,,,7,7,,7,5,12,
+Prem Bari Pull,4,repeated,2018 2021 2022 2024,2018,2024,true,Ring Road,7,,,,7,,,3,4,,5,,,10,,,7,9,,9
+Shahdara Flyover,4,repeated,2016 2017 2019 2021,2016,2021,false,G.T.ROAD,7,,1,7,,3,,3,,,,12,13,,6,,7,,,
+Radisson Hotel,4,repeated,2016 2017 2020 2024,2016,2024,true,NH-8,5,,5,3,,,3,,,,3,18,7,,,9,,,,9
+Raja Harishchander Hospital,4,repeated,2016 2021 2023 2024,2016,2024,true,DSIDC Narela Road | DSIIDC Narela Road,5,,5,,,,,3,,5,3,14,,,,,9,,7,6
+Round About Bhairaon Enclave,4,repeated,2016 2017 2019 2024,2016,2024,true,Outer Ring Road,5,,1,5,,4,,,,,3,10,11,,10,,,,,6
+Shakarpur Chungi,4,repeated,2017 2018 2022 2023,2017,2023,false,Vikas Marg,5,,,1,5,,,,3,2,,,13,12,,,,10,13,
+CNG Pump / Jain Mandir NH-1,4,repeated,2016 2017 2022 2023,2016,2023,false,GTK Road,4,,3,4,,,,,4,4,,4,5,,,,,7,6,
+Gagan Cinema,4,repeated,2017 2019 2021 2022,2017,2022,false,WAZIRABAD ROAD,4,,,0,,3,,4,2,,,,10,,7,,8,12,,
+Govindpuri Metro Station,4,repeated,2017 2020 2022 2024,2017,2024,true,Anand Mai Marg,4,,,3,,,3,,3,,4,,7,,,4,,13,,8
+Gurudwara Bangla Sahib,4,repeated,2017 2018 2020 2022,2017,2022,false,BKS MARG,4,,,3,4,,3,,3,,,,6,7,,10,,5,,
+Keshopur T Point,4,repeated,2021 2022 2023 2024,2021,2024,true,Outer Ring Road,4,,,,,,,3,1,3,4,,,,,,6,10,7,11
+Kingsway Camp Chowk,4,repeated,2016 2022 2023 2024,2016,2024,true,Ring Road,4,,2,,,,,,2,4,4,12,,,,,,11,10,8
+Metro Station Inderlok,4,repeated,2017 2018 2019 2023,2017,2023,false,VIR BANDA BAIRAGI MR | VIR Banda Bairagi Marg,4,,,4,3,1,,,,3,,,11,11,13,,,,7,
+Shyam Lal College,4,repeated,2016 2018 2020 2022,2016,2022,false,G.T.ROAD,4,,4,,3,,1,,3,,,14,,13,,10,,7,,
+Janak Puri East,4,repeated,2016 2018 2019 2023,2016,2023,false,Najafgarh Road,3,,3,,2,3,,,,3,,11,,10,6,,,,4,
+Kalkaji Mandir,4,repeated,2016 2018 2022 2023,2016,2023,false,Outer Ring Road,3,,3,,1,,,,3,3,,8,,10,,,,7,8,
+Khichadi Pur,4,repeated,2016 2017 2022 2024,2016,2024,true,NH-24,3,,2,3,,,,,1,,3,10,9,,,,,11,,7
+Round About Okhla Estate,4,repeated,2017 2018 2022 2023,2017,2023,false,Anand Mai Marg,3,,,1,1,,,,3,3,,,12,10,,,,6,6,
+Uttam Nagar,4,repeated,2016 2017 2023 2024,2016,2024,true,Najafgarh Road,3,,3,3,,,,,,2,3,9,11,,,,,,10,10
+Vijay Ghat,4,repeated,2016 2017 2019 2021,2016,2021,false,RING ROAD,3,,3,3,,3,,3,,,,6,9,,13,,10,,,
+Khampur Village,3,repeated,2018 2021 2022,2018,2022,false,GTK ROAD,10,,,,3,,,3,10,,,,,6,,,6,19,,
+Ghewra More,3,repeated,2018 2019 2024,2018,2024,true,Rohtak Road,8,,,,8,3,,,,,3,,,13,6,,,,,8
+5TH PUSTA USMAN PUR,3,repeated,2017 2018 2019,2017,2019,false,PUSTA ROAD,7,,,2,7,6,,,,,,,11,18,16,,,,,
+CVD DEPOT NANGAL VILLAGE,3,repeated,2016 2017 2019,2016,2019,false,PANKHA ROAD,6,,6,3,,3,,,,,,9,4,,5,,,,,
+District Center Janakpuri,3,repeated,2016 2023 2024,2016,2024,true,Najafgarh Road,6,,6,,,,,,,4,3,9,,,,,,,7,9
+DND FLYOVER,3,repeated,2016 2017 2018,2016,2018,false,RING ROAD,6,,6,4,3,,,,,,,9,10,5,,,,,,
+East Vinod Nagar/Mv Ii Red Light,3,repeated,2017 2019 2022,2017,2022,false,NH-24,6,,,3,,6,,,3,,,,10,,9,,,6,,
+Geeta Colony Flyover,3,repeated,2016 2023 2024,2016,2024,true,Yamuna Pusta Road,6,,3,,,,,,,3,6,13,,,,,,,5,11
+Ber Sarai Flyover,3,repeated,2019 2020 2023,2019,2023,false,Outer Ring Road,5,,,,,3,5,,,3,,,,,4,6,,,12,
+Janak Cinema,3,repeated,2016 2017 2022,2016,2022,false,PANKHA ROAD,5,,5,3,,,,,3,,,8,8,,,,,6,,
+Jasola Vihar,3,repeated,2018 2019 2021,2018,2021,false,ROAD NO 13A,5,,,,5,3,,3,,,,,,7,6,,6,,,
+Majlis Park Metro Station,3,repeated,2018 2020 2024,2018,2024,true,Road No.51,5,,,,5,,3,,,,4,,,13,,10,,,,11
+Mayur Vihar Extension,3,repeated,2017 2019 2023,2017,2023,false,Noida Link Road,5,,,3,,5,,,,3,,,10,,6,,,,4,
+Mundka Metro Station,3,repeated,2018 2021 2022,2018,2022,false,ROHTAK ROAD,5,,,,5,,,3,2,,,,,10,,,9,10,,
+Nehru Palace,3,repeated,2018 2019 2022,2018,2022,false,OUTER RING ROAD,5,,,,0,5,,,1,,,,,10,11,,,11,,
+Okhla Mandi,3,repeated,2018 2020 2023,2018,2023,false,CAPTAIN GAUD MARG | Captain Gaur Marg,5,,,,0,,3,,,5,,,,10,,8,,,11,
+Rama Road Crossing,3,repeated,2021 2022 2024,2021,2024,true,Patel Road,5,,,,,,,4,5,,3,,,,,,10,12,,9
+Shamshan Ghat Geeta Colony,3,repeated,2017 2022 2024,2017,2024,true,Yamuna Pusta Road,5,,,1,,,,,3,,5,,11,,,,,5,,8
+Tees Hazari Red Light,3,repeated,2017 2019 2021,2017,2021,false,BOULEVARD ROAD,5,,,2,,5,,2,,,,,10,,9,,10,,,
+Tikri Khurd Bus Stand,3,repeated,2016 2017 2023,2016,2023,false,GTK Road,5,,5,4,,,,,,3,,7,6,,,,,,9,
+TIKRI VILLAGE,3,repeated,2018 2019 2020,2018,2020,false,ROHTAK ROAD,5,,,,5,4,3,,,,,,,9,6,7,,,,
+Azadpur Bus Terminal,3,repeated,2016 2017 2022,2016,2022,false,GTK ROAD,4,,2,3,,,,,4,,,14,8,,,,,12,,
+Bakoli Bus Stand,3,repeated,2016 2017 2022,2016,2022,false,GTK ROAD,4,,3,4,,,,,3,,,7,7,,,,,8,,
+C-1 Janakpuri,3,repeated,2021 2022 2024,2021,2024,true,Pankha Road,4,,,,,,,4,4,,3,,,,,,6,7,,9
+Dabri Flyover,3,repeated,2017 2018 2023,2017,2023,false,Pankha Road,4,,,2,2,,,,,4,,,10,11,,,,,7,
+Haider Pur,3,repeated,2016 2017 2021,2016,2021,false,OUTER RING ROAD,4,,2,2,,,,4,,,,12,11,,,,8,,,
+ICD Tuglakabad,3,repeated,2017 2019 2022,2017,2022,false,MEHRAULI BADARPUR RD,4,,,4,,3,,,4,,,,6,,7,,,4,,
+Jahangir Puri Metro Station GTK Road,3,repeated,2018 2019 2022,2018,2022,false,GTK ROAD,4,,,,4,3,,,1,,,,,14,8,,,15,,
+Kakrola Dwarka More,3,repeated,2017 2018 2022,2017,2022,false,NAJAFGARH ROAD,4,,,4,3,,,,3,,,,10,11,,,,12,,
+Lado Sarai Crossing,3,repeated,2018 2022 2023,2018,2023,false,Mehrauli Badarpur Rd,4,,,,4,,,,3,3,,,,9,,,,5,10,
+Moti Nagar Flyover,3,repeated,2019 2020 2022,2019,2022,false,PATEL ROAD,4,,,,,3,4,,1,,,,,,16,15,,11,,
+PREPAID BOOTH MUKARBA CHOWK,3,repeated,2017 2018 2019,2017,2019,false,OUTER RING ROAD,4,PREPAID BOOTH MUKHARBA CHOWK,,4,3,3,,,,,,,7,10,5,,,,,
+Santom Hospital Outer Ring Road,3,repeated,2017 2018 2021,2017,2021,false,OUTER RING ROAD,4,,,4,4,,,3,,,,,7,7,,,5,,,
+Sarita Vihar Flyover,3,repeated,2017 2019 2021,2017,2021,false,MATHURA ROAD,4,,,4,,3,,2,,,,,10,,8,,10,,,
+SHAHBAD DAIRY,3,repeated,2017 2018 2019,2017,2019,false,BAWANA ROAD,4,,,2,4,4,,,,,,,12,10,7,,,,,
+Shiv Murti Nh-8,3,repeated,2016 2017 2022,2016,2022,false,NH-8,4,,4,4,,,,,3,,,8,11,,,,,8,,
+West Enclave Red Light,3,repeated,2017 2022 2023,2017,2023,false,Outer Ring Road,4,,,3,,,,,3,4,,,5,,,,,6,9,
+APOLO HOSPITAL,3,repeated,2016 2017 2019,2016,2019,false,MATHURA ROAD,3,,3,3,,2,,,,,,9,4,,11,,,,,
+ESI Hospital Ring Road,3,repeated,2018 2019 2021,2018,2021,false,RING ROAD,3,,,,3,3,,3,,,,,,9,6,,5,,,
+Kabootar Market,3,repeated,2017 2019 2024,2017,2024,true,N. SUBHASH MARG,3,,,3,,3,,,,,,,7,,9,,,,,
+Nizamuddin Yamuna Bridge,3,repeated,2017 2019 2021,2017,2021,false,NH-24,3,NIZAMUDIN YAMUNA BRIDGE,,3,,3,,3,,,,,6,,4,,3,,,
+RTR Flyover Vasant Vihar,3,repeated,2016 2019 2023,2016,2023,false,Outer Ring Road,3,,1,,,3,,,,3,,11,,,8,,,,7,
+Sanjay T-Point,3,repeated,2016 2018 2022,2016,2022,false,NH-8,3,,3,,2,,,,3,,,11,,13,,,,8,,
+Shyamgiri Mandir Shastri Park,3,repeated,2018 2019 2022,2018,2022,false,G.T.ROAD,3,,,,2,3,,,2,,,,,14,4,,,11,,
+C BLOCK YAMUNA VIHAR,3,repeated,2016 2018 2020,2016,2020,false,WAZIRABAD ROAD,2,,1,,2,,1,,,,,14,,12,,10,,,,
+Chandgi Ram Akhara,2,occasional,2020 2024,2020,2024,true,Outer Ring Road,6,,,,,,3,,,,6,,,,,5,,,,10
+INDIRA KALYAN VIHAR RED LIGHT,2,occasional,2018 2019,2018,2019,false,ANAND MAI MARG,6,,,,6,3,,,,,,,,12,8,,,,,
+BHARTI VIDHYAPEETH ROHTAK RD,2,occasional,2017 2020,2017,2020,false,ROHTAK ROAD,5,,,5,,,3,,,,,,11,,,12,,,,
+Gb Pant Hospital,2,occasional,2017 2022,2017,2022,false,JAWAHAR LAL NEHRU MG,5,,,4,,,,,5,,,,6,,,,,9,,
+Goyla Village Najafgarh,2,occasional,2023 2024,2023,2024,true,Goyla Dairy Road,5,,,,,,,,,3,5,,,,,,,,4,7
+Khel Gaon,2,occasional,2019 2024,2019,2024,true,NH-24,5,,,,,5,,,,,3,,,,7,,,,,5
+Loha Mandi,2,occasional,2020 2023,2020,2023,false,Girdhari Lal Marg,5,,,,,,5,,,3,,,,,,7,,,4,
+Metro Station Dilshad Garden,2,occasional,2022 2024,2022,2024,true,G.T. Road,5,,,,,,,,5,,3,,,,,,,11,,10
+Power House Pitampura,2,occasional,2019 2021,2019,2021,false,OUTER RING ROAD,5,,,,,5,,3,,,,,,,13,,4,,,
+Ram Charan Aggarwal Chowk,2,occasional,2016 2024,2016,2024,true,BSZ Marg,5,,5,,,,,,,,3,13,,,,,,,,6
+Satya Niketan Nanakpura,2,occasional,2016 2024,2016,2024,true,Ring Road,5,,5,,,,,,,,3,7,,,,,,,,6
+SIGNATURE BRIDGE KHAJOORI,2,occasional,2019 2020,2019,2020,false,WAZIRABAD ROAD,5,,,,,5,4,,,,,,,,14,10,,,,
+Bhajanpura Chowk,2,occasional,2016 2022,2016,2022,false,WAZIRABAD ROAD,4,,4,,,,,,3,,,9,,,,,,7,,
+BRAR SQUARE,2,occasional,2018 2019,2018,2019,false,RING ROAD,4,,,,4,3,,,,,,,,8,5,,,,,
+Budhpur Ganda Nala/Hanuman Mandir,2,occasional,2018 2022,2018,2022,false,GTK Road,4,,,,4,,,,3,,,,,6,,,,4,,
+BUS STAND JAGAT PURI,2,occasional,2018 2019,2018,2019,false,ROAD NO 57,4,,,,4,4,,,,,,,,9,6,,,,,
+Chhatra Marg Crossing,2,occasional,2017 2024,2017,2024,true,Ring Road,4,,,3,,,,,,,4,,14,,,,,,,16
+Dharampura Red Light Seelampur,2,occasional,2017 2022,2017,2022,false,G.T.ROAD,4,,,4,,,,,3,,,,14,,,,,9,,
+Flyover Raja Ram Marg,2,occasional,2021 2024,2021,2024,true,Raja Ram Kohli Marg,4,,,,,,,3,,,4,,,,,,8,,,5
+GEETA COLONY CUT VIKAS MARG,2,occasional,2017 2019,2017,2019,false,VIKAS MARG,4,,,4,,3,,,,,,,11,,6,,,,,
+HASANPUR DEPOT ROAD NO. 57,2,occasional,2017 2019,2017,2019,false,ROAD NO 57,4,,,1,,4,,,,,,,14,,9,,,,,
+HOTEL CROWN PLAZA MAA ANAND MAI MARG,2,occasional,2017 2019,2017,2019,false,ANAND MAI MARG,4,,,4,,3,,,,,,,11,,5,,,,,
+IP DTC Depot,2,occasional,2016 2022,2016,2022,false,RING ROAD,4,,4,,,,,,3,,,5,,,,,,7,,
+Jharera Village,2,occasional,2021 2024,2021,2024,true,NH-8,4,,,,,,,4,,,3,,,,,,8,,,7
+Karkari More,2,occasional,2019 2021,2019,2021,false,ROAD NO 57,4,,,,,3,,4,,,,,,,7,,9,,,
+Keval Park Road No. 51,2,occasional,2017 2024,2017,2024,true,Road No. 51,4,,,1,,,,,,,4,,10,,,,,,,6
+MANGLAM HOSPITAL BUS STAND NH-24,2,occasional,2016 2019,2016,2019,false,NH-24,4,,2,,,4,,,,,,13,,,4,,,,,
+METRO STATION JUNGPURA,2,occasional,2019 2020,2019,2020,false,LALA LAJPAT RAI MARG,4,,,,,4,3,,,,,,,,6,13,,,,
+Metro Station Shivaji Park,2,occasional,2019 2023,2019,2023,false,Rohtak Road,4,,,,,3,,,,4,,,,,8,,,,11,
+Round About Seemapuri,2,occasional,2021 2023,2021,2023,false,Road No. 68,4,,,,,,,4,,4,,,,,,,4,,5,
+Shastri Park Metro Station,2,occasional,2016 2021,2016,2021,false,OLD GT ROAD,4,,4,,,,,3,,,,7,,,,,7,,,
+Surya Nagar Red Light,2,occasional,2017 2023,2017,2023,false,ROAD NO 57 | Road No. 56,4,,,4,,,,,,3,,,7,,,,,,3,
+Tilak Nagar Flyover,2,occasional,2023 2024,2023,2024,true,Najafgarh Road,4,,,,,,,,,4,3,,,,,,,,9,6
+Under Pass Patparganj,2,occasional,2017 2023,2017,2023,false,Patparganj Road,4,,,4,,,,,,1,,,6,,,,,,10,
+CRPF Camp Sonia Vihar,2,occasional,2019 2024,2019,2024,true,Pusta Road,3,,,,,3,,,,,3,,,,11,,,,,8
+Dilshad Garden,2,occasional,2019 2021,2019,2021,false,G.T.ROAD,3,,,,,3,,3,,,,,,,6,,3,,,
+GAJIPUR DAIRY FARM,2,occasional,2016 2017,2016,2017,false,ROAD NO.56,3,,3,3,,,,,,,,12,8,,,,,,,
+Gazipur Village Near Petrol Pump,2,occasional,2017 2022,2017,2022,false,ROAD NO.56,3,,,3,,,,,3,,,,3,,,,,7,,
+IG Indoor Stadium,2,occasional,2022 2023,2022,2023,false,Ring Road,3,,,,,,,,3,2,,,,,,,,6,15,
+JAITPUR MORE,2,occasional,2016 2017,2016,2017,false,MATHURA ROAD,3,,1,3,,,,,,,,16,15,,,,,,,
+Kanhiya Nagar Metro Station,2,occasional,2019 2023,2019,2023,false,VIR BANDA BAIRAGI MR | VIR Banda Bairagi Marg,3,,,,,2,,,,3,,,,,11,,,,12,
+Lajpat Rai Market (Lal Qila),2,occasional,2021 2022,2021,2022,false,,3,,,,,,,3,3,,,,,,,,7,5,,
+Metro Station Welcome,2,occasional,2017 2023,2017,2023,false,G.T. Road,3,,,3,,,,,,3,,,5,,,,,,11,
+Model Town IIIrd,2,occasional,2016 2022,2016,2022,false,RING ROAD,3,,1,,,,,,3,,,10,,,,,,5,,
+MUNIRKA,2,occasional,2016 2017,2016,2017,false,OUTER RING ROAD,3,,1,3,,,,,,,,14,10,,,,,,,
+NAWADA VILLAGE,2,occasional,2016 2017,2016,2017,false,NAJAFGARH ROAD,3,,1,3,,,,,,,,10,11,,,,,,,
+Outer Circle CP Near Minto Road,2,occasional,2018 2023,2018,2023,false,Outer Circle CP,3,,,,3,,,,,0,,,,9,,,,,10,
+Pani Ki Tanki Nangloi,2,occasional,2017 2022,2017,2022,false,NANGLOI NAJAFGARH RD,3,,,3,,,,,3,,,,11,,,,,11,,
+Power House Mahavir Enclave,2,occasional,2017 2021,2017,2021,false,DABRI PALAM ROAD,3,,,3,,,,3,,,,,5,,,,13,,,
+Rajapuri Red Light,2,occasional,2017 2022,2017,2022,false,ROAD NO.201,3,,,3,,,,,2,,,,8,,,,,10,,
+Sagarpur Bus Stand,2,occasional,2017 2023,2017,2023,false,Pankha Road,3,,,3,,,,,,3,,,5,,,,,,12,
+Shankar Vihar,2,occasional,2020 2023,2020,2023,false,NH-8,3,,,,,,3,,,2,,,,,,8,,,10,
+Tughlakabad Metro Station,2,occasional,2019 2021,2019,2021,false,MATHURA ROAD,3,TUGLAQABAD METRO STATION,,,,3,,3,,,,,,,11,,6,,,
+VIP College Pitampura,2,occasional,2021 2022,2021,2022,false,,3,,,,,,,3,3,,,,,,,,9,6,,
+Durgapuri Chowk,2,occasional,2021 2022,2021,2022,false,,2,,,,,,,2,1,,,,,,,,10,10,,
+Sec 10 Red Light Dwarka,2,occasional,2019 2022,2019,2022,false,ROAD NO 224,1,,,,,1,,,0,,,,,,10,,,12,,
+SIGNATURE BRIDGE TIMARPUR,1,occasional,2019,2019,2019,false,WAZIRABAD ROAD,8,,,,,8,,,,,,,,,13,,,,,
+Near Yashobhoomi Convention Centre Dwarka,1,occasional,2024,2024,2024,true,UER II,7,,,,,,,,,,7,,,,,,,,,12
+Boulevard Road,1,occasional,2023,2023,2023,false,Kashmiri Gate Area,6,,,,,,,,,6,,,,,,,,,18,
+Round About Mori Gate,1,occasional,2023,2023,2023,false,Hamilton Road,6,,,,,,,,,6,,,,,,,,,8,
+ALI VILLAGE,1,occasional,2019,2019,2019,false,MATHURA ROAD,5,,,,,5,,,,,,,,,11,,,,,
+Archana Cinema Red Light,1,occasional,2024,2024,2024,true,Josef Broz Tito Marg,5,,,,,,,,,,5,,,,,,,,,7
+CRPF CAMP KESHOPUR,1,occasional,2016,2016,2016,false,OUTER RING ROAD,5,,5,,,,,,,,,8,,,,,,,,
+GATE NO.3 TIHAR JAIL,1,occasional,2016,2016,2016,false,JAIL ROAD,5,,5,,,,,,,,,6,,,,,,,,
+Hanuman Mandir JJ Colony Bawana,1,occasional,2024,2024,2024,true,Bawana Road,5,,,,,,,,,,5,,,,,,,,,19
+Haryana Maitri Bhawan,1,occasional,2023,2023,2023,false,Road No. 43,5,,,,,,,,,5,,,,,,,,,6,
+NEHRU PLACE,1,occasional,2020,2020,2020,false,OUTER RING ROAD,5,,,,,,5,,,,,,,,,9,,,,
+PRAHLAD PUR VILLAGE,1,occasional,2017,2017,2017,false,RITHALA ROAD,5,,,5,,,,,,,,,5,,,,,,,
+PRAKASH VIHAR SHAHBAD DAIRY,1,occasional,2017,2017,2017,false,BAWANA ROAD,5,,,5,,,,,,,,,9,,,,,,,
+Red Light Pulprahlad Pur,1,occasional,2024,2024,2024,true,Mehrauli Badarpur Road,5,,,,,,,,,,5,,,,,,,,,10
+Sec-23 Petrol Pump,1,occasional,2024,2024,2024,true,Qutab Garh Road,5,,,,,,,,,,5,,,,,,,,,12
+VIKASPURI FLYOVER,1,occasional,2017,2017,2017,false,OUTER RING ROAD,5,,,5,,,,,,,,,14,,,,,,,
+DC Office,1,occasional,2022,2022,2022,false,,4,,,,,,,,4,,,,,,,,,7,,
+FAIZ ROAD CROSSING/IDGAH,1,occasional,2020,2020,2020,false,FAIZ ROAD,4,,,,,,4,,,,,,,,,6,,,,
+FUN N FOOD VILLAGE OLD GURGAON ROAD,1,occasional,2017,2017,2017,false,OLD GURGAON ROAD,4,,,4,,,,,,,,,8,,,,,,,
+GOYALA DAIRY VILLAGE,1,occasional,2018,2018,2018,false,GOYLA DAIRY ROAD,4,,,,4,,,,,,,,,9,,,,,,
+GTK Depot Jahangirpuri,1,occasional,2021,2021,2021,false,,4,,,,,,,4,,,,,,,,,4,,,
+Gurudwara Raja Garden,1,occasional,2022,2022,2022,false,,4,,,,,,,,4,,,,,,,,,7,,
+HOTEL BULBUL MUNDKA,1,occasional,2018,2018,2018,false,ROHTAK ROAD,4,,,,4,,,,,,,,,9,,,,,,
+KHANPUR T POINT,1,occasional,2017,2017,2017,false,MEHRAULI BADARPUR RD,4,,,4,,,,,,,,,12,,,,,,,
+Lajwanti Chowk,1,occasional,2022,2022,2022,false,,4,,,,,,,,4,,,,,,,,,5,,
+LOHA MANDI FLYOVER,1,occasional,2020,2020,2020,false,GIRDHARI LAL MARG,4,,,,,,4,,,,,,,,,4,,,,
+Nangloi Metro Station,1,occasional,2024,2024,2024,true,Rohtak Road,4,,,,,,,,,,4,,,,,,,,,7
+Nathu Colony Chowk Nand Nagri,1,occasional,2023,2023,2023,false,Road No. 68,4,,,,,,,,,4,,,,,,,,,8,
+Near SDM Office Geeta Colony,1,occasional,2024,2024,2024,true,Yamuna Pusta Road,4,,,,,,,,,,4,,,,,,,,,5
+Near Triveni Park Nangal Village Delhi Cantt,1,occasional,2024,2024,2024,true,Pankha Road,4,,,,,,,,,,4,,,,,,,,,6
+PETROL PUMP RD NO 51,1,occasional,2017,2017,2017,false,ROAD NO 51,4,,,4,,,,,,,,,12,,,,,,,
+PUL MITHAI SPM MARG,1,occasional,2019,2019,2019,false,SPM MARG,4,,,,,4,,,,,,,,,8,,,,,
+PUSTA NEW USMANPUR,1,occasional,2018,2018,2018,false,YAMUNA PUSTA ROAD,4,,,,4,,,,,,,,,9,,,,,,
+Red Light Rajiv Gandhi Hospital,1,occasional,2022,2022,2022,false,,4,,,,,,,,4,,,,,,,,,6,,
+Round About Paharganj,1,occasional,2023,2023,2023,false,Rani Jhansi Road,4,,,,,,,,,4,,,,,,,,,10,
+Saraswati Vihar Bus Stand,1,occasional,2023,2023,2023,false,Outer Ring Road,4,,,,,,,,,4,,,,,,,,,7,
+SINGHOLA VILLAGE,1,occasional,2018,2018,2018,false,GTK ROAD,4,,,,4,,,,,,,,,9,,,,,,
+SURAJMAL METRO STATION,1,occasional,2018,2018,2018,false,ROHTAK ROAD,4,,,,4,,,,,,,,,8,,,,,,
+ABHINANDAN VATIKA NAJAFGARH,1,occasional,2017,2017,2017,false,JHARODA ROAD,3,,,3,,,,,,,,,6,,,,,,,
+AGGARWAL MILLENIUM TOWER,1,occasional,2016,2016,2016,false,SHAHEED JAGAT NARAIN,3,,3,,,,,,,,,9,,,,,,,,
+AGRA CANAL ROAD JAITPUR,1,occasional,2018,2018,2018,false,AGRA CANAL ROAD,3,,,,3,,,,,,,,,7,,,,,,
+ARSD College,1,occasional,2023,2023,2023,false,Ring Road,3,,,,,,,,,3,,,,,,,,,6,
+ARSD COLLEGE RING ROAD,1,occasional,2016,2016,2016,false,RING ROAD,3,,3,,,,,,,,,7,,,,,,,,
+Barwala Village Bawana Road,1,occasional,2022,2022,2022,false,,3,,,,,,,,3,,,,,,,,,6,,
+Budhpur Ganda Nala/Hanuman Mandir Budhpur,1,occasional,2024,2024,2024,true,GTK Road,3,,,,,,,,,,3,,,,,,,,,8
+BUS STAND TALKATORA STADIUM,1,occasional,2017,2017,2017,false,TALKATORA ROAD,3,,,3,,,,,,,,,5,,,,,,,
+CHHATTA RAIL CHOWK,1,occasional,2016,2016,2016,false,SPM MARG,3,,3,,,,,,,,,8,,,,,,,,
+CHINTAMANI RED LIGHT SEEMAPURI,1,occasional,2018,2018,2018,false,G.T.ROAD,3,,,,3,,,,,,,,,7,,,,,,
+Delhi Cantt Flyover,1,occasional,2023,2023,2023,false,Jail Road,3,,,,,,,,,3,,,,,,,,,5,
+Delhi Public Lib/Sriniwas Puri/Gupta Market,1,occasional,2022,2022,2022,false,,3,,,,,,,,3,,,,,,,,,7,,
+DSIIDC Red Light NH-1,1,occasional,2023,2023,2023,false,GTK Road,3,,,,,,,,,3,,,,,,,,,7,
+"ESI HOSPITAL, ANAND MAI MARG",1,occasional,2018,2018,2018,false,ANAND MAI MARG,3,,,,3,,,,,,,,,9,,,,,,
+FILMISTAN,1,occasional,2018,2018,2018,false,RANI JHANSI ROAD,3,,,,3,,,,,,,,,5,,,,,,
+GOLE CHAKKAR SEEMAPURI,1,occasional,2017,2017,2017,false,G.T.ROAD,3,,,3,,,,,,,,,10,,,,,,,
+Hamdard Nagar Red Light,1,occasional,2024,2024,2024,true,Mehrauli Badarpur Road,3,,,,,,,,,,3,,,,,,,,,10
+HANUMAN MANDIR PUSA ROAD,1,occasional,2017,2017,2017,false,PUSA ROAD,3,,,3,,,,,,,,,6,,,,,,,
+Hilton Hotel,1,occasional,2024,2024,2024,true,Noida Link Road,3,,,,,,,,,,3,,,,,,,,,6
+INDIRA PARK,1,occasional,2016,2016,2016,false,SHANI BAZAR ROAD,3,,3,,,,,,,,,7,,,,,,,,
+Jeewan Mala Hospital,1,occasional,2024,2024,2024,true,New Rohtak Road,3,,,,,,,,,,3,,,,,,,,,5
+KATWARIA SARAI RED LIGHT,1,occasional,2016,2016,2016,false,ARUNA ASAF ALI MARG,3,,3,,,,,,,,,8,,,,,,,,
+KAYA MAYA HOSPITAL,1,occasional,2020,2020,2020,false,MEHRAULI BADARPUR RD,3,,,,,,3,,,,,,,,,5,,,,
+Khichripur,1,occasional,2021,2021,2021,false,,3,,,,,,,3,,,,,,,,,5,,,
+KHYBER PASS,1,occasional,2016,2016,2016,false,RING ROAD,3,,3,,,,,,,,,4,,,,,,,,
+LAJPAT NAGAR FLYOVER,1,occasional,2017,2017,2017,false,RING ROAD,3,,,3,,,,,,,,,11,,,,,,,
+LOHIA PULL,1,occasional,2018,2018,2018,false,AGRA CANAL ROAD,3,,,,3,,,,,,,,,7,,,,,,
+M.S. PARK METRO STATION,1,occasional,2019,2019,2019,false,G.T.ROAD,3,,,,,3,,,,,,,,,7,,,,,
+MAYUR VIHAR EXTENSION NOIDA LINK ROAD,1,occasional,2016,2016,2016,false,NOIDA LINK ROAD,3,,3,,,,,,,,,6,,,,,,,,
+Metro Station East Punjabi Bagh,1,occasional,2022,2022,2022,false,,3,,,,,,,,3,,,,,,,,,6,,
+METRO STATION KRISHNA NAGAR,1,occasional,2018,2018,2018,false,ROAD NO 57,3,,,,3,,,,,,,,,9,,,,,,
+Metro Station Paschim Vihar,1,occasional,2023,2023,2023,false,Rohtak Road,3,,,,,,,,,3,,,,,,,,,8,
+Metro Station Ramesh Nagar,1,occasional,2023,2023,2023,false,Najafgarh Road,3,,,,,,,,,3,,,,,,,,,7,
+Metro Station Sadar Bazar,1,occasional,2021,2021,2021,false,,3,,,,,,,3,,,,,,,,,5,,,
+MOHAN ESTATE,1,occasional,2020,2020,2020,false,MATHURA ROAD,3,,,,,,3,,,,,,,,,6,,,,
+Mundka,1,occasional,2023,2023,2023,false,Rohtak Road,3,,,,,,,,,3,,,,,,,,,7,
+MUNIRKA FLYOVER,1,occasional,2020,2020,2020,false,OUTER RING ROAD,3,,,,,,3,,,,,,,,,7,,,,
+NARAYANA VILLAGE RING ROAD,1,occasional,2017,2017,2017,false,RING ROAD,3,,,3,,,,,,,,,5,,,,,,,
+NATIONAL STADIUM,1,occasional,2017,2017,2017,false,C-HEXAGON,3,,,3,,,,,,,,,3,,,,,,,
+Near KV School Naraina,1,occasional,2024,2024,2024,true,Ring Road,3,,,,,,,,,,3,,,,,,,,,5
+Near Manish Furniture Mkt Nangloi Road,1,occasional,2021,2021,2021,false,,3,,,,,,,3,,,,,,,,,6,,,
+Near Maurya Sheraton Hotel,1,occasional,2022,2022,2022,false,,3,,,,,,,,3,,,,,,,,,4,,
+NTPC COLONY,1,occasional,2016,2016,2016,false,MATHURA ROAD,3,,3,,,,,,,,,9,,,,,,,,
+OKHLA DTC BUS DEPOT,1,occasional,2016,2016,2016,false,ANAND MAI MARG,3,,3,,,,,,,,,8,,,,,,,,
+PALAM FLYOVER,1,occasional,2017,2017,2017,false,ROAD NO.201,3,,,3,,,,,,,,,4,,,,,,,
+Panchsheel Flyover,1,occasional,2021,2021,2021,false,,3,,,,,,,3,,,,,,,,,4,,,
+Paper Market Gajipur,1,occasional,2023,2023,2023,false,Paper Market Road,3,,,,,,,,,3,,,,,,,,,4,
+PRAGATI MAIDAN GATE NO 5,1,occasional,2017,2017,2017,false,MATHURA ROAD,3,,,3,,,,,,,,,4,,,,,,,
+PRESS ENCLAVE CROSSING,1,occasional,2019,2019,2019,false,LAL BAHADUR SHASTRI,3,,,,,3,,,,,,,,,6,,,,,
+Pul Mithai,1,occasional,2023,2023,2023,false,SPM Marg,3,,,,,,,,,3,,,,,,,,,4,
+Railway Under Pulprahladpur,1,occasional,2021,2021,2021,false,,3,,,,,,,3,,,,,,,,,10,,,
+RAMDEV CHOWK NARELA,1,occasional,2019,2019,2019,false,NARELA ROAD,3,,,,,3,,,,,,,,,4,,,,,
+RED LIGHT TAHIRPUR,1,occasional,2017,2017,2017,false,TAHIRPUR ROAD,3,,,3,,,,,,,,,11,,,,,,,
+Safdarjung Hospital,1,occasional,2022,2022,2022,false,,3,,,,,,,,3,,,,,,,,,4,,
+Sai Baba Mandir Najafgarh,1,occasional,2024,2024,2024,true,Najafgarh Road,3,,,,,,,,,,3,,,,,,,,,9
+Shaheen Bagh Road No-13A,1,occasional,2023,2023,2023,false,Road No. 13A,3,,,,,,,,,3,,,,,,,,,10,
+Shakarpur Red Light,1,occasional,2023,2023,2023,false,Yamuna Pusta Road,3,,,,,,,,,3,,,,,,,,,5,
+SHAKTI NAGAR CHOWK,1,occasional,2019,2019,2019,false,GTK ROAD,3,,,,,3,,,,,,,,,4,,,,,
+SHAMSHAN GHAT RING ROAD,1,occasional,2017,2017,2017,false,RING ROAD,3,,,3,,,,,,,,,5,,,,,,,
+TARA APARTMENT,1,occasional,2018,2018,2018,false,RAVIDAS MARG,3,,,,3,,,,,,,,,9,,,,,,
+THIMAYA RED LIGHT STATION ROAD,1,occasional,2017,2017,2017,false,STATION ROAD,3,,,3,,,,,,,,,4,,,,,,,
+Tilak Marg Bhagwan Das Marg Crossing,1,occasional,2024,2024,2024,true,Tilak Marg,3,,,,,,,,,,3,,,,,,,,,6
+Tilak Pul Dabri,1,occasional,2023,2023,2023,false,Pankha Road,3,,,,,,,,,3,,,,,,,,,9,
+Tughlaqabad Village Red Light,1,occasional,2024,2024,2024,true,Mehrauli Badarpur Road,3,,,,,,,,,,3,,,,,,,,,5
+UNDER PASS DWARKA,1,occasional,2019,2019,2019,false,DWARKA LINK ROAD,3,,,,,3,,,,,,,,,10,,,,,
+VASANT VALLEY SCHOOL,1,occasional,2019,2019,2019,false,ABDUL GAFAR KHAN MG,3,,,,,3,,,,,,,,,5,,,,,
+VIJAY ENCLAVE PALAM,1,occasional,2017,2017,2017,false,DABRI PALAM ROAD,3,,,3,,,,,,,,,5,,,,,,,
+Vijay Vihar Rohini,1,occasional,2023,2023,2023,false,Rithala Road,3,,,,,,,,,3,,,,,,,,,6,
+WAZIRABAD PULL,1,occasional,2016,2016,2016,false,WAZIRABAD ROAD,3,,3,,,,,,,,,4,,,,,,,,
+BUS STAND DBG ROAD,1,occasional,2017,2017,2017,false,DBG ROAD,2,,,2,,,,,,,,,10,,,,,,,
+HARKESH NAGAR,1,occasional,2016,2016,2016,false,MATHURA ROAD,2,,2,,,,,,,,,10,,,,,,,,
+KALKAJI BUS STOP,1,occasional,2016,2016,2016,false,OUTER RING ROAD,2,,2,,,,,,,,,13,,,,,,,,
+Khaira More Najafgarh,1,occasional,2023,2023,2023,false,Najafgarh Dwarka Rd,2,,,,,,,,,2,,,,,,,,,12,
+NSIT Dwarka,1,occasional,2022,2022,2022,false,,2,,,,,,,,2,,,,,,,,,11,,
+PUSTA SONIA VIHAR,1,occasional,2020,2020,2020,false,PUSTA ROAD,2,,,,,,2,,,,,,,,,10,,,,
+SURAJ KUND CROSSING M B ROAD,1,occasional,2017,2017,2017,false,MEHRAULI BADARPUR RD,2,,,2,,,,,,,,,11,,,,,,,
+Baraf Khana Chowk,1,occasional,2023,2023,2023,false,Rani Jhansi Road,1,,,,,,,,,1,,,,,,,,,10,
+BIRLA INSTITUTE OF MANAGEMENT TECHNOLOGY,1,occasional,2019,2019,2019,false,LAL BAHADUR SHASTRI,1,,,,,1,,,,,,,,,11,,,,,
+BUS STAND RAVI DAS MARG,1,occasional,2017,2017,2017,false,RAVIDAS MARG,1,,,1,,,,,,,,,10,,,,,,,
+GOYLA DAIRY DWARKA,1,occasional,2017,2017,2017,false,GOYLA DAIRY ROAD,1,,,1,,,,,,,,,10,,,,,,,
+Harnam Palace Ashok Nagar,1,occasional,2021,2021,2021,false,,1,,,,,,,1,,,,,,,,,13,,,
+JAGAT PURI,1,occasional,2017,2017,2017,false,ROAD NO 57,1,,,1,,,,,,,,,14,,,,,,,
+Hanuman Mandir,1,occasional,2024,2024,2024,true,,,,,,,,,,,,,,,,,,,,,
+SEC-1 RK PURAM,1,occasional,2017,2017,2017,false,VENKTESHWAR MARG,0,,,0,,,,,,,,,11,,,,,,,
