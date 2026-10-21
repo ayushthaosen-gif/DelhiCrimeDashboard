@@ -251,6 +251,17 @@
       "note": "On Road safety beside the 2023 and 2024 values. Read from the annual reports' text (three figures also checked on the page image); not independently reviewed. Drink-driving 2023 and 2024 are about seven times the 2022 figure on a basis not established as the same. Camera counts are blank before 2023: the reports give inconsistent installation counts."
     },
     {
+      "id": "crash_zones_roads_2016_2021",
+      "name": "Named accident-prone zones and road-wise zone tables, 2016 to 2021, as printed",
+      "status": "production",
+      "temporal_type": "annual",
+      "latest_reference_period": "2021",
+      "coverage_start": "2016",
+      "geography": "Named locations with the road printed beside each (2021 prints none); no coordinates; not mapped",
+      "where": "data/releases/road_zones_roads_2016_2021/manifest.json",
+      "note": "On Road safety (zone and roads tables, 2016 to 2024): 646 named zones and 163 road rows. Every year ties to the report's printed zone totals and row arithmetic; 2017 to 2020 road columns reproduce each year's road table. 2016 prints no road table. 2016 to 2020 transcribed from page images by one agent, 2021 read from the text layer; not independently reviewed. Zone lists change every year: counts are not a fixed-location trend."
+    },
+    {
       "id": "traffic_districts_2016_2020",
       "name": "Traffic Police district crashes and selected-zone counts, 2016 to 2021, as printed",
       "status": "production",
@@ -259,7 +270,7 @@
       "coverage_start": "2016",
       "geography": "Traffic Police reporting districts as printed in each year's report (11 in 2016-2017, 12 in 2018-2021); not the 15 police districts",
       "where": "data/staged/road_districts_2016_2020/FINDINGS.md",
-      "note": "Tables on Road safety (Districts, 2016 to 2024): whole-district crashes 2016 to 2021 and crashes within selected zones 2017 to 2021 (2016 has no district table; 2019 omits New Delhi and 2021 omits Central, shown as not in the table, never zero). Counts, not rates; fatal crashes, not people killed. No change figures are calculated and nothing is joined to the maps. Named-zone and road lists for 2016 to 2021 are not transcribed. Visually checked by one agent, not independently reviewed."
+      "note": "Tables on Road safety (Districts, 2016 to 2024): whole-district crashes 2016 to 2021 and crashes within selected zones 2017 to 2021 (2016 has no district table; 2019 omits New Delhi and 2021 omits Central, shown as not in the table, never zero). Counts, not rates; fatal crashes, not people killed. No change figures are calculated and nothing is joined to the maps. Named-zone and road lists for 2016 to 2021 are a separate series (crash_zones_roads_2016_2021). Visually checked by one agent, not independently reviewed."
     }
   ]
 }

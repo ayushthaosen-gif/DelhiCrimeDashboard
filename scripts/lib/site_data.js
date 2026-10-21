@@ -155,7 +155,21 @@ function buildRoads() {
       .slice(0, 12)
       .map(o => [o.r.road, o.r.zones, o.r.fatal, o.r.total]);
   });
-  return { roads, zones2023, zones2022, zones2024, history: roadHistory.build() };
+  // 2016 to 2021 (data/releases/road_zones_roads_2016_2021/): named zones as printed, with the road where that year's table has one
+  // (2021 prints none), and the road-wise tables for 2017 to 2021 (2016 prints no road table).
+  const RH = 'data/releases/road_zones_roads_2016_2021/';
+  const named = read(RH + 'named_zones_2016_2021.json'), roadRows = read(RH + 'roads_selected_zones_2017_2021.json');
+  const out = { roads, zones2023, zones2022, zones2024, history: roadHistory.build(), roadRows: {} };
+  for (let y = 2016; y <= 2021; y++) {
+    out['zones' + y] = named.filter(z => z.reference_year === y).sort((a, b) => a.serial - b.serial).map(z => [z.name_as_printed, z.road_as_printed, z.fatal_crashes, z.total_crashes, 0]);
+  }
+  for (let y = 2017; y <= 2021; y++) {
+    const rows = roadRows.filter(r => r.reference_year === y).sort((a, b) => a.rank - b.rank);
+    out.roadRows[y] = rows.length;
+    roads[y] = rows.map((r, i) => ({ r, i })).sort((a, b) => b.r.fatal_crashes - a.r.fatal_crashes || a.i - b.i).slice(0, 12).map(o => [o.r.road_as_printed, o.r.crash_prone_zones, o.r.fatal_crashes, o.r.total_crashes]);
+  }
+  [2022, 2023, 2024].forEach(y => { out.roadRows[y] = out.roadRows[y] || (y === 2022 ? 32 : 35); });
+  return out;
 }
 
 // The continuity file with the evidence paths removed, plus the comparison functions' source (the page runs the same code the tests run).

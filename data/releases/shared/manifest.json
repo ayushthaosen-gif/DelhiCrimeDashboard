@@ -438,8 +438,8 @@
       "datasetId": "series_status",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "48edf3443f39a4b593a1ec2c2ea0362fd658a94c4bf8a4241b6f0ba52548e99c",
-      "bytes": 14448
+      "sha256": "fb6b91ecdc1f7b92e135f00856461ef23c48b906a52884d189ef15d1f40a7b3a",
+      "bytes": 15408
     },
     {
       "file": "data/streetlight_grid.json",
