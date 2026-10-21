@@ -16,6 +16,9 @@
       "sourceUrl": "https://github.com/datameet/Municipal_Spatial_Data/tree/master/Delhi",
       "caveat": "Not an official or current administrative boundary. Used here as a finer grid for point-density aggregation and for the Master Plan comparison. Ward names and numbers do not match the current wards.",
       "files": [
+        "data/profiles/ward_profiles.csv",
+        "data/profiles/ward_profiles.geojson",
+        "data/profiles/ward_profiles.json",
         "data/source/delhi_wards_boundaries.geojson",
         "data/delhi_wards_infra.geojson",
         "data/landuse_by_ward.csv",

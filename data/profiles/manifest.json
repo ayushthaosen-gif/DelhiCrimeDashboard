@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi ward and district profiles: export bundle",
+  "dataVersion": "2026-10-20",
+  "generatedBy": "scripts/build_profiles.js",
+  "geographies": [
+    {
+      "id": "legacy_290_wards",
+      "rows": 290,
+      "caveat": "Legacy ward geography (DataMeet, CC-BY-SA 2.5 India), before the 2022 delimitation; not an official or current boundary."
+    },
+    {
+      "id": "delhi_police_districts_15",
+      "rows": 15,
+      "caveat": "Simplified boundaries (about 165 m tolerance), not survey-grade."
+    }
+  ],
+  "files": [
+    {
+      "path": "data/profiles/schema.json",
+      "sha256": "40a9d8c171144c61492b52551e8fbc24ad20e377df93a955592f442049ab8888"
+    },
+    {
+      "path": "data/profiles/ward_profiles.json",
+      "sha256": "3ba85164a508823b02c53d5d6ff1a17644f5cc92be7bfb4b7d3e1e677a3042ba"
+    },
+    {
+      "path": "data/profiles/ward_profiles.csv",
+      "sha256": "31d213f8210e357d12e283240479f9e7d4016a88637365d6d4a5df81ac3cccaf"
+    },
+    {
+      "path": "data/profiles/ward_profiles.geojson",
+      "sha256": "b123edd1e81856b143ada561d3f83e9ebfc0ccc2cf97a297396a8d230095bb5f"
+    },
+    {
+      "path": "data/profiles/district_profiles.json",
+      "sha256": "2e44f3c9070cf1a2f1c4615f0cf75c3dda1b836948bb0cf6839ecadc37f09b62"
+    },
+    {
+      "path": "data/profiles/district_profiles.csv",
+      "sha256": "9bc8575b946d12d55fe3d002abacc2e99128aa821b52c2cd8d38ffd3f7fc9b39"
+    },
+    {
+      "path": "data/profiles/district_profiles.geojson",
+      "sha256": "a6bb65655e5d5a06a1edd01c7320023f29098177ffcb02bb195b81f489536c31"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "data/delhi_wards_infra.geojson",
+      "sha256": "25b5a65559ad978286eb4b37adb4e1cd28d8bce72b67ea4c372c1ab64c4419dd"
+    },
+    {
+      "path": "data/dashboard_final.json",
+      "sha256": "09d402b2c739fde9fd91ae4ad7268ce8a64c4621405b5fc1392f375b6d6406c4"
+    },
+    {
+      "path": "data/dashboard_boundaries_simplified.geojson",
+      "sha256": "1e6dd26f2f89b5885934ca54f42c57a2ed2531de89053ffdb99e0d94962aa09e"
+    },
+    {
+      "path": "data/poi_markers_latlng.json",
+      "sha256": "df535835cc55ef7c59ca74742590ed73125125cc87358c8740f0f8538ad0f0d6"
+    },
+    {
+      "path": "data/poi_markers_infra_extras.json",
+      "sha256": "d8f8968cf54bd985aca77a49f838d3e1d1311fcb5be29b4c868a6fc925a19ed6"
+    },
+    {
+      "path": "data/police_markers_latlng.json",
+      "sha256": "77b6273d12974c6240e68a1a93c7411b95ab45ff737b11fe40f7eb9f98dc4c0a"
+    },
+    {
+      "path": "data/delhi_pedestrian_overpasses_osm.geojson",
+      "sha256": "7e979c9787440c2f1c9bfca571d00e245c3e07a7fdc0b557eb672ee275698a80"
+    },
+    {
+      "path": "data/delhi_crash_prone_zones_2024_all_named_approx.geojson",
+      "sha256": "ade5cbe4ba0dbb4d26186495a24bb1c46210b374bf6e0d4c5b738528925a82d0"
+    },
+    {
+      "path": "data/derived/crash_zone_sidewalks_2024.json",
+      "sha256": "318c296da048d3b7799b036f74f2ae9b67d2a63c3aa62b4f93f69b5e60b01841"
+    },
+    {
+      "path": "data/source/osm_footways_delhi_raw.json",
+      "sha256": "b78fafed51a171fa92e629c1a50bb84a4f3776fcabf357ae020df33af132a628"
+    },
+    {
+      "path": "data/delhi_footway_coverage.json",
+      "sha256": "2f8fb02a1dd3e4737634f1b5bb3c31bcef711ec9d4b3eea66fac8e9903fd3a67"
+    },
+    {
+      "path": "data/landuse_by_ward.csv",
+      "sha256": "b49df618236049e829332ad347b446547a144b723e88fdc2da6a17702ce20cb7"
+    },
+    {
+      "path": "data/continuity.json",
+      "sha256": "74a8e521d37aa6f78ec7f4a4e2ffe6aec68c3ff628de8ff9e39c3c992ffb5ec8"
+    },
+    {
+      "path": "data/series_status.json",
+      "sha256": "e81588531b453aca2f46e9dce4b254f936e83bbbe9051fef3a79902cb44fa75f"
+    },
+    {
+      "path": "data/geography_registry.json",
+      "sha256": "6c997c4fbb1d1ed6c5ba75d046bfaa8711a7a424e721bce9261672dc4244f813"
+    }
+  ],
+  "nullPolicy": "A blank cell means the source does not hold the figure. It is never zero. A zero is a source zero, or a count of mapped features that found none (read the uncertainty class).",
+  "uncertaintyClasses": [
+    "official_count",
+    "mapped_osm",
+    "approximate_position",
+    "survey",
+    "derived",
+    "district_inherited",
+    "geometry",
+    "identifier"
+  ],
+  "cannotEstablish": [
+    "Why crashes happened, or that any facility here caused or would prevent them.",
+    "Risk per person or per trip: there are no pedestrian or traffic counts, so counts are not rates of risk.",
+    "That a place without mapped infrastructure has none: OpenStreetMap coverage is uneven.",
+    "Crime by ward: crime is published only for the 15 police districts.",
+    "Anything about the current 250 MCD wards: these profiles use the legacy 290-ward geography.",
+    "A change over time for a ward or a named zone: boundaries, zone lists and mapping all change between years.",
+    "Who is responsible for a location, or what should be built there. Field verification is needed before any intervention."
+  ],
+  "licences": [
+    "OpenStreetMap-derived fields: OpenStreetMap contributors, ODbL 1.0 (attribution required).",
+    "Ward boundaries: DataMeet Municipal_Spatial_Data, CC-BY-SA 2.5 India (share-alike applies to the ward GeoJSON).",
+    "Official figures (NCRB, Delhi Traffic Police, Delhi Police): no open reuse licence has been verified for the source documents."
+  ],
+  "methodNotes": [
+    "Counts are assigned to wards by point-in-polygon; footway length by segment midpoint. Points on a boundary go to the first ward that contains them.",
+    "Crash-zone fields depend on hand-placed positions with stated accuracy of 150 m to 5 km; the ward a zone falls in can be wrong.",
+    "District profiles carry the 2023 to 2024 comparability state from data/continuity.json; no change figure is calculated."
+  ]
+}

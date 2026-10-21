@@ -1,0 +1,843 @@
+{
+  "schemaVersion": "1.0.0",
+  "description": "The contract for the ward and district profile exports: every column, its unit, source, data year, uncertainty class and what a blank means.",
+  "dataVersion": "2026-10-20",
+  "uncertaintyClasses": {
+    "official_count": {
+      "label": "Official count",
+      "meaning": "A count published by an official body for a stated geography and year. It counts registered cases or reported crashes, not everything that happened."
+    },
+    "mapped_osm": {
+      "label": "Mapped in OpenStreetMap",
+      "meaning": "A count of features volunteers have mapped in OpenStreetMap. It is a lower bound: a zero or a low count can mean the area is not mapped, not that the facility is absent."
+    },
+    "approximate_position": {
+      "label": "Depends on approximate positions",
+      "meaning": "Depends on crash-zone positions placed by hand at landmark centres; the Traffic Police publish no coordinates. Each zone carries its own estimated accuracy (150 m to 5 km), so a zone can fall in the wrong ward."
+    },
+    "survey": {
+      "label": "Survey, partial coverage",
+      "meaning": "From a survey that did not cover every district. A blank means not surveyed, not zero."
+    },
+    "derived": {
+      "label": "Derived here",
+      "meaning": "Computed in this project from other fields by the rule stated in the field description. It inherits the uncertainty of its inputs."
+    },
+    "district_inherited": {
+      "label": "District value copied to wards",
+      "meaning": "Crime is published only per police district, so every ward in a district shows the same figure. It says nothing about differences between wards."
+    },
+    "geometry": {
+      "label": "Boundary, not official",
+      "meaning": "From the legacy 290-ward boundary file (DataMeet, before the 2022 delimitation). It is not an official or current boundary."
+    },
+    "identifier": {
+      "label": "Identifier",
+      "meaning": "A name or number used to identify the row."
+    }
+  },
+  "cannotEstablish": {
+    "general": [
+      "Why crashes happened, or that any facility here caused or would prevent them.",
+      "Risk per person or per trip: there are no pedestrian or traffic counts, so counts are not rates of risk.",
+      "That a place without mapped infrastructure has none: OpenStreetMap coverage is uneven.",
+      "Crime by ward: crime is published only for the 15 police districts.",
+      "Anything about the current 250 MCD wards: these profiles use the legacy 290-ward geography.",
+      "A change over time for a ward or a named zone: boundaries, zone lists and mapping all change between years.",
+      "Who is responsible for a location, or what should be built there. Field verification is needed before any intervention."
+    ],
+    "byClass": {
+      "approximate_position": "Where exactly crashes happened, or that a crash-prone zone lies inside this ward rather than next to it.",
+      "mapped_osm": "How much of the facility actually exists on the ground.",
+      "district_inherited": "Whether this ward is better or worse than its neighbours in the same district.",
+      "survey": "Anything about districts the survey did not cover.",
+      "official_count": "The true level of crime or crashes: counts depend on reporting and registration."
+    }
+  },
+  "wardFields": [
+    {
+      "id": "ward_no",
+      "label": "Ward number",
+      "unit": "",
+      "group": "identity",
+      "uncertainty": "identifier",
+      "source": "Legacy 290-ward boundary file (DataMeet, CC-BY-SA 2.5 India)",
+      "dataYear": "legacy",
+      "blankMeans": "One polygon has no number in the source and is labelled UNWARDED_1."
+    },
+    {
+      "id": "ward_name",
+      "label": "Ward name",
+      "unit": "",
+      "group": "identity",
+      "uncertainty": "identifier",
+      "source": "Legacy 290-ward boundary file (DataMeet, CC-BY-SA 2.5 India)",
+      "dataYear": "legacy",
+      "blankMeans": "Two wards share the name RAM NAGAR: use the ward number as the key."
+    },
+    {
+      "id": "geography",
+      "label": "Ward geography",
+      "unit": "",
+      "group": "identity",
+      "uncertainty": "identifier",
+      "source": "data/geography_registry.json",
+      "dataYear": "legacy",
+      "blankMeans": "Always legacy_290_wards."
+    },
+    {
+      "id": "assigned_district",
+      "label": "Police district containing the ward centre",
+      "unit": "",
+      "group": "identity",
+      "uncertainty": "derived",
+      "source": "Ward bounding-box centre tested against the district boundaries",
+      "dataYear": "legacy",
+      "blankMeans": "Blank if the centre falls outside every district."
+    },
+    {
+      "id": "area_km2",
+      "label": "Ward area",
+      "unit": "km²",
+      "group": "identity",
+      "uncertainty": "geometry",
+      "source": "Legacy 290-ward boundary file (DataMeet, CC-BY-SA 2.5 India)",
+      "dataYear": "legacy",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "crash_zones_2024",
+      "label": "Crash-prone zones placed in the ward",
+      "unit": "zones",
+      "group": "crash",
+      "uncertainty": "approximate_position",
+      "source": "Delhi Road Crash Report 2024 (Table 6.29), positions placed by hand (data/delhi_crash_prone_zones_2024_all_named_approx.geojson)",
+      "dataYear": "2024",
+      "blankMeans": "Zero means no zone position falls in the ward."
+    },
+    {
+      "id": "crash_zones_without_printed_counts_2024",
+      "label": "Of those zones, how many print no crash count",
+      "unit": "zones",
+      "group": "crash",
+      "uncertainty": "approximate_position",
+      "source": "Delhi Road Crash Report 2024 (Table 6.29), positions placed by hand (data/delhi_crash_prone_zones_2024_all_named_approx.geojson)",
+      "dataYear": "2024",
+      "blankMeans": "Zero means every zone placed in the ward prints its counts. A zone not ranked in Table 6.29 appears only in the category lists and prints none."
+    },
+    {
+      "id": "crash_zone_fatal_crashes_2024",
+      "label": "Fatal crashes within those zones that print a count",
+      "unit": "crashes",
+      "group": "crash",
+      "uncertainty": "approximate_position",
+      "source": "Delhi Road Crash Report 2024 (Table 6.29), positions placed by hand (data/delhi_crash_prone_zones_2024_all_named_approx.geojson)",
+      "dataYear": "2024",
+      "blankMeans": "Zero means no zone is placed in the ward. Blank means zones are placed there but none prints a count. Counts within zones only, not ward totals, and a lower bound where some zones print none."
+    },
+    {
+      "id": "crash_zone_total_crashes_2024",
+      "label": "All crashes within those zones",
+      "unit": "crashes",
+      "group": "crash",
+      "uncertainty": "approximate_position",
+      "source": "Delhi Road Crash Report 2024 (Table 6.29), positions placed by hand (data/delhi_crash_prone_zones_2024_all_named_approx.geojson)",
+      "dataYear": "2024",
+      "blankMeans": "Zero means no zone is placed in the ward. Blank means zones are placed there but none prints a count. A lower bound where some zones print none."
+    },
+    {
+      "id": "crash_zone_pedestrian_fatal_crashes_2024",
+      "label": "Pedestrian fatal crashes within those zones",
+      "unit": "crashes",
+      "group": "crash",
+      "uncertainty": "approximate_position",
+      "source": "Delhi Road Crash Report 2024 (Table 6.29), positions placed by hand (data/delhi_crash_prone_zones_2024_all_named_approx.geojson)",
+      "dataYear": "2024",
+      "blankMeans": "Zero means no zone is placed in the ward. Blank means no zone there prints a pedestrian count. A lower bound where some print none."
+    },
+    {
+      "id": "crash_zone_names",
+      "label": "Names of the crash-prone zones placed in the ward",
+      "unit": "",
+      "group": "crash",
+      "uncertainty": "approximate_position",
+      "source": "Delhi Road Crash Report 2024 (Table 6.29), positions placed by hand (data/delhi_crash_prone_zones_2024_all_named_approx.geojson)",
+      "dataYear": "2024",
+      "blankMeans": "No zone placed in the ward."
+    },
+    {
+      "id": "high_injury_network",
+      "label": "In the smallest set of wards holding half of 2024 zone fatal crashes",
+      "unit": "yes/no",
+      "group": "crash",
+      "uncertainty": "derived",
+      "source": "Computed in scripts/build_ward_infra.js from crash_zone_fatal_crashes_2024",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "high_injury_network_rank",
+      "label": "Rank within that set",
+      "unit": "rank",
+      "group": "crash",
+      "uncertainty": "derived",
+      "source": "Same rule as above",
+      "dataYear": "2024",
+      "blankMeans": "Blank outside the set."
+    },
+    {
+      "id": "bus_stops",
+      "label": "Bus stops mapped",
+      "unit": "stops",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped."
+    },
+    {
+      "id": "traffic_signals",
+      "label": "Traffic signals mapped",
+      "unit": "signals",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped."
+    },
+    {
+      "id": "pedestrian_crossings",
+      "label": "Pedestrian crossings mapped",
+      "unit": "crossings",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped."
+    },
+    {
+      "id": "pedestrian_overpasses",
+      "label": "Pedestrian overpass groups mapped",
+      "unit": "groups",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped."
+    },
+    {
+      "id": "footway_km",
+      "label": "Footway length mapped",
+      "unit": "km",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass; segment midpoints assigned to wards",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped. Sparse in Delhi; a low value mostly reflects mapping."
+    },
+    {
+      "id": "street_lamps_mapped",
+      "label": "Street lamps mapped",
+      "unit": "lamps",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped. This is not a streetlight survey."
+    },
+    {
+      "id": "hospitals",
+      "label": "Hospitals mapped",
+      "unit": "hospitals",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped."
+    },
+    {
+      "id": "surveillance_points_mapped",
+      "label": "Surveillance points mapped",
+      "unit": "points",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped; the points carry no video and are not a camera register."
+    },
+    {
+      "id": "police_stations",
+      "label": "Police stations",
+      "unit": "stations",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "Delhi Police GSDL station list via a community mirror",
+      "dataYear": "list date not established",
+      "blankMeans": "Zero means no station position falls in the ward."
+    },
+    {
+      "id": "police_posts",
+      "label": "Police posts mapped",
+      "unit": "posts",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped; posts are undercounted in some districts."
+    },
+    {
+      "id": "bus_stops_per_km2",
+      "label": "Bus stops per km²",
+      "unit": "per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "count divided by ward area",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "traffic_signals_per_km2",
+      "label": "Traffic signals per km²",
+      "unit": "per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "count divided by ward area",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "pedestrian_crossings_per_km2",
+      "label": "Pedestrian crossings per km²",
+      "unit": "per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "count divided by ward area",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "street_lamps_mapped_per_km2",
+      "label": "Street lamps mapped per km²",
+      "unit": "per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "count divided by ward area",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "hospitals_per_km2",
+      "label": "Hospitals per km²",
+      "unit": "per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "count divided by ward area",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "surveillance_points_mapped_per_km2",
+      "label": "Surveillance points mapped per km²",
+      "unit": "per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "count divided by ward area",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "footway_km_per_km2",
+      "label": "Footway length per km²",
+      "unit": "km per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "footway_km divided by area_km2",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "official_liquor_vends",
+      "label": "Official liquor vends placed in the ward",
+      "unit": "vends",
+      "group": "context",
+      "uncertainty": "approximate_position",
+      "source": "Official vend list, positions mostly approximate",
+      "dataYear": "list date not established",
+      "blankMeans": "Zero means none placed in the ward."
+    },
+    {
+      "id": "residential_pct",
+      "label": "Residential land cover",
+      "unit": "% of mapped area",
+      "group": "land_use",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap land use clipped to the ward",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "commercial_pct",
+      "label": "Commercial land cover",
+      "unit": "% of mapped area",
+      "group": "land_use",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap land use clipped to the ward",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "industrial_pct",
+      "label": "Industrial land cover",
+      "unit": "% of mapped area",
+      "group": "land_use",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap land use clipped to the ward",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "institutional_pct",
+      "label": "Institutional land cover",
+      "unit": "% of mapped area",
+      "group": "land_use",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap land use clipped to the ward",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "green_open_pct",
+      "label": "Green and open land cover",
+      "unit": "% of mapped area",
+      "group": "land_use",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap land use clipped to the ward",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "landuse_mapped_pct",
+      "label": "Share of the ward with any land use mapped",
+      "unit": "% of ward area",
+      "group": "coverage",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap land use clipped to the ward",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable. A low value means the land-use shares describe little of the ward."
+    },
+    {
+      "id": "low_landuse_coverage",
+      "label": "Land use mapped for under a quarter of the ward",
+      "unit": "yes/no",
+      "group": "coverage",
+      "uncertainty": "derived",
+      "source": "landuse_mapped_pct below 25",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable. The land-use shares then describe only a small part of the ward; treat other OpenStreetMap counts with the same caution."
+    },
+    {
+      "id": "no_mapped_infrastructure",
+      "label": "No bus stop, signal, crossing, hospital or footway mapped",
+      "unit": "yes/no",
+      "group": "coverage",
+      "uncertainty": "derived",
+      "source": "All of those counts are zero",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable. Most likely an unmapped ward."
+    },
+    {
+      "id": "district_ipc_density_2024_per_km2",
+      "label": "IPC/BNS cases per km² in the containing district",
+      "unit": "cases per km²",
+      "group": "district_context",
+      "uncertainty": "district_inherited",
+      "source": "NCRB Crime in India, district-wise table 2024",
+      "dataYear": "2024",
+      "blankMeans": "Blank if the ward has no assigned district. Same for every ward in the district."
+    },
+    {
+      "id": "district_crime_against_women_density_2024_per_km2",
+      "label": "Crimes against women per km² in the containing district",
+      "unit": "cases per km²",
+      "group": "district_context",
+      "uncertainty": "district_inherited",
+      "source": "NCRB Crime in India, district-wise table 2024",
+      "dataYear": "2024",
+      "blankMeans": "Blank if the ward has no assigned district. Same for every ward in the district."
+    }
+  ],
+  "districtFields": [
+    {
+      "id": "district",
+      "label": "Police district",
+      "unit": "",
+      "group": "identity",
+      "uncertainty": "identifier",
+      "source": "Delhi Police district list",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "area_km2",
+      "label": "Area",
+      "unit": "km²",
+      "group": "identity",
+      "uncertainty": "geometry",
+      "source": "Simplified district boundaries (about 165 m tolerance), not survey-grade",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "population",
+      "label": "Population (approximate)",
+      "unit": "people",
+      "group": "identity",
+      "uncertainty": "derived",
+      "source": "Approximate district population used by this project; excludes daytime visitors",
+      "dataYear": "approximate",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "theft_2024",
+      "label": "Theft cases registered",
+      "unit": "cases",
+      "group": "crime",
+      "uncertainty": "official_count",
+      "source": "NCRB Crime in India, district-wise tables",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "robbery_2024",
+      "label": "Robbery cases registered",
+      "unit": "cases",
+      "group": "crime",
+      "uncertainty": "official_count",
+      "source": "NCRB Crime in India, district-wise tables",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "burglary_2024",
+      "label": "Burglary cases registered",
+      "unit": "cases",
+      "group": "crime",
+      "uncertainty": "official_count",
+      "source": "NCRB Crime in India, district-wise tables",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "total_ipc_bns_2024",
+      "label": "All IPC/BNS cases registered",
+      "unit": "cases",
+      "group": "crime",
+      "uncertainty": "official_count",
+      "source": "NCRB Crime in India, district-wise tables",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "crime_against_women_2024",
+      "label": "Crimes against women registered",
+      "unit": "cases",
+      "group": "crime",
+      "uncertainty": "official_count",
+      "source": "NCRB Crime in India, district-wise tables",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "total_sll_2024",
+      "label": "Special and Local Laws cases registered",
+      "unit": "cases",
+      "group": "crime",
+      "uncertainty": "official_count",
+      "source": "NCRB Crime in India, district-wise tables",
+      "dataYear": "2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "total_ipc_2023",
+      "label": "All IPC cases registered",
+      "unit": "cases",
+      "group": "crime",
+      "uncertainty": "official_count",
+      "source": "NCRB Crime in India, district-wise tables",
+      "dataYear": "2023",
+      "blankMeans": "Not reported."
+    },
+    {
+      "id": "crime_comparison_2023_2024",
+      "label": "Comparability of 2023 and 2024 crime counts",
+      "unit": "",
+      "group": "crime",
+      "uncertainty": "derived",
+      "source": "data/continuity.json",
+      "dataYear": "2023 to 2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "crashes_in_zones_2024",
+      "label": "Crashes within crash-prone zones",
+      "unit": "crashes",
+      "group": "road",
+      "uncertainty": "official_count",
+      "source": "Delhi Road Crash Reports (selected-zone tables by district)",
+      "dataYear": "2024",
+      "blankMeans": "Counts within zones only, not all crashes in the district."
+    },
+    {
+      "id": "fatal_crashes_in_zones_2024",
+      "label": "Fatal crashes within crash-prone zones",
+      "unit": "crashes",
+      "group": "road",
+      "uncertainty": "official_count",
+      "source": "Delhi Road Crash Reports (selected-zone tables by district)",
+      "dataYear": "2024",
+      "blankMeans": "Counts within zones only."
+    },
+    {
+      "id": "crash_prone_zones_2024",
+      "label": "Crash-prone zones",
+      "unit": "zones",
+      "group": "road",
+      "uncertainty": "official_count",
+      "source": "Delhi Road Crash Reports (selected-zone tables by district)",
+      "dataYear": "2024",
+      "blankMeans": "Zone lists change every year."
+    },
+    {
+      "id": "crashes_in_zones_2023",
+      "label": "Crashes within crash-prone zones",
+      "unit": "crashes",
+      "group": "road",
+      "uncertainty": "official_count",
+      "source": "Delhi Road Crash Reports (selected-zone tables by district)",
+      "dataYear": "2023",
+      "blankMeans": "Counts within zones only."
+    },
+    {
+      "id": "fatal_crashes_in_zones_2023",
+      "label": "Fatal crashes within crash-prone zones",
+      "unit": "crashes",
+      "group": "road",
+      "uncertainty": "official_count",
+      "source": "Delhi Road Crash Reports (selected-zone tables by district)",
+      "dataYear": "2023",
+      "blankMeans": "Counts within zones only."
+    },
+    {
+      "id": "persons_killed_2024",
+      "label": "Persons killed in road crashes",
+      "unit": "people",
+      "group": "road",
+      "uncertainty": "official_count",
+      "source": "Delhi Road Crash Report 2024, district table",
+      "dataYear": "2024",
+      "blankMeans": "Whole district, not only zones."
+    },
+    {
+      "id": "persons_killed_2023",
+      "label": "Persons killed in road crashes",
+      "unit": "people",
+      "group": "road",
+      "uncertainty": "official_count",
+      "source": "Delhi Road Crash Report 2023, district table",
+      "dataYear": "2023",
+      "blankMeans": "Whole district, not only zones."
+    },
+    {
+      "id": "road_comparison_2023_2024",
+      "label": "Comparability of 2023 and 2024 zone crash counts",
+      "unit": "",
+      "group": "road",
+      "uncertainty": "derived",
+      "source": "data/continuity.json",
+      "dataYear": "2023 to 2024",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "streetlights_per_km2",
+      "label": "Streetlights per km² (survey)",
+      "unit": "per km²",
+      "group": "infrastructure",
+      "uncertainty": "survey",
+      "source": "PAPL streetlight and underpass survey via Delhi Open Transit Data",
+      "dataYear": "survey period",
+      "blankMeans": "Not surveyed (6 districts), not zero."
+    },
+    {
+      "id": "underpasses",
+      "label": "Underpasses (survey)",
+      "unit": "underpasses",
+      "group": "infrastructure",
+      "uncertainty": "survey",
+      "source": "PAPL survey",
+      "dataYear": "survey period",
+      "blankMeans": "Not surveyed (6 districts), not zero."
+    },
+    {
+      "id": "papl_surveyed",
+      "label": "Covered by the PAPL survey",
+      "unit": "yes/no",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "The nine surveyed districts",
+      "dataYear": "survey period",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "police_stations",
+      "label": "Police stations",
+      "unit": "stations",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "Delhi Police GSDL list via a community mirror",
+      "dataYear": "list date not established",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "police_posts",
+      "label": "Police posts mapped",
+      "unit": "posts",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Undercounted in Outer."
+    },
+    {
+      "id": "metro_gates",
+      "label": "Metro gates mapped",
+      "unit": "gates",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped. Available by district only."
+    },
+    {
+      "id": "bus_stops",
+      "label": "Bus stops mapped",
+      "unit": "stops",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped."
+    },
+    {
+      "id": "surveillance_points_mapped",
+      "label": "Surveillance points mapped",
+      "unit": "points",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped; no video, not a register."
+    },
+    {
+      "id": "pedestrian_overpasses",
+      "label": "Pedestrian overpasses mapped",
+      "unit": "overpasses",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Zero may mean unmapped."
+    },
+    {
+      "id": "footway_km",
+      "label": "Footway length mapped",
+      "unit": "km",
+      "group": "infrastructure",
+      "uncertainty": "mapped_osm",
+      "source": "OpenStreetMap contributors (ODbL) via Overpass",
+      "dataYear": "2026-08",
+      "blankMeans": "Sparse in Delhi; a low value mostly reflects mapping."
+    },
+    {
+      "id": "footway_km_per_km2",
+      "label": "Footway length per km²",
+      "unit": "km per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "footway_km divided by area_km2",
+      "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    }
+  ],
+  "zoneFields": [
+    {
+      "id": "name",
+      "label": "Zone name as printed",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "rank",
+      "label": "Rank in Table 6.29 (blank if not ranked there)",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "fatal_crashes",
+      "label": "Fatal crashes (blank if not printed)",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "total_crashes",
+      "label": "All crashes (blank if not printed)",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "pedestrian_fatal_crashes",
+      "label": "Pedestrian fatal crashes (blank if not printed)",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "position_confidence",
+      "label": "Confidence in the placed position",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "position_accuracy_m",
+      "label": "Estimated accuracy of the placed position, metres",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "crossings_250m",
+      "label": "Pedestrian crossings mapped within 250 m of the placed position",
+      "uncertainty": "mapped_osm"
+    },
+    {
+      "id": "signals_250m",
+      "label": "Traffic signals mapped within 250 m",
+      "uncertainty": "mapped_osm"
+    },
+    {
+      "id": "footway_km_250m",
+      "label": "Footway mapped within 250 m, km",
+      "uncertainty": "mapped_osm"
+    },
+    {
+      "id": "road_with_pedestrian_mapping_pct_250m",
+      "label": "Share of mapped road length within 250 m with a mapped sidewalk or separate footway (sparse tagging: low mostly means unmapped)",
+      "uncertainty": "mapped_osm"
+    },
+    {
+      "id": "crossings_500m",
+      "label": "Pedestrian crossings mapped within 500 m",
+      "uncertainty": "mapped_osm"
+    },
+    {
+      "id": "signals_500m",
+      "label": "Traffic signals mapped within 500 m",
+      "uncertainty": "mapped_osm"
+    },
+    {
+      "id": "footway_km_500m",
+      "label": "Footway mapped within 500 m, km",
+      "uncertainty": "mapped_osm"
+    }
+  ]
+}

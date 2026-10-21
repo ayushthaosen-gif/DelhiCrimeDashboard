@@ -164,6 +164,8 @@ function dataMethods(updated) {
     + '<a class="dl-card" href="' + GITHUB + '/tree/main/data/releases"><span class="k">JSON · per year</span><strong>Yearly releases with manifests</strong><span>2016–2024, each with sources and provenance.</span></a>'
     + '<a class="dl-card" href="' + rel('exports/crash_prone_zones_2023.csv') + '"><span class="k">CSV</span><strong>Crash-prone zones, 2023</strong><span>107 named zones with crash counts.</span></a>'
     + '<a class="dl-card" href="' + rel('data/continuity.json') + '"><span class="k">JSON</span><strong>Comparability rules</strong><span>Every documented break the charts use.</span></a>'
+    + '<a class="dl-card" href="data/profiles/ward_profiles.csv"><span class="k">CSV · JSON · GeoJSON</span><strong>Ward profiles (290 legacy wards)</strong><span>Crash-zone context and mapped infrastructure per ward, with the field contract and a provenance manifest.</span></a>'
+    + '<a class="dl-card" href="data/profiles/district_profiles.csv"><span class="k">CSV · JSON · GeoJSON</span><strong>District profiles (15 districts)</strong><span>Official crime and road counts, comparability states and infrastructure per police district.</span></a>'
     + '<a class="dl-card" href="' + GITHUB + '/tree/main/data/releases/delhi_ut_series"><span class="k">JSON · CSV</span><strong>Delhi-wide totals, 2011–2024</strong><span>Printed NCRB totals for Delhi as a whole, with sources and checks.</span></a>'
     + '</div><div class="cite"><span><strong>Cite this data.</strong> Data version ' + esc(updated) + '. Every figure is rebuilt from the files in the repository.</span><a href="' + GITHUB + '">Code and data on GitHub</a></div></section>\n'
     + '<section id="glossary"><h2>Glossary</h2><dl class="glossary">'
