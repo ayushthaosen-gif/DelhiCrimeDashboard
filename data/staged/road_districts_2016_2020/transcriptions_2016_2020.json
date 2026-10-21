@@ -1,0 +1,87 @@
+{
+  "review": "Manually read from rendered official PDF pages. Values are source transcriptions, not inferred allocations. Current-year columns for 2016–2019 and all five reference years in the 2020 table are retained.",
+  "district_metric_order": ["fatal_accidents", "injury_accidents", "non_injury_accidents", "total_accidents"],
+  "annual_district_tables": [
+    {"report_year":2016,"path":"raw/2016/report_06.pdf","pdf_page":2,"printed_page":45,"table":"6.1","rows":[
+      ["CENTRAL",55,207,7,269], ["NEW DELHI",57,191,17,265], ["EAST",96,581,17,694],
+      ["NORTH EAST",100,511,1,612], ["NORTH WEST",282,684,15,981], ["NORTH",105,327,1,433],
+      ["OUTER",155,528,0,683], ["SOUTH",131,499,15,645], ["SOUTH-EAST",200,898,40,1138],
+      ["SOUTH WEST",163,574,12,749], ["WEST",204,698,4,906]],"printed_total":[1548,5698,129,7375]},
+    {"report_year":2017,"path":"raw/2017/report_06.pdf","pdf_page":3,"printed_page":50,"table":"6.1","rows":[
+      ["CENTRAL",55,184,6,245], ["NEW DELHI",65,176,13,254], ["EAST",131,462,14,607],
+      ["NORTH EAST",91,468,1,560], ["NORTH WEST",284,567,8,859], ["NORTH",79,329,4,412],
+      ["OUTER",169,492,0,661], ["SOUTH",103,431,12,546], ["SOUTH-EAST",199,784,24,1007],
+      ["SOUTH WEST",171,518,4,693], ["WEST",218,606,5,829]],"printed_total":[1565,5017,91,6673]},
+    {"report_year":2018,"path":"raw/2018/report_06.pdf","pdf_page":3,"printed_page":49,"table":"6.1","rows":[
+      ["CENTRAL",58,157,4,219], ["DWARKA",112,254,6,372], ["NEW DELHI",69,149,6,224],
+      ["EAST",132,407,8,547], ["NORTH EAST",126,442,3,571], ["NORTH WEST",265,535,3,803],
+      ["NORTH",108,295,1,404], ["OUTER",166,491,2,659], ["SOUTH",119,510,5,634],
+      ["SOUTH-EAST",146,542,30,718], ["SOUTH WEST",108,372,4,484], ["WEST",248,629,3,880]],
+      "printed_total":[1657,4783,75,6515]},
+    {"report_year":2019,"path":"raw/2019/report_00.pdf","pdf_page":56,"printed_page":50,"table":"6.1","rows":[
+      ["CENTRAL",50,136,2,188], ["DWARKA",69,240,6,315], ["NEW DELHI",43,128,8,179],
+      ["EAST",132,293,8,433], ["NORTH EAST",113,372,2,487], ["NORTH WEST",211,528,2,741],
+      ["NORTH",123,266,1,390], ["OUTER",146,453,4,603], ["SOUTH",109,393,9,511],
+      ["SOUTH-EAST",155,476,4,635], ["SOUTH WEST",106,280,0,386], ["WEST",176,560,6,742]],
+      "printed_total":[1433,4125,52,5610]}
+  ],
+  "retrospective_2020_table": {
+    "report_year":2020,"path":"raw/2020/report_00.pdf","pdf_page":62,"printed_page":53,"table":"6.1",
+    "reference_years":[2016,2017,2018,2019,2020],
+    "column_order":"Five years per measure: fatal, injury, non-injury, total",
+    "rows":[
+      ["CENTRAL",55,55,58,50,36,207,184,157,136,105,7,6,4,2,0,269,245,219,188,141],
+      ["DWARKA",0,0,112,69,59,0,0,254,240,218,0,0,6,6,2,0,0,372,315,279],
+      ["NEW DELHI",57,65,69,43,28,191,176,149,128,89,17,13,6,8,3,265,254,224,179,120],
+      ["EAST",96,131,132,132,81,581,462,407,293,256,17,14,8,8,1,694,607,547,433,338],
+      ["NORTH EAST",100,91,126,113,72,511,468,442,372,209,1,1,3,2,1,612,560,571,487,282],
+      ["NORTH WEST",282,284,265,211,194,684,567,535,528,346,15,8,3,2,4,981,859,803,741,544],
+      ["NORTH",105,79,108,123,64,327,329,295,266,174,1,4,1,1,0,433,412,404,390,238],
+      ["OUTER",155,169,166,146,156,528,492,491,453,336,0,0,2,4,2,683,661,659,603,494],
+      ["SOUTH",131,103,119,109,89,499,431,510,393,275,15,12,5,9,1,645,546,634,511,365],
+      ["SOUTH-EAST",200,199,146,155,108,898,784,542,476,343,40,24,30,4,3,1138,1007,718,635,454],
+      ["SOUTH WEST",163,171,108,106,98,574,518,372,280,216,12,4,4,0,0,749,693,484,386,314],
+      ["WEST",204,218,248,176,178,698,606,629,560,430,4,5,3,6,1,906,829,880,742,609]
+    ],
+    "printed_totals":[1548,1565,1657,1433,1163,5698,5017,4783,4125,2997,129,91,75,52,18,7375,6673,6515,5610,4178],
+    "zero_note":"Dwarka's earlier reference-year columns are printed as numeric zeros. Preserve them in retrospective evidence, but they do not supply a separate original-year reporting row or establish comparable boundaries. Do not add Dwarka to the original 2016/2017 tables."
+  },
+  "zone_metric_order":["accident_prone_zones","simple_accidents","fatal_accidents","total_accidents"],
+  "zone_district_tables":[
+    {"report_year":2017,"path":"raw/2017/report_10.pdf","pdf_page":9,"printed_page":118,"table":"10.3","rows":[
+      ["CENTRAL DISTRICT",5,33,18,51], ["NEW DELHI DISTRICT",5,19,13,32],
+      ["EAST DISTRICT",16,111,46,157], ["NORTH EAST DISTRICT",14,137,36,173],
+      ["NORTH DISTRICT",11,97,36,133], ["NORTH-WEST DISTRICT",29,193,143,336],
+      ["OUTER DISTRICT",7,40,27,67], ["SOUTH DISTRICT",10,68,29,97],
+      ["SOUTH EAST",20,136,59,195], ["SOUTH-WEST",11,71,32,103], ["WEST",17,97,64,161]],
+      "crosscheck_total":[145,1002,503,1505],"total_evidence":"Table 10.1 page 110 (PDF page 1), Table 10.2 page 117 (PDF page 8)"},
+    {"report_year":2018,"path":"raw/2018/report_10.pdf","pdf_page":7,"printed_page":117,"table":"10.4","rows":[
+      ["CENTRAL DISTRICT",3,21,12,33], ["NORTH DISTRICT",10,95,49,144],
+      ["EAST DISTRICT",9,63,33,96], ["NORTH EAST DISTRICT",11,122,31,153],
+      ["DWARKA DISTRICT",3,26,8,34], ["NEW DELHI DISTRICT",3,14,10,24],
+      ["NORTH-WEST DISTRICT",22,151,109,260], ["OUTER DISTRICT",3,14,11,25],
+      ["SOUTH DISTRICT",5,40,19,59], ["SOUTH EAST DISTRICT",18,119,52,171],
+      ["SOUTH WEST DISTRICT",5,31,15,46], ["WEST DISTRICT",18,121,80,201]],
+      "crosscheck_total":[110,817,429,1246],"total_evidence":"Table 10.3 page 116 (PDF page 6), Table 10.5 page 118 (PDF page 8)",
+      "source_note":"Western range margin reads (05) while range table and constituent zone rows sum to 23; retain discrepancy, do not change district counts."},
+    {"report_year":2019,"path":"raw/2019/report_00.pdf","pdf_page":149,"printed_page":143,"table":"10.4","rows":[
+      ["CENTRAL",2,12,8,20], ["NORTH",16,130,67,197], ["DWARKA",3,23,6,29],
+      ["EAST",11,34,46,80], ["NORTH EAST",15,112,53,165], ["NORTH WEST",21,118,99,217],
+      ["OUTER",6,39,27,66], ["SOUTH",8,47,19,66], ["SOUTH EAST",16,93,50,143],
+      ["SOUTH WEST",4,25,14,39], ["WEST",17,122,48,170]],
+      "crosscheck_total":[119,755,437,1192],"total_evidence":"Table 10.3 on same PDF page 149; Table 10.5 PDF page 150",
+      "source_note":"New Delhi has a whole-district crash row but no row in this selected-zone table. Do not infer zero."},
+    {"report_year":2020,"path":"raw/2020/report_00.pdf","pdf_page":104,"printed_page":95,"table":"7.4","rows":[
+      ["NORTH-WEST",14,94,74,168], ["WEST",13,103,49,152], ["SOUTH-EAST",10,66,31,97],
+      ["NORTH-EAST",10,71,26,97], ["NORTH",9,57,34,91], ["SOUTH",6,32,20,52],
+      ["CENTRAL",4,23,15,38], ["OUTER",4,28,16,44], ["DWARKA",3,30,6,36],
+      ["EAST",2,22,7,29], ["NEW DELHI",1,7,3,10], ["SOUTH-WEST",1,4,6,10]],
+      "crosscheck_total":[77,537,287,824],"total_evidence":"Printed TOTAL in Table 7.4 on same page",
+      "source_note":"The preceding narrative's 245 fatal accidents refer to a subset of 64 zones in 20 circles; the full 77-zone total is 287. Keep this subset distinct from the full table."}
+  ],
+  "zone_citywide_2016":{"report_year":2016,"path":"raw/2016/report_10.pdf","pdf_page":1,"printed_page":103,"table":"10(a)",
+    "accident_prone_zones":108,"simple_accidents":907,"fatal_accidents":389,"total_accidents":1296,
+    "whole_year_simple_accidents":5827,"whole_year_fatal_accidents":1548,"whole_year_total_accidents":7375,
+    "note":"Citywide selected-zone summary only; district allocation not provided by this table. Do not infer a district breakdown from later maps or names.",
+    "selection_definition":"3 or more fatal accidents within a circle of diameter 500 metres, or 10 or more total accidents in the same region."}
+}

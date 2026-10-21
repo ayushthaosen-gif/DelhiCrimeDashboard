@@ -1,0 +1,1692 @@
+{
+  "status": "staged_research_not_dashboard_data",
+  "production_changed": false,
+  "reuse_terms": "Official public reports; no open reuse licence verified. Website footer says All Rights Reserved. Do not treat public availability as an open licence.",
+  "geography_policy": "Preserve printed traffic/police district and circle names. No redistribution to current 15 districts.",
+  "null_policy": "Unreported values remain null. No digitized table is approved by acquisition alone.",
+  "years": [
+    {
+      "reference_year": 2011,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2011",
+      "sources": [],
+      "errors": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2011",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ]
+    },
+    {
+      "reference_year": 2012,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2012",
+      "sources": [],
+      "errors": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2012",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ]
+    },
+    {
+      "reference_year": 2013,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2013",
+      "sources": [],
+      "errors": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2013",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ]
+    },
+    {
+      "reference_year": 2014,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2014",
+      "sources": [],
+      "errors": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2014",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ]
+    },
+    {
+      "reference_year": 2015,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2015",
+      "sources": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2015",
+          "final_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2015",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-20T11:02:34.162615+00:00",
+          "server_last_modified": "Tue, 20 Oct 2026 11:01:31 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2015/index.html",
+          "bytes": 54138,
+          "sha256": "493f9ce9a7d6a09230b09e8d5ebb0eb07346c2607160d9b429c6d6d229c3db45"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/FOREWORD-PREFACE-AND-INDEX.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/FOREWORD-PREFACE-AND-INDEX.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:34.404521+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2015/report_00.pdf",
+          "bytes": 1457471,
+          "sha256": "a38434e4aaa1bb7f73bde3cdc0eb10182eedfda20dc88fdd5c293ba608623e97",
+          "link_label": "Main Body:- Cover Page, Foreword, Preface, Project Team & Contents",
+          "text_path": "raw/2015/report_00.txt",
+          "text_sha256": "d0963e9d7ed075b53c798814c4335213b608d2e2a06740dee2614ab32d7e0222"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-1-AN-OVEVIEW.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-1-AN-OVEVIEW.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:34.834260+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:06 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2015/report_01.pdf",
+          "bytes": 1734072,
+          "sha256": "f5fe2b11c54627be71d8f0a2f33925a933cb644e9831a75f0edcb22209082125",
+          "link_label": "Chapter-1 :- An Overview",
+          "text_path": "raw/2015/report_01.txt",
+          "text_sha256": "87174b89e4094bd51f332a4d676946a5ddbb05a2df33425521a59b2a34e9a930"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-2-VEHICLE-REGISTRATION-AND-ACCIDENT-STATISTICS.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-2-VEHICLE-REGISTRATION-AND-ACCIDENT-STATISTICS.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:35.522060+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2015/report_02.pdf",
+          "bytes": 3906566,
+          "sha256": "ba3093b9625ad43d5b4fe3f3ba7e891cfabab0c599cd9f76bc9bf50a34a3a3a6",
+          "link_label": "Chapter-2 :- Vehicle Registration & Accidents Statistics",
+          "text_path": "raw/2015/report_02.txt",
+          "text_sha256": "09e0fd78ebc7922bfca7a074620c031b2b43c0dd57cf6e0fd93713d92bc4f0bd"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-3-VICTIMS-OF-ROAD-ACCIDENTS.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-3-VICTIMS-OF-ROAD-ACCIDENTS.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:36.388706+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2015/report_03.pdf",
+          "bytes": 3012316,
+          "sha256": "56dfff04bf27adb11e328766b6251fc16c53eaea80ea405589309778d355af85",
+          "link_label": "Chapter-3 :- Victims of Road Accidents",
+          "text_path": "raw/2015/report_03.txt",
+          "text_sha256": "b9babb849a6d7771fcf836cd73467e50032a4913812a37c5a24d0722498f515e"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-6-SPATIAL-TRENDS.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-6-SPATIAL-TRENDS.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:37.913805+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2015/report_06.pdf",
+          "bytes": 13066324,
+          "sha256": "c286cd138729c3827baf2d18724ab7b1ddac07aaae190f4277fc8844bb1c119a",
+          "link_label": "Chapter-6 :- Spatial Trends",
+          "text_path": "raw/2015/report_06.txt",
+          "text_sha256": "335d72b29b53c016c2d4cc420e62b68e2db368cb8036db55c09f27920bb39e1c"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-10-ACCIDENT-PRONE-ZONES-AND-CIRCLE-WISE-ANALYSIS.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-10-ACCIDENT-PRONE-ZONES-AND-CIRCLE-WISE-ANALYSIS.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:41.123955+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:07 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2015/report_10.pdf",
+          "bytes": 18993949,
+          "sha256": "1fb404b6af11ce46b7e26e00aabb9ec809876b2574f274a98876c75825ebedc5",
+          "link_label": "Chapter-10 :- Accident Prone Zones & Circle Wise Analysis",
+          "text_path": "raw/2015/report_10.txt",
+          "text_sha256": "33d09f253a18f6b776a1200e44cf4656bbd928e89b156a50b8fd7de36a062a8e"
+        }
+      ],
+      "errors": [],
+      "pdf_links": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/FOREWORD-PREFACE-AND-INDEX.pdf",
+          "label": "Main Body:- Cover Page, Foreword, Preface, Project Team & Contents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-1-AN-OVEVIEW.pdf",
+          "label": "Chapter-1 :- An Overview"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-2-VEHICLE-REGISTRATION-AND-ACCIDENT-STATISTICS.pdf",
+          "label": "Chapter-2 :- Vehicle Registration & Accidents Statistics"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-3-VICTIMS-OF-ROAD-ACCIDENTS.pdf",
+          "label": "Chapter-3 :- Victims of Road Accidents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-4-INVOLVEMENT-OF-VEHICLES-AT-FAULT.pdf",
+          "label": "Chapter-4 :- Involvements of Vehicles at Fault"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-5-TEMPORAL-TRENDS.pdf",
+          "label": "Chapter-5 :- Temporal Trends"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-6-SPATIAL-TRENDS.pdf",
+          "label": "Chapter-6 :- Spatial Trends"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-7-CAUSES-OF-ACCIDENTS.pdf",
+          "label": "Chapter-7 :- Causes of Accidents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-8-BEHAVIOURAL-ENFORCEMENT-AND-ENVIRONMENTAL-ISSUES.pdf",
+          "label": "Chapter-8 :- Behavioural Enforcement & Environmental Issues"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-9-CHALLAN-AND-PROSECUTION-STATISTICS.pdf",
+          "label": "Chapter-9 :- Challan & Prosecution Statistics"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-10-ACCIDENT-PRONE-ZONES-AND-CIRCLE-WISE-ANALYSIS.pdf",
+          "label": "Chapter-10 :- Accident Prone Zones & Circle Wise Analysis"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-11-SYNOPSIS-REMEDIES-AND-RECOMMENDATION.pdf",
+          "label": "Chapter-11 :- Synopsis Remedies & Recommendation"
+        }
+      ]
+    },
+    {
+      "reference_year": 2016,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2016",
+      "sources": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2016",
+          "final_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2016",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-20T11:02:34.140699+00:00",
+          "server_last_modified": "Tue, 20 Oct 2026 11:01:31 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2016/index.html",
+          "bytes": 54845,
+          "sha256": "35c55ce9843d534364242b3d289b367b1ee0c5fb1c942f3bcea9d296b3603667"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/COVER.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/COVER.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:35.057070+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:14 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2016/report_00.pdf",
+          "bytes": 10416600,
+          "sha256": "987ea22ff3e0577c55fd78c1e36c1d1c9810d96e6555da77a6909a3eaef1502f",
+          "link_label": "Main Body:- Cover Page, Foreword, Preface, Project Team, Index & Contents",
+          "text_path": "raw/2016/report_00.txt",
+          "text_sha256": "8f493069d0a6a8604a4a9db6bfa91db4916143491777e878481e1b8ec7ef9efd"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-1.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-1.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:38.464934+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:13 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2016/report_01.pdf",
+          "bytes": 7108395,
+          "sha256": "3c39ed3ac293cd15562c5a941b79a3686a522ec961625e23668e4718e6c551a6",
+          "link_label": "Chapter-1 :- An Overview",
+          "text_path": "raw/2016/report_01.txt",
+          "text_sha256": "0e8120018cbb932531f466ad2046ca2d1e1ce83151d688ade4de13bfd8760d1f"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-2.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-2.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:40.557752+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:14 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2016/report_02.pdf",
+          "bytes": 8202891,
+          "sha256": "47df2fbeff1137a781c3d191d78a1f4bdf459766392e9a7a9796fc8e42cba3e5",
+          "link_label": "Chapter-2 :- Vehicle Registration & Accidents Statistics",
+          "text_path": "raw/2016/report_02.txt",
+          "text_sha256": "eaa98ae907f9a897227988115cb958cacf86351a2d06ecc80532222d99057b93"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-3.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-3.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:42.714614+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:14 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2016/report_03.pdf",
+          "bytes": 6122483,
+          "sha256": "ab57ba8af72c8bca0fc6e6dc549f97fb4cd01b0b5957ce66ae4c390163b5da8f",
+          "link_label": "Chapter-3 :- Victims of Road Accidents",
+          "text_path": "raw/2016/report_03.txt",
+          "text_sha256": "10d24735651ea09dfd7a8d6cbaac4f9eecf2bca789135c56b2a09ce2af05ebc2"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-6.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-6.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:45.920950+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:14 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2016/report_06.pdf",
+          "bytes": 15359037,
+          "sha256": "b6eb9ea945b73530aa40af466997ddaff410a5166f1f7ef80d5bd9372e41f7c5",
+          "link_label": "Chapter-6 :- Spatial Trends",
+          "text_path": "raw/2016/report_06.txt",
+          "text_sha256": "84cc38223fdf530a432eb859888f283cf7757e3bbc5acf05a6056ccaceaf096b"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-10-a.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-10-a.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:51.141540+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:13 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2016/report_10.pdf",
+          "bytes": 15226941,
+          "sha256": "ae7850cab28bfeb14b7cc1df37786f78773959c48b778d7caacfac86b3de097c",
+          "link_label": "Chapter-10(A):- Accident Prone Zones & Circle Wise Analysis",
+          "text_path": "raw/2016/report_10.txt",
+          "text_sha256": "76721916b373290f2f147594e0b8f0e642964e579890bc426e83700ce43bf01a"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-10-b.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-10-b.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:56.215942+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:13 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2016/report_11.pdf",
+          "bytes": 8227054,
+          "sha256": "e4e0b305fb20e4e8fa24e708da305a2ef62ec39c0dd092a14e23415ce0c3b94d",
+          "link_label": "Chapter-10(B):- Accident Prone Zones & Circle Wise Analysis",
+          "text_path": "raw/2016/report_11.txt",
+          "text_sha256": "1afd98c5097dbadeaf353113fec01504edaa5565dd0c2503ac488aecb8d61fe3"
+        }
+      ],
+      "errors": [],
+      "pdf_links": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/COVER.pdf",
+          "label": "Main Body:- Cover Page, Foreword, Preface, Project Team, Index & Contents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-1.pdf",
+          "label": "Chapter-1 :- An Overview"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-2.pdf",
+          "label": "Chapter-2 :- Vehicle Registration & Accidents Statistics"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-3.pdf",
+          "label": "Chapter-3 :- Victims of Road Accidents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-4.pdf",
+          "label": "Chapter-4 :- Involvements of Vehicles at Fault"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-5.pdf",
+          "label": "Chapter-5 :- Temporal Trends"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-6.pdf",
+          "label": "Chapter-6 :- Spatial Trends"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-7.pdf",
+          "label": "Chapter-7 :- Causes of Accidents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-8.pdf",
+          "label": "Chapter-8 :- Behavioural Enforcement & Environmental Issues"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-9.pdf",
+          "label": "Chapter-9 :- Challan & Prosecution Statistics"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-10-a.pdf",
+          "label": "Chapter-10(A):- Accident Prone Zones & Circle Wise Analysis"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-10-b.pdf",
+          "label": "Chapter-10(B):- Accident Prone Zones & Circle Wise Analysis"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-11a.pdf",
+          "label": "Chapter-11(A):- Synopsis Remedies & Recommendation"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-11b.pdf",
+          "label": "Chapter-11(B):- Synopsis Remedies & Recommendation"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/CHAPTER-11c.pdf",
+          "label": "Chapter-11(C):- Synopsis Remedies & Recommendation"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2017/08/Annexure.pdf",
+          "label": "Annexure:- WHO Global Status Report on Road Safety"
+        }
+      ]
+    },
+    {
+      "reference_year": 2017,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2017",
+      "sources": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2017",
+          "final_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2017",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-20T11:02:34.161131+00:00",
+          "server_last_modified": "Tue, 20 Oct 2026 11:01:31 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2017/index.html",
+          "bytes": 53251,
+          "sha256": "5ac289ad1659a0e8bdc2bfec3cd2862375bb6f4b0d579c32b0f7036b5e9f0d5d"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/Cover-foreword-preface-index-contents.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/Cover-foreword-preface-index-contents.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:34.941986+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:33:57 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2017/report_00.pdf",
+          "bytes": 7351570,
+          "sha256": "f778e53fe30729276ecc477fec3dbdac4859615e78d2c64d258fbcfcfd7692f0",
+          "link_label": "Main Body:- Cover Page, Foreword, Preface, Project Team, Index & Contents",
+          "text_path": "raw/2017/report_00.txt",
+          "text_sha256": "1fa743585ec3ab94851b6dd8d61b7ebc3995459c42b1a3d3007411218ba6fd61"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-1.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-1.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:36.671139+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:33:57 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2017/report_01.pdf",
+          "bytes": 7700609,
+          "sha256": "ed0dd72e1cc79f2230a1c073bea7b7d91a09924112906258afb1e340876fd22d",
+          "link_label": "Chapter-1 :- An Overview",
+          "text_path": "raw/2017/report_01.txt",
+          "text_sha256": "33ceb14b16cc0babef30c59101dc61e04d9e3e849cb98a2de9591de9a4bb9849"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-2.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-2.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:38.889743+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:33:57 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2017/report_02.pdf",
+          "bytes": 10465598,
+          "sha256": "26754d279ea752f0fef04af39fb3bcdec1b4f6d1309c9a56d66baa4227b07418",
+          "link_label": "Chapter-2 :- Vehicle Registration & Accidents Statistics",
+          "text_path": "raw/2017/report_02.txt",
+          "text_sha256": "fb673ce452fa31bfad7de63f5d9f816b6e4af34f2f85c62fe793dce45bde8033"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-3.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-3.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:41.235362+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:33:57 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2017/report_03.pdf",
+          "bytes": 7552301,
+          "sha256": "9b2893ec9e0357f5a5a7d9d8fb00932941b604f042c3c5f5f6ea2fd4b9f94801",
+          "link_label": "Chapter-3 :- Victims of Road Accidents",
+          "text_path": "raw/2017/report_03.txt",
+          "text_sha256": "4bf27beff10e2d5c17b5ad50cf61387c6b86d22ad4d588e7642a167b089b9733"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-6.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-6.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:43.910410+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:33:57 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2017/report_06.pdf",
+          "bytes": 19611438,
+          "sha256": "2ea7d254b2ac2f409199746fdbcb0b6e1f0566ae92bd3d7ab809c9cc588bf0f5",
+          "link_label": "Chapter-6 :- Spatial Trends",
+          "text_path": "raw/2017/report_06.txt",
+          "text_sha256": "85cdbb350b4014a043caeb0c08d9742824a43a0a658349d2095115192c26fed8"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-10-A.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-10-A.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:47.848634+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:33:57 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2017/report_10.pdf",
+          "bytes": 10212692,
+          "sha256": "a09353b7cdb990be28173ae61873229c8d12775c81ce5a47e9a55f0fc1bcfbfb",
+          "link_label": "Chapter-10(A):- Accident Prone Zones",
+          "text_path": "raw/2017/report_10.txt",
+          "text_sha256": "ea23b1f8714f93c94f680ad93640377204cc3c4af456250ebe5ee16e4181622b"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-10-B.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-10-B.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:50.462903+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:33:57 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2017/report_11.pdf",
+          "bytes": 13271204,
+          "sha256": "1a6765e2c77d665ebf03459e43694ab5b57aa5863366eb9beebd19591f26c9a4",
+          "link_label": "Chapter-10(B):- Accident Prone Zones",
+          "text_path": "raw/2017/report_11.txt",
+          "text_sha256": "3ed7fb2e157a60fbf358127545e911a7aa8b5789bc284d6ee545759dbb62f82a"
+        }
+      ],
+      "errors": [],
+      "pdf_links": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/Cover-foreword-preface-index-contents.pdf",
+          "label": "Main Body:- Cover Page, Foreword, Preface, Project Team, Index & Contents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-1.pdf",
+          "label": "Chapter-1 :- An Overview"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-2.pdf",
+          "label": "Chapter-2 :- Vehicle Registration & Accidents Statistics"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-3.pdf",
+          "label": "Chapter-3 :- Victims of Road Accidents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-4.pdf",
+          "label": "Chapter-4 :- Involvements of Vehicles at Fault"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-5.pdf",
+          "label": "Chapter-5 :- Temporal Trends"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-6.pdf",
+          "label": "Chapter-6 :- Spatial Trends"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-7.pdf",
+          "label": "Chapter-7 :- Causes of Accidents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-8.pdf",
+          "label": "Chapter-8 :- Behavioural Enforcement & Environmental Issues"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-9.pdf",
+          "label": "Chapter-9 :- Challan & Prosecution Statistics"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-10-A.pdf",
+          "label": "Chapter-10(A):- Accident Prone Zones"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2018/10/chapter-10-B.pdf",
+          "label": "Chapter-10(B):- Accident Prone Zones"
+        }
+      ]
+    },
+    {
+      "reference_year": 2018,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2018",
+      "sources": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2018",
+          "final_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2018",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-20T11:02:34.149956+00:00",
+          "server_last_modified": "Tue, 20 Oct 2026 11:01:31 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2018/index.html",
+          "bytes": 53562,
+          "sha256": "7e78db6a2e216d049f36881bb3b9a78457b36a98aefafdba02f18d4445c858c5"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Cover%20pager-first%20page-foreword-preface-contents%20and%20acknowledgement.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Cover%20pager-first%20page-foreword-preface-contents%20and%20acknowledgement.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:34.943995+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:02 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2018/report_00.pdf",
+          "bytes": 9254338,
+          "sha256": "35de342b8e4dd41030a523087f37b9bb73f051b7617fe52c480f7904737e9027",
+          "link_label": "Main Body:- Cover Page, Foreword, Preface & Contents and acknowledgement",
+          "text_path": "raw/2018/report_00.txt",
+          "text_sha256": "b17eb9c6e46bc9781c7a6dafda9710f14268177058a984e8a4c85a9c1969233b"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-1%20An%20Overview.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-1%20An%20Overview.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:36.551570+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:03 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2018/report_01.pdf",
+          "bytes": 8192574,
+          "sha256": "f395ed75f5b8dba383b338983c2487d8935c3717285495ee055afdfb9a7cb896",
+          "link_label": "Chapter-1 :- An Overview",
+          "text_path": "raw/2018/report_01.txt",
+          "text_sha256": "7c032cd05022781f0e339f6ea4ee82f759d2a0f90ebcc4712f5b15b6387cfc4d"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-2%20Vehicle%20Registration%20and%20accident%20statistics.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-2%20Vehicle%20Registration%20and%20accident%20statistics.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:38.501153+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:02 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2018/report_02.pdf",
+          "bytes": 7644266,
+          "sha256": "bef6f819fca6116766fe9be14ab0d251b268aa8282e51d5fa47c57106a07454b",
+          "link_label": "Chapter-2 :- Vehicle Registration & Accidents Statistics",
+          "text_path": "raw/2018/report_02.txt",
+          "text_sha256": "a503b3facea2e1c730dc8e20cba03f92c64118305437fa6c95f0e2ea7fe43b67"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-3%20Victims%20of%20road%20accidents.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-3%20Victims%20of%20road%20accidents.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:40.234144+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:02 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2018/report_03.pdf",
+          "bytes": 5488261,
+          "sha256": "1b9afdef6dee977a761717fc6b5173478ba4cf97ca98a3dcc45ce032953c809d",
+          "link_label": "Chapter-3 :- Victims of Road Accidents",
+          "text_path": "raw/2018/report_03.txt",
+          "text_sha256": "57f4694b1d5efd44e650b05b6942243b3e4f40a9cd20a48f755e1984b2e7cf35"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-6%20Spatial%20Trends.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-6%20Spatial%20Trends.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:42.185422+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:02 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2018/report_06.pdf",
+          "bytes": 10631720,
+          "sha256": "39be5658db2f3f665080737014aa6a1ecef31864ad5218678489cb6dc89e5832",
+          "link_label": "Chapter-6 :- Spatial Trends",
+          "text_path": "raw/2018/report_06.txt",
+          "text_sha256": "86f37df111e23d6b1070c23059243c8646cea5b2e0939c53c72f9d5ea2a2f46f"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-10%20Accident%20Prone%20Zones.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-10%20Accident%20Prone%20Zones.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:45.303976+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:02 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2018/report_10.pdf",
+          "bytes": 10420047,
+          "sha256": "eb1e86de926b7df79203912c93e6cfc9aab1cc9ca68aba30aef75a30a63818a0",
+          "link_label": "Chapter-10:- Accident Prone Zones",
+          "text_path": "raw/2018/report_10.txt",
+          "text_sha256": "6f22dc750470a95f5dbdcdd38b41ecdd0699d71686b938fb8ded787c31c254c2"
+        }
+      ],
+      "errors": [],
+      "pdf_links": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Cover pager-first page-foreword-preface-contents and acknowledgement.pdf",
+          "label": "Main Body:- Cover Page, Foreword, Preface & Contents and acknowledgement"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-1 An Overview.pdf",
+          "label": "Chapter-1 :- An Overview"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-2 Vehicle Registration and accident statistics.pdf",
+          "label": "Chapter-2 :- Vehicle Registration & Accidents Statistics"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-3 Victims of road accidents.pdf",
+          "label": "Chapter-3 :- Victims of Road Accidents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-4 Involvement of Vehicles at fault.pdf",
+          "label": "Chapter-4 :- Involvements of Vehicles at Fault"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-5 Temporal Trends.pdf",
+          "label": "Chapter-5 :- Temporal Trends"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-6 Spatial Trends.pdf",
+          "label": "Chapter-6 :- Spatial Trends"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-7 Causes of Road Accidents.pdf",
+          "label": "Chapter-7 :- Causes of Accidents"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-8 Behavioural Enforcement and environmental issues.pdf",
+          "label": "Chapter-8 :- Behavioural Enforcement & Environmental Issues"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-9 Challan and prosecution statistics.pdf",
+          "label": "Chapter-9 :- Challan & Prosecution Statistics"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-10 Accident Prone Zones.pdf",
+          "label": "Chapter-10:- Accident Prone Zones"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-11 The Way Forward.pdf",
+          "label": "Chapter-11:- The way forward"
+        }
+      ]
+    },
+    {
+      "reference_year": 2019,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2019",
+      "sources": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2019",
+          "final_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2019",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-20T11:02:44.409618+00:00",
+          "server_last_modified": "Tue, 20 Oct 2026 11:01:31 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2019/index.html",
+          "bytes": 51130,
+          "sha256": "fba48a960102b697920fd79362f04ee3dd10701116b3e0a54fafa165705d4882"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-accident-in-delhi-2019.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-accident-in-delhi-2019.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:46.379173+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:03 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2019/report_00.pdf",
+          "bytes": 22746055,
+          "sha256": "a098b47774b834a5beeec9ed664826e174fd170cd17d577b860d9c29c81c02a0",
+          "link_label": "Main Body:- \u0915\u0935\u0930 \u092a\u0947\u091c, \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e, \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e, \u092a\u094d\u0930\u094b\u091c\u0947\u0915\u094d\u091f \u091f\u0940\u092e, \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0914\u0930 \u0938\u093e\u092e\u0917\u094d\u0930\u0940",
+          "text_path": "raw/2019/report_00.txt",
+          "text_sha256": "2fcc962e7e7ec9e726b3d1ae8d652d43a1119a77fc5ab58c74e33e6cad337bf6"
+        }
+      ],
+      "errors": [],
+      "pdf_links": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-accident-in-delhi-2019.pdf",
+          "label": "Main Body:- \u0915\u0935\u0930 \u092a\u0947\u091c, \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e, \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e, \u092a\u094d\u0930\u094b\u091c\u0947\u0915\u094d\u091f \u091f\u0940\u092e, \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0914\u0930 \u0938\u093e\u092e\u0917\u094d\u0930\u0940"
+        }
+      ]
+    },
+    {
+      "reference_year": 2020,
+      "page_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2020",
+      "sources": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2020",
+          "final_url": "https://traffic.delhipolice.gov.in/en/road-accidents-delhi-2020",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-20T11:02:47.373414+00:00",
+          "server_last_modified": "Tue, 20 Oct 2026 11:01:40 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2020/index.html",
+          "bytes": 50801,
+          "sha256": "ff374e01b2356aa1ce566c1b33fe5782acf22517cc05ac89817fc97c966e5162"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-Accidents-in-Delhi-2020.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-Accidents-in-Delhi-2020.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:56.086567+00:00",
+          "server_last_modified": "Mon, 21 Mar 2022 06:34:04 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2020/report_00.pdf",
+          "bytes": 142094989,
+          "sha256": "203c9e7a65f44d422179ebe09331f64e5c3f3892b706605b66be001d261b98e6",
+          "link_label": "Main Body:- \u0915\u0935\u0930 \u092a\u0947\u091c, \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e, \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e, \u092a\u094d\u0930\u094b\u091c\u0947\u0915\u094d\u091f \u091f\u0940\u092e, \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0914\u0930 \u0938\u093e\u092e\u0917\u094d\u0930\u0940",
+          "text_path": "raw/2020/report_00.txt",
+          "text_sha256": "796eb31b46aeae4f3ebde20edbbd00714c57f76674daf5f03ce76debbbd9f070"
+        }
+      ],
+      "errors": [],
+      "pdf_links": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2020/Road-Accidents-in-Delhi-2020.pdf",
+          "label": "Main Body:- \u0915\u0935\u0930 \u092a\u0947\u091c, \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e, \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935\u0928\u093e, \u092a\u094d\u0930\u094b\u091c\u0947\u0915\u094d\u091f \u091f\u0940\u092e, \u0907\u0902\u0921\u0947\u0915\u094d\u0938 \u0914\u0930 \u0938\u093e\u092e\u0917\u094d\u0930\u0940"
+        }
+      ]
+    },
+    {
+      "reference_year": 2021,
+      "page_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2021",
+      "sources": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2021",
+          "final_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2021",
+          "http_status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "retrieved_at": "2026-10-20T11:02:50.954446+00:00",
+          "server_last_modified": "Tue, 20 Oct 2026 11:01:43 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2021/index.html",
+          "bytes": 50633,
+          "sha256": "55b467e5955e3aba09e7fd25a266d48a48a56eb0bda46141fbd19221b17e614a"
+        },
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2021/Delhi-Crash-Report-Final-2021.pdf",
+          "final_url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2021/Delhi-Crash-Report-Final-2021.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:52.254965+00:00",
+          "server_last_modified": "Fri, 16 Sep 2022 07:14:03 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2021/report_00.pdf",
+          "bytes": 12590307,
+          "sha256": "525e8634fa21a4359ed583c651bb4819614f262424a3b00e4ef394e3a6608646",
+          "link_label": "Main Body:- Delhi Crash Report Final 2021",
+          "text_path": "raw/2021/report_00.txt",
+          "text_sha256": "9668813c88fce7cb14a080f428a990c2c2b94ae32ef763a099919f377037e155"
+        }
+      ],
+      "errors": [],
+      "pdf_links": [
+        {
+          "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2021/Delhi-Crash-Report-Final-2021.pdf",
+          "label": "Main Body:- Delhi Crash Report Final 2021"
+        }
+      ]
+    },
+    {
+      "reference_year": 2022,
+      "page_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2022",
+      "sources": [
+        {
+          "url": "https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf",
+          "final_url": "https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf",
+          "http_status": 200,
+          "content_type": "application/pdf",
+          "retrieved_at": "2026-10-20T11:02:52.479681+00:00",
+          "server_last_modified": "Tue, 03 Sep 2024 09:08:27 GMT",
+          "publication_date": null,
+          "publication_date_note": "Not inferred from URL folder, PDF creation time or HTTP Last-Modified.",
+          "path": "raw/2022/report_01.pdf",
+          "bytes": 14188900,
+          "sha256": "276d9ad08f32d968616fe85763346abe1f45360605ca340c6a40671dcbe0c33f",
+          "link_label": "Transport Department Delhi Road Crash Fatalities Report 2022 (separate compilation)",
+          "text_path": "raw/2022/report_01.txt",
+          "text_sha256": "ff386d5a43e6da2a7796eb3ea9d4bbb6a325203dd48eae08bff6cfc9c9704677"
+        }
+      ],
+      "errors": [],
+      "page_error": "DTP landing page and non-www PDF returned 404. www PDF failed hostname certificate validation. Separate Transport Department compilation collected; not a DTP mirror."
+    }
+  ],
+  "files": [
+    {
+      "path": "build.py",
+      "bytes": 6867,
+      "sha256": "a5e5f1591554344a9790dc27e4b5e54f8ead8b82c4c9337a2c08724eaffb1dee"
+    },
+    {
+      "path": "build_2016_2020.py",
+      "bytes": 9510,
+      "sha256": "41512abbfe7207e7f928f2744e8295b90f791a98991007cc04a6b4a1d775c18e"
+    },
+    {
+      "path": "collect.py",
+      "bytes": 5308,
+      "sha256": "dbe7c55654a9bcd6ec7d18364660dfbe2c3a12ce7d15fd80705bca3633d65bc6"
+    },
+    {
+      "path": "FINDINGS_2016_2020.md",
+      "bytes": 7860,
+      "sha256": "57af15a8df6b809b8f46081b0f625993c58b3861df555c3c01e18e18af002af5"
+    },
+    {
+      "path": "generated/citywide_baseline_reconciliation_2016_2020.csv",
+      "bytes": 437,
+      "sha256": "8948fdc99b57763cb9ef0025efff1016cdb29ade835a0ccbc62007d6a92ddc45"
+    },
+    {
+      "path": "generated/citywide_baseline_reconciliation_2016_2020.json",
+      "bytes": 1593,
+      "sha256": "d1b82d420fbdfdd8354deac332c4c66610721d90b9df2197cd76135587e595c7"
+    },
+    {
+      "path": "generated/crash_zone_districts_2021.csv",
+      "bytes": 4407,
+      "sha256": "79ba949321f4a6fef10d2af1e65d0b23e03e3e9f417ebeb5422fc7a51ac065e2"
+    },
+    {
+      "path": "generated/crash_zone_districts_2021.json",
+      "bytes": 8109,
+      "sha256": "f41651b6f3f52a2ccace79f8f8130c45e996e508c6d7bed8778d25d7309fbe28"
+    },
+    {
+      "path": "generated/printed_dtp_totals_2019_2021.csv",
+      "bytes": 1431,
+      "sha256": "1828d1270d38e4ad7da869a383fb2d6c8beaf9b9fe0bdab194782b0dec5a4e9e"
+    },
+    {
+      "path": "generated/printed_dtp_totals_2019_2021.json",
+      "bytes": 2418,
+      "sha256": "2d58a5e4760a5ed32dce6cd3649192085f2298ea140aa7cec7d06dc9e9ac662d"
+    },
+    {
+      "path": "generated/report_vintage_reconciliation_2016_2020.csv",
+      "bytes": 33721,
+      "sha256": "0e389cbb6e92da6793e9b5308321e37f5c7e84d12379fe88e17f9f1d04e8a598"
+    },
+    {
+      "path": "generated/report_vintage_reconciliation_2016_2020.json",
+      "bytes": 99219,
+      "sha256": "13326c505b61ed94950879fdb874025136e17c4e64e874f3a3c449bc8a75df6f"
+    },
+    {
+      "path": "generated/traffic_district_crashes_2019_2021.csv",
+      "bytes": 14542,
+      "sha256": "8fc8604535e644339568b94064025e250f1b52b5e21c80f2fe7800e08c623404"
+    },
+    {
+      "path": "generated/traffic_district_crashes_2019_2021.json",
+      "bytes": 28894,
+      "sha256": "78b1c92c246212ec26c364b2e913db52e4758e6f09f175dc7dadc6116619d53c"
+    },
+    {
+      "path": "generated/traffic_district_totals_2016_2020.csv",
+      "bytes": 1844,
+      "sha256": "2c696eeee45295efb80b23355400b53c387e9164fe6eccc9def24b3ce5822d04"
+    },
+    {
+      "path": "generated/traffic_district_totals_2016_2020.json",
+      "bytes": 3721,
+      "sha256": "e911e753d4a01045ce7a3b5e55d7c5faa5d91dda89501e1ff598cf8f35312771"
+    },
+    {
+      "path": "generated/traffic_district_totals_2020_retrospective.csv",
+      "bytes": 1641,
+      "sha256": "14949e9516eeee462b2e2c6c83aab29b8500b26c373d286f9a29f7a0324e6b99"
+    },
+    {
+      "path": "generated/traffic_district_totals_2020_retrospective.json",
+      "bytes": 3439,
+      "sha256": "baf2df650330921e7c2857b20c93ea2cca8b430884f78891e9c08653d0ef5c55"
+    },
+    {
+      "path": "generated/traffic_districts_2016_2020_as_reported.csv",
+      "bytes": 29469,
+      "sha256": "996acce2fdef92045b8f7ab956d025bc714b7436049b957bd6a8ad90c376d4a8"
+    },
+    {
+      "path": "generated/traffic_districts_2016_2020_as_reported.json",
+      "bytes": 64423,
+      "sha256": "da7dd6fd2556cf5be84364595333f2b7d15eded294abacf7e1ddeadaa7fcef07"
+    },
+    {
+      "path": "generated/traffic_districts_2020_retrospective_2016_2020.csv",
+      "bytes": 31487,
+      "sha256": "eea3125f4461a0752b05aa14f40d937798c674eac1ade8649749bfe278d8ba85"
+    },
+    {
+      "path": "generated/traffic_districts_2020_retrospective_2016_2020.json",
+      "bytes": 67246,
+      "sha256": "eb60d310fdbbb6fec98d788795b78fe830bfb48e96ce3b2f754076d7ad52d378"
+    },
+    {
+      "path": "generated/transport_fatality_districts_2022.csv",
+      "bytes": 4977,
+      "sha256": "5f49569909f62268ef8f3123e380e7e3fd9c2c11e17544eb6c53d448ce00d0f3"
+    },
+    {
+      "path": "generated/transport_fatality_districts_2022.json",
+      "bytes": 7417,
+      "sha256": "3c78b173f9f9dadfb36c9968997f04dbc4f8ac1ea2c6697773afb400eb631612"
+    },
+    {
+      "path": "generated/zone_citywide_totals_2016_2020.csv",
+      "bytes": 2194,
+      "sha256": "c881fa8c954c3b86249ffce0b0d57b5c35643683de1b2590dcfc05fe286c7a49"
+    },
+    {
+      "path": "generated/zone_citywide_totals_2016_2020.json",
+      "bytes": 4182,
+      "sha256": "7ba53ff0cd7f1fe7b2db69d91f86e6855d2b7ca851b80ea26e523cba01b2334d"
+    },
+    {
+      "path": "generated/zone_district_gaps_2016_2020.csv",
+      "bytes": 1314,
+      "sha256": "a397cb8fecbfe4ac21aa2550b866404eb2a8abf74557b5af7c7815d988be39b4"
+    },
+    {
+      "path": "generated/zone_district_gaps_2016_2020.json",
+      "bytes": 3597,
+      "sha256": "3025e113a8ff3535ec8ac86edf2d39e7aa51b2f202a91558caebcf8776fe2718"
+    },
+    {
+      "path": "generated/zone_districts_2017_2020_as_reported.csv",
+      "bytes": 27770,
+      "sha256": "a9e2effcba6c11d1a51acc7e54e5a6b0c57fe7f48ed64e688178e4e062ff8f31"
+    },
+    {
+      "path": "generated/zone_districts_2017_2020_as_reported.json",
+      "bytes": 53847,
+      "sha256": "1332cde81c9250274bff228239526e9925b045848d2c8dde8ad28dac3dc349dc"
+    },
+    {
+      "path": "inputs/citywide_road_trend_baseline.json",
+      "bytes": 1361,
+      "sha256": "6df2da3451e40bb1624bddf66063e7457e9cd6d1b2fb3cc6d86006bb437e0558"
+    },
+    {
+      "path": "inspect_2016_2020.py",
+      "bytes": 1573,
+      "sha256": "ec7b27c2354872bf18e5951eed49c7f6946c88b76e7753fd7c28b83e846e0e51"
+    },
+    {
+      "path": "raw/2015/index.html",
+      "bytes": 54138,
+      "sha256": "493f9ce9a7d6a09230b09e8d5ebb0eb07346c2607160d9b429c6d6d229c3db45"
+    },
+    {
+      "path": "raw/2015/report_00.pdf",
+      "bytes": 1457471,
+      "sha256": "a38434e4aaa1bb7f73bde3cdc0eb10182eedfda20dc88fdd5c293ba608623e97"
+    },
+    {
+      "path": "raw/2015/report_00.txt",
+      "bytes": 8379,
+      "sha256": "d0963e9d7ed075b53c798814c4335213b608d2e2a06740dee2614ab32d7e0222"
+    },
+    {
+      "path": "raw/2015/report_01.pdf",
+      "bytes": 1734072,
+      "sha256": "f5fe2b11c54627be71d8f0a2f33925a933cb644e9831a75f0edcb22209082125"
+    },
+    {
+      "path": "raw/2015/report_01.txt",
+      "bytes": 11163,
+      "sha256": "87174b89e4094bd51f332a4d676946a5ddbb05a2df33425521a59b2a34e9a930"
+    },
+    {
+      "path": "raw/2015/report_02.pdf",
+      "bytes": 3906566,
+      "sha256": "ba3093b9625ad43d5b4fe3f3ba7e891cfabab0c599cd9f76bc9bf50a34a3a3a6"
+    },
+    {
+      "path": "raw/2015/report_02.txt",
+      "bytes": 9385,
+      "sha256": "09e0fd78ebc7922bfca7a074620c031b2b43c0dd57cf6e0fd93713d92bc4f0bd"
+    },
+    {
+      "path": "raw/2015/report_03.pdf",
+      "bytes": 3012316,
+      "sha256": "56dfff04bf27adb11e328766b6251fc16c53eaea80ea405589309778d355af85"
+    },
+    {
+      "path": "raw/2015/report_03.txt",
+      "bytes": 7861,
+      "sha256": "b9babb849a6d7771fcf836cd73467e50032a4913812a37c5a24d0722498f515e"
+    },
+    {
+      "path": "raw/2015/report_06.pdf",
+      "bytes": 13066324,
+      "sha256": "c286cd138729c3827baf2d18724ab7b1ddac07aaae190f4277fc8844bb1c119a"
+    },
+    {
+      "path": "raw/2015/report_06.txt",
+      "bytes": 14627,
+      "sha256": "335d72b29b53c016c2d4cc420e62b68e2db368cb8036db55c09f27920bb39e1c"
+    },
+    {
+      "path": "raw/2015/report_10.pdf",
+      "bytes": 18993949,
+      "sha256": "1fb404b6af11ce46b7e26e00aabb9ec809876b2574f274a98876c75825ebedc5"
+    },
+    {
+      "path": "raw/2015/report_10.txt",
+      "bytes": 14482,
+      "sha256": "33d09f253a18f6b776a1200e44cf4656bbd928e89b156a50b8fd7de36a062a8e"
+    },
+    {
+      "path": "raw/2016/index.html",
+      "bytes": 54845,
+      "sha256": "35c55ce9843d534364242b3d289b367b1ee0c5fb1c942f3bcea9d296b3603667"
+    },
+    {
+      "path": "raw/2016/report_00.pdf",
+      "bytes": 10416600,
+      "sha256": "987ea22ff3e0577c55fd78c1e36c1d1c9810d96e6555da77a6909a3eaef1502f"
+    },
+    {
+      "path": "raw/2016/report_00.txt",
+      "bytes": 2995,
+      "sha256": "8f493069d0a6a8604a4a9db6bfa91db4916143491777e878481e1b8ec7ef9efd"
+    },
+    {
+      "path": "raw/2016/report_01.pdf",
+      "bytes": 7108395,
+      "sha256": "3c39ed3ac293cd15562c5a941b79a3686a522ec961625e23668e4718e6c551a6"
+    },
+    {
+      "path": "raw/2016/report_01.txt",
+      "bytes": 541,
+      "sha256": "0e8120018cbb932531f466ad2046ca2d1e1ce83151d688ade4de13bfd8760d1f"
+    },
+    {
+      "path": "raw/2016/report_02.pdf",
+      "bytes": 8202891,
+      "sha256": "47df2fbeff1137a781c3d191d78a1f4bdf459766392e9a7a9796fc8e42cba3e5"
+    },
+    {
+      "path": "raw/2016/report_02.txt",
+      "bytes": 2424,
+      "sha256": "eaa98ae907f9a897227988115cb958cacf86351a2d06ecc80532222d99057b93"
+    },
+    {
+      "path": "raw/2016/report_03.pdf",
+      "bytes": 6122483,
+      "sha256": "ab57ba8af72c8bca0fc6e6dc549f97fb4cd01b0b5957ce66ae4c390163b5da8f"
+    },
+    {
+      "path": "raw/2016/report_03.txt",
+      "bytes": 187,
+      "sha256": "10d24735651ea09dfd7a8d6cbaac4f9eecf2bca789135c56b2a09ce2af05ebc2"
+    },
+    {
+      "path": "raw/2016/report_06.pdf",
+      "bytes": 15359037,
+      "sha256": "b6eb9ea945b73530aa40af466997ddaff410a5166f1f7ef80d5bd9372e41f7c5"
+    },
+    {
+      "path": "raw/2016/report_06.txt",
+      "bytes": 363,
+      "sha256": "84cc38223fdf530a432eb859888f283cf7757e3bbc5acf05a6056ccaceaf096b"
+    },
+    {
+      "path": "raw/2016/report_10.pdf",
+      "bytes": 15226941,
+      "sha256": "ae7850cab28bfeb14b7cc1df37786f78773959c48b778d7caacfac86b3de097c"
+    },
+    {
+      "path": "raw/2016/report_10.txt",
+      "bytes": 330,
+      "sha256": "76721916b373290f2f147594e0b8f0e642964e579890bc426e83700ce43bf01a"
+    },
+    {
+      "path": "raw/2016/report_11.pdf",
+      "bytes": 8227054,
+      "sha256": "e4e0b305fb20e4e8fa24e708da305a2ef62ec39c0dd092a14e23415ce0c3b94d"
+    },
+    {
+      "path": "raw/2016/report_11.txt",
+      "bytes": 180,
+      "sha256": "1afd98c5097dbadeaf353113fec01504edaa5565dd0c2503ac488aecb8d61fe3"
+    },
+    {
+      "path": "raw/2017/index.html",
+      "bytes": 53251,
+      "sha256": "5ac289ad1659a0e8bdc2bfec3cd2862375bb6f4b0d579c32b0f7036b5e9f0d5d"
+    },
+    {
+      "path": "raw/2017/report_00.pdf",
+      "bytes": 7351570,
+      "sha256": "f778e53fe30729276ecc477fec3dbdac4859615e78d2c64d258fbcfcfd7692f0"
+    },
+    {
+      "path": "raw/2017/report_00.txt",
+      "bytes": 14878,
+      "sha256": "1fa743585ec3ab94851b6dd8d61b7ebc3995459c42b1a3d3007411218ba6fd61"
+    },
+    {
+      "path": "raw/2017/report_01.pdf",
+      "bytes": 7700609,
+      "sha256": "ed0dd72e1cc79f2230a1c073bea7b7d91a09924112906258afb1e340876fd22d"
+    },
+    {
+      "path": "raw/2017/report_01.txt",
+      "bytes": 10702,
+      "sha256": "33ceb14b16cc0babef30c59101dc61e04d9e3e849cb98a2de9591de9a4bb9849"
+    },
+    {
+      "path": "raw/2017/report_02.pdf",
+      "bytes": 10465598,
+      "sha256": "26754d279ea752f0fef04af39fb3bcdec1b4f6d1309c9a56d66baa4227b07418"
+    },
+    {
+      "path": "raw/2017/report_02.txt",
+      "bytes": 1072,
+      "sha256": "fb673ce452fa31bfad7de63f5d9f816b6e4af34f2f85c62fe793dce45bde8033"
+    },
+    {
+      "path": "raw/2017/report_03.pdf",
+      "bytes": 7552301,
+      "sha256": "9b2893ec9e0357f5a5a7d9d8fb00932941b604f042c3c5f5f6ea2fd4b9f94801"
+    },
+    {
+      "path": "raw/2017/report_03.txt",
+      "bytes": 1797,
+      "sha256": "4bf27beff10e2d5c17b5ad50cf61387c6b86d22ad4d588e7642a167b089b9733"
+    },
+    {
+      "path": "raw/2017/report_06.pdf",
+      "bytes": 19611438,
+      "sha256": "2ea7d254b2ac2f409199746fdbcb0b6e1f0566ae92bd3d7ab809c9cc588bf0f5"
+    },
+    {
+      "path": "raw/2017/report_06.txt",
+      "bytes": 964,
+      "sha256": "85cdbb350b4014a043caeb0c08d9742824a43a0a658349d2095115192c26fed8"
+    },
+    {
+      "path": "raw/2017/report_10.pdf",
+      "bytes": 10212692,
+      "sha256": "a09353b7cdb990be28173ae61873229c8d12775c81ce5a47e9a55f0fc1bcfbfb"
+    },
+    {
+      "path": "raw/2017/report_10.txt",
+      "bytes": 5944,
+      "sha256": "ea23b1f8714f93c94f680ad93640377204cc3c4af456250ebe5ee16e4181622b"
+    },
+    {
+      "path": "raw/2017/report_11.pdf",
+      "bytes": 13271204,
+      "sha256": "1a6765e2c77d665ebf03459e43694ab5b57aa5863366eb9beebd19591f26c9a4"
+    },
+    {
+      "path": "raw/2017/report_11.txt",
+      "bytes": 1591,
+      "sha256": "3ed7fb2e157a60fbf358127545e911a7aa8b5789bc284d6ee545759dbb62f82a"
+    },
+    {
+      "path": "raw/2018/index.html",
+      "bytes": 53562,
+      "sha256": "7e78db6a2e216d049f36881bb3b9a78457b36a98aefafdba02f18d4445c858c5"
+    },
+    {
+      "path": "raw/2018/report_00.pdf",
+      "bytes": 9254338,
+      "sha256": "35de342b8e4dd41030a523087f37b9bb73f051b7617fe52c480f7904737e9027"
+    },
+    {
+      "path": "raw/2018/report_00.txt",
+      "bytes": 358,
+      "sha256": "b17eb9c6e46bc9781c7a6dafda9710f14268177058a984e8a4c85a9c1969233b"
+    },
+    {
+      "path": "raw/2018/report_01.pdf",
+      "bytes": 8192574,
+      "sha256": "f395ed75f5b8dba383b338983c2487d8935c3717285495ee055afdfb9a7cb896"
+    },
+    {
+      "path": "raw/2018/report_01.txt",
+      "bytes": 10792,
+      "sha256": "7c032cd05022781f0e339f6ea4ee82f759d2a0f90ebcc4712f5b15b6387cfc4d"
+    },
+    {
+      "path": "raw/2018/report_02.pdf",
+      "bytes": 7644266,
+      "sha256": "bef6f819fca6116766fe9be14ab0d251b268aa8282e51d5fa47c57106a07454b"
+    },
+    {
+      "path": "raw/2018/report_02.txt",
+      "bytes": 18867,
+      "sha256": "a503b3facea2e1c730dc8e20cba03f92c64118305437fa6c95f0e2ea7fe43b67"
+    },
+    {
+      "path": "raw/2018/report_03.pdf",
+      "bytes": 5488261,
+      "sha256": "1b9afdef6dee977a761717fc6b5173478ba4cf97ca98a3dcc45ce032953c809d"
+    },
+    {
+      "path": "raw/2018/report_03.txt",
+      "bytes": 20296,
+      "sha256": "57f4694b1d5efd44e650b05b6942243b3e4f40a9cd20a48f755e1984b2e7cf35"
+    },
+    {
+      "path": "raw/2018/report_06.pdf",
+      "bytes": 10631720,
+      "sha256": "39be5658db2f3f665080737014aa6a1ecef31864ad5218678489cb6dc89e5832"
+    },
+    {
+      "path": "raw/2018/report_06.txt",
+      "bytes": 12843,
+      "sha256": "86f37df111e23d6b1070c23059243c8646cea5b2e0939c53c72f9d5ea2a2f46f"
+    },
+    {
+      "path": "raw/2018/report_10.pdf",
+      "bytes": 10420047,
+      "sha256": "eb1e86de926b7df79203912c93e6cfc9aab1cc9ca68aba30aef75a30a63818a0"
+    },
+    {
+      "path": "raw/2018/report_10.txt",
+      "bytes": 10753,
+      "sha256": "6f22dc750470a95f5dbdcdd38b41ecdd0699d71686b938fb8ded787c31c254c2"
+    },
+    {
+      "path": "raw/2019/index.html",
+      "bytes": 51130,
+      "sha256": "fba48a960102b697920fd79362f04ee3dd10701116b3e0a54fafa165705d4882"
+    },
+    {
+      "path": "raw/2019/report_00.pdf",
+      "bytes": 22746055,
+      "sha256": "a098b47774b834a5beeec9ed664826e174fd170cd17d577b860d9c29c81c02a0"
+    },
+    {
+      "path": "raw/2019/report_00.txt",
+      "bytes": 225258,
+      "sha256": "2fcc962e7e7ec9e726b3d1ae8d652d43a1119a77fc5ab58c74e33e6cad337bf6"
+    },
+    {
+      "path": "raw/2020/index.html",
+      "bytes": 50801,
+      "sha256": "ff374e01b2356aa1ce566c1b33fe5782acf22517cc05ac89817fc97c966e5162"
+    },
+    {
+      "path": "raw/2020/report_00.pdf",
+      "bytes": 142094989,
+      "sha256": "203c9e7a65f44d422179ebe09331f64e5c3f3892b706605b66be001d261b98e6"
+    },
+    {
+      "path": "raw/2020/report_00.txt",
+      "bytes": 205933,
+      "sha256": "796eb31b46aeae4f3ebde20edbbd00714c57f76674daf5f03ce76debbbd9f070"
+    },
+    {
+      "path": "raw/2021/index.html",
+      "bytes": 50633,
+      "sha256": "55b467e5955e3aba09e7fd25a266d48a48a56eb0bda46141fbd19221b17e614a"
+    },
+    {
+      "path": "raw/2021/report_00.pdf",
+      "bytes": 12590307,
+      "sha256": "525e8634fa21a4359ed583c651bb4819614f262424a3b00e4ef394e3a6608646"
+    },
+    {
+      "path": "raw/2021/report_00.txt",
+      "bytes": 316361,
+      "sha256": "9668813c88fce7cb14a080f428a990c2c2b94ae32ef763a099919f377037e155"
+    },
+    {
+      "path": "raw/2022/report_01.pdf",
+      "bytes": 14188900,
+      "sha256": "276d9ad08f32d968616fe85763346abe1f45360605ca340c6a40671dcbe0c33f"
+    },
+    {
+      "path": "raw/2022/report_01.txt",
+      "bytes": 98006,
+      "sha256": "ff386d5a43e6da2a7796eb3ea9d4bbb6a325203dd48eae08bff6cfc9c9704677"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7501,
+      "sha256": "882b3e6dd8a2dc44322a098114c1b6b7d378b7324063f5cc807ec602967c4b60"
+    },
+    {
+      "path": "review_2016_2020/2016_06_001.png",
+      "bytes": 744454,
+      "sha256": "dc0b5640864326f3ebe4c2e0a37784f0960c75c39c1ec9c8fe8e19bc2589e9b3"
+    },
+    {
+      "path": "review_2016_2020/2016_06_002.png",
+      "bytes": 575448,
+      "sha256": "c4b68811be5e33efa072df5813d6ea4b0ff1d59d23c6b40944b17f8274509f99"
+    },
+    {
+      "path": "review_2016_2020/2016_06_003.png",
+      "bytes": 577188,
+      "sha256": "512166f25cd61092b0eeb20aa1484ed16d83e6e789c98ec9b91d4234d98bfc17"
+    },
+    {
+      "path": "review_2016_2020/2016_06_004.png",
+      "bytes": 226672,
+      "sha256": "4bba11cfc1f0beec117ac67e92f46f504eae68ef5b053d0cf8933c54ee62e2ac"
+    },
+    {
+      "path": "review_2016_2020/2016_10_001.png",
+      "bytes": 195896,
+      "sha256": "865a93ff2dadc6d7f3ff5c72c395982f69db40e48e49ac3c1133f4bca8c1dd10"
+    },
+    {
+      "path": "review_2016_2020/2016_10_002.png",
+      "bytes": 217915,
+      "sha256": "28d52fc65296b9000c8f62ebb1c81262db39352efadfa78853f7e8b1ce672c00"
+    },
+    {
+      "path": "review_2016_2020/2016_10_003.png",
+      "bytes": 216024,
+      "sha256": "0061efb9ff5e0c8a3127c07337e4e14cc0f459ab564037c8781cc201e245c974"
+    },
+    {
+      "path": "review_2016_2020/2016_10_004.png",
+      "bytes": 257161,
+      "sha256": "b9bd4550df4a489b9c626abd91f12a4428b5f5c87ccd9595bb8e35d36eaf391e"
+    },
+    {
+      "path": "review_2016_2020/2016_10_005.png",
+      "bytes": 157265,
+      "sha256": "7b7a261db0f871d51fcd3d1637dbbaf344fb558028919dcb053f8b49156224ef"
+    },
+    {
+      "path": "review_2016_2020/2016_10_006.png",
+      "bytes": 162318,
+      "sha256": "d128c0c28f67ef43954835072916f8cf5e98d4a8844b893a44b8585acbda8144"
+    },
+    {
+      "path": "review_2016_2020/2016_zones_b1.png",
+      "bytes": 129372,
+      "sha256": "9041a1de29d8264d7ed6e782d57167c4241802c8c87a0240be7b6a41864c61cd"
+    },
+    {
+      "path": "review_2016_2020/2016_zones_p7.png",
+      "bytes": 327890,
+      "sha256": "b4d3f23f0171f7f7ff1dd18c2e071bb4f17745aab8bfc17af3033b95de7828ed"
+    },
+    {
+      "path": "review_2016_2020/2016_zones_p8.png",
+      "bytes": 214379,
+      "sha256": "88af8bd1d90fcf1d043e616eb34ea9937b01ee43e3d49ea1b6421ff307ffb26d"
+    },
+    {
+      "path": "review_2016_2020/2017_06_001.png",
+      "bytes": 234174,
+      "sha256": "26a709de394e1095dcc92f3e68f9096773fbf703a651daad697b65fbf65f979d"
+    },
+    {
+      "path": "review_2016_2020/2017_06_002.png",
+      "bytes": 330424,
+      "sha256": "98f504ff892cd8637d6569b731c004bb0b9aebf3c85fd34ca950a3936c9c9601"
+    },
+    {
+      "path": "review_2016_2020/2017_06_003.png",
+      "bytes": 197805,
+      "sha256": "826297cc8c5b6802eb2249cadabf87c8e4c33605611c8ec80377a21416156f00"
+    },
+    {
+      "path": "review_2016_2020/2017_06_004.png",
+      "bytes": 204887,
+      "sha256": "dbb68d0ea999d9db6496f3904a379a1365b0f2db22601291010784d142b5db89"
+    },
+    {
+      "path": "review_2016_2020/2017_10_007.png",
+      "bytes": 294217,
+      "sha256": "2a56b4940bfab39e1399dc28af23f65c6373956df79da35beb423366b1d6626b"
+    },
+    {
+      "path": "review_2016_2020/2017_10_008.png",
+      "bytes": 243075,
+      "sha256": "90c2dc9804b73c656afad9d7b0359b23b95f29351fcd39755c40c52e32cc5aa9"
+    },
+    {
+      "path": "review_2016_2020/2017_10_009.png",
+      "bytes": 110944,
+      "sha256": "29476b7227f54f27607b716648ca6174a01833f3c5ca91ec97cdc8cad6fd7dee"
+    },
+    {
+      "path": "review_2016_2020/2017_10_010.png",
+      "bytes": 186998,
+      "sha256": "22f25ee6e117b5ed5fbc62cc5b77b054df687638705483db1fd9ce900408f1c9"
+    },
+    {
+      "path": "review_2016_2020/2018_06_001.png",
+      "bytes": 230444,
+      "sha256": "21a088b65cac9a38e616544eb27e3f742ad8c934c0c65ab923332a3b731222f6"
+    },
+    {
+      "path": "review_2016_2020/2018_06_002.png",
+      "bytes": 178674,
+      "sha256": "7553a016dcd65de78ca38a77faafe49e10cf1157824d4468ecfabae4316a75ea"
+    },
+    {
+      "path": "review_2016_2020/2018_06_003.png",
+      "bytes": 106160,
+      "sha256": "9654502adeda9358f0ac6e8e85fc9dd99c0cfac4ad9f77dd26d0d057f8d091ce"
+    },
+    {
+      "path": "review_2016_2020/2018_10_006.png",
+      "bytes": 139356,
+      "sha256": "d381b88fe386982e3843c7c9d982704564b0005a1e176856bc931f5345656e47"
+    },
+    {
+      "path": "review_2016_2020/2018_10_007.png",
+      "bytes": 105559,
+      "sha256": "d81de139069b802de8719f5d9f073b7923382b6b521ae461f437a77f49eb5743"
+    },
+    {
+      "path": "review_2016_2020/2018_10_008.png",
+      "bytes": 178059,
+      "sha256": "d1d7b9ffef9284ae80d35ee2ae789e5cfd9c072022f4bbf55ee0357da5fbacda"
+    },
+    {
+      "path": "review_2016_2020/2018_10_009.png",
+      "bytes": 184136,
+      "sha256": "63f8e8871f2077e752d5997c21d7e10c7b2c4d9cb0840168b75e256097fe85cc"
+    },
+    {
+      "path": "review_2016_2020/2020_00_062.png",
+      "bytes": 144874,
+      "sha256": "1694125a3a2ccd29c843d7efbbcff5fb35729732741f000b29cd5636a32884f4"
+    },
+    {
+      "path": "review_2016_2020/2020_00_104.png",
+      "bytes": 90041,
+      "sha256": "7d0117d917bf4e13dbe7181cfdea636b46fad3e7aa5b95c709067db987be8918"
+    },
+    {
+      "path": "review_2016_2020/district_2016.png",
+      "bytes": 1993451,
+      "sha256": "d65a0fe0cb9771a354b3cdb06afb6f0c0df9dfc66d0acd2ed2fa8577a8f342e6"
+    },
+    {
+      "path": "review_2016_2020/district_2017.png",
+      "bytes": 442184,
+      "sha256": "d12a4c85c7b180c481dae625c075f3c459cfa48f7756cb0b7738b08c9396ac82"
+    },
+    {
+      "path": "review_2016_2020/district_2018.png",
+      "bytes": 250309,
+      "sha256": "b43b1ddb786f3466d863768c603dfb5a743b8440440eff6edcf3caca1a1e760b"
+    },
+    {
+      "path": "review_2016_2020/district_2019.png",
+      "bytes": 244331,
+      "sha256": "3aee454edf45be28abb203c077ded68a513626210f6f4a1e3c50c68255a41946"
+    },
+    {
+      "path": "review_2016_2020/district_2020.png",
+      "bytes": 227964,
+      "sha256": "46dfa2a7dfdc54f8f9826083cf54f413669ff1e899e765365c88be76584a6a22"
+    },
+    {
+      "path": "review_2016_2020/sheet_2016_06.jpg",
+      "bytes": 199129,
+      "sha256": "2b298263f8c772a4994207972a478d1cfa823d3c7a1ba5120044fd72ccc06215"
+    },
+    {
+      "path": "review_2016_2020/sheet_2016_10.jpg",
+      "bytes": 300900,
+      "sha256": "6201d8a087ff505f493da9d0141d7564d8064afe584cab93987c015f7056e81e"
+    },
+    {
+      "path": "review_2016_2020/sheet_2017_06.jpg",
+      "bytes": 189979,
+      "sha256": "5985fcb9c96b1a186df6df7624dba761d678d39c69d04a87785ee157f79f3f66"
+    },
+    {
+      "path": "review_2016_2020/sheet_2017_10.jpg",
+      "bytes": 181248,
+      "sha256": "4d9a3136dc9fdf8ec4c08123e66b6f2f14482a392f4eb9b39ee0119a674d86a1"
+    },
+    {
+      "path": "review_2016_2020/sheet_2018_06.jpg",
+      "bytes": 119435,
+      "sha256": "88283d9b51f286799c0b3937e1fe2ebcf9bfa5ccc55b8ac2137b69d166b4ad90"
+    },
+    {
+      "path": "review_2016_2020/sheet_2018_10.jpg",
+      "bytes": 189426,
+      "sha256": "a4bacaa7ddb94226bc690818babcb6cf519a7a31005f7c3c756d1670a9c3d831"
+    },
+    {
+      "path": "review_2016_2020/zone_district_2017.png",
+      "bytes": 188155,
+      "sha256": "ab7ec4848ded556dc87939531b715eec37596981de37dfb613fd5692c6c6f988"
+    },
+    {
+      "path": "review_2016_2020/zone_district_2018.png",
+      "bytes": 177153,
+      "sha256": "4431e8723758b590b8f48b8dfc8945db8fc7962ffc7f9848e4492a96daafcb29"
+    },
+    {
+      "path": "review_2016_2020/zone_district_2019.png",
+      "bytes": 180149,
+      "sha256": "1ae9ea05bda4bcf7c07462e0b256874a262d8620c685c18e68d1ec7282c178f1"
+    },
+    {
+      "path": "review_2016_2020/zone_summary_2016.png",
+      "bytes": 316512,
+      "sha256": "bcb16c15d2f803791f3509fe0b25432df3fa93f6dbd1e60fd5cd5867f3a44bd8"
+    },
+    {
+      "path": "review_2016_2020/zones_2019.png",
+      "bytes": 223770,
+      "sha256": "63447dc1ef28c9ca791c380eb7dd4d56e1b1bddd88c83437f6d916e7f958173f"
+    },
+    {
+      "path": "table_2021_6_1.png",
+      "bytes": 202597,
+      "sha256": "ee207fe5411f4c94d1f58661442096d36387966f183e521149284cdb67924f16"
+    },
+    {
+      "path": "table_2021_6_30.png",
+      "bytes": 125384,
+      "sha256": "a86a9661e6a667f299ed49a1c93b0b2258102a97c90494a62759edd3122d4f51"
+    },
+    {
+      "path": "table_2022_fatalities.png",
+      "bytes": 60995,
+      "sha256": "62a3b0b92e1129374c19516362d14e8f9a12589d86c714cea5703db08acb1976"
+    },
+    {
+      "path": "transcriptions_2016_2020.json",
+      "bytes": 7693,
+      "sha256": "0eb6b6b8be4df8fa143ecc426130cac47ba5d01bc70359721f37d8455aae9143"
+    },
+    {
+      "path": "validation_2016_2020.json",
+      "bytes": 897,
+      "sha256": "a4e702f6ca48f0df6b78c7527afd5b6612e36acf45c5daba0dada5ba0c697250"
+    }
+  ],
+  "extraction_review": "2021 Tables 6.1 and 6.30 visually checked against PDF pages 52 and 80. 2022 page 30 visually checked. Single-agent review, not independent verification.",
+  "extensions": {
+    "road_2016_2020": {
+      "status": "staged_research_not_integrated",
+      "reference_years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "findings": "FINDINGS_2016_2020.md",
+      "transcriptions": "transcriptions_2016_2020.json",
+      "reproduce": "build_2016_2020.py",
+      "validation": "validation_2016_2020.json",
+      "review": "Ten main table pages visually transcribed by author, no independent second review.",
+      "scope": "Annual district totals and district aggregates within selected zones; 2016 zone summary citywide only. Spot-level names and coordinates are not digitized.",
+      "production_ready": false
+    }
+  }
+}
