@@ -177,11 +177,18 @@ function buildRoads() {
   for (let y = 2013; y <= 2015; y++) {
     out['zones' + y] = early.filter(z => z.reference_year === y).sort((a, b) => a.serial - b.serial).map(z => [z.name_as_printed, z.road_as_printed, z.fatal_crashes, z.total_crashes, 0]);
   }
+  const road14 = read(RE + 'roads_2014_derived_exact_labels.json'), stretch14 = read(RE + 'road_stretches_2014_retrospective.json');
+  const named14 = road14.filter(r => r.road_as_printed);
+  roads[2014] = named14.map((r, i) => ({ r, i })).sort((a, b) => b.r.fatal_crashes - a.r.fatal_crashes || a.i - b.i).slice(0, 12).map(o => [o.r.road_as_printed, o.r.crash_prone_zones, o.r.fatal_crashes, o.r.total_crashes]);
+  out.roadRows[2014] = named14.length;
   roads[2015] = road15.map((r, i) => ({ r, i })).sort((a, b) => b.r.fatal_crashes - a.r.fatal_crashes || a.i - b.i).slice(0, 12).map(o => [o.r.road_as_printed, o.r.crash_prone_zones, o.r.fatal_crashes, o.r.total_crashes]);
   out.roadRows[2015] = road15.length;
-  out.roadsDerived = { 2015: true };
+  out.roadsDerived = { 2014: true, 2015: true };
   out.stretches = {};
-  [2011, 2012].forEach(y => { out.stretches[y] = stretch.filter(r => r.reference_year === y).map(r => [r.road_group_as_printed, r.road_as_printed, r.fatal_crashes, r.simple_crashes, r.noninjury_crashes, r.total_crashes]); });
+  [2011, 2012].forEach(y => { out.stretches[y] = stretch.filter(r => r.reference_year === y).map(r => [r.road_group_as_printed, r.road_as_printed, r.fatal_crashes, r.simple_crashes, r.noninjury_crashes, r.total_crashes, null]); });
+  // 2014 (audited supplement): two rows do not add up in the source; the printed total stays and the sum of the parts is carried in the seventh place
+  const groupOf = {}; stretch.forEach(r => { groupOf[r.road_as_printed] = r.road_group_as_printed; });
+  out.stretches[2014] = stretch14.map(r => { if (!groupOf[r.road_as_printed]) throw new Error('2014 stretch without a 2011/2012 group: ' + r.road_as_printed); return [groupOf[r.road_as_printed], r.road_as_printed, r.fatal_crashes, r.simple_crashes, r.noninjury_crashes, r.total_crashes_as_printed, r.source_arithmetic_discrepancy ? r.component_sum : null]; });
   return out;
 }
 
