@@ -133,8 +133,9 @@ def exact(sid, url="https://a/report.pdf", error=None):
 
 
 def test_release_watch_reports_each_family_and_a_new_lead_triggers_the_note():
-    old = manifest(source("ncrb_crime_monitor", []), source("delhi_traffic_report_monitor", [], "timed out"))
-    new = manifest(exact("ncrb_crime_monitor"), source("delhi_traffic_report_monitor", [], "timed out"))
+    dtp_down = source("delhi_traffic_report_monitor", [], "timed out")
+    old = manifest(source("ncrb_crime_monitor", []), dtp_down)
+    new = manifest(exact("ncrb_crime_monitor"), dtp_down)
     r = diff_sources(old, new)
     assert r["new_release_leads"] == ["NCRB Crime in India"]
     assert r["changed"]
