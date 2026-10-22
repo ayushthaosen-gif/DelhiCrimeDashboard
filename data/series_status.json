@@ -163,7 +163,7 @@
       "latest_reference_period": "survey period, not re-measured",
       "geography": "9 of 15 districts surveyed",
       "where": "data/streetlights_combined_by_district.json",
-      "note": "No authoritative 2025 replacement was found."
+      "note": "No authoritative 2025 replacement was found. Source: Delhi Transport Stack (Department of Transport, GNCTD), survey by Papli AI, key hotspots only; the portal's terms allow accurate reproduction with the source acknowledged, and the dataset's own licence has not been checked (docs/DATA_SOURCES.md)."
     },
     {
       "id": "liquor_vends",

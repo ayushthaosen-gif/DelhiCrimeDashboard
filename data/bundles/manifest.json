@@ -337,7 +337,7 @@
         "OpenStreetMap counts are lower bounds: a low count may mean little has been mapped.",
         "An evidence tier says how strong the crash evidence is, not how dangerous a place is or what to build."
       ],
-      "version": "2026-10-20-107b119a",
+      "version": "2026-10-20-1fc4358a",
       "bytes": 235189,
       "files": [
         {
@@ -373,7 +373,7 @@
         {
           "path": "data/profiles/manifest.json",
           "bytes": 5756,
-          "sha256": "6a8ac297722b756c8e0879fc99f0acb0cde4d2160f71362c22215eafefa264a0"
+          "sha256": "1ce017ee7c6e18d912da7acf30903740ada0e731e8d3122eec77b9754a5b390b"
         },
         {
           "path": "data/profiles/pedestrian_corridors_2024.csv",
