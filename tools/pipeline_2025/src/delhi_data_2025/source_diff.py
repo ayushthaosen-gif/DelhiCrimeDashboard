@@ -73,7 +73,7 @@ def _family(source_id: str) -> str | None:
 
 
 def release_watch(manifest: dict) -> dict:
-    """Per family: unreachable, a link that matches both the dataset title and the year, or nothing yet.
+    """Per family: unreachable, a link matching both the dataset title and the year, or nothing yet.
 
     A title-and-year match is a lead for a person to open, not proof that a release exists.
     """
