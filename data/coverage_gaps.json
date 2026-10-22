@@ -1,0 +1,31 @@
+{
+  "purpose": "Why a year has no figure in the coverage matrix, by cause. The matrix marks a year available only when the data is present; every other year must appear here with a state and a reason. States: not_printed (the source does not print it), not_extracted (the source exists and is known but the figure is not entered), source_not_found (the document could not be located; not proof it was never published), not_collected (not looked for or not verified to exist), not_published (no official release yet), staged (collected and checked but kept off the site), provisional (part of a year). See docs/COVERAGE.md.",
+  "gaps": [
+    { "row": "ncrb_district_crime", "years": [2011, 2015], "state": "staged", "note": "A separate NCRB panel under the original reporting units (17 to 19 including specialised units), counts only, with no allocation to today's districts. Off the site on purpose.", "evidence": "data/releases/historical_2011_2015/README.md" },
+    { "row": "ncrb_district_crime", "years": [2025, 2026], "state": "not_published", "note": "No official district release for 2025 or 2026 yet; the weekly monitor watches for it.", "evidence": "data/series_status.json" },
+    { "row": "delhi_ut_total_crime", "years": [2025, 2026], "state": "not_published", "note": "No NCRB Crime in India release for 2025 or 2026 yet.", "evidence": "data/series_status.json" },
+    { "row": "delhi_ut_theft", "years": [2016, 2020], "state": "not_extracted", "note": "Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.", "evidence": "data/continuity.json" },
+    { "row": "delhi_ut_theft", "years": [2025, 2026], "state": "not_published", "note": "No NCRB release yet.", "evidence": "data/series_status.json" },
+    { "row": "citywide_road_trend", "years": [2025, 2026], "state": "not_published", "note": "No Delhi Traffic Police annual report for 2025 or 2026 yet.", "evidence": "data/series_status.json" },
+    { "row": "victims_by_mode", "years": [2025, 2026], "state": "not_published", "note": "No Delhi Traffic Police annual report for 2025 or 2026 yet.", "evidence": "data/series_status.json" },
+    { "row": "enforcement", "years": [2011, 2018], "state": "not_collected", "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.", "evidence": "data/releases/road_enforcement_2019_2022/README.md" },
+    { "row": "enforcement", "years": [2025, 2026], "state": "not_published", "note": "No annual report yet.", "evidence": "data/series_status.json" },
+    { "row": "traffic_district_tables", "years": [2011, 2013], "state": "not_collected", "note": "Traffic-district tables before 2016 have not been entered.", "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md" },
+    { "row": "traffic_district_tables", "years": [2014, 2014], "state": "staged", "note": "Eleven retrospective district rows from the 2015 report (Table 6.1) are in the 2011 to 2015 release but kept off the district tables, which start in 2016.", "evidence": "data/releases/road_zones_roads_2011_2015/staged_2014/" },
+    { "row": "traffic_district_tables", "years": [2015, 2015], "state": "not_collected", "note": "Not entered.", "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md" },
+    { "row": "traffic_district_tables", "years": [2025, 2026], "state": "not_published", "note": "No annual report yet.", "evidence": "data/series_status.json" },
+    { "row": "named_zones", "years": [2011, 2012], "state": "source_not_found", "note": "The 2011 and 2012 annual reports and zone lists were not located. Not proof they were never published.", "evidence": "data/releases/road_zones_roads_2011_2015/README.md" },
+    { "row": "named_zones", "years": [2025, 2026], "state": "not_published", "note": "No annual report yet.", "evidence": "data/series_status.json" },
+    { "row": "road_tables", "years": [2011, 2012], "state": "source_not_found", "note": "No zone list was located for these years, so no road table either.", "evidence": "data/releases/road_zones_roads_2011_2015/README.md" },
+    { "row": "road_tables", "years": [2013, 2013], "state": "not_printed", "note": "The PWD compilation prints no road-wise summary.", "evidence": "data/releases/road_zones_roads_2011_2015/README.md" },
+    { "row": "road_tables", "years": [2016, 2016], "state": "not_printed", "note": "The 2016 report prints no road-wise zone table.", "evidence": "data/releases/road_zones_roads_2016_2021/README.md" },
+    { "row": "road_tables", "years": [2025, 2026], "state": "not_published", "note": "No annual report yet.", "evidence": "data/series_status.json" },
+    { "row": "stretches", "years": [2013, 2013], "state": "not_collected", "note": "Table 6.5 of the 2015 report was recovered for 2011, 2012 and 2014 only.", "evidence": "data/releases/road_zones_roads_2011_2015/README.md" },
+    { "row": "stretches", "years": [2015, 2026], "state": "not_collected", "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.", "evidence": "data/releases/road_zones_roads_2011_2015/README.md" },
+    { "row": "zone_positions", "years": [2011, 2022], "state": "not_published", "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.", "evidence": "docs/CRASH_ZONE_COORDINATES.md" },
+    { "row": "zone_positions", "years": [2025, 2026], "state": "not_published", "note": "No annual report yet.", "evidence": "data/series_status.json" },
+    { "row": "ward_profiles", "years": [2011, 2023], "state": "not_collected", "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).", "evidence": "data/profiles/README.md" },
+    { "row": "ward_profiles", "years": [2025, 2026], "state": "not_published", "note": "No 2025 or 2026 zone list yet.", "evidence": "data/series_status.json" },
+    { "row": "irad_district_reports", "years": [2011, 2024], "state": "not_collected", "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.", "evidence": "docs/IRAD_DISTRICT_REPORTS.md" }
+  ]
+}

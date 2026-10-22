@@ -1,3 +1,10 @@
+## [2026-10-22] - Claude (Anthropic) - Phase 3, researcher tools
+
+- **Coverage matrix** (`scripts/lib/coverage.js`, `data/coverage_matrix.json` and `.csv`, shown on Data & methods): 13 series by year 2011 to 2026. A year is available or partial only when the data is in the repository (computed from the release files); every other year takes its cause from the authored `data/coverage_gaps.json` (not printed, not extracted, source not found, not collected, not published, staged, provisional) with evidence. The build refuses a gap with no cause or a gap over present data. Cells are buttons with text labels and a glyph, not colour alone.
+- **Comparison explanations:** a "Why years can't always be compared" list on Data & methods and in the matrix JSON, from the continuity rules (crime definitions and sources, district geography, road districts, road zones, pandemic years) plus two added caveats (mode of travel 2018 to 2019, the 2023 and 2024 hurt heads).
+- **Versioned bundles** (`data/bundles/bundles.json` and the generated `manifest.json`): crime (22 files, 93 KB), road (33 files, 802 KB), profiles (9 files, 207 KB). Each file has its size and SHA-256 and the bundle a version (data version plus a content hash). The page zips a bundle in the browser with a generated README (geography, definitions, coverage and gaps, provenance, integrity check), `COVERAGE.csv`, `COMPARABILITY.md` and `BUNDLE_MANIFEST.json` with expected and fetched checksums, so a changed or damaged file shows.
+- Tests: `test/researcher_tools.test.js`. Not done: constituency overlays and change-over-time views (step 7), and phase 4.
+
 ## [2026-10-22] - Claude (Anthropic) - Fixes from Codex's independent verification
 
 Codex verified the 2004 to 2018 mode-of-travel table cell by cell (all 270 cells match; 2001 to 2003 confirmed as printed inconsistencies), the 2023 and 2024 provenance locations and hashes, the Delhi hurt numbers and the build. It found two errors of mine, now fixed:

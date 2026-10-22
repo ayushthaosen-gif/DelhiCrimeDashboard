@@ -9,6 +9,8 @@ What exists for which years. Gaps are named by cause, because they mean differen
 
 A blank is never a zero. The machine-readable record is [`data/series_status.json`](../data/series_status.json); the comparison rules are in [`data/continuity.json`](../data/continuity.json). "Blank" means the source printed nothing or nothing was collected; it is never shown as zero.
 
+The tables below are a summary. The full year-by-year matrix (2011 to 2026, every series, with the cause and evidence for every gap) is generated from the data: [`data/coverage_matrix.csv`](../data/coverage_matrix.csv) and [`.json`](../data/coverage_matrix.json), also shown on the Data & methods page. The causes are authored in [`data/coverage_gaps.json`](../data/coverage_gaps.json); the build refuses a gap with no cause or a gap over data that is present.
+
 ## Crime
 
 | Series | Years | Unit | Notes |
