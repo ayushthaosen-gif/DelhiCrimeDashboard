@@ -1,0 +1,391 @@
+{
+  "schemaVersion": "1.0.0",
+  "dataVersion": "2026-10-20",
+  "note": "Each bundle is zipped in the browser from these files with a generated README, coverage, comparison notes and a manifest that records each file's expected and fetched SHA-256. The version changes whenever a file in the bundle changes.",
+  "bundles": [
+    {
+      "id": "crime",
+      "title": "Crime: district and Delhi-wide registered cases",
+      "description": "District crime releases 2016 to 2024 and the Delhi-wide printed totals 2011 to 2024, each with its manifest, plus the comparability rules.",
+      "series": [
+        "ncrb_district_crime",
+        "delhi_ut_total_crime",
+        "delhi_ut_theft"
+      ],
+      "geography": "15 police districts (earlier years under the districts reported that year; never re-allocated) and Delhi as a whole. Wards are not used: crime is published by district only.",
+      "definitions": [
+        "A registered case is a First Information Report recorded by police, so it reflects reporting and registration as well as crime.",
+        "IPC became the BNS on 1 July 2024; the 2023 hurt head ('Hurt') and the 2024 head ('Hurt or Grievous Hurt') differ.",
+        "A null is unknown, unavailable or not separately reported; it is never zero."
+      ],
+      "version": "2026-10-20-f7a2168c",
+      "bytes": 95390,
+      "files": [
+        {
+          "path": "data/releases/2016/district_crime.csv",
+          "bytes": 2933,
+          "sha256": "072acb10ae669db74d80ae92381ca6daa504852fed4b8311eaa3285612455fe2"
+        },
+        {
+          "path": "data/releases/2016/manifest.json",
+          "bytes": 3925,
+          "sha256": "3edb174ece9aa3c3f080a7b829675de034b756436934c9f81473b7eeee6ffdf7"
+        },
+        {
+          "path": "data/releases/2017/district_crime.csv",
+          "bytes": 1798,
+          "sha256": "20a0e0d85ed43db9e0186294c82dd40a94b502eef206266d8574799e404989c2"
+        },
+        {
+          "path": "data/releases/2017/manifest.json",
+          "bytes": 4234,
+          "sha256": "3be51b98bd04f626d73aece81796bd4b1634a4a77707d691012d76eab14d1f1e"
+        },
+        {
+          "path": "data/releases/2018/district_crime.csv",
+          "bytes": 1737,
+          "sha256": "03a6b01f7d228728fefaa194c294642d2cf7f8553172e36eb320eb2c314ad0fd"
+        },
+        {
+          "path": "data/releases/2018/manifest.json",
+          "bytes": 4234,
+          "sha256": "a68e47abd5da22ec52239e96a2748eaed87fb7a5dbe17d4e92cddc04ccc19a29"
+        },
+        {
+          "path": "data/releases/2019/district_crime.csv",
+          "bytes": 1662,
+          "sha256": "8dc893b5fcc7dde3e653a90649eac32ea53ac1fee67ab56aca3b5698bbbf32d8"
+        },
+        {
+          "path": "data/releases/2019/manifest.json",
+          "bytes": 4236,
+          "sha256": "76408277b7c1b00082b888275e5a72f39685c4fb6ce48f56d0b57ccc5fd79955"
+        },
+        {
+          "path": "data/releases/2020/district_crime.csv",
+          "bytes": 1651,
+          "sha256": "6880255b123cc80ca34055d6fd9889dc0f72d48a0e211b97c0c72226f7eb063f"
+        },
+        {
+          "path": "data/releases/2020/manifest.json",
+          "bytes": 4236,
+          "sha256": "2bbb7d977eea0970f452d954997a0905f76c4d015a4bb59c91b83fdb1f05d8e4"
+        },
+        {
+          "path": "data/releases/2021/district_crime.csv",
+          "bytes": 1658,
+          "sha256": "9430cfc1bba008f48daf6d10d91d6f1dffb3a85f22a0ec48098149d00ab7509d"
+        },
+        {
+          "path": "data/releases/2021/manifest.json",
+          "bytes": 4236,
+          "sha256": "df0ce4849f963fc51ce93c0d2d89d2b9374cac6461a9fb9ecfa9ba39f02c76c0"
+        },
+        {
+          "path": "data/releases/2022/district_crime.csv",
+          "bytes": 1661,
+          "sha256": "b96b8d00a2327c16b68bd60186312c8e05de1c0df640bd75017bc8d9d41afedc"
+        },
+        {
+          "path": "data/releases/2022/manifest.json",
+          "bytes": 5224,
+          "sha256": "2bc58d01d30ddcb70a81e8d5d200014578066f55e3c104cc019eac0f645c661f"
+        },
+        {
+          "path": "data/releases/2023/district_crime.csv",
+          "bytes": 1654,
+          "sha256": "27006a7660f4daac1dcff1190342c6e078c02f9a3a0e6bd9342688cd08f003fe"
+        },
+        {
+          "path": "data/releases/2023/manifest.json",
+          "bytes": 6218,
+          "sha256": "60198aa2dda46a783e59c79aa398490e86670f7538d8b25a1faf4a306e1fa400"
+        },
+        {
+          "path": "data/releases/2024/district_crime.csv",
+          "bytes": 1655,
+          "sha256": "f150447232f5ef41f6f9e66be62c1c101c4be411e091f0f11e1d28daf66f1558"
+        },
+        {
+          "path": "data/releases/2024/manifest.json",
+          "bytes": 6217,
+          "sha256": "2f8671d0c22dc0a6f46cb2adfaafa95c9332d09b88341a0d8d5c464e800a2d07"
+        },
+        {
+          "path": "data/releases/delhi_ut_series/README.md",
+          "bytes": 1806,
+          "sha256": "927922a49817d3e3dceaef67d740b8f527f2abc4e8a3bbe82d4156bd143cd12f"
+        },
+        {
+          "path": "data/releases/delhi_ut_series/delhi_ut_crime.csv",
+          "bytes": 8039,
+          "sha256": "0ca49a280ec7db89aa2a472d3b9d940f602dd7157b1b586813e19308eaea16d7"
+        },
+        {
+          "path": "data/releases/delhi_ut_series/manifest.json",
+          "bytes": 16038,
+          "sha256": "1da700d7f3ed40e7c62e004f37fc6868f900b9f0a8fe1a953439a5ab487a9f42"
+        },
+        {
+          "path": "data/continuity.json",
+          "bytes": 10338,
+          "sha256": "8d2e57a732e8c45ccf47f70b7b770ee90e25056ef8d69dec86f40a0d373e1a87"
+        }
+      ]
+    },
+    {
+      "id": "road",
+      "title": "Road safety: crashes, victims, zones and roads, 2004 to 2024",
+      "description": "Citywide trend, deaths by mode of travel, enforcement, district tables, named crash-prone zones and road tables for every year held, each release with its manifest.",
+      "series": [
+        "citywide_road_trend",
+        "victims_by_mode",
+        "enforcement",
+        "traffic_district_tables",
+        "named_zones",
+        "road_tables",
+        "stretches",
+        "zone_positions"
+      ],
+      "geography": "Delhi as a whole, traffic districts as printed each year (11, 12 or 15; never mapped to today's 15 police districts), named locations and roads. Zone positions, where given (2023 and 2024), are hand-placed and approximate (150 m to 5 km).",
+      "definitions": [
+        "Counts within crash-prone zones are crashes within that year's selected zones, not all crashes, and the zone lists change every year.",
+        "A fatal crash is a crash with at least one death; persons killed is a count of people.",
+        "Counts, not rates: no traffic or population denominator is published for these series."
+      ],
+      "version": "2026-10-20-b8d3274d",
+      "bytes": 821712,
+      "files": [
+        {
+          "path": "data/releases/citywide_road_trend/README.md",
+          "bytes": 772,
+          "sha256": "4e4ab15849f7774031c5f5e0fcb9ef161a071da0a697b07552e54520ace92b84"
+        },
+        {
+          "path": "data/releases/citywide_road_trend/citywide_road_trend.csv",
+          "bytes": 317,
+          "sha256": "3936529dcbd66ceca32b239360f4f369f0057ed096aabeabdae0ba54a3f9c24a"
+        },
+        {
+          "path": "data/releases/citywide_road_trend/manifest.json",
+          "bytes": 5364,
+          "sha256": "84b2b2f3dadb1903994dae00478b3c530457cc04d933b946668d1632050a1821"
+        },
+        {
+          "path": "data/releases/road_victims_by_mode_2004_2018/README.md",
+          "bytes": 1118,
+          "sha256": "b99857750ab3b8ffc75c7446a63b3c8bfdb0c54018cf66e38cfd6441c189e70f"
+        },
+        {
+          "path": "data/releases/road_victims_by_mode_2004_2018/manifest.json",
+          "bytes": 3416,
+          "sha256": "509aa1eda3ac0011fc534b5478a8276cc1c5ee8fb2f029ca0d953f5642b9bb3a"
+        },
+        {
+          "path": "data/releases/road_victims_by_mode_2004_2018/victims_by_mode.csv",
+          "bytes": 6094,
+          "sha256": "afbfbac7c4d8c3047c143ecfe4a25ff9d7b06016def6d1f89753b5321bc2314e"
+        },
+        {
+          "path": "data/releases/road_enforcement_2019_2022/README.md",
+          "bytes": 1110,
+          "sha256": "0011cc8a678d2521c11b386b02d9ccf783d82a9624a2f851c44a2e4efcfcb5b7"
+        },
+        {
+          "path": "data/releases/road_enforcement_2019_2022/enforcement.csv",
+          "bytes": 6184,
+          "sha256": "f176be8af93a2e656e537f678903e6bb90efa25f3357f83d0368bac6bbcaec32"
+        },
+        {
+          "path": "data/releases/road_enforcement_2019_2022/manifest.json",
+          "bytes": 3287,
+          "sha256": "71f67e419e9d649b50666ade779ed3fd0130d3b1a66fc8bb6f299568c0edc899"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2011_2015/README.md",
+          "bytes": 3347,
+          "sha256": "cae062911c7bb4787d0b278a2874c4a72d2d34abb0a4c2dff78c1645860eb6ed"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2011_2015/manifest.json",
+          "bytes": 10999,
+          "sha256": "524f4cceceab999d311de2190061a3ed1528c53d132e760433bc00119207145e"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2011_2015/named_zones_2013_2015.csv",
+          "bytes": 185305,
+          "sha256": "570fe7594268d481fd4ef102594700ac221b004ceee09d271d51837364b71a55"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2011_2015/road_stretches_2014_retrospective.csv",
+          "bytes": 3558,
+          "sha256": "62e5af6a0e2e1e0a1650478ac7da240d4fb84ebf3898a84eb9e39ceb7405c7d9"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2011_2015/roads_2011_2012_retrospective.csv",
+          "bytes": 11045,
+          "sha256": "ce837c96352143361597e3a1ea54a4244f6e768009ca7ed63f6877e0cd6f8ba2"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2011_2015/roads_2014_derived_exact_labels.csv",
+          "bytes": 15682,
+          "sha256": "08626012e7bbbccedf3b567cff9c64dfc3ad6bac2b5c8606d988221c88db0ae1"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2011_2015/roads_2015_derived_exact_labels.csv",
+          "bytes": 12111,
+          "sha256": "694a53183d7afa4104d9818292737b28efafe6b734c880543004c0e0a086a5cf"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2016_2021/README.md",
+          "bytes": 1771,
+          "sha256": "8182de4baf769f710727810ff44055fd6b35939e4c37b9556d001295425774f2"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2016_2021/manifest.json",
+          "bytes": 6618,
+          "sha256": "1430dec0e4aa67a2135d78ed97871330cf5be34fbc7cdfdb8fc5efd64cab71c7"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2016_2021/named_zones_2016_2021.csv",
+          "bytes": 306828,
+          "sha256": "7fda326b0ce1e266ad7f6a15d3a32a5c063e1fc2c9b4b77a05f051131e229e1b"
+        },
+        {
+          "path": "data/releases/road_zones_roads_2016_2021/roads_selected_zones_2017_2021.csv",
+          "bytes": 66318,
+          "sha256": "51df4dab0830eea5509819ed24c11249552f5a2a40c6d5eac7d02ed1c71c0ead"
+        },
+        {
+          "path": "data/releases/road_crash_report_2022/README.md",
+          "bytes": 1828,
+          "sha256": "414eb10202ad7931c65990b0717f9a4c3cd78ff9c4f09bc0b5e4a28773143a39"
+        },
+        {
+          "path": "data/releases/road_crash_report_2022/crash_prone_zones.csv",
+          "bytes": 33299,
+          "sha256": "c5d2418852f824dc2a1736ed4fca28b0e4adb304ae5bb60a86744d1bd5343a3c"
+        },
+        {
+          "path": "data/releases/road_crash_report_2022/district_crashes.csv",
+          "bytes": 9258,
+          "sha256": "021d67c8c5923ecc41aa26680572389448ce0a396eea4cc08dd02aa57749898d"
+        },
+        {
+          "path": "data/releases/road_crash_report_2022/district_selected_zones.csv",
+          "bytes": 9389,
+          "sha256": "48b11f0c1462ec3803f72d25ffa9e455750f46f0e89d98fa068fce06e2c9d831"
+        },
+        {
+          "path": "data/releases/road_crash_report_2022/manifest.json",
+          "bytes": 2600,
+          "sha256": "a792460598d1a7402de819cd485d7e25776c5c3dd91dd4faf7370ba816f83a7c"
+        },
+        {
+          "path": "data/releases/road_crash_report_2022/roads_selected_zones.csv",
+          "bytes": 9466,
+          "sha256": "4eda9b2e6288902776f56ae4c40b971ab3065f70abd2090805ca577a3157893e"
+        },
+        {
+          "path": "data/releases/2023/crash_prone_zones.csv",
+          "bytes": 38266,
+          "sha256": "8fc58b3491d719e85dd1b7b3527e072a20f52c0e01f7c5b673ad3c94911861f1"
+        },
+        {
+          "path": "data/releases/2023/district_road_safety.csv",
+          "bytes": 4023,
+          "sha256": "6024def73c3f07b9bb50a8a5a2b3d1d739d569c19639e32d7f246f3e73980ee3"
+        },
+        {
+          "path": "data/releases/2023/manifest.json",
+          "bytes": 6218,
+          "sha256": "60198aa2dda46a783e59c79aa398490e86670f7538d8b25a1faf4a306e1fa400"
+        },
+        {
+          "path": "data/releases/2024/crash_prone_zones.csv",
+          "bytes": 35536,
+          "sha256": "31c3ff78a4765fa5a904103bb7c2ee6a3330d11b9eb3754c0caaac266beb9728"
+        },
+        {
+          "path": "data/releases/2024/district_road_safety.csv",
+          "bytes": 4030,
+          "sha256": "90d34fe555da1e64e7b7af9cc208643d9c2758687242a5527276adaa7a459357"
+        },
+        {
+          "path": "data/releases/2024/manifest.json",
+          "bytes": 6217,
+          "sha256": "2f8671d0c22dc0a6f46cb2adfaafa95c9332d09b88341a0d8d5c464e800a2d07"
+        },
+        {
+          "path": "data/continuity.json",
+          "bytes": 10338,
+          "sha256": "8d2e57a732e8c45ccf47f70b7b770ee90e25056ef8d69dec86f40a0d373e1a87"
+        }
+      ]
+    },
+    {
+      "id": "profiles",
+      "title": "Ward and district profiles, field-audit areas",
+      "description": "Ward (290 legacy) and district profiles with the field contract, the recurring locations 2016 to 2024, the 2024 audit areas and the pedestrian corridors.",
+      "series": [
+        "ward_profiles",
+        "zone_positions"
+      ],
+      "geography": "290 legacy wards (before the 2022 delimitation, not the current 250) and 15 police districts. Crime is district-level only; a ward carries its district's value, marked as inherited. Zone positions are hand-placed.",
+      "definitions": [
+        "Every column's unit, source, data year and uncertainty class is in schema.json.",
+        "OpenStreetMap counts are lower bounds: a low count may mean little has been mapped.",
+        "An evidence tier says how strong the crash evidence is, not how dangerous a place is or what to build."
+      ],
+      "version": "2026-10-20-2f1be004",
+      "bytes": 212208,
+      "files": [
+        {
+          "path": "data/profiles/README.md",
+          "bytes": 946,
+          "sha256": "5992b12c67394d183f4930af3ef4a7546d6ce3e174079ca1b4b58d4ebfc813ce"
+        },
+        {
+          "path": "data/profiles/audit_candidates_2024.csv",
+          "bytes": 84738,
+          "sha256": "188f8a1bebf40e5937cb62b79ded68feea0fd219e5a2aab0a29f740842d02ced"
+        },
+        {
+          "path": "data/profiles/district_profiles.csv",
+          "bytes": 2506,
+          "sha256": "9bc8575b946d12d55fe3d002abacc2e99128aa821b52c2cd8d38ffd3f7fc9b39"
+        },
+        {
+          "path": "data/profiles/interventions_manifest.json",
+          "bytes": 4639,
+          "sha256": "94feb0814508142ec348813963dab9400ade75ce7755e6e7cd386a166f19bffd"
+        },
+        {
+          "path": "data/profiles/manifest.json",
+          "bytes": 5756,
+          "sha256": "b3b267798fa70e19feddeab7b4637913541d314f8a70bae08489b117a71c486a"
+        },
+        {
+          "path": "data/profiles/pedestrian_corridors_2024.csv",
+          "bytes": 675,
+          "sha256": "4ada5590099aa4392a9803f8e84d3d827ca5adcdb7896a74d896146b88ccc6f7"
+        },
+        {
+          "path": "data/profiles/recurring_locations.csv",
+          "bytes": 34394,
+          "sha256": "69933f4c0a9d4adf4112fa27c2050cdc7fcc5578b7796d3dbd5c566ab512c92c"
+        },
+        {
+          "path": "data/profiles/schema.json",
+          "bytes": 30009,
+          "sha256": "bf413b34e83ea9a61551599838eefb035b776f22abd3e506be63aab548f4d194"
+        },
+        {
+          "path": "data/profiles/ward_profiles.csv",
+          "bytes": 48545,
+          "sha256": "31d213f8210e357d12e283240479f9e7d4016a88637365d6d4a5df81ac3cccaf"
+        }
+      ]
+    }
+  ]
+}

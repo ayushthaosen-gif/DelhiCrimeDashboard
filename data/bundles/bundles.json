@@ -1,0 +1,56 @@
+{
+  "purpose": "Which files go into each downloadable bundle, and the definitions and geography statements that travel with it. scripts/lib/coverage.js turns this into data/bundles/manifest.json (paths, sizes, hashes, version); the Data & methods page zips the files in the browser.",
+  "bundles": [
+    {
+      "id": "crime",
+      "title": "Crime: district and Delhi-wide registered cases",
+      "description": "District crime releases 2016 to 2024 and the Delhi-wide printed totals 2011 to 2024, each with its manifest, plus the comparability rules.",
+      "series": ["ncrb_district_crime", "delhi_ut_total_crime", "delhi_ut_theft"],
+      "geography": "15 police districts (earlier years under the districts reported that year; never re-allocated) and Delhi as a whole. Wards are not used: crime is published by district only.",
+      "definitions": ["A registered case is a First Information Report recorded by police, so it reflects reporting and registration as well as crime.", "IPC became the BNS on 1 July 2024; the 2023 hurt head ('Hurt') and the 2024 head ('Hurt or Grievous Hurt') differ.", "A null is unknown, unavailable or not separately reported; it is never zero."],
+      "include": [
+        { "dir": "data/releases/2016", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2017", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2018", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2019", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2020", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2021", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2022", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2023", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2024", "match": ["^district_crime\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/delhi_ut_series", "match": ["\\.csv$", "^manifest\\.json$", "^README\\.md$"] },
+        { "file": "data/continuity.json" }
+      ]
+    },
+    {
+      "id": "road",
+      "title": "Road safety: crashes, victims, zones and roads, 2004 to 2024",
+      "description": "Citywide trend, deaths by mode of travel, enforcement, district tables, named crash-prone zones and road tables for every year held, each release with its manifest.",
+      "series": ["citywide_road_trend", "victims_by_mode", "enforcement", "traffic_district_tables", "named_zones", "road_tables", "stretches", "zone_positions"],
+      "geography": "Delhi as a whole, traffic districts as printed each year (11, 12 or 15; never mapped to today's 15 police districts), named locations and roads. Zone positions, where given (2023 and 2024), are hand-placed and approximate (150 m to 5 km).",
+      "definitions": ["Counts within crash-prone zones are crashes within that year's selected zones, not all crashes, and the zone lists change every year.", "A fatal crash is a crash with at least one death; persons killed is a count of people.", "Counts, not rates: no traffic or population denominator is published for these series."],
+      "include": [
+        { "dir": "data/releases/citywide_road_trend", "match": ["\\.csv$", "^manifest\\.json$", "^README\\.md$"] },
+        { "dir": "data/releases/road_victims_by_mode_2004_2018", "match": ["\\.csv$", "^manifest\\.json$", "^README\\.md$"] },
+        { "dir": "data/releases/road_enforcement_2019_2022", "match": ["\\.csv$", "^manifest\\.json$", "^README\\.md$"] },
+        { "dir": "data/releases/road_zones_roads_2011_2015", "match": ["\\.csv$", "^manifest\\.json$", "^README\\.md$"] },
+        { "dir": "data/releases/road_zones_roads_2016_2021", "match": ["\\.csv$", "^manifest\\.json$", "^README\\.md$"] },
+        { "dir": "data/releases/road_crash_report_2022", "match": ["\\.csv$", "^manifest\\.json$", "^README\\.md$"] },
+        { "dir": "data/releases/2023", "match": ["^district_road_safety\\.csv$", "^crash_prone_zones\\.csv$", "^manifest\\.json$"] },
+        { "dir": "data/releases/2024", "match": ["^district_road_safety\\.csv$", "^crash_prone_zones\\.csv$", "^manifest\\.json$"] },
+        { "file": "data/continuity.json" }
+      ]
+    },
+    {
+      "id": "profiles",
+      "title": "Ward and district profiles, field-audit areas",
+      "description": "Ward (290 legacy) and district profiles with the field contract, the recurring locations 2016 to 2024, the 2024 audit areas and the pedestrian corridors.",
+      "series": ["ward_profiles", "zone_positions"],
+      "geography": "290 legacy wards (before the 2022 delimitation, not the current 250) and 15 police districts. Crime is district-level only; a ward carries its district's value, marked as inherited. Zone positions are hand-placed.",
+      "definitions": ["Every column's unit, source, data year and uncertainty class is in schema.json.", "OpenStreetMap counts are lower bounds: a low count may mean little has been mapped.", "An evidence tier says how strong the crash evidence is, not how dangerous a place is or what to build."],
+      "include": [
+        { "dir": "data/profiles", "match": ["\\.csv$", "^schema\\.json$", "^manifest\\.json$", "^interventions_manifest\\.json$", "^README\\.md$"] }
+      ]
+    }
+  ]
+}

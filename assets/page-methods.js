@@ -68,6 +68,105 @@
     });
   }
 
+
+  // ---- coverage by year, breaks, versioned bundles (read data/coverage_matrix.json and data/bundles/manifest.json) ----
+  var GLYPH = { available: '●', partial: '◐', staged: '▫', provisional: '◔', not_printed: '–', not_extracted: '○', source_not_found: '?', not_collected: '·', not_published: '…' };
+  var CM = null, BM = null, cmSel = null;
+  function getJson(path) { return fetch(path).then(function (r) { if (!r.ok) throw new Error(path); return r.json(); }); }
+  function renderMatrix() {
+    var box = D.clear(D.$('#matrixBox'));
+    if (!CM) { box.appendChild(h('p', { class: 'muted' }, 'Loading coverage…')); return; }
+    var legend = h('ul', { class: 'cm-legend' }, Object.keys(CM.states).map(function (k) { return h('li', null, h('span', { class: 'cm-g cm-' + k, 'aria-hidden': 'true' }, GLYPH[k]), CM.states[k]); }));
+    var head = h('tr', null, h('th', { scope: 'col' }, 'Series'), CM.years.map(function (y) { return h('th', { scope: 'col', class: 'cm-y' }, String(y).slice(2)); }));
+    var body = []; var group = null;
+    CM.rows.forEach(function (r) {
+      if (r.group !== group) { group = r.group; body.push(h('tr', { class: 'cm-grp' }, h('th', { colspan: CM.years.length + 1, scope: 'colgroup' }, group))); }
+      body.push(h('tr', null, h('th', { scope: 'row' }, r.series), CM.years.map(function (y) {
+        var c = r.cells[y], on = cmSel && cmSel[0] === r.id && cmSel[1] === y;
+        return h('td', null, h('button', { type: 'button', class: 'cm-g cm-' + c.state + (on ? ' on' : ''), 'aria-pressed': String(!!on), 'aria-label': r.series + ', ' + y + ': ' + CM.states[c.state],
+          onclick: function () { cmSel = [r.id, y]; renderMatrix(); } }, GLYPH[c.state]));
+      })));
+    });
+    var info = h('div', { class: 'callout', role: 'status', 'aria-live': 'polite' });
+    if (cmSel) {
+      var row = CM.rows.filter(function (r) { return r.id === cmSel[0]; })[0], c = row.cells[cmSel[1]];
+      info.appendChild(h('strong', null, row.series + ', ' + cmSel[1] + ': '));
+      info.appendChild(document.createTextNode(CM.states[c.state] + '. ' + (c.note || '') + ' '));
+      if (c.evidence) info.appendChild(h('span', { class: 'muted' }, 'Evidence: ' + c.evidence));
+      info.appendChild(h('div', { class: 'muted', style: 'font-size:13px' }, row.unit + ' · ' + row.geography));
+    } else info.appendChild(document.createTextNode('Select a cell to see what it means for that series and year.'));
+    box.appendChild(legend);
+    box.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'cm' }, h('caption', { class: 'sr-only' }, 'Coverage by series and year, 2011 to 2026'), h('thead', null, head), h('tbody', null, body))));
+    box.appendChild(info);
+  }
+  function renderBreaks() {
+    var box = D.clear(D.$('#breaksBox'));
+    if (!CM) return;
+    var by = {};
+    CM.comparison.forEach(function (c) { (by[c.applies_to] = by[c.applies_to] || []).push(c); });
+    Object.keys(by).forEach(function (k) {
+      box.appendChild(h('details', { class: 'plain' }, h('summary', null, k + ' (' + by[k].length + ')'), h('ul', { class: 'why-list' }, by[k].map(function (c) {
+        return h('li', null, h('strong', null, c.between[0] + ' to ' + c.between[1] + ' · ' + ({ not_comparable: 'not comparable', caution: 'compare with caution', unavailable: 'no figure' }[c.state] || c.state) + '. '), c.measures && c.measures.length < 6 ? '(' + c.measures.join(', ') + ') ' : '', c.reason);
+      }))));
+    });
+  }
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); }
+  function sha(text) { return window.crypto && crypto.subtle ? crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(hex) : Promise.resolve(null); }
+  function bundleReadme(b, results) {
+    var bad = results.filter(function (r) { return r.actual && r.actual !== r.expected; }).length, unverified = results.filter(function (r) { return !r.actual; }).length;
+    var rows = CM.rows.filter(function (r) { return b.series.indexOf(r.id) >= 0; });
+    var L = ['# ' + b.title, '', 'Delhi Urban Safety Observatory · bundle version ' + b.version + ' · data version ' + BM.dataVersion, '', b.description, '',
+      '## Geography', '', b.geography, '', '## Definitions', ''].concat(b.definitions.map(function (d) { return '- ' + d; }));
+    L.push('', '## Coverage and gaps', '', 'Year by year for the series in this bundle (full table: COVERAGE.csv). A blank is never a zero.', '');
+    rows.forEach(function (r) {
+      var runs = [], cur = null;
+      CM.years.forEach(function (y) { var s = r.cells[y].state; if (cur && cur.s === s) cur.to = y; else { cur = { s: s, from: y, to: y }; runs.push(cur); } });
+      L.push('- ' + r.series + ' (' + r.unit + '): ' + runs.map(function (x) { return (x.from === x.to ? x.from : x.from + '-' + x.to) + ' ' + CM.states[x.s].toLowerCase(); }).join('; '));
+    });
+    L.push('', '## What is inside', '');
+    b.files.forEach(function (f) { L.push('- ' + f.path + ' (' + f.bytes + ' bytes)'); });
+    L.push('', '## Provenance', '', 'Every release folder has a manifest.json with source URLs, page references, SHA-256 checksums, extraction method and review status. Transcriptions made from page images were read by one agent and are not independently reviewed. No explicit open licence has been verified for the agency reports; cite the original agency for any figure.',
+      '', '## Integrity check made when this bundle was built', '', bad ? bad + ' file(s) differ from the published checksum: see BUNDLE_MANIFEST.json.' : (unverified ? 'The browser could not compute checksums; the expected values are in BUNDLE_MANIFEST.json.' : 'All ' + results.length + ' files match the published SHA-256.'),
+      '', '## Comparing years', '', 'See COMPARABILITY.md. Do not compute a change across a break without reading it.');
+    return L.join('\n') + '\n';
+  }
+  function bundleComparability() {
+    var L = ['# Why years can\'t always be compared', ''];
+    CM.comparison.forEach(function (c) { L.push('- ' + c.applies_to + (c.measures && c.measures.length < 6 ? ' [' + c.measures.join(', ') + ']' : '') + ', ' + c.between[0] + ' to ' + c.between[1] + ' (' + c.state.replace('_', ' ') + '): ' + c.reason); });
+    return L.join('\n') + '\n';
+  }
+  function covCsv(b) {
+    var rows = [['series_id', 'series', 'year', 'state', 'meaning', 'note', 'evidence']];
+    CM.rows.filter(function (r) { return b.series.indexOf(r.id) >= 0; }).forEach(function (r) { CM.years.forEach(function (y) { var c = r.cells[y]; rows.push([r.id, r.series, y, c.state, CM.states[c.state], c.note || '', c.evidence || '']); }); });
+    return D.csv(rows);
+  }
+  function makeBundle(b, btn) {
+    btn.disabled = true; btn.textContent = 'Building…';
+    Promise.all(b.files.map(function (f) { return fetch(f.path).then(function (r) { if (!r.ok) throw new Error(f.path); return r.text(); }).then(function (t) { return sha(t).then(function (a) { return { path: f.path, text: t, expected: f.sha256, actual: a }; }); }); }))
+      .then(function (results) {
+        var folder = 'delhi_observatory_' + b.id + '_' + b.version + '/';
+        var items = results.map(function (r) { return { name: folder + r.path, text: r.text }; });
+        var manifest = { bundle: b.id, version: b.version, dataVersion: BM.dataVersion, builtInBrowserAt: new Date().toISOString(), files: results.map(function (r) { return { path: r.path, expectedSha256: r.expected, fetchedSha256: r.actual, matches: r.actual ? r.actual === r.expected : null }; }) };
+        items.push({ name: folder + 'README.md', text: bundleReadme(b, results) }, { name: folder + 'COVERAGE.csv', text: covCsv(b) }, { name: folder + 'COMPARABILITY.md', text: bundleComparability() }, { name: folder + 'BUNDLE_MANIFEST.json', text: JSON.stringify(manifest, null, 2) + '\n' });
+        D.downloadBlob(folder.slice(0, -1) + '.zip', D.zip(items));
+        var bad = results.filter(function (r) { return r.actual && r.actual !== r.expected; }).length;
+        btn.textContent = bad ? 'Downloaded (' + bad + ' checksum difference)' : 'Downloaded';
+      })
+      .catch(function () { btn.textContent = 'Could not build the bundle'; })
+      .then(function () { setTimeout(function () { btn.disabled = false; btn.textContent = 'Download ZIP'; }, 2500); });
+  }
+  function renderBundles() {
+    var box = D.clear(D.$('#bundleBox'));
+    if (!BM) { box.appendChild(h('p', { class: 'muted' }, 'Loading…')); return; }
+    box.appendChild(h('div', { class: 'dl-grid' }, BM.bundles.map(function (b) {
+      return h('div', { class: 'dl-card', style: 'cursor:default' }, h('span', { class: 'k' }, 'ZIP · ' + b.files.length + ' files · ' + Math.round(b.bytes / 1024) + ' KB'), h('strong', null, b.title), h('span', null, b.description), h('span', { class: 'muted', style: 'font-size:12.5px' }, 'Version ' + b.version),
+        h('button', { type: 'button', class: 'btn primary', 'data-key': 'bundle-' + b.id, onclick: function (e) { makeBundle(b, e.currentTarget); } }, 'Download ZIP'));
+    })));
+  }
+  getJson('data/coverage_matrix.json').then(function (m) { CM = m; renderMatrix(); renderBreaks(); }).catch(function () { D.clear(D.$('#matrixBox')).appendChild(h('p', { class: 'muted' }, 'The coverage table could not be loaded; the CSV link above has the same data.')); });
+  getJson('data/bundles/manifest.json').then(function (m) { BM = m; renderBundles(); }).catch(function () { D.clear(D.$('#bundleBox')).appendChild(h('p', { class: 'muted' }, 'The bundle list could not be loaded.')); });
+
+  renderMatrix(); renderBundles();
   renderChecker();
   renderSeries();
 })();

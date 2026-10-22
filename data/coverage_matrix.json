@@ -1,0 +1,1390 @@
+{
+  "years": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "states": {
+    "available": "Available",
+    "partial": "Available with a qualification (see the note)",
+    "staged": "Collected and checked, kept off the site",
+    "provisional": "Part of a year only",
+    "not_printed": "The source does not print it",
+    "not_extracted": "The source exists but the figure has not been entered",
+    "source_not_found": "The document could not be located",
+    "not_collected": "Not looked for or not verified to exist",
+    "not_published": "No official release yet"
+  },
+  "rows": [
+    {
+      "id": "ncrb_district_crime",
+      "group": "Crime",
+      "series": "District crime (NCRB), 15 police districts",
+      "unit": "registered cases",
+      "geography": "15 police districts (earlier years under the districts reported that year)",
+      "cells": {
+        "2011": {
+          "state": "staged",
+          "note": "A separate NCRB panel under the original reporting units (17 to 19 including specialised units), counts only, with no allocation to today's districts. Off the site on purpose.",
+          "evidence": "data/releases/historical_2011_2015/README.md"
+        },
+        "2012": {
+          "state": "staged",
+          "note": "A separate NCRB panel under the original reporting units (17 to 19 including specialised units), counts only, with no allocation to today's districts. Off the site on purpose.",
+          "evidence": "data/releases/historical_2011_2015/README.md"
+        },
+        "2013": {
+          "state": "staged",
+          "note": "A separate NCRB panel under the original reporting units (17 to 19 including specialised units), counts only, with no allocation to today's districts. Off the site on purpose.",
+          "evidence": "data/releases/historical_2011_2015/README.md"
+        },
+        "2014": {
+          "state": "staged",
+          "note": "A separate NCRB panel under the original reporting units (17 to 19 including specialised units), counts only, with no allocation to today's districts. Off the site on purpose.",
+          "evidence": "data/releases/historical_2011_2015/README.md"
+        },
+        "2015": {
+          "state": "staged",
+          "note": "A separate NCRB panel under the original reporting units (17 to 19 including specialised units), counts only, with no allocation to today's districts. Off the site on purpose.",
+          "evidence": "data/releases/historical_2011_2015/README.md"
+        },
+        "2016": {
+          "state": "partial",
+          "note": "Theft and robbery only; the other aggregates use incompatible definitions and are blank.",
+          "evidence": null
+        },
+        "2017": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2018": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2019": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2020": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "partial",
+          "note": "Uses BNS numbering from 1 July 2024; compare with caution.",
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No official district release for 2025 or 2026 yet; the weekly monitor watches for it.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No official district release for 2025 or 2026 yet; the weekly monitor watches for it.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "delhi_ut_total_crime",
+      "group": "Crime",
+      "series": "Delhi-wide registered IPC/BNS cases (printed total)",
+      "unit": "registered cases",
+      "geography": "Delhi as a whole",
+      "cells": {
+        "2011": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2012": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2013": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2014": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2015": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2016": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2017": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2018": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2019": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2020": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "partial",
+          "note": "Uses BNS numbering from 1 July 2024; compare with caution.",
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No NCRB Crime in India release for 2025 or 2026 yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No NCRB Crime in India release for 2025 or 2026 yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "delhi_ut_theft",
+      "group": "Crime",
+      "series": "Delhi-wide theft (printed)",
+      "unit": "registered cases",
+      "geography": "Delhi as a whole",
+      "cells": {
+        "2011": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2012": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2013": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2014": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2015": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2016": {
+          "state": "not_extracted",
+          "note": "Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",
+          "evidence": "data/continuity.json"
+        },
+        "2017": {
+          "state": "not_extracted",
+          "note": "Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",
+          "evidence": "data/continuity.json"
+        },
+        "2018": {
+          "state": "not_extracted",
+          "note": "Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",
+          "evidence": "data/continuity.json"
+        },
+        "2019": {
+          "state": "not_extracted",
+          "note": "Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",
+          "evidence": "data/continuity.json"
+        },
+        "2020": {
+          "state": "not_extracted",
+          "note": "Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",
+          "evidence": "data/continuity.json"
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No NCRB release yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No NCRB release yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "citywide_road_trend",
+      "group": "Road safety",
+      "series": "Citywide crashes, fatal crashes and deaths",
+      "unit": "counts",
+      "geography": "Delhi as a whole",
+      "cells": {
+        "2011": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2012": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2013": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2014": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2015": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2016": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2017": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2018": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2019": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2020": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No Delhi Traffic Police annual report for 2025 or 2026 yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No Delhi Traffic Police annual report for 2025 or 2026 yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "victims_by_mode",
+      "group": "Road safety",
+      "series": "Deaths by mode of travel",
+      "unit": "persons killed",
+      "geography": "Delhi as a whole",
+      "cells": {
+        "2011": {
+          "state": "partial",
+          "note": "The older annual reports' own categories (Table 3.1); compare 2018 with 2019 with caution.",
+          "evidence": null
+        },
+        "2012": {
+          "state": "partial",
+          "note": "The older annual reports' own categories (Table 3.1); compare 2018 with 2019 with caution.",
+          "evidence": null
+        },
+        "2013": {
+          "state": "partial",
+          "note": "The older annual reports' own categories (Table 3.1); compare 2018 with 2019 with caution.",
+          "evidence": null
+        },
+        "2014": {
+          "state": "partial",
+          "note": "The older annual reports' own categories (Table 3.1); compare 2018 with 2019 with caution.",
+          "evidence": null
+        },
+        "2015": {
+          "state": "partial",
+          "note": "The older annual reports' own categories (Table 3.1); compare 2018 with 2019 with caution.",
+          "evidence": null
+        },
+        "2016": {
+          "state": "partial",
+          "note": "The older annual reports' own categories (Table 3.1); compare 2018 with 2019 with caution.",
+          "evidence": null
+        },
+        "2017": {
+          "state": "partial",
+          "note": "The older annual reports' own categories (Table 3.1); compare 2018 with 2019 with caution.",
+          "evidence": null
+        },
+        "2018": {
+          "state": "partial",
+          "note": "Last year of the older reports' own categories; compare 2018 with 2019 with caution.",
+          "evidence": null
+        },
+        "2019": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2020": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No Delhi Traffic Police annual report for 2025 or 2026 yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No Delhi Traffic Police annual report for 2025 or 2026 yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "enforcement",
+      "group": "Road safety",
+      "series": "Enforcement (hit-and-run, drink-driving, speeding)",
+      "unit": "counts",
+      "geography": "Delhi as a whole",
+      "cells": {
+        "2011": {
+          "state": "not_collected",
+          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
+          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+        },
+        "2012": {
+          "state": "not_collected",
+          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
+          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+        },
+        "2013": {
+          "state": "not_collected",
+          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
+          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+        },
+        "2014": {
+          "state": "not_collected",
+          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
+          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+        },
+        "2015": {
+          "state": "not_collected",
+          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
+          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+        },
+        "2016": {
+          "state": "not_collected",
+          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
+          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+        },
+        "2017": {
+          "state": "not_collected",
+          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
+          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+        },
+        "2018": {
+          "state": "not_collected",
+          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
+          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+        },
+        "2019": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2020": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "traffic_district_tables",
+      "group": "Road safety",
+      "series": "District crash tables",
+      "unit": "crashes",
+      "geography": "Traffic districts as printed (11, 12 or 15)",
+      "cells": {
+        "2011": {
+          "state": "not_collected",
+          "note": "Traffic-district tables before 2016 have not been entered.",
+          "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md"
+        },
+        "2012": {
+          "state": "not_collected",
+          "note": "Traffic-district tables before 2016 have not been entered.",
+          "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md"
+        },
+        "2013": {
+          "state": "not_collected",
+          "note": "Traffic-district tables before 2016 have not been entered.",
+          "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md"
+        },
+        "2014": {
+          "state": "staged",
+          "note": "Eleven retrospective district rows from the 2015 report (Table 6.1) are in the 2011 to 2015 release but kept off the district tables, which start in 2016.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/staged_2014/"
+        },
+        "2015": {
+          "state": "not_collected",
+          "note": "Not entered.",
+          "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md"
+        },
+        "2016": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2017": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2018": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2019": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2020": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "named_zones",
+      "group": "Road safety",
+      "series": "Named crash-prone zones",
+      "unit": "crashes within each year's zones",
+      "geography": "Named locations",
+      "cells": {
+        "2011": {
+          "state": "source_not_found",
+          "note": "The 2011 and 2012 annual reports and zone lists were not located. Not proof they were never published.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2012": {
+          "state": "source_not_found",
+          "note": "The 2011 and 2012 annual reports and zone lists were not located. Not proof they were never published.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2013": {
+          "state": "partial",
+          "note": "From a Delhi PWD compilation, not a recovered annual report; no grand total printed.",
+          "evidence": null
+        },
+        "2014": {
+          "state": "partial",
+          "note": "From a Delhi PWD compilation, not a recovered annual report; no grand total printed.",
+          "evidence": null
+        },
+        "2015": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2016": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2017": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2018": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2019": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2020": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "road_tables",
+      "group": "Road safety",
+      "series": "Zones grouped by road",
+      "unit": "crashes within zones",
+      "geography": "Roads",
+      "cells": {
+        "2011": {
+          "state": "source_not_found",
+          "note": "No zone list was located for these years, so no road table either.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2012": {
+          "state": "source_not_found",
+          "note": "No zone list was located for these years, so no road table either.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2013": {
+          "state": "not_printed",
+          "note": "The PWD compilation prints no road-wise summary.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2014": {
+          "state": "partial",
+          "note": "Calculated here by exact printed label, not a printed table.",
+          "evidence": null
+        },
+        "2015": {
+          "state": "partial",
+          "note": "Calculated here by exact printed label, not a printed table.",
+          "evidence": null
+        },
+        "2016": {
+          "state": "not_printed",
+          "note": "The 2016 report prints no road-wise zone table.",
+          "evidence": "data/releases/road_zones_roads_2016_2021/README.md"
+        },
+        "2017": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2018": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2019": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2020": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2021": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2022": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2023": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2024": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "stretches",
+      "group": "Road safety",
+      "series": "Highway and ring-road stretches",
+      "unit": "whole-stretch crashes",
+      "geography": "Printed stretches",
+      "cells": {
+        "2011": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2012": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2013": {
+          "state": "not_collected",
+          "note": "Table 6.5 of the 2015 report was recovered for 2011, 2012 and 2014 only.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2014": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2015": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2016": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2017": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2018": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2019": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2020": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2021": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2022": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2023": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2024": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2025": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        },
+        "2026": {
+          "state": "not_collected",
+          "note": "Not part of the recovered retrospective table; later reports have not been checked for a stretch table.",
+          "evidence": "data/releases/road_zones_roads_2011_2015/README.md"
+        }
+      }
+    },
+    {
+      "id": "zone_positions",
+      "group": "Place",
+      "series": "Crash-zone map positions",
+      "unit": "points",
+      "geography": "Hand-placed, 150 m to 5 km",
+      "cells": {
+        "2011": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2012": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2013": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2014": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2015": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2016": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2017": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2018": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2019": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2020": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2021": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2022": {
+          "state": "not_published",
+          "note": "The reports print no coordinates for crash-prone zones before 2023; none were placed.",
+          "evidence": "docs/CRASH_ZONE_COORDINATES.md"
+        },
+        "2023": {
+          "state": "partial",
+          "note": "105 of 107 zones fall inside a district and are plotted; positions are hand-placed.",
+          "evidence": null
+        },
+        "2024": {
+          "state": "partial",
+          "note": "Positions are hand-placed and approximate.",
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No annual report yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "ward_profiles",
+      "group": "Place",
+      "series": "Ward profiles (legacy 290 wards)",
+      "unit": "counts and densities",
+      "geography": "290 legacy wards",
+      "cells": {
+        "2011": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2012": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2013": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2014": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2015": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2016": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2017": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2018": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2019": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2020": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2021": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2022": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2023": {
+          "state": "not_collected",
+          "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).",
+          "evidence": "data/profiles/README.md"
+        },
+        "2024": {
+          "state": "available",
+          "note": null,
+          "evidence": null
+        },
+        "2025": {
+          "state": "not_published",
+          "note": "No 2025 or 2026 zone list yet.",
+          "evidence": "data/series_status.json"
+        },
+        "2026": {
+          "state": "not_published",
+          "note": "No 2025 or 2026 zone list yet.",
+          "evidence": "data/series_status.json"
+        }
+      }
+    },
+    {
+      "id": "irad_district_reports",
+      "group": "Newer sources",
+      "series": "District iRAD reports",
+      "unit": "crashes",
+      "geography": "Revenue districts and stations",
+      "cells": {
+        "2011": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2012": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2013": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2014": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2015": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2016": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2017": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2018": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2019": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2020": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2021": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2022": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2023": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2024": {
+          "state": "not_collected",
+          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+        },
+        "2025": {
+          "state": "staged",
+          "note": "Authoritative staged release from derived iRAD tables; annual and monthly windows overlap. Not integrated into the dashboard.",
+          "evidence": "data/releases/2025/irad/manifest.json"
+        },
+        "2026": {
+          "state": "provisional",
+          "note": "Partial year and partial district coverage. Never compare with a full year.",
+          "evidence": "data/releases/2026/irad/manifest.json"
+        }
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "applies_to": "Crime: definitions and sources",
+      "measures": [
+        "theft",
+        "robbery",
+        "burglary",
+        "totalIPC",
+        "crimeAgainstWomen",
+        "totalSLL"
+      ],
+      "between": [
+        2013,
+        2014
+      ],
+      "state": "not_comparable",
+      "reason": "NCRB changed its reporting format and offence groupings in 2014, after the 2013 criminal-law changes. 2014 counts are not on the same basis as 2013, and the old burglary head and the revised criminal-trespass/burglary head are different measures.",
+      "evidence": "data/releases/historical_2011_2015/manifest.json"
+    },
+    {
+      "applies_to": "Crime: definitions and sources",
+      "measures": [
+        "theft",
+        "robbery"
+      ],
+      "between": [
+        2015,
+        2016
+      ],
+      "state": "caution",
+      "reason": "2016 comes from a different compilation (the India Data Portal extract of NCRB data) than the 2011-2015 NCRB tables.",
+      "evidence": "data/delhi_crime_2016_2021_verified.json"
+    },
+    {
+      "applies_to": "Crime: definitions and sources",
+      "measures": [
+        "burglary"
+      ],
+      "between": [
+        2016,
+        2017
+      ],
+      "state": "not_comparable",
+      "reason": "Burglary up to 2015 is the revised criminal-trespass/burglary head; from 2017 it is the day-plus-night burglary definition.",
+      "evidence": "docs/AGENT_CHANGELOG.md"
+    },
+    {
+      "applies_to": "Crime: definitions and sources",
+      "measures": [
+        "crimeAgainstWomen"
+      ],
+      "between": [
+        2015,
+        2016
+      ],
+      "state": "caution",
+      "reason": "Up to 2015 the figure is the total printed in the original-year table; from 2016 it is the IPC plus SLL total of the State/UT tables. Crime in India 2017 prints 17,222 for 2015 where the original-year table gives 17,104, so the two heads are not identical.",
+      "evidence": "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+    },
+    {
+      "applies_to": "Crime: definitions and sources",
+      "measures": [
+        "burglary"
+      ],
+      "between": [
+        2021,
+        2022
+      ],
+      "state": "caution",
+      "reason": "NCRB prints 2,637 Delhi burglary cases for 2021 and 6,189 for 2022 (2.3 times as many) under the same heading. The cause has not been established, so read the change with caution.",
+      "evidence": "data/releases/delhi_ut_series/manifest.json"
+    },
+    {
+      "applies_to": "Crime: definitions and sources",
+      "measures": [
+        "theft",
+        "robbery",
+        "burglary",
+        "totalIPC",
+        "crimeAgainstWomen",
+        "totalSLL"
+      ],
+      "between": [
+        2021,
+        2022
+      ],
+      "state": "caution",
+      "reason": "2016-2021 come from the India Data Portal extract and 2022 onward from NCRB's own district-wise tables.",
+      "evidence": "data/releases/2022/manifest.json"
+    },
+    {
+      "applies_to": "Crime: definitions and sources",
+      "measures": [
+        "theft",
+        "robbery",
+        "burglary",
+        "totalIPC",
+        "crimeAgainstWomen",
+        "totalSLL"
+      ],
+      "between": [
+        2023,
+        2024
+      ],
+      "state": "caution",
+      "reason": "The Bharatiya Nyaya Sanhita replaced the Indian Penal Code on 1 July 2024, so the 2024 tables use BNS numbering and offence groupings follow the source table. The hurt head is named \"Hurt\" in the 2023 table and \"Hurt or Grievous Hurt\" in the 2024 table, so it is not like-for-like. Press reports give a national fall in hurt cases of 30.58% and attribute it to the change, but the mechanism is not confirmed (simple hurt was already non-cognisable under IPC section 323). In Delhi the hurt head fell from 6,045 to 2,028, about 8% of the Delhi-wide fall; theft accounts for most of it (data/derived/bns_hurt_2023_2024.json).",
+      "evidence": "data/releases/2024/manifest.json"
+    },
+    {
+      "applies_to": "Crime by district",
+      "between": [
+        2016,
+        2017
+      ],
+      "state": "not_comparable",
+      "reason": "Delhi Police districts were reorganised. Rohini and Shahdara were notified on 14 October 2016 and reported as newly created in early December 2016, and Dwarka followed on 9 November 2017. 48 of the 161 stations with archived shapes sit in a different district in the November 2017 schedule than in the December 2014 roster. Affected: East, North-East, Outer, South, South-East, South-West, West. New: Dwarka, Rohini, Shahdara.",
+      "evidence": "data/staged/police_geography_history/validation_2017.json"
+    },
+    {
+      "applies_to": "Crime by district",
+      "between": [
+        2018,
+        2019
+      ],
+      "state": "not_comparable",
+      "reason": "Outer North was created on 1 January 2019 from parts of Rohini, North-West and Outer. Affected: Rohini, North-West, Outer. New: Outer North.",
+      "evidence": "https://www.business-standard.com/article/pti-stories/delhi-police-s-new-district-outer-north-to-function-from-monday-118123100961_1.html"
+    },
+    {
+      "applies_to": "Road districts",
+      "between": [
+        2017,
+        2018
+      ],
+      "state": "not_comparable",
+      "reason": "Dwarka appears as a separate Traffic Police reporting row from 2018 (11 districts before, 12 after). District counts across this break are not compared, and no crosswalk to the earlier districts is documented.",
+      "evidence": null
+    },
+    {
+      "applies_to": "Road districts",
+      "between": [
+        2021,
+        2022
+      ],
+      "state": "not_comparable",
+      "reason": "The Traffic Police district tables go from 12 reporting units in 2021 to 15 in 2022. District counts across this break are not compared, and no crosswalk is documented.",
+      "evidence": null
+    },
+    {
+      "applies_to": "Road districts",
+      "between": [
+        2022,
+        2023
+      ],
+      "state": "caution",
+      "reason": "The 2022 and 2023 tables both print 15 districts under the same names, but boundary continuity has not been verified.",
+      "evidence": null
+    },
+    {
+      "applies_to": "Road zones and roads",
+      "between": [
+        2013,
+        2024
+      ],
+      "state": "caution",
+      "reason": "These are crashes within the zones identified that year, not all crashes in the district or on the road. The selected locations can change each year, so a change is not a change in risk at fixed places.",
+      "evidence": null
+    },
+    {
+      "applies_to": "Road, all series",
+      "between": [
+        2020,
+        2021
+      ],
+      "state": "caution",
+      "reason": "2020 and 2021 were affected by pandemic restrictions, which changes how raw counts should be read.",
+      "evidence": null
+    },
+    {
+      "applies_to": "Deaths by mode of travel",
+      "between": [
+        2018,
+        2019
+      ],
+      "state": "caution",
+      "reason": "The 2011 to 2018 figures use the older annual reports' own categories (for example \"scooter and motorcycle riders\"); the 2019 to 2024 series comes from the later reports with its own labels. The meaning is close but not identical.",
+      "evidence": "data/releases/road_victims_by_mode_2004_2018/manifest.json"
+    },
+    {
+      "applies_to": "Crime, hurt head",
+      "between": [
+        2023,
+        2024
+      ],
+      "state": "caution",
+      "reason": "The 2023 table's head is \"Hurt\" and the 2024 head \"Hurt or Grievous Hurt\", so it is not like-for-like.",
+      "evidence": "data/derived/bns_hurt_2023_2024.json"
+    }
+  ],
+  "note": "A year is available only when the data is present in the repository; every other year states its cause. A blank is never a zero."
+}

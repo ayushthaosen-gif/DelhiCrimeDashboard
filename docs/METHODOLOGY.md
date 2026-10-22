@@ -58,6 +58,12 @@ The intervention views (`scripts/build_interventions.js`) are rules, not scores:
 
 `scripts/lib/patterns.js` computes every figure on the Trends and patterns page and the planner brief from committed files. Crime over time uses the Delhi-wide printed totals; each step between years takes its state (comparable, caution, not comparable, no figure) from `data/continuity.json`, and the chart leaves a gap where a step is not comparable or a figure is missing. District crime is registered IPC/BNS cases per 1 lakh residents (approximate resident population, which excludes visitors). Mapped densities are compared with it by Spearman rank correlation over the 15 districts; with 15 districts a value between about -0.5 and +0.5 cannot be told apart from chance, and the page says so. Places and roads come from the recurrence rules in section 7. The page describes patterns; it makes no causal claim, and its "what tends to help" list is labelled general practice, not a finding from this data.
 
-## 9. Monitoring newer data
+## 9. Coverage matrix, comparison notes and bundles
+
+`scripts/lib/coverage.js` builds [`data/coverage_matrix.json`](../data/coverage_matrix.json) and `.csv`: every series by year 2011 to 2026, available or not, computed from the files in the repository. Every other cell takes its cause from `data/coverage_gaps.json` (not printed, not extracted, source not found, not collected, not published, staged); the build fails on a gap with no cause or one that hides data that is present. The same file lists the documented breaks between years (from `data/continuity.json`).
+
+Three versioned bundles (crime, road, profiles) are defined in `data/bundles/bundles.json`; `data/bundles/manifest.json` records each file's path, size and SHA-256 and a version that changes when any file changes. The Data & methods page zips a bundle in the browser with a generated README (geography, definitions, coverage and gaps, provenance), `COVERAGE.csv`, `COMPARABILITY.md` and a `BUNDLE_MANIFEST.json` with each file's expected and fetched checksum.
+
+## 10. Monitoring newer data
 
 A weekly job (`.github/workflows/pipeline-2025-monitor.yml`) looks for new NCRB, Delhi Traffic Police, iRAD and Excise releases and opens or updates one issue. It downloads and integrates nothing; a person reviews, collects, validates and opens a pull request ([pipeline README](../tools/pipeline_2025/README.md)).

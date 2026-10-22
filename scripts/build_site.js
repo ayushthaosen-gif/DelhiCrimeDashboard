@@ -14,6 +14,7 @@ const { buildAll } = require('./lib/site_data');
 const { compareYears, segmentOf, changeBetween } = require('./lib/continuity');
 const profileAssets = require('./lib/profile_assets');
 const patterns = require('./lib/patterns');
+const coverage = require('./lib/coverage');
 
 const ROOT = path.join(__dirname, '..');
 const GITHUB = 'https://github.com/ayushthaosen-gif/DelhiCrimeDashboard';
@@ -157,7 +158,7 @@ function dataMethods(updated) {
   const rel = p => p;
   return '<div class="dm">\n'
     + '<aside aria-label="On this page"><span class="eyebrow" style="padding:0 10px 6px">On this page</span>'
-    + '<a href="#compare">Can I compare these years?</a><a href="#coverage">How current is each series</a><a href="#geography">How the geography changed</a><a href="#method">How figures are calculated</a><a href="#downloads">Downloads</a><a href="#glossary">Glossary</a><a href="#sources">Sources &amp; licences</a></aside>\n'
+    + '<a href="#compare">Can I compare these years?</a><a href="#coverage">How current is each series</a><a href="#matrix">Coverage by year</a><a href="#breaks">Why years differ</a><a href="#geography">How the geography changed</a><a href="#method">How figures are calculated</a><a href="#downloads">Downloads</a><a href="#bundles">Bundles</a><a href="#glossary">Glossary</a><a href="#sources">Sources &amp; licences</a></aside>\n'
     + '<main id="main">\n'
     + '<div style="display:flex;flex-direction:column;gap:8px"><h1>Data &amp; methods</h1><p class="lead">Original sources, definitions, how geography changed, downloads and how to cite or reproduce a view. Everything in Explore is built from the files described here.</p></div>\n'
     + '<section id="compare"><h2>Can I compare these years?</h2><p class="lead">Having a value for every year does not make a valid trend: a change can come from how the data was collected, defined or mapped rather than from what happened. Pick a measure and two years to check.</p>'
@@ -166,6 +167,8 @@ function dataMethods(updated) {
     + '<section id="coverage"><h2>How current is each series?</h2><p class="lead">Official crime and crash figures stop at <strong>2024</strong>. Newer material exists but is kept off the maps on purpose. Never compare a year-to-date or provisional series with a full year.</p>'
     + '<div class="chips" id="statusChips"></div><div class="series" id="seriesList"></div>'
     + '<p class="small">Ward-level layers use the legacy 290-ward geography (before the 2022 delimitation), not the current 250 MCD wards. Source: data/series_status.json.</p></section>\n'
+    + '<section id="matrix"><h2>Coverage by year</h2><p class="lead" style="font-size:14px">Which series exist for which years, and for each missing year why: not printed in the source, not yet extracted, source not found, not collected, or no official release yet. A blank is never a zero. Select a cell for its note. The same table is a <a href="data/coverage_matrix.csv">CSV</a> and <a href="data/coverage_matrix.json">JSON</a>.</p><div id="matrixBox"></div></section>\n'
+    + '<section id="breaks"><h2>Why years can\'t always be compared</h2><p class="lead" style="font-size:14px">The documented breaks behind the checker above: a change of definition, geography or source between two years. Each is a reason a difference may not be a real change.</p><div id="breaksBox"></div></section>\n'
     + '<section id="geography"><h2>How the geography changed</h2><div class="geo-cards">'
     + '<div class="geo-card"><span class="y">2011–2016</span><span class="big">11 districts</span><p>Drawn on 2014 reference shapes, labelled inferred.</p></div>'
     + '<div class="geo-card"><span class="y">2017–2018</span><span class="big">14 districts</span><p>Rohini and Shahdara notified 14 Oct 2016; Dwarka 9 Nov 2017. Labelled derived.</p></div>'
@@ -187,7 +190,7 @@ function dataMethods(updated) {
     + '<a class="dl-card" href="data/profiles/audit_candidates_2024.csv"><span class="k">CSV · JSON</span><strong>Field-audit areas, 2024</strong><span>93 named zones with the evidence behind each, an evidence tier and a field checklist. Also recurring locations 2016 to 2024 and pedestrian corridors.</span></a>'
     + '<a class="dl-card" href="data/profiles/district_profiles.csv"><span class="k">CSV · JSON · GeoJSON</span><strong>District profiles (15 districts)</strong><span>Official crime and road counts, comparability states and infrastructure per police district.</span></a>'
     + '<a class="dl-card" href="' + GITHUB + '/tree/main/data/releases/delhi_ut_series"><span class="k">JSON · CSV</span><strong>Delhi-wide totals, 2011–2024</strong><span>Printed NCRB totals for Delhi as a whole, with sources and checks.</span></a>'
-    + '</div><div class="cite"><span><strong>Cite this data.</strong> Data version ' + esc(updated) + '. Every figure is rebuilt from the files in the repository.</span><a href="' + GITHUB + '">Code and data on GitHub</a></div></section>\n'
+    + '</div><h3 id="bundles" style="margin:18px 0 6px">Versioned bundles</h3><p class="lead" style="font-size:14px">A bundle is a set of release files zipped together in your browser with a README (what is inside, geography, definitions, gaps), the coverage for its series, the comparison notes and a manifest that records each file\'s expected and fetched SHA-256, so you can see that nothing changed on the way. The version changes whenever a file in it changes.</p><div id="bundleBox"></div><div class="cite"><span><strong>Cite this data.</strong> Data version ' + esc(updated) + '. Every figure is rebuilt from the files in the repository.</span><a href="' + GITHUB + '">Code and data on GitHub</a></div></section>\n'
     + '<section id="glossary"><h2>Glossary</h2><dl class="glossary">'
     + '<div><dt>Registered case</dt><dd>A First Information Report recorded by police. Reflects reporting and registration, not only crime.</dd></div>'
     + '<div><dt>IPC / BNS</dt><dd>Indian Penal Code, replaced by the Bharatiya Nyaya Sanhita on 1 July 2024.</dd></div>'
@@ -242,6 +245,10 @@ function render() {
   files['assets/profiles-data.js'] = generated['assets/profiles-data.js'];
   files['assets/planning-data.js'] = generated['assets/planning-data.js'];
   files['assets/patterns-data.js'] = generated['assets/patterns-data.js'];
+  const cov = coverage.build();
+  files['data/coverage_matrix.json'] = JSON.stringify(cov, null, 2) + '\n';
+  files['data/coverage_matrix.csv'] = coverage.csv(cov);
+  files['data/bundles/manifest.json'] = JSON.stringify(coverage.bundles(u), null, 2) + '\n';
   files['planner-brief.html'] = shell({ file: 'planner-brief.html' }, { title: 'Planner brief: where to look first · Delhi Urban Safety Observatory', description: 'One-page brief for planners from the Delhi Traffic Police crash reports.', body: patterns.briefBody(pat), scripts: [], updated: u });
   return files;
 }
