@@ -4,6 +4,7 @@ History of additions, moved out of the README. Newest first within each block. T
 
 ## Recent additions (2026-10)
 
+- **Deaths by mode of travel for 2011 to 2018** (Road safety): pedestrians, two-wheeler riders and the other categories, from the older Traffic Police reports, shown beside the 2019 to 2024 series with a note that the two series are compare-with-caution. The release also holds 2004 to 2010.
 - **One year across Road safety**: a "Year in view" bar sets the year for every section (2024 by default), each section says what it measures and which year it shows, a year with no figure says why, and "Copy link to view" keeps the year and your choices.
 - **Trends and patterns** (`patterns.html`) and a one-page **planner brief** (`planner-brief.html`): registered crime over time with comparability gaps, where district crime rates are higher (and what does not explain it), the places and roads the crash reports keep naming, and what tends to help (general practice, labelled).
 - **Named zones for 2013 to 2015 and early road stretches** (Road safety): the zone and roads tables now start in 2013 (128, 137 and 176 zones). 2013 and 2014 come from an official PWD compilation, 2015 road groups are calculated from the zone table and labelled so, and a new table shows the 13 highway and ring-road stretches printed for 2011 and 2012. Release: `data/releases/road_zones_roads_2011_2015/`.
