@@ -1,3 +1,11 @@
+## [2026-10-22] - Claude (Anthropic) - Phase 2, visitor clarity on Road safety
+
+- **One year for the page.** The road page opened with different years in different sections (modes 2024, roads 2024, zones 2023, districts 2022). It now has one year, 2024 by default, set in a new "Year in view" bar (2011 to 2024) under the headline figures; every section's own year buttons set the same year. A section with no figure for the year says so and why instead of showing another year: modes (held for 2019 to 2024), districts (tables start in 2016), zones (no list found for 2011 or 2012), roads (none for 2011 to 2013 or 2016; 2014 and 2015 are calculated), stretches (2011, 2012 and 2014 only), enforcement (table starts in 2019; the year's column is highlighted). The trend highlights the year in view.
+- **Share links carry the view.** The hash is now `#y=<year>&dm=<district measure>&tm=<trend measure>&ti=1`, updated on every change, with the same "Copy link to view" in the year bar and the district section. Old `#dy=` district-only links still open (as the year). Previously only the district section's measure and year were in the link.
+- **Units and coverage stated.** Every section has a one-line scope: measure, unit, geography and the year shown (for example "Counts per year · Delhi as a whole · 2019 to 2024"; "Crashes within the named crash-prone zones of the 2024 report · 93 zones · not all crashes"). The page intro no longer says district counts exist only for 2022 to 2024.
+- Tests: `test/year_context.test.js` (and the district test now checks the new link). Checked in the browser at desktop and phone width: years align across sections, an old link restores the year, measure and index, no overflow, no console errors.
+- Not done: Phase 2 for the other pages (Explore keeps its own year control), and a coverage matrix (phase 3).
+
 ## [2026-10-22] - Claude (Anthropic) - Phase 1, data trust (from the review findings)
 
 Findings checked against the repository before changing anything: four were true as written, one needed a different reading.

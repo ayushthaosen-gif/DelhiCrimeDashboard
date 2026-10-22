@@ -497,3 +497,6 @@ body.map3d { display: flex; flex-direction: column; }
 .brief h1 { font-size: 30px; line-height: 1.1; } .brief h2 { font-size: 17px; margin-top: 8px; } .brief .lead { font-size: 16px; }
 .brief ul, .brief ol { margin: 0 0 0 20px; display: flex; flex-direction: column; gap: 4px; }
 @media print { .site-header, .site-nav, .skip, .site-footer, noscript { display: none !important; } .brief { padding: 0; max-width: none; font-size: 11.5px; gap: 6px; } .brief h1 { font-size: 22px; } .brief h2 { font-size: 13px; } }
+.scope-line { font-size: 13px; color: var(--ink3); margin: -4px 0 2px; }
+.tbl th.yr-col, .tbl td.yr-col { background: var(--accentSoft); }
+#yearBar .years { flex-wrap: wrap; }
