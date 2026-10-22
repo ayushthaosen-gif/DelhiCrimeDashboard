@@ -124,8 +124,9 @@ function explore() {
 
 function roadSafety(updated) {
   return '<main id="main" class="page">\n'
-    + '<div class="page-head"><h1>Road safety, citywide</h1><p>These figures are published for Delhi as a whole, not per district, so they sit here rather than on the map. District-level counts for 2022 to 2024 (crashes and fatal crashes within the crash-prone zones of each district, crash-prone zones, and persons killed) are in <a href="explore.html#topic=road">Explore</a>.</p></div>\n'
+    + '<div class="page-head"><h1>Road safety, citywide</h1><p>These figures are published for Delhi as a whole, not per district, so they sit here rather than on the map. District-level counts for 2023 and 2024 (crashes and fatal crashes within the crash-prone zones of each district, crash-prone zones, and persons killed) are in <a href="explore.html#topic=road">Explore</a>; the district tables for 2016 to 2024 are below. One year, set in the bar under the headline figures, applies to every section.</p></div>\n'
     + '<div class="rs-kpis" id="rsKpis"></div>\n'
+    + '<section id="yearBar" class="card" aria-label="Year in view" style="gap:10px"></section>\n'
     + '<section id="trend" class="card" style="scroll-margin-top:16px"></section>\n'
     + '<div class="two-col"><section id="modes" class="card" style="flex:1 1 420px;scroll-margin-top:16px"></section><section id="enforcement" class="card" style="flex:1 1 420px"></section></div>\n'
     + '<section id="district-tables" class="card" style="scroll-margin-top:16px"></section>\n<div class="two-col"><section id="zones" class="card" style="flex:3 1 520px"></section><section id="roads" class="card" style="flex:2 1 360px"></section></div>\n<section id="stretches" class="card" style="scroll-margin-top:16px"></section>\n'

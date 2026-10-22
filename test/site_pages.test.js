@@ -289,7 +289,7 @@ test('the continuity file blocks district changes across the 2017-2018 and 2021-
 test('the district tables on Road safety keep scope, geography, nulls and exports honest', () => {
   const src = read('assets/page-road.js');
   for (const k of ['hm', 'hy-']) assert.ok(src.includes("'" + k + "'"), k);
-  assert.ok(src.includes('dm: m, dy: y'), 'the share link carries measure and year');
+  assert.ok(src.includes('y: st.year, dm: hs.measure'), 'the share link carries measure and year');
   assert.ok(src.includes("'delhi_road_' + m + '_' + y + '.csv'"), 'the download name carries scope and year');
   for (const col of ['row_type', 'reporting_unit_as_printed', 'missing_reason', 'comparison_with_previous_year', 'comparison_reason', 'source_pdf_page', 'source_sha256', 'review_status', 'data_version', 'crash_prone_zones', 'simple_crashes_at_zones', 'fatal_crashes_at_zones', 'total_crashes_at_zones', 'injury_crashes', 'non_injury_crashes']) assert.ok(src.includes("'" + col + "'"), col);
   for (const t of ['district_not_in_table', 'printed_total', 'unreported, not zero', 'Printed total (not a district)']) assert.ok(src.includes(t), t);
