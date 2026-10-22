@@ -515,3 +515,4 @@ button.cm-g.on { outline: 2px solid var(--ink); }
 .cm-staged, .cm-provisional { background: var(--accentSoft); }
 .cm-not_printed, .cm-not_extracted, .cm-source_not_found { background: var(--notBg); }
 .cm-not_collected, .cm-not_published { background: var(--surface2); color: var(--ink3); }
+.pl-approx { color: var(--ink3); font-weight: 600; cursor: help; }

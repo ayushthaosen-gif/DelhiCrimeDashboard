@@ -67,9 +67,11 @@
     var cannot = P.cannotEstablish.general.slice();
     Object.keys(used).forEach(function (c) { var t = P.cannotEstablish.byClass[c]; if (t && cannot.indexOf(t) < 0) cannot.push(t); });
 
+    var loc = ctx.loc || null;
+    if (loc && z.length) flags.push('Because positions are approximate, the ward totals and rank here are ranges, not exact values (see "How much the zone positions matter" below).');
     var auditRows = ctx.audit || [];
     if (auditRows.length) flags.push(plural(auditRows.length, 'field-audit area', 'field-audit areas') + ' in this ward (below). A tier says how strong the crash evidence is, not how dangerous the place is.');
-    return { kind: 'ward', audit: auditRows, title: r.ward_name, subtitle: (r.assigned_district || 'No assigned district') + ' district · ' + fmt(r.area_km2, 'km²') + ' km² · legacy 290-ward geography (not the current 250 wards)', issue: issue, nearby: nearby, landuse: landuse, zones: z, provenance: provenance, uncertainty: uncertainty, flags: flags, cannot: cannot, dataVersion: P.dataVersion };
+    return { kind: 'ward', audit: auditRows, loc: loc, title: r.ward_name, subtitle: (r.assigned_district || 'No assigned district') + ' district · ' + fmt(r.area_km2, 'km²') + ' km² · legacy 290-ward geography (not the current 250 wards)', issue: issue, nearby: nearby, landuse: landuse, zones: z, provenance: provenance, uncertainty: uncertainty, flags: flags, cannot: cannot, dataVersion: P.dataVersion };
   };
 
   // ---------- district ----------
@@ -95,6 +97,25 @@
     var cannot = P.cannotEstablish.general.slice();
     Object.keys(used).forEach(function (c) { var t = P.cannotEstablish.byClass[c]; if (t && cannot.indexOf(t) < 0) cannot.push(t); });
     return { kind: 'district', title: r.district + ' district', subtitle: fmt(r.area_km2, 'km²') + ' km² · ' + D.n(r.population) + ' people (approximate)', issue: issue, nearby: nearby, landuse: null, zones: [], provenance: provenance, uncertainty: uncertainty, flags: flags, cannot: cannot, dataVersion: P.dataVersion };
+  };
+
+  // plain sentences about how location uncertainty changes this ward's figures (shared by the panel and the Markdown)
+  W.locLines = function (loc) {
+    var L = [], p = function (v) { return v > 0 && v < 0.005 ? '<1%' : Math.round(v * 100) + '%'; };
+    if (loc.ward) {
+      var w = loc.ward;
+      if (w.baselineRank != null) L.push('Placed as drawn, this ward ranks ' + D.ord(w.baselineRank) + ' by fatal crashes counted in zones. Across the simulated placements it ranks between ' + D.ord(w.rank05) + ' and ' + D.ord(w.rank95) + ' (5th to 95th percentile), and is in the top 10 in ' + p(w.pTop10) + ' of them.');
+      if (w.baselineFatal > 0) L.push('Fatal crashes counted in zones here: ' + w.baselineFatal + ' as placed; between ' + w.fatal05 + ' and ' + w.fatal95 + ' across the placements. The total is unchanged in ' + p(w.pUnchanged) + ' of them.');
+      else L.push('No zone is placed in this ward, but one could fall here: in ' + p(w.pRanked) + ' of the placements it receives at least one.');
+    }
+    (loc.zones || []).forEach(function (z) {
+      var t = z.name + ' (accuracy ' + D.n(z.accuracy) + ' m): stays in this ward in ' + p(z.pSame) + ' of the placements' + (z.stability === 'stable' ? ' (stable)' : z.stability === 'uncertain' ? ' (uncertain)' : ' (unstable)') + '.';
+      var alts = z.alts.filter(function (a) { return a[2] >= 0.01; });
+      if (alts.length) t += ' Otherwise: ' + alts.slice(0, 3).map(function (a) { return a[1] + ' (' + p(a[2]) + ')'; }).join(', ') + '.';
+      L.push(t);
+    });
+    (loc.incoming || []).filter(function (z) { return z.p >= 0.02; }).slice(0, 4).forEach(function (z) { L.push(z.name + ' (placed in ' + z.fromWard + ', accuracy ' + D.n(z.accuracy) + ' m) falls in this ward in ' + p(z.p) + ' of the placements.'); });
+    return L;
   };
 
   // ---------- render ----------
@@ -126,6 +147,8 @@
             h('p', { class: 'muted', style: 'font-size:13px' }, a.evidence_tier_label + '. ' + a.reasons), h('p', { style: 'font-size:13px;font-weight:600;margin:6px 0 2px' }, 'To check on site'), list(a.checklist));
         })));
     }
+    if (w.loc) root.appendChild(h('div', { class: 'why-sec why-loc' }, h('h3', null, 'How much the zone positions matter'), list(W.locLines(w.loc)),
+      h('p', { class: 'muted', style: 'font-size:12.5px' }, 'Simulation: each zone moved at random within its stated accuracy, 2,000 times. The stated accuracy is an estimate, not a measured error; the real error may be larger. ', h('a', { href: 'data/profiles/location_sensitivity_wards_2024.csv' }, 'Ward results (CSV)'), ' · ', h('a', { href: 'data/profiles/location_sensitivity_zones_2024.csv' }, 'Zone results (CSV)'), '.')));
     root.appendChild(h('div', { class: 'why-sec' }, h('h3', null, 'Uncertainty'),
       h('div', { class: 'chips' }, w.uncertainty.map(function (u) { return h('span', { class: 'why-chip', title: u.meaning }, u.label); })),
       list(w.uncertainty.map(function (u) { return u.label + ': ' + u.meaning; }), 'why-list small'), w.flags.length ? h('div', { class: 'callout warn pl-cau', style: 'font-size:13.5px;margin-top:8px' }, list(w.flags)) : null));
@@ -151,6 +174,7 @@
         L.push('| ' + q.name + ' | ' + f(q.fatal_crashes) + ' / ' + f(q.total_crashes) + ' | ' + (q.position_accuracy_m == null ? '–' : q.position_accuracy_m + ' m') + ' | ' + f(q.crossings_250m) + ' / ' + f(q.crossings_500m) + ' | ' + f(q.signals_250m) + ' / ' + f(q.signals_500m) + ' | ' + (q.footway_km_250m == null ? '–' : q.footway_km_250m + ' km') + ' |');
       });
     }
+    if (w.loc) { L.push('', '## How much the zone positions matter', ''); W.locLines(w.loc).forEach(function (t) { L.push('- ' + t); }); L.push('', '_Each zone was moved at random within its stated accuracy, 2,000 times. The stated accuracy is an estimate, not a measured error._'); }
     if (w.audit && w.audit.length) {
       L.push('', '## Field-audit areas in this ward', '');
       w.audit.forEach(function (a) { L.push('### ' + a.zone + ' (evidence tier ' + a.evidence_tier + ': ' + a.evidence_tier_label + ')', '', a.reasons, '', 'To check on site:'); a.checklist.forEach(function (t) { L.push('- ' + t); }); L.push(''); });
