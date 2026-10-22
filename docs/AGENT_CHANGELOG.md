@@ -1,3 +1,12 @@
+## [2026-10-22] - Claude (Anthropic) - Fixes from Codex's independent verification
+
+Codex verified the 2004 to 2018 mode-of-travel table cell by cell (all 270 cells match; 2001 to 2003 confirmed as printed inconsistencies), the 2023 and 2024 provenance locations and hashes, the Delhi hurt numbers and the build. It found two errors of mine, now fixed:
+
+- **The hurt explanation was wrong.** I wrote that simple hurt "became non-cognisable" under the BNS (from press reports and the request). It was already non-cognisable under IPC section 323 and is under BNS 115(2). The page, continuity reason, LIMITATIONS and the derived file now say only what is evidenced: different head names in the two tables, a press-reported national fall whose mechanism is not confirmed, and Delhi's hurt numbers. The national figures stay marked as rounded and press-derived.
+- **I wrongly "corrected" a number.** The three-road figure was 188 of 366 before I changed it to 197 by merging "G.T. Road" into "GTK Road". The report prints them as different labels. They are separate again (Ring Road 69, Outer Ring Road 64, GTK Road 55; 188 of 366). Persistent places on GTK Road go from 14 to 12; G.T. Road appears separately. My earlier note in this log that 197 was the correct figure is itself wrong.
+- Not changed: Codex did not re-transcribe every 2023 and 2024 named-zone or persons-table cell, and the NCRB report itself was still not read for the national figures.
+- Tests: `test/patterns.test.js` now checks the raw label counts, 188, and that the unsupported explanation is gone.
+
 ## [2026-10-22] - Claude (Anthropic) - Deaths by mode of travel back to 2011
 
 - Asked why mode of travel stops at 2019. It was never collected, not unavailable: Chapter 3 ("Victims of road accidents") of the Traffic Police Road Accidents in Delhi reports prints Table 3.1, victims killed and injured by category of road user, and we already held those chapter PDFs for 2015 to 2018. The Traffic Police statistics page itself shows only total persons killed.

@@ -32,6 +32,18 @@ Affected releases: data/releases/<years>/...
 
 ---
 
+## 2026-10-22 - Trends and patterns page - hurt explanation withdrawn, road grouping corrected
+
+| Field | Old value | New value | Why |
+|---|---|---|---|
+| Explanation of the 2023 to 2024 hurt fall | "hurt and grievous hurt were merged and simple hurt became non-cognisable" | The two tables use different heads ("Hurt" and "Hurt or Grievous Hurt"); press reports attribute the national fall to the BNS but the mechanism is not confirmed; simple hurt was already non-cognisable under IPC section 323 and is under BNS section 115(2) | An independent review (Codex) found primary sources (a Delhi Police training document and the Supreme Court judgment 2025 INSC 410) showing no new change of cognisability. This project has not read those documents itself. |
+| National hurt figures | "6.36 lakh to 4.41 lakh" stated plainly | Same values marked rounded and from press reports, not checked against the NCRB report | The NCRB report itself could not be reached in the check. |
+| Fatal crashes on "GTK Road" in the 2023 zone list | 64 (G.T. Road rows merged in) | 55; the three roads together 188 of 366 (was 197) | The 2023 report prints "G.T. Road" and "GTK Road" as different labels (three zones with 4, 3 and 2 fatal crashes are labelled G.T. Road); they are no longer combined. Persistent places on GTK Road 14 to 12; G.T. Road shows separately. |
+
+No NCRB or Traffic Police figure changed. Delhi's own hurt numbers (6,045 to 2,028) and the 8% and 97% shares were verified against the NCRB workbooks. Affected: assets/page-patterns.js, data/continuity.json, data/derived/bns_hurt_2023_2024.json, scripts/lib/patterns.js, the planner brief.
+
+---
+
 ## 2026-10-22 - Trends and patterns page, Delhi crime 2023 to 2024 - wording corrected, hurt reclassification added
 
 | Field | Old value | New value | Why |

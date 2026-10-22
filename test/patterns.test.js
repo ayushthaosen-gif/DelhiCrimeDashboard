@@ -53,6 +53,10 @@ test('roads: persistent places by printed road, 2023 fatal crashes by road, 2024
   assert.equal(P.roads.placesInFiveOrMoreLists, rec.filter(p => p.reports_listed_of_9 >= 5).length);
   assert.equal(P.roads.byRoad.reduce((a, r) => a + r.places, 0) <= P.roads.placesInFiveOrMoreLists, true);
   assert.deepEqual(P.roads.byRoad.slice(0, 3).map(r => r.road), ['Ring Road', 'Outer Ring Road', 'GTK Road']);
+  const rawZ = JSON.parse(read('data/crash_zones_2023_raw.json')), byLabel = {}; rawZ.forEach(z => { byLabel[z.road] = (byLabel[z.road] || 0) + z.fatal; });
+  assert.deepEqual(P.roads.fatal2023.byRoad.map(r => r.fatal), [byLabel['Ring Road'], byLabel['Outer Ring Road'], byLabel['GTK Road']], 'G.T. Road is a different printed label and is not counted as GTK Road');
+  assert.deepEqual(P.roads.fatal2023.byRoad.map(r => r.fatal), [69, 64, 55]);
+  assert.equal(P.roads.fatal2023.top3, 188);
   const raw = JSON.parse(read('data/crash_zones_2023_raw.json'));
   assert.equal(P.roads.fatal2023.total, raw.reduce((a, z) => a + z.fatal, 0));
   assert.ok(P.roads.fatal2023.top3 < P.roads.fatal2023.total && P.roads.fatal2023.top3 === P.roads.fatal2023.byRoad.reduce((a, r) => a + r.fatal, 0));
@@ -70,7 +74,7 @@ test('the page: seven pages in the nav, scripts in order, the chart leaves gaps,
   assert.ok(html.indexOf('assets/patterns-data.js') > 0 && html.indexOf('assets/patterns-data.js') < html.indexOf('assets/page-patterns.js'));
   assert.ok(/aria-current="page">Patterns</.test(html));
   assert.ok(src.includes("p.state === 'not_comparable' || p.state === 'unavailable'") && src.includes("p.state === 'caution' ? '5 4'"), 'not-comparable steps are not drawn; caution is dashed');
-  for (const t of ['this data cannot show whether that is a real fall', 'Hurt reclassification: NCRB attributes', 'the hurt explanation does not cover theft', 'cannot be told apart from chance', 'does not show that any of them drives crime', 'not a finding from this data', 'Measure before and after at the same locations', 'shows where to look first, not why']) assert.ok(src.includes(t), t);
+  for (const t of ['this data cannot show whether that is a real fall', 'Hurt is counted under different heads', 'a new change of cognisability is not supported', 'the hurt change does not cover theft', 'cannot be told apart from chance', 'does not show that any of them drives crime', 'not a finding from this data', 'Measure before and after at the same locations', 'shows where to look first, not why']) assert.ok(src.includes(t), t);
   assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|eval\(/.test(src));
   assert.ok(!/\bcauses? (crime|crashes)\b/i.test(src.replace(/does not show that any of them drives crime|crash causes/g, '')), 'no causal claim');
   const ctx = vm.createContext({ window: {} });
@@ -108,6 +112,9 @@ test('hurt reclassification: Delhi figures are recomputed from the archived work
   assert.deepEqual(P.crime.bnsHurt, hurt);
   const c = JSON.parse(read('data/continuity.json'));
   const br = c.definitionBreaks.find(b => /Bharatiya Nyaya Sanhita/.test(b.reason));
-  assert.match(br.reason, /hurt and grievous hurt were merged and simple hurt became non-cognisable/);
+  assert.match(br.reason, /Hurt or Grievous Hurt/);
+  assert.match(br.reason, /the mechanism is not confirmed \(simple hurt was already non-cognisable under IPC section 323\)/);
+  assert.ok(!/simple hurt became non-cognisable/.test(br.reason + read('assets/page-patterns.js') + JSON.stringify(hurt)), 'the unsupported explanation is gone');
+  assert.ok(hurt.classificationCheck.sources.length === 2 && /not read them itself|has not read/.test(hurt.classificationCheck.checkedBy));
   assert.match(br.reason, /theft accounts for most of it/);
 });

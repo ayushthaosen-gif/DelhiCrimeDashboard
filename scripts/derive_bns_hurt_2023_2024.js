@@ -70,15 +70,25 @@ const out = {
     status: 'As reported in the press from the NCRB Crime in India 2024 report; not re-derived here and the NCRB report itself was not read.',
     hurtCases2023: 636000, hurtCases2024: 441000, hurtChangePct: -30.58,
     cognizableCrimes2023: 6241000, cognizableCrimes2024: 5885000, cognizableChangePct: -6,
-    explanation: 'NCRB attributes the fall in hurt cases to the Bharatiya Nyaya Sanhita: hurt and grievous hurt sections were merged and simple hurt became a non-cognisable offence, so it no longer appears in police registration data.',
+    explanation: 'Press reports of the NCRB 2024 report attribute the national fall in hurt cases to the Bharatiya Nyaya Sanhita (the hurt and grievous hurt sections were merged and simple hurt reclassified). The mechanism is not confirmed here.',
+    figuresNote: 'The 6.36 and 4.41 lakh are rounded values from press reports, not exact counts from an NCRB table.',
     sources: [
       'https://www.drishtiias.com/daily-updates/daily-news-analysis/ncrbs-crime-in-india-2024-report/print_manually',
       'https://thewire.in/government/crime-rate-fell-6-in-2024-ncrb-attributes-dip-to-change-from-ipc-to-bns'
     ]
   },
+  classificationCheck: {
+    finding: 'Simple hurt was already non-cognisable under IPC section 323 and is non-cognisable under BNS section 115(2) (BNSS First Schedule). A newly changed cognisability status therefore cannot be asserted as the explanation for the fall. This does not show that every such incident is in or out of every police record.',
+    checkedBy: 'An independent review (Codex, 2026-10-22), from the two documents below; this project has not read them itself.',
+    sources: [
+      'https://training.delhipolice.gov.in/PDF/PublicData/EVENTS_20191127144940700.pdf',
+      'https://www.sci.gov.in/sci-get-pdf/?diary_no=35112025&from=latest_judgements_order&order_date=2025-03-28&type=j'
+    ]
+  },
   inputs: [f23, f24].map(f => ({ file: f, sha256: sha256(path.join(ROOT, f)) })),
   caveats: [
-    'The 2023 head is named "Hurt" and the 2024 head "Hurt or Grievous Hurt"; NCRB says the BNS merged these sections, so the two are not the same definition and the change is not a change in incidents.',
+    'The 2023 head is named "Hurt" and the 2024 head "Hurt or Grievous Hurt" (visible in the two NCRB workbooks), so the two are not a like-for-like count and the change is not a change in incidents.',
+    'Simple hurt was already non-cognisable under IPC section 323 and is non-cognisable under BNS section 115(2), so a new change of cognisability is not supported as the explanation (see classificationCheck).',
     'The hurt change accounts for only a small part of Delhi\'s fall; theft accounts for most of it, and the national hurt explanation says nothing about theft.',
     'Whether other heads moved because of reclassification has not been checked head by head.'
   ]
