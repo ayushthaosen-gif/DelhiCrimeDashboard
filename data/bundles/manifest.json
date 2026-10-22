@@ -18,8 +18,8 @@
         "IPC became the BNS on 1 July 2024; the 2023 hurt head ('Hurt') and the 2024 head ('Hurt or Grievous Hurt') differ.",
         "A null is unknown, unavailable or not separately reported; it is never zero."
       ],
-      "version": "2026-10-20-f7a2168c",
-      "bytes": 95390,
+      "version": "2026-10-20-9b66df08",
+      "bytes": 95805,
       "files": [
         {
           "path": "data/releases/2016/district_crime.csv",
@@ -128,8 +128,8 @@
         },
         {
           "path": "data/continuity.json",
-          "bytes": 10338,
-          "sha256": "8d2e57a732e8c45ccf47f70b7b770ee90e25056ef8d69dec86f40a0d373e1a87"
+          "bytes": 10753,
+          "sha256": "3c4e428f01ee798f3b7b719d132b3ae004fa793eb04cd62beb44f6ed6f9670c9"
         }
       ]
     },
@@ -153,8 +153,8 @@
         "A fatal crash is a crash with at least one death; persons killed is a count of people.",
         "Counts, not rates: no traffic or population denominator is published for these series."
       ],
-      "version": "2026-10-20-b8d3274d",
-      "bytes": 821712,
+      "version": "2026-10-20-f5586dd9",
+      "bytes": 822127,
       "files": [
         {
           "path": "data/releases/citywide_road_trend/README.md",
@@ -318,8 +318,8 @@
         },
         {
           "path": "data/continuity.json",
-          "bytes": 10338,
-          "sha256": "8d2e57a732e8c45ccf47f70b7b770ee90e25056ef8d69dec86f40a0d373e1a87"
+          "bytes": 10753,
+          "sha256": "3c4e428f01ee798f3b7b719d132b3ae004fa793eb04cd62beb44f6ed6f9670c9"
         }
       ]
     },
@@ -337,7 +337,7 @@
         "OpenStreetMap counts are lower bounds: a low count may mean little has been mapped.",
         "An evidence tier says how strong the crash evidence is, not how dangerous a place is or what to build."
       ],
-      "version": "2026-10-20-44d41de3",
+      "version": "2026-10-20-107b119a",
       "bytes": 235189,
       "files": [
         {
@@ -373,7 +373,7 @@
         {
           "path": "data/profiles/manifest.json",
           "bytes": 5756,
-          "sha256": "b3b267798fa70e19feddeab7b4637913541d314f8a70bae08489b117a71c486a"
+          "sha256": "6a8ac297722b756c8e0879fc99f0acb0cde4d2160f71362c22215eafefa264a0"
         },
         {
           "path": "data/profiles/pedestrian_corridors_2024.csv",

@@ -148,6 +148,12 @@
       ],
       "evidence": "data/releases/citywide_road_trend/manifest.json"
     },
+    "modeOfTravel": {
+      "state": "caution",
+      "break": [2018, 2019],
+      "reason": "The 2011 to 2018 figures use the older annual reports' own categories (for example \"scooter and motorcycle riders\"); the 2019 to 2024 series comes from the later reports with its own labels. The meaning is close but not identical.",
+      "evidence": "data/releases/road_victims_by_mode_2004_2018/manifest.json"
+    },
     "roadZones": {
       "state": "caution",
       "reasons": ["The 2023 and 2024 lists come from separate reports and list different zones; a change in the number of zones is not a change in risk."]
