@@ -1,3 +1,9 @@
+## [2026-10-22] - Claude (Anthropic) - Correction: 2023 to 2024 wording and the BNS hurt reclassification
+
+- The Trends and patterns page said the 2024 reading "is not a fall in crime"; that overstated what the data shows. It now says the data cannot show whether it is a real fall.
+- Added the hurt reclassification (from the user): NCRB attributes a national 30.58% fall in hurt cases (6.36 lakh to 4.41 lakh) to the BNS (hurt and grievous hurt merged, simple hurt non-cognisable). Checked with two press reports of the NCRB 2024 report (Drishti IAS, The Wire); the NCRB report itself was not read, so the page says the national figure is as reported. Computed the Delhi side from the archived workbooks (new `scripts/derive_bns_hurt_2023_2024.js`, `data/derived/bns_hurt_2023_2024.json`): the hurt head fell from 6,045 to 2,028, about 8% of the 48,855 fall; theft fell by 47,564, about 97%. So the reclassification can account for little of Delhi's fall, and says nothing about theft.
+- The same text is in the continuity reason for the 2023 to 2024 step (so the Data & methods checker shows it), in LIMITATIONS, and in DATA_CHANGELOG. No published count changed.
+
 ## [2026-10-22] - Claude (Anthropic) - Planning ward panel sticks beside the map
 
 - The ward detail panel (`#plWork > .panel.detail`) is now `position: sticky` with `overflow-y: auto`, `overscroll-behavior: contain` and a max-height of the viewport minus its offset, so it scrolls inside itself instead of making the page longer. Offset: `top: var(--pl-sticky-top, 110px)`; the page script sets the variable to the measured toolbar height plus 14 px (110 px when the toolbar is one line), because the toolbar wraps to about 100 to 200 px depending on width and a fixed 110 px would sit under it. Only at 1140 px and wider: below that the list drops under the map and a sticky panel would overlap it, so the panel scrolls with the page. No content change.

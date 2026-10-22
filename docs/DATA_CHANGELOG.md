@@ -32,6 +32,17 @@ Affected releases: data/releases/<years>/...
 
 ---
 
+## 2026-10-22 - Trends and patterns page, Delhi crime 2023 to 2024 - wording corrected, hurt reclassification added
+
+| Field | Old value | New value | Why |
+|---|---|---|---|
+| Statement on the 2023 to 2024 step | "2024 reads 2,75,402. That is not a fall in crime." | "...lower than 2023, but this data cannot show whether that is a real fall." | The earlier wording asserted more than the evidence supports: the step is compare-with-caution, not proven artefact. |
+| Reason attached to the 2023 to 2024 step (`data/continuity.json`) | BNS replaced the IPC on 1 July 2024 | Adds: NCRB attributes the national fall in hurt cases (6.36 lakh to 4.41 lakh, 30.58%, as reported in the press) to hurt and grievous hurt being merged and simple hurt becoming non-cognisable; Delhi hurt 6,045 to 2,028 is about 8% of the Delhi-wide fall, theft about 97% | Delhi figures recomputed from the archived NCRB workbooks (`data/derived/bns_hurt_2023_2024.json`); national figures are as reported and were not re-derived. No published count changed. |
+
+Affected: assets/page-patterns.js, data/continuity.json, the Data & methods comparison checker text.
+
+---
+
 ## 2026-10-22 - crash_prone_zones_2023 - rank 4 name and road labels corrected
 
 | Field | Old value | New value | Why |

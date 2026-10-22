@@ -70,7 +70,7 @@ test('the page: seven pages in the nav, scripts in order, the chart leaves gaps,
   assert.ok(html.indexOf('assets/patterns-data.js') > 0 && html.indexOf('assets/patterns-data.js') < html.indexOf('assets/page-patterns.js'));
   assert.ok(/aria-current="page">Patterns</.test(html));
   assert.ok(src.includes("p.state === 'not_comparable' || p.state === 'unavailable'") && src.includes("p.state === 'caution' ? '5 4'"), 'not-comparable steps are not drawn; caution is dashed');
-  for (const t of ['not a fall in crime', 'cannot be told apart from chance', 'does not show that any of them drives crime', 'not a finding from this data', 'Measure before and after at the same locations', 'shows where to look first, not why']) assert.ok(src.includes(t), t);
+  for (const t of ['this data cannot show whether that is a real fall', 'Hurt reclassification: NCRB attributes', 'the hurt explanation does not cover theft', 'cannot be told apart from chance', 'does not show that any of them drives crime', 'not a finding from this data', 'Measure before and after at the same locations', 'shows where to look first, not why']) assert.ok(src.includes(t), t);
   assert.ok(!/innerHTML|outerHTML|insertAdjacentHTML|eval\(/.test(src));
   assert.ok(!/\bcauses? (crime|crashes)\b/i.test(src.replace(/does not show that any of them drives crime|crash causes/g, '')), 'no causal claim');
   const ctx = vm.createContext({ window: {} });
@@ -87,4 +87,27 @@ test('the planner brief is generated from the same numbers, lists eight tier-1 a
   assert.ok(/Ward \(legacy\)/.test(b) && /not the current 250/.test(b));
   assert.ok(files['patterns.html'].includes('href="planner-brief.html"'));
   assert.ok(/@media print/.test(read('assets/site.css')));
+});
+
+test('hurt reclassification: Delhi figures are recomputed from the archived workbooks, the national figures are marked as reported, and the page and continuity rule carry them', () => {
+  const { sha256 } = require('../scripts/lib/release_utils');
+  const hurt = JSON.parse(read('data/derived/bns_hurt_2023_2024.json'));
+  for (const f of hurt.inputs) assert.equal(f.sha256, sha256(path.join(ROOT, f.file)), f.file);
+  const d = hurt.delhi;
+  assert.deepEqual([d.hurt2023, d.hurt2024, d.hurtChange], [6045, 2028, -4017]);
+  assert.equal(d.hurt2023Header, 'Hurt');
+  assert.equal(d.hurt2024Header, 'Hurt or Grievous Hurt');
+  assert.equal(d.totalChange, d.totalIpcBns2024 - d.totalIpcBns2023);
+  assert.equal(d.totalIpcBns2023, P.crime.facts.ipc2023);
+  assert.equal(d.totalIpcBns2024, P.crime.facts.ipc2024, 'the 2024 workbook block sums to the Delhi-wide total the site prints');
+  assert.equal(d.hurtShareOfTotalFallPct, Math.round(d.hurtChange / d.totalChange * 1000) / 10);
+  assert.ok(d.hurtShareOfTotalFallPct < 10 && d.theftShareOfTotalFallPct > 90, 'hurt explains a small part, theft most of it');
+  assert.match(hurt.national.status, /not re-derived/);
+  assert.deepEqual([hurt.national.hurtCases2023, hurt.national.hurtCases2024, hurt.national.hurtChangePct], [636000, 441000, -30.58]);
+  assert.ok(hurt.national.sources.length >= 2 && hurt.national.sources.every(u => /^https:\/\//.test(u)));
+  assert.deepEqual(P.crime.bnsHurt, hurt);
+  const c = JSON.parse(read('data/continuity.json'));
+  const br = c.definitionBreaks.find(b => /Bharatiya Nyaya Sanhita/.test(b.reason));
+  assert.match(br.reason, /hurt and grievous hurt were merged and simple hurt became non-cognisable/);
+  assert.match(br.reason, /theft accounts for most of it/);
 });

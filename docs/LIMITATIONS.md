@@ -13,6 +13,7 @@ Read this before citing a figure or acting on a view.
 
 - Each crash report selects its own crash-prone zones; counts within zones are not citywide crashes and the zone list differs every year.
 - The 2013/2014 NCRB format change, the 2016 compilation, the 2021/2022 source change and the 2023/2024 IPC-to-BNS switch break crime series. See [CONTINUITY.md](CONTINUITY.md).
+- **2024 crime may be deflated by the BNS.** NCRB attributes a national 30.58% fall in hurt cases (6.36 to 4.41 lakh, as reported in the press) to hurt and grievous hurt being merged and simple hurt becoming non-cognisable. Delhi's hurt head fell from 6,045 to 2,028, about 8% of the 48,855 fall in Delhi-wide registered cases; theft is about 97% of it, which this explanation does not cover. Whether the fall is real cannot be told from this data ([derivation](../data/derived/bns_hurt_2023_2024.json)).
 - District boundaries changed in 2016/2017 and 2019. Historical districts are original reporting units and are not re-allocated to the current 15.
 - Traffic Police districts (11, then 12) are not the 15 police districts; the 2022 report prints 15 under the police-district names but boundary identity is not verified.
 - iRAD (revenue districts, partial 2025 and 2026 coverage) must not be set beside Traffic Police figures.

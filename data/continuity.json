@@ -72,7 +72,7 @@
       "between": [2023, 2024],
       "measures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
       "state": "caution",
-      "reason": "The Bharatiya Nyaya Sanhita replaced the Indian Penal Code on 1 July 2024, so the 2024 tables use BNS numbering and offence groupings follow the source table.",
+      "reason": "The Bharatiya Nyaya Sanhita replaced the Indian Penal Code on 1 July 2024, so the 2024 tables use BNS numbering and offence groupings follow the source table. NCRB attributes the national fall in hurt cases (6.36 lakh to 4.41 lakh, 30.58%) to the change: hurt and grievous hurt were merged and simple hurt became non-cognisable, so it no longer appears in registration data. In Delhi the hurt head fell from 6,045 to 2,028, about 8% of the Delhi-wide fall; theft accounts for most of it (data/derived/bns_hurt_2023_2024.json).",
       "evidence": "data/releases/2024/manifest.json"
     }
   ],

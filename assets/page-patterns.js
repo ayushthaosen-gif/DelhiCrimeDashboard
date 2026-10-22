@@ -4,6 +4,7 @@
   'use strict';
   var D = window.DSO, h = D.h, PT = window.DSO_PATTERNS;
   if (!PT) return;
+  var B = PT.crime.bnsHurt;
   var st = { measure: 'totalIPC' };
 
   // ---------- crime over time ----------
@@ -53,7 +54,9 @@
     sec.appendChild(plain);
     sec.appendChild(h('div', { class: 'callout warn pl-cau' }, h('ul', { class: 'why-list' },
       h('li', null, 'All registered IPC/BNS cases rose from ' + D.n(F.ipc2016) + ' in 2016 to ' + D.n(F.ipc2019) + ' in 2019, fell to ' + D.n(F.ipc2020) + ' in 2020 (pandemic restrictions), and reached ' + D.n(F.ipc2023) + ' in 2023.'),
-      h('li', null, '2024 reads ' + D.n(F.ipc2024) + '. That is not a fall in crime: the Bharatiya Nyaya Sanhita replaced the IPC on 1 July 2024, so 2023 to 2024 is compare-with-caution.'),
+      h('li', null, '2024 reads ' + D.n(F.ipc2024) + ', lower than 2023, but this data cannot show whether that is a real fall. The Bharatiya Nyaya Sanhita replaced the IPC on 1 July 2024, so 2023 to 2024 is compare-with-caution.'),
+      h('li', null, 'Hurt reclassification: NCRB attributes a national fall in hurt cases (' + D.n(B.national.hurtCases2023 / 1e5 * 100) / 100 + ' lakh to ' + D.n(B.national.hurtCases2024 / 1e5 * 100) / 100 + ' lakh, ' + Math.abs(B.national.hurtChangePct) + '%) to the BNS: hurt and grievous hurt were merged and simple hurt became non-cognisable, so it no longer appears in police registration. This reported national figure has not been re-checked against the NCRB report here. In Delhi the hurt head fell from ' + D.n(B.delhi.hurt2023) + ' to ' + D.n(B.delhi.hurt2024) + ' (' + Math.abs(B.delhi.hurtChangePct) + '%), which is about ' + Math.round(B.delhi.hurtShareOfTotalFallPct) + '% of Delhi\'s fall of ' + D.n(-B.delhi.totalChange) + '. Theft fell by ' + D.n(-B.delhi.theftChange) + ', about ' + Math.round(B.delhi.theftShareOfTotalFallPct) + '% of the fall, and the hurt explanation does not cover theft.'),
+      h('li', null, 'Every district fell, so a change in how cases are registered or classified is one explanation, a real fall is another, and the data cannot separate them. Monthly registrations around July 2024, Delhi Police\'s own 2024 figures and the 2025 data would help.'),
       h('li', null, 'The 2013 to 2014 step is not comparable (NCRB changed its reporting format), so the 2011 to 2013 and 2014 onward lines are not joined.'),
       h('li', null, 'Theft is about ' + F.theftShare2023 + '% of registered cases in 2023. Delhi-wide theft for 2016 to 2020 has not been extracted yet, so that line has a gap, not zeros.'),
       h('li', null, 'Crimes against women were ' + D.n(F.women2016) + ' in 2016 and ' + D.n(F.women2024) + ' in 2024, with a dip to ' + D.n(F.women2020) + ' in 2020. How readily these cases are reported and registered matters a great deal here, so a change may not be a change in what happens.'))));
