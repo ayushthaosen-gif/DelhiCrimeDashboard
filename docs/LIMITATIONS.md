@@ -21,6 +21,7 @@ Read this before citing a figure or acting on a view.
 
 ## Geography
 
+- **Constituency overlays are not built.** No Delhi assembly (70) or parliamentary (7) boundary file with a verified open licence and a verified post-2008 vintage has been found. Leads checked from a search, none downloaded or used: the DataMeet community maps (CC BY 2.5 India, but the vintage for Delhi is unverified and the project warns of errors); a Bielefeld University set for the 2014 elections (open, but generated from polling-booth points by a heat-map algorithm, so approximate); a post-delimitation 2008 Delhi shapefile at Stanford (licence unclear, access restricted). Until one is verified, constituency would be a guess, and the legacy 290 wards cannot be mapped to constituencies by name.
 - Wards are the legacy 290, not the current 250 (no verified open boundary file).
 - Crime is district-level only; the ward value is the district's, copied.
 - Metro entrances and the streetlight survey are district-only; the survey covers 9 of 15 districts.

@@ -117,5 +117,72 @@
       h('li', null, 'Measure before and after at the same locations. The zone lists change every year, so a changing count in the reports does not show whether a measure worked.')));
   }
 
-  renderCrime(); renderDistricts(); renderRoads(); renderHelp();
+  // ---------- change between two years, only where the pair can be compared ----------
+  var CD = D.data(), CONT = CD && CD.CONTINUITY, VM = CD ? Object.assign({}, CD.SITE.victimsEarly, CD.SITE.victims) : {};
+  function mapOf(list, yk, vk) { var o = {}; list.forEach(function (r) { if (r[vk] != null) o[r[yk]] = r[vk]; }); return o; }
+  function catalogue() {
+    var G = [];
+    G.push({ g: 'Crime, Delhi as a whole (printed totals)', items: ['totalIPC', 'theft', 'crimeAgainstWomen'].map(function (k) {
+      var S = PT.crime.series[k], v = {}; PT.crime.years.forEach(function (y, i) { if (S.values[i] != null) v[y] = S.values[i]; });
+      return { id: 'c-' + k, label: S.label, unit: 'registered cases', spec: { kind: 'crime', key: k, scope: CONT.utSeries.scopeName, values: v } };
+    }) });
+    G.push({ g: 'Road, Delhi as a whole', items: [['crashes', 'Road crashes'], ['fatalCrashes', 'Fatal crashes'], ['killed', 'Persons killed']].map(function (m) {
+      return { id: 't-' + m[0], label: m[1], unit: m[0] === 'killed' ? 'persons killed' : m[0] === 'fatalCrashes' ? 'fatal crashes' : 'crashes', spec: { kind: 'trend', key: m[0], values: mapOf(CD.SITE.trends, 'year', m[0]) } };
+    }) });
+    G.push({ g: 'Persons killed by mode of travel', items: [['pedestrian', 'Pedestrians'], ['twoWheeler', 'Two-wheeler riders'], ['cyclist', 'Cyclists'], ['car', 'Car occupants'], ['bus', 'Bus passengers'], ['slowMoving', 'Slow-moving vehicles'], ['other', 'Other'], ['total', 'All persons killed']].map(function (m) {
+      var v = {}; Object.keys(VM).forEach(function (y) { if (VM[y][m[0]] != null) v[y] = VM[y][m[0]]; });
+      return { id: 'm-' + m[0], label: m[1], unit: 'persons killed', spec: { kind: 'mode', key: m[0], values: v } };
+    }) });
+    return G;
+  }
+  var CAT = CD && CONT ? catalogue() : [], cs = { id: 'c-totalIPC', a: 2016, b: 2023 };
+  function findItem(id) { var f = null; CAT.forEach(function (g) { g.items.forEach(function (i) { if (i.id === id) f = i; }); }); return f; }
+  function yearsOfItem(it) { return Object.keys(it.spec.values).map(Number).sort(function (a, b) { return a - b; }); }
+  function sign(v) { return v > 0 ? '+' : v < 0 ? '−' : '±'; }
+  function stateWord2(s) { return { comparable: 'Comparable', caution: 'Compare with caution', not_comparable: 'Not comparable', unavailable: 'No figure' }[s]; }
+  function miniChart(it, view) {
+    var ys = yearsOfItem(it).filter(function (y) { return y >= view.from && y <= view.to; });
+    var W = 640, H = 200, L = 70, Rr = 14, T = 12, B = 26, vals = ys.map(function (y) { return it.spec.values[y]; }), max = Math.max.apply(null, vals) * 1.08 || 1;
+    var x = function (y) { return L + (view.to === view.from ? 0.5 : (y - view.from) / (view.to - view.from)) * (W - L - Rr); }, yy = function (v) { return T + (1 - v / max) * (H - T - B); };
+    var svg = h('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': it.label + ' from ' + view.from + ' to ' + view.to, style: 'width:100%;height:auto;display:block' });
+    [0, 1].forEach(function (f) { var v = max / 1.08 * f; svg.appendChild(h('line', { x1: L, x2: W - Rr, y1: yy(v), y2: yy(v), stroke: 'var(--line)' })); svg.appendChild(h('text', { x: L - 6, y: yy(v) + 4, 'text-anchor': 'end', style: 'font:11px var(--mono);fill:var(--ink3)' }, D.n(v))); });
+    [view.from, view.to].forEach(function (y) { svg.appendChild(h('text', { x: x(y), y: H - 8, 'text-anchor': y === view.from ? 'start' : 'end', style: 'font:11px var(--mono);fill:var(--ink3)' }, String(y))); });
+    view.steps.forEach(function (s) {
+      var a = it.spec.values[s.from], b = it.spec.values[s.to];
+      if (a == null || b == null || s.state === 'not_comparable' || s.state === 'unavailable') return;
+      svg.appendChild(h('line', { x1: x(s.from), y1: yy(a), x2: x(s.to), y2: yy(b), stroke: 'var(--accent)', 'stroke-width': 2.5, 'stroke-linecap': 'round', 'stroke-dasharray': s.state === 'caution' ? '5 4' : null }));
+    });
+    ys.forEach(function (y) { svg.appendChild(h('circle', { cx: x(y), cy: yy(it.spec.values[y]), r: y === view.from || y === view.to ? 5 : 3, fill: y === view.from || y === view.to ? 'var(--accent)' : 'var(--surface)', stroke: 'var(--accent)', 'stroke-width': 2 }, h('title', null, y + ': ' + D.n(it.spec.values[y])))); });
+    return svg;
+  }
+  function renderChange() {
+    var sec = D.clear(D.$('#ptChange'));
+    if (!CAT.length) return;
+    var it = findItem(cs.id), ys = yearsOfItem(it);
+    if (ys.indexOf(cs.a) < 0) cs.a = ys[0];
+    if (ys.indexOf(cs.b) < 0) cs.b = ys[ys.length - 1];
+    var v = CD.changeView(CONT, it.spec, cs.a, cs.b);
+    var sel = function (label, value, options, fn) { return h('label', null, label, h('select', { 'data-key': 'chg-' + label, onchange: function (e) { fn(e.target.value); } }, options)); };
+    sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Change between two years'),
+      D.tip('About this view', 'A change figure is made only where the two years can be compared. Compare with caution gives the figure with the reasons beside it. Not comparable keeps both values and gives no change, because a difference could come from a change of definition, source or geography, not from what happened. The rules are the ones in data/continuity.json that the other pages use.')));
+    sec.appendChild(h('div', { class: 'checker', style: 'display:flex;flex-wrap:wrap;gap:10px 16px;align-items:end' },
+      sel('Series', cs.id, CAT.map(function (g) { return h('optgroup', { label: g.g }, g.items.map(function (i) { return h('option', { value: i.id, selected: i.id === cs.id }, i.label); })); }), function (val) { cs.id = val; renderChange(); }),
+      sel('From', cs.a, ys.map(function (y) { return h('option', { value: y, selected: y === cs.a }, y); }), function (val) { cs.a = +val; renderChange(); }),
+      sel('To', cs.b, ys.map(function (y) { return h('option', { value: y, selected: y === cs.b }, y); }), function (val) { cs.b = +val; renderChange(); }),
+      h('span', { class: 'verdict ' + v.state, role: 'status' }, v.from === v.to ? 'Pick two different years' : stateWord2(v.state))));
+    if (v.from !== v.to) {
+      var big = v.pct == null ? null : sign(v.pct) + Math.abs(Math.round(v.pct * 10) / 10) + '%';
+      sec.appendChild(h('div', { class: 'readout', 'aria-live': 'polite' }, h('span', { class: 'v big' }, big || 'No change figure'),
+        h('span', null, it.label + ' · ' + v.from + ': ' + (v.fromValue == null ? '—' : D.n(v.fromValue)) + ' → ' + v.to + ': ' + (v.toValue == null ? '—' : D.n(v.toValue)) + (v.abs != null ? ' (' + sign(v.abs) + D.n(Math.abs(v.abs)) + ' ' + it.unit + ')' : ''))));
+      if (v.state !== 'comparable') sec.appendChild(h('div', { class: 'callout warn pl-cau', style: 'font-size:13.5px' }, h('strong', null, v.pct == null ? 'Not turned into a change: ' : 'Read with caution: '), h('ul', { class: 'why-list' }, v.reasons.map(function (r) { return h('li', null, r); }))));
+      sec.appendChild(miniChart(it, v));
+      var broken = v.steps.filter(function (s) { return s.state !== 'comparable'; });
+      if (broken.length) sec.appendChild(h('details', { class: 'plain' }, h('summary', null, broken.length + ' step' + (broken.length > 1 ? 's' : '') + ' between ' + v.from + ' and ' + v.to + ' are not plainly comparable'),
+        h('ul', { class: 'why-list' }, broken.map(function (s) { return h('li', null, h('strong', null, s.from + ' to ' + s.to + ' · ' + stateWord2(s.state).toLowerCase() + '. '), s.reason || ''); }))));
+      var multi = v.ranges.filter(function (r) { return r.to > r.from; });
+      sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Years of this series that can be read together (comparable or with caution): ' + (multi.length ? multi.map(function (r) { return r.from + ' to ' + r.to; }).join('; ') : 'none') + '. Counts, not rates; registered or printed figures, not a measure of risk.'));
+    }
+  }
+
+  renderCrime(); renderChange(); renderDistricts(); renderRoads(); renderHelp();
 })();

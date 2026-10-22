@@ -129,7 +129,7 @@ function build() {
   for (const b of c.roadHistory.breaks) comparison.push({ applies_to: 'Road districts', between: b.between, state: b.state, reason: b.reason, evidence: null });
   comparison.push({ applies_to: 'Road zones and roads', between: [2013, 2024], state: 'caution', reason: c.roadHistory.zoneReason, evidence: null });
   comparison.push({ applies_to: 'Road, all series', between: [2020, 2021], state: 'caution', reason: c.roadHistory.pandemicReason, evidence: null });
-  comparison.push({ applies_to: 'Deaths by mode of travel', between: [2018, 2019], state: 'caution', reason: 'The 2011 to 2018 figures use the older annual reports\' own categories (for example "scooter and motorcycle riders"); the 2019 to 2024 series comes from the later reports with its own labels. The meaning is close but not identical.', evidence: 'data/releases/road_victims_by_mode_2004_2018/manifest.json' });
+  comparison.push({ applies_to: 'Deaths by mode of travel', between: c.series.modeOfTravel.break, state: c.series.modeOfTravel.state, reason: c.series.modeOfTravel.reason, evidence: c.series.modeOfTravel.evidence });
   comparison.push({ applies_to: 'Crime, hurt head', between: [2023, 2024], state: 'caution', reason: 'The 2023 table\'s head is "Hurt" and the 2024 head "Hurt or Grievous Hurt", so it is not like-for-like.', evidence: 'data/derived/bns_hurt_2023_2024.json' });
 
   return { years: YEARS, states: STATES, rows: out, comparison, note: 'A year is available only when the data is present in the repository; every other year states its cause. A blank is never a zero.' };

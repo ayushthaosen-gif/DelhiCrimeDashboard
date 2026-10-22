@@ -4,6 +4,7 @@ History of additions, moved out of the README. Newest first within each block. T
 
 ## Recent additions (2026-10)
 
+- **Change between two years** (Trends and patterns): a change figure for Delhi-wide crime, road crashes and deaths by mode of travel, made only where the two years can be compared, with the reasons beside it, and none across a break. Constituency overlays remain unbuilt (no openly licensed Delhi boundary file with a verified vintage).
 - **Researcher tools** (Data & methods): a year-by-year coverage matrix with the cause of every gap, a list of why years cannot always be compared, and three versioned ZIP bundles (crime, road, profiles) that carry their definitions, geography, gaps, comparison notes and a checksum manifest.
 - **Deaths by mode of travel for 2011 to 2018** (Road safety): pedestrians, two-wheeler riders and the other categories, from the older Traffic Police reports, shown beside the 2019 to 2024 series with a note that the two series are compare-with-caution. The release also holds 2004 to 2010.
 - **One year across Road safety**: a "Year in view" bar sets the year for every section (2024 by default), each section says what it measures and which year it shows, a year with no figure says why, and "Copy link to view" keeps the year and your choices.

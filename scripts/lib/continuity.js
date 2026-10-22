@@ -91,4 +91,38 @@ function changeBetween(cmp, fromValue, toValue) {
   return (toValue - fromValue) / fromValue * 100;
 }
 
-module.exports = { compareYears: compareYears, segmentOf: segmentOf, changeBetween: changeBetween };
+// Comparison of a citywide road series: 'trend' (crashes, fatal crashes, persons killed) or 'mode' (persons killed by mode of travel).
+// The range is comparable apart from specific reasons: deaths by mode change report series between 2018 and 2019, and 2020 and 2021 were pandemic years.
+// These are always counts, not rates (baseReason), which a change view states for any pair of years.
+function compareRoadSeries(c, kind, from, to) {
+  if (from > to) { var t = from; from = to; to = t; }
+  var out = { state: 'comparable', reasons: [], from: from, to: to, baseReason: c.series.roadTrend.reasons[0] };
+  function add(r) { if (r && out.reasons.indexOf(r) < 0) out.reasons.push(r); }
+  if (kind === 'mode' && from <= c.series.modeOfTravel.break[0] && to >= c.series.modeOfTravel.break[1]) add(c.series.modeOfTravel.reason);
+  c.roadHistory.pandemicYears.forEach(function (y) { if (from <= y && y <= to) add(c.roadHistory.pandemicReason); });
+  if (out.reasons.length) out.state = 'caution';
+  return out;
+}
+
+// What a "change between two years" view shows for one series. spec = { kind: 'crime' | 'trend' | 'mode', key, scope (Delhi UT name for crime), values: { year: value } }.
+// A change figure is made only where the pair is comparable or compare-with-caution; otherwise both values stay and the reason is given.
+function compareSeries(c, spec, from, to) {
+  return spec.kind === 'crime' ? compareYears(c, spec.key, from, to, spec.scope) : compareRoadSeries(c, spec.kind, from, to);
+}
+function changeView(c, spec, from, to) {
+  var lo = Math.min(from, to), hi = Math.max(from, to);
+  var cmp = compareSeries(c, spec, lo, hi), a = spec.values[lo], b = spec.values[hi];
+  if (spec.kind !== 'crime' && lo !== hi) cmp = { state: 'caution', reasons: [cmp.baseReason].concat(cmp.reasons), from: lo, to: hi };
+  var out = { from: lo, to: hi, state: cmp.state, reasons: cmp.reasons, fromValue: a == null ? null : a, toValue: b == null ? null : b, abs: null, pct: null, steps: [], ranges: [] };
+  if (out.fromValue != null && out.toValue != null && (cmp.state === 'comparable' || cmp.state === 'caution')) { out.abs = out.toValue - out.fromValue; out.pct = changeBetween(cmp, out.fromValue, out.toValue); }
+  for (var y = lo; y < hi; y++) { var s = compareSeries(c, spec, y, y + 1); out.steps.push({ from: y, to: y + 1, state: s.state, reason: s.reasons[0] || null }); }
+  var years = Object.keys(spec.values).map(Number).filter(function (v) { return spec.values[v] != null; }).sort(function (x, z) { return x - z; });
+  var run = null;
+  years.forEach(function (yr) {
+    var ok = run && yr === run.to + 1 && (function () { var s = compareSeries(c, spec, run.to, yr).state; return s === 'comparable' || s === 'caution'; })();
+    if (ok) run.to = yr; else { run = { from: yr, to: yr }; out.ranges.push(run); }
+  });
+  return out;
+}
+
+module.exports = { compareYears: compareYears, segmentOf: segmentOf, changeBetween: changeBetween, compareRoadSeries: compareRoadSeries, compareSeries: compareSeries, changeView: changeView };
