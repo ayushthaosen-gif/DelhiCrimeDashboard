@@ -72,7 +72,15 @@
       "publisher": "Delhi Traffic Police",
       "url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
       "role": "district crash totals, named zones, citywide trend and victims",
-      "status": "used"
+      "status": "used",
+      "sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+      "zoneListTable": "6.29",
+      "zoneListPdfPage": 120,
+      "zoneCountsTable": "6.31",
+      "zoneCountsPdfPage": 125,
+      "personsTables": "6.13 to 6.27 (one per district)",
+      "personsPdfPages": "111 to 118",
+      "hashNote": "sha256 of the PDF copy used to check the tables; the official file at the landing page was not re-downloaded under it"
     }
   ],
   "files": [
@@ -100,8 +108,8 @@
       "path": "district_road_safety.json",
       "datasetId": "delhi_district_road_safety_2023",
       "mediaType": "application/json",
-      "sha256": "b6f3cc6aa8115b9556421be704c9082ee3f21037448149541f93f8fa8800bbae",
-      "bytes": 4005,
+      "sha256": "7fdf2d4d46090ac677c63fe8220ff15f96f75f8e99232c8562a6790d36281030",
+      "bytes": 8640,
       "derivedFrom": [
         "data/dashboard_final.json"
       ]
@@ -110,8 +118,8 @@
       "path": "district_road_safety.csv",
       "datasetId": "delhi_district_road_safety_2023",
       "mediaType": "text/csv",
-      "sha256": "fdc38679786958f5442f4fe2b3cea65c12ffac6e3deb83b87a082f895efb210a",
-      "bytes": 754,
+      "sha256": "6024def73c3f07b9bb50a8a5a2b3d1d739d569c19639e32d7f246f3e73980ee3",
+      "bytes": 4023,
       "derivedFrom": [
         "data/dashboard_final.json"
       ]
@@ -140,8 +148,8 @@
       "path": "crash_prone_zones.json",
       "datasetId": "delhi_crash_prone_zones_2023",
       "mediaType": "application/json",
-      "sha256": "0255602cb78a2831e0042385634619eb9217bfc768d91beec3b9a65938e616c2",
-      "bytes": 157062,
+      "sha256": "65b3c4785a0e8234ac053772b491a69a5825aa12d32425d746964371a3c31ff0",
+      "bytes": 181779,
       "derivedFrom": [
         "data/crash_zones_2023_geocoded.json"
       ]
@@ -150,8 +158,8 @@
       "path": "crash_prone_zones.csv",
       "datasetId": "delhi_crash_prone_zones_2023",
       "mediaType": "text/csv",
-      "sha256": "16fef4bc6c23adccabc335b052fda657ac59b0a3b9a557f21ff69715ebcb3382",
-      "bytes": 23339,
+      "sha256": "8fc58b3491d719e85dd1b7b3527e072a20f52c0e01f7c5b673ad3c94911861f1",
+      "bytes": 38266,
       "derivedFrom": [
         "data/crash_zones_2023_geocoded.json"
       ]

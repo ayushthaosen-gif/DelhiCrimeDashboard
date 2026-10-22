@@ -8,7 +8,11 @@
     "total_crashes_at_zones": 33,
     "persons_killed": 51,
     "persons_injured": 295,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -19,7 +23,11 @@
     "total_crashes_at_zones": 16,
     "persons_killed": 93,
     "persons_injured": 477,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -30,7 +38,11 @@
     "total_crashes_at_zones": 68,
     "persons_killed": 79,
     "persons_injured": 305,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -41,7 +53,11 @@
     "total_crashes_at_zones": 10,
     "persons_killed": 39,
     "persons_injured": 160,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -52,7 +68,11 @@
     "total_crashes_at_zones": 134,
     "persons_killed": 116,
     "persons_injured": 429,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -63,7 +83,11 @@
     "total_crashes_at_zones": 93,
     "persons_killed": 98,
     "persons_injured": 378,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -74,7 +98,11 @@
     "total_crashes_at_zones": 140,
     "persons_killed": 125,
     "persons_injured": 337,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -85,7 +113,11 @@
     "total_crashes_at_zones": 88,
     "persons_killed": 123,
     "persons_injured": 308,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -96,7 +128,11 @@
     "total_crashes_at_zones": 105,
     "persons_killed": 181,
     "persons_injured": 568,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -107,7 +143,11 @@
     "total_crashes_at_zones": 6,
     "persons_killed": 73,
     "persons_injured": 222,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -118,7 +158,11 @@
     "total_crashes_at_zones": 13,
     "persons_killed": 48,
     "persons_injured": 188,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -129,7 +173,11 @@
     "total_crashes_at_zones": 10,
     "persons_killed": 65,
     "persons_injured": 408,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -140,7 +188,11 @@
     "total_crashes_at_zones": 90,
     "persons_killed": 116,
     "persons_injured": 476,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -151,7 +203,11 @@
     "total_crashes_at_zones": 87,
     "persons_killed": 110,
     "persons_injured": 484,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   },
   {
     "year": 2023,
@@ -162,6 +218,10 @@
     "total_crashes_at_zones": 170,
     "persons_killed": 140,
     "persons_injured": 435,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2023",
+    "source_sha256": "5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2",
+    "zone_counts_source": "Table 6.31, PDF page 125",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 111 to 118"
   }
 ]

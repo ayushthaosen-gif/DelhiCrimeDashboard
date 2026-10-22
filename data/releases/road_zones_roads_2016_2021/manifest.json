@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "title": "Delhi Traffic Police named accident-prone zones and road-wise zone summaries, 2016 to 2021, as printed",
-  "status": "staged",
+  "status": "production",
   "scope": "Named selected zones (one row per zone) and selected zones grouped by road (not whole-road crash counts). Counts, not rates.",
   "sources": [
     {

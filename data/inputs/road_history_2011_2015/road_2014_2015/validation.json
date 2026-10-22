@@ -1,0 +1,19 @@
+{
+  "zone_rows_2014": 137,
+  "zone_rows_2015": 176,
+  "road_label_groups_2015": 45,
+  "zone_crash_sums_2015": {
+    "simple_crashes": 1572,
+    "fatal_crashes": 552,
+    "total_crashes": 2124
+  },
+  "printed_crosschecks": {
+    "2014_zone_count": 137,
+    "2015_zone_count": 176,
+    "2015_zone_fatal_crashes": 552
+  },
+  "all_row_arithmetic": true,
+  "unique_within_source_serials": true,
+  "source_hashes_verified": true,
+  "warning": "Simple and total sums are derived, not independently reconciled to a printed table total; road-label variants remain separate."
+}

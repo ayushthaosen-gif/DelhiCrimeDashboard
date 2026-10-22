@@ -1,8 +1,10 @@
 // Assembles data/releases/road_zones_roads_2011_2015/ from the reviewed recovery packages (named zones 2013 to 2015, derived 2015 road
-// groups, retrospective 2011 and 2012 road stretches). Not run in CI: the packages are not in the repository. The release it writes is
-// committed and checked by validate.cjs and test/road_history_2011_2015.test.js.
+// groups, retrospective 2011 and 2012 road stretches, the audited 2014 supplement). The transcription inputs are committed under
+// data/inputs/road_history_2011_2015/ (sources.json says where each source PDF is and its hash), so anyone can rebuild the release; CI
+// rebuilds it and fails if the committed release differs. Checked by validate.cjs and test/road_history_2011_2015.test.js.
 //
-//   node scripts/build_road_history_2011_2015.js <folder holding road_2011_2012_recovery, road_2013_2014_recovery, road_2014_2015> <audited 2014 supplement folder>
+//   node scripts/build_road_history_2011_2015.js                       rebuild from data/inputs/road_history_2011_2015/ (what CI runs)
+//   node scripts/build_road_history_2011_2015.js <inputs> <supplement>  rebuild from other copies of the recovery packages
 //
 // 2014 comes only from road_2013_2014_recovery. The older road_2014_2015/named_zones_2014.json holds a name-only list with null counts,
 // a different serial order and different spellings; it is never joined by serial and is not read here.
@@ -11,9 +13,9 @@ const fs = require('fs');
 const path = require('path');
 const { sha256, toCsv } = require('./lib/release_utils');
 
-const src = process.argv[2];
-const sup = process.argv[3];
-if (!src || !sup) { console.error('usage: node scripts/build_road_history_2011_2015.js <package folder> <2014 supplement folder>'); process.exit(1); }
+const DEFAULT_INPUTS = path.join(__dirname, '..', 'data', 'inputs', 'road_history_2011_2015');
+const src = process.argv[2] || DEFAULT_INPUTS;
+const sup = process.argv[3] || path.join(DEFAULT_INPUTS, 'supplement_2014');
 const OUT = path.join(__dirname, '..', 'data', 'releases', 'road_zones_roads_2011_2015');
 const rd = f => JSON.parse(fs.readFileSync(path.join(src, f), 'utf8'));
 const inputs = [];
@@ -80,7 +82,7 @@ const sourcesOf = y => { const r = named.find(x => x.reference_year === y); retu
 const manifest = {
   schemaVersion: '1.0.0',
   title: 'Delhi Traffic Police named accident-prone zones 2013 to 2015 and early road stretches 2011 to 2012, as printed',
-  status: 'staged',
+  status: 'production',
   scope: 'Named selected accident-prone zones (one row per zone) and, for 2011 and 2012, printed highway and ring-road stretch statistics. Counts within selected zones or stretches, not whole-city or whole-road counts. Counts, not rates.',
   sources: [
     { report_year: 2013, note: 'Delhi PWD compilation of the Traffic Police accident-prone locations (archived PDF, pages 133-141). An official compilation, not a recovered annual report.', url: z13[0].source_url, sha256: z13[0].source_sha256 },

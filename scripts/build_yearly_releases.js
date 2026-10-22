@@ -105,7 +105,11 @@ function districtRoadRows(year) {
     total_crashes_at_zones: d[`totalCrashes${year}`] ?? null,
     persons_killed: d[`personsKilled${year}`] ?? null,
     persons_injured: d[`personsInjured${year}`] ?? null,
-    coverage: 'reported'
+    coverage: 'reported',
+    source_url: ROAD_REPORTS[year].url,
+    source_sha256: ROAD_REPORTS[year].sha256,
+    zone_counts_source: 'Table ' + ROAD_REPORTS[year].zoneCountsTable + ', PDF page ' + ROAD_REPORTS[year].zoneCountsPdfPage,
+    persons_source: 'Tables ' + ROAD_REPORTS[year].personsTables + ', PDF pages ' + ROAD_REPORTS[year].personsPdfPages
   }));
   return [];
 }
@@ -118,9 +122,16 @@ function crimeSources(year) {
   const sources = year === 2022 ? NCRB_2022 : year === 2023 ? NCRB_2023 : NCRB_2024;
   return Object.entries(sources).map(([type, url]) => ({ id: `ncrb_${type}_${year}`, publisher: 'National Crime Records Bureau', url, role: 'official district table', status: 'used' }));
 }
+
+// Where the 2023 and 2024 road figures sit in the Delhi Traffic Police Road Crash Reports. The hash is that of the PDF copy used to check the
+// tables (supplied by the owner); the official PDF at the landing page was not re-downloaded under it. Pages are PDF page numbers.
+const ROAD_REPORTS = {
+  2023: { url: 'https://traffic.delhipolice.gov.in/delhi-crash-report-2023', sha256: '5c7bc4542791090f006e8558bfdc2bed28081ff55abd0b8d1f5c022b21302ed2', zoneListTable: '6.29', zoneListPdfPage: 120, zoneCountsTable: '6.31', zoneCountsPdfPage: 125, personsTables: '6.13 to 6.27 (one per district)', personsPdfPages: '111 to 118' },
+  2024: { url: 'https://traffic.delhipolice.gov.in/delhi-crash-report-2024', sha256: 'fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f', zoneListTable: '6.29', zoneListPdfPage: 112, zoneCountsTable: '6.31', zoneCountsPdfPage: 117, personsTables: '6.13 to 6.27 (one per district)', personsPdfPages: '104 to 111' }
+};
 function roadSources(year) {
   if (year === 2022) return [{ id: 'delhi_road_crash_fatalities_2022', publisher: 'Delhi Traffic Police / Transport Department GNCTD', url: 'https://transport.delhi.gov.in/sites/default/files/2024-09/2022_delhi_road_crash_fatalities_report_1.pdf', role: 'district fatal and hit-and-run crashes; citywide trend and victims', status: 'used' }];
-  if (year === 2023 || year === 2024) return [{ id: `delhi_crash_report_${year}`, publisher: 'Delhi Traffic Police', url: `https://traffic.delhipolice.gov.in/delhi-crash-report-${year}`, role: 'district crash totals, named zones, citywide trend and victims', status: 'used' }];
+  if (year === 2023 || year === 2024) return [{ id: `delhi_crash_report_${year}`, publisher: 'Delhi Traffic Police', url: `https://traffic.delhipolice.gov.in/delhi-crash-report-${year}`, role: 'district crash totals, named zones, citywide trend and victims', status: 'used', sha256: ROAD_REPORTS[year].sha256, zoneListTable: ROAD_REPORTS[year].zoneListTable, zoneListPdfPage: ROAD_REPORTS[year].zoneListPdfPage, zoneCountsTable: ROAD_REPORTS[year].zoneCountsTable, zoneCountsPdfPage: ROAD_REPORTS[year].zoneCountsPdfPage, personsTables: ROAD_REPORTS[year].personsTables, personsPdfPages: ROAD_REPORTS[year].personsPdfPages, hashNote: 'sha256 of the PDF copy used to check the tables; the official file at the landing page was not re-downloaded under it' }];
   return [{ id: `delhi_traffic_annual_${year}`, publisher: 'Delhi Traffic Police', url: 'https://traffic.delhipolice.gov.in/', role: 'citywide crash trend' + (year >= 2019 ? ' and victims by mode' : ''), status: 'used in compiled trend series' }];
 }
 function sourceFileForZones(year) {
@@ -137,7 +148,7 @@ function normalizeZones(year) {
     const p = item.properties || item;
     const coords = item.geometry?.coordinates || [];
     const latitude = p.lat ?? p.latitude ?? coords[1] ?? null; const longitude = p.lng ?? p.lon ?? p.longitude ?? coords[0] ?? null;
-    return { ...p, year, record_id: p.id ?? p.rank ?? index + 1, location: p.location || p.name || p.location_name || '', road: p.road || '', district: p.district || null, fatal_crashes: p.fatalCrashes ?? p.fatal_crashes ?? p.fatal ?? null, simple_crashes: p.simpleCrashes ?? p.simple_crashes ?? p.simple ?? null, total_crashes: p.totalCrashes ?? p.total_crashes ?? p.total ?? null, latitude, longitude, coordinate_status: p.coordinate_status || p.geocodeStatus || p.geocodeSource || (latitude != null && longitude != null ? 'mapped/project geocode' : 'unresolved'), source_record: p.source || null };
+    return { ...p, year, record_id: p.id ?? p.rank ?? index + 1, location: p.location || p.name || p.location_name || '', road: p.road || '', district: p.district || null, fatal_crashes: p.fatalCrashes ?? p.fatal_crashes ?? p.fatal ?? null, simple_crashes: p.simpleCrashes ?? p.simple_crashes ?? p.simple ?? null, total_crashes: p.totalCrashes ?? p.total_crashes ?? p.total ?? null, latitude, longitude, coordinate_status: p.coordinate_status || p.geocodeStatus || p.geocodeSource || (latitude != null && longitude != null ? 'mapped/project geocode' : 'unresolved'), source_record: p.source || null, source_url: ROAD_REPORTS[year] ? ROAD_REPORTS[year].url : null, source_sha256: ROAD_REPORTS[year] ? ROAD_REPORTS[year].sha256 : null, source_table: ROAD_REPORTS[year] ? 'Table ' + ROAD_REPORTS[year].zoneListTable : null, source_pdf_page: ROAD_REPORTS[year] ? ROAD_REPORTS[year].zoneListPdfPage : null };
   });
 }
 function fileEntry(dir, name, datasetId, derivedFrom) {

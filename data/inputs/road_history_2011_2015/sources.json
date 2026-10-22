@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "Where each source document behind the 2011 to 2015 road release comes from and what its hash is, so the transcriptions in this folder can be checked against the originals. The PDFs themselves are not in the repository (about 800 MB in all); fetch each from its URL and compare its SHA-256. A file whose hash differs is a different file: do not substitute it.",
+  "documents": [
+    {
+      "id": "pwd_accident_zones_2013_2014",
+      "describes": "Named accident-prone zones 2013 (PDF pages 133-141) and 2014 (pages 142-150)",
+      "kind": "Delhi PWD compilation of the Traffic Police accident-prone locations; an official compilation, not a recovered annual report",
+      "url": "https://web.archive.org/web/20190406041113id_/https://pwddelhi.gov.in/writeread/Other/201711141523027383New.pdf",
+      "originalUrl": "https://pwddelhi.gov.in/writeread/Other/201711141523027383New.pdf",
+      "sha256": "2932de927faede39f603db05dba2af83b63ae382f847d8268ae82e7278e20bc3",
+      "bytes": 2712246,
+      "captureTimestamp": "20190406041113",
+      "publicationDate": null,
+      "note": "The archive capture date is not a publication date."
+    },
+    {
+      "id": "dtp_2015_chapter_10",
+      "describes": "Named accident-prone zones 2015 (Table 10.1)",
+      "kind": "Delhi Traffic Police, Road Accidents in Delhi 2015, chapter 10",
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-10-ACCIDENT-PRONE-ZONES-AND-CIRCLE-WISE-ANALYSIS.pdf",
+      "sha256": "1fb404b6af11ce46b7e26e00aabb9ec809876b2574f274a98876c75825ebedc5",
+      "publicationDate": null
+    },
+    {
+      "id": "dtp_2015_chapter_6",
+      "describes": "Retrospective highway and ring-road stretches for 2011, 2012 and 2014 (Table 6.5, printed page 42) and the 2014 traffic-district table (Table 6.1)",
+      "kind": "Delhi Traffic Police, Road Accidents in Delhi 2015, chapter 6 (spatial trends)",
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-6-SPATIAL-TRENDS.pdf",
+      "sha256": "c286cd138729c3827baf2d18724ab7b1ddac07aaae190f4277fc8844bb1c119a",
+      "publicationDate": null
+    },
+    {
+      "id": "dtp_apz_2014_list",
+      "describes": "A separate Traffic Police 2014 list of accident-prone zone names, used only to compare names (evidence; no counts, ranges or locations are imported)",
+      "kind": "Delhi Traffic Police list APZ2014-LIST",
+      "url": "https://web.archive.org/web/20211227124454id_/https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "originalUrl": "https://delhitrafficpolice.nic.in/sites/default/files/uploads/2015/09/APZ2014-LIST.pdf",
+      "sha256": "c9569c8e5b72dbf7a46a2fcf433dafbe95c7a206e11388564453b1136bec6d86",
+      "bytes": 1250309,
+      "captureTimestamp": "20211227124454",
+      "publicationDate": null,
+      "note": "The archive capture date is not a publication date."
+    }
+  ],
+  "reuse": "No explicit open licence was verified for any of these documents; they are official government publications. Cite the agency document for any figure.",
+  "review": "2013 and 2015 were extracted from the PDF table grids or visually transcribed by agents; 2014 had a second visual pass by one agent (all nine pages, 137 simple and fatal pairs re-transcribed). Nothing here is independently reviewed.",
+  "howToRebuild": "node scripts/build_road_history_2011_2015.js (reads this folder and writes data/releases/road_zones_roads_2011_2015/); CI runs it and fails if the committed release differs."
+}

@@ -48,7 +48,11 @@
     "latitude": 28.712,
     "longitude": 77.174,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 2,
@@ -99,7 +103,11 @@
     "latitude": 28.711,
     "longitude": 77.227,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 3,
@@ -150,7 +158,11 @@
     "latitude": 28.612,
     "longitude": 77.277,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 4,
@@ -201,7 +213,11 @@
     "latitude": 28.6679,
     "longitude": 77.2284,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 5,
@@ -252,7 +268,11 @@
     "latitude": 28.6465,
     "longitude": 77.316,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 6,
@@ -303,7 +323,11 @@
     "latitude": 28.745,
     "longitude": 77.15,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 7,
@@ -354,7 +378,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 8,
@@ -405,7 +433,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 9,
@@ -456,7 +488,11 @@
     "latitude": 28.736,
     "longitude": 77.17,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 10,
@@ -507,7 +543,11 @@
     "latitude": 28.742,
     "longitude": 77.153,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 11,
@@ -558,7 +598,11 @@
     "latitude": 28.73,
     "longitude": 77.185,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 12,
@@ -609,7 +653,11 @@
     "latitude": 28.645,
     "longitude": 77.26,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 13,
@@ -660,7 +708,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 14,
@@ -711,7 +763,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 15,
@@ -762,7 +818,11 @@
     "latitude": 28.67,
     "longitude": 77.266,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 16,
@@ -813,7 +873,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 17,
@@ -864,7 +928,11 @@
     "latitude": 28.712,
     "longitude": 77.262,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 18,
@@ -915,7 +983,11 @@
     "latitude": 28.6946,
     "longitude": 77.1396,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 19,
@@ -966,7 +1038,11 @@
     "latitude": 28.7145,
     "longitude": 77.147,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 20,
@@ -1017,7 +1093,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 21,
@@ -1068,7 +1148,11 @@
     "latitude": 28.665,
     "longitude": 77.159,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 22,
@@ -1119,7 +1203,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 23,
@@ -1170,7 +1258,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 24,
@@ -1221,7 +1313,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 25,
@@ -1272,7 +1368,11 @@
     "latitude": 28.672,
     "longitude": 77.132,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 26,
@@ -1323,7 +1423,11 @@
     "latitude": 28.7373,
     "longitude": 77.1598,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 27,
@@ -1374,7 +1478,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 28,
@@ -1425,7 +1533,11 @@
     "latitude": 28.587,
     "longitude": 76.994,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 29,
@@ -1476,7 +1588,11 @@
     "latitude": 28.718,
     "longitude": 77.206,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 30,
@@ -1527,7 +1643,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 31,
@@ -1578,7 +1698,11 @@
     "latitude": 28.587,
     "longitude": 77.261,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 32,
@@ -1629,7 +1753,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 33,
@@ -1680,7 +1808,11 @@
     "latitude": 28.74,
     "longitude": 77.195,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 34,
@@ -1731,7 +1863,11 @@
     "latitude": 28.716,
     "longitude": 77.172,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 35,
@@ -1782,7 +1918,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 36,
@@ -1833,7 +1973,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 37,
@@ -1884,7 +2028,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 38,
@@ -1935,7 +2083,11 @@
     "latitude": 28.643,
     "longitude": 77.082,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 39,
@@ -1986,7 +2138,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 40,
@@ -2037,7 +2193,11 @@
     "latitude": 28.6392084,
     "longitude": 77.2407549,
     "coordinate_status": "OSM Nominatim (Delhi Gate, N. Subhash Marg, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 41,
@@ -2088,7 +2248,11 @@
     "latitude": 28.75,
     "longitude": 77.142,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 42,
@@ -2139,7 +2303,11 @@
     "latitude": 28.592,
     "longitude": 77.162,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 43,
@@ -2190,7 +2358,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 44,
@@ -2241,7 +2413,11 @@
     "latitude": 28.698,
     "longitude": 77.2,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 45,
@@ -2292,7 +2468,11 @@
     "latitude": 28.545106,
     "longitude": 77.2638852,
     "coordinate_status": "OSM Nominatim (Govindpuri Metro Station, Anand Mai Marg, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 46,
@@ -2343,7 +2523,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 47,
@@ -2394,7 +2578,11 @@
     "latitude": 28.679,
     "longitude": 77.118,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 48,
@@ -2445,7 +2633,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 49,
@@ -2496,7 +2688,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 50,
@@ -2547,7 +2743,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 51,
@@ -2598,7 +2798,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 52,
@@ -2649,7 +2853,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 53,
@@ -2700,7 +2908,11 @@
     "latitude": 28.705,
     "longitude": 77.288,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 54,
@@ -2751,7 +2963,11 @@
     "latitude": 28.6757033,
     "longitude": 77.3125046,
     "coordinate_status": "OSM Nominatim (Metro Station Dilshad Garden, G.T. Road, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 55,
@@ -2802,7 +3018,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 56,
@@ -2853,7 +3073,11 @@
     "latitude": 28.621,
     "longitude": 77.065,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 57,
@@ -2904,7 +3128,11 @@
     "latitude": 28.6339659,
     "longitude": 77.2171659,
     "coordinate_status": "OSM Nominatim (Radisson Hotel, NH-8, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 58,
@@ -2955,7 +3183,11 @@
     "latitude": 28.629,
     "longitude": 77.078,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 59,
@@ -3006,7 +3238,11 @@
     "latitude": 28.682,
     "longitude": 77.08,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 60,
@@ -3057,7 +3293,11 @@
     "latitude": 28.6138639,
     "longitude": 77.0005506,
     "coordinate_status": "OSM Nominatim (Sai Baba Mandir Najafgarh, Najafgarh Road, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 61,
@@ -3108,7 +3348,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 62,
@@ -3159,7 +3403,11 @@
     "latitude": 28.6174335,
     "longitude": 77.0785095,
     "coordinate_status": "OSM Nominatim (C-1 Janakpuri, Pankha Road, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 63,
@@ -3210,7 +3458,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 64,
@@ -3261,7 +3513,11 @@
     "latitude": 28.698,
     "longitude": 77.121,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 65,
@@ -3312,7 +3568,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 66,
@@ -3363,7 +3623,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 67,
@@ -3414,7 +3678,11 @@
     "latitude": 28.741,
     "longitude": 77.157,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 68,
@@ -3465,7 +3733,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 69,
@@ -3516,7 +3788,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 70,
@@ -3567,7 +3843,11 @@
     "latitude": 28.5794187,
     "longitude": 77.1450622,
     "coordinate_status": "OSM Nominatim (Jharera Village, NH-8, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 71,
@@ -3618,7 +3898,11 @@
     "latitude": 28.693,
     "longitude": 77.152,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 72,
@@ -3669,7 +3953,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 73,
@@ -3720,7 +4008,11 @@
     "latitude": 28.5279835,
     "longitude": 77.2174969,
     "coordinate_status": "OSM Nominatim (Hilton Hotel, Noida Link Road, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 74,
@@ -3771,7 +4063,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 75,
@@ -3822,7 +4118,11 @@
     "latitude": 28.5668602,
     "longitude": 77.2078058,
     "coordinate_status": "OSM Nominatim (AIIMS, Ring Road, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 76,
@@ -3873,7 +4173,11 @@
     "latitude": 28.636,
     "longitude": 77.096,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 77,
@@ -3924,7 +4228,11 @@
     "latitude": 28.738,
     "longitude": 77.16,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 78,
@@ -3975,7 +4283,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 79,
@@ -4026,7 +4338,11 @@
     "latitude": 28.7165712,
     "longitude": 77.2064187,
     "coordinate_status": "OSM Nominatim (Nirankari Colony, Outer Ring Road, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 80,
@@ -4077,7 +4393,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 81,
@@ -4128,7 +4448,11 @@
     "latitude": 28.691,
     "longitude": 77.15,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 82,
@@ -4179,7 +4503,11 @@
     "latitude": 28.799,
     "longitude": 77.086,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 83,
@@ -4230,7 +4558,11 @@
     "latitude": 28.703,
     "longitude": 77.16,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 84,
@@ -4281,7 +4613,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 85,
@@ -4332,7 +4668,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 86,
@@ -4383,7 +4723,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 87,
@@ -4434,7 +4778,11 @@
     "latitude": 28.6113262,
     "longitude": 77.2732298,
     "coordinate_status": "OSM Nominatim (Khel Gaon, NH-24, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": 88,
@@ -4485,7 +4833,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": null,
@@ -4536,7 +4888,11 @@
     "latitude": 28.5527309,
     "longitude": 77.1297546,
     "coordinate_status": "OSM Nominatim (Hanuman Mandir, Delhi, India)",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": null,
@@ -4587,7 +4943,11 @@
     "latitude": null,
     "longitude": null,
     "coordinate_status": "unresolved",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": null,
@@ -4638,7 +4998,11 @@
     "latitude": 28.761,
     "longitude": 77.143,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": null,
@@ -4689,7 +5053,11 @@
     "latitude": 28.649,
     "longitude": 77.123,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   },
   {
     "rank": null,
@@ -4740,6 +5108,10 @@
     "latitude": 28.6725,
     "longitude": 77.252,
     "coordinate_status": "matched to 2023 geocoded zone by name",
-    "source_record": null
+    "source_record": null,
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "source_table": "Table 6.29",
+    "source_pdf_page": 112
   }
 ]

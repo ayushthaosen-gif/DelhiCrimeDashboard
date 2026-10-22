@@ -1,3 +1,14 @@
+## [2026-10-22] - Claude (Anthropic) - Phase 1, data trust (from the review findings)
+
+Findings checked against the repository before changing anything: four were true as written, one needed a different reading.
+
+- **Incomplete road-source metadata (true).** The 2023 and 2024 `district_road_safety` exports had no source fields at all. They now carry `source_url`, `source_sha256`, `zone_counts_source` (Table 6.31 and PDF page) and `persons_source` (Tables 6.13 to 6.27 and PDF pages) on every row, and `crash_prone_zones` carries `source_url`, `source_sha256`, `source_table` (6.29) and `source_pdf_page`; the release manifests list the same, with a note that the hash is of the PDF copy used to check the tables (the official file was not re-downloaded under it). The 2022 district export (Transport Department report) was not changed: its table and page are not yet recorded.
+- **Rebuild depends on files outside the repository (true).** The recovery transcriptions (about 0.7 MB) are now committed under `data/inputs/road_history_2011_2015/` with `sources.json` (source PDF URLs and hashes; the PDFs are about 800 MB and are not committed). `npm run build:road-history` rebuilds the release with no arguments and CI runs it.
+- **Conflicting availability descriptions (true).** The 2016 to 2021 release README and manifest still said "staged, not wired into the page"; the 2011 to 2015 manifest said staged; FINDINGS.md called published data staged. Corrected to published/production; only the `staged_2014/` files are staged. COVERAGE now names gaps by cause: not printed, not extracted, source not found, not matched; LIMITATIONS uses the same words.
+- **Outdated final build checklist (true, found in two places).** The CI reproducibility step compared a fixed list of files that omitted planning, patterns, the planner brief and the profile, planning and patterns data files; it now compares every tracked file and reports new untracked files. The README regenerate list omitted build:site, build:profiles and build:road-history; it now matches CI, and a test keeps them in step.
+- **Not done here (phase 2):** the road page showing different years in different sections, and share links keeping only the district selection.
+- Tests: `test/data_trust.test.js`.
+
 ## [2026-10-22] - Claude (Anthropic) - Correction: 2023 to 2024 wording and the BNS hurt reclassification
 
 - The Trends and patterns page said the 2024 reading "is not a fall in crime"; that overstated what the data shows. It now says the data cannot show whether it is a real fall.
