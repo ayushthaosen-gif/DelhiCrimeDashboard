@@ -266,6 +266,16 @@
       "blankMeans": "Zero may mean unmapped; the points carry no video and are not a camera register."
     },
     {
+      "id": "metro_gates_official",
+      "label": "Metro gates (official DMRC list)",
+      "unit": "gates",
+      "group": "infrastructure",
+      "uncertainty": "official_count",
+      "source": "Delhi Metro Rail Corporation gate locations via the Delhi Transport Stack (dataset 3, last updated by the publisher 2024-12-02); counts derived by this project (data/derived/metro_gates_official_2024.json)",
+      "dataYear": "2024-12",
+      "blankMeans": "Zero means no gate in the official list falls in the ward. The list was last updated on 2024-12-02 and has defects (see the derived file), so a newer or missing gate is not counted."
+    },
+    {
       "id": "police_stations",
       "label": "Police stations",
       "unit": "stations",
@@ -343,6 +353,16 @@
       "uncertainty": "derived",
       "source": "count divided by ward area",
       "dataYear": "2026-08",
+      "blankMeans": "Not applicable."
+    },
+    {
+      "id": "metro_gates_official_per_km2",
+      "label": "Metro gates (official list) per km²",
+      "unit": "per km²",
+      "group": "infrastructure",
+      "uncertainty": "derived",
+      "source": "count divided by ward area",
+      "dataYear": "2024-12",
       "blankMeans": "Not applicable."
     },
     {
@@ -715,7 +735,17 @@
       "uncertainty": "mapped_osm",
       "source": "OpenStreetMap contributors (ODbL) via Overpass",
       "dataYear": "2026-08",
-      "blankMeans": "Zero may mean unmapped. Available by district only."
+      "blankMeans": "Zero may mean unmapped. Differs widely from the official list in several districts (see metro_gates_official)."
+    },
+    {
+      "id": "metro_gates_official",
+      "label": "Metro gates (official DMRC list)",
+      "unit": "gates",
+      "group": "infrastructure",
+      "uncertainty": "official_count",
+      "source": "Delhi Metro Rail Corporation gate locations via the Delhi Transport Stack (dataset 3, last updated by the publisher 2024-12-02); counts derived by this project (data/derived/metro_gates_official_2024.json)",
+      "dataYear": "2024-12",
+      "blankMeans": "Zero means no gate in the official list falls in the district."
     },
     {
       "id": "bus_stops",
@@ -823,6 +853,21 @@
       "id": "road_with_pedestrian_mapping_pct_250m",
       "label": "Share of mapped road length within 250 m with a mapped sidewalk or separate footway (sparse tagging: low mostly means unmapped)",
       "uncertainty": "mapped_osm"
+    },
+    {
+      "id": "nearest_metro_gate_m",
+      "label": "Distance from the placed position to the nearest metro gate in the official list, metres",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "metro_gates_250m",
+      "label": "Metro gates in the official list within 250 m",
+      "uncertainty": "approximate_position"
+    },
+    {
+      "id": "metro_gates_500m",
+      "label": "Metro gates in the official list within 500 m",
+      "uncertainty": "approximate_position"
     },
     {
       "id": "crossings_500m",

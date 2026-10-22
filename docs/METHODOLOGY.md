@@ -37,6 +37,8 @@ District crime comes from NCRB *Crime in India* district tables (2022 to 2024 di
 
 ## 5. Infrastructure
 
+Metro gates are the exception to "mapped lower bound": they come from the official DMRC gate list on the Delhi Transport Stack (last updated by the publisher 2024-12-02), counted by `scripts/build_metro_gates_official.js` (a gate is one distinct station code, gate name and position; exact duplicate rows are not counted twice; gates are assigned to wards by point-in-polygon, and distances to the 2024 crash-prone zones are measured from each zone's placed point). The licence allows derivatives but not redistributing the gate file on its own, so only the derived counts and distances are committed and the raw file is read locally. The build needs the raw file, so it is not run in CI; a test checks the committed result.
+
 OpenStreetMap snapshots (August 2026) provide bus stops, signals, crossings, footways, overbridges, hospitals, street lamps, surveillance points and police facilities, assigned to districts and wards by location. They are lower bounds: a low count may mean little has been mapped. Metro entrances and the PAPL streetlight and underpass survey are published by district only (the survey covers 9 of 15). Land use is the share of ward area tagged in OpenStreetMap, with a coverage figure beside it.
 
 ## 6. Geography

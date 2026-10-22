@@ -18,31 +18,31 @@
   "files": [
     {
       "path": "data/profiles/schema.json",
-      "sha256": "bf413b34e83ea9a61551599838eefb035b776f22abd3e506be63aab548f4d194"
+      "sha256": "3886c741fab6ad74cae7ddee0a37cf07800ed683c8d0f618912924af795874c4"
     },
     {
       "path": "data/profiles/ward_profiles.json",
-      "sha256": "3ba85164a508823b02c53d5d6ff1a17644f5cc92be7bfb4b7d3e1e677a3042ba"
+      "sha256": "1b4ceaab7296c835e979e092c1230cf976f4ca971aacef746a0918ba9652d9d4"
     },
     {
       "path": "data/profiles/ward_profiles.csv",
-      "sha256": "31d213f8210e357d12e283240479f9e7d4016a88637365d6d4a5df81ac3cccaf"
+      "sha256": "712afcc93a9914e78c49abe4924408f0a480066abecb438fd0af3d364955a4d9"
     },
     {
       "path": "data/profiles/ward_profiles.geojson",
-      "sha256": "b123edd1e81856b143ada561d3f83e9ebfc0ccc2cf97a297396a8d230095bb5f"
+      "sha256": "20f58aa4276379181c100120a3a7cfc1cce257e2decd15e20f66878aa7d3d424"
     },
     {
       "path": "data/profiles/district_profiles.json",
-      "sha256": "2e44f3c9070cf1a2f1c4615f0cf75c3dda1b836948bb0cf6839ecadc37f09b62"
+      "sha256": "b67fba4b27202dd1fdb597a7eab60f7c76cd9c25818ae3e4d6b81c7fa44d9384"
     },
     {
       "path": "data/profiles/district_profiles.csv",
-      "sha256": "9bc8575b946d12d55fe3d002abacc2e99128aa821b52c2cd8d38ffd3f7fc9b39"
+      "sha256": "f6bbeb517a35ee52bb475d18cc7b20d689f8e106fd6400bb5046d9a9c72c9749"
     },
     {
       "path": "data/profiles/district_profiles.geojson",
-      "sha256": "a6bb65655e5d5a06a1edd01c7320023f29098177ffcb02bb195b81f489536c31"
+      "sha256": "3bdf653452410292f757bc429c355b32b9c501c4703dcc8c898000e15d09901a"
     }
   ],
   "inputs": [
@@ -81,6 +81,10 @@
     {
       "path": "data/derived/crash_zone_sidewalks_2024.json",
       "sha256": "318c296da048d3b7799b036f74f2ae9b67d2a63c3aa62b4f93f69b5e60b01841"
+    },
+    {
+      "path": "data/derived/metro_gates_official_2024.json",
+      "sha256": "6095bc82650fef84f19cbd74109db705f0023820e9893f9679fe6ce917c2992d"
     },
     {
       "path": "data/source/osm_footways_delhi_raw.json",
@@ -130,7 +134,8 @@
   "licences": [
     "OpenStreetMap-derived fields: OpenStreetMap contributors, ODbL 1.0 (attribution required).",
     "Ward boundaries: DataMeet Municipal_Spatial_Data, CC-BY-SA 2.5 India (share-alike applies to the ward GeoJSON).",
-    "Official figures (NCRB, Delhi Traffic Police, Delhi Police): no open reuse licence has been verified for the source documents."
+    "Official figures (NCRB, Delhi Traffic Police, Delhi Police): no open reuse licence has been verified for the source documents.",
+    "Delhi Metro gate locations: Delhi Metro Rail Corporation, via the Delhi Transport Stack (Department of Transport, GNCTD), dataset 3, version 1, last updated by the publisher 2024-12-02. Counts and distances here were derived by this project and are not the original data. Provided without warranty; neither DMRC nor the Delhi Transport Stack guarantees its accuracy. Licence: Delhi Transport Stack Licence Agreement 1.0 (derivatives allowed; the gate file itself is not redistributed here)."
   ],
   "methodNotes": [
     "Counts are assigned to wards by point-in-polygon; footway length by segment midpoint. Points on a boundary go to the first ward that contains them.",

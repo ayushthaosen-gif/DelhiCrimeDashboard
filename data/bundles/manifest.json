@@ -337,8 +337,8 @@
         "OpenStreetMap counts are lower bounds: a low count may mean little has been mapped.",
         "An evidence tier says how strong the crash evidence is, not how dangerous a place is or what to build."
       ],
-      "version": "2026-10-20-107b119a",
-      "bytes": 235189,
+      "version": "2026-10-20-efc95742",
+      "bytes": 239543,
       "files": [
         {
           "path": "data/profiles/README.md",
@@ -352,13 +352,13 @@
         },
         {
           "path": "data/profiles/district_profiles.csv",
-          "bytes": 2506,
-          "sha256": "9bc8575b946d12d55fe3d002abacc2e99128aa821b52c2cd8d38ffd3f7fc9b39"
+          "bytes": 2569,
+          "sha256": "f6bbeb517a35ee52bb475d18cc7b20d689f8e106fd6400bb5046d9a9c72c9749"
         },
         {
           "path": "data/profiles/interventions_manifest.json",
           "bytes": 4639,
-          "sha256": "94feb0814508142ec348813963dab9400ade75ce7755e6e7cd386a166f19bffd"
+          "sha256": "f9421576c8163cfd38989f11b7669ad5b4c675396a0edd56da4df5e8dc028da2"
         },
         {
           "path": "data/profiles/location_sensitivity_wards_2024.csv",
@@ -372,8 +372,8 @@
         },
         {
           "path": "data/profiles/manifest.json",
-          "bytes": 5756,
-          "sha256": "6a8ac297722b756c8e0879fc99f0acb0cde4d2160f71362c22215eafefa264a0"
+          "bytes": 6411,
+          "sha256": "82a492a550bb66aa5b1c0a4b083457fcfe4c0c508eae79e7414b64bcec5489f8"
         },
         {
           "path": "data/profiles/pedestrian_corridors_2024.csv",
@@ -387,13 +387,13 @@
         },
         {
           "path": "data/profiles/schema.json",
-          "bytes": 30009,
-          "sha256": "bf413b34e83ea9a61551599838eefb035b776f22abd3e506be63aab548f4d194"
+          "bytes": 32077,
+          "sha256": "3886c741fab6ad74cae7ddee0a37cf07800ed683c8d0f618912924af795874c4"
         },
         {
           "path": "data/profiles/ward_profiles.csv",
-          "bytes": 48545,
-          "sha256": "31d213f8210e357d12e283240479f9e7d4016a88637365d6d4a5df81ac3cccaf"
+          "bytes": 50113,
+          "sha256": "712afcc93a9914e78c49abe4924408f0a480066abecb438fd0af3d364955a4d9"
         }
       ]
     }

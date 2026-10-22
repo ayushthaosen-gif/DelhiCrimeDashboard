@@ -1,0 +1,845 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Official Delhi Metro gate counts and distances, derived from the DMRC gate locations on the Delhi Transport Stack",
+  "source": {
+    "dataset": "Delhi Metro: Gate Locations",
+    "provider": "Delhi Metro Rail Corporation (DMRC)",
+    "via": "Delhi Transport Stack (Department of Transport, GNCTD)",
+    "datasetPage": "https://delhi.transportstack.in/data-services/datadetails/3",
+    "datasetId": 3,
+    "version": "1",
+    "published": "2024-10-11",
+    "lastUpdatedByPublisher": "2024-12-02",
+    "retrieved": "2026-10-22",
+    "file": "gates.xlsx",
+    "sha256": "098b998f44bc1226d5afbe6a4f71cba7d623f46a6cc314f7609b514b001d6d3b",
+    "bytes": 68280,
+    "chargingModel": "Free",
+    "access": "Open, download",
+    "licence": {
+      "name": "Delhi Transport Stack Licence Agreement 1.0",
+      "sha256": "9eaa22769c09c2764c281f6f696f9fed5be18150814ad4cfe5577ded7ef82eec",
+      "schedule1": "Derivatives allowed; redistribution of the licensed work on its own is not allowed but is allowed as part of a collection made from works from different sources; any part of the work may be used and distributed; attribution to Transport Stack; a modified version must indicate what changed."
+    },
+    "attribution": "Delhi Metro gate locations: Delhi Metro Rail Corporation, via the Delhi Transport Stack (Department of Transport, GNCTD), dataset 3, version 1, last updated by the publisher 2024-12-02. Counts and distances here were derived by this project and are not the original data. Provided without warranty; neither DMRC nor the Delhi Transport Stack guarantees its accuracy."
+  },
+  "method": "A gate is one distinct (station code, gate name, position to 5 decimal places) among the rows with coordinates; exact duplicate rows are not counted twice, and gates that share a recorded position stay separate gates. Gates are assigned to the legacy 290 wards and the 15 police districts by point-in-polygon (the same rule as the profiles). Distances to the 2024 crash-prone zones are great-circle distances from each zone's placed point, which has its own stated accuracy of 150 m to 5 km.",
+  "quality": {
+    "gateRows": 687,
+    "rowsWithoutCoordinates": 1,
+    "rowsWithBlankStationCode": 61,
+    "stationCodesNotInStationSheet": 37,
+    "repeatedStationAndGateNamePairs": 48,
+    "rowsSharingAPositionWithAnotherRow": 313,
+    "stationRows": 1047,
+    "stationCodes": 264,
+    "exactDuplicateRowsNotCounted": 6
+  },
+  "summary": {
+    "distinctGates": 680,
+    "gatesInDelhiWards": 471,
+    "gatesOutsideDelhi": 209,
+    "wardsWithAGate": 120,
+    "zonesWithAGateWithin250m": 17,
+    "zonesWithAGateWithin500m": 27
+  },
+  "caveats": [
+    "Only the derived counts and distances are published. The gate coordinates are not, because the licence does not allow redistributing the licensed work on its own.",
+    "The file has defects (see quality): rows with no station code or coordinates, station codes missing from the station sheet, repeated rows and shared positions. They have been counted, not corrected; the Data Publisher should be told (licence clause 3.3.2).",
+    "The file covers the whole metro network including the NCR; only gates inside the 290 wards and 15 districts are counted here.",
+    "The data was last updated by the publisher on 2024-12-02 (manual updates), so newer stations and gates are missing.",
+    "A zone's distance to the nearest gate depends on its hand-placed position (150 m to 5 km accuracy)."
+  ],
+  "wards": {
+    "10": 5,
+    "13": 2,
+    "14": 2,
+    "15": 6,
+    "17": 1,
+    "21": 3,
+    "22": 3,
+    "30": 9,
+    "31": 3,
+    "32": 1,
+    "42": 4,
+    "43": 2,
+    "49": 3,
+    "51": 3,
+    "53": 3,
+    "54": 3,
+    "56": 2,
+    "58": 4,
+    "59": 1,
+    "62": 1,
+    "63": 2,
+    "64": 2,
+    "68": 3,
+    "72": 5,
+    "75": 2,
+    "77": 2,
+    "78": 2,
+    "79": 4,
+    "80": 3,
+    "81": 3,
+    "83": 1,
+    "86": 1,
+    "89": 4,
+    "90": 4,
+    "95": 8,
+    "97": 17,
+    "99": 4,
+    "101": 2,
+    "103": 5,
+    "105": 14,
+    "106": 2,
+    "109": 4,
+    "111": 1,
+    "112": 1,
+    "113": 1,
+    "114": 5,
+    "117": 4,
+    "120": 1,
+    "126": 2,
+    "127": 5,
+    "130": 6,
+    "135": 6,
+    "136": 2,
+    "137": 5,
+    "141": 5,
+    "143": 3,
+    "149": 10,
+    "150": 1,
+    "152": 2,
+    "153": 6,
+    "154": 3,
+    "155": 2,
+    "156": 1,
+    "157": 8,
+    "158": 5,
+    "159": 3,
+    "160": 2,
+    "161": 5,
+    "162": 1,
+    "163": 8,
+    "164": 2,
+    "165": 4,
+    "166": 5,
+    "167": 4,
+    "168": 1,
+    "169": 3,
+    "170": 3,
+    "172": 3,
+    "173": 1,
+    "175": 2,
+    "189": 2,
+    "190": 1,
+    "191": 8,
+    "192": 4,
+    "193": 6,
+    "194": 6,
+    "196": 2,
+    "199": 5,
+    "200": 4,
+    "206": 3,
+    "208": 8,
+    "209": 2,
+    "211": 2,
+    "213": 1,
+    "219": 3,
+    "220": 3,
+    "221": 2,
+    "225": 2,
+    "227": 4,
+    "228": 4,
+    "233": 1,
+    "235": 2,
+    "239": 2,
+    "247": 1,
+    "249": 2,
+    "252": 5,
+    "261": 2,
+    "262": 2,
+    "NDMC_1": 49,
+    "NDMC_4": 11,
+    "UNWARDED_1": 5,
+    "CANT_4": 2,
+    "CANT_5": 1,
+    "CANT_6": 4,
+    "CANT_2": 2,
+    "NDMC_9": 4,
+    "NDMC_5": 7,
+    "NDMC_6": 1,
+    "NDMC_7": 7,
+    "NDMC_2": 2
+  },
+  "districts": {
+    "Outer North": 6,
+    "North-West": 29,
+    "New Delhi": 77,
+    "North": 17,
+    "Central": 30,
+    "West": 68,
+    "Outer": 23,
+    "South-East": 45,
+    "South": 50,
+    "South-West": 45,
+    "Dwarka": 27,
+    "East": 23,
+    "Shahdara": 8,
+    "North-East": 13,
+    "Rohini": 6
+  },
+  "zones": [
+    {
+      "zone": "Azadpur Sabzi Mandi",
+      "accuracy_m": 250,
+      "nearest_gate_m": 835,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Wazirabad",
+      "accuracy_m": 700,
+      "nearest_gate_m": 1616,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Akshardham Mandir",
+      "accuracy_m": 200,
+      "nearest_gate_m": 1604,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "ISBT Kashmiri Gate",
+      "accuracy_m": 250,
+      "nearest_gate_m": 1022,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Anand Vihar ISBT",
+      "accuracy_m": 300,
+      "nearest_gate_m": 36,
+      "gates_within_250m": 3,
+      "gates_within_500m": 3
+    },
+    {
+      "zone": "SGT Nagar",
+      "accuracy_m": 700,
+      "nearest_gate_m": 220,
+      "gates_within_250m": 1,
+      "gates_within_500m": 2
+    },
+    {
+      "zone": "Rajoukari Flyover",
+      "accuracy_m": 600,
+      "nearest_gate_m": 3695,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Near Yashobhoomi Convention Centre Dwarka",
+      "accuracy_m": 300,
+      "nearest_gate_m": 1843,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Bhalswa Chowk",
+      "accuracy_m": 500,
+      "nearest_gate_m": 1345,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Libaspur Bus Stand",
+      "accuracy_m": 500,
+      "nearest_gate_m": 1311,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Mukundpur Chowk",
+      "accuracy_m": 500,
+      "nearest_gate_m": 1106,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Geeta Colony Flyover",
+      "accuracy_m": 500,
+      "nearest_gate_m": 1319,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Chandgi Ram Akhara",
+      "accuracy_m": 300,
+      "nearest_gate_m": 417,
+      "gates_within_250m": 0,
+      "gates_within_500m": 1
+    },
+    {
+      "zone": "Hanuman Mandir JJ Colony Bawana",
+      "accuracy_m": 800,
+      "nearest_gate_m": 11096,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Seelampur T Point",
+      "accuracy_m": 450,
+      "nearest_gate_m": 732,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Singhu Border",
+      "accuracy_m": 400,
+      "nearest_gate_m": 14737,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Khajoori Chowk",
+      "accuracy_m": 450,
+      "nearest_gate_m": 2764,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Britannia Chowk",
+      "accuracy_m": 450,
+      "nearest_gate_m": 1341,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Metro Station Haider Pur",
+      "accuracy_m": 150,
+      "nearest_gate_m": 38,
+      "gates_within_250m": 3,
+      "gates_within_500m": 3
+    },
+    {
+      "zone": "Sec-23 Petrol Pump",
+      "accuracy_m": 1800,
+      "nearest_gate_m": 2488,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Zakhira Flyover",
+      "accuracy_m": 400,
+      "nearest_gate_m": 411,
+      "gates_within_250m": 0,
+      "gates_within_500m": 1
+    },
+    {
+      "zone": "Red Light Pulprahlad Pur",
+      "accuracy_m": 500,
+      "nearest_gate_m": 640,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Prem Bari Pull",
+      "accuracy_m": 500,
+      "nearest_gate_m": 334,
+      "gates_within_250m": 0,
+      "gates_within_500m": 5
+    },
+    {
+      "zone": "Hanuman Mandir Yamuna Bazar",
+      "accuracy_m": 500,
+      "nearest_gate_m": 842,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Punjabi Bagh Chowk",
+      "accuracy_m": 300,
+      "nearest_gate_m": 820,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Mukarba Chowk",
+      "accuracy_m": 300,
+      "nearest_gate_m": 542,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Shamshan Ghat Geeta Colony",
+      "accuracy_m": 600,
+      "nearest_gate_m": 1113,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Goyla Village Najafgarh",
+      "accuracy_m": 900,
+      "nearest_gate_m": 700,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Gandhi Vihar Bus Stand",
+      "accuracy_m": 600,
+      "nearest_gate_m": 1191,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Archana Cinema Red Light",
+      "accuracy_m": 300,
+      "nearest_gate_m": 722,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Sarai Kale Khan",
+      "accuracy_m": 350,
+      "nearest_gate_m": 184,
+      "gates_within_250m": 3,
+      "gates_within_500m": 3
+    },
+    {
+      "zone": "Kashmiri Gate Chowk Boulevard Road",
+      "accuracy_m": 300,
+      "nearest_gate_m": 1103,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Burari Chowk",
+      "accuracy_m": 550,
+      "nearest_gate_m": 3263,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Adarsh Nagar",
+      "accuracy_m": 650,
+      "nearest_gate_m": 60,
+      "gates_within_250m": 4,
+      "gates_within_500m": 4
+    },
+    {
+      "zone": "Chhatra Marg Crossing",
+      "accuracy_m": 500,
+      "nearest_gate_m": 995,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Shastri Nagar Metro Station",
+      "accuracy_m": 150,
+      "nearest_gate_m": 1787,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Majlis Park Metro Station",
+      "accuracy_m": 150,
+      "nearest_gate_m": 473,
+      "gates_within_250m": 0,
+      "gates_within_500m": 2
+    },
+    {
+      "zone": "Keshopur T Point",
+      "accuracy_m": 500,
+      "nearest_gate_m": 2250,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Azad Pur Chowk",
+      "accuracy_m": 300,
+      "nearest_gate_m": 939,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Delhi Gate",
+      "accuracy_m": 300,
+      "nearest_gate_m": 1090,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Siraspur",
+      "accuracy_m": 800,
+      "nearest_gate_m": 2283,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Dhaula Kuan",
+      "accuracy_m": 350,
+      "nearest_gate_m": 1947,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Monastery Ring Road",
+      "accuracy_m": 550,
+      "nearest_gate_m": 643,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Kingsway Camp Chowk",
+      "accuracy_m": 450,
+      "nearest_gate_m": 546,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Govindpuri Metro Station",
+      "accuracy_m": 150,
+      "nearest_gate_m": 56,
+      "gates_within_250m": 1,
+      "gates_within_500m": 2
+    },
+    {
+      "zone": "Nangloi Metro Station",
+      "accuracy_m": 150,
+      "nearest_gate_m": 169,
+      "gates_within_250m": 2,
+      "gates_within_500m": 2
+    },
+    {
+      "zone": "Metro Station Madipur",
+      "accuracy_m": 150,
+      "nearest_gate_m": 67,
+      "gates_within_250m": 2,
+      "gates_within_500m": 3
+    },
+    {
+      "zone": "Keval Park Road No. 51",
+      "accuracy_m": 700,
+      "nearest_gate_m": 620,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Near Triveni Park Nangal Village Delhi Cantt",
+      "accuracy_m": 800,
+      "nearest_gate_m": 2497,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Near SDM Office Geeta Colony",
+      "accuracy_m": 500,
+      "nearest_gate_m": 1632,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Flyover Raja Ram Marg",
+      "accuracy_m": 500,
+      "nearest_gate_m": 1230,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Telco Gajipur",
+      "accuracy_m": 700,
+      "nearest_gate_m": 1187,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Loni Road Crossing",
+      "accuracy_m": 500,
+      "nearest_gate_m": 1493,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Metro Station Dilshad Garden",
+      "accuracy_m": 150,
+      "nearest_gate_m": 834,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Hamdard Nagar Red Light",
+      "accuracy_m": 600,
+      "nearest_gate_m": 3137,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Uttam Nagar",
+      "accuracy_m": 900,
+      "nearest_gate_m": 995,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Radisson Hotel",
+      "accuracy_m": 500,
+      "nearest_gate_m": 546,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "District Center Janakpuri",
+      "accuracy_m": 300,
+      "nearest_gate_m": 330,
+      "gates_within_250m": 0,
+      "gates_within_500m": 2
+    },
+    {
+      "zone": "Udyog Nagar",
+      "accuracy_m": 500,
+      "nearest_gate_m": 147,
+      "gates_within_250m": 2,
+      "gates_within_500m": 2
+    },
+    {
+      "zone": "Sai Baba Mandir Najafgarh",
+      "accuracy_m": 1200,
+      "nearest_gate_m": 316,
+      "gates_within_250m": 0,
+      "gates_within_500m": 3
+    },
+    {
+      "zone": "Rama Road Crossing",
+      "accuracy_m": 500,
+      "nearest_gate_m": 537,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "C-1 Janakpuri",
+      "accuracy_m": 500,
+      "nearest_gate_m": 179,
+      "gates_within_250m": 1,
+      "gates_within_500m": 3
+    },
+    {
+      "zone": "Ghewra More",
+      "accuracy_m": 500,
+      "nearest_gate_m": 36,
+      "gates_within_250m": 2,
+      "gates_within_500m": 2
+    },
+    {
+      "zone": "Deepali Chowk",
+      "accuracy_m": 450,
+      "nearest_gate_m": 904,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "CRPF Camp Sonia Vihar",
+      "accuracy_m": 900,
+      "nearest_gate_m": 4218,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Budhpur Ganda Nala/Hanuman Mandir Budhpur",
+      "accuracy_m": 1200,
+      "nearest_gate_m": 3301,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Sai Baba Mandir NH-1",
+      "accuracy_m": 1600,
+      "nearest_gate_m": 2731,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Khichadi Pur",
+      "accuracy_m": 700,
+      "nearest_gate_m": 655,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Kirari More",
+      "accuracy_m": 600,
+      "nearest_gate_m": 2661,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Jharera Village",
+      "accuracy_m": 900,
+      "nearest_gate_m": 1358,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Wazir Pur Depot",
+      "accuracy_m": 300,
+      "nearest_gate_m": 298,
+      "gates_within_250m": 0,
+      "gates_within_500m": 5
+    },
+    {
+      "zone": "Under Pass Gajipur",
+      "accuracy_m": 500,
+      "nearest_gate_m": 1072,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Hilton Hotel",
+      "accuracy_m": 800,
+      "nearest_gate_m": 43,
+      "gates_within_250m": 2,
+      "gates_within_500m": 2
+    },
+    {
+      "zone": "Ram Charan Aggarwal Chowk",
+      "accuracy_m": 600,
+      "nearest_gate_m": 257,
+      "gates_within_250m": 0,
+      "gates_within_500m": 4
+    },
+    {
+      "zone": "AIIMS",
+      "accuracy_m": 250,
+      "nearest_gate_m": 184,
+      "gates_within_250m": 2,
+      "gates_within_500m": 4
+    },
+    {
+      "zone": "Tilak Nagar Flyover",
+      "accuracy_m": 450,
+      "nearest_gate_m": 210,
+      "gates_within_250m": 1,
+      "gates_within_500m": 4
+    },
+    {
+      "zone": "Shani Mandir NH-1",
+      "accuracy_m": 1800,
+      "nearest_gate_m": 7202,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Tilak Marg Bhagwan Das Marg Crossing",
+      "accuracy_m": 300,
+      "nearest_gate_m": 1027,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Nirankari Colony",
+      "accuracy_m": 800,
+      "nearest_gate_m": 1698,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Satya Niketan Nanakpura",
+      "accuracy_m": 600,
+      "nearest_gate_m": 1127,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Near Haldiram Wazirpur",
+      "accuracy_m": 500,
+      "nearest_gate_m": 298,
+      "gates_within_250m": 0,
+      "gates_within_500m": 5
+    },
+    {
+      "zone": "Raja Harishchander Hospital",
+      "accuracy_m": 300,
+      "nearest_gate_m": 12413,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Shalimar Bagh",
+      "accuracy_m": 800,
+      "nearest_gate_m": 1180,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Round About Bhairaon Enclave",
+      "accuracy_m": 650,
+      "nearest_gate_m": 854,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Jeewan Mala Hospital",
+      "accuracy_m": 600,
+      "nearest_gate_m": 1212,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Tughlaqabad Village Red Light",
+      "accuracy_m": 650,
+      "nearest_gate_m": 2056,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Khel Gaon",
+      "accuracy_m": 600,
+      "nearest_gate_m": 1943,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Near KV School Naraina",
+      "accuracy_m": 650,
+      "nearest_gate_m": 559,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Hanuman Mandir",
+      "accuracy_m": 5000,
+      "nearest_gate_m": 191,
+      "gates_within_250m": 4,
+      "gates_within_500m": 4
+    },
+    {
+      "zone": "Kabootar Market",
+      "accuracy_m": 1200,
+      "nearest_gate_m": 405,
+      "gates_within_250m": 0,
+      "gates_within_500m": 3
+    },
+    {
+      "zone": "Nangli Poona",
+      "accuracy_m": 900,
+      "nearest_gate_m": 2773,
+      "gates_within_250m": 0,
+      "gates_within_500m": 0
+    },
+    {
+      "zone": "Rajouri Garden",
+      "accuracy_m": 700,
+      "nearest_gate_m": 246,
+      "gates_within_250m": 10,
+      "gates_within_500m": 10
+    },
+    {
+      "zone": "Shastri Park/IT Park",
+      "accuracy_m": 600,
+      "nearest_gate_m": 44,
+      "gates_within_250m": 2,
+      "gates_within_500m": 2
+    }
+  ]
+}

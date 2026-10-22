@@ -77,6 +77,8 @@ const police = read('data/police_markers_latlng.json');
 const overpasses = read('data/delhi_pedestrian_overpasses_osm.geojson');
 const zonesGeo = read('data/delhi_crash_prone_zones_2024_all_named_approx.geojson');
 const sidewalks = read('data/derived/crash_zone_sidewalks_2024.json');
+const metro = read('data/derived/metro_gates_official_2024.json');
+const metroZone = {}; metro.zones.forEach(z => { metroZone[z.zone] = z; });
 const footwaysRaw = read('data/source/osm_footways_delhi_raw.json');
 const footwayCoverage = read('data/delhi_footway_coverage.json');
 const continuity = read('data/continuity.json');
@@ -128,6 +130,7 @@ zonesGeo.features.forEach(f => {
     position_confidence: p.coordinate_confidence || null, position_accuracy_m: p.estimated_accuracy_m == null ? null : p.estimated_accuracy_m,
     crossings_250m: s.crossings_250m == null ? null : s.crossings_250m, signals_250m: s.signals_250m == null ? null : s.signals_250m, footway_km_250m: s.footway_km_250m == null ? null : s.footway_km_250m,
     road_with_pedestrian_mapping_pct_250m: s.road_with_pedestrian_mapping_pct_250m == null ? null : s.road_with_pedestrian_mapping_pct_250m,
+    nearest_metro_gate_m: metroZone[p.location_name] ? metroZone[p.location_name].nearest_gate_m : null, metro_gates_250m: metroZone[p.location_name] ? metroZone[p.location_name].gates_within_250m : null, metro_gates_500m: metroZone[p.location_name] ? metroZone[p.location_name].gates_within_500m : null,
     crossings_500m: s.crossings_500m == null ? null : s.crossings_500m, signals_500m: s.signals_500m == null ? null : s.signals_500m, footway_km_500m: s.footway_km_500m == null ? null : s.footway_km_500m
   });
 });
@@ -148,6 +151,8 @@ const wardRows = wardsGeo.features.map((f, i) => {
     high_injury_network: p.highInjuryNetwork === true || p.highInjuryNetwork === 'true', high_injury_network_rank: p.highInjuryNetworkRank == null ? null : p.highInjuryNetworkRank
   };
   ['bus_stops', 'traffic_signals', 'pedestrian_crossings', 'pedestrian_overpasses', 'street_lamps_mapped', 'hospitals', 'surveillance_points_mapped', 'police_stations', 'police_posts'].forEach(k => { row[k] = counts[k][i]; });
+  row.metro_gates_official = metro.wards[String(p.Ward_No)] || 0;
+  row.metro_gates_official_per_km2 = per(row.metro_gates_official);
   row.footway_km = num(footwayM[i] / 1000, 2);
   ['bus_stops', 'traffic_signals', 'pedestrian_crossings', 'street_lamps_mapped', 'hospitals', 'surveillance_points_mapped'].forEach(k => { row[k + '_per_km2'] = per(counts[k][i]); });
   row.footway_km_per_km2 = per(row.footway_km);
@@ -185,7 +190,7 @@ const districtRows = districts.map(d => {
     crashes_in_zones_2023: d.totalCrashes2023, fatal_crashes_in_zones_2023: d.fatalCrashes2023, persons_killed_2024: d.personsKilled2024, persons_killed_2023: d.personsKilled2023,
     road_comparison_2023_2024: cmp('totalCrashes'),
     streetlights_per_km2: surveyed ? d.lightDensityPerKm2 : null, underpasses: surveyed ? d.underpasses : null, papl_surveyed: surveyed,
-    police_stations: d.policeStations, police_posts: d.chowkiPosts, metro_gates: d.metroGates, bus_stops: d.busStops, surveillance_points_mapped: d.surveillanceCameras,
+    police_stations: d.policeStations, police_posts: d.chowkiPosts, metro_gates: d.metroGates, metro_gates_official: metro.districts[d.district] || 0, bus_stops: d.busStops, surveillance_points_mapped: d.surveillanceCameras,
     pedestrian_overpasses: d.pedestrianOverpasses, footway_km: fw ? fw.footwayLengthKm : null, footway_km_per_km2: fw ? fw.footwayDensityKmPerKm2 : null
   };
 });
@@ -204,6 +209,7 @@ schema.zoneFields = [
   ['pedestrian_fatal_crashes', 'Pedestrian fatal crashes (blank if not printed)'], ['position_confidence', 'Confidence in the placed position'], ['position_accuracy_m', 'Estimated accuracy of the placed position, metres'],
   ['crossings_250m', 'Pedestrian crossings mapped within 250 m of the placed position'], ['signals_250m', 'Traffic signals mapped within 250 m'], ['footway_km_250m', 'Footway mapped within 250 m, km'],
   ['road_with_pedestrian_mapping_pct_250m', 'Share of mapped road length within 250 m with a mapped sidewalk or separate footway (sparse tagging: low mostly means unmapped)'],
+  ['nearest_metro_gate_m', 'Distance from the placed position to the nearest metro gate in the official list, metres'], ['metro_gates_250m', 'Metro gates in the official list within 250 m'], ['metro_gates_500m', 'Metro gates in the official list within 500 m'],
   ['crossings_500m', 'Pedestrian crossings mapped within 500 m'], ['signals_500m', 'Traffic signals mapped within 500 m'], ['footway_km_500m', 'Footway mapped within 500 m, km']
 ].map(a => ({ id: a[0], label: a[1], uncertainty: /crossings|signals|footway|mapping/.test(a[0]) ? 'mapped_osm' : 'approximate_position' }));
 
@@ -231,7 +237,7 @@ fs.mkdirSync(OUT, { recursive: true });
 Object.keys(out).forEach(f => fs.writeFileSync(OUT + f, out[f], 'utf8'));
 
 const inputs = ['data/delhi_wards_infra.geojson', 'data/dashboard_final.json', 'data/dashboard_boundaries_simplified.geojson', 'data/poi_markers_latlng.json', 'data/poi_markers_infra_extras.json', 'data/police_markers_latlng.json',
-  'data/delhi_pedestrian_overpasses_osm.geojson', 'data/delhi_crash_prone_zones_2024_all_named_approx.geojson', 'data/derived/crash_zone_sidewalks_2024.json', 'data/source/osm_footways_delhi_raw.json', 'data/delhi_footway_coverage.json',
+  'data/delhi_pedestrian_overpasses_osm.geojson', 'data/delhi_crash_prone_zones_2024_all_named_approx.geojson', 'data/derived/crash_zone_sidewalks_2024.json', 'data/derived/metro_gates_official_2024.json', 'data/source/osm_footways_delhi_raw.json', 'data/delhi_footway_coverage.json',
   'data/landuse_by_ward.csv', 'data/continuity.json', 'data/series_status.json', 'data/geography_registry.json'];
 const manifest = {
   schemaVersion: '1.0.0', title: 'Delhi ward and district profiles: export bundle', dataVersion: dataVersion, generatedBy: 'scripts/build_profiles.js',
@@ -247,7 +253,8 @@ const manifest = {
   licences: [
     'OpenStreetMap-derived fields: OpenStreetMap contributors, ODbL 1.0 (attribution required).',
     'Ward boundaries: DataMeet Municipal_Spatial_Data, CC-BY-SA 2.5 India (share-alike applies to the ward GeoJSON).',
-    'Official figures (NCRB, Delhi Traffic Police, Delhi Police): no open reuse licence has been verified for the source documents.'
+    'Official figures (NCRB, Delhi Traffic Police, Delhi Police): no open reuse licence has been verified for the source documents.',
+    metro.source.attribution + ' Licence: Delhi Transport Stack Licence Agreement 1.0 (derivatives allowed; the gate file itself is not redistributed here).'
   ],
   methodNotes: [
     'Counts are assigned to wards by point-in-polygon; footway length by segment midpoint. Points on a boundary go to the first ward that contains them.',

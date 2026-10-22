@@ -41,7 +41,7 @@
 
     var nearby = [];
     [['bus_stops', 'bus_stops_per_km2'], ['traffic_signals', 'traffic_signals_per_km2'], ['pedestrian_crossings', 'pedestrian_crossings_per_km2'], ['pedestrian_overpasses', null], ['footway_km', 'footway_km_per_km2'],
-      ['street_lamps_mapped', 'street_lamps_mapped_per_km2'], ['hospitals', 'hospitals_per_km2'], ['surveillance_points_mapped', 'surveillance_points_mapped_per_km2'], ['police_stations', null], ['police_posts', null]].forEach(function (pair) {
+      ['street_lamps_mapped', 'street_lamps_mapped_per_km2'], ['hospitals', 'hospitals_per_km2'], ['surveillance_points_mapped', 'surveillance_points_mapped_per_km2'], ['metro_gates_official', 'metro_gates_official_per_km2'], ['police_stations', null], ['police_posts', null]].forEach(function (pair) {
       var s = use(pair[0]); if (!s) return;
       var dens = pair[1] ? r[pair[1]] : null;
       nearby.push({ label: s.label, value: fmt(r[pair[0]], s.unit) + (s.unit === 'km' ? ' km' : ''), sub: dens != null ? fmt(dens, 'per km²') + ' per km²' : '', cls: s.cls, zero: r[pair[0]] === 0 });
@@ -83,7 +83,7 @@
     issue.push(plural(r.crash_prone_zones_2024, 'crash-prone zone', 'crash-prone zones') + ' in 2024, with ' + D.n(r.fatal_crashes_in_zones_2024) + ' fatal crashes and ' + D.n(r.crashes_in_zones_2024) + ' crashes within those zones (not all crashes in the district). ' + D.n(r.persons_killed_2024) + ' people were killed in road crashes in the whole district.');
     use('crime_comparison_2023_2024'); use('road_comparison_2023_2024');
     issue.push('Compared with 2023: ' + (r.crime_comparison_2023_2024 === 'caution' ? 'compare crime with caution (the Bharatiya Nyaya Sanhita replaced the IPC in July 2024)' : r.crime_comparison_2023_2024) + '; zone counts ' + (r.road_comparison_2023_2024 === 'caution' ? 'compare with caution (the zone list differs every year)' : r.road_comparison_2023_2024) + '. No change figure is shown here.');
-    [['police_stations', null], ['police_posts', null], ['metro_gates', null], ['bus_stops', null], ['surveillance_points_mapped', null], ['pedestrian_overpasses', null], ['footway_km', 'footway_km_per_km2']].forEach(function (p) {
+    [['police_stations', null], ['police_posts', null], ['metro_gates_official', 'metro_gates_official_per_km2'], ['metro_gates', null], ['bus_stops', null], ['surveillance_points_mapped', null], ['pedestrian_overpasses', null], ['footway_km', 'footway_km_per_km2']].forEach(function (p) {
       var s = use(p[0]); if (!s) return;
       nearby.push({ label: s.label, value: fmt(r[p[0]], s.unit) + (s.unit === 'km' ? ' km' : ''), sub: p[1] && r[p[1]] != null ? fmt(r[p[1]], 'per km²') + ' km per km²' : '', cls: s.cls, zero: r[p[0]] === 0 });
     });
@@ -133,11 +133,11 @@
     if (w.zones.length) {
       root.appendChild(h('div', { class: 'why-sec' }, h('h3', null, 'Around each crash-prone zone'),
         h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:520px' },
-          h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Zone'), h('th', { scope: 'col' }, 'Fatal / all'), h('th', { scope: 'col' }, 'Position ±'), h('th', { scope: 'col' }, 'Crossings 250 / 500 m'), h('th', { scope: 'col' }, 'Signals 250 / 500 m'), h('th', { scope: 'col' }, 'Footway 250 m'))),
+          h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Zone'), h('th', { scope: 'col' }, 'Fatal / all'), h('th', { scope: 'col' }, 'Position ±'), h('th', { scope: 'col' }, 'Crossings 250 / 500 m'), h('th', { scope: 'col' }, 'Signals 250 / 500 m'), h('th', { scope: 'col' }, 'Footway 250 m'), h('th', { scope: 'col' }, 'Nearest metro gate'))),
           h('tbody', null, w.zones.map(function (q) {
             var f = function (v) { return v == null ? '—' : D.n(v); };
             return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, q.name), h('td', null, f(q.fatal_crashes) + ' / ' + f(q.total_crashes)), h('td', null, q.position_accuracy_m == null ? '—' : D.n(q.position_accuracy_m) + ' m'),
-              h('td', null, f(q.crossings_250m) + ' / ' + f(q.crossings_500m)), h('td', null, f(q.signals_250m) + ' / ' + f(q.signals_500m)), h('td', null, q.footway_km_250m == null ? '—' : (Math.round(q.footway_km_250m * 10) / 10) + ' km'));
+              h('td', null, f(q.crossings_250m) + ' / ' + f(q.crossings_500m)), h('td', null, f(q.signals_250m) + ' / ' + f(q.signals_500m)), h('td', null, q.footway_km_250m == null ? '—' : (Math.round(q.footway_km_250m * 10) / 10) + ' km'), h('td', null, q.nearest_metro_gate_m == null ? '—' : D.n(q.nearest_metro_gate_m) + ' m'));
           }))), h('p', { class: 'muted', style: 'font-size:12.5px' }, 'Mapped in OpenStreetMap: a zero or a low figure often means the area is not mapped. "Position ±" is the estimated accuracy of the hand-placed zone centre.'))));
     }
     if (w.audit && w.audit.length) {

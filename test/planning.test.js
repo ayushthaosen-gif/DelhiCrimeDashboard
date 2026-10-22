@@ -55,7 +55,7 @@ test('every layer reads a described ward field, and a rate exists only where a p
   for (const f of fields.concat(rates)) assert.ok(PROFILES.schema.ward[f], 'layer field ' + f + ' is in the contract');
   for (const g of ['Crash severity', 'Pedestrian infrastructure', 'Transit', 'Street lighting', 'Services', 'Land use']) assert.ok(src.includes("g: '" + g + "'"), g);
   for (const needle of ['crash_zone_fatal_crashes_2024', 'footway_km', 'pedestrian_crossings', 'traffic_signals', 'bus_stops', 'street_lamps_mapped', 'hospitals', 'police_stations', 'residential_pct']) assert.ok(fields.includes(needle), needle + ' is a planning layer');
-  assert.match(src, /metro entrances and the streetlight survey are published by district only/);
+  assert.match(src, /the streetlight survey is published by district only/);
 });
 
 test('Why this place?: a ward with a zone states the issue, ranks, position accuracy and lower bounds; a ward without one says that is not "no crashes"', () => {
