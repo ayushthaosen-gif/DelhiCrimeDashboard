@@ -58,12 +58,16 @@ The intervention views (`scripts/build_interventions.js`) are rules, not scores:
 
 `scripts/lib/patterns.js` computes every figure on the Trends and patterns page and the planner brief from committed files. Crime over time uses the Delhi-wide printed totals; each step between years takes its state (comparable, caution, not comparable, no figure) from `data/continuity.json`, and the chart leaves a gap where a step is not comparable or a figure is missing. District crime is registered IPC/BNS cases per 1 lakh residents (approximate resident population, which excludes visitors). Mapped densities are compared with it by Spearman rank correlation over the 15 districts; with 15 districts a value between about -0.5 and +0.5 cannot be told apart from chance, and the page says so. Places and roads come from the recurrence rules in section 7. The page describes patterns; it makes no causal claim, and its "what tends to help" list is labelled general practice, not a finding from this data.
 
-## 9. Coverage matrix, comparison notes and bundles
+## 9. Location uncertainty
+
+`scripts/build_location_sensitivity.js` tests how far the hand-placed 2024 zone positions change a zone's ward and the ward ranking. Each zone is moved to a point drawn uniformly from the disc of its stated accuracy (150 m to 5 km) around its placed point, re-assigned to a legacy ward by point-in-polygon, and the fatal crashes counted in zones, ward totals and competition ranks are recomputed, 2,000 times with a fixed seed so the result reproduces exactly. Outputs: [`data/profiles/location_sensitivity_2024.json`](../data/profiles/location_sensitivity_2024.json) and two CSVs. It tests sensitivity to the *stated* accuracy only: that accuracy is an estimate, the real error may be larger and need not be uniform, and the ward boundaries have their own error. The Planning page shows the ranges (a Location uncertainty tab, a tilde on unstable ranks, a section in each ward's panel and evidence pack).
+
+## 10. Coverage matrix, comparison notes and bundles
 
 `scripts/lib/coverage.js` builds [`data/coverage_matrix.json`](../data/coverage_matrix.json) and `.csv`: every series by year 2011 to 2026, available or not, computed from the files in the repository. Every other cell takes its cause from `data/coverage_gaps.json` (not printed, not extracted, source not found, not collected, not published, staged); the build fails on a gap with no cause or one that hides data that is present. The same file lists the documented breaks between years (from `data/continuity.json`).
 
 Three versioned bundles (crime, road, profiles) are defined in `data/bundles/bundles.json`; `data/bundles/manifest.json` records each file's path, size and SHA-256 and a version that changes when any file changes. The Data & methods page zips a bundle in the browser with a generated README (geography, definitions, coverage and gaps, provenance), `COVERAGE.csv`, `COMPARABILITY.md` and a `BUNDLE_MANIFEST.json` with each file's expected and fetched checksum.
 
-## 10. Monitoring newer data
+## 11. Monitoring newer data
 
 A weekly job (`.github/workflows/pipeline-2025-monitor.yml`) looks for new NCRB, Delhi Traffic Police, iRAD and Excise releases and opens or updates one issue. It downloads and integrates nothing; a person reviews, collects, validates and opens a pull request ([pipeline README](../tools/pipeline_2025/README.md)).

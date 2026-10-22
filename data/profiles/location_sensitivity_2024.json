@@ -1,0 +1,4571 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "How approximate 2024 crash-zone positions affect ward assignment and ward rankings",
+  "method": "Each zone is moved to a point drawn uniformly from the disc of its stated accuracy around its placed point, re-assigned to a legacy ward by point-in-polygon, and the fatal crashes counted in zones, ward totals and ranks are recomputed. 2000 simulations, seed 20261022. Ranks are competition ranks among wards with a total above zero (ties share the better rank). Counts per zone are fixed at the printed values; a zone that prints no count contributes nothing.",
+  "caveats": [
+    "This tests sensitivity to the stated accuracy (150 m to 5 km). That accuracy is the project's estimate, not a measured error: the true error may be larger and need not be uniform within the disc.",
+    "The ward boundaries are the legacy 290 (DataMeet), not the current 250, and have their own error; a zone near a boundary is sensitive to both.",
+    "Only position is varied. The printed counts, the zone list itself (which changes every year) and the zones the report does not name are not.",
+    "A ward rank is a range, not a point: read the 5th to 95th percentile columns, not the baseline rank alone."
+  ],
+  "summary": {
+    "simulations": 2000,
+    "seed": 20261022,
+    "zones": 93,
+    "zonesStable": 24,
+    "zonesUncertain": 47,
+    "zonesUnstable": 22,
+    "zonesThatCanChangeWard": 77,
+    "zonesWithin250m": 11,
+    "baselineTop10WardsRobust": 4,
+    "baselineTop10Wards": 10,
+    "meanTop10Overlap": 0.538,
+    "wardsWithZoneBaseline": 66,
+    "wardsWhoseTotalChangesOften": 28,
+    "wardsThatCouldReceiveAZone": 73,
+    "zonesOutsideAllWardsSometimes": 30
+  },
+  "zones": [
+    {
+      "zone": "Hanuman Mandir",
+      "accuracy_m": 5000,
+      "ward_no": "NDMC_2",
+      "ward_name": "NDMC CHARGE 2",
+      "district": "Central",
+      "fatal_crashes_2024": null,
+      "p_same_ward": 0.028,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 36,
+      "alternatives": [
+        {
+          "ward_no": "NDMC_3",
+          "ward_name": "NDMC CHARGE 3",
+          "p": 0.11
+        },
+        {
+          "ward_no": "NDMC_5",
+          "ward_name": "NDMC CHARGE 5",
+          "p": 0.099
+        },
+        {
+          "ward_no": "153",
+          "ward_name": "DARYAGANJ",
+          "p": 0.072
+        },
+        {
+          "ward_no": "NDMC_9",
+          "ward_name": "NDMC CHARGE 9",
+          "p": 0.07
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Kabootar Market",
+      "accuracy_m": 1200,
+      "ward_no": "79",
+      "ward_name": "JAMA MASJID",
+      "district": "Central",
+      "fatal_crashes_2024": null,
+      "p_same_ward": 0.176,
+      "p_outside_all_wards": 0.002,
+      "other_wards_possible": 9,
+      "alternatives": [
+        {
+          "ward_no": "80",
+          "ward_name": "CHANDNI CHOWK",
+          "p": 0.368
+        },
+        {
+          "ward_no": "86",
+          "ward_name": "BALLIMARAN",
+          "p": 0.104
+        },
+        {
+          "ward_no": "153",
+          "ward_name": "DARYAGANJ",
+          "p": 0.078
+        },
+        {
+          "ward_no": "83",
+          "ward_name": "BAZAR SITARAM",
+          "p": 0.075
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Sec-23 Petrol Pump",
+      "accuracy_m": 1800,
+      "ward_no": "23",
+      "ward_name": "BUDH VIHAR",
+      "district": "Rohini",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.222,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 8,
+      "alternatives": [
+        {
+          "ward_no": "25",
+          "ward_name": "POOTH KALAN",
+          "p": 0.489
+        },
+        {
+          "ward_no": "24",
+          "ward_name": "VIJAY VIHAR",
+          "p": 0.113
+        },
+        {
+          "ward_no": "27",
+          "ward_name": "BEGUMPUR",
+          "p": 0.08
+        },
+        {
+          "ward_no": "26",
+          "ward_name": "SAHIBABAD DAULAT PUR",
+          "p": 0.056
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Adarsh Nagar",
+      "accuracy_m": 650,
+      "ward_no": "15",
+      "ward_name": "SARAI PIPAL THALA",
+      "district": "North-West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.271,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "14",
+          "ward_name": "ADARASH  NAGAR",
+          "p": 0.555
+        },
+        {
+          "ward_no": "56",
+          "ward_name": "SHALIMAR BAGH SOUTH",
+          "p": 0.175
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Monastery Ring Road",
+      "accuracy_m": 550,
+      "ward_no": "78",
+      "ward_name": "MAJNU KA TILA",
+      "district": "North",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.293,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "10",
+          "ward_name": "TIMAR PUR",
+          "p": 0.394
+        },
+        {
+          "ward_no": "UNWARDED_1",
+          "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+          "p": 0.314
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Budhpur Ganda Nala/Hanuman Mandir Budhpur",
+      "accuracy_m": 1200,
+      "ward_no": "5",
+      "ward_name": "BHALASWA JAHAGIR PUR",
+      "district": "Outer North",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.301,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "3",
+          "ward_name": "ALIPUR",
+          "p": 0.64
+        },
+        {
+          "ward_no": "18",
+          "ward_name": "LIBAS PUR",
+          "p": 0.06
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Azad Pur Chowk",
+      "accuracy_m": 300,
+      "ward_no": "14",
+      "ward_name": "ADARASH  NAGAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.321,
+      "p_outside_all_wards": 0.002,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "68",
+          "ward_name": "ASHOK VIHAR",
+          "p": 0.353
+        },
+        {
+          "ward_no": "71",
+          "ward_name": "SANGAM PARK",
+          "p": 0.23
+        },
+        {
+          "ward_no": "56",
+          "ward_name": "SHALIMAR BAGH SOUTH",
+          "p": 0.079
+        },
+        {
+          "ward_no": "66",
+          "ward_name": "SAWAN PARK",
+          "p": 0.016
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Uttam Nagar",
+      "accuracy_m": 900,
+      "ward_no": "119",
+      "ward_name": "MILAP NAGAR",
+      "district": "Dwarka",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.331,
+      "p_outside_all_wards": 0.002,
+      "other_wards_possible": 6,
+      "alternatives": [
+        {
+          "ward_no": "123",
+          "ward_name": "VIKAS PURI",
+          "p": 0.351
+        },
+        {
+          "ward_no": "128",
+          "ward_name": "BINDAPUR",
+          "p": 0.153
+        },
+        {
+          "ward_no": "126",
+          "ward_name": "NAWADA",
+          "p": 0.066
+        },
+        {
+          "ward_no": "127",
+          "ward_name": "UTTAM NAGAR",
+          "p": 0.061
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Sai Baba Mandir Najafgarh",
+      "accuracy_m": 1200,
+      "ward_no": "138",
+      "ward_name": "NAJAFGARH",
+      "district": "Dwarka",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.362,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "137",
+          "ward_name": "ROSHANPURA",
+          "p": 0.589
+        },
+        {
+          "ward_no": "140",
+          "ward_name": "KHERA",
+          "p": 0.037
+        },
+        {
+          "ward_no": "139",
+          "ward_name": "DICHAON KALAN",
+          "p": 0.013
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Kirari More",
+      "accuracy_m": 600,
+      "ward_no": "33",
+      "ward_name": "PREM NAGAR",
+      "district": "Rohini",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.372,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "34",
+          "ward_name": "NITHARI",
+          "p": 0.322
+        },
+        {
+          "ward_no": "35",
+          "ward_name": "KIRARI SULEMAN NAGAR",
+          "p": 0.266
+        },
+        {
+          "ward_no": "25",
+          "ward_name": "POOTH KALAN",
+          "p": 0.041
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Sai Baba Mandir NH-1",
+      "accuracy_m": 1600,
+      "ward_no": "5",
+      "ward_name": "BHALASWA JAHAGIR PUR",
+      "district": "Outer North",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.376,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "3",
+          "ward_name": "ALIPUR",
+          "p": 0.322
+        },
+        {
+          "ward_no": "18",
+          "ward_name": "LIBAS PUR",
+          "p": 0.302
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Bhalswa Chowk",
+      "accuracy_m": 500,
+      "ward_no": "20",
+      "ward_name": "JAHANGIR PURI -II",
+      "district": "North-West",
+      "fatal_crashes_2024": 6,
+      "p_same_ward": 0.422,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "19",
+          "ward_name": "BHALSWA",
+          "p": 0.568
+        },
+        {
+          "ward_no": "5",
+          "ward_name": "BHALASWA JAHAGIR PUR",
+          "p": 0.011
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Mukundpur Chowk",
+      "accuracy_m": 500,
+      "ward_no": "13",
+      "ward_name": "DHIR PUR",
+      "district": "North-West",
+      "fatal_crashes_2024": 6,
+      "p_same_ward": 0.427,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "5",
+          "ward_name": "BHALASWA JAHAGIR PUR",
+          "p": 0.416
+        },
+        {
+          "ward_no": "6",
+          "ward_name": "MUKUND PUR",
+          "p": 0.158
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Gandhi Vihar Bus Stand",
+      "accuracy_m": 600,
+      "ward_no": "11",
+      "ward_name": "MUKHERJEE NAGAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.439,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "10",
+          "ward_name": "TIMAR PUR",
+          "p": 0.509
+        },
+        {
+          "ward_no": "UNWARDED_1",
+          "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+          "p": 0.053
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Metro Station Madipur",
+      "accuracy_m": 150,
+      "ward_no": "103",
+      "ward_name": "PUNJABI BAGH",
+      "district": "West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.449,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "59",
+          "ward_name": "RANI BAGH",
+          "p": 0.287
+        },
+        {
+          "ward_no": "104",
+          "ward_name": "MADIPUR",
+          "p": 0.264
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Britannia Chowk",
+      "accuracy_m": 450,
+      "ward_no": "68",
+      "ward_name": "ASHOK VIHAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.454,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "67",
+          "ward_name": "WAJIRPUR",
+          "p": 0.543
+        },
+        {
+          "ward_no": "65",
+          "ward_name": "NIMRI COLONY",
+          "p": 0.003
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Khichadi Pur",
+      "accuracy_m": 700,
+      "ward_no": "214",
+      "ward_name": "KHICHRIPUR",
+      "district": "East",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.463,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "219",
+          "ward_name": "MAYUR VIHAR PHASE II",
+          "p": 0.312
+        },
+        {
+          "ward_no": "213",
+          "ward_name": "KALYAN PURI",
+          "p": 0.216
+        },
+        {
+          "ward_no": "210",
+          "ward_name": "DALLOPURA",
+          "p": 0.01
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Wazirabad",
+      "accuracy_m": 700,
+      "ward_no": "10",
+      "ward_name": "TIMAR PUR",
+      "district": "North",
+      "fatal_crashes_2024": 9,
+      "p_same_ward": 0.473,
+      "p_outside_all_wards": 0.004,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "11",
+          "ward_name": "MUKHERJEE NAGAR",
+          "p": 0.269
+        },
+        {
+          "ward_no": "UNWARDED_1",
+          "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+          "p": 0.248
+        },
+        {
+          "ward_no": "8",
+          "ward_name": "JHARODA",
+          "p": 0.008
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Udyog Nagar",
+      "accuracy_m": 500,
+      "ward_no": "42",
+      "ward_name": "PERAGHARHI",
+      "district": "Outer",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.476,
+      "p_outside_all_wards": 0.002,
+      "other_wards_possible": 5,
+      "alternatives": [
+        {
+          "ward_no": "58",
+          "ward_name": "PASCHIM VIHAR NORTH",
+          "p": 0.266
+        },
+        {
+          "ward_no": "46",
+          "ward_name": "MANGOLPURI  EAST",
+          "p": 0.106
+        },
+        {
+          "ward_no": "57",
+          "ward_name": "PASCHIM VIHAR SOUTH",
+          "p": 0.092
+        },
+        {
+          "ward_no": "60",
+          "ward_name": "SARASWATI VIHAR",
+          "p": 0.044
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "SGT Nagar",
+      "accuracy_m": 700,
+      "ward_no": "18",
+      "ward_name": "LIBAS PUR",
+      "district": "Outer North",
+      "fatal_crashes_2024": 7,
+      "p_same_ward": 0.479,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "49",
+          "ward_name": "ROHINI NORTH",
+          "p": 0.277
+        },
+        {
+          "ward_no": "17",
+          "ward_name": "SAMAYPUR BADLI",
+          "p": 0.245
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Keval Park Road No. 51",
+      "accuracy_m": 700,
+      "ward_no": "14",
+      "ward_name": "ADARASH  NAGAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.497,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "13",
+          "ward_name": "DHIR PUR",
+          "p": 0.5
+        },
+        {
+          "ward_no": "15",
+          "ward_name": "SARAI PIPAL THALA",
+          "p": 0.004
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Near Triveni Park Nangal Village Delhi Cantt",
+      "accuracy_m": 800,
+      "ward_no": "110",
+      "ward_name": "NANGAL RAYA",
+      "district": "West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.499,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 7,
+      "alternatives": [
+        {
+          "ward_no": "CANT_7",
+          "ward_name": "DELHI CANTT CHARGE 7",
+          "p": 0.195
+        },
+        {
+          "ward_no": "CANT_8",
+          "ward_name": "DELHI CANTT CHARGE 8",
+          "p": 0.062
+        },
+        {
+          "ward_no": "129",
+          "ward_name": "DABRI",
+          "p": 0.061
+        },
+        {
+          "ward_no": "131",
+          "ward_name": "SAGARPUR",
+          "p": 0.061
+        }
+      ],
+      "stability": "unstable"
+    },
+    {
+      "zone": "Round About Bhairaon Enclave",
+      "accuracy_m": 650,
+      "ward_no": "42",
+      "ward_name": "PERAGHARHI",
+      "district": "Outer",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.5,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "41",
+          "ward_name": "GURU HARKISHAN NAGAR",
+          "p": 0.5
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Satya Niketan Nanakpura",
+      "accuracy_m": 600,
+      "ward_no": "168",
+      "ward_name": "NANAK PURA",
+      "district": "South-West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.502,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "NDMC_9",
+          "ward_name": "NDMC CHARGE 9",
+          "p": 0.467
+        },
+        {
+          "ward_no": "CANT_4",
+          "ward_name": "DELHI CANTT CHARGE 4",
+          "p": 0.031
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Telco Gajipur",
+      "accuracy_m": 700,
+      "ward_no": "227",
+      "ward_name": "I.P EXTENTION",
+      "district": "East",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.507,
+      "p_outside_all_wards": 0.014,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "214",
+          "ward_name": "KHICHRIPUR",
+          "p": 0.44
+        },
+        {
+          "ward_no": "219",
+          "ward_name": "MAYUR VIHAR PHASE II",
+          "p": 0.04
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Chandgi Ram Akhara",
+      "accuracy_m": 300,
+      "ward_no": "10",
+      "ward_name": "TIMAR PUR",
+      "district": "North",
+      "fatal_crashes_2024": 6,
+      "p_same_ward": 0.508,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "78",
+          "ward_name": "MAJNU KA TILA",
+          "p": 0.492
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Libaspur Bus Stand",
+      "accuracy_m": 500,
+      "ward_no": "17",
+      "ward_name": "SAMAYPUR BADLI",
+      "district": "Outer North",
+      "fatal_crashes_2024": 6,
+      "p_same_ward": 0.517,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "19",
+          "ward_name": "BHALSWA",
+          "p": 0.484
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Jharera Village",
+      "accuracy_m": 900,
+      "ward_no": "CANT_6",
+      "ward_name": "DELHI CANTT CHARGE 6",
+      "district": null,
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.523,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "CANT_5",
+          "ward_name": "DELHI CANTT CHARGE 5",
+          "p": 0.405
+        },
+        {
+          "ward_no": "CANT_3",
+          "ward_name": "DELHI CANTT CHARGE 3",
+          "p": 0.073
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Burari Chowk",
+      "accuracy_m": 550,
+      "ward_no": "6",
+      "ward_name": "MUKUND PUR",
+      "district": "North",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.531,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "8",
+          "ward_name": "JHARODA",
+          "p": 0.309
+        },
+        {
+          "ward_no": "7",
+          "ward_name": "BURARI",
+          "p": 0.161
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Delhi Gate",
+      "accuracy_m": 300,
+      "ward_no": "81",
+      "ward_name": "MINTO ROAD",
+      "district": "Central",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.532,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "153",
+          "ward_name": "DARYAGANJ",
+          "p": 0.331
+        },
+        {
+          "ward_no": "84",
+          "ward_name": "TURKMAN GATE",
+          "p": 0.071
+        },
+        {
+          "ward_no": "79",
+          "ward_name": "JAMA MASJID",
+          "p": 0.067
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Nirankari Colony",
+      "accuracy_m": 800,
+      "ward_no": "11",
+      "ward_name": "MUKHERJEE NAGAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.544,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "10",
+          "ward_name": "TIMAR PUR",
+          "p": 0.408
+        },
+        {
+          "ward_no": "8",
+          "ward_name": "JHARODA",
+          "p": 0.034
+        },
+        {
+          "ward_no": "UNWARDED_1",
+          "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+          "p": 0.015
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Dhaula Kuan",
+      "accuracy_m": 350,
+      "ward_no": "CANT_4",
+      "ward_name": "DELHI CANTT CHARGE 4",
+      "district": "South-West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.551,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "CANT_3",
+          "ward_name": "DELHI CANTT CHARGE 3",
+          "p": 0.426
+        },
+        {
+          "ward_no": "168",
+          "ward_name": "NANAK PURA",
+          "p": 0.024
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Shastri Nagar Metro Station",
+      "accuracy_m": 150,
+      "ward_no": "74",
+      "ward_name": "INDER LOK COLONY",
+      "district": "Central",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.563,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "73",
+          "ward_name": "SHASTRI NAGAR",
+          "p": 0.437
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Shamshan Ghat Geeta Colony",
+      "accuracy_m": 600,
+      "ward_no": "229",
+      "ward_name": "KRISHNA  NAGAR",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.567,
+      "p_outside_all_wards": 0.003,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "230",
+          "ward_name": "GEETA COLONY",
+          "p": 0.181
+        },
+        {
+          "ward_no": "236",
+          "ward_name": "RAGHUBAR PURA",
+          "p": 0.13
+        },
+        {
+          "ward_no": "231",
+          "ward_name": "GHONDLI",
+          "p": 0.089
+        },
+        {
+          "ward_no": "235",
+          "ward_name": "AZAD NAGAR",
+          "p": 0.032
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Rama Road Crossing",
+      "accuracy_m": 500,
+      "ward_no": "100",
+      "ward_name": "KARAM PURA",
+      "district": "West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.57,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "97",
+          "ward_name": "KIRTI NAGAR",
+          "p": 0.43
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Loni Road Crossing",
+      "accuracy_m": 500,
+      "ward_no": "245",
+      "ward_name": "DURGA PURI",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.577,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "247",
+          "ward_name": "RAM NAGAR (247)",
+          "p": 0.26
+        },
+        {
+          "ward_no": "260",
+          "ward_name": "BABAR PUR",
+          "p": 0.102
+        },
+        {
+          "ward_no": "258",
+          "ward_name": "KARDAM PURI",
+          "p": 0.053
+        },
+        {
+          "ward_no": "246",
+          "ward_name": "ASHOK NAGAR",
+          "p": 0.01
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Nangloi Metro Station",
+      "accuracy_m": 150,
+      "ward_no": "32",
+      "ward_name": "NILOTHI",
+      "district": "Outer",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.583,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "31",
+          "ward_name": "NANGLOI JAT WEST",
+          "p": 0.417
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Hilton Hotel",
+      "accuracy_m": 800,
+      "ward_no": "209",
+      "ward_name": "MAYUR VIHAR PHASE-I",
+      "district": "East",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.588,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "220",
+          "ward_name": "PATPARGANJ",
+          "p": 0.303
+        },
+        {
+          "ward_no": "212",
+          "ward_name": "NEW ASHOK NAGAR",
+          "p": 0.1
+        },
+        {
+          "ward_no": "210",
+          "ward_name": "DALLOPURA",
+          "p": 0.006
+        },
+        {
+          "ward_no": "219",
+          "ward_name": "MAYUR VIHAR PHASE II",
+          "p": 0.004
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Khajoori Chowk",
+      "accuracy_m": 450,
+      "ward_no": "269",
+      "ward_name": "KHAJOORI KHAS",
+      "district": "North-East",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.595,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "270",
+          "ward_name": "TUKHMIR PUR",
+          "p": 0.256
+        },
+        {
+          "ward_no": "267",
+          "ward_name": "NEHRU VIHAR",
+          "p": 0.074
+        },
+        {
+          "ward_no": "272",
+          "ward_name": "SONIA VIHAR",
+          "p": 0.05
+        },
+        {
+          "ward_no": "268",
+          "ward_name": "MUSTAFABAD",
+          "p": 0.026
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "C-1 Janakpuri",
+      "accuracy_m": 500,
+      "ward_no": "117",
+      "ward_name": "JANAK PURI WEST",
+      "district": "West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.599,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "118",
+          "ward_name": "JANAK PURI SOUTH",
+          "p": 0.364
+        },
+        {
+          "ward_no": "120",
+          "ward_name": "SITA PURI",
+          "p": 0.024
+        },
+        {
+          "ward_no": "109",
+          "ward_name": "JANAK PURI NORTH",
+          "p": 0.013
+        },
+        {
+          "ward_no": "129",
+          "ward_name": "DABRI",
+          "p": 0.001
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Radisson Hotel",
+      "accuracy_m": 500,
+      "ward_no": "143",
+      "ward_name": "KAPASHERA",
+      "district": null,
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.612,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "144",
+          "ward_name": "MAHIPALPUR",
+          "p": 0.388
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Flyover Raja Ram Marg",
+      "accuracy_m": 500,
+      "ward_no": "231",
+      "ward_name": "GHONDLI",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.614,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "230",
+          "ward_name": "GEETA COLONY",
+          "p": 0.298
+        },
+        {
+          "ward_no": "229",
+          "ward_name": "KRISHNA  NAGAR",
+          "p": 0.088
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Shastri Park/IT Park",
+      "accuracy_m": 600,
+      "ward_no": "UNWARDED_1",
+      "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+      "district": "Shahdara",
+      "fatal_crashes_2024": null,
+      "p_same_ward": 0.616,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "233",
+          "ward_name": "DHARAMPURA",
+          "p": 0.344
+        },
+        {
+          "ward_no": "234",
+          "ward_name": "GANDHI NAGAR",
+          "p": 0.04
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Deepali Chowk",
+      "accuracy_m": 450,
+      "ward_no": "60",
+      "ward_name": "SARASWATI VIHAR",
+      "district": "Outer",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.625,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "51",
+          "ward_name": "ROHINI EAST",
+          "p": 0.286
+        },
+        {
+          "ward_no": "45",
+          "ward_name": "ROHINI SOUTH",
+          "p": 0.089
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Govindpuri Metro Station",
+      "accuracy_m": 150,
+      "ward_no": "196",
+      "ward_name": "KALKAJI",
+      "district": "South-East",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.628,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "194",
+          "ward_name": "EAST OF KAILASH",
+          "p": 0.372
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "CRPF Camp Sonia Vihar",
+      "accuracy_m": 900,
+      "ward_no": "272",
+      "ward_name": "SONIA VIHAR",
+      "district": "North-East",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.631,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "UNWARDED_1",
+          "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+          "p": 0.37
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Shani Mandir NH-1",
+      "accuracy_m": 1800,
+      "ward_no": "4",
+      "ward_name": "BAKHTAWAR PUR",
+      "district": "Outer North",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.642,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "3",
+          "ward_name": "ALIPUR",
+          "p": 0.359
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Metro Station Haider Pur",
+      "accuracy_m": 150,
+      "ward_no": "54",
+      "ward_name": "PITAMPUR NORTH",
+      "district": "North-West",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.652,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "17",
+          "ward_name": "SAMAYPUR BADLI",
+          "p": 0.349
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Red Light Pulprahlad Pur",
+      "accuracy_m": 500,
+      "ward_no": "198",
+      "ward_name": "PUL PEHLAD",
+      "district": "South-East",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.665,
+      "p_outside_all_wards": 0.072,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "197",
+          "ward_name": "TUGHLAKABAD",
+          "p": 0.256
+        },
+        {
+          "ward_no": "199",
+          "ward_name": "TEKHAND",
+          "p": 0.008
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Chhatra Marg Crossing",
+      "accuracy_m": 500,
+      "ward_no": "10",
+      "ward_name": "TIMAR PUR",
+      "district": "North",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.685,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "12",
+          "ward_name": "G.T.B. NAGAR",
+          "p": 0.315
+        },
+        {
+          "ward_no": "70",
+          "ward_name": "RANA PRATAP BAGH",
+          "p": 0.001
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Siraspur",
+      "accuracy_m": 800,
+      "ward_no": "3",
+      "ward_name": "ALIPUR",
+      "district": "Outer North",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.739,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "26",
+          "ward_name": "SAHIBABAD DAULAT PUR",
+          "p": 0.228
+        },
+        {
+          "ward_no": "18",
+          "ward_name": "LIBAS PUR",
+          "p": 0.033
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Mukarba Chowk",
+      "accuracy_m": 300,
+      "ward_no": "15",
+      "ward_name": "SARAI PIPAL THALA",
+      "district": "North-West",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.744,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "17",
+          "ward_name": "SAMAYPUR BADLI",
+          "p": 0.257
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Seelampur T Point",
+      "accuracy_m": 450,
+      "ward_no": "236",
+      "ward_name": "RAGHUBAR PURA",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.749,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "233",
+          "ward_name": "DHARAMPURA",
+          "p": 0.135
+        },
+        {
+          "ward_no": "250",
+          "ward_name": "ZAFFRABAD",
+          "p": 0.098
+        },
+        {
+          "ward_no": "235",
+          "ward_name": "AZAD NAGAR",
+          "p": 0.011
+        },
+        {
+          "ward_no": "248",
+          "ward_name": "WELCOME COLONY",
+          "p": 0.008
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Geeta Colony Flyover",
+      "accuracy_m": 500,
+      "ward_no": "229",
+      "ward_name": "KRISHNA  NAGAR",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 6,
+      "p_same_ward": 0.752,
+      "p_outside_all_wards": 0.003,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "236",
+          "ward_name": "RAGHUBAR PURA",
+          "p": 0.125
+        },
+        {
+          "ward_no": "230",
+          "ward_name": "GEETA COLONY",
+          "p": 0.102
+        },
+        {
+          "ward_no": "234",
+          "ward_name": "GANDHI NAGAR",
+          "p": 0.013
+        },
+        {
+          "ward_no": "233",
+          "ward_name": "DHARAMPURA",
+          "p": 0.008
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "District Center Janakpuri",
+      "accuracy_m": 300,
+      "ward_no": "117",
+      "ward_name": "JANAK PURI WEST",
+      "district": "West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.768,
+      "p_outside_all_wards": 0.013,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "113",
+          "ward_name": "MAHAVIR NAGAR",
+          "p": 0.125
+        },
+        {
+          "ward_no": "109",
+          "ward_name": "JANAK PURI NORTH",
+          "p": 0.095
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Ram Charan Aggarwal Chowk",
+      "accuracy_m": 600,
+      "ward_no": "153",
+      "ward_name": "DARYAGANJ",
+      "district": "Central",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.779,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "81",
+          "ward_name": "MINTO ROAD",
+          "p": 0.201
+        },
+        {
+          "ward_no": "154",
+          "ward_name": "NIZAMUDDIN",
+          "p": 0.013
+        },
+        {
+          "ward_no": "NDMC_1",
+          "ward_name": "NDMC CHARGE 1",
+          "p": 0.008
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Tilak Nagar Flyover",
+      "accuracy_m": 450,
+      "ward_no": "114",
+      "ward_name": "TILAK NAGAR",
+      "district": "West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.78,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "106",
+          "ward_name": "TAGORE GARDEN",
+          "p": 0.149
+        },
+        {
+          "ward_no": "109",
+          "ward_name": "JANAK PURI NORTH",
+          "p": 0.055
+        },
+        {
+          "ward_no": "116",
+          "ward_name": "VIKASPURI EAST",
+          "p": 0.017
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Near KV School Naraina",
+      "accuracy_m": 650,
+      "ward_no": "152",
+      "ward_name": "NARAINA",
+      "district": "West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.788,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "CANT_1",
+          "ward_name": "DELHI CANTT CHARGE 1",
+          "p": 0.125
+        },
+        {
+          "ward_no": "151",
+          "ward_name": "INDER PURI",
+          "p": 0.046
+        },
+        {
+          "ward_no": "98",
+          "ward_name": "MANSAROWER GARDEN",
+          "p": 0.026
+        },
+        {
+          "ward_no": "111",
+          "ward_name": "HARI NAGAR",
+          "p": 0.016
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Jeewan Mala Hospital",
+      "accuracy_m": 600,
+      "ward_no": "91",
+      "ward_name": "KAROL BAGH",
+      "district": "Central",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.804,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "75",
+          "ward_name": "KISHAN GANJ",
+          "p": 0.166
+        },
+        {
+          "ward_no": "92",
+          "ward_name": "DEV NAGAR",
+          "p": 0.029
+        },
+        {
+          "ward_no": "74",
+          "ward_name": "INDER LOK COLONY",
+          "p": 0.001
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Shalimar Bagh",
+      "accuracy_m": 800,
+      "ward_no": "55",
+      "ward_name": "SHALIMAR BAGH NORTH",
+      "district": "North-West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.816,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "56",
+          "ward_name": "SHALIMAR BAGH SOUTH",
+          "p": 0.137
+        },
+        {
+          "ward_no": "15",
+          "ward_name": "SARAI PIPAL THALA",
+          "p": 0.047
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Nangli Poona",
+      "accuracy_m": 900,
+      "ward_no": "5",
+      "ward_name": "BHALASWA JAHAGIR PUR",
+      "district": "Outer North",
+      "fatal_crashes_2024": null,
+      "p_same_ward": 0.825,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "18",
+          "ward_name": "LIBAS PUR",
+          "p": 0.176
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Zakhira Flyover",
+      "accuracy_m": 400,
+      "ward_no": "100",
+      "ward_name": "KARAM PURA",
+      "district": "West",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.835,
+      "p_outside_all_wards": 0.006,
+      "other_wards_possible": 4,
+      "alternatives": [
+        {
+          "ward_no": "62",
+          "ward_name": "RAMPURA",
+          "p": 0.08
+        },
+        {
+          "ward_no": "99",
+          "ward_name": "MOTI NAGAR",
+          "p": 0.07
+        },
+        {
+          "ward_no": "74",
+          "ward_name": "INDER LOK COLONY",
+          "p": 0.007
+        },
+        {
+          "ward_no": "61",
+          "ward_name": "TRI NAGAR",
+          "p": 0.004
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Prem Bari Pull",
+      "accuracy_m": 500,
+      "ward_no": "68",
+      "ward_name": "ASHOK VIHAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.854,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "66",
+          "ward_name": "SAWAN PARK",
+          "p": 0.107
+        },
+        {
+          "ward_no": "56",
+          "ward_name": "SHALIMAR BAGH SOUTH",
+          "p": 0.04
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Keshopur T Point",
+      "accuracy_m": 500,
+      "ward_no": "116",
+      "ward_name": "VIKASPURI EAST",
+      "district": "West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.866,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 3,
+      "alternatives": [
+        {
+          "ward_no": "41",
+          "ward_name": "GURU HARKISHAN NAGAR",
+          "p": 0.094
+        },
+        {
+          "ward_no": "44",
+          "ward_name": "QUAMMRUDDIN NAGAR",
+          "p": 0.038
+        },
+        {
+          "ward_no": "115",
+          "ward_name": "MAJOR BHUPINDAR SINGH NAGAR",
+          "p": 0.002
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Rajouri Garden",
+      "accuracy_m": 700,
+      "ward_no": "105",
+      "ward_name": "RAJOURI GARDEN",
+      "district": "West",
+      "fatal_crashes_2024": null,
+      "p_same_ward": 0.866,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "112",
+          "ward_name": "SUBHASH NAGAR",
+          "p": 0.117
+        },
+        {
+          "ward_no": "101",
+          "ward_name": "RAJA GARDEN",
+          "p": 0.017
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Near SDM Office Geeta Colony",
+      "accuracy_m": 500,
+      "ward_no": "230",
+      "ward_name": "GEETA COLONY",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.879,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "229",
+          "ward_name": "KRISHNA  NAGAR",
+          "p": 0.067
+        },
+        {
+          "ward_no": "231",
+          "ward_name": "GHONDLI",
+          "p": 0.054
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Near Haldiram Wazirpur",
+      "accuracy_m": 500,
+      "ward_no": "68",
+      "ward_name": "ASHOK VIHAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.889,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "56",
+          "ward_name": "SHALIMAR BAGH SOUTH",
+          "p": 0.061
+        },
+        {
+          "ward_no": "66",
+          "ward_name": "SAWAN PARK",
+          "p": 0.051
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Kingsway Camp Chowk",
+      "accuracy_m": 450,
+      "ward_no": "12",
+      "ward_name": "G.T.B. NAGAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.894,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "72",
+          "ward_name": "MODEL TOWN",
+          "p": 0.106
+        },
+        {
+          "ward_no": "10",
+          "ward_name": "TIMAR PUR",
+          "p": 0.001
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Hamdard Nagar Red Light",
+      "accuracy_m": 600,
+      "ward_no": "185",
+      "ward_name": "TUGHLAKABAD EXTN",
+      "district": "South",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.901,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "188",
+          "ward_name": "SANGAM VIHAR EAST",
+          "p": 0.079
+        },
+        {
+          "ward_no": "197",
+          "ward_name": "TUGHLAKABAD",
+          "p": 0.021
+        }
+      ],
+      "stability": "uncertain"
+    },
+    {
+      "zone": "Azadpur Sabzi Mandi",
+      "accuracy_m": 250,
+      "ward_no": "14",
+      "ward_name": "ADARASH  NAGAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 11,
+      "p_same_ward": 0.953,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "13",
+          "ward_name": "DHIR PUR",
+          "p": 0.047
+        }
+      ],
+      "stability": "stable"
+    },
+    {
+      "zone": "Hanuman Mandir Yamuna Bazar",
+      "accuracy_m": 500,
+      "ward_no": "77",
+      "ward_name": "KASHMERE GATE",
+      "district": "North",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 0.962,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "UNWARDED_1",
+          "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+          "p": 0.038
+        }
+      ],
+      "stability": "stable"
+    },
+    {
+      "zone": "Tughlaqabad Village Red Light",
+      "accuracy_m": 650,
+      "ward_no": "197",
+      "ward_name": "TUGHLAKABAD",
+      "district": "South-East",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.963,
+      "p_outside_all_wards": 0.002,
+      "other_wards_possible": 2,
+      "alternatives": [
+        {
+          "ward_no": "188",
+          "ward_name": "SANGAM VIHAR EAST",
+          "p": 0.025
+        },
+        {
+          "ward_no": "198",
+          "ward_name": "PUL PEHLAD",
+          "p": 0.011
+        }
+      ],
+      "stability": "stable"
+    },
+    {
+      "zone": "Under Pass Gajipur",
+      "accuracy_m": 500,
+      "ward_no": "214",
+      "ward_name": "KHICHRIPUR",
+      "district": "East",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.969,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "219",
+          "ward_name": "MAYUR VIHAR PHASE II",
+          "p": 0.031
+        }
+      ],
+      "stability": "stable"
+    },
+    {
+      "zone": "Anand Vihar ISBT",
+      "accuracy_m": 300,
+      "ward_no": "227",
+      "ward_name": "I.P EXTENTION",
+      "district": "East",
+      "fatal_crashes_2024": 8,
+      "p_same_ward": 0.987,
+      "p_outside_all_wards": 0.001,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "225",
+          "ward_name": "ANAND VIHAR",
+          "p": 0.013
+        }
+      ],
+      "stability": "stable"
+    },
+    {
+      "zone": "Wazir Pur Depot",
+      "accuracy_m": 300,
+      "ward_no": "68",
+      "ward_name": "ASHOK VIHAR",
+      "district": "North-West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.994,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "66",
+          "ward_name": "SAWAN PARK",
+          "p": 0.006
+        }
+      ],
+      "stability": "stable"
+    },
+    {
+      "zone": "Kashmiri Gate Chowk Boulevard Road",
+      "accuracy_m": 300,
+      "ward_no": "77",
+      "ward_name": "KASHMERE GATE",
+      "district": "North",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 0.997,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "78",
+          "ward_name": "MAJNU KA TILA",
+          "p": 0.003
+        }
+      ],
+      "stability": "stable"
+    },
+    {
+      "zone": "Khel Gaon",
+      "accuracy_m": 600,
+      "ward_no": "UNWARDED_1",
+      "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 0.998,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 1,
+      "alternatives": [
+        {
+          "ward_no": "211",
+          "ward_name": "TRILOK PURI",
+          "p": 0.002
+        }
+      ],
+      "stability": "stable"
+    },
+    {
+      "zone": "AIIMS",
+      "accuracy_m": 250,
+      "ward_no": "NDMC_7",
+      "ward_name": "NDMC CHARGE 7",
+      "district": "South-West",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Akshardham Mandir",
+      "accuracy_m": 200,
+      "ward_no": "UNWARDED_1",
+      "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 8,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Archana Cinema Red Light",
+      "accuracy_m": 300,
+      "ward_no": "192",
+      "ward_name": "GREATER KAILASH-I",
+      "district": "South",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Ghewra More",
+      "accuracy_m": 500,
+      "ward_no": "30",
+      "ward_name": "MUNDAKA",
+      "district": "Outer",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Goyla Village Najafgarh",
+      "accuracy_m": 900,
+      "ward_no": "135",
+      "ward_name": "KAKRAULA",
+      "district": "Dwarka",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Hanuman Mandir JJ Colony Bawana",
+      "accuracy_m": 800,
+      "ward_no": "28",
+      "ward_name": "BAWANA",
+      "district": "Outer North",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "ISBT Kashmiri Gate",
+      "accuracy_m": 250,
+      "ward_no": "77",
+      "ward_name": "KASHMERE GATE",
+      "district": "North",
+      "fatal_crashes_2024": 8,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Majlis Park Metro Station",
+      "accuracy_m": 150,
+      "ward_no": "13",
+      "ward_name": "DHIR PUR",
+      "district": "North-West",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Metro Station Dilshad Garden",
+      "accuracy_m": 150,
+      "ward_no": "239",
+      "ward_name": "VIVEK VIHAR",
+      "district": "Shahdara",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Near Yashobhoomi Convention Centre Dwarka",
+      "accuracy_m": 300,
+      "ward_no": "141",
+      "ward_name": "BIJWASAN",
+      "district": "Dwarka",
+      "fatal_crashes_2024": 7,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Punjabi Bagh Chowk",
+      "accuracy_m": 300,
+      "ward_no": "103",
+      "ward_name": "PUNJABI BAGH",
+      "district": "West",
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Raja Harishchander Hospital",
+      "accuracy_m": 300,
+      "ward_no": "1",
+      "ward_name": "NARELA",
+      "district": "Outer North",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Rajoukari Flyover",
+      "accuracy_m": 600,
+      "ward_no": "172",
+      "ward_name": "KISHANGARH",
+      "district": "South-West",
+      "fatal_crashes_2024": 7,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Sarai Kale Khan",
+      "accuracy_m": 350,
+      "ward_no": "154",
+      "ward_name": "NIZAMUDDIN",
+      "district": "South-East",
+      "fatal_crashes_2024": 4,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Singhu Border",
+      "accuracy_m": 400,
+      "ward_no": null,
+      "ward_name": null,
+      "district": null,
+      "fatal_crashes_2024": 5,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 1,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    },
+    {
+      "zone": "Tilak Marg Bhagwan Das Marg Crossing",
+      "accuracy_m": 300,
+      "ward_no": "NDMC_1",
+      "ward_name": "NDMC CHARGE 1",
+      "district": "New Delhi",
+      "fatal_crashes_2024": 3,
+      "p_same_ward": 1,
+      "p_outside_all_wards": 0,
+      "other_wards_possible": 0,
+      "alternatives": [],
+      "stability": "stable"
+    }
+  ],
+  "wards": [
+    {
+      "ward_no": "14",
+      "ward_name": "ADARASH  NAGAR",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 19,
+      "baseline_rank": 1,
+      "fatal_p05": 11,
+      "fatal_median": 15,
+      "fatal_p95": 23,
+      "rank_p05": 1,
+      "rank_median": 3,
+      "rank_p95": 7,
+      "p_ranked": 0.992,
+      "p_top10": 0.968,
+      "p_unchanged_total": 0.328,
+      "stability": "robust top 10"
+    },
+    {
+      "ward_no": "10",
+      "ward_name": "TIMAR PUR",
+      "district": "North",
+      "baseline_fatal_crashes_in_zones": 19,
+      "baseline_rank": 1,
+      "fatal_p05": 4,
+      "fatal_median": 15,
+      "fatal_p95": 27,
+      "rank_p05": 1,
+      "rank_median": 3,
+      "rank_p95": 23,
+      "p_ranked": 0.986,
+      "p_top10": 0.864,
+      "p_unchanged_total": 0.069,
+      "stability": "likely top 10"
+    },
+    {
+      "ward_no": "77",
+      "ward_name": "KASHMERE GATE",
+      "district": "North",
+      "baseline_fatal_crashes_in_zones": 17,
+      "baseline_rank": 3,
+      "fatal_p05": 17,
+      "fatal_median": 17,
+      "fatal_p95": 17,
+      "rank_p05": 1,
+      "rank_median": 2,
+      "rank_p95": 4,
+      "p_ranked": 1,
+      "p_top10": 1,
+      "p_unchanged_total": 0.96,
+      "stability": "robust top 10"
+    },
+    {
+      "ward_no": "68",
+      "ward_name": "ASHOK VIHAR",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 16,
+      "baseline_rank": 4,
+      "fatal_p05": 6,
+      "fatal_median": 15,
+      "fatal_p95": 20,
+      "rank_p05": 1,
+      "rank_median": 4,
+      "rank_p95": 14,
+      "p_ranked": 1,
+      "p_top10": 0.933,
+      "p_unchanged_total": 0.212,
+      "stability": "robust top 10"
+    },
+    {
+      "ward_no": "UNWARDED_1",
+      "ward_name": "YAMUNA FLOODPLAIN (UNWARDED)",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 11,
+      "baseline_rank": 5,
+      "fatal_p05": 11,
+      "fatal_median": 15,
+      "fatal_p95": 24,
+      "rank_p05": 1,
+      "rank_median": 4,
+      "rank_p95": 7,
+      "p_ranked": 1,
+      "p_top10": 1,
+      "p_unchanged_total": 0.294,
+      "stability": "robust top 10"
+    },
+    {
+      "ward_no": "227",
+      "ward_name": "I.P EXTENTION",
+      "district": "East",
+      "baseline_fatal_crashes_in_zones": 11,
+      "baseline_rank": 5,
+      "fatal_p05": 8,
+      "fatal_median": 11,
+      "fatal_p95": 11,
+      "rank_p05": 5,
+      "rank_median": 8,
+      "rank_p95": 12,
+      "p_ranked": 0.993,
+      "p_top10": 0.793,
+      "p_unchanged_total": 0.501,
+      "stability": "likely top 10"
+    },
+    {
+      "ward_no": "229",
+      "ward_name": "KRISHNA  NAGAR",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 11,
+      "baseline_rank": 5,
+      "fatal_p05": 0,
+      "fatal_median": 6,
+      "fatal_p95": 15,
+      "rank_p05": 4,
+      "rank_median": 8,
+      "rank_p95": 21,
+      "p_ranked": 0.907,
+      "p_top10": 0.489,
+      "p_unchanged_total": 0.356,
+      "stability": "rank depends on position"
+    },
+    {
+      "ward_no": "13",
+      "ward_name": "DHIR PUR",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 10,
+      "baseline_rank": 8,
+      "fatal_p05": 4,
+      "fatal_median": 8,
+      "fatal_p95": 14,
+      "rank_p05": 3,
+      "rank_median": 9,
+      "rank_p95": 31,
+      "p_ranked": 1,
+      "p_top10": 0.606,
+      "p_unchanged_total": 0.202,
+      "stability": "likely top 10"
+    },
+    {
+      "ward_no": "103",
+      "ward_name": "PUNJABI BAGH",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 9,
+      "baseline_rank": 9,
+      "fatal_p05": 5,
+      "fatal_median": 5,
+      "fatal_p95": 9,
+      "rank_p05": 8,
+      "rank_median": 17,
+      "rank_p95": 22,
+      "p_ranked": 1,
+      "p_top10": 0.398,
+      "p_unchanged_total": 0.449,
+      "stability": "rank depends on position"
+    },
+    {
+      "ward_no": "15",
+      "ward_name": "SARAI PIPAL THALA",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 9,
+      "baseline_rank": 9,
+      "fatal_p05": 0,
+      "fatal_median": 5,
+      "fatal_p95": 9,
+      "rank_p05": 8,
+      "rank_median": 19,
+      "rank_p95": 29,
+      "p_ranked": 0.821,
+      "p_top10": 0.2,
+      "p_unchanged_total": 0.196,
+      "stability": "rank depends on position"
+    },
+    {
+      "ward_no": "100",
+      "ward_name": "KARAM PURA",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 8,
+      "baseline_rank": 11,
+      "fatal_p05": 0,
+      "fatal_median": 5,
+      "fatal_p95": 8,
+      "rank_p05": 9,
+      "rank_median": 13,
+      "rank_p95": 42,
+      "p_ranked": 0.925,
+      "p_top10": 0.249,
+      "p_unchanged_total": 0.479,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "11",
+      "ward_name": "MUKHERJEE NAGAR",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 8,
+      "baseline_rank": 11,
+      "fatal_p05": 0,
+      "fatal_median": 5,
+      "fatal_p95": 17,
+      "rank_p05": 2,
+      "rank_median": 11,
+      "rank_p95": 43,
+      "p_ranked": 0.813,
+      "p_top10": 0.371,
+      "p_unchanged_total": 0.176,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "141",
+      "ward_name": "BIJWASAN",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 7,
+      "baseline_rank": 13,
+      "fatal_p05": 7,
+      "fatal_median": 7,
+      "fatal_p95": 7,
+      "rank_p05": 10,
+      "rank_median": 13,
+      "rank_p95": 16,
+      "p_ranked": 1,
+      "p_top10": 0.063,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "172",
+      "ward_name": "KISHANGARH",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 7,
+      "baseline_rank": 13,
+      "fatal_p05": 7,
+      "fatal_median": 7,
+      "fatal_p95": 7,
+      "rank_p05": 10,
+      "rank_median": 13,
+      "rank_p95": 16,
+      "p_ranked": 1,
+      "p_top10": 0.063,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "18",
+      "ward_name": "LIBAS PUR",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 7,
+      "baseline_rank": 13,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 10,
+      "rank_p05": 6,
+      "rank_median": 13,
+      "rank_p95": 43,
+      "p_ranked": 0.668,
+      "p_top10": 0.206,
+      "p_unchanged_total": 0.304,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "214",
+      "ward_name": "KHICHRIPUR",
+      "district": "East",
+      "baseline_fatal_crashes_in_zones": 6,
+      "baseline_rank": 16,
+      "fatal_p05": 3,
+      "fatal_median": 6,
+      "fatal_p95": 9,
+      "rank_p05": 8,
+      "rank_median": 17,
+      "rank_p95": 43,
+      "p_ranked": 0.994,
+      "p_top10": 0.195,
+      "p_unchanged_total": 0.472,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "117",
+      "ward_name": "JANAK PURI WEST",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 6,
+      "baseline_rank": 16,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 6,
+      "rank_p05": 14,
+      "rank_median": 20,
+      "rank_p95": 44,
+      "p_ranked": 0.909,
+      "p_top10": 0,
+      "p_unchanged_total": 0.458,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "17",
+      "ward_name": "SAMAYPUR BADLI",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 6,
+      "baseline_rank": 16,
+      "fatal_p05": 0,
+      "fatal_median": 6,
+      "fatal_p95": 18,
+      "rank_p05": 2,
+      "rank_median": 9,
+      "rank_p95": 20,
+      "p_ranked": 0.82,
+      "p_top10": 0.423,
+      "p_unchanged_total": 0.193,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "5",
+      "ward_name": "BHALASWA JAHAGIR PUR",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 6,
+      "baseline_rank": 16,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 9,
+      "rank_p05": 6,
+      "rank_median": 16,
+      "rank_p95": 43,
+      "p_ranked": 0.744,
+      "p_top10": 0.241,
+      "p_unchanged_total": 0.245,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "42",
+      "ward_name": "PERAGHARHI",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 6,
+      "baseline_rank": 16,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 6,
+      "rank_p05": 15,
+      "rank_median": 40,
+      "rank_p95": 44,
+      "p_ranked": 0.737,
+      "p_top10": 0,
+      "p_unchanged_total": 0.239,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "20",
+      "ward_name": "JAHANGIR PURI -II",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 6,
+      "baseline_rank": 16,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 6,
+      "rank_p05": 14,
+      "rank_median": 16,
+      "rank_p95": 19,
+      "p_ranked": 0.422,
+      "p_top10": 0,
+      "p_unchanged_total": 0.422,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "135",
+      "ward_name": "KAKRAULA",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 5,
+      "baseline_rank": 22,
+      "fatal_p05": 5,
+      "fatal_median": 5,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 1,
+      "p_top10": 0,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "192",
+      "ward_name": "GREATER KAILASH-I",
+      "district": "South",
+      "baseline_fatal_crashes_in_zones": 5,
+      "baseline_rank": 22,
+      "fatal_p05": 5,
+      "fatal_median": 5,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 1,
+      "p_top10": 0,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "28",
+      "ward_name": "BAWANA",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 5,
+      "baseline_rank": 22,
+      "fatal_p05": 5,
+      "fatal_median": 5,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 1,
+      "p_top10": 0,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "236",
+      "ward_name": "RAGHUBAR PURA",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 5,
+      "baseline_rank": 22,
+      "fatal_p05": 0,
+      "fatal_median": 5,
+      "fatal_p95": 11,
+      "rank_p05": 5,
+      "rank_median": 19,
+      "rank_p95": 23,
+      "p_ranked": 0.808,
+      "p_top10": 0.184,
+      "p_unchanged_total": 0.601,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "198",
+      "ward_name": "PUL PEHLAD",
+      "district": "South-East",
+      "baseline_fatal_crashes_in_zones": 5,
+      "baseline_rank": 22,
+      "fatal_p05": 0,
+      "fatal_median": 5,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.669,
+      "p_top10": 0.004,
+      "p_unchanged_total": 0.658,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "54",
+      "ward_name": "PITAMPUR NORTH",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 5,
+      "baseline_rank": 22,
+      "fatal_p05": 0,
+      "fatal_median": 5,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.652,
+      "p_top10": 0,
+      "p_unchanged_total": 0.652,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "269",
+      "ward_name": "KHAJOORI KHAS",
+      "district": "North-East",
+      "baseline_fatal_crashes_in_zones": 5,
+      "baseline_rank": 22,
+      "fatal_p05": 0,
+      "fatal_median": 5,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.595,
+      "p_top10": 0,
+      "p_unchanged_total": 0.595,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "23",
+      "ward_name": "BUDH VIHAR",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 5,
+      "baseline_rank": 22,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.222,
+      "p_top10": 0,
+      "p_unchanged_total": 0.222,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "154",
+      "ward_name": "NIZAMUDDIN",
+      "district": "South-East",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 4,
+      "fatal_median": 4,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 1,
+      "p_top10": 0.002,
+      "p_unchanged_total": 0.988,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "3",
+      "ward_name": "ALIPUR",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 3,
+      "fatal_median": 7,
+      "fatal_p95": 13,
+      "rank_p05": 6,
+      "rank_median": 12,
+      "rank_p95": 42,
+      "p_ranked": 0.961,
+      "p_top10": 0.35,
+      "p_unchanged_total": 0.123,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "230",
+      "ward_name": "GEETA COLONY",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 13,
+      "rank_p05": 5,
+      "rank_median": 26,
+      "rank_p95": 32,
+      "p_ranked": 0.933,
+      "p_top10": 0.348,
+      "p_unchanged_total": 0.477,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "12",
+      "ward_name": "G.T.B. NAGAR",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 8,
+      "rank_p05": 9,
+      "rank_median": 28,
+      "rank_p95": 32,
+      "p_ranked": 0.926,
+      "p_top10": 0.153,
+      "p_unchanged_total": 0.644,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "116",
+      "ward_name": "VIKASPURI EAST",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.868,
+      "p_top10": 0.001,
+      "p_unchanged_total": 0.851,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "231",
+      "ward_name": "GHONDLI",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 9,
+      "rank_p05": 9,
+      "rank_median": 29,
+      "rank_p95": 32,
+      "p_ranked": 0.661,
+      "p_top10": 0.075,
+      "p_unchanged_total": 0.539,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "78",
+      "ward_name": "MAJNU KA TILA",
+      "district": "North",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 10,
+      "rank_p05": 7,
+      "rank_median": 16,
+      "rank_p95": 31,
+      "p_ranked": 0.651,
+      "p_top10": 0.135,
+      "p_unchanged_total": 0.157,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "196",
+      "ward_name": "KALKAJI",
+      "district": "South-East",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.628,
+      "p_top10": 0,
+      "p_unchanged_total": 0.628,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "81",
+      "ward_name": "MINTO ROAD",
+      "district": "Central",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 7,
+      "rank_p05": 12,
+      "rank_median": 29,
+      "rank_p95": 43,
+      "p_ranked": 0.623,
+      "p_top10": 0.006,
+      "p_unchanged_total": 0.422,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "6",
+      "ward_name": "MUKUND PUR",
+      "district": "North",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 10,
+      "rank_p05": 8,
+      "rank_median": 29,
+      "rank_p95": 33,
+      "p_ranked": 0.604,
+      "p_top10": 0.085,
+      "p_unchanged_total": 0.446,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "32",
+      "ward_name": "NILOTHI",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.583,
+      "p_top10": 0,
+      "p_unchanged_total": 0.583,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "74",
+      "ward_name": "INDER LOK COLONY",
+      "district": "Central",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.567,
+      "p_top10": 0.003,
+      "p_unchanged_total": 0.56,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "CANT_4",
+      "ward_name": "DELHI CANTT CHARGE 4",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 4,
+      "fatal_p95": 4,
+      "rank_p05": 26,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.565,
+      "p_top10": 0.001,
+      "p_unchanged_total": 0.534,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "110",
+      "ward_name": "NANGAL RAYA",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 4,
+      "baseline_rank": 30,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.499,
+      "p_top10": 0,
+      "p_unchanged_total": 0.499,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "NDMC_1",
+      "ward_name": "NDMC CHARGE 1",
+      "district": "New Delhi",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 3,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 1,
+      "p_top10": 0,
+      "p_unchanged_total": 0.993,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "NDMC_7",
+      "ward_name": "NDMC CHARGE 7",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 3,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 1,
+      "p_top10": 0,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "239",
+      "ward_name": "VIVEK VIHAR",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 3,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 1,
+      "p_top10": 0,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "30",
+      "ward_name": "MUNDAKA",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 3,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 1,
+      "p_top10": 0,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "1",
+      "ward_name": "NARELA",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 3,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 1,
+      "p_top10": 0,
+      "p_unchanged_total": 1,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "197",
+      "ward_name": "TUGHLAKABAD",
+      "district": "South-East",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 3,
+      "fatal_median": 3,
+      "fatal_p95": 8,
+      "rank_p05": 9,
+      "rank_median": 41,
+      "rank_p95": 44,
+      "p_ranked": 0.972,
+      "p_top10": 0.134,
+      "p_unchanged_total": 0.702,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "185",
+      "ward_name": "TUGHLAKABAD EXTN",
+      "district": "South",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.901,
+      "p_top10": 0,
+      "p_unchanged_total": 0.901,
+      "stability": "stable"
+    },
+    {
+      "ward_no": "153",
+      "ward_name": "DARYAGANJ",
+      "district": "Central",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 7,
+      "rank_p05": 11,
+      "rank_median": 40,
+      "rank_p95": 44,
+      "p_ranked": 0.851,
+      "p_top10": 0.015,
+      "p_unchanged_total": 0.52,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "55",
+      "ward_name": "SHALIMAR BAGH NORTH",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.816,
+      "p_top10": 0,
+      "p_unchanged_total": 0.816,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "91",
+      "ward_name": "KAROL BAGH",
+      "district": "Central",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.804,
+      "p_top10": 0,
+      "p_unchanged_total": 0.804,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "152",
+      "ward_name": "NARAINA",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.788,
+      "p_top10": 0,
+      "p_unchanged_total": 0.788,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "114",
+      "ward_name": "TILAK NAGAR",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.78,
+      "p_top10": 0,
+      "p_unchanged_total": 0.78,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "272",
+      "ward_name": "SONIA VIHAR",
+      "district": "North-East",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 5,
+      "rank_p05": 18,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.65,
+      "p_top10": 0.016,
+      "p_unchanged_total": 0.6,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "4",
+      "ward_name": "BAKHTAWAR PUR",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.642,
+      "p_top10": 0,
+      "p_unchanged_total": 0.642,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "60",
+      "ward_name": "SARASWATI VIHAR",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 37,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.64,
+      "p_top10": 0,
+      "p_unchanged_total": 0.612,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "143",
+      "ward_name": "KAPASHERA",
+      "district": null,
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.612,
+      "p_top10": 0,
+      "p_unchanged_total": 0.612,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "209",
+      "ward_name": "MAYUR VIHAR PHASE-I",
+      "district": "East",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.588,
+      "p_top10": 0,
+      "p_unchanged_total": 0.588,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "245",
+      "ward_name": "DURGA PURI",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.577,
+      "p_top10": 0,
+      "p_unchanged_total": 0.577,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "CANT_6",
+      "ward_name": "DELHI CANTT CHARGE 6",
+      "district": null,
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.523,
+      "p_top10": 0,
+      "p_unchanged_total": 0.523,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "168",
+      "ward_name": "NANAK PURA",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 37,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.51,
+      "p_top10": 0.002,
+      "p_unchanged_total": 0.487,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "33",
+      "ward_name": "PREM NAGAR",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.372,
+      "p_top10": 0,
+      "p_unchanged_total": 0.372,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "138",
+      "ward_name": "NAJAFGARH",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.362,
+      "p_top10": 0,
+      "p_unchanged_total": 0.362,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "119",
+      "ward_name": "MILAP NAGAR",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 3,
+      "baseline_rank": 44,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.331,
+      "p_top10": 0,
+      "p_unchanged_total": 0.331,
+      "stability": "total depends on position"
+    },
+    {
+      "ward_no": "19",
+      "ward_name": "BHALSWA",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 6,
+      "fatal_p95": 12,
+      "rank_p05": 4,
+      "rank_median": 15,
+      "rank_p95": 19,
+      "p_ranked": 0.772,
+      "p_top10": 0.279,
+      "p_unchanged_total": 0.228,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "137",
+      "ward_name": "ROSHANPURA",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.589,
+      "p_top10": 0,
+      "p_unchanged_total": 0.411,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "41",
+      "ward_name": "GURU HARKISHAN NAGAR",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 4,
+      "rank_p05": 13,
+      "rank_median": 41,
+      "rank_p95": 44,
+      "p_ranked": 0.548,
+      "p_top10": 0.003,
+      "p_unchanged_total": 0.452,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "67",
+      "ward_name": "WAJIRPUR",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 5,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.543,
+      "p_top10": 0,
+      "p_unchanged_total": 0.458,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "25",
+      "ward_name": "POOTH KALAN",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 3,
+      "fatal_p95": 5,
+      "rank_p05": 16,
+      "rank_median": 20,
+      "rank_p95": 24,
+      "p_ranked": 0.509,
+      "p_top10": 0.012,
+      "p_unchanged_total": 0.491,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "NDMC_9",
+      "ward_name": "NDMC CHARGE 9",
+      "district": "New Delhi",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.467,
+      "p_top10": 0,
+      "p_unchanged_total": 0.534,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "CANT_3",
+      "ward_name": "DELHI CANTT CHARGE 3",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 14,
+      "rank_median": 30,
+      "rank_p95": 41,
+      "p_ranked": 0.466,
+      "p_top10": 0.002,
+      "p_unchanged_total": 0.534,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "73",
+      "ward_name": "SHASTRI NAGAR",
+      "district": "North",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.437,
+      "p_top10": 0,
+      "p_unchanged_total": 0.564,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "97",
+      "ward_name": "KIRTI NAGAR",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.43,
+      "p_top10": 0,
+      "p_unchanged_total": 0.57,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "31",
+      "ward_name": "NANGLOI JAT WEST",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.417,
+      "p_top10": 0,
+      "p_unchanged_total": 0.583,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "56",
+      "ward_name": "SHALIMAR BAGH SOUTH",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 7,
+      "rank_p05": 10,
+      "rank_median": 30,
+      "rank_p95": 43,
+      "p_ranked": 0.408,
+      "p_top10": 0.023,
+      "p_unchanged_total": 0.592,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "CANT_5",
+      "ward_name": "DELHI CANTT CHARGE 5",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.405,
+      "p_top10": 0,
+      "p_unchanged_total": 0.596,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "118",
+      "ward_name": "JANAK PURI SOUTH",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 28,
+      "rank_median": 41,
+      "rank_p95": 44,
+      "p_ranked": 0.392,
+      "p_top10": 0.001,
+      "p_unchanged_total": 0.608,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "144",
+      "ward_name": "MAHIPALPUR",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.388,
+      "p_top10": 0,
+      "p_unchanged_total": 0.613,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "194",
+      "ward_name": "EAST OF KAILASH",
+      "district": "South-East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.372,
+      "p_top10": 0,
+      "p_unchanged_total": 0.628,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "219",
+      "ward_name": "MAYUR VIHAR PHASE II",
+      "district": "East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 18,
+      "rank_median": 41,
+      "rank_p95": 44,
+      "p_ranked": 0.363,
+      "p_top10": 0.001,
+      "p_unchanged_total": 0.638,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "123",
+      "ward_name": "VIKAS PURI",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.351,
+      "p_top10": 0,
+      "p_unchanged_total": 0.649,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "8",
+      "ward_name": "JHARODA",
+      "district": "North",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 14,
+      "rank_median": 30,
+      "rank_p95": 40,
+      "p_ranked": 0.336,
+      "p_top10": 0.009,
+      "p_unchanged_total": 0.665,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "34",
+      "ward_name": "NITHARI",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.322,
+      "p_top10": 0,
+      "p_unchanged_total": 0.679,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "220",
+      "ward_name": "PATPARGANJ",
+      "district": "East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.303,
+      "p_top10": 0,
+      "p_unchanged_total": 0.698,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "59",
+      "ward_name": "RANI BAGH",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.287,
+      "p_top10": 0,
+      "p_unchanged_total": 0.714,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "51",
+      "ward_name": "ROHINI EAST",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.286,
+      "p_top10": 0,
+      "p_unchanged_total": 0.714,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "49",
+      "ward_name": "ROHINI NORTH",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 7,
+      "rank_p05": 10,
+      "rank_median": 12,
+      "rank_p95": 15,
+      "p_ranked": 0.277,
+      "p_top10": 0.025,
+      "p_unchanged_total": 0.724,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "26",
+      "ward_name": "SAHIBABAD DAULAT PUR",
+      "district": "Outer North",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 10,
+      "rank_median": 29,
+      "rank_p95": 32,
+      "p_ranked": 0.27,
+      "p_top10": 0.014,
+      "p_unchanged_total": 0.731,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "58",
+      "ward_name": "PASCHIM VIHAR NORTH",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 41,
+      "rank_p95": 44,
+      "p_ranked": 0.266,
+      "p_top10": 0,
+      "p_unchanged_total": 0.734,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "35",
+      "ward_name": "KIRARI SULEMAN NAGAR",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.266,
+      "p_top10": 0,
+      "p_unchanged_total": 0.734,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "104",
+      "ward_name": "MADIPUR",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.264,
+      "p_top10": 0,
+      "p_unchanged_total": 0.736,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "247",
+      "ward_name": "RAM NAGAR (247)",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.26,
+      "p_top10": 0,
+      "p_unchanged_total": 0.741,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "270",
+      "ward_name": "TUKHMIR PUR",
+      "district": "North-East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.256,
+      "p_top10": 0,
+      "p_unchanged_total": 0.745,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "71",
+      "ward_name": "SANGAM PARK",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.23,
+      "p_top10": 0,
+      "p_unchanged_total": 0.77,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "213",
+      "ward_name": "KALYAN PURI",
+      "district": "East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 38,
+      "rank_median": 41,
+      "rank_p95": 45,
+      "p_ranked": 0.216,
+      "p_top10": 0,
+      "p_unchanged_total": 0.785,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "CANT_7",
+      "ward_name": "DELHI CANTT CHARGE 7",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.195,
+      "p_top10": 0,
+      "p_unchanged_total": 0.805,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "75",
+      "ward_name": "KISHAN GANJ",
+      "district": "North",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.166,
+      "p_top10": 0,
+      "p_unchanged_total": 0.835,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "66",
+      "ward_name": "SAWAN PARK",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 10,
+      "rank_median": 21,
+      "rank_p95": 43,
+      "p_ranked": 0.166,
+      "p_top10": 0.009,
+      "p_unchanged_total": 0.834,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "7",
+      "ward_name": "BURARI",
+      "district": "North",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.161,
+      "p_top10": 0,
+      "p_unchanged_total": 0.84,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "109",
+      "ward_name": "JANAK PURI NORTH",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 41,
+      "rank_p95": 44,
+      "p_ranked": 0.158,
+      "p_top10": 0,
+      "p_unchanged_total": 0.842,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "128",
+      "ward_name": "BINDAPUR",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 38,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.153,
+      "p_top10": 0,
+      "p_unchanged_total": 0.847,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "106",
+      "ward_name": "TAGORE GARDEN",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 44,
+      "p_ranked": 0.149,
+      "p_top10": 0,
+      "p_unchanged_total": 0.852,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "233",
+      "ward_name": "DHARAMPURA",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.142,
+      "p_top10": 0.001,
+      "p_unchanged_total": 0.859,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "CANT_1",
+      "ward_name": "DELHI CANTT CHARGE 1",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.125,
+      "p_top10": 0,
+      "p_unchanged_total": 0.875,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "113",
+      "ward_name": "MAHAVIR NAGAR",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 38,
+      "rank_median": 41,
+      "rank_p95": 44,
+      "p_ranked": 0.125,
+      "p_top10": 0,
+      "p_unchanged_total": 0.875,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "24",
+      "ward_name": "VIJAY VIHAR",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.113,
+      "p_top10": 0,
+      "p_unchanged_total": 0.888,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "72",
+      "ward_name": "MODEL TOWN",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 26,
+      "rank_median": 29,
+      "rank_p95": 32,
+      "p_ranked": 0.106,
+      "p_top10": 0,
+      "p_unchanged_total": 0.895,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "46",
+      "ward_name": "MANGOLPURI  EAST",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 38,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.106,
+      "p_top10": 0,
+      "p_unchanged_total": 0.895,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "260",
+      "ward_name": "BABAR PUR",
+      "district": "North-East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.102,
+      "p_top10": 0,
+      "p_unchanged_total": 0.899,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "188",
+      "ward_name": "SANGAM VIHAR EAST",
+      "district": "South",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 38,
+      "rank_median": 42,
+      "rank_p95": 44,
+      "p_ranked": 0.101,
+      "p_top10": 0,
+      "p_unchanged_total": 0.9,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "212",
+      "ward_name": "NEW ASHOK NAGAR",
+      "district": "East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.1,
+      "p_top10": 0,
+      "p_unchanged_total": 0.901,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "250",
+      "ward_name": "ZAFFRABAD",
+      "district": "North-East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.098,
+      "p_top10": 0,
+      "p_unchanged_total": 0.902,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "57",
+      "ward_name": "PASCHIM VIHAR SOUTH",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 44,
+      "p_ranked": 0.092,
+      "p_top10": 0,
+      "p_unchanged_total": 0.909,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "45",
+      "ward_name": "ROHINI SOUTH",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.089,
+      "p_top10": 0,
+      "p_unchanged_total": 0.911,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "62",
+      "ward_name": "RAMPURA",
+      "district": "North-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 19,
+      "rank_p95": 22,
+      "p_ranked": 0.08,
+      "p_top10": 0,
+      "p_unchanged_total": 0.92,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "27",
+      "ward_name": "BEGUMPUR",
+      "district": "Rohini",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.08,
+      "p_top10": 0,
+      "p_unchanged_total": 0.921,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "267",
+      "ward_name": "NEHRU VIHAR",
+      "district": "North-East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 23,
+      "p_ranked": 0.074,
+      "p_top10": 0,
+      "p_unchanged_total": 0.927,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "84",
+      "ward_name": "TURKMAN GATE",
+      "district": "Central",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 32,
+      "p_ranked": 0.071,
+      "p_top10": 0,
+      "p_unchanged_total": 0.93,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "99",
+      "ward_name": "MOTI NAGAR",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 5,
+      "rank_p05": 17,
+      "rank_median": 19,
+      "rank_p95": 22,
+      "p_ranked": 0.07,
+      "p_top10": 0,
+      "p_unchanged_total": 0.93,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "79",
+      "ward_name": "JAMA MASJID",
+      "district": "Central",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 26,
+      "rank_median": 29,
+      "rank_p95": 33,
+      "p_ranked": 0.067,
+      "p_top10": 0,
+      "p_unchanged_total": 0.933,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "126",
+      "ward_name": "NAWADA",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.066,
+      "p_top10": 0,
+      "p_unchanged_total": 0.935,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "CANT_8",
+      "ward_name": "DELHI CANTT CHARGE 8",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.062,
+      "p_top10": 0,
+      "p_unchanged_total": 0.938,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "129",
+      "ward_name": "DABRI",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 34,
+      "p_ranked": 0.062,
+      "p_top10": 0,
+      "p_unchanged_total": 0.938,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "127",
+      "ward_name": "UTTAM NAGAR",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 39,
+      "rank_median": 41,
+      "rank_p95": 45,
+      "p_ranked": 0.061,
+      "p_top10": 0,
+      "p_unchanged_total": 0.94,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "131",
+      "ward_name": "SAGARPUR",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 27,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.061,
+      "p_top10": 0,
+      "p_unchanged_total": 0.94,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "CANT_2",
+      "ward_name": "DELHI CANTT CHARGE 2",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 4,
+      "rank_p05": 26,
+      "rank_median": 29,
+      "rank_p95": 33,
+      "p_ranked": 0.056,
+      "p_top10": 0,
+      "p_unchanged_total": 0.945,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "258",
+      "ward_name": "KARDAM PURI",
+      "district": "North-East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 3,
+      "rank_p05": 38,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.053,
+      "p_top10": 0,
+      "p_unchanged_total": 0.948,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "151",
+      "ward_name": "INDER PURI",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 44,
+      "p_ranked": 0.046,
+      "p_top10": 0,
+      "p_unchanged_total": 0.954,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "235",
+      "ward_name": "AZAD NAGAR",
+      "district": "Shahdara",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 17,
+      "rank_median": 19,
+      "rank_p95": 22,
+      "p_ranked": 0.043,
+      "p_top10": 0,
+      "p_unchanged_total": 0.958,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "44",
+      "ward_name": "QUAMMRUDDIN NAGAR",
+      "district": "Outer",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 26,
+      "rank_median": 29,
+      "rank_p95": 32,
+      "p_ranked": 0.038,
+      "p_top10": 0,
+      "p_unchanged_total": 0.962,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "140",
+      "ward_name": "KHERA",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 38,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.037,
+      "p_top10": 0,
+      "p_unchanged_total": 0.964,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "148",
+      "ward_name": "MADHU VIHAR",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 44,
+      "p_ranked": 0.036,
+      "p_top10": 0,
+      "p_unchanged_total": 0.965,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "92",
+      "ward_name": "DEV NAGAR",
+      "district": "Central",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.029,
+      "p_top10": 0,
+      "p_unchanged_total": 0.971,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "268",
+      "ward_name": "MUSTAFABAD",
+      "district": "North-East",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 17,
+      "rank_median": 20,
+      "rank_p95": 24,
+      "p_ranked": 0.026,
+      "p_top10": 0,
+      "p_unchanged_total": 0.975,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "98",
+      "ward_name": "MANSAROWER GARDEN",
+      "district": "West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 39,
+      "rank_median": 42,
+      "rank_p95": 45,
+      "p_ranked": 0.026,
+      "p_top10": 0,
+      "p_unchanged_total": 0.975,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "120",
+      "ward_name": "SITA PURI",
+      "district": "Dwarka",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 39,
+      "rank_median": 41,
+      "rank_p95": 45,
+      "p_ranked": 0.024,
+      "p_top10": 0,
+      "p_unchanged_total": 0.977,
+      "stability": "could receive a zone"
+    },
+    {
+      "ward_no": "132",
+      "ward_name": "SAGARPUR WEST",
+      "district": "South-West",
+      "baseline_fatal_crashes_in_zones": 0,
+      "baseline_rank": null,
+      "fatal_p05": 0,
+      "fatal_median": 0,
+      "fatal_p95": 0,
+      "rank_p05": 26,
+      "rank_median": 30,
+      "rank_p95": 33,
+      "p_ranked": 0.023,
+      "p_top10": 0,
+      "p_unchanged_total": 0.977,
+      "stability": "could receive a zone"
+    }
+  ],
+  "inputs": [
+    {
+      "file": "data/delhi_wards_infra.geojson",
+      "sha256": "25b5a65559ad978286eb4b37adb4e1cd28d8bce72b67ea4c372c1ab64c4419dd"
+    },
+    {
+      "file": "data/delhi_crash_prone_zones_2024_all_named_approx.geojson",
+      "sha256": "ade5cbe4ba0dbb4d26186495a24bb1c46210b374bf6e0d4c5b738528925a82d0"
+    }
+  ]
+}
