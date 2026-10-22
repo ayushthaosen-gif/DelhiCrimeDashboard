@@ -5,7 +5,7 @@
   var D = window.DSO, h = D.h, n = D.n;
   var data = D.data();
   if (!data) return;
-  var S = data.SITE, R = data.ROADS, T = S.trends, E = S.enforcement, V = S.victims;
+  var S = data.SITE, R = data.ROADS, T = S.trends, E = S.enforcement, V = Object.assign({}, S.victimsEarly, S.victims);
   var last = T[T.length - 1], prev = T[T.length - 2];
   var YEARS_PAGE = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
   var st = { measure: 'killed', index: false, hy: null, year: 2024, query: '', allZones: false };
@@ -99,7 +99,7 @@
     if (!v) {
       sec.appendChild(h('h2', { style: 'font-size:18px;font-weight:600' }, 'Who is killed, by mode of travel'));
       sec.appendChild(scopeLine('Persons killed by mode of travel · Delhi as a whole · year in view: ' + st.year));
-      sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.year + ': no figure. '), 'Deaths by mode of travel are held for 2019 to 2024 only; earlier years are not collected here.'));
+      sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.year + ': no figure. '), 'Deaths by mode of travel are held for 2011 to 2024.'));
       return;
     }
     var ML = [['pedestrian', 'Pedestrians'], ['twoWheeler', 'Two-wheeler riders'], ['other', 'Other'], ['cyclist', 'Cyclists'], ['car', 'Car occupants'], ['slowMoving', 'Slow-moving vehicles'], ['animal', 'Animal-drawn'], ['bus', 'Bus passengers']];
@@ -110,12 +110,13 @@
         return h('button', { type: 'button', 'aria-pressed': String(y === st.year), 'data-key': 'my-' + y, onclick: function () { setYear(y); } }, y);
       }))));
     sec.appendChild(scopeLine('Persons killed by mode of travel · Delhi as a whole · counts of people, with each mode\'s share of the total · ' + st.year));
+    if (st.year < 2019) sec.appendChild(h('p', { class: 'callout warn', style: 'font-size:13.5px' }, h('strong', null, 'Older report series. '), 'For 2011 to 2018 the figures are Table 3.1 of the annual Traffic Police reports, with that series\' own categories ("scooter and motorcycle riders" for two-wheeler riders, and so on). From 2019 the site uses the later reports. The meaning is close, but compare 2018 with 2019 with caution. ', h('a', { href: 'data/releases/road_victims_by_mode_2004_2018/victims_by_mode.csv' }, 'Download 2004 to 2018 (CSV)'), '.'));
     sec.appendChild(h('div', { style: 'display:flex;flex-direction:column;gap:8px' }, rows.map(function (r) {
       return h('div', { class: 'mode-row' + (r.k === 'pedestrian' ? ' ped' : '') }, h('span', null, r.l),
         h('span', { class: 'track' }, h('i', { style: 'width:' + (r.v / mmax * 100) + '%' })),
         h('span', { class: 'v' }, n(r.v) + ' ', h('span', null, Math.round(r.v / v.total * 100) + '%')));
     })));
-    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Pedestrians are unprotected road users, which makes their share relevant to walkability. Delhi Traffic Police, 2019–2024, citywide.'));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Pedestrians are unprotected road users, which makes their share relevant to walkability. Delhi Traffic Police, 2011–2024, citywide.'));
   }
 
   // ---- enforcement, 2019 to 2024 (citywide; 2019 to 2022 are read from the annual reports, 2023 and 2024 from the road-crash-report release) ----

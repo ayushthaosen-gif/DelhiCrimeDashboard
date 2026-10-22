@@ -1,0 +1,5 @@
+# Victims by category of road user, 2004 to 2018
+
+Persons killed and injured in Delhi road crashes by category of road user (pedestrians, cyclists, car occupants, scooter and motorcycle riders, bus passengers, slow-moving vehicles, animal-driven vehicle drivers, other drivers), 15 years, from Table 3.1 of the Traffic Police Road Accidents in Delhi 2018 report (the 2015 report table was used to check 2004 to 2014). [JSON](victims_by_mode.json), [CSV](victims_by_mode.csv), [sources, checks and caveats](manifest.json).
+
+Every year adds up: the eight categories sum to the printed total for killed and for injured, and the killed totals from 2011 equal the citywide trend on the site. Persons, not crashes; Delhi as a whole; not split by district. These are the reports' own categories, close to but not identical with the labels in the 2019 to 2024 series, so a join across 2018 and 2019 needs care. Transcribed from page images by one agent; not independently reviewed. Rebuild with `npm run build:victims-by-mode` (inputs in `data/inputs/road_victims_by_mode/`, source PDF URLs and hashes in its `sources.json`).

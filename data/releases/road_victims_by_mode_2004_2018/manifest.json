@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Delhi road-crash victims (killed and injured) by category of road user, 2004 to 2018, as printed in Table 3.1",
+  "status": "production",
+  "scope": "Delhi as a whole, persons (not crashes). Fatalities and injuries by the victim's category of road user, from the Delhi Traffic Police annual reports. Not split by district. Counts, not rates.",
+  "years": [
+    2004,
+    2018
+  ],
+  "categories": "Pedestrians; cyclists; car occupants; scooter and motorcycle riders; bus passengers; slow-moving vehicles (hand cart, electric rickshaw and cycle rickshaw pullers and passengers, as printed); drivers of animal-driven vehicles; other drivers; total.",
+  "sources": [
+    {
+      "id": "dtp_2015_chapter_3",
+      "describes": "Table 3.1 for 2001 to 2015 (printed page 15); used only to check the 2004 to 2014 rows of the 2018 table by eye",
+      "kind": "Delhi Traffic Police, Road Accidents in Delhi 2015, chapter 3 (Victims of Road Accidents)",
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-3-VICTIMS-OF-ROAD-ACCIDENTS.pdf",
+      "sha256": "56dfff04bf27adb11e328766b6251fc16c53eaea80ea405589309778d355af85",
+      "bytes": 3012316,
+      "publicationDate": null
+    },
+    {
+      "id": "dtp_2018_chapter_3",
+      "describes": "Table 3.1 for 2004 to 2018 (printed page 22); the source of every row",
+      "kind": "Delhi Traffic Police, Road Accidents in Delhi 2018, chapter 3 (Victims of road accidents)",
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-3 Victims of road accidents.pdf",
+      "sha256": "1b9afdef6dee977a761717fc6b5173478ba4cf97ca98a3dcc45ce032953c809d",
+      "bytes": 5488261,
+      "publicationDate": null
+    }
+  ],
+  "checks": [
+    "Every year: the eight categories add up to the printed total for killed and for injured.",
+    "Every year from 2011: the killed total equals the citywide trend in data/road_safety_trends.json."
+  ],
+  "caveats": [
+    "These categories are the 2004 to 2018 reports' own. The 2019 to 2024 mode-of-travel figures on the site come from a later report series with its own category labels (for example \"two-wheeler riders\"); the two series are close in meaning but a join across 2018 and 2019 should be read with caution.",
+    "The totals are persons killed or injured and are not the same count as fatal crashes.",
+    "A category share is the share of persons killed that year in that category.",
+    "2001 to 2003 are printed in the 2015 report but their categories do not add up to the printed totals, so they are not included.",
+    "Single-agent transcription from page images; not independently reviewed. No explicit open licence verified; cite the Traffic Police report."
+  ],
+  "inputs": [
+    {
+      "file": "data/inputs/road_victims_by_mode/table_3_1_transcription.json",
+      "sha256": "7cc596c7d6a40c264cdec604e3336e94230369201399cac9785955d57638898a"
+    },
+    {
+      "file": "data/inputs/road_victims_by_mode/sources.json",
+      "sha256": "6295207b768c8bed72eab366791658c582a6b32bc9ef148f88e03874dde5113a"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "victims_by_mode.json",
+      "sha256": "7080bf8e688506b99e9e628ff76acc6d9b27af96fc6cc872b4c929f9d822f2fc"
+    },
+    {
+      "file": "victims_by_mode.csv",
+      "sha256": "afbfbac7c4d8c3047c143ecfe4a25ff9d7b06016def6d1f89753b5321bc2314e"
+    }
+  ]
+}

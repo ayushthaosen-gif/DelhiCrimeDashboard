@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "The two Traffic Police chapter PDFs the victims-by-mode table was read from. The PDFs are not in the repository; fetch each from its URL and compare its SHA-256. A file whose hash differs is a different file.",
+  "documents": [
+    {
+      "id": "dtp_2015_chapter_3",
+      "describes": "Table 3.1 for 2001 to 2015 (printed page 15); used only to check the 2004 to 2014 rows of the 2018 table by eye",
+      "kind": "Delhi Traffic Police, Road Accidents in Delhi 2015, chapter 3 (Victims of Road Accidents)",
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-3-VICTIMS-OF-ROAD-ACCIDENTS.pdf",
+      "sha256": "56dfff04bf27adb11e328766b6251fc16c53eaea80ea405589309778d355af85",
+      "bytes": 3012316,
+      "publicationDate": null
+    },
+    {
+      "id": "dtp_2018_chapter_3",
+      "describes": "Table 3.1 for 2004 to 2018 (printed page 22); the source of every row",
+      "kind": "Delhi Traffic Police, Road Accidents in Delhi 2018, chapter 3 (Victims of road accidents)",
+      "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2019/08/Chapter-3 Victims of road accidents.pdf",
+      "sha256": "1b9afdef6dee977a761717fc6b5173478ba4cf97ca98a3dcc45ce032953c809d",
+      "bytes": 5488261,
+      "publicationDate": null
+    }
+  ],
+  "reuse": "No explicit open licence was verified; these are official government publications. Cite the agency report for any figure.",
+  "review": "Table values were read from the rendered page images by one agent. Every year's categories add up to its printed total for both killed and injured, and the 2011 to 2015 killed totals equal the citywide trend already on the site. Not independently reviewed."
+}

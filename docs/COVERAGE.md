@@ -28,6 +28,7 @@ A blank is never a zero. The machine-readable record is [`data/series_status.jso
 | Roads tables | 2017 to 2024 (printed); 2014 and 2015 (calculated) | Roads | 2016 prints none (not printed); 2013 none (not printed in the compilation); the 2014 and 2015 groups are calculated by exact printed label, not a printed table. The 2021 zone table prints no road. |
 | Highway and ring-road stretches | 2011, 2012 and 2014 | 13 printed stretches a year | From a retrospective table in the 2015 report; not zone sums; zone lists for 2011 and 2012: source not found. |
 | Zone positions on the map | 2023, 2024 | Points | Hand-placed, 150 m to 5 km. |
+| Deaths by mode of travel | 2011 to 2024 | Delhi | Persons, not crashes. 2011 to 2018 are the older annual reports' Table 3.1 (the release also holds 2004 to 2010); 2019 to 2024 are the later series. Compare 2018 with 2019 with caution. 2001 to 2003 are printed but do not add up, so are not included. |
 | Enforcement | 2019 to 2024 | Delhi | Not split by district. |
 | iRAD district reports | 2025 and 2026 (varies by district) | Revenue districts, stations | Staged or provisional. |
 | Traffic Police 2025 report | none | | Not published; monitored weekly. |

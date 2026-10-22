@@ -23,6 +23,7 @@ Official crime and crash figures run **to 2024**. Newer material exists but is d
 | `road_crash_report_2022` | [Road Crash Report 2022: district selected-zone counts, zones and roads](data/releases/road_crash_report_2022/README.md) | 2022 | production | 15 Traffic Police districts under the police-district names; counts within crash-prone zones |
 | `road_enforcement_2019_2022` | [Traffic Police enforcement figures 2019-2022](data/releases/road_enforcement_2019_2022/README.md) | 2022 | production | Delhi citywide; not split by district |
 | `ward_district_profiles` | [Ward and district profiles (export bundle)](data/profiles/README.md) | 2024; OSM snapshot 2026-08 | production | 290 legacy wards and 15 police districts |
+| `road_victims_by_mode_2004_2018` | [Victims by road-user category, 2004-2018](data/releases/road_victims_by_mode_2004_2018/README.md) | 2018 | production | Delhi citywide; persons, not crashes |
 | `crash_zones_roads_2011_2015` | [Zones 2013-15, road stretches 2011-12](data/releases/road_zones_roads_2011_2015/README.md) | 2015 | production | Named locations; not mapped; 2011-2012 are stretches, not zones |
 | `crash_zones_roads_2016_2021` | [Named zones and road-wise zone tables, 2016-2021](data/releases/road_zones_roads_2016_2021/README.md) | 2021 | production | Named locations; no coordinates; not mapped |
 | `traffic_districts_2016_2020` | [Traffic Police district crashes and selected-zone counts, 2016-2021](data/staged/road_districts_2016_2020/FINDINGS.md) | 2021 | production | Traffic Police districts as printed (11, then 12); not the 15 police districts |
@@ -57,7 +58,7 @@ Full list: [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md). In short:
 
 ## Download and reuse
 
-Each year from 2016 to 2024 has a folder under [`data/releases/`](data/releases/) with `district_crime.csv`/`.json` and a `manifest.json` giving source URLs, SHA-256 checksums, coverage and what a null means. Read the manifest before analysing. The [separate 2011–2015 NCRB historical panel](data/releases/historical_2011_2015/README.md) is staged, with Delhi UT totals and original reporting units; it is not on the dashboard.
+Each year 2016 to 2024 has a folder under [`data/releases/`](data/releases/) with district crime CSV/JSON and a `manifest.json` (source URLs, SHA-256, coverage, what a null means). Read it before analysing. The [2011–2015 NCRB panel](data/releases/historical_2011_2015/README.md) is staged, off the dashboard.
 
 Details, a worked notebook, the deprecated `exports/` folder and licensing cautions: [`docs/DATA_RELEASES.md`](docs/DATA_RELEASES.md). Corrections to a published figure are logged in [`docs/DATA_CHANGELOG.md`](docs/DATA_CHANGELOG.md).
 
