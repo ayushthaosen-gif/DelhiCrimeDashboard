@@ -21,6 +21,8 @@ How the numbers on the site are produced and what rules they follow. Rules live 
 
 ## 3. Crime
 
+The 2023 to 2024 step crosses the IPC-to-BNS change; see the hurt note in [LIMITATIONS.md](LIMITATIONS.md).
+
 District crime comes from NCRB *Crime in India* district tables (2022 to 2024 directly; 2016 to 2021 from the NCRB tables as distributed through India Data Portal; 2011 to 2018 historical counts under the original reporting districts). The 2023 and 2024 figures follow the switch from IPC to BNS; the continuity file marks that break. Delhi-wide printed totals are a separate series. Crime is available by district only: ward profiles carry the district's crime density as an inherited value, and say so.
 
 ## 4. Road safety

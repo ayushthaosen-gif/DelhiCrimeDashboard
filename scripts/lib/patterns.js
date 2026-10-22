@@ -62,6 +62,7 @@ function build() {
     }
   };
   const t = crime.series.totalIPC.values, yi = y => years.indexOf(y);
+  crime.bnsHurt = read('data/derived/bns_hurt_2023_2024.json');
   crime.facts = {
     ipc2016: t[yi(2016)], ipc2019: t[yi(2019)], ipc2020: t[yi(2020)], ipc2023: t[yi(2023)], ipc2024: t[yi(2024)],
     theftShare2023: Math.round(crime.series.theft.values[yi(2023)] / t[yi(2023)] * 100),
@@ -131,4 +132,4 @@ function briefBody(p) {
     + '<p class="muted" style="font-size:12.5px">Sources: Delhi Traffic Police annual Road Crash Reports 2016 to 2024; OpenStreetMap (ODbL) for mapped crossings and signals; DataMeet ward boundaries (legacy 290 wards). Wards are not the current 250. Compiled by the Delhi Urban Safety Observatory; cite the agency report for any figure. Evidence packs for each ward: <a href="planning.html">Planning mode</a>. Crime context for the districts is on <a href="patterns.html">Trends and patterns</a> (highest registered rate in 2024: ' + esc(d[0].district) + ', ' + n(d[0].perLakh) + ' cases per lakh residents; this may reflect registration practice and daytime population as well as crime).</p>\n</main>';
 }
 
-module.exports = { build, spearman, briefBody };
+module.exports = { build, spearman, briefBody, utRows };

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "title": "Hurt head, Delhi, 2023 (IPC) and 2024 (BNS): how much of the 2023 to 2024 fall it can account for",
+  "scope": "Delhi as NCRB prints it (the 15 districts plus Crime Branch, Railway and other specialised units), registered cases.",
+  "delhi": {
+    "hurt2023": 6045,
+    "hurt2023Header": "Hurt",
+    "hurt2024": 2028,
+    "hurt2024Header": "Hurt or Grievous Hurt",
+    "hurtChange": -4017,
+    "hurtChangePct": -66.5,
+    "totalIpcBns2023": 324257,
+    "totalIpcBns2024": 275402,
+    "totalChange": -48855,
+    "totalChangePct": -15.1,
+    "theft2023": 228537,
+    "theft2024": 180973,
+    "theftChange": -47564,
+    "hurtShareOfTotalFallPct": 8.2,
+    "theftShareOfTotalFallPct": 97.4
+  },
+  "national": {
+    "status": "As reported in the press from the NCRB Crime in India 2024 report; not re-derived here and the NCRB report itself was not read.",
+    "hurtCases2023": 636000,
+    "hurtCases2024": 441000,
+    "hurtChangePct": -30.58,
+    "cognizableCrimes2023": 6241000,
+    "cognizableCrimes2024": 5885000,
+    "cognizableChangePct": -6,
+    "explanation": "NCRB attributes the fall in hurt cases to the Bharatiya Nyaya Sanhita: hurt and grievous hurt sections were merged and simple hurt became a non-cognisable offence, so it no longer appears in police registration data.",
+    "sources": [
+      "https://www.drishtiias.com/daily-updates/daily-news-analysis/ncrbs-crime-in-india-2024-report/print_manually",
+      "https://thewire.in/government/crime-rate-fell-6-in-2024-ncrb-attributes-dip-to-change-from-ipc-to-bns"
+    ]
+  },
+  "inputs": [
+    {
+      "file": "data/raw/source_archive/ncrb/districtwise_ipc_crimes_2023.xlsx",
+      "sha256": "b8200269fc0033e18b29e9ab10417ed0d8d9aa6c8659ef7b3babab2b97e7799a"
+    },
+    {
+      "file": "data/raw/source_archive/ncrb/districtwise_ipc_bns_crimes_2024.xlsx",
+      "sha256": "41a4270149aa44561c508cbba62f4c26799a375b1edb8baa1db33b399e6ff121"
+    }
+  ],
+  "caveats": [
+    "The 2023 head is named \"Hurt\" and the 2024 head \"Hurt or Grievous Hurt\"; NCRB says the BNS merged these sections, so the two are not the same definition and the change is not a change in incidents.",
+    "The hurt change accounts for only a small part of Delhi's fall; theft accounts for most of it, and the national hurt explanation says nothing about theft.",
+    "Whether other heads moved because of reclassification has not been checked head by head."
+  ]
+}
