@@ -86,8 +86,10 @@ Details, a worked notebook, the deprecated `exports/` folder and licensing cauti
 ```bash
 npm test
 npm run build
+npm run build:site
+npm run build:profiles
 npm run build:interactive-map
-npm run build:releases
+npm run build:road-history
 ```
 
 Edit `scripts/build.js`, `scripts/build_interactive_map.js` and `scripts/build_site.js` rather than the generated HTML (the site's styles and behaviour are hand-written in `assets/site.css`, `assets/site.js` and `assets/page-*.js`). `npm run build:site` regenerates the seven pages and `assets/site-data.js`. CI rebuilds everything and fails if a committed output differs.

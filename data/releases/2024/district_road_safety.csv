@@ -1,16 +1,16 @@
-year,district,crash_prone_zones,simple_crashes_at_zones,fatal_crashes_at_zones,total_crashes_at_zones,persons_killed,persons_injured,coverage
-2024,Central,4,19,12,31,72,236,reported
-2024,Dwarka,3,13,15,28,106,400,reported
-2024,East,10,52,40,92,92,269,reported
-2024,New Delhi,2,12,5,17,40,206,reported
-2024,North,15,92,68,160,142,369,reported
-2024,North-East,7,71,21,92,84,320,reported
-2024,North-West,15,95,72,167,141,349,reported
-2024,Outer,8,38,23,61,105,306,reported
-2024,Outer North,11,71,45,116,187,643,reported
-2024,Rohini,2,18,7,25,70,252,reported
-2024,Shahdara,3,15,14,29,61,218,reported
-2024,South,4,12,14,26,73,350,reported
-2024,South-East,6,50,18,68,95,463,reported
-2024,South-West,8,32,30,62,151,443,reported
-2024,West,13,71,43,114,132,400,reported
+year,district,crash_prone_zones,simple_crashes_at_zones,fatal_crashes_at_zones,total_crashes_at_zones,persons_killed,persons_injured,coverage,source_url,source_sha256,zone_counts_source,persons_source
+2024,Central,4,19,12,31,72,236,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,Dwarka,3,13,15,28,106,400,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,East,10,52,40,92,92,269,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,New Delhi,2,12,5,17,40,206,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,North,15,92,68,160,142,369,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,North-East,7,71,21,92,84,320,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,North-West,15,95,72,167,141,349,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,Outer,8,38,23,61,105,306,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,Outer North,11,71,45,116,187,643,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,Rohini,2,18,7,25,70,252,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,Shahdara,3,15,14,29,61,218,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,South,4,12,14,26,73,350,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,South-East,6,50,18,68,95,463,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,South-West,8,32,30,62,151,443,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
+2024,West,13,71,43,114,132,400,reported,https://traffic.delhipolice.gov.in/delhi-crash-report-2024,fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f,"Table 6.31, PDF page 117","Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"

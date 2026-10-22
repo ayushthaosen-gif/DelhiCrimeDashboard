@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "title": "Delhi Traffic Police named accident-prone zones 2013 to 2015 and early road stretches 2011 to 2012, as printed",
-  "status": "staged",
+  "status": "production",
   "scope": "Named selected accident-prone zones (one row per zone) and, for 2011 and 2012, printed highway and ring-road stretch statistics. Counts within selected zones or stretches, not whole-city or whole-road counts. Counts, not rates.",
   "sources": [
     {

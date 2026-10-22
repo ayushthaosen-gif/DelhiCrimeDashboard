@@ -1,0 +1,45 @@
+{
+  "2013": {
+    "rows": 128,
+    "simple_crashes": 1094,
+    "fatal_crashes": 544,
+    "total_crashes": 1638,
+    "blank_roads": [
+      40,
+      108
+    ],
+    "pages": [
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141
+    ],
+    "totals_basis": "Derived sum of source rows; no printed grand total identified"
+  },
+  "2014": {
+    "rows": 137,
+    "simple_crashes": 1616,
+    "fatal_crashes": 505,
+    "total_crashes": 2121,
+    "blank_roads": [
+      93
+    ],
+    "pages": [
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150
+    ],
+    "totals_basis": "Derived sum of source rows; no printed grand total identified"
+  }
+}

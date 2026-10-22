@@ -5,7 +5,7 @@
   "geography": "15 current territorial police-district names",
   "joinKey": "district",
   "generatedBy": "scripts/build_yearly_releases.js",
-  "generatedAt": "2026-09-26T07:09:16.413Z",
+  "generatedAt": "2026-10-19T00:00:00.000Z",
   "productionStatus": "production dashboard data",
   "nullPolicy": "Null is unknown, unavailable, incompatible, or not separately reported; never coerce null to zero.",
   "comparability": "Inspect per-metric previous-year comparability flags before calculating change.",
@@ -72,7 +72,15 @@
       "publisher": "Delhi Traffic Police",
       "url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
       "role": "district crash totals, named zones, citywide trend and victims",
-      "status": "used"
+      "status": "used",
+      "sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+      "zoneListTable": "6.29",
+      "zoneListPdfPage": 112,
+      "zoneCountsTable": "6.31",
+      "zoneCountsPdfPage": 117,
+      "personsTables": "6.13 to 6.27 (one per district)",
+      "personsPdfPages": "104 to 111",
+      "hashNote": "sha256 of the PDF copy used to check the tables; the official file at the landing page was not re-downloaded under it"
     }
   ],
   "files": [
@@ -100,8 +108,8 @@
       "path": "district_road_safety.json",
       "datasetId": "delhi_district_road_safety_2024",
       "mediaType": "application/json",
-      "sha256": "d3f921e2bd343e2f8f04e6e8e5a46a8e97521921ab654e600e4509b237b3256e",
-      "bytes": 4012,
+      "sha256": "a1c3f89adc5a469fb1a0c07f6a6a69590184d9dae7c227dd2f9557e70f20e48d",
+      "bytes": 8647,
       "derivedFrom": [
         "data/dashboard_final.json"
       ]
@@ -110,8 +118,8 @@
       "path": "district_road_safety.csv",
       "datasetId": "delhi_district_road_safety_2024",
       "mediaType": "text/csv",
-      "sha256": "7194973aa916ebf4c131b00a1da48175a124f906bfbed436c423f17d08520843",
-      "bytes": 761,
+      "sha256": "90d34fe555da1e64e7b7af9cc208643d9c2758687242a5527276adaa7a459357",
+      "bytes": 4030,
       "derivedFrom": [
         "data/dashboard_final.json"
       ]
@@ -140,8 +148,8 @@
       "path": "crash_prone_zones.json",
       "datasetId": "delhi_crash_prone_zones_2024",
       "mediaType": "application/json",
-      "sha256": "36e65d76e7eaad8389e2c32949d758bdd3838ee66ccab7c2c8c5db33121e2437",
-      "bytes": 143956,
+      "sha256": "fedcf5340e20a592c2fb8aaee41ccee47d041476432315d71b0f0f5a28d28882",
+      "bytes": 165439,
       "derivedFrom": [
         "data/crash_zones_2024_geocoded.json"
       ]
@@ -150,8 +158,8 @@
       "path": "crash_prone_zones.csv",
       "datasetId": "delhi_crash_prone_zones_2024",
       "mediaType": "text/csv",
-      "sha256": "6584dd0c8dda54d959e119a5e41a742dbfdeae12f065de0149a0041c0cf83550",
-      "bytes": 22555,
+      "sha256": "31c3ff78a4765fa5a904103bb7c2ee6a3330d11b9eb3754c0caaac266beb9728",
+      "bytes": 35536,
       "derivedFrom": [
         "data/crash_zones_2024_geocoded.json"
       ]

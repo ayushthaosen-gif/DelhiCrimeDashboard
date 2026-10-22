@@ -8,7 +8,11 @@
     "total_crashes_at_zones": 31,
     "persons_killed": 72,
     "persons_injured": 236,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -19,7 +23,11 @@
     "total_crashes_at_zones": 28,
     "persons_killed": 106,
     "persons_injured": 400,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -30,7 +38,11 @@
     "total_crashes_at_zones": 92,
     "persons_killed": 92,
     "persons_injured": 269,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -41,7 +53,11 @@
     "total_crashes_at_zones": 17,
     "persons_killed": 40,
     "persons_injured": 206,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -52,7 +68,11 @@
     "total_crashes_at_zones": 160,
     "persons_killed": 142,
     "persons_injured": 369,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -63,7 +83,11 @@
     "total_crashes_at_zones": 92,
     "persons_killed": 84,
     "persons_injured": 320,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -74,7 +98,11 @@
     "total_crashes_at_zones": 167,
     "persons_killed": 141,
     "persons_injured": 349,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -85,7 +113,11 @@
     "total_crashes_at_zones": 61,
     "persons_killed": 105,
     "persons_injured": 306,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -96,7 +128,11 @@
     "total_crashes_at_zones": 116,
     "persons_killed": 187,
     "persons_injured": 643,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -107,7 +143,11 @@
     "total_crashes_at_zones": 25,
     "persons_killed": 70,
     "persons_injured": 252,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -118,7 +158,11 @@
     "total_crashes_at_zones": 29,
     "persons_killed": 61,
     "persons_injured": 218,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -129,7 +173,11 @@
     "total_crashes_at_zones": 26,
     "persons_killed": 73,
     "persons_injured": 350,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -140,7 +188,11 @@
     "total_crashes_at_zones": 68,
     "persons_killed": 95,
     "persons_injured": 463,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -151,7 +203,11 @@
     "total_crashes_at_zones": 62,
     "persons_killed": 151,
     "persons_injured": 443,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   },
   {
     "year": 2024,
@@ -162,6 +218,10 @@
     "total_crashes_at_zones": 114,
     "persons_killed": 132,
     "persons_injured": 400,
-    "coverage": "reported"
+    "coverage": "reported",
+    "source_url": "https://traffic.delhipolice.gov.in/delhi-crash-report-2024",
+    "source_sha256": "fff0375f315ccdab9012561f8ae6f494dad9c4512c13dc8a2fc0b1f27149156f",
+    "zone_counts_source": "Table 6.31, PDF page 117",
+    "persons_source": "Tables 6.13 to 6.27 (one per district), PDF pages 104 to 111"
   }
 ]

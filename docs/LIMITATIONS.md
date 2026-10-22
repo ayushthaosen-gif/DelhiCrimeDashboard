@@ -37,4 +37,4 @@ Read this before citing a figure or acting on a view.
 
 Named zones for 2011 and 2012 (only 13 highway and ring-road stretches were recovered); 2013 and 2014 come from an official compilation, not the annual reports, and print no grand total.
 
-Delhi-wide theft, robbery and burglary 2016 to 2020; the 2016 roads table (none printed); road names for 50 of the 117 zones in 2022 that later reports do not supply; coordinates for any zone before 2023; the 250-ward layer; constituency overlays (no openly licensed boundaries); change-over-time views for pairs that are not comparable.
+Not extracted (source exists): Delhi-wide theft, robbery and burglary 2016 to 2020. Not printed in the source: the 2016 roads table, the 2021 zone-table road column, the 2013 and 2014 roads summary. Source not found: named zones for 2011 and 2012. Not matched: road names for 50 of the 117 zones in 2022 that later reports do not supply. Also: coordinates for any zone before 2023; the 250-ward layer; constituency overlays (no openly licensed boundaries); change-over-time views for pairs that are not comparable.

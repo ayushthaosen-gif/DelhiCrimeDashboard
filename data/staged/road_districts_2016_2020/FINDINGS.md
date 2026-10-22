@@ -1,6 +1,6 @@
-# 2016–2020 road data: digitized, reconciled, staged
+# 2016–2020 road data: digitized, reconciled, published
 
-Completed 20 October 2026. This is an aggregate historical research release. Production data, dashboard code and the current map were not changed.
+Completed 20 October 2026. This is an aggregate historical research release. When written, production data, dashboard code and the current map were not changed. The district tables are now published on the Road safety page and registered as production (`traffic_districts_2016_2020` in `data/series_status.json`); the folder name `staged` is historical.
 
 ## Available data
 

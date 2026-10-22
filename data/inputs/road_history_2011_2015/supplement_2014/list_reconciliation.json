@@ -1,0 +1,961 @@
+[
+  {
+    "table_serial": 1,
+    "table_name": "SARAI KALE KHAN",
+    "list_name": "SARAI KALE KHAN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 2,
+    "table_name": "KASHMIRI GATE CHOWK",
+    "list_name": "KASHMIRI GATE CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 3,
+    "table_name": "NIGAM BODH GHAT",
+    "list_name": "NIGAM BODH GHAT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 4,
+    "table_name": "MUKHAND PUR CHOWK",
+    "list_name": "MUKHAND PUR CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 5,
+    "table_name": "DR BHABHA MARG CROSSING",
+    "list_name": "DR BHABHA MARG CROSSING",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 6,
+    "table_name": "PUNJABI BAGH CHOWK",
+    "list_name": "PUNJABI BAGH CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 7,
+    "table_name": "ISBT K. GATE",
+    "list_name": "ISBT K GATE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 8,
+    "table_name": "MAHIPALPUR FLYOVER",
+    "list_name": "MAHIPALPUR FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 9,
+    "table_name": "SHANI MANDIR",
+    "list_name": "SHANI MANDIR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 10,
+    "table_name": "SHAHADRA FLYOVER",
+    "list_name": "SHAHDARA FLYOVER",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 11,
+    "table_name": "CNG PUMP SANJAY GANDHI T-POINT",
+    "list_name": "CNG PUMP",
+    "match_status": "tentative shortened label; no geographic join",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 12,
+    "table_name": "LIBASPUR BUS STAND",
+    "list_name": "LIBAS PUR BUS STAND",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 13,
+    "table_name": "ROUND ABOUT OKHLA ESTATE",
+    "list_name": "ROUND ABOUT OKHLA ESTATE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 14,
+    "table_name": "KHAJOORI CHOWK",
+    "list_name": "KHAJOORI CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 15,
+    "table_name": "INDIRA PARK",
+    "list_name": "INDIRA PARK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 16,
+    "table_name": "RADISSON HOTEL",
+    "list_name": "RADISSON HOTEL",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 17,
+    "table_name": "ANAND VIHAR ISBT",
+    "list_name": "ANAND VIHAR ISBT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 18,
+    "table_name": "SHASTRI PARK",
+    "list_name": "SHASTRI PARK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 19,
+    "table_name": "SHYAM LAL COLLAGE",
+    "list_name": "SHYAM LAL COLLEGE",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 20,
+    "table_name": "ITO/I P FLYOVER",
+    "list_name": "ITO/I P FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 21,
+    "table_name": "MUKHARBA CHOWK",
+    "list_name": "MUKHARBA CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 22,
+    "table_name": "BARAPULLA RING ROAD",
+    "list_name": "BARAPULLA RING ROAD",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 23,
+    "table_name": "SHADI PUR METRO STN",
+    "list_name": "SHADI PUR METRO STN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 24,
+    "table_name": "SANJAY T-POINT",
+    "list_name": "SANJAY T-POINT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 25,
+    "table_name": "SINGHU BORDER",
+    "list_name": "SINGHU BORDER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 26,
+    "table_name": "SAI BABA MANDIR",
+    "list_name": "SAI BABA MANDIR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 27,
+    "table_name": "JAITPUR MORE",
+    "list_name": "JAITPUR MORE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 28,
+    "table_name": "SWAROOP NAGAR",
+    "list_name": "SWAROOP NAGAR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 29,
+    "table_name": "NANGLOI DTC DEPOT",
+    "list_name": "NANGLOI DTC DEPOT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 30,
+    "table_name": "DTC BUS DEPOT NAND NAGARI",
+    "list_name": "DTC BUS DEPOT NAND NAGARI",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 31,
+    "table_name": "SHAHBAD DAIRY",
+    "list_name": "SHAHBAD DAIRY",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 32,
+    "table_name": "LAJPAT NAGAR",
+    "list_name": "LAJPAT NAGAR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 33,
+    "table_name": "RAJOURI GARDEN",
+    "list_name": "RAJOURI GARDEN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 34,
+    "table_name": "SHALIMAR BAGH",
+    "list_name": "SHALIMAR BAGH",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 35,
+    "table_name": "AZADPUR SABZI MANDI",
+    "list_name": "AZADPUR SABJZI MANDI",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 36,
+    "table_name": "GAJIPUR DAIRY FARM",
+    "list_name": "GAJIPUR DAIRY FARM",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 37,
+    "table_name": "PEERA GARHI CHOWK",
+    "list_name": "PEERA GARHI CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 38,
+    "table_name": "BIRLA INST OF MANAGEMENT TECH",
+    "list_name": "BIRLA INST OF MANAGEMENT TECH",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 39,
+    "table_name": "RAJOKARI FLYOVER",
+    "list_name": "RAJOUKARI FLYOVER",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 40,
+    "table_name": "BRITANNIA CHOWK",
+    "list_name": "BRITANNIA CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 41,
+    "table_name": "UNDER PASS PATPARGANJ",
+    "list_name": "UNDER PASS PATPARGANJ",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 42,
+    "table_name": "SHAKARPUR CHUNGI",
+    "list_name": "SHAKAR PUR CHUNGI",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 43,
+    "table_name": "SARITA VIHAR FLYOVER",
+    "list_name": "SARITA VIHAR FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 44,
+    "table_name": "JANAKPURI EAST",
+    "list_name": "JANAKPURI EAST",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 45,
+    "table_name": "MANGOL PURI FLYOVER",
+    "list_name": "MANGOLPURI FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 46,
+    "table_name": "HAYAAT HOTEL",
+    "list_name": "HYAAT HOTEL",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 47,
+    "table_name": "APOLO HOSPITAL",
+    "list_name": "APOLO HOSPITAL",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 48,
+    "table_name": "GAGAN CINEMA",
+    "list_name": "GAGAN CINEMA",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 49,
+    "table_name": "MAYA PURI CHOWK",
+    "list_name": "MAYA PURI CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 50,
+    "table_name": "AGGARWAL MILLENIUM TOWER",
+    "list_name": "AGGARWAL MILLENIUM TOWER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 51,
+    "table_name": "KHICHADI PUR",
+    "list_name": "KHICHADI PUR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 52,
+    "table_name": "NARAINA",
+    "list_name": "NARAINA",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 53,
+    "table_name": "PRESS ENCLAVE CROSSING",
+    "list_name": "PRESS ENCLAVE CROSSING",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 54,
+    "table_name": "ROUND ABOUT BHAIRAON ENCLAVE",
+    "list_name": "ROUND ABOUT BHAIRAON ENCLAVE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 55,
+    "table_name": "DELHI GATE",
+    "list_name": "DELHI GATE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 56,
+    "table_name": "MONESTRY RING ROAD",
+    "list_name": "MONESTRY RING ROAD",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 57,
+    "table_name": "LAJWANTI CHOWK",
+    "list_name": "LAJWANTI CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 58,
+    "table_name": "LAJPAT RAI MRKT (LAL QILA)",
+    "list_name": "LAJPAT RAI MKT (LAL QILA)",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 59,
+    "table_name": "BHALSWA CHOWK",
+    "list_name": "BHALSWA CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 60,
+    "table_name": "SATYA NIKETAN",
+    "list_name": "SATYA NIKETAN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 61,
+    "table_name": "AZADPUR CHOWK",
+    "list_name": "AZAD PUR CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 62,
+    "table_name": "AKSHARDHAM MANDIR",
+    "list_name": "AKSHARDHAM MANDIR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 63,
+    "table_name": "PRAHLAD VIHAR",
+    "list_name": "PRAHLAD VIHAR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 64,
+    "table_name": "SHAKURPUR RED LIGHT",
+    "list_name": "SHAKUR PUR RED LIGHT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 65,
+    "table_name": "KAYA MAYA HOSPITAL",
+    "list_name": "KAYA MAYA HOSPITAL",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 66,
+    "table_name": "OLD DELHI RAILWAY STN",
+    "list_name": "OLD DELHI RAILWAY STN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 67,
+    "table_name": "SGT NAGAR",
+    "list_name": "SGT NAGAR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 68,
+    "table_name": "SHIV MURTI",
+    "list_name": "SHIV MURTI",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 69,
+    "table_name": "TIKRI KHURD BUS STAND",
+    "list_name": "TIKRI KHURD BUS STAND",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 70,
+    "table_name": "HAMDARD NGR RED LIGHT",
+    "list_name": "HAMDARD NGR RED LIGHT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 71,
+    "table_name": "SHASTRI NAGAR METRO STN",
+    "list_name": "SHASTRI NAGAR METRO STN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 72,
+    "table_name": "ASHRAM CHOWK",
+    "list_name": "ASHRAM CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 73,
+    "table_name": "SHAMSHAN GHAT GEETA COLONY",
+    "list_name": "SHAMSHAN GHAT GEETA COLONY",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 74,
+    "table_name": "MOOLCHAND",
+    "list_name": "MOOL CHAND",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 75,
+    "table_name": "KANHIYA NAGAR METRO STN",
+    "list_name": "KANHIYA NAGAR METRO STN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 76,
+    "table_name": "GOKAL PURI",
+    "list_name": "GOKALPURI",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 77,
+    "table_name": "OKHLA MORE",
+    "list_name": "OKHLA MORE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 78,
+    "table_name": "MUNIRKA",
+    "list_name": "MUNIRKA",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 79,
+    "table_name": "MODI MILL FLYOVER",
+    "list_name": "MODI MILL FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 80,
+    "table_name": "MAYUR VIHAR EXTENSION",
+    "list_name": "MAYUR VIHAR EXTN",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 81,
+    "table_name": "KIRARI MORE",
+    "list_name": "KIRARI MORE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 82,
+    "table_name": "NANAKSHAH GURUDWARA BUS STAND",
+    "list_name": "NANAKSHAH GURUDWARA BUS STAND",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 83,
+    "table_name": "RAMA ROAD CROSSING",
+    "list_name": "RAMA ROAD CROSSING",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 84,
+    "table_name": "LADO SARAI",
+    "list_name": "LADO SARAI",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 85,
+    "table_name": "METRO STATION PASCHIM VIHAR",
+    "list_name": "METRO STATION PASCHIM VIHAR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 86,
+    "table_name": "EAST VINOD NAGAR/MV II RED LIGHT",
+    "list_name": "EAST VINOD NAGAR/MV II RED LIGHT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 87,
+    "table_name": "FIRE STATION NAJAFGARH",
+    "list_name": "FIRE STATION NAJAFGARH",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 88,
+    "table_name": "ALI VILLAGE",
+    "list_name": "ALI VILLAGE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 89,
+    "table_name": "METRO STATION MADI PUR",
+    "list_name": "METRO STATION MADIPUR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 90,
+    "table_name": "KARAN VATIKA NIHAL VIHAR",
+    "list_name": "KARAN VATIKA NIHAL VIHAR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 91,
+    "table_name": "EMPLOYEMENT EXCHANGE",
+    "list_name": "EMPLOYEMENT EXCHANGE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 92,
+    "table_name": "PUSA GATE INDER PURI",
+    "list_name": "PUSA GATE INDERPURI",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 93,
+    "table_name": "VIVEKANAND WOMEN COLLEGE",
+    "list_name": "VIVEKANAND WOMEN COLLEGE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 94,
+    "table_name": "BAKOLI BUS STAND",
+    "list_name": "BAKOLI BUS STAND",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 95,
+    "table_name": "NEAR HALDI RAM",
+    "list_name": "NEAR HALDI RAM",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 96,
+    "table_name": "PANI KI TANKI",
+    "list_name": "PANI KI TANKI",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 97,
+    "table_name": "HIRAN KUDNA",
+    "list_name": "HIRAN KUDNA",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 98,
+    "table_name": "VASANT VALLEY SCHOOL",
+    "list_name": "VASANT VALLY SCHOOL",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 99,
+    "table_name": "JANGPURA EXTN",
+    "list_name": "JANGPURA EXTN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 100,
+    "table_name": "OKHLA DTC BUS DEPOT",
+    "list_name": "OKHALA DTC BUS DEPOT",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 101,
+    "table_name": "MOTI BAGH FLYOVER",
+    "list_name": "MOTI BAGH FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 102,
+    "table_name": "KHANPUR T-POINT",
+    "list_name": "KHANPUR T POINT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 103,
+    "table_name": "LONI ROAD CROSSING",
+    "list_name": "LONI ROAD CROSSING",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 104,
+    "table_name": "HAIDER PUR",
+    "list_name": "HAIDER PUR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 105,
+    "table_name": "DABRI FLYOVER",
+    "list_name": "DABRI FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 106,
+    "table_name": "BURARI CHOWK",
+    "list_name": "BURARI CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 107,
+    "table_name": "SEELAM PUR T-POINT",
+    "list_name": "SEELAMPUR T POINT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 108,
+    "table_name": "CHIRAG DELHI FLYOVER",
+    "list_name": "CHIRAG DELHI FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 109,
+    "table_name": "MOTI NAGAR FLYOVER",
+    "list_name": "MOTI NAGAR FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 110,
+    "table_name": "DHAULA KUAN",
+    "list_name": "DHAULA KUAN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 111,
+    "table_name": "NIRANKARI COLONY",
+    "list_name": "NIRANKARI COLONY",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 112,
+    "table_name": "ROUND ABOUT PUSA",
+    "list_name": "ROUND ABOUT PUSA",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 113,
+    "table_name": "FAIZ ROAD CROSSING/IDGAH",
+    "list_name": "FAIZ ROAD CROSSING/IDGAH",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 114,
+    "table_name": "SUBHASH NAGAR METRO STN",
+    "list_name": "SUBHASH NAGAR METRO STN",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 115,
+    "table_name": "ZAKHIRA FLYOVER",
+    "list_name": "ZAKHIRA FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 116,
+    "table_name": "KHEL GAON",
+    "list_name": "KHEL GAON",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 117,
+    "table_name": "DND FLYOVER",
+    "list_name": "DND FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 118,
+    "table_name": "SHAMSHAN GHAT BARAPULA",
+    "list_name": "SHAMSHAN GHAT BARAPULLA",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 119,
+    "table_name": "PANCHSHEEL FLYOVER",
+    "list_name": "PANCHSHEEL FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 120,
+    "table_name": "UTTAM NAGAR METRO STN",
+    "list_name": "UTTAM NAGAR",
+    "match_status": "tentative shortened label; no geographic join",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 121,
+    "table_name": "MAJNU KA TILA",
+    "list_name": "MAJNU KA TILA",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 122,
+    "table_name": "KARKARI MORE",
+    "list_name": "KARKARI MORE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 123,
+    "table_name": "BHAJANPURA CHOWK",
+    "list_name": "BHAJANPURA CHOWK",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 124,
+    "table_name": "DELHI PUBLIC LIB/SRINIWAS PURI",
+    "list_name": "DELHI PUBLIC LIB/ SRINIWAS PURI",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 125,
+    "table_name": "NIZAMUDIN YAMUNA BRIDGE",
+    "list_name": "NIZAMUDIN YAMUNA BRIDGE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 126,
+    "table_name": "KALKAJI MANDIR",
+    "list_name": "KALKAJI MANDIR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 127,
+    "table_name": "DHARAMPURA RED LIGHT",
+    "list_name": "DHARAMPURA RED LIGHT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 128,
+    "table_name": "AIIMS",
+    "list_name": "AIIMS",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 129,
+    "table_name": "WAJIRPUR DEPOT",
+    "list_name": "WAZIR PUR DEPOT",
+    "match_status": "reviewed spelling variant",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 130,
+    "table_name": "ESI HOSPITAL, ANAND MAI MARG",
+    "list_name": "ESI HOSPITAL, ANAND MAI MARG",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 131,
+    "table_name": "GEETA COLONY FLYOVER",
+    "list_name": "GEETA COLONY FLYOVER",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 132,
+    "table_name": "NEHRU PALACE",
+    "list_name": "NEHRU PALACE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 133,
+    "table_name": "RAJGHAT",
+    "list_name": "RAJ GHAT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 134,
+    "table_name": "WAZIRABAD",
+    "list_name": "WAZIRABAD",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 135,
+    "table_name": "SEC-1,2 RED LIGHT",
+    "list_name": "SEC-1,2 RED LIGHT",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 136,
+    "table_name": "DC OFFICE",
+    "list_name": "DC OFFICE",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  },
+  {
+    "table_serial": 137,
+    "table_name": "BUDHPUR GANDA NALA/HANUMAN MANDIR BUDHPUR",
+    "list_name": "BUDHPUR GANDA NALA/HANUMAN MANDIR BUDHPUR",
+    "match_status": "normalized exact",
+    "evidence_only": true
+  }
+]
