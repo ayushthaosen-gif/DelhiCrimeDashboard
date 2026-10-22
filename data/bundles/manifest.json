@@ -337,13 +337,13 @@
         "OpenStreetMap counts are lower bounds: a low count may mean little has been mapped.",
         "An evidence tier says how strong the crash evidence is, not how dangerous a place is or what to build."
       ],
-      "version": "2026-10-20-437207e0",
-      "bytes": 212208,
+      "version": "2026-10-20-107b119a",
+      "bytes": 235189,
       "files": [
         {
           "path": "data/profiles/README.md",
-          "bytes": 946,
-          "sha256": "5992b12c67394d183f4930af3ef4a7546d6ce3e174079ca1b4b58d4ebfc813ce"
+          "bytes": 1330,
+          "sha256": "bf543b4658de79da8fe9c202d79e81cb13cbcb82f20c14bd7497d2826d7ad46b"
         },
         {
           "path": "data/profiles/audit_candidates_2024.csv",
@@ -359,6 +359,16 @@
           "path": "data/profiles/interventions_manifest.json",
           "bytes": 4639,
           "sha256": "94feb0814508142ec348813963dab9400ade75ce7755e6e7cd386a166f19bffd"
+        },
+        {
+          "path": "data/profiles/location_sensitivity_wards_2024.csv",
+          "bytes": 11220,
+          "sha256": "40ad099bd0c4c9401d29ba532ddb0d56adf8f3b95a28ae100bb1d0237ec7c94a"
+        },
+        {
+          "path": "data/profiles/location_sensitivity_zones_2024.csv",
+          "bytes": 11377,
+          "sha256": "5237db84fd55e83b9fcbe797b5b9cb3a53749981130786d58d055433ff71cb74"
         },
         {
           "path": "data/profiles/manifest.json",

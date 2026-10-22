@@ -80,3 +80,7 @@ real boundary by roughly 1 km, so dot positions are good to about a kilometre. 7
   Singhu Border, Ghewra More, Goyla Village, Raja Harishchander Hospital). That is a list of points to look at first, not proof they are wrong (their dots may be
   hidden in clusters).
 - Result: the map is a **kilometre-scale sanity check** and is shown in the tour as "Report map dot". It cannot decide between sources that differ by 500-1000 m.
+
+## What the approximate positions do to ward results
+
+Tested in [`data/profiles/location_sensitivity_2024.json`](../data/profiles/location_sensitivity_2024.json): with each zone moved at random within its stated accuracy, only 24 of 93 zones keep their ward in at least 95% of 2,000 placements. Ward totals and ranks built from the zone list are ranges; see the Planning page and [METHODOLOGY](METHODOLOGY.md).

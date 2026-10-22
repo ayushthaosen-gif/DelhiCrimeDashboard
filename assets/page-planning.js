@@ -163,6 +163,13 @@
   }
 
   // ---------- ranked list and search ----------
+  // a rank that moves a lot when zone positions vary is marked with a tilde on the crash layers
+  function approxMark(w, l) {
+    if (l.g !== 'Crash severity') return null;
+    var a = SW[w.no]; if (!a || a[3] == null) return null;
+    if (a[8] === 'robust top 10' || a[8] === 'stable') return null;
+    return h('span', { class: 'pl-approx', title: 'Rank ' + a[3] + ' to ' + a[5] + ' (5th to 95th percentile) when zone positions vary within their stated accuracy' }, ' ≈');
+  }
   function renderList(rk, l) {
     var top = rk.rows.slice(0, 15);
     var datalist = h('datalist', { id: 'plWards' }, wards.map(function (w) { return h('option', { value: w.row.ward_name + ' (' + w.no + ')' }); }));
@@ -174,7 +181,7 @@
       h('div', { style: 'padding:0 12px 8px' }, h('div', { class: 'pl-search' }, input, datalist)),
       h('ol', { class: 'rank-list' }, top.map(function (r, i) {
         return h('li', null, h('button', { type: 'button', 'data-name': r.w.no, 'data-key': 'row-' + r.w.no, 'aria-pressed': String(st.sel === r.w.no), onclick: function () { set({ sel: st.sel === r.w.no ? null : r.w.no }); }, onmouseenter: function () { setHover(r.w.no); }, onmouseleave: function () { setHover(null); } },
-          h('span', { class: 'r' }, i + 1), h('span', { class: 'n' }, r.w.row.ward_name), h('span', { class: 'v' }, fmtV(r.v, l)),
+          h('span', { class: 'r' }, i + 1), h('span', { class: 'n' }, r.w.row.ward_name, approxMark(r.w, l)), h('span', { class: 'v' }, fmtV(r.v, l)),
           h('span', { class: 'b' }, h('i', { style: 'width:' + Math.max(2, r.v / top[0].v * 100) + '%;background:' + D.rampVars[rk.bin[r.w.no]] }))));
       })),
       h('p', { class: 'pl-note', style: 'padding:0 14px 12px' }, 'Not available by ward: metro entrances and the streetlight survey are published by district only (see Explore).'));
@@ -183,7 +190,16 @@
   // ---------- detail: Why this place? and the evidence pack ----------
   function ctxFor(w) {
     var fatal = ranking_for('crash_zone_fatal_crashes_2024');
-    return { row: w.row, zones: w.zones, rank: { fatal: fatal.rank[w.no] ? [fatal.rank[w.no], fatal.n] : null }, audit: PL.interventions.audit.filter(function (a) { return a.ward_no === w.no; }) };
+    return { row: w.row, zones: w.zones, rank: { fatal: fatal.rank[w.no] ? [fatal.rank[w.no], fatal.n] : null }, audit: PL.interventions.audit.filter(function (a) { return a.ward_no === w.no; }), loc: locFor(w) };
+  }
+  // location uncertainty for one ward (from the simulation in data/profiles/location_sensitivity_2024.json)
+  var SW = PL.sens.wards, SZ = {}; PL.sens.zones.forEach(function (z) { SZ[z[0]] = z; });
+  function locFor(w) {
+    var a = SW[w.no], zs = (w.zones || []).filter(function (q) { return SZ[q.name]; }).map(function (q) { var z = SZ[q.name]; return { name: q.name, accuracy: z[1], pSame: z[2], stability: z[3], alts: z[4].map(function (x) { return [x[0], x[1], x[2]]; }) }; });
+    var incoming = []; PL.sens.zones.forEach(function (z) { z[4].forEach(function (x) { if (x[0] === w.no) incoming.push({ name: z[0], accuracy: z[1], p: x[2], fromWard: z[5] && byNo[z[5]] ? byNo[z[5]].row.ward_name : 'no ward' }); }); });
+    incoming.sort(function (x, y) { return y.p - x.p; });
+    if (!a && !zs.length && !incoming.length) return null;
+    return { ward: a ? { fatal05: a[0], fatal95: a[2], rank05: a[3], rank95: a[5], pTop10: a[6], pUnchanged: a[7], stability: a[8], baselineRank: a[9], baselineFatal: a[10], pRanked: a[11] } : null, zones: zs, incoming: incoming };
   }
   function ranking_for(field) {
     var rows = wards.filter(function (w) { return w.row[field] != null && w.row[field] > 0; }).sort(function (a, b) { return b.row[field] - a.row[field]; });
@@ -252,7 +268,7 @@
   var TIER_NAMES = { 1: 'Tier 1', 2: 'Tier 2', 3: 'Tier 3', 4: 'Tier 4' };
   var views = D.$('#plViews');
   function viewTabs() {
-    return h('div', { class: 'tabs', role: 'tablist', 'aria-label': 'Intervention views' }, [['audit', 'Field-audit areas'], ['recurring', 'Recurring locations'], ['corridors', 'Pedestrian corridors']].map(function (t) {
+    return h('div', { class: 'tabs', role: 'tablist', 'aria-label': 'Intervention views' }, [['audit', 'Field-audit areas'], ['loc', 'Location uncertainty'], ['recurring', 'Recurring locations'], ['corridors', 'Pedestrian corridors']].map(function (t) {
       return h('button', { type: 'button', role: 'tab', 'aria-selected': String(vs.tab === t[0]), 'data-key': 'vt-' + t[0], onclick: function () { vs.tab = t[0]; keepFocus(renderViews); } }, t[1]);
     }));
   }
@@ -260,6 +276,21 @@
   function strip(years) {
     var all = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
     return h('span', { class: 'ystrip', role: 'img', 'aria-label': 'Listed in ' + years.length + ' of 9 reports: ' + years.join(', ') }, all.map(function (y) { return h('i', { class: years.indexOf(y) >= 0 ? 'on' : '', title: String(y) }); }));
+  }
+  function locView() {
+    var S = PL.sens.summary, p = function (v) { return v > 0 && v < 0.005 ? '<1%' : Math.round(v * 100) + '%'; };
+    var zrows = PL.sens.zones.slice().sort(function (a, b) { return a[2] - b[2] || (a[0] < b[0] ? -1 : 1); });
+    var top = Object.keys(SW).map(function (k) { return { no: k, a: SW[k] }; }).filter(function (x) { return x.a[9] != null; }).sort(function (x, y) { return x.a[9] - y.a[9] || y.a[11] - x.a[11]; }).slice(0, 20);
+    return h('div', { style: 'display:flex;flex-direction:column;gap:12px' },
+      h('p', { class: 'callout warn pl-cau', style: 'font-size:13.5px' }, h('strong', null, 'Treat ward figures as ranges. '), 'Each of the ' + S.zones + ' 2024 zones was moved at random within its stated accuracy (150 m to 5 km), ' + D.n(S.simulations) + ' times, and assigned to a ward each time. Only ' + S.zonesStable + ' zones keep their ward in at least 95% of the placements; ' + S.zonesUncertain + ' are uncertain and ' + S.zonesUnstable + ' stay in their ward less than half the time. Of the ' + S.baselineTop10Wards + ' wards at the top of the fatal-crash ranking, ' + S.baselineTop10WardsRobust + ' stay in the top 10 in at least 90% of the placements, and the top-10 list shares on average ' + p(S.meanTop10Overlap) + ' of its wards with the one as placed. ' + S.wardsWhoseTotalChangesOften + ' of the ' + S.wardsWithZoneBaseline + ' wards that hold a zone have a different total in more than half of the placements.'),
+      h('p', { class: 'pl-note' }, PL.sens.caveats.join(' ')),
+      h('h3', { style: 'font-size:15px' }, 'The top wards by fatal crashes in zones, as a range'),
+      h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:560px' }, h('thead', null, h('tr', null, ['Ward', 'As placed', 'Rank range (5th–95th)', 'Fatal crashes range', 'In top 10', 'Reading'].map(function (t) { return h('th', { scope: 'col' }, t); }))),
+        h('tbody', null, top.map(function (x) { var w = byNo[x.no], a = x.a; return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, w ? w.row.ward_name : x.no, ' ', h('button', { type: 'button', class: 'btn', onclick: function () { openWard(x.no); } }, 'Open')), h('td', null, D.ord(a[9]) + ' · ' + a[10]), h('td', null, a[3] + ' to ' + a[5]), h('td', null, a[0] + ' to ' + a[2]), h('td', null, p(a[6])), h('td', { class: 'muted', style: 'font-size:13px' }, a[8])); })))),
+      h('h3', { style: 'font-size:15px' }, 'Each zone: how often it stays in its ward'),
+      h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:620px' }, h('thead', null, h('tr', null, ['Zone', 'Accuracy', 'Ward as placed', 'Stays in it', 'If not, mostly', 'Reading'].map(function (t) { return h('th', { scope: 'col' }, t); }))),
+        h('tbody', null, zrows.map(function (z) { return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, z[0]), h('td', null, D.n(z[1]) + ' m'), h('td', null, z[5] && byNo[z[5]] ? byNo[z[5]].row.ward_name : 'outside the wards'), h('td', null, p(z[2])), h('td', { class: 'muted', style: 'font-size:13px' }, z[4].filter(function (x) { return x[2] >= 0.01; }).slice(0, 2).map(function (x) { return x[1] + ' (' + p(x[2]) + ')'; }).join(', ') || '—'), h('td', null, h('span', { class: 'why-chip' }, z[3]))); })))),
+      h('p', { class: 'muted', style: 'font-size:13px' }, h('a', { href: 'data/profiles/location_sensitivity_wards_2024.csv' }, 'Ward results (CSV)'), ' · ', h('a', { href: 'data/profiles/location_sensitivity_zones_2024.csv' }, 'Zone results (CSV)'), ' · ', h('a', { href: 'data/profiles/location_sensitivity_2024.json' }, 'Method and all results (JSON)'), '. Seeded, so it reproduces exactly.'));
   }
   function auditView() {
     var rows = IV.audit.filter(function (a) { return (!vs.tier || a.evidence_tier === vs.tier) && (!vs.q || (a.zone + ' ' + (a.road_printed || '') + ' ' + (a.ward_name || '')).toLowerCase().indexOf(vs.q) >= 0); });
@@ -312,7 +343,7 @@
   var viewBody = null;
   function renderViewBody() {
     if (!viewBody) return;
-    D.clear(viewBody).appendChild(vs.tab === 'audit' ? auditView() : vs.tab === 'recurring' ? recurringView() : corridorsView());
+    D.clear(viewBody).appendChild(vs.tab === 'audit' ? auditView() : vs.tab === 'loc' ? locView() : vs.tab === 'recurring' ? recurringView() : corridorsView());
   }
   function renderViews() {
     D.clear(views);

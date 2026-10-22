@@ -22,6 +22,8 @@ Read this before citing a figure or acting on a view.
 ## Geography
 
 - **Constituency overlays are not built.** No Delhi assembly (70) or parliamentary (7) boundary file with a verified open licence and a verified post-2008 vintage has been found. Leads checked from a search, none downloaded or used: the DataMeet community maps (CC BY 2.5 India, but the vintage for Delhi is unverified and the project warns of errors); a Bielefeld University set for the 2014 elections (open, but generated from polling-booth points by a heat-map algorithm, so approximate); a post-delimitation 2008 Delhi shapefile at Stanford (licence unclear, access restricted). Until one is verified, constituency would be a guess, and the legacy 290 wards cannot be mapped to constituencies by name.
+
+- **Ward figures from the zone list are ranges.** Zone positions are hand-placed with a stated accuracy of 150 m to 5 km. Moving each of the 93 zones at random within its stated accuracy (2,000 seeded simulations) shows that only 24 of 93 zones keep their ward in at least 95% of the placements; 47 are uncertain and 22 stay in it less than half the time. Of the 10 wards at the top of the fatal-crash ranking, 4 stay in the top 10 in at least 90% of the placements, and 28 of the 66 wards holding a zone have a different total in more than half of them. This tests the stated accuracy only; the real error may be larger ([results](../data/profiles/location_sensitivity_2024.json)).
 - Wards are the legacy 290, not the current 250 (no verified open boundary file).
 - Crime is district-level only; the ward value is the district's, copied.
 - Metro entrances and the streetlight survey are district-only; the survey covers 9 of 15 districts.

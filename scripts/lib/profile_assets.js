@@ -58,8 +58,15 @@ function build() {
     corridors: cor.rows,
     audit: aud.rows.map(r => { const o = Object.assign({}, r); o.checklist = r.field_checklist.split(' | '); delete o.field_checklist; delete o.latitude; delete o.longitude; return o; })
   };
+  // location sensitivity (data/profiles/location_sensitivity_2024.json): how far hand-placed zone positions move a zone between wards and wards between ranks
+  const ls = read('data/profiles/location_sensitivity_2024.json');
+  const sens = {
+    summary: ls.summary, method: ls.method, caveats: ls.caveats,
+    wards: Object.fromEntries(ls.wards.map(w => [w.ward_no, [w.fatal_p05, w.fatal_median, w.fatal_p95, w.rank_p05, w.rank_median, w.rank_p95, w.p_top10, w.p_unchanged_total, w.stability, w.baseline_rank, w.baseline_fatal_crashes_in_zones, w.p_ranked]])),
+    zones: ls.zones.map(z => [z.zone, z.accuracy_m, z.p_same_ward, z.stability, z.alternatives.map(a => [a.ward_no, a.ward_name, a.p]), z.ward_no, z.p_outside_all_wards])
+  };
   const planning = {
-    dataVersion: schema.dataVersion, interventions: interventions, viewBox: '0 0 1000 ' + height, metersPerUnit: mPerUnit, cols: cols,
+    dataVersion: schema.dataVersion, interventions: interventions, sens: sens, viewBox: '0 0 1000 ' + height, metersPerUnit: mPerUnit, cols: cols,
     wards: wards.rows.map((r, i) => ({ no: r.ward_no, path: pathOf(simple.features[i]), v: cols.map(c => r[c]), zones: r.zones })),
     zonePoints: zones
   };
