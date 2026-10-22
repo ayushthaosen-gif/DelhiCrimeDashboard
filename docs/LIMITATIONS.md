@@ -26,7 +26,7 @@ Read this before citing a figure or acting on a view.
 - **Ward figures from the zone list are ranges.** Zone positions are hand-placed with a stated accuracy of 150 m to 5 km. Moving each of the 93 zones at random within its stated accuracy (2,000 seeded simulations) shows that only 24 of 93 zones keep their ward in at least 95% of the placements; 47 are uncertain and 22 stay in it less than half the time. Of the 10 wards at the top of the fatal-crash ranking, 4 stay in the top 10 in at least 90% of the placements, and 28 of the 66 wards holding a zone have a different total in more than half of them. This tests the stated accuracy only; the real error may be larger ([results](../data/profiles/location_sensitivity_2024.json)).
 - Wards are the legacy 290, not the current 250 (no verified open boundary file).
 - Crime is district-level only; the ward value is the district's, copied.
-- Metro entrances and the streetlight survey are district-only; the survey covers 9 of 15 districts.
+- The streetlight survey is district-only and covers 9 of 15 districts. Metro gates are now official counts by ward (DMRC list last updated 2024-12-02, with defects: repeated rows, missing codes), so newer gates are missing. The OpenStreetMap metro-gate counts in the district profiles differ widely from the official list (for example New Delhi 49 mapped against 77 official, West 38 against 68, Outer 1 against 23, Central 46 against 30): treat the mapped counts as unreliable.
 
 ## Provenance and review
 

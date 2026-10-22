@@ -16,6 +16,7 @@
     { k: 'foot', g: 'Pedestrian infrastructure', label: 'Footway mapped', field: 'footway_km', rate: 'footway_km_per_km2', unit: 'km', zero: 'none mapped (may be unmapped)' },
     { k: 'cross', g: 'Pedestrian infrastructure', label: 'Pedestrian crossings mapped', field: 'pedestrian_crossings', rate: 'pedestrian_crossings_per_km2', unit: 'crossings', zero: 'none mapped (may be unmapped)' },
     { k: 'sig', g: 'Pedestrian infrastructure', label: 'Traffic signals mapped', field: 'traffic_signals', rate: 'traffic_signals_per_km2', unit: 'signals', zero: 'none mapped (may be unmapped)' },
+    { k: 'met', g: 'Transit', label: 'Metro gates (official DMRC list, 2024)', field: 'metro_gates_official', rate: 'metro_gates_official_per_km2', unit: 'gates', zero: 'no gate in the official list' },
     { k: 'bus', g: 'Transit', label: 'Bus stops mapped', field: 'bus_stops', rate: 'bus_stops_per_km2', unit: 'stops', zero: 'none mapped (may be unmapped)' },
     { k: 'lamp', g: 'Street lighting', label: 'Street lamps mapped (not a survey)', field: 'street_lamps_mapped', rate: 'street_lamps_mapped_per_km2', unit: 'lamps', zero: 'none mapped (may be unmapped)' },
     { k: 'hosp', g: 'Services', label: 'Hospitals mapped', field: 'hospitals', rate: 'hospitals_per_km2', unit: 'hospitals', zero: 'none mapped (may be unmapped)' },
@@ -143,7 +144,7 @@
       h('div', { class: 'none' }, h('i', { style: 'width:22px;height:12px;border-radius:2px;background:var(--surface2);border:1px solid var(--line)' }), 'Zero: ' + l.zero),
       h('div', { class: 'none' }, h('svg', { width: 22, height: 12, 'aria-hidden': 'true' }, h('rect', { width: 22, height: 12, rx: 2, style: 'fill:url(#plHatch)' })), 'No figure'));
     var s = P.schema.ward[fieldOf(l)];
-    var warn = (l.g === 'Crash severity') ? 'Crash-zone positions were placed by hand (accurate to 150 m up to 5 km), so a zone can belong to a neighbouring ward. Counts are within zones, not ward totals.' : (s && s[2] === 'mapped_osm') ? 'Mapped in OpenStreetMap: a low or zero value often means the area is not mapped.' : '';
+    var warn = (l.k === 'met') ? 'Delhi Metro gate locations: Delhi Metro Rail Corporation, via the Delhi Transport Stack (Department of Transport, GNCTD), last updated by the publisher on 2 December 2024. Counts per ward are derived by this project and are not the original data. Provided without warranty: neither DMRC nor the Delhi Transport Stack guarantees its accuracy, and the file has defects (repeated rows, missing codes).' : (l.g === 'Crash severity') ? 'Crash-zone positions were placed by hand (accurate to 150 m up to 5 km), so a zone can belong to a neighbouring ward. Counts are within zones, not ward totals.' : (s && s[2] === 'mapped_osm') ? 'Mapped in OpenStreetMap: a low or zero value often means the area is not mapped.' : '';
     return h('section', { class: 'panel map pl-map', 'aria-label': 'Ward map' }, h('div', { class: 'map-body' }, box, legend, warn ? h('p', { class: 'callout warn pl-cau', style: 'font-size:13.5px' }, warn) : null,
       h('p', { class: 'pl-note' }, 'Legacy ward geography (290 wards, before the 2022 delimitation), not the current 250 MCD wards. Boundaries are simplified for display.')));
   }
@@ -184,7 +185,7 @@
           h('span', { class: 'r' }, i + 1), h('span', { class: 'n' }, r.w.row.ward_name, approxMark(r.w, l)), h('span', { class: 'v' }, fmtV(r.v, l)),
           h('span', { class: 'b' }, h('i', { style: 'width:' + Math.max(2, r.v / top[0].v * 100) + '%;background:' + D.rampVars[rk.bin[r.w.no]] }))));
       })),
-      h('p', { class: 'pl-note', style: 'padding:0 14px 12px' }, 'Not available by ward: metro entrances and the streetlight survey are published by district only (see Explore).'));
+      h('p', { class: 'pl-note', style: 'padding:0 14px 12px' }, 'Not available by ward: the streetlight survey is published by district only (see Explore). Metro gates are the official DMRC list, last updated 2024-12-02, shown with its attribution below the map.'));
   }
 
   // ---------- detail: Why this place? and the evidence pack ----------
