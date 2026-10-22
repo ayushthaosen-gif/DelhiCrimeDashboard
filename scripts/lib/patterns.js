@@ -45,8 +45,8 @@ function spearman(a, b) {
   return s / Math.sqrt(sa * sb);
 }
 
-const roadKey = r => String(r || '').toUpperCase().replace(/[^A-Z0-9 ]/g, '').replace(/^G ?T ?K? ?ROAD.*$/, 'GTK ROAD').replace(/^GTK ROAD.*$/, 'GTK ROAD').trim() || 'ROAD NOT PRINTED';
-const prettyRoad = { 'RING ROAD': 'Ring Road', 'OUTER RING ROAD': 'Outer Ring Road', 'GTK ROAD': 'GTK Road', 'ROHTAK ROAD': 'Rohtak Road', 'WAZIRABAD ROAD': 'Wazirabad Road', 'NH24': 'NH-24', 'NH8': 'NH-8', 'MATHURA ROAD': 'Mathura Road' };
+const roadKey = r => String(r || '').toUpperCase().replace(/[^A-Z0-9 ]/g, '').replace(/^G ?T ?K ROAD.*$/, 'GTK ROAD').trim() || 'ROAD NOT PRINTED';
+const prettyRoad = { 'RING ROAD': 'Ring Road', 'OUTER RING ROAD': 'Outer Ring Road', 'GTK ROAD': 'GTK Road', 'GT ROAD': 'G.T. Road', 'ROHTAK ROAD': 'Rohtak Road', 'WAZIRABAD ROAD': 'Wazirabad Road', 'NH24': 'NH-24', 'NH8': 'NH-8', 'MATHURA ROAD': 'Mathura Road' };
 
 function build() {
   const c = read('data/continuity.json');
