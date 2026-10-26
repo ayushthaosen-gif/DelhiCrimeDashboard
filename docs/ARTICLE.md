@@ -71,7 +71,9 @@ Persons killed moved the *opposite* direction citywide, 1,457 → 1,551 (+6.4%) 
 
 ## What correlates with what
 
-Every crime and road-safety metric checked against every infrastructure layer, Pearson r across districts with real coverage for both axes (`*` = statistically significant, p<0.05 — most cells aren't, which at 8-15 districts is the honest result):
+> **Correction (2026-10-26).** The table below was produced when the dashboard's significance stars came from an approximate formula, not a real t test, and it does not match the current dashboard (which now tests 162 cells, not 96). Do not quote it. The stars in it, and the claim that police infrastructure has "the strongest correlations", are not supported by the current, exact calculation: in the live matrix, police infrastructure against persons killed in 2024 is r = −0.46, p = 0.10, not significant. The live matrix is the reference.
+
+Every crime and road-safety metric checked against every infrastructure layer, Pearson r across districts with real coverage for both axes (this table is superseded, see the correction above; with 8-15 districts most cells are not distinguishable from chance):
 
 | Metric | Streetlt | Underps | Metro | Police | Bus | ATM | Liquor | CCTV |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -81,7 +83,7 @@ Every crime and road-safety metric checked against every infrastructure layer, P
 | Persons killed '24 | +0.034 | +0.445 | **+0.480\*** | +0.692 | +0.460 | +0.403 | **+0.481\*** | +0.102 |
 | Persons injured '24 | +0.285 | +0.720 | **+0.583\*** | **+0.850\*** | **+0.588\*** | **+0.514\*** | **+0.586\*** | +0.190 |
 
-(Full 12×8 matrix, 96 cells, is live in the dashboard with per-cell tooltips: exact r, t-statistic, p-value, n.) Police infrastructure's correlations are the strongest in the table and should be read as "sited where the risk already is," not "causes the risk" — reactive allocation, not a policing failure.
+(The full matrix is live in the dashboard with per-cell tooltips: r, n, the exact p-value, the false-discovery-adjusted q, the districts used, and a click-through scatterplot.) These are geographic associations across at most 15 districts, not causal effects.
 
 ## Ward-level findings — a finer grid than 15 districts
 
