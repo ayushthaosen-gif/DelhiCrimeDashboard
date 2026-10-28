@@ -18,8 +18,8 @@
         "IPC became the BNS on 1 July 2024; the 2023 hurt head ('Hurt') and the 2024 head ('Hurt or Grievous Hurt') differ.",
         "A null is unknown, unavailable or not separately reported; it is never zero."
       ],
-      "version": "2026-10-20-385c4c23",
-      "bytes": 97917,
+      "version": "2026-10-20-dd40d814",
+      "bytes": 98023,
       "files": [
         {
           "path": "data/releases/2016/district_crime.csv",
@@ -113,23 +113,23 @@
         },
         {
           "path": "data/releases/delhi_ut_series/README.md",
-          "bytes": 2153,
-          "sha256": "a44863b9070e5c75ddef10419fc577b2b389e2a7023d6b8712e2612e3c16e9ab"
+          "bytes": 2158,
+          "sha256": "4e293d4fd51e4708ae339895c2b755ff11a812b4e11198ecaab641dddcbf0d23"
         },
         {
           "path": "data/releases/delhi_ut_series/delhi_ut_crime.csv",
-          "bytes": 8259,
-          "sha256": "9a0479ebc20ce1c565b221dbfa536d1d3db7b9db54eea25b813a77562c3fb1e2"
+          "bytes": 8326,
+          "sha256": "ce91873f773c9b73c4b5c83ba6d06ef250b3162f43104932e9e609b6da70e85e"
         },
         {
           "path": "data/releases/delhi_ut_series/manifest.json",
           "bytes": 16461,
-          "sha256": "afaa5815596b6c62f358942c1f4db1c5ef210cab7a4e64500cb4b66764682c4b"
+          "sha256": "cfdc7050816fbc5753fee2c7847aa83e96aa20c8956a3884289a46e986d3ca89"
         },
         {
           "path": "data/continuity.json",
-          "bytes": 11875,
-          "sha256": "6cd1c50e71df1a52f974c3a383802c8baaaadbd824608b2c61b17e1a92c1047a"
+          "bytes": 11909,
+          "sha256": "754239ef2488e57bc3e1b6512ff23eaa4e4bcb9cdb0f8b1c6c0bc683a073812a"
         }
       ]
     },
@@ -153,8 +153,8 @@
         "A fatal crash is a crash with at least one death; persons killed is a count of people.",
         "Counts, not rates: no traffic or population denominator is published for these series."
       ],
-      "version": "2026-10-20-b9cd9cd8",
-      "bytes": 823249,
+      "version": "2026-10-20-b7d421e7",
+      "bytes": 823283,
       "files": [
         {
           "path": "data/releases/citywide_road_trend/README.md",
@@ -318,8 +318,8 @@
         },
         {
           "path": "data/continuity.json",
-          "bytes": 11875,
-          "sha256": "6cd1c50e71df1a52f974c3a383802c8baaaadbd824608b2c61b17e1a92c1047a"
+          "bytes": 11909,
+          "sha256": "754239ef2488e57bc3e1b6512ff23eaa4e4bcb9cdb0f8b1c6c0bc683a073812a"
         }
       ]
     },
@@ -337,7 +337,7 @@
         "OpenStreetMap counts are lower bounds: a low count may mean little has been mapped.",
         "An evidence tier says how strong the crash evidence is, not how dangerous a place is or what to build."
       ],
-      "version": "2026-10-20-69c2860a",
+      "version": "2026-10-20-3e1563d8",
       "bytes": 239543,
       "files": [
         {
@@ -373,7 +373,7 @@
         {
           "path": "data/profiles/manifest.json",
           "bytes": 6411,
-          "sha256": "78089d21bfc2efba863631b4a8c29f1894bdbdf9c9c350bad60ade29234b918f"
+          "sha256": "f0e834a40e9f75400b343b089cd9a2289fe39249f07163958be608f525f55c55"
         },
         {
           "path": "data/profiles/pedestrian_corridors_2024.csv",
