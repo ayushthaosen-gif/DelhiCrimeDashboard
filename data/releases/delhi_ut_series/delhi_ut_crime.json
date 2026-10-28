@@ -101,103 +101,108 @@
   },
   {
     "year": 2016,
-    "status": "printed_totals_only",
-    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
+    "status": "printed",
+    "scope": "Delhi UT as printed in the NCRB State/UT-wise tables (IPC totals from Tables 1A.1 to 3A.1, theft, robbery and burglary from Table 1A.4); not a sum of districts",
     "reporting_units": null,
     "offence_basis": "IPC",
-    "theft": null,
-    "robbery": null,
+    "theft": 130928,
+    "robbery": 4761,
     "burglary_old_head": null,
-    "criminal_trespass_burglary_revised_head": null,
+    "criminal_trespass_burglary_revised_head": 14307,
     "burglary": null,
     "total_ipc_bns": 209519,
     "total_sll": 7401,
     "total_crimes_against_women": 15310,
     "total_crimes_in_which_women_was_victim": null,
     "sources": [
-      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json",
+      "data/staged/delhi_ut_series/head_tables_2016_2020.json"
     ],
-    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2017; SLL cii2017; crimes against women cii2017."
+    "note": "Heads as printed: theft \"Theft (Sec 379 to 382 IPC)\", burglary \"Criminal Trespass & Burglary (Sec 453 to 457 IPC r/w 380 IPC)\", robbery \"Robbery (Sec 392 to 394 IPC)\". Totals: editions that print this year: IPC cii2017; SLL cii2017; crimes against women cii2017. The 2016 table prints one combined criminal-trespass-and-burglary head, with no day and night split."
   },
   {
     "year": 2017,
-    "status": "printed_totals_only",
-    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
+    "status": "printed",
+    "scope": "Delhi UT as printed in the NCRB State/UT-wise tables (IPC totals from Tables 1A.1 to 3A.1, theft, robbery and burglary from Table 1A.4); not a sum of districts",
     "reporting_units": null,
     "offence_basis": "IPC",
-    "theft": null,
-    "robbery": null,
+    "theft": 173996,
+    "robbery": 3147,
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
-    "burglary": null,
+    "burglary": 9828,
     "total_ipc_bns": 232066,
     "total_sll": 12648,
     "total_crimes_against_women": 13076,
     "total_crimes_in_which_women_was_victim": null,
     "sources": [
-      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json",
+      "data/staged/delhi_ut_series/head_tables_2016_2020.json"
     ],
-    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2017, cii2019; SLL cii2017, cii2019; crimes against women cii2017, cii2019."
+    "note": "Heads as printed: theft \"Theft (Section 379 IPC)\", burglary \"Burglary (Sec.454 to 460 r/w Sec.380 IPC)\", robbery \"Robbery (Sec.392/394/397 IPC)\". Totals: editions that print this year: IPC cii2017, cii2019; SLL cii2017, cii2019; crimes against women cii2017, cii2019."
   },
   {
     "year": 2018,
-    "status": "printed_totals_only",
-    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
+    "status": "printed",
+    "scope": "Delhi UT as printed in the NCRB State/UT-wise tables (IPC totals from Tables 1A.1 to 3A.1, theft, robbery and burglary from Table 1A.4); not a sum of districts",
     "reporting_units": null,
     "offence_basis": "IPC",
-    "theft": null,
-    "robbery": null,
+    "theft": 195688,
+    "robbery": 2444,
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
-    "burglary": null,
+    "burglary": 4147,
     "total_ipc_bns": 249012,
     "total_sll": 13600,
     "total_crimes_against_women": 13640,
     "total_crimes_in_which_women_was_victim": null,
     "sources": [
-      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json",
+      "data/staged/delhi_ut_series/head_tables_2016_2020.json"
     ],
-    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2019, cii2020; SLL cii2019, cii2020; crimes against women cii2019, cii2020."
+    "note": "Heads as printed: theft \"Theft (Section 379 IPC)\", burglary \"Burglary (Sec.454 to 460 r/w Sec.380 IPC)\", robbery \"Robbery (Sec.392/394/397 IPC)\". Totals: editions that print this year: IPC cii2019, cii2020; SLL cii2019, cii2020; crimes against women cii2019, cii2020. Burglary falls from 9,828 (2017) to 4,147 under the same printed head. NCRB gives no reason."
   },
   {
     "year": 2019,
-    "status": "printed_totals_only",
-    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
+    "status": "printed",
+    "scope": "Delhi UT as printed in the NCRB State/UT-wise tables (IPC totals from Tables 1A.1 to 3A.1, theft, robbery and burglary from Table 1A.4); not a sum of districts",
     "reporting_units": null,
     "offence_basis": "IPC",
-    "theft": null,
-    "robbery": null,
+    "theft": 245985,
+    "robbery": 1956,
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
-    "burglary": null,
+    "burglary": 3026,
     "total_ipc_bns": 299475,
     "total_sll": 16786,
     "total_crimes_against_women": 13395,
     "total_crimes_in_which_women_was_victim": null,
     "sources": [
-      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json",
+      "data/staged/delhi_ut_series/head_tables_2016_2020.json"
     ],
-    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2019, cii2020, cii2021; SLL cii2019, cii2020, cii2021; crimes against women cii2019, cii2020, cii2021."
+    "note": "Heads as printed: theft \"Theft (Section 379 IPC)\", burglary \"Burglary (Sec.454 to 460 r/w Sec.380 IPC)\", robbery \"Robbery (Sec.392/394/397 IPC)\". Totals: editions that print this year: IPC cii2019, cii2020, cii2021; SLL cii2019, cii2020, cii2021; crimes against women cii2019, cii2020, cii2021. The table footnote says West Bengal's 2018 data was used for 2019; Delhi is unaffected."
   },
   {
     "year": 2020,
-    "status": "printed_totals_only",
-    "scope": "Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted",
+    "status": "printed",
+    "scope": "Delhi UT as printed in the NCRB State/UT-wise tables (IPC totals from Tables 1A.1 to 3A.1, theft, robbery and burglary from Table 1A.4); not a sum of districts",
     "reporting_units": null,
     "offence_basis": "IPC",
-    "theft": null,
-    "robbery": null,
+    "theft": 177439,
+    "robbery": 1963,
     "burglary_old_head": null,
     "criminal_trespass_burglary_revised_head": null,
-    "burglary": null,
+    "burglary": 2199,
     "total_ipc_bns": 249192,
     "total_sll": 16878,
     "total_crimes_against_women": 10093,
     "total_crimes_in_which_women_was_victim": null,
     "sources": [
-      "data/staged/delhi_ut_series/state_tables_2015_2021.json"
+      "data/staged/delhi_ut_series/state_tables_2015_2021.json",
+      "data/staged/delhi_ut_series/head_tables_2016_2020.json"
     ],
-    "note": "Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed. Editions that print this year: IPC cii2021; SLL cii2020, cii2021; crimes against women cii2020, cii2021."
+    "note": "Heads as printed: theft \"Theft (Section 379 IPC)\", burglary \"Burglary (Sec.454 to 460 r/w Sec.380 IPC)\", robbery \"Robbery (Sec.392/394/397 IPC)\". Totals: editions that print this year: IPC cii2021; SLL cii2020, cii2021; crimes against women cii2020, cii2021."
   },
   {
     "year": 2021,

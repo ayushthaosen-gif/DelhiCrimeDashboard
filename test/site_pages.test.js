@@ -307,7 +307,7 @@ test('the comparison rules in the page are the ones the tests run (data/continui
   assert.equal(cmp('theft', 2018, 2019).state, 'not_comparable', 'Outer North was created in 2019');
   assert.equal(cmp('theft', 2016, 2017, 'Dwarka').state, 'unavailable', 'Dwarka did not exist as a district before 2017');
   assert.equal(cmp('totalIPC', 2016, 2017, 'Delhi UT').state, 'comparable', 'Delhi-wide printed totals exist for 2016 and 2017');
-  assert.equal(cmp('theft', 2016, 2017, 'Delhi UT').state, 'unavailable', 'Delhi-wide head-wise 2016-2020 are not extracted: blank, not zero');
+  assert.equal(cmp('theft', 2016, 2017, 'Delhi UT').state, 'caution', 'Delhi-wide theft 2016 is printed under a different heading than 2017');
   assert.equal(cmp('crashProneZones2023', 2023, 2024).state, 'caution');
   assert.ok(cmp('theft', 2013, 2014).reasons.length > 0, 'a verdict always carries a reason');
   assert.deepEqual(Array.from(siteData.segmentOf(c, 'theft', 2024)), [2019, 2024]);

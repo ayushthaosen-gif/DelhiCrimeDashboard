@@ -61,7 +61,8 @@ test('published road data is not described as staged; only the staged_2014 files
 test('gaps are named by cause: not printed, not extracted, source not found, not matched', () => {
   const cov = read('docs/COVERAGE.md');
   for (const k of ['**Not printed**', '**Not extracted**', '**Source not found**', '**Not matched**']) assert.ok(cov.includes(k), k);
-  assert.match(cov, /Delhi-wide theft for 2016 to 2020|Theft, robbery, burglary for 2016 to 2020: not extracted/);
+  assert.match(cov, /Delhi UT printed totals \| 2011 to 2024/);
+  assert.doesNotMatch(cov, /Theft, robbery, burglary for 2016 to 2020: not extracted/, 'the 2016 to 2020 heads are extracted now');
   assert.match(cov, /zone lists for 2011 and 2012: source not found/);
   const lim = read('docs/LIMITATIONS.md');
   assert.match(lim, /Not extracted \(source exists\)/);

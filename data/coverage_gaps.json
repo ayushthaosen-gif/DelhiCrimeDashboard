@@ -4,7 +4,6 @@
     { "row": "ncrb_district_crime", "years": [2011, 2015], "state": "staged", "note": "A separate NCRB panel under the original reporting units (17 to 19 including specialised units), counts only, with no allocation to today's districts. Off the site on purpose.", "evidence": "data/releases/historical_2011_2015/README.md" },
     { "row": "ncrb_district_crime", "years": [2025, 2026], "state": "not_published", "note": "No official district release for 2025 or 2026 yet; the weekly monitor watches for it.", "evidence": "data/series_status.json" },
     { "row": "delhi_ut_total_crime", "years": [2025, 2026], "state": "not_published", "note": "No NCRB Crime in India release for 2025 or 2026 yet.", "evidence": "data/series_status.json" },
-    { "row": "delhi_ut_theft", "years": [2016, 2020], "state": "not_extracted", "note": "Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.", "evidence": "data/continuity.json" },
     { "row": "delhi_ut_theft", "years": [2025, 2026], "state": "not_published", "note": "No NCRB release yet.", "evidence": "data/series_status.json" },
     { "row": "citywide_road_trend", "years": [2025, 2026], "state": "not_published", "note": "No Delhi Traffic Police annual report for 2025 or 2026 yet.", "evidence": "data/series_status.json" },
     { "row": "victims_by_mode", "years": [2025, 2026], "state": "not_published", "note": "No Delhi Traffic Police annual report for 2025 or 2026 yet.", "evidence": "data/series_status.json" },

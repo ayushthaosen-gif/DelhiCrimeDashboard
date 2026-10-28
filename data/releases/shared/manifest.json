@@ -145,8 +145,8 @@
       "datasetId": "continuity",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "3c4e428f01ee798f3b7b719d132b3ae004fa793eb04cd62beb44f6ed6f9670c9",
-      "bytes": 10753
+      "sha256": "6cd1c50e71df1a52f974c3a383802c8baaaadbd824608b2c61b17e1a92c1047a",
+      "bytes": 11875
     },
     {
       "file": "data/correlations.json",
@@ -161,24 +161,24 @@
       "datasetId": "coverage_gaps",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "6747c15ce029d1d60b5e770ed934304564b6ba915e9155a65de41a2903474eca",
-      "bytes": 6167
+      "sha256": "2e8acfa0ba1baedf5113dc126d87274a36b571ebf92abb6c8dfecbd5442bf71d",
+      "bytes": 5882
     },
     {
       "file": "data/coverage_matrix.csv",
       "datasetId": "coverage_matrix",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "9053ff63454ce8e9cae9064b4d478c74e68bba46d93668e82fd1899ec558fafa",
-      "bytes": 43715
+      "sha256": "c7c34dd2d2feadf0e5855556d88417cf14fcdd6dddf99683f1581521f4ac60e2",
+      "bytes": 42590
     },
     {
       "file": "data/coverage_matrix.json",
       "datasetId": "coverage_matrix",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "642f5bbd150bdeda8c2a4873e25e4bd5e5f7a8c38d5800543ed30c4d6b64bfd6",
-      "bytes": 48271
+      "sha256": "f0dffd82fd8520bd94011a742c8216e8b127a8b8572b68aebf9d2d8b4de8181f",
+      "bytes": 49075
     },
     {
       "file": "data/crash_zone_liquor_proximity_2024.geojson",
@@ -465,8 +465,8 @@
       "datasetId": "series_status",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "ab3ad0959be7c4c5613e2a39c882faa6d0e9dabb57abf0a7c2bb097a46142d28",
-      "bytes": 18796
+      "sha256": "ab25dd2508fee35b7412b108dca7d332a47b135ccc0f00db4393290e21ff4cf1",
+      "bytes": 18839
     },
     {
       "file": "data/streetlight_grid.json",

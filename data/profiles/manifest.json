@@ -100,11 +100,11 @@
     },
     {
       "path": "data/continuity.json",
-      "sha256": "3c4e428f01ee798f3b7b719d132b3ae004fa793eb04cd62beb44f6ed6f9670c9"
+      "sha256": "6cd1c50e71df1a52f974c3a383802c8baaaadbd824608b2c61b17e1a92c1047a"
     },
     {
       "path": "data/series_status.json",
-      "sha256": "ab3ad0959be7c4c5613e2a39c882faa6d0e9dabb57abf0a7c2bb097a46142d28"
+      "sha256": "ab25dd2508fee35b7412b108dca7d332a47b135ccc0f00db4393290e21ff4cf1"
     },
     {
       "path": "data/geography_registry.json",

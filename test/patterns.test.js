@@ -26,8 +26,11 @@ test('crime series: Delhi-wide printed values, comparison states from the contin
   assert.equal(pair(t, 2023).state, 'caution');
   assert.match(pair(t, 2023).reason, /Bharatiya Nyaya Sanhita/);
   const theft = P.crime.series.theft;
-  for (const y of [2016, 2017, 2018, 2019, 2020]) assert.equal(theft.values[P.crime.years.indexOf(y)], null, 'theft 2016 to 2020 is blank, not zero');
-  assert.equal(pair(theft, 2015).state, 'unavailable');
+  const tv = [130928, 173996, 195688, 245985, 177439];
+  [2016, 2017, 2018, 2019, 2020].forEach((y, i) => assert.equal(theft.values[P.crime.years.indexOf(y)], tv[i], 'theft ' + y + ' is the printed Table 1A.4 value'));
+  assert.equal(pair(theft, 2015).state, 'caution', 'the 2015 to 2016 change of compilation is a caution');
+  assert.equal(pair(theft, 2016).state, 'caution', 'the 2016 heading (Sec 379 to 382) differs from 2017 on');
+  assert.equal(pair(theft, 2018).state, 'comparable');
   assert.ok(P.crime.series.crimeAgainstWomen.values.slice(0, 3).every(v => v === null));
   assert.equal(P.crime.facts.theftShare2023, Math.round(228537 / 324257 * 100));
 });

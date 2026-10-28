@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "Delhi UT theft, robbery and burglary for 2016-2020 from Table 1A.4 (IPC Crimes, crime head-wise and State/UT-wise) of the NCRB Crime in India volumes. Each edition prints one year, so five editions are used.",
+  "method": "Each Delhi row was read from the rendered page image of the PDF (the text layer is garbled or drops cells for several years), then checked against the sums NCRB prints under the table: theft total = auto theft + other thefts, burglary total = day + night. The values below are the Incidence (I) columns. The PDFs (20 to 32 MB) are not committed; each is a raw capture from the Internet Archive of the original ncrb.gov.in file, identified by its SHA-256, so the pages can be re-read.",
+  "readBy": "Claude (Anthropic), 2026-10-28, from the page images; not yet independently re-read",
+  "generatedBy": "hand transcription (see method); validated by test/delhi_ut_series.test.js",
+  "years": {
+    "2016": {
+      "edition": "cii2016",
+      "label": "Crime in India 2016 (complete volume)",
+      "table": "Table 1A.4 IPC Crimes - 2016 (Continued)",
+      "pdfPages": { "theft": 72, "burglary_and_robbery": 73 },
+      "pdf": { "archiveUrl": "https://web.archive.org/web/20220811224205id_/https://ncrb.gov.in/sites/default/files/Crime%20in%20India%20-%202016%20Complete%20PDF%20291117.pdf", "capture": "20220811224205", "bytes": 25497663, "sha256": "e23f9c0c06c3fe11a453714b3a5880bb673ab3d31c5e10568a93a0496346ee31" },
+      "printedHeads": { "theft": "Theft (Sec 379 to 382 IPC)", "burglary": "Criminal Trespass & Burglary (Sec 453 to 457 IPC r/w 380 IPC)", "robbery": "Robbery (Sec 392 to 394 IPC)" },
+      "row": "34 Delhi UT",
+      "values": { "theft_auto": 38644, "theft_other": 92284, "theft_total": 130928, "burglary_day": null, "burglary_night": null, "burglary_total": 14307, "robbery": 4761 },
+      "burglary_head": "criminal_trespass_burglary",
+      "note": "The 2016 table prints one combined criminal-trespass-and-burglary head, with no day and night split."
+    },
+    "2017": {
+      "edition": "cii2017",
+      "label": "Crime in India 2017, Volume 1",
+      "table": "Table 1A.4 IPC Crimes (Crime Head-wise & States/UT-wise) - 2017 (Continued)",
+      "pdfPages": { "theft_total": 68, "theft_burglary": 69, "burglary_night_and_robbery": 70 },
+      "pdf": { "archiveUrl": "https://web.archive.org/web/20250504112556id_/https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653885627_Crime%20in%20India%202017%20-%20Volume%201_0_0.pdf", "capture": "20250504112556", "bytes": 26768900, "sha256": "48a18576d8908fbeb4a9946057ad007b0df6af7d837913c22fd86fb125cfd776" },
+      "printedHeads": { "theft": "Theft (Section 379 IPC)", "burglary": "Burglary (Sec.454 to 460 r/w Sec.380 IPC)", "robbery": "Robbery (Sec.392/394/397 IPC)" },
+      "row": "34 Delhi",
+      "values": { "theft_auto": 40972, "theft_other": 133024, "theft_total": 173996, "burglary_day": 3319, "burglary_night": 6509, "burglary_total": 9828, "robbery": 3147 },
+      "burglary_head": "burglary",
+      "note": ""
+    },
+    "2018": {
+      "edition": "cii2018",
+      "label": "Crime in India 2018, Volume 1",
+      "table": "Table 1A.4 IPC Crimes (Crime Head-wise & States/UT-wise) - 2018 (Continued)",
+      "pdfPages": { "theft_total": 72, "theft_burglary": 73, "burglary_night_and_robbery": 74 },
+      "pdf": { "archiveUrl": "https://web.archive.org/web/20230507132025id_/https://ncrb.gov.in/sites/default/files/Crime%20in%20India%202018%20-%20Volume%201.pdf", "capture": "20230507132025", "bytes": 20230244, "sha256": "07d9b0b12281729a284639d900d942550082965a97de4366c90f38e5327ed8c8" },
+      "printedHeads": { "theft": "Theft (Section 379 IPC)", "burglary": "Burglary (Sec.454 to 460 r/w Sec.380 IPC)", "robbery": "Robbery (Sec.392/394/397 IPC)" },
+      "row": "34 Delhi",
+      "values": { "theft_auto": 46433, "theft_other": 149255, "theft_total": 195688, "burglary_day": 1175, "burglary_night": 2972, "burglary_total": 4147, "robbery": 2444 },
+      "burglary_head": "burglary",
+      "note": "Burglary falls from 9,828 (2017) to 4,147 under the same printed head. NCRB gives no reason."
+    },
+    "2019": {
+      "edition": "cii2019",
+      "label": "Crime in India 2019, Volume 1",
+      "table": "Table 1A.4 IPC Crimes (Crime Head-wise & State/UT-wise) - 2019 (Continued)",
+      "pdfPages": { "theft_total": 74, "theft_burglary": 75, "burglary_night_and_robbery": 76 },
+      "pdf": { "archiveUrl": "https://web.archive.org/web/20250915063616id_/https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1653730573_CII%202019%20Volume%201.pdf", "capture": "20250915063616", "bytes": 31983430, "sha256": "84a381dc748716ef97dafdd44b202102bc43d833b5f67c10799f667f03ce6bd0" },
+      "printedHeads": { "theft": "Theft (Section 379 IPC)", "burglary": "Burglary (Sec.454 to 460 r/w Sec.380 IPC)", "robbery": "Robbery (Sec.392/394/397 IPC)" },
+      "row": "34 Delhi",
+      "values": { "theft_auto": 46215, "theft_other": 199770, "theft_total": 245985, "burglary_day": 977, "burglary_night": 2049, "burglary_total": 3026, "robbery": 1956 },
+      "burglary_head": "burglary",
+      "note": "The table footnote says West Bengal's 2018 data was used for 2019; Delhi is unaffected."
+    },
+    "2020": {
+      "edition": "cii2020",
+      "label": "Crime in India 2020, Volume 1",
+      "table": "Table 1A.4 IPC Crimes (Crime Head-wise & State/UT-wise) - 2020 (Continued)",
+      "pdfPages": { "theft_total": 74, "theft_burglary": 75, "burglary_night_and_robbery": 76 },
+      "pdf": { "archiveUrl": "https://web.archive.org/web/20230101125408id_/https://ncrb.gov.in/sites/default/files/CII%202020%20Volume%201.pdf", "capture": "20230101125408", "bytes": 7250741, "sha256": "6c9679d089b6ac384fbd61beeea25026ba4bd78be563df35af591de7f7aaf193" },
+      "printedHeads": { "theft": "Theft (Section 379 IPC)", "burglary": "Burglary (Sec.454 to 460 r/w Sec.380 IPC)", "robbery": "Robbery (Sec.392/394/397 IPC)" },
+      "row": "32 Delhi",
+      "values": { "theft_auto": 35019, "theft_other": 142420, "theft_total": 177439, "burglary_day": 473, "burglary_night": 1726, "burglary_total": 2199, "robbery": 1963 },
+      "burglary_head": "burglary",
+      "note": ""
+    }
+  }
+}

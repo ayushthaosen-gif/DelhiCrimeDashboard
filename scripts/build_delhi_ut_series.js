@@ -3,8 +3,9 @@
 //   2021-2024: the printed "Total Districts" row of the Delhi block in NCRB's district-wise tables
 //              (data/staged/delhi_ut_series/printed_totals_2021_2024.json, from tools/delhi_ut_series/extract.py)
 //   2016-2020: the Delhi UT totals (IPC, SLL, crimes against women) printed in NCRB's State/UT-wise tables, compared across editions
-//              (data/staged/delhi_ut_series/state_tables_2015_2021.json, from tools/delhi_ut_series/extract_state_tables.py).
-//              Theft, robbery and burglary for those years are blank: the head-wise state tables have not been extracted.
+//              (data/staged/delhi_ut_series/state_tables_2015_2021.json, from tools/delhi_ut_series/extract_state_tables.py), and theft,
+//              robbery and burglary from Table 1A.4 of each year's edition (data/staged/delhi_ut_series/head_tables_2016_2020.json,
+//              read from the page images and checked against the sums NCRB prints).
 // The district-level extract for 2016-2021 deliberately omits totals and is never summed here.
 // A blank or dash is null, never zero. Definitions are kept apart: the old burglary head, the revised criminal-trespass/burglary
 // head and the later burglary definition are three different columns.
@@ -24,7 +25,6 @@ const sha = file => {
 };
 
 const COLUMNS = ['year', 'status', 'scope', 'reporting_units', 'offence_basis', 'theft', 'robbery', 'burglary_old_head', 'criminal_trespass_burglary_revised_head', 'burglary', 'total_ipc_bns', 'total_sll', 'total_crimes_against_women', 'total_crimes_in_which_women_was_victim', 'sources', 'note'];
-const HEADS_REASON = 'Theft, robbery and burglary for Delhi UT in 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes (20 or more pages each) and have not been extracted, so they are blank here, not zero. The district-level extract for those years omits totals on purpose and is never summed.';
 
 function basis(year) {
   if (year <= 2013) return 'IPC, NCRB format before 2014';
@@ -37,6 +37,7 @@ function build() {
   const hist = read('data/releases/historical_2011_2015/citywide_crime.json');
   const printed = read('data/staged/delhi_ut_series/printed_totals_2021_2024.json');
   const state = read('data/staged/delhi_ut_series/state_tables_2015_2021.json');
+  const heads = read('data/staged/delhi_ut_series/head_tables_2016_2020.json');
   const histManifest = 'data/releases/historical_2011_2015/manifest.json';
   const rows = [];
   for (const r of hist) {
@@ -50,15 +51,20 @@ function build() {
     });
   }
   for (let year = 2016; year <= 2020; year++) {
-    const t = state.years[String(year)];
+    const t = state.years[String(year)], h = heads.years[String(year)];
     assert(t && t.ipc && t.sll && t.women, `state tables are missing a total for ${year}`);
     for (const m of ['ipc', 'sll', 'women']) assert.equal(t[m].agree, true, `${year} ${m}: editions disagree`);
+    assert(h, `head-wise table record is missing for ${year}`);
+    const v = h.values;
+    assert.equal(v.theft_auto + v.theft_other, v.theft_total, `${year}: auto theft + other thefts must equal the printed theft total`);
+    if (v.burglary_day != null) assert.equal(v.burglary_day + v.burglary_night, v.burglary_total, `${year}: day + night burglary must equal the printed burglary total`);
+    const trespass = h.burglary_head === 'criminal_trespass_burglary';
     rows.push({
-      year, status: 'printed_totals_only', scope: 'Delhi UT totals printed in the NCRB State/UT-wise tables; theft, robbery and burglary not extracted', reporting_units: null, offence_basis: basis(year),
-      theft: null, robbery: null, burglary_old_head: null, criminal_trespass_burglary_revised_head: null, burglary: null,
+      year, status: 'printed', scope: 'Delhi UT as printed in the NCRB State/UT-wise tables (IPC totals from Tables 1A.1 to 3A.1, theft, robbery and burglary from Table 1A.4); not a sum of districts', reporting_units: null, offence_basis: basis(year),
+      theft: v.theft_total, robbery: v.robbery, burglary_old_head: null, criminal_trespass_burglary_revised_head: trespass ? v.burglary_total : null, burglary: trespass ? null : v.burglary_total,
       total_ipc_bns: t.ipc.value, total_sll: t.sll.value, total_crimes_against_women: t.women.value, total_crimes_in_which_women_was_victim: null,
-      sources: ['data/staged/delhi_ut_series/state_tables_2015_2021.json'],
-      note: HEADS_REASON + ' Editions that print this year: IPC ' + t.ipc.editions.join(', ') + '; SLL ' + t.sll.editions.join(', ') + '; crimes against women ' + t.women.editions.join(', ') + '.'
+      sources: ['data/staged/delhi_ut_series/state_tables_2015_2021.json', 'data/staged/delhi_ut_series/head_tables_2016_2020.json'],
+      note: 'Heads as printed: theft "' + h.printedHeads.theft + '", burglary "' + h.printedHeads.burglary + '", robbery "' + h.printedHeads.robbery + '". Totals: editions that print this year: IPC ' + t.ipc.editions.join(', ') + '; SLL ' + t.sll.editions.join(', ') + '; crimes against women ' + t.women.editions.join(', ') + '.' + (h.note ? ' ' + h.note : '')
     });
   }
   const checks = [];
@@ -109,7 +115,7 @@ function build() {
     unit: 'Registered cases; counts, not rates.',
     nullPolicy: 'A blank or dash in a source is null, never zero. Missing years are rows with status not_collected, never filled.',
     definitions: [
-      'Burglary is three separate columns: the original head (2011-2013), the revised criminal-trespass/burglary head (2014-2015) and the later burglary definition (2022-2024). They are not one series.',
+      'Burglary is three separate columns: the original head (2011-2013), the revised criminal-trespass/burglary head (2014-2016; 2016 prints it as Criminal Trespass & Burglary, Sec 453 to 457) and the burglary definition (Sec 454 to 460 r/w 380) printed from 2017. They are not one series.',
       'NCRB changed its reporting format and offence groupings in 2014, so 2013 and 2014 are not comparable; the 2024 tables follow the BNS (in force from 1 July 2024), so 2023 to 2024 is a caution.',
       'Special and Local Laws and crimes-against-women totals are not available for 2011-2013.',
       'Total crimes against women is the head printed in each source: the original-year table for 2014-2015 and the IPC/BNS plus SLL total in the district table from 2022. Check the original table before comparing the two ranges. The separate printed "crimes in which women was victim" head is kept in its own column for 2014-2015.'
@@ -118,6 +124,7 @@ function build() {
     sources: [
       { path: histManifest, role: '2011-2015 printed Delhi UT summaries (NCRB Crime in India, original-year tables)', sha256: sha(histManifest) },
       ...printed.years.flatMap(y => y.sources.map(s => ({ path: s.path, role: `${y.year} ${s.table} district-wise table, printed Total Districts row`, sha256: s.sha256 }))),
+      { path: 'data/staged/delhi_ut_series/head_tables_2016_2020.json', role: '2016-2020 theft, robbery and burglary: Table 1A.4 of Crime in India 2016 to 2020, read from page images; the record lists each PDF\'s capture and SHA-256', sha256: sha('data/staged/delhi_ut_series/head_tables_2016_2020.json') },
       { path: 'data/staged/delhi_ut_series/printed_totals_2021_2024.json', role: 'extraction record with the column headers and the unit-sum agreement check', sha256: sha('data/staged/delhi_ut_series/printed_totals_2021_2024.json') }
     ],
     verification: checks,
@@ -131,7 +138,8 @@ function build() {
 
 - [delhi_ut_crime.csv](delhi_ut_crime.csv) / [JSON](delhi_ut_crime.json): one row per year, 2011 to 2024.
 - 2011-2015 come from the printed Delhi UT summaries; 2021-2024 from the printed "Total Districts" row of NCRB's district-wise tables, which equals the sum of the printed unit rows for every figure (2021 also equals the State/UT tables of Crime in India 2021).
-- **2016-2020 are \`printed_totals_only\`:** IPC, SLL and crimes-against-women totals from NCRB's State/UT-wise tables, with every edition that prints a year compared (they agree exactly). Theft, robbery and burglary for those years are blank, not zero: the head-wise state tables have not been extracted. Nothing is summed from districts.
+- **2016-2020 are \`printed\`:** theft, robbery and burglary come from Table 1A.4 of each year's Crime in India edition (one year per edition, read from page images and checked against the printed sums: auto + other theft, day + night burglary), and IPC, SLL and crimes-against-women totals from the State/UT-wise tables.
+- The IPC, SLL and crimes-against-women totals for those years are compared across every edition that prints them (they agree exactly). Nothing is summed from districts. Burglary 2016 is the combined criminal-trespass-and-burglary head; from 2017 it is the burglary head (Sec 454 to 460 r/w 380), which falls from 9,828 (2017) to 4,147 (2018) with no reason given.
 - 2015 crimes against women is 17,104 in the original-year table and 17,222 in the later IPC+SLL table, so 2015 to 2016 is a caution for that measure. Burglary jumps from 2,637 (2021) to 6,189 (2022) with the same heading and the cause is unknown, so that change is a caution too.
 - Burglary is three separate columns because the definition changed. 2013 to 2014 is not comparable and 2023 to 2024 is a caution; see [data/continuity.json](../../continuity.json).
 - Sources and hashes: [data/raw/ncrb_wayback/](../../raw/ncrb_wayback/manifest.json). They were recovered from Internet Archive captures of NCRB's own files, because the live ncrb.gov.in certificate fails the Windows revocation check.

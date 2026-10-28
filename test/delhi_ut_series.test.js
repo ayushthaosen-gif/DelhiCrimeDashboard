@@ -19,17 +19,40 @@ const continuity = read('data/continuity.json');
 const byYear = Object.fromEntries(rows.map(r => [r.year, r]));
 const MEASURES = ['theft', 'robbery', 'burglary_old_head', 'criminal_trespass_burglary_revised_head', 'burglary', 'total_ipc_bns', 'total_sll', 'total_crimes_against_women', 'total_crimes_in_which_women_was_victim'];
 
-test('one row per year 2011 to 2024; 2016 to 2020 carry printed totals only, with the head-wise figures blank (never zero) and the reason stated', () => {
+test('one row per year 2011 to 2024; 2016 to 2020 carry the printed totals and the head-wise theft, robbery and burglary, with the burglary heads kept apart', () => {
   assert.deepEqual(rows.map(r => r.year), [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]);
   for (let y = 2016; y <= 2020; y++) {
-    assert.equal(byYear[y].status, 'printed_totals_only');
-    for (const m of ['theft', 'robbery', 'burglary_old_head', 'criminal_trespass_burglary_revised_head', 'burglary', 'total_crimes_in_which_women_was_victim']) assert.equal(byYear[y][m], null, y + ' ' + m);
-    for (const m of ['total_ipc_bns', 'total_sll', 'total_crimes_against_women']) assert.ok(byYear[y][m] > 0, y + ' ' + m);
-    assert.ok(/have not been extracted/.test(byYear[y].note));
+    assert.equal(byYear[y].status, 'printed');
+    assert.equal(byYear[y].burglary_old_head, null);
+    assert.equal(byYear[y].total_crimes_in_which_women_was_victim, null);
+    for (const m of ['theft', 'robbery', 'total_ipc_bns', 'total_sll', 'total_crimes_against_women']) assert.ok(byYear[y][m] > 0, y + ' ' + m);
+    // the combined trespass-and-burglary head (2016) and the burglary head (2017 on) are different columns, never both in one row
+    assert.equal((byYear[y].criminal_trespass_burglary_revised_head == null) !== (byYear[y].burglary == null), true, y + ' exactly one burglary head');
   }
-  assert.deepEqual(manifest.coverage.totalsOnlyYears, [2016, 2017, 2018, 2019, 2020]);
+  assert.equal(byYear[2016].criminal_trespass_burglary_revised_head, 14307);
+  assert.equal(byYear[2016].burglary, null);
+  assert.deepEqual(manifest.coverage.totalsOnlyYears, []);
   assert.deepEqual(manifest.coverage.notCollectedYears, []);
-  assert.deepEqual(manifest.coverage.printedYears, [2011, 2012, 2013, 2014, 2015, 2021, 2022, 2023, 2024]);
+  assert.deepEqual(manifest.coverage.printedYears, [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]);
+});
+
+test('2016 to 2020 theft, robbery and burglary equal the hand-read Table 1A.4 values, and the printed sums hold in every year', () => {
+  const heads = read('data/staged/delhi_ut_series/head_tables_2016_2020.json');
+  const expected = { 2016: [130928, 4761, 14307], 2017: [173996, 3147, 9828], 2018: [195688, 2444, 4147], 2019: [245985, 1956, 3026], 2020: [177439, 1963, 2199] };
+  for (const [y, [theft, robbery, burglary]] of Object.entries(expected)) {
+    const v = heads.years[y].values;
+    assert.deepEqual([v.theft_total, v.robbery, v.burglary_total], [theft, robbery, burglary], y);
+    assert.equal(v.theft_auto + v.theft_other, v.theft_total, y + ' auto + other theft = total');
+    if (v.burglary_day != null) assert.equal(v.burglary_day + v.burglary_night, v.burglary_total, y + ' day + night burglary = total');
+    assert.equal(byYear[y].theft, theft);
+    assert.equal(byYear[y].robbery, robbery);
+    assert.ok(/^[0-9a-f]{64}$/.test(heads.years[y].pdf.sha256) && heads.years[y].pdf.bytes > 1e6, y + ' names its source PDF by hash');
+    assert.ok(/^https:\/\/web\.archive\.org\/web\/\d+id_\//.test(heads.years[y].pdf.archiveUrl));
+  }
+  // the five years come from five different editions
+  assert.equal(new Set(Object.values(heads.years).map(y => y.edition)).size, 5);
+  assert.ok(continuity.definitionBreaks.some(b => b.between[0] === 2017 && b.between[1] === 2018 && b.measures.includes('burglary')), 'the unexplained 2017 to 2018 burglary fall is a caution');
+  assert.equal(continuity.utSeries.headsUnavailable, undefined);
 });
 
 test('2016 to 2020 totals equal the State/UT tables, every edition that prints a year agrees, and IPC plus SLL equals the printed combined total', () => {
@@ -108,8 +131,11 @@ test('comparability for the Delhi-wide series ignores district boundaries but no
   assert.equal(state('theft', 2014, 2015), 'comparable');
   assert.equal(state('totalIPC', 2015, 2016), 'comparable');
   assert.equal(state('totalIPC', 2016, 2017), 'comparable');
-  assert.equal(state('theft', 2015, 2016), 'unavailable', 'head-wise figures for 2016-2020 are not extracted');
-  assert.equal(state('theft', 2020, 2021), 'unavailable');
+  assert.equal(state('theft', 2015, 2016), 'caution', 'the 2016 head-wise figures come from a different table and heading');
+  assert.equal(state('theft', 2016, 2017), 'caution');
+  assert.equal(state('theft', 2017, 2018), 'comparable');
+  assert.equal(state('burglary', 2017, 2018), 'caution', 'burglary falls from 9,828 to 4,147 under one heading with no reason given');
+  assert.equal(state('theft', 2020, 2021), 'comparable');
   assert.equal(state('theft', 2021, 2022), 'comparable');
   assert.equal(state('burglary', 2021, 2022), 'caution', 'burglary jumps 2.3 times with no explanation');
   assert.equal(state('crimeAgainstWomen', 2015, 2016), 'caution', 'the 2015 women head differs between editions');

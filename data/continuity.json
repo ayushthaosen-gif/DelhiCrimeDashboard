@@ -69,6 +69,30 @@
       "evidence": "data/releases/2022/manifest.json"
     },
     {
+      "between": [2015,2016],
+      "measures": ["theft", "robbery", "burglary"],
+      "state": "caution",
+      "utOnly": true,
+      "reason": "Up to 2015 the Delhi-wide figures come from the original-year summary tables; from 2016 they are the Delhi row of Table 1A.4 of each year's Crime in India edition. The printed section ranges differ between editions (2016 prints theft as Sec 379 to 382, robbery as Sec 392 to 394, and a combined criminal-trespass-and-burglary head as Sec 453 to 457).",
+      "evidence": "data/staged/delhi_ut_series/head_tables_2016_2020.json"
+    },
+    {
+      "between": [2016,2017],
+      "measures": ["theft", "robbery"],
+      "state": "caution",
+      "utOnly": true,
+      "reason": "The 2016 table prints theft as Sec 379 to 382 IPC and robbery as Sec 392 to 394 IPC; from 2017 they are Sec 379 IPC and Sec 392/394/397 IPC, so the two years may not count exactly the same offences.",
+      "evidence": "data/staged/delhi_ut_series/head_tables_2016_2020.json"
+    },
+    {
+      "between": [2017,2018],
+      "measures": ["burglary"],
+      "state": "caution",
+      "utOnly": true,
+      "reason": "Burglary (Sec 454 to 460 r/w 380 IPC) falls from 9,828 in 2017 to 4,147 in 2018 under the same printed heading, and NCRB gives no reason. Treat the fall as unexplained, not as a measured change in burglary.",
+      "evidence": "data/staged/delhi_ut_series/head_tables_2016_2020.json"
+    },
+    {
       "between": [2023, 2024],
       "measures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
       "state": "caution",
@@ -112,11 +136,6 @@
     "scopeName": "Delhi UT",
     "printedYears": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
     "gapReason": "No Delhi-wide figure has been collected for this year, so it is left blank rather than computed from districts.",
-    "headsUnavailable": {
-      "years": [2016, 2020],
-      "measures": ["theft", "robbery", "burglary"],
-      "reason": "Delhi-wide theft, robbery and burglary for 2016-2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet, so they are blank, not zero."
-    },
     "note": "Delhi-wide totals do not depend on district boundaries, so geography breaks are skipped. Definition breaks and missing years still apply."
   },
   "roadDistrict": {

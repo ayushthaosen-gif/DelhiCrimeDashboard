@@ -60,7 +60,7 @@
       "coverage_start": "2011",
       "geography": "Delhi UT as a whole, all reporting units; independent of district boundaries",
       "where": "data/releases/delhi_ut_series/manifest.json",
-      "note": "2011-2015 and 2022-2024 are printed totals; 2016-2021 are rows marked not collected, never filled by summing districts. Three burglary definitions stay in separate columns. 2013 to 2014 is not comparable."
+      "note": "All of 2011 to 2024 are printed Delhi-wide figures (2016 to 2020 theft, robbery and burglary read from Table 1A.4 page images), never filled by summing districts. Three burglary definitions stay in separate columns. 2013 to 2014 is not comparable."
     },
     {
       "id": "historical_police_district_maps",
