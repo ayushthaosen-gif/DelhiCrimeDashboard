@@ -38,9 +38,7 @@ test('districts: 15 districts ranked by registered cases per lakh residents; the
   assert.equal(P.districts.ranked[0].district, 'North');
   assert.equal(P.districts.ranked[14].district, 'South-West');
   assert.ok(P.districts.ranked.every(r => Math.abs(r.perLakh - Math.round(r.count / r.population * 1e5)) <= 1));
-  assert.ok(P.districts.correlations.length >= 7);
-  for (const c of P.districts.correlations) { assert.equal(c.n, 15); assert.ok(Math.abs(c.rho) < 0.52, c.label + ' stays inside what 15 districts cannot distinguish from chance'); }
-  assert.ok(!P.districts.correlations.some(c => /streetlight/i.test(c.label)), 'a partly surveyed measure is not compared');
+  assert.equal(P.districts.correlations, undefined, 'the small rank table was replaced by the full matrix');
   // spearman: perfect, inverse and tied cases
   assert.equal(patterns.spearman([1, 2, 3, 4], [10, 20, 30, 40]), 1);
   assert.equal(patterns.spearman([1, 2, 3, 4], [4, 3, 2, 1]), -1);
@@ -117,4 +115,38 @@ test('hurt reclassification: Delhi figures are recomputed from the archived work
   assert.ok(!/simple hurt became non-cognisable/.test(br.reason + read('assets/page-patterns.js') + JSON.stringify(hurt)), 'the unsupported explanation is gone');
   assert.ok(hurt.classificationCheck.sources.length === 2 && /not read them itself|has not read/.test(hurt.classificationCheck.checkedBy));
   assert.match(br.reason, /theft accounts for most of it/);
+});
+
+test('matrix: 13 metrics x 9 infrastructure layers, adjusted for the number of tests, with the districts used in every cell', () => {
+  const M = P.matrix;
+  assert.equal(M.metrics.length, 13);
+  assert.equal(M.infra.length, 9);
+  for (const mode of ['density', 'perCapita']) {
+    const X = M.modes[mode];
+    assert.equal(X.tests, 117);
+    let sawPartial = false;
+    X.cells.forEach(row => row.forEach(c => {
+      assert.ok(c.n >= 3 && c.n <= 15);
+      assert.equal(c.idx.length, c.n);
+      assert.equal(c.x.length, c.n);
+      for (const k of ['pearson', 'spearman']) {
+        assert.ok(c[k].p >= 0 && c[k].p <= 1);
+        assert.ok(c[k].q >= c[k].p - 1e-9, 'adjusted value is never below the raw p');
+        if (c[k].partial != null) sawPartial = true;
+      }
+    }));
+    assert.ok(sawPartial);
+    assert.ok(X.adjusted.pearson <= X.raw.pearson && X.adjusted.spearman <= X.raw.spearman);
+  }
+  // partly surveyed layers keep only the surveyed districts
+  const sl = M.infra.findIndex(i => i.key === 'streetlight');
+  assert.ok(M.modes.density.cells[0][sl].n <= 9);
+});
+
+test('matrix cells reproduce a hand-checked value: persons killed (zones, 2024) against police posts per km2', () => {
+  const M = P.matrix, mi = M.metrics.findIndex(x => x.key === 'personsKilled2024'), ii = M.infra.findIndex(x => x.key === 'policeInfra');
+  const c = M.modes.density.cells[mi][ii];
+  assert.equal(c.n, 14);
+  assert.ok(Math.abs(c.pearson.r - 0.692) < 0.002);
+  assert.ok(Math.abs(c.pearson.p - 0.0061) < 0.0003);
 });

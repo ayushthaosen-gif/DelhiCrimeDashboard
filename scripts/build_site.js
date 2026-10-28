@@ -145,7 +145,7 @@ function planning() {
 function patternsPage() {
   return '<main id="main" class="page" style="padding-top:20px">\n'
     + '<div class="page-head"><h1>Trends and patterns</h1><p class="lead">What the data shows about registered crime over time, where crime rates are higher, and which places and roads the road-crash reports keep naming.</p><p class="pl-sub">These are patterns in what is reported or listed. They describe; they do not explain. Where a comparison is not valid the chart leaves a gap instead of joining the dots, and every claim carries its limit. A one-page <a href="planner-brief.html">planner brief</a> summarises the road findings.</p></div>\n'
-    + '<section id="ptCrime" class="card"></section>\n<section id="ptChange" class="card"></section>\n<section id="ptDistricts" class="card"></section>\n<section id="ptRoads" class="card"></section>\n<section id="ptHelp" class="card"></section>\n</main>';
+    + '<section id="ptCrime" class="card"></section>\n<section id="ptChange" class="card"></section>\n<section id="ptDistricts" class="card"></section>\n<section id="ptMatrix" class="card"></section>\n<section id="ptRoads" class="card"></section>\n<section id="ptHelp" class="card"></section>\n</main>';
 }
 
 function map3d() {
