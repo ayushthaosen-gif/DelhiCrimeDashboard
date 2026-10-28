@@ -88,6 +88,6 @@ test('the page never loads modern district or ward shapes and carries the bounda
   assert.ok(html.includes('4124'), 'the 2014 Central theft count is on the page');
 });
 
-test('the dashboard and the interactive map link to the view, and so do their build scripts', () => {
-  for (const f of ['delhi_safety_dashboard.html', 'interactive_map.html', 'scripts/build.js', 'scripts/build_interactive_map.js']) assert.ok(read(f).includes('historical_crime.html'), f);
+test('the site and the interactive map link to the view, and so do their build scripts', () => {
+  for (const f of ['index.html', 'interactive_map.html', 'scripts/build_site.js', 'scripts/build_interactive_map.js']) assert.ok(read(f).includes('historical_crime.html'), f);
 });

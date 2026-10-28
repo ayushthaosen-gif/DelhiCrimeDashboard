@@ -373,5 +373,4 @@ test('Data & methods keeps its seven sections, the downloads exist, and the Over
   for (const f of ['exports/districts.csv', 'exports/crash_prone_zones_2023.csv', 'data/continuity.json']) assert.ok(dm.includes('href="' + f + '"') && fs.existsSync(path.join(ROOT, f)), f);
   const ov = files['index.html'];
   for (const t of ['Registered cases are not crime levels.', 'Boundaries changed.', 'A zero can mean not surveyed.', 'Crash data uses other districts.', 'Read before comparing:']) assert.ok(ov.includes(t), t);
-  assert.ok(ov.includes('href="delhi_safety_dashboard.html"'), 'the earlier dashboard stays reachable');
 });

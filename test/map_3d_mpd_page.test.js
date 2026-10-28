@@ -157,9 +157,9 @@ test('ranked list: biggest gaps by area, thin-coverage and tiny wards excluded, 
 });
 
 
-test('a Home button leads back to the dashboard home page', () => {
-  assert.match(html, /<a class="homebtn" href="delhi_safety_dashboard\.html"[^>]*>[^<]*Home<\/a>/);
-  assert.ok(fs.existsSync(path.join(ROOT, 'delhi_safety_dashboard.html')));
+test('a Home button leads back to the site home page', () => {
+  assert.match(html, /<a class="homebtn" href="index\.html"[^>]*>[^<]*Home<\/a>/);
+  assert.ok(fs.existsSync(path.join(ROOT, 'index.html')));
 });
 
 test('guided stories: four stories whose wards come from the data and each has real wards to visit', () => {

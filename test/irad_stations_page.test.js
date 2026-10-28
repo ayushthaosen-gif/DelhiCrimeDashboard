@@ -30,7 +30,7 @@ test('the columns the page reads exist in both staged CSVs', () => {
 
 test('the page keeps its caveat, a Home link and no external scripts', () => {
   assert.ok(html.includes('Read before comparing'));
-  assert.ok(html.includes('href="delhi_safety_dashboard.html"'));
+  assert.ok(html.includes('href="index.html"'));
   assert.ok(!/<script[^>]+src=/.test(html));
 });
 

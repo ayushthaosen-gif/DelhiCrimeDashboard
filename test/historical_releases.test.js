@@ -35,46 +35,6 @@ test('road extension adds only three source-verified years and preserves every l
   assert.deepEqual(csv(ROAD + 'citywide_road_trend.csv').map(r => Object.fromEntries(Object.entries(r).map(([k, v]) => [k, Number(v)]))), road.trends);
 });
 
-test('road chart uses the same 2011 baseline, end year, counts and caveats; crime years stay separate', () => {
-  const embedded = JSON.parse(script.match(/const TRENDS = (\[[^\n]+\]);/)[1]);
-  assert.deepEqual(embedded, road.trends);
-  assert.match(html, /Trends, 2011–2024/);
-  assert.match(html, /Road crashes, 2011→2024/);
-  assert.match(html, /Counts, not rates/);
-  assert.match(html, /not a population- or travel-adjusted risk rate/);
-  assert.match(html, /30-day fatality definition could not be confirmed/);
-  assert.match(html, /injury and simple\/non-injury figures differ by source edition/);
-  assert.doesNotMatch(html, /2014 = 100|2014→2023|Trends, 2014-2024/);
-  assert.doesNotMatch(html, /<option value="201[1-5]"/);
-  assert.doesNotMatch(html, /historical_2011_2015\/|const HISTORICAL/);
-  const table = html.match(/<table class="cov-table" id="roadTrendCounts">([\s\S]*?)<\/table>/)[1];
-  assert.equal((table.match(/scope="row"/g) || []).length, 14);
-  assert.match(table, /2011<\/th><td>7,280<\/td><td>2,047<\/td><td>2,110/);
-});
-
-test('rendered chart baseline and download filename are computed from the extended series', () => {
-  const texts = [], nodes = {};
-  const context = vm.createContext({ TRENDS: road.trends, Math, fmtNum: n => n.toLocaleString('en-IN'),
-    document: { body: {}, getElementById: id => nodes[id] ||= { style: {} } },
-    getComputedStyle: () => ({ getPropertyValue: () => '#555555' }),
-    setupHighDPICanvas: () => ({ W: 640, H: 320, ctx: new Proxy({}, { get: (_, key) => (...args) => { if (key === 'fillText') texts.push(args[0]); }, set: () => true }) })
-  });
-  vm.runInContext(script.slice(script.indexOf('function renderTrends()'), script.indexOf('function renderVictimsByMode()')) + '\nrenderTrends();', context);
-  assert.ok(texts.includes('2011 = 100'));
-  assert.ok(texts.includes(2011) && texts.includes(2024));
-  assert.equal(nodes.trendsCrashesChange.textContent, '-22%');
-  assert.equal(nodes.trendsFatalitiesChange.textContent, '-26%');
-  let downloaded;
-  vm.runInNewContext(script.slice(script.indexOf("document.getElementById('dlTrendsDownload')"), script.indexOf("document.getElementById('dlVictimsDownload')")), {
-    TRENDS: road.trends,
-    document: { getElementById: () => ({ addEventListener: (_, fn) => fn() }) },
-    toCSV: (headers, rows) => ({ headers, rows }), triggerDownload: (name, content) => { downloaded = { name, content }; }
-  });
-  assert.equal(downloaded.name, 'gaitway_delhi_road_safety_trends_2011_2024.csv');
-  assert.equal(downloaded.content.rows.length, 14);
-  assert.deepEqual(Array.from(downloaded.content.rows[0]), [2011, 7280, 2110, 2047]);
-});
-
 test('historical release retains original units and all summary cells, outside the 2016-2024 district years', () => {
   const manifest = json(HIST + 'manifest.json');
   assert.equal(manifest.status, 'production');

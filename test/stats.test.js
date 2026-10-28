@@ -58,11 +58,11 @@ test('the module is safe to paste into a template literal', () => {
   assert.ok(!src.includes('`') && !src.includes('$' + '{'));
 });
 
-test('the built dashboard uses the exact test, adjusts for multiple tests, and has no hand-made p curve', () => {
-  const html = fs.readFileSync(path.join(__dirname, '../delhi_safety_dashboard.html'), 'utf8');
-  assert.ok(html.includes('statsPFromR'));
-  assert.ok(html.includes('statsBH'));
-  assert.ok(!html.includes('-0.717 * t'));
-  assert.ok(/Benjamini/.test(html));
-  assert.ok(/not causation|do not establish causation/i.test(html));
+test('the Patterns matrix uses the exact test and the adjustment, has no hand-made p curve, and says it is not causal', () => {
+  const lib = fs.readFileSync(path.join(__dirname, '../scripts/lib/corr_matrix.js'), 'utf8');
+  assert.ok(lib.includes('statsPFromR') && lib.includes('statsBH'));
+  const page = fs.readFileSync(path.join(__dirname, '../assets/page-patterns.js'), 'utf8');
+  assert.ok(/Benjamini/.test(page));
+  assert.ok(/do not establish causation/i.test(page));
+  for (const f of ['scripts/lib/stats.js', 'scripts/lib/corr_matrix.js', 'assets/page-patterns.js']) assert.ok(!fs.readFileSync(path.join(__dirname, '..', f), 'utf8').includes('-0.717'), f);
 });

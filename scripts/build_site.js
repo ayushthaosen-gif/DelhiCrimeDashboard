@@ -5,7 +5,7 @@
 // Writes index.html, explore.html, road-safety.html, 3d-map.html, data-methods.html and assets/site-data.js.
 // The page styles and behaviour are hand-written in assets/site.css, assets/site.js and assets/page-*.js.
 // Every figure comes from data/*.json through scripts/lib/site_data.js; nothing is typed in here.
-// The older single-page dashboard (delhi_safety_dashboard.html) and the other legacy pages are untouched and linked from the footers.
+// The earlier single-page dashboard is retired (delhi_safety_dashboard.html is a redirect page). The other legacy pages are untouched and linked from the footers.
 
 const fs = require('fs');
 const crypto = require('crypto');
@@ -73,7 +73,7 @@ function shell(page, o) {
     + '<nav class="site-nav" aria-label="Sections"><div class="' + wrapClass + '"><div class="nav-links">' + links + '</div>'
     + '<span class="nav-meta"><span class="pill-data">Data</span>Official figures up to 2024 · version ' + esc(o.updated) + '</span></div></nav>\n'
     + o.body
-    + '\n<noscript><p class="noscript">These pages draw their charts and maps with JavaScript. The same figures are in the downloads on <a href="data-methods.html#downloads">Data &amp; methods</a>, and the earlier <a href="delhi_safety_dashboard.html">single-page dashboard</a> works without it for the tables.</p></noscript>\n'
+    + '\n<noscript><p class="noscript">These pages draw their charts and maps with JavaScript. The same figures are in the downloads on <a href="data-methods.html#downloads">Data &amp; methods</a>.</p></noscript>\n'
     + '<script src="' + assetUrl('assets/site.js') + '"></script>\n'
     + '<script src="' + assetUrl('assets/site-data.js') + '"></script>\n'
     + (o.scripts || []).map(s => '<script src="' + (s.startsWith('http') ? s : assetUrl(s)) + '"></script>\n').join('')
@@ -86,7 +86,6 @@ function footer(updated) {
     + '<a href="historical_crime.html">Historical crime table, 2011–2018</a>'
     + '<a href="irad_stations.html">2025–26 road accidents (iRAD)</a>'
     + '<a href="for_reporters.html">For reporters and researchers</a>'
-    + '<a href="delhi_safety_dashboard.html">Earlier single-page dashboard</a>'
     + '<a href="' + GITHUB + '">Code and data on GitHub</a></div>'
     + '<span>Data version ' + esc(updated) + '. Every figure is rebuilt from the files in the repository.</span></footer>';
 }

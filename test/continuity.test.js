@@ -1,5 +1,5 @@
 // Guards data/continuity.json and the comparability logic built on it: documented breaks interrupt comparisons, change figures
-// are suppressed where a comparison is not valid, and the dashboard carries the same rules the tests exercise.
+// are suppressed where a comparison is not valid, and the site pages use the same functions the tests exercise.
 //
 //   node --test test/continuity.test.js
 
@@ -12,7 +12,6 @@ const { compareYears, segmentOf, changeBetween } = require('../scripts/lib/conti
 const ROOT = path.join(__dirname, '..');
 const c = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'continuity.json'), 'utf8'));
 const districts = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'dashboard_final.json'), 'utf8')).districts;
-const html = fs.readFileSync(path.join(ROOT, 'delhi_safety_dashboard.html'), 'utf8');
 const state = (...args) => compareYears(c, ...args).state;
 
 test('every state, measure, year range and evidence path in the continuity file is valid', () => {
@@ -110,16 +109,3 @@ test('the source data already flags non-comparable years; the continuity rules a
   assert.ok(checked > 40, 'expected many flagged cases, checked ' + checked);
 });
 
-test('the dashboard carries the same rules: injected functions, indicator, suppressed changes, no evidence paths', () => {
-  const script = html.slice(html.lastIndexOf('<script>') + 8, html.lastIndexOf('</script>'));
-  assert.ok(script.includes('const compareYears = ' + compareYears.toString()), 'injected compareYears differs from scripts/lib/continuity.js');
-  assert.ok(script.includes('const segmentOf = ' + segmentOf.toString()));
-  assert.ok(script.includes('const changeBetween = ' + changeBetween.toString()));
-  const page = JSON.parse(script.slice(script.indexOf('const CONTINUITY = ') + 'const CONTINUITY = '.length, script.indexOf(';\n', script.indexOf('const CONTINUITY = '))));
-  assert.deepEqual(page.states, c.states);
-  assert.ok(!JSON.stringify(page).includes('"evidence"'));
-  assert.ok(script.includes('Can I compare these years?'));
-  assert.match(script, /changeBetween\(info\.cmp, info\.from, info\.to\)/);
-  assert.match(html, /id="scaleToggle"/);
-  assert.match(html, /data-scale="fixed"/);
-});

@@ -11,7 +11,7 @@ DelhiCrimeDashboard/
 ├── road-safety.html                   # generated site: citywide road safety
 ├── 3d-map.html                        # generated site: 3D ward view (MapLibre, loads data/ by relative path)
 ├── data-methods.html                  # generated site: comparability checker, sources, geography, downloads
-├── delhi_safety_dashboard.html       # generated earlier single-page dashboard (kept; self-contained)
+├── delhi_safety_dashboard.html       # redirect page: the earlier single-page dashboard was retired on 2026-10-28
 ├── interactive_map.html              # generated Leaflet map
 ├── liquor_crash_analysis.html        # generated spatial analysis
 ├── map_3d.html                        # 3D crash-zone and ward explorer (prototype, hand-written)
@@ -50,10 +50,10 @@ Run build and test tasks through `npm` from the repository root. Run the Python 
 
 ## What each build file does
 
-- **`delhi_safety_dashboard.html`** — the generated dashboard (the actual
-  deliverable).
-- **`scripts/build.js`** — the Node build script: one large template literal producing
-  the full HTML + CSS + JS, with no external libraries or CDN dependencies.
+- **`delhi_safety_dashboard.html`** — a small redirect page. The earlier single-page
+  dashboard was retired on 2026-10-28; its map, ranking and tables are on `explore.html`,
+  its correlation matrix is on `patterns.html`, its downloads are on `data-methods.html`.
+- **`scripts/build.js`** — writes that redirect page. The previous builder is in git history.
 - **`data/`** — district-level crime, infrastructure, road-safety, and
   correlation data as JSON. Internal, purpose-built for `build.js` — if you
   want to reuse the data yourself, use `data/releases/<year>/` instead (see
