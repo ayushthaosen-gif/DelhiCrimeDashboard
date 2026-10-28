@@ -49,7 +49,7 @@
       "coverage_start": "2011",
       "geography": "original annual reporting districts (11 in 2011-2016, 14 in 2017-2018); no allocation to current districts",
       "where": "data/historical_reporting/manifest.json",
-      "note": "On historical_crime.html. Counts only, never trended across the 2013/2014 definition break or joined to modern districts, wards or infrastructure. Null means not reported, not zero. Offence definitions differ by year; see the manifest."
+      "note": "On historical_crime.html and, from 2026-10-28, on Explore (year picker 2011 to 2018, each year drawn on the districts of that year). Counts only, never trended across the 2013/2014 definition break or joined to modern districts, wards or infrastructure. Null means not reported, not zero. Offence definitions differ by year; see the manifest."
     },
     {
       "id": "ncrb_delhi_ut_totals",
