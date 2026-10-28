@@ -24,7 +24,12 @@
       { k: 'crashProneZones', label: 'Crash-prone zones', zone: true, note: 'Locations on the Traffic Police crash-prone zone (blackspot) list for that year in the report.', unit: 'crash-prone zones' }
     ]
   };
-  var YEARS = { crime: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024], road: [2022, 2023, 2024] };
+  // 2019 onward is the current 15 districts. 2011 to 2018 (when HX is loaded) use the districts that existed then, as printed.
+  var HX = window.DSO_HISTORY || null;
+  var MYEARS = { crime: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024], road: [2022, 2023, 2024] };
+  var YEARS = { crime: HX ? [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024] : MYEARS.crime, road: MYEARS.road };
+  var HKEYS = { theft: ['theft'], robbery: ['robbery'], burglary: ['burglary', 'criminal_trespass_burglary_revised_definition', 'burglary_old_definition'], totalIPC: ['total_ipc'], crimeAgainstWomen: ['total_crimes_against_women'], totalSLL: ['total_sll'] };
+  var HHEAD = { burglary_old_definition: 'Burglary, the head used up to 2013', criminal_trespass_burglary_revised_definition: 'Criminal trespass and burglary, the head revised in 2014', burglary: 'Burglary, the later definition' };
   var UNSURVEYED = ['Dwarka', 'North-East', 'North-West', 'Outer', 'Outer North', 'Rohini'];
   var SHORT = { 'North-East': 'NE', 'North-West': 'NW', 'South-East': 'SE', 'South-West': 'SW', 'Outer North': 'Outer N' };
   var CALCS = [['count', 'Count'], ['pop', 'Per 1 lakh people'], ['area', 'Per km²']];
@@ -43,7 +48,9 @@
     if (st.calc === 'count' || v >= 100) return Math.round(v).toLocaleString('en-IN');
     return v >= 10 ? v.toFixed(1) : v.toFixed(2);
   }
-  function avail(mk, y) { return ds.some(function (d) { return d.s[mk] && d.s[mk][y] != null; }); }
+  function availM(mk, y) { return ds.some(function (d) { return d.s[mk] && d.s[mk][y] != null; }); }
+  function avail(mk, y) { return HX && st.topic === 'crime' && y <= 2018 ? availH(mk, y) : availM(mk, y); }
+  function isHist() { return !!HX && st.topic === 'crime' && st.year <= 2018; }
   function pickYear(topic, mk, y) {
     var ys = YEARS[topic].filter(function (x) { return avail(mk, x); });
     if (ys.indexOf(y) >= 0) return y;
@@ -67,6 +74,7 @@
   var VIEWBOX = bbox();
 
   function sourceNote() {
+    if (isHist()) return 'NCRB, Crime in India, ' + (hyr(st.year) ? hyr(st.year).sourceLabel : 'district-wise tables') + ', as printed for ' + st.year;
     return st.topic === 'crime' ? 'NCRB, Crime in India, district-wise tables (' + st.year + ')' : 'Delhi Traffic Police, Delhi Road Crash Report ' + st.year;
   }
   function caseNote() {
@@ -120,7 +128,7 @@
       var ok = avail(metric.k, y);
       return h('button', { type: 'button', 'aria-pressed': String(y === st.year), disabled: !ok, title: ok ? String(y) : 'No figure for ' + y, 'data-key': 'year-' + y, onclick: function () { set({ year: y }); } }, y);
     }));
-    var calc = seg(CALCS, st.calc, function (c) { set({ calc: c }); }, { label: 'Show as', key: 'calc' });
+    var calc = isHist() ? seg([['count', 'Count']], 'count', function () { }, { label: 'Show as', key: 'calc' }) : seg(CALCS, st.calc, function (c) { set({ calc: c }); }, { label: 'Show as', key: 'calc' });
     var copy = h('button', { type: 'button', class: 'btn', 'data-key': 'copy', onclick: function (e) { D.copy(location.href.split('#')[0] + hashNow(), e.currentTarget, 'Link copied', 'Copy link to view'); } }, 'Copy link to view');
     var dl = h('button', { type: 'button', class: 'btn primary', 'data-key': 'csv', onclick: downloadCsv }, 'Download CSV');
     D.clear(root.toolbar).appendChild(h('div', { class: 'row' }, topics, chips));
@@ -128,12 +136,12 @@
       h('div', { class: 'group' }, h('span', { class: 'label' }, 'Year'), years,
         D.tip('About comparing years', 'Crossed-out years have no figure for this measure. A change is only shown when the year before used the same definition and districts. Rohini, Shahdara and Dwarka were created in 2016–17; Outer North in 2019.')),
       h('div', { class: 'group' }, h('span', { class: 'label' }, 'Show as'), calc,
-        D.tip('About this calculation', 'Per 1 lakh residents divides by an approximate district population. Per km² divides by district area. Rates help compare districts of very different size, but daytime population (commuters, markets) is not counted.')),
+        D.tip('About this calculation', isHist() ? 'Only counts are shown for 2011 to 2018. The area and population of the districts of those years are not held here, and rates would need both.' : 'Per 1 lakh residents divides by an approximate district population. Per km² divides by district area. Rates help compare districts of very different size, but daytime population (commuters, markets) is not counted.')),
       h('div', { class: 'actions' }, copy, dl)));
   }
 
   function renderTitle() {
-    var metric = metricOf(), unit = unitFor(metric);
+    var metric = metricOf(), unit = isHist() ? 'registered cases, as printed for the districts of ' + st.year : unitFor(metric);
     D.clear(root.title).appendChild(h('h1', null, metric.label + ' by police district, ' + st.year));
     root.title.appendChild(h('div', { class: 'unit' }, unit.charAt(0).toUpperCase() + unit.slice(1),
       D.tip('About this measure', [metric.note, caseNote(), 'Source: ' + sourceNote()])));
@@ -187,7 +195,7 @@
   }
 
   function tableView(ranked, metric, unit) {
-    var yrs = YEARS[st.topic].filter(function (y) { return avail(metric.k, y); });
+    var yrs = MYEARS[st.topic].filter(function (y) { return availM(metric.k, y); });
     var names = ranked.map(function (r) { return r.d; }).concat(ds.filter(function (d) { return !ranked.some(function (r) { return r.d === d; }); }));
     var tbl = h('table', null,
       h('caption', null, metric.label + ', ' + unit + ', by year. Sorted by ' + st.year + '; the selected year is highlighted. A dash means no figure.'),
@@ -251,7 +259,7 @@
 
   function renderDetail(ranked, metric, unit) {
     var sec = h('section', { class: 'panel detail', 'aria-label': 'District detail' });
-    var yrs = YEARS[st.topic], prevY = st.year - 1;
+    var yrs = MYEARS[st.topic], prevY = st.year - 1;
     var sd = ds.filter(function (d) { return d.name === st.sel; })[0];
     var body = h('div', { class: 'detail-body' });
     if (!sd) {
@@ -350,7 +358,148 @@
       })));
   }
 
+  // ---------- earlier districts, 2011 to 2018: counts as printed, drawn on the districts of that year ----------
+  function hyr(y) { return HX ? HX.years.filter(function (r) { return r.year === y; })[0] : null; }
+  function hget(values, mk) {
+    var ks = HKEYS[mk] || [];
+    for (var i = 0; i < ks.length; i++) if (values[ks[i]] != null) return { v: values[ks[i]], head: ks[i] };
+    return null;
+  }
+  function availH(mk, y) { var r = hyr(y); return !!r && r.units.some(function (u) { return u.territorial && hget(u.values, mk); }); }
+  function histModel() {
+    var r = hyr(st.year), metric = metricOf(), shapes = HX.maps[r.mapKey];
+    var rows = r.units.map(function (u) {
+      var g = hget(u.values, metric.k), shape = u.territorial ? shapes.filter(function (m) { return m.name.toLowerCase() === u.label.toLowerCase(); })[0] : null;
+      return { name: shape ? shape.name : u.label, u: u, path: shape ? shape.d : null, v: g ? g.v : null, head: g ? g.head : null, territorial: u.territorial };
+    });
+    var terr = rows.filter(function (x) { return x.territorial; });
+    var ranked = terr.filter(function (x) { return x.v != null; }).sort(function (a, b) { return b.v - a.v; });
+    return { r: r, metric: metric, rows: rows, terr: terr, other: rows.filter(function (x) { return !x.territorial; }), ranked: ranked };
+  }
+  function pathCenter(d) {
+    var m = d.match(/-?\d+(?:\.\d+)?/g).map(Number), x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    for (var i = 0; i < m.length; i += 2) { x0 = Math.min(x0, m[i]); x1 = Math.max(x1, m[i]); y0 = Math.min(y0, m[i + 1]); y1 = Math.max(y1, m[i + 1]); }
+    return [(x0 + x1) / 2, (y0 + y1) / 2];
+  }
+  function histNote(M) {
+    var r = M.r, n = M.terr.length, items = [
+      n + ' police districts were reported in ' + r.year + ', not today\'s 15' + (r.year <= 2016 ? '' : ' (Outer North was created in 2019)') + '. The map is redrawn for the districts of that year.',
+      'Counts only. Area and population of these districts are not held, so no rates are shown.',
+      'These are separate annual tables, so a change from one year to the next is not calculated here. Districts, definitions and the NCRB format changed between years.'
+    ];
+    if (r.year >= 2014 && r.year <= 2015) items.push('Burglary is the head revised in 2014 (criminal trespass and burglary), not the earlier burglary head.');
+    if (r.year === 2013) items.push('NCRB changed its format in 2014, so 2013 and 2014 are not comparable.');
+    var keys = [['theft', 'theft'], ['robbery', 'robbery'], ['burglary', 'burglary'], ['totalIPC', 'all IPC'], ['crimeAgainstWomen', 'crimes against women'], ['totalSLL', 'special and local laws']];
+    var missing = keys.filter(function (k) { return !availH(k[0], r.year); }).map(function (k) { return k[1]; });
+    if (missing.length) items.push('Not in the source table for ' + r.year + ': ' + missing.join(', ') + '. A dash means not available, not zero.');
+    return items;
+  }
+  function renderHistMap(M) {
+    var metric = M.metric, card = h('section', { class: 'panel map', 'aria-label': 'Map' });
+    card.appendChild(h('div', { class: 'tabs', role: 'tablist', 'aria-label': 'View' }, [['map', 'Map'], ['table', 'Table'], ['about', 'About']].map(function (v) {
+      return h('button', { type: 'button', role: 'tab', 'aria-selected': String(st.view === v[0]), 'data-key': 'view-' + v[0], onclick: function () { set({ view: v[0] }); } }, v[1]);
+    })));
+    if (st.view === 'table') { card.appendChild(histTable(M)); return card; }
+    if (st.view === 'about') {
+      card.appendChild(h('div', { class: 'about-body' },
+        h('div', null, h('h3', null, 'What this shows'), h('p', null, 'Registered cases as NCRB printed them for the police districts of ' + M.r.year + '. ' + metric.note)),
+        h('div', null, h('h3', null, 'About the map'), h('p', null, M.r.mapNote)),
+        h('div', null, h('h3', null, 'Limits'), h('ul', { class: 'why-list' }, histNote(M).map(function (t) { return h('li', null, t); }))),
+        h('div', null, h('h3', null, 'Source'), h('p', null, sourceNote() + '. ', h('a', { href: 'historical_crime.html' }, 'Open the full historical table and downloads'), '.'))));
+      return card;
+    }
+    var svg = h('svg', { viewBox: HX.viewBox, role: 'group', 'aria-label': 'Schematic map of the Delhi police districts of ' + st.year });
+    svg.appendChild(h('defs', null, h('pattern', { id: 'dsoHatch', patternUnits: 'userSpaceOnUse', width: 7, height: 7, patternTransform: 'rotate(45)' },
+      h('rect', { class: 'hatch-bg', width: 7, height: 7 }), h('line', { class: 'hatch-ln', x1: 0, y1: 0, x2: 0, y2: 7 }))));
+    var bin = D.bands(M.ranked.map(function (r) { return { name: r.name, v: r.v }; }));
+    M.terr.forEach(function (t) {
+      var b = bin[t.name];
+      svg.appendChild(h('path', { class: 'dpath', d: t.path, 'data-key': 'path-' + t.name, tabindex: 0, role: 'button', style: 'fill:' + (t.v == null ? 'url(#dsoHatch)' : D.rampVars[b]),
+        'aria-label': t.name + ': ' + (t.v == null ? 'no figure' : D.n(t.v) + ' registered cases') + (st.sel === t.name ? ', selected' : ''),
+        onclick: function () { select(t.name); }, onkeydown: function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(t.name); } } }, h('title', null, t.name + ': ' + (t.v == null ? 'no figure' : D.n(t.v)))));
+    });
+    var sel = M.terr.filter(function (t) { return t.name === st.sel; })[0];
+    if (sel) svg.appendChild(h('path', { class: 'dsel', d: sel.path }));
+    M.terr.forEach(function (t) { var c = pathCenter(t.path); svg.appendChild(h('text', { class: 'dlabel', x: c[0], y: c[1] + 5 }, SHORT[t.name] || t.name)); });
+    var steps = [0, 1, 2, 3, 4].map(function (b) {
+      var vs = M.ranked.filter(function (r, i) { return 4 - Math.floor(i * 5 / Math.max(M.ranked.length, 1)) === b; }).map(function (r) { return r.v; });
+      var range = vs.length ? (vs.length > 1 ? D.n(Math.min.apply(null, vs)) + '–' + D.n(Math.max.apply(null, vs)) : D.n(vs[0])) : '';
+      return h('div', { class: 'step' }, h('i', { style: 'background:' + D.rampVars[b] }), h('span', null, range));
+    });
+    var none = M.ranked.length < M.terr.length;
+    card.appendChild(h('div', { class: 'map-body' }, h('div', { class: 'map-box' }, svg),
+      h('div', { class: 'legend' }, h('div', null, h('div', { class: 't' }, 'Colour = rank this year'), h('div', { class: 'steps' }, steps)),
+        none ? h('div', { class: 'none' }, h('svg', { width: 22, height: 12, 'aria-hidden': 'true' }, h('rect', { width: 22, height: 12, rx: 2, style: 'fill:url(#dsoHatch)' })), 'No figure for this year') : null)));
+    card.appendChild(h('p', { class: 'note-s', style: 'padding:0 14px 12px' }, 'Schematic reference map for the districts of ' + st.year + ': ' + (M.r.mapStatus === 'derived_reference' ? 'derived' : 'inferred') + ', not certified boundaries. See About.'));
+    return card;
+  }
+  function histTable(M) {
+    var keys = [['theft', 'Theft'], ['robbery', 'Robbery'], ['burglary', 'Burglary'], ['totalIPC', 'All IPC'], ['crimeAgainstWomen', 'Crimes against women'], ['totalSLL', 'Special and local laws']];
+    var tbl = h('table', null,
+      h('caption', null, 'Registered cases as printed for ' + st.year + ' (' + M.terr.length + ' districts' + (M.other.length ? ', then other reporting units' : '') + '). A dash means not in the source table for this year, not zero.'),
+      h('thead', null, h('tr', null, h('th', { scope: 'col', style: 'text-align:left' }, 'Reporting unit'), keys.map(function (k) { return h('th', { scope: 'col', class: k[0] === M.metric.k ? 'sel' : null }, k[1]); }))),
+      h('tbody', null, M.terr.concat(M.other).map(function (x) {
+        return h('tr', null, h('th', { scope: 'row' }, x.name), keys.map(function (k) { var g = hget(x.u.values, k[0]); return h('td', { class: k[0] === M.metric.k ? 'sel' : null }, g ? D.n(g.v) : '—'); }));
+      })));
+    return h('div', { class: 'table-wrap' }, tbl);
+  }
+  function renderHistDetail(M) {
+    var sec = h('section', { class: 'panel detail', 'aria-label': 'District detail' }), body = h('div', { class: 'detail-body' });
+    var sd = M.terr.filter(function (t) { return t.name === st.sel; })[0], metric = M.metric;
+    if (!sd) {
+      var cw = hget(M.r.citywide.values, metric.k);
+      body.appendChild(h('div', null, h('span', { class: 'eyebrow' }, 'All of Delhi · ' + st.year), h('div', { class: 'big-v' }, cw ? D.n(cw.v) : '—'), h('span', { class: 'unit' }, 'registered cases, Delhi total as printed by NCRB' + (cw && cw.head !== HKEYS[metric.k][0] ? ' (' + HHEAD[cw.head] + ')' : ''))));
+      body.appendChild(h('div', { class: 'sentence caution' }, histNote(M)[0]));
+      var top = M.ranked[0], bottom = M.ranked[M.ranked.length - 1];
+      if (top) body.appendChild(h('div', { class: 'stats', style: 'grid-template-columns:1fr 1fr' }, h('div', { class: 'stat' }, h('span', null, 'Highest'), h('span', null, top.name + ' · ' + D.n(top.v))), h('div', { class: 'stat' }, h('span', null, 'Lowest'), h('span', null, bottom.name + ' · ' + D.n(bottom.v)))));
+      body.appendChild(h('div', { class: 'prompt' }, 'Select a district to see all of its figures for ' + st.year + '. Years are not joined: the districts and definitions differ between years.'));
+      sec.appendChild(body);
+      return sec;
+    }
+    var rankIdx = M.ranked.indexOf(sd);
+    body.appendChild(h('div', { class: 'head' }, h('div', null, h('span', { class: 'eyebrow' }, 'Police district, ' + st.year), h('h2', null, sd.name)),
+      h('button', { type: 'button', class: 'pill-btn', 'aria-label': 'Back to all of Delhi', 'data-key': 'clear', onclick: function () { set({ sel: null }); } }, 'All Delhi')));
+    body.appendChild(h('div', null, h('div', { class: 'big-v' }, sd.v == null ? '—' : D.n(sd.v)), h('span', { class: 'unit' }, sd.v == null ? 'No figure for ' + st.year : 'registered cases, ' + st.year + (sd.head && sd.head !== HKEYS[metric.k][0] ? ' (' + HHEAD[sd.head] + ')' : ''))));
+    body.appendChild(h('div', { class: 'stats', style: 'grid-template-columns:1fr' }, h('div', { class: 'stat' }, h('span', null, 'Rank'), h('span', null, sd.v == null || rankIdx < 0 ? '—' : D.ord(rankIdx + 1) + ' of ' + M.ranked.length))));
+    body.appendChild(h('div', { style: 'display:flex;flex-direction:column;gap:6px' }, h('span', { class: 'sub-h' }, 'Other measures · ' + st.year),
+      h('div', { class: 'others' }, M_LIST.map(function (m) {
+        var g = hget(sd.u.values, m.k);
+        return h('button', { type: 'button', 'aria-current': String(m.k === metric.k), onclick: function () { set({ metric: m.k, year: pickYear(st.topic, m.k, st.year) }); } }, h('span', null, m.label), h('span', { class: 'v' }, g ? D.n(g.v) : '—'), h('span', { class: 'r' }, ''));
+      }))));
+    body.appendChild(h('p', { class: 'note-s' }, 'The same district name in another year is a different reporting unit if the district was reorganised, so no trend is drawn. See About.'));
+    sec.appendChild(body);
+    return sec;
+  }
+  var M_LIST = M.crime;
+  function renderHistList(M) {
+    var maxV = M.ranked.length ? M.ranked[0].v : 1, bin = D.bands(M.ranked.map(function (r) { return { name: r.name, v: r.v }; }));
+    var rows = M.ranked.map(function (r, i) { return { name: r.name, v: r.v, rank: i + 1 }; }).concat(M.terr.filter(function (t) { return t.v == null; }).map(function (t) { return { name: t.name, v: null, rank: '–' }; }));
+    return h('section', { class: 'panel list', 'aria-label': 'Ranked districts' },
+      h('div', { class: 'list-head' }, h('h2', null, 'Ranked, highest first'), h('span', null, M.ranked.length + ' of ' + M.terr.length + ' districts')),
+      h('ol', { class: 'rank-list' }, rows.map(function (r) {
+        return h('li', null, h('button', { type: 'button', 'data-name': r.name, 'aria-pressed': String(st.sel === r.name), 'data-key': 'row-' + r.name, onclick: function () { select(r.name); } },
+          h('span', { class: 'r' }, r.rank), h('span', { class: 'n' }, r.name), h('span', { class: 'v' }, r.v == null ? 'No figure' : D.n(r.v)),
+          h('span', { class: 'b' }, r.v == null ? null : h('i', { style: 'width:' + Math.max(2, r.v / maxV * 100) + '%;background:' + D.rampVars[bin[r.name]] }))));
+      })));
+  }
+  function renderHist() {
+    var M = histModel();
+    renderToolbar(); renderTitle();
+    mapEls = null;
+    D.clear(root.work);
+    root.work.appendChild(renderHistMap(M));
+    root.work.appendChild(renderHistDetail(M));
+    root.work.appendChild(renderHistList(M));
+  }
+  function downloadHistCsv() {
+    var M = histModel(), rows = [['rank', 'reporting_unit', 'is_district', 'value', 'measure', 'head_as_printed', 'year', 'unit', 'map_status', 'source', 'data_version']];
+    M.ranked.forEach(function (r, i) { rows.push([i + 1, r.name, 'yes', r.v, M.metric.label, HHEAD[r.head] || r.head, st.year, 'registered cases, counts only', M.r.mapStatus, sourceNote(), VERSION]); });
+    M.rows.forEach(function (x) { if (x.v == null || !x.territorial) rows.push(['', x.name, x.territorial ? 'yes' : 'no', x.v == null ? '' : x.v, M.metric.label, x.head ? HHEAD[x.head] || x.head : '', st.year, 'registered cases, counts only', M.r.mapStatus, sourceNote(), VERSION]); });
+    D.download('delhi_' + M.metric.k + '_' + st.year + '_as_printed.csv', D.csv(rows));
+  }
+
   function render() {
+    if (isHist()) { renderHist(); return; }
     var metric = metricOf(), unit = unitFor(metric);
     var ranked = rankList(metric.k, st.year), bin = D.bands(ranked);
     renderToolbar(); renderTitle();
@@ -361,7 +510,8 @@
   }
 
   function downloadCsv() {
-    var metric = metricOf(), unit = unitFor(metric), ranked = rankList(metric.k, st.year), yrs = YEARS[st.topic];
+    if (isHist()) return downloadHistCsv();
+    var metric = metricOf(), unit = unitFor(metric), ranked = rankList(metric.k, st.year), yrs = MYEARS[st.topic];
     var rows = [['rank', 'district', 'value', 'measure', 'year', 'unit', 'change_vs_previous_year_percent', 'comparability_with_previous_year', 'source', 'data_version']];
     ranked.forEach(function (r, i) {
       var pv = yrs.indexOf(st.year - 1) >= 0 ? val(r.d, metric.k, st.year - 1) : null, c = yrs.indexOf(st.year - 1) >= 0 ? cmp(metric.k, st.year - 1, st.year, r.name) : null;
