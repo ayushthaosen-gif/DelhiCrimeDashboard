@@ -1,3 +1,11 @@
+## [2026-10-28] - Claude (Anthropic) - Delhi-wide theft, robbery and burglary 2016 to 2020: independently re-read
+
+- **Result:** Codex re-read all five Table 1A.4 pages blind (its transcription was saved before it opened the staged values) and all 35 entries agree: 33 numbers and the two structural nulls (2016 day and night burglary, not printed). The five PDFs matched the recorded sizes and SHA-256. No numeric correction was needed.
+- **Extra checks:** Delhi robbery in the separate Violent Crimes table of each edition equals the Table 1A.4 figure in all five years (those headers print Sec 392 to 394, Table 1A.4 prints 392/394/397 from 2017, so this shows consistency, not identical coverage). Printed all-India theft equals the sum of the 36 State/UT rows in all five years (text-layer sums with image spot checks).
+- **Burglary 2017 to 2018** (9,828 to 4,147) is reproduced in the images. Wording narrowed: I had written "NCRB gives no reason"; the accurate statement is that **no explanation was found** in the table footnotes, the limitations and caution pages of the 2017 and 2018 volumes, or text searches of them. That is a bounded negative finding. The 2016 combined trespass-and-burglary head stays a separate column; neither volume bridges it to the 2017 head.
+- **Metadata fixed:** the staged file now carries a `verification` record (what was compared, against which commit, the findings) and keeps `readBy` as the original transcription history; the "20 to 32 MB" PDF size range was corrected to 7 to 32 MB (the 2020 volume is 7.25 MB); page numbers are stated as 1-based PDF pages. `docs/COVERAGE.md` no longer says "not yet independently re-read".
+- **Not covered by the check:** it verified the staged input and the named printings, not the generated release or its integration. Later revised NCRB editions were not searched.
+
 ## [2026-10-28] - Claude (Anthropic) - Explore now runs from 2011, with the map redrawn for the districts of each year
 
 - **What the owner asked:** crime from 2011 onwards, with the map changed for the years when the districts differ from today's 15.

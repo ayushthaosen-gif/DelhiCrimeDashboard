@@ -145,8 +145,8 @@
       "datasetId": "continuity",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "6cd1c50e71df1a52f974c3a383802c8baaaadbd824608b2c61b17e1a92c1047a",
-      "bytes": 11875
+      "sha256": "754239ef2488e57bc3e1b6512ff23eaa4e4bcb9cdb0f8b1c6c0bc683a073812a",
+      "bytes": 11909
     },
     {
       "file": "data/correlations.json",
@@ -177,8 +177,8 @@
       "datasetId": "coverage_matrix",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "f0dffd82fd8520bd94011a742c8216e8b127a8b8572b68aebf9d2d8b4de8181f",
-      "bytes": 49075
+      "sha256": "abb69d95fe211f38addb5eb1d1ffd4018bc301e4e6a54c8a379ac3b6b5267b1a",
+      "bytes": 49109
     },
     {
       "file": "data/crash_zone_liquor_proximity_2024.geojson",

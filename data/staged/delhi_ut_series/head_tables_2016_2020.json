@@ -1,8 +1,19 @@
 {
   "schemaVersion": "1.0.0",
   "purpose": "Delhi UT theft, robbery and burglary for 2016-2020 from Table 1A.4 (IPC Crimes, crime head-wise and State/UT-wise) of the NCRB Crime in India volumes. Each edition prints one year, so five editions are used.",
-  "method": "Each Delhi row was read from the rendered page image of the PDF (the text layer is garbled or drops cells for several years), then checked against the sums NCRB prints under the table: theft total = auto theft + other thefts, burglary total = day + night. The values below are the Incidence (I) columns. The PDFs (20 to 32 MB) are not committed; each is a raw capture from the Internet Archive of the original ncrb.gov.in file, identified by its SHA-256, so the pages can be re-read.",
-  "readBy": "Claude (Anthropic), 2026-10-28, from the page images; not yet independently re-read",
+  "method": "Each Delhi row was read from the rendered page image of the PDF (the text layer is garbled or drops cells for several years), then checked against the sums NCRB prints under the table: theft total = auto theft + other thefts, burglary total = day + night. The values below are the Incidence (I) columns. The PDFs (7 to 32 MB) are not committed; each is a raw capture from the Internet Archive of the original ncrb.gov.in file, identified by its SHA-256, so the pages can be re-read.",
+  "readBy": "Claude (Anthropic), 2026-10-28, from the page images",
+  "verification": {
+    "status": "independently re-read, all 35 entries agree",
+    "by": "Codex, blind page-image transcription saved before the staged values were opened; report dated 2026-10-28",
+    "comparedAgainst": "this file as committed at 1658172cbcf745a90366f001402df6d88bca517d",
+    "result": "33 numeric cells and the two structural nulls (2016 day and night burglary, not printed) match. All five PDFs matched the recorded byte counts and SHA-256 values. Auto + other = theft total and day + night = burglary total hold wherever printed.",
+    "robberyCrossCheck": "Delhi robbery in the Violent Crimes table of each edition (2016 Table 2.2A, 2017 and 2018 Table 2.2, 2019 and 2020 Table 1C.2) equals the Table 1A.4 figure in all five years. The Violent Crimes headers print Sec 392 to 394 where Table 1A.4 prints 392/394/397 for 2017 to 2020, so equal counts show the printed figures are consistent, not that the statutory coverage is identical.",
+    "nationalCheck": "For each year the 36 State/UT theft incidences sum to the printed all-India figure (494,404; 589,058; 625,441; 675,916; 493,172). The sums used the text layer with image spot checks of the column and three states; this is not an image transcription of all 180 national cells.",
+    "burglary2017to2018": "The fall from 9,828 to 4,147 is reproduced in the source images. No Delhi-specific explanation was found in the table footnotes, the limitations and caution pages of the 2017 volume (PDF pages 12 to 14) and the 2018 volume (PDF pages 13 and 17), or in text-layer searches of the two volumes. That is a bounded negative finding: it does not show that NCRB never explained it elsewhere.",
+    "burglary2016Head": "Keeping 2016 under a separate head is justified. Neither volume gives a Delhi-specific bridge between the 2016 head and the 2017 head, so none is assumed.",
+    "pagesNote": "Page numbers in this file are 1-based PDF pages, not printed page numbers (for example 2016: PDF 72 to 73 are printed 25 to 26)."
+  },
   "generatedBy": "hand transcription (see method); validated by test/delhi_ut_series.test.js",
   "years": {
     "2016": {
@@ -39,7 +50,7 @@
       "row": "34 Delhi",
       "values": { "theft_auto": 46433, "theft_other": 149255, "theft_total": 195688, "burglary_day": 1175, "burglary_night": 2972, "burglary_total": 4147, "robbery": 2444 },
       "burglary_head": "burglary",
-      "note": "Burglary falls from 9,828 (2017) to 4,147 under the same printed head. NCRB gives no reason."
+      "note": "Burglary falls from 9,828 (2017) to 4,147 under the same printed head. No explanation was found in the reviewed material (see verification.burglary2017to2018)."
     },
     "2019": {
       "edition": "cii2019",

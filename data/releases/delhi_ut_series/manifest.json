@@ -102,7 +102,7 @@
     {
       "path": "data/staged/delhi_ut_series/head_tables_2016_2020.json",
       "role": "2016-2020 theft, robbery and burglary: Table 1A.4 of Crime in India 2016 to 2020, read from page images; the record lists each PDF's capture and SHA-256",
-      "sha256": "000f7d4951b0ac88f79b6c89b7aeaf2e893f8c79e22284e6ec88c9a539e1396f"
+      "sha256": "8021b154e5e0e7d6b14a5876cefc0e5d6358f6a80dd56938cc9b516617069c37"
     },
     {
       "path": "data/staged/delhi_ut_series/printed_totals_2021_2024.json",
@@ -456,13 +456,13 @@
   "files": [
     {
       "path": "delhi_ut_crime.json",
-      "bytes": 13773,
-      "sha256": "3f05ac1563375462606855dd5aa7ffb1a5b2d22a9673d64d7e8ddb96bd6ff7f2"
+      "bytes": 13840,
+      "sha256": "4b8c0f473c781d0e87f0d70812dab84f75d2e677c8fcda7d6430ed84bb2e7831"
     },
     {
       "path": "delhi_ut_crime.csv",
-      "bytes": 8259,
-      "sha256": "9a0479ebc20ce1c565b221dbfa536d1d3db7b9db54eea25b813a77562c3fb1e2"
+      "bytes": 8326,
+      "sha256": "ce91873f773c9b73c4b5c83ba6d06ef250b3162f43104932e9e609b6da70e85e"
     }
   ]
 }

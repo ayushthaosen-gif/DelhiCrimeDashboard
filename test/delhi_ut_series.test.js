@@ -49,6 +49,11 @@ test('2016 to 2020 theft, robbery and burglary equal the hand-read Table 1A.4 va
     assert.ok(/^[0-9a-f]{64}$/.test(heads.years[y].pdf.sha256) && heads.years[y].pdf.bytes > 1e6, y + ' names its source PDF by hash');
     assert.ok(/^https:\/\/web\.archive\.org\/web\/\d+id_\//.test(heads.years[y].pdf.archiveUrl));
   }
+  // the independent re-read is on record and the transcription history is kept
+  assert.match(heads.readBy, /Claude/);
+  assert.match(heads.verification.status, /independently re-read/);
+  assert.match(heads.verification.comparedAgainst, /^this file as committed at [0-9a-f]{40}$/);
+  assert.match(heads.verification.burglary2017to2018, /bounded negative finding/);
   // the five years come from five different editions
   assert.equal(new Set(Object.values(heads.years).map(y => y.edition)).size, 5);
   assert.ok(continuity.definitionBreaks.some(b => b.between[0] === 2017 && b.between[1] === 2018 && b.measures.includes('burglary')), 'the unexplained 2017 to 2018 burglary fall is a caution');
@@ -134,7 +139,7 @@ test('comparability for the Delhi-wide series ignores district boundaries but no
   assert.equal(state('theft', 2015, 2016), 'caution', 'the 2016 head-wise figures come from a different table and heading');
   assert.equal(state('theft', 2016, 2017), 'caution');
   assert.equal(state('theft', 2017, 2018), 'comparable');
-  assert.equal(state('burglary', 2017, 2018), 'caution', 'burglary falls from 9,828 to 4,147 under one heading with no reason given');
+  assert.equal(state('burglary', 2017, 2018), 'caution', 'burglary falls from 9,828 to 4,147 under one heading with no explanation found');
   assert.equal(state('theft', 2020, 2021), 'comparable');
   assert.equal(state('theft', 2021, 2022), 'comparable');
   assert.equal(state('burglary', 2021, 2022), 'caution', 'burglary jumps 2.3 times with no explanation');

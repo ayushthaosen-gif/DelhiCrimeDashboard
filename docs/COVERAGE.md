@@ -17,7 +17,7 @@ The tables below are a summary. The full year-by-year matrix (2011 to 2026, ever
 |---|---|---|---|
 | NCRB district crime | 2016 to 2024 | District (as reported that year) | 2016 has theft and robbery only; other aggregates blank. |
 | Historical district counts | 2011 to 2018 | Original reporting districts | Counts only; no SLL or crimes against women for 2011 to 2013. |
-| Delhi UT printed totals | 2011 to 2024 | Delhi as a whole | Theft, robbery, burglary for 2016 to 2020 read from Table 1A.4 page images (sums checked, not yet independently re-read); 2016 uses different headings than 2017 on. |
+| Delhi UT printed totals | 2011 to 2024 | Delhi as a whole | Theft, robbery, burglary for 2016 to 2020 read from Table 1A.4 page images (sums checked and independently re-read); 2016 uses different headings than 2017 on. |
 | NCRB 2025 | none | | Not published; monitored weekly. |
 
 ## Road safety
