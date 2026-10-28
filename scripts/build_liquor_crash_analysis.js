@@ -99,7 +99,7 @@ table.data-table td { padding: 6px 10px; border-bottom: 1px solid var(--border);
 <div id="topbar">
   <h1>Delhi Liquor Vends × Crash-Prone Zones (2024)</h1>
   <label>Distance band: <div class="seg" id="bandToggle"><button data-band="500">500m</button><button class="active" data-band="1000">1km</button><button data-band="2000">2km</button></div></label>
-  <a class="back" href="delhi_safety_dashboard.html">← Back to dashboard</a>
+  <a class="back" href="index.html">← Back to overview</a>
 </div>
 <div id="banner">
   <b>Exploratory tool — spatial association only, not causation.</b> Most liquor-vend coordinates are approximate locality/sector centres; all crash-zone coordinates are approximate landmark/intersection centres, not official Delhi Traffic Police geotags.

@@ -17,8 +17,8 @@ across Delhi's 15 police districts (2022-2024) against real public
 infrastructure coverage — PAPL survey-cell and OpenStreetMap street-lamp layers, pedestrian underpasses, mapped pedestrian overbridges, metro station
 gates, and police infrastructure.
 
-Open [`delhi_safety_dashboard.html`](../delhi_safety_dashboard.html) directly in
-a browser — no server or build step required to view it.
+Serve the repository folder (for example `python -m http.server`) and open
+[`index.html`](../index.html) in a browser. No build step is needed to view it.
 
 Code is [MIT-licensed](../LICENSE); third-party data keeps its own source
 license (see "Data & sourcing" below). See [`CITATION.cff`](../CITATION.cff)

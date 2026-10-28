@@ -17,13 +17,13 @@ test('the three grades and the key warnings are present', () => {
   for (const s of needed) assert.ok(html.includes(s), s);
 });
 
-test('the dashboard build and its output link to the page', () => {
-  assert.ok(fs.readFileSync(path.join(ROOT, 'scripts', 'build.js'), 'utf8').includes('href="for_reporters.html"'));
-  assert.ok(fs.readFileSync(path.join(ROOT, 'delhi_safety_dashboard.html'), 'utf8').includes('href="for_reporters.html"'));
+test('the site build and its output link to the page', () => {
+  assert.ok(fs.readFileSync(path.join(ROOT, 'scripts', 'build_site.js'), 'utf8').includes('href="for_reporters.html"'));
+  assert.ok(fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8').includes('href="for_reporters.html"'));
 });
 
-test('the dashboard and the map link to the iRAD page, which exists', () => {
+test('the site and the map link to the iRAD page, which exists', () => {
   assert.ok(fs.existsSync(path.join(ROOT, 'irad_stations.html')));
-  for (const f of ['delhi_safety_dashboard.html', 'interactive_map.html']) assert.ok(fs.readFileSync(path.join(ROOT, f), 'utf8').includes('href="irad_stations.html"'), f);
-  for (const f of ['build.js', 'build_interactive_map.js']) assert.ok(fs.readFileSync(path.join(ROOT, 'scripts', f), 'utf8').includes('href="irad_stations.html"'), f + ' would lose the link on rebuild');
+  for (const f of ['index.html', 'interactive_map.html']) assert.ok(fs.readFileSync(path.join(ROOT, f), 'utf8').includes('href="irad_stations.html"'), f);
+  for (const f of ['build_site.js', 'build_interactive_map.js']) assert.ok(fs.readFileSync(path.join(ROOT, 'scripts', f), 'utf8').includes('href="irad_stations.html"'), f + ' would lose the link on rebuild');
 });

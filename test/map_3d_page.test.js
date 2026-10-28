@@ -133,9 +133,9 @@ test('tour shows the report map check and states the zone definition', () => {
 });
 
 
-test('a Home button leads back to the dashboard home page', () => {
-  assert.match(html, /<a class="homebtn" href="delhi_safety_dashboard\.html"[^>]*>[^<]*Home<\/a>/);
-  assert.ok(fs.existsSync(path.join(ROOT, 'delhi_safety_dashboard.html')));
+test('a Home button leads back to the site home page', () => {
+  assert.match(html, /<a class="homebtn" href="index\.html"[^>]*>[^<]*Home<\/a>/);
+  assert.ok(fs.existsSync(path.join(ROOT, 'index.html')));
 });
 
 test('police stations and liquor vends: data files exist with usable points, and the page is honest about the liquor list', () => {

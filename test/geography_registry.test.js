@@ -53,7 +53,8 @@ test('every page that shows wards says they are the legacy 290, not the current 
   for (const f of ['map_3d.html', 'map_3d_mpd.html']) assert.match(read(f), /Legacy ward geography/, f);
   const map = read('scripts/build_interactive_map.js');
   assert.ok(map.includes('290 legacy wards') && !/Ward level \(290 wards\)/.test(map));
-  assert.match(read('delhi_safety_dashboard.html'), /legacy 290-ward geography/);
+  assert.match(read('assets/page-3d.js'), /legacy 290-ward geography/);
+  assert.match(read('assets/page-planning.js'), /legacy 290/);
 });
 
 test('the shared release manifest lists the geographies and the join policy', () => {
@@ -62,10 +63,10 @@ test('the shared release manifest lists the geographies and the join policy', ()
   assert.match(shared.joinPolicy, /never joined/i);
 });
 
-test('the dashboard coverage table lists every series with its status, and the iRAD page marks 2026 as year to date', () => {
-  const html = read('delhi_safety_dashboard.html');
+test('the Data & methods coverage list has every series with its status, and the iRAD page marks 2026 as year to date', () => {
+  const html = read('data-methods.html'), data = read('assets/site-data.js');
   assert.ok(html.includes('id="coverage"'));
-  for (const s of status.series) assert.ok(html.includes(s.name.replace(/&/g, '&amp;')) || html.includes(s.name), 'coverage table is missing ' + s.id);
+  for (const s of status.series) assert.ok(data.includes(s.name.replace(/&/g, '&amp;')) || data.includes(JSON.stringify(s.name).slice(1, -1)), 'coverage list is missing ' + s.id);
   const irad = read('irad_stations.html');
   assert.ok(irad.includes("'2026' ? ', year to date'") && irad.includes('do not compare its total with a full year'));
 });

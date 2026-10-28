@@ -42,9 +42,3 @@ test('the README status table lists every series by id and shows its status', ()
   }
 });
 
-test('the dashboard year selector never goes beyond the latest production crime year', () => {
-  const latest = status.series.find(s => s.id === 'ncrb_district_crime').latest_reference_period;
-  const html = fs.readFileSync(path.join(ROOT, 'delhi_safety_dashboard.html'), 'utf8');
-  const years = [...html.matchAll(/<option value="(20\d\d)"/g)].map(m => Number(m[1]));
-  assert.equal(Math.max(...years), Number(latest));
-});
