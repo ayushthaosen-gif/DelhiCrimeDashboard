@@ -6,6 +6,12 @@
 - **Also:** the one-page "Trends and patterns" crime chart now has a theft line across 2011 to 2024 with those cautions; the coverage matrix and gaps list no longer show 2016 to 2020 as not extracted; the `printed_totals_only` status is gone.
 - **Gotchas:** the Wayback capture of the 2018 volume dated 2023-07-13 is truncated (16.4 of 20.2 MB); the 2023-05-07 capture is complete and was used. `pdftotext` on this machine is the xpdf build (no -bbox).
 
+## [2026-10-28] - Claude (Anthropic) - Re-audit close-out
+
+- **Re-audit findings, all recorded:** (1) the Pipeline 2025 workflow had been failing on three over-long lines (fixed in #85; its pytest and offline steps now pass for the first time); (2) the correlation p-values were not a real t test (fixed in #86, moved in #87); (3) five archived index pages differ from their recorded hash (documented, guarded by `test/archive_integrity.test.js`); (4) the staged road-district manifest hashes with Windows line endings (the test accepts raw, LF and CRLF forms; `README.md` there describes the manifest and is excluded); (5) the 2024 Traffic Police landing page returns 404 (noted in `docs/DATA_SOURCES.md`; no replacement found).
+- **Checked and clean:** 53 manifests with 898 hashed entries walked (456 match, 389 point to raw files kept outside the repository, the rest are the items above); page-by-page and link checks; no secrets found; recent CI and Pages deploys green.
+- **Still open, by design:** the national NCRB hurt figures are press-reported and unverified against the NCRB report; Codex did not re-transcribe every 2023/2024 named-zone and persons cell; the 2022 district export has no table/page source fields.
+
 ## [2026-10-28] - Claude (Anthropic) - Earlier single-page dashboard retired
 
 - **At the owner's request** `delhi_safety_dashboard.html` (a 1 MB page built by a 4,200-line `scripts/build.js`) is now a small redirect page to the overview, so old links and bookmarks still work. `scripts/build.js` now only writes that page; the old builder is in git history (last version: commit d137c10).
