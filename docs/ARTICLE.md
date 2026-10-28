@@ -71,7 +71,7 @@ Persons killed moved the *opposite* direction citywide, 1,457 → 1,551 (+6.4%) 
 
 ## What correlates with what
 
-> **Correction (2026-10-26).** The table below was produced when the dashboard's significance stars came from an approximate formula, not a real t test, and it does not match the current dashboard (which now tests 162 cells, not 96). Do not quote it. The stars in it, and the claim that police infrastructure has "the strongest correlations", are not supported by the current, exact calculation: in the live matrix, police infrastructure against persons killed in 2024 is r = −0.46, p = 0.10, not significant. The live matrix is the reference.
+> **Correction (2026-10-26).** The table below was produced when the dashboard's significance stars came from an approximate formula, not a real t test, and it does not match the current dashboard (which now tests 162 cells, not 96). Do not quote it. Its figures cannot be reproduced from the current data. The live matrix (Trends and patterns page) is the reference: there, police posts per km² against persons killed in the 2024 zones is Spearman ρ = +0.80 over 14 districts and does survive the multiple-test correction. It is still an association between two quantities divided by the same district area, and police posts are sited where crime and people already are, so it is a lead to check, not a finding.
 
 Every crime and road-safety metric checked against every infrastructure layer, Pearson r across districts with real coverage for both axes (this table is superseded, see the correction above; with 8-15 districts most cells are not distinguishable from chance):
 

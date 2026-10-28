@@ -2040,7 +2040,7 @@ function renderCorrelationMatrix() {
 
   const year = activeYear;
   const infraKeys = INFRA;
-  const metricKeys = METRICS;
+  const metricKeys = METRICS.filter(m => !m.hiddenFromSelector); // the hidden 2024 rows duplicate the year-aware rows
   const isRho = corrCoeffMode === 'spearman';
 
   // First pass: every cell's coefficient, exact p and n. Then adjust all p-values together (Benjamini-Hochberg),

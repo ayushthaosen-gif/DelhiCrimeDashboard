@@ -1,7 +1,7 @@
 // Figures for the "Trends and patterns" page and the planner brief, computed from committed data files. Nothing is typed in.
 //
 //   crime     Delhi-wide registered crime by year with the comparison state of every adjacent pair (data/continuity.json, Delhi UT scope)
-//   districts 2024 registered crime per lakh residents by police district, and rank correlations with mapped infrastructure densities (15 districts)
+//   districts 2024 registered crime per lakh residents by police district, and (matrix) every district metric against every infrastructure density with exact p-values and a multiple-test correction (scripts/lib/corr_matrix.js)
 //   roads     where the nine annual crash-prone-zone lists keep pointing: persistent places by printed road, the 2023 fatal crashes by road,
 //             and how concentrated the 2024 areas are
 //
@@ -73,20 +73,7 @@ function build() {
   const rate = d => d.totalIPC2024 / d.population * 1e5;
   const ranked = dist.map(d => ({ district: d.district || d.name, perLakh: Math.round(rate(d)), theftPerLakh: Math.round(d.theft2024 / d.population * 1e5), count: d.totalIPC2024, population: d.population, popDensity: Math.round(d.population / d.areaSqKm) }))
     .sort((a, b) => b.perLakh - a.perLakh);
-  const cov = [
-    ['Residents per km²', d => d.population / d.areaSqKm],
-    ['Bus stops per km² (mapped)', d => d.busStopDensity],
-    ['Metro gates per km² (mapped)', d => d.metroGateDensity],
-    ['ATMs per km² (mapped)', d => d.atmDensity],
-    ['Liquor shops per km² (mapped)', d => d.alcoholShopDensity],
-    ['Police stations per km²', d => d.policeStationDensity],
-    ['Surveillance points per km² (mapped)', d => d.surveillanceDensity]
-  ];
-  const correlations = cov.map(([label, f]) => {
-    const ok = dist.filter(d => f(d) != null);
-    return { label, n: ok.length, rho: Math.round(spearman(ok.map(rate), ok.map(f)) * 100) / 100 };
-  });
-  const districts = { year: 2024, ranked, correlations, populationNote: 'Approximate resident population used by this project; excludes daytime visitors and commuters.' };
+  const districts = { year: 2024, ranked, populationNote: 'Approximate resident population used by this project; excludes daytime visitors and commuters.' };
 
   const rec = read('data/profiles/recurring_locations.json').places;
   const aud = read('data/profiles/audit_candidates_2024.json').rows;
@@ -108,7 +95,7 @@ function build() {
       .map(z => ({ zone: z.zone, road: z.road_printed, ward: String(z.ward_name || '').replace(/\s+/g, ' ').trim() || null, lists: z.reports_listed_of_9, fatal2024: z.fatal_crashes_2024, accuracyM: z.position_accuracy_m })),
     areas2024: { zones: aud.length, tier1or2: tier12.length, fatalAll: fat(aud), fatalTier1or2: fat(tier12), pedestrianZones: ped.length, pedestrianFatal: ped.reduce((a, z) => a + (z.pedestrian_fatal_crashes_2024 || 0), 0), sparselyMapped: aud.filter(z => z.sparsely_mapped_surroundings).length }
   };
-  return { crime, districts, roads };
+  return { crime, districts, roads, matrix: require('./corr_matrix').build(ROOT) };
 }
 
 // One-page planner brief (HTML, printable). Every figure comes from build(); the wording states what the data can and cannot say.

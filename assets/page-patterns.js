@@ -74,15 +74,80 @@
     sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Where registered crime is higher, ' + Dd.year),
       D.tip('About this ranking', 'Registered IPC/BNS cases per 1 lakh residents, by Delhi Police district. ' + Dd.populationNote + ' A district with many visitors, markets or transport hubs can rank high on this measure without having more crime per person present.')));
     sec.appendChild(bars(Dd.ranked, 'perLakh', 'district', function (r) { return ' per lakh · ' + D.n(r.count) + ' cases'; }));
-    sec.appendChild(h('h3', { style: 'margin-top:8px' }, 'Does anything mapped line up with it?'));
-    sec.appendChild(h('p', { class: 'muted', style: 'font-size:14px' }, 'Rank correlation (Spearman) between each district\'s crime rate and a mapped density, across the 15 districts. With 15 districts a value between about −0.5 and +0.5 cannot be told apart from chance.'));
-    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:420px' },
-      h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Compared with crime per lakh'), h('th', { scope: 'col', class: 'n' }, 'Districts'), h('th', { scope: 'col', class: 'n' }, 'Rank correlation'))),
-      h('tbody', null, Dd.correlations.map(function (c) { return h('tr', null, h('td', null, c.label), h('td', { class: 'n' }, c.n), h('td', { class: 'n' }, (c.rho > 0 ? '+' : c.rho < 0 ? '−' : '') + Math.abs(c.rho).toFixed(2))); })))));
     sec.appendChild(h('div', { class: 'callout warn pl-cau' }, h('ul', { class: 'why-list' },
       h('li', null, 'None of these lines up with the crime rate at a level that is distinguishable from chance. This data does not show that any of them drives crime.'),
       h('li', null, 'The likelier reasons are not in this data: daytime population (for example, Central and North have old markets and large transport hubs, so more people are present than live there), how crimes are reported and registered in each district, and how district boundaries are drawn.'),
       h('li', null, 'Testing them would need police-station or ward crime counts, footfall or commuter data, and registration practice. District totals for 15 units cannot settle it.'))));
+  }
+
+  // ---------- infrastructure and crime: the matrix ----------
+  var MX = PT.matrix, mst = { coeff: 'spearman', mode: 'density', mi: null, ii: null };
+  function sgn(v, d) { return (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(d == null ? 2 : d); }
+  function pTxt(p) { return p < 0.001 ? '<0.001' : p.toFixed(3); }
+  function cellBadge(c) { return c.q < 0.05 ? '★' : c.p < 0.05 ? '†' : ''; }
+  function scatter(c, mname, iname) {
+    var W = 560, H = 340, L = 54, R = 16, T = 14, B = 40, xs = c.x, ys = c.y;
+    var xmax = Math.max.apply(null, xs) * 1.1 || 1, ymax = Math.max.apply(null, ys) * 1.1 || 1;
+    var px = function (v) { return L + v / xmax * (W - L - R); }, py = function (v) { return H - B - v / ymax * (H - T - B); };
+    var svg = h('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': 'Scatterplot of ' + mname + ' against ' + iname + ' across ' + c.n + ' districts', style: 'width:100%;height:auto;display:block' });
+    [0, 0.5, 1].forEach(function (f) {
+      svg.appendChild(h('line', { x1: L, x2: W - R, y1: py(ymax / 1.1 * f), y2: py(ymax / 1.1 * f), stroke: 'var(--line)', 'stroke-width': 1 }));
+      svg.appendChild(h('text', { x: L - 6, y: py(ymax / 1.1 * f) + 4, 'text-anchor': 'end', style: 'font:11px var(--mono);fill:var(--ink3)' }, D.n(ymax / 1.1 * f)));
+    });
+    svg.appendChild(h('text', { x: W / 2, y: H - 6, 'text-anchor': 'middle', style: 'font:12px var(--sans);fill:var(--ink3)' }, iname + (mst.mode === 'density' ? ' per km²' : ' per 100k residents') + ' →'));
+    var n = xs.length, mx = xs.reduce(function (a, b) { return a + b; }, 0) / n, my = ys.reduce(function (a, b) { return a + b; }, 0) / n, nu = 0, de = 0, i;
+    for (i = 0; i < n; i++) { nu += (xs[i] - mx) * (ys[i] - my); de += (xs[i] - mx) * (xs[i] - mx); }
+    if (de) { var sl = nu / de, ic = my - sl * mx; svg.appendChild(h('line', { x1: px(0), y1: py(Math.max(0, ic)), x2: px(xmax), y2: py(Math.max(0, ic + sl * xmax)), stroke: 'var(--accent)', 'stroke-width': 2, 'stroke-dasharray': '5 4' })); }
+    for (i = 0; i < n; i++) {
+      svg.appendChild(h('circle', { cx: px(xs[i]), cy: py(ys[i]), r: 5, fill: 'var(--bar)' }, h('title', null, MX.districts[c.idx[i]] + ': ' + xs[i] + ', ' + ys[i])));
+      svg.appendChild(h('text', { x: px(xs[i]) + 7, y: py(ys[i]) + 4, style: 'font:10.5px var(--sans);fill:var(--ink2)' }, MX.districts[c.idx[i]]));
+    }
+    return svg;
+  }
+  function renderMatrixDetail(box) {
+    D.clear(box);
+    if (mst.mi == null) { box.appendChild(h('p', { class: 'muted', style: 'font-size:14px' }, 'Select a cell to see its scatterplot, the districts used and the exact p-value.')); return; }
+    var c = MX.modes[mst.mode].cells[mst.mi][mst.ii], k = c[mst.coeff], sym = mst.coeff === 'spearman' ? 'ρ' : 'r';
+    var mname = MX.metrics[mst.mi].label, iname = MX.infra[mst.ii].label;
+    box.appendChild(h('h3', null, mname + ' against ' + iname));
+    box.appendChild(h('div', { class: 'overflow' }, scatter(c, mname, iname)));
+    box.appendChild(h('ul', { class: 'why-list' },
+      h('li', null, sym + ' = ' + sgn(k.r, 3) + ' over ' + c.n + ' districts (t = ' + k.t.toFixed(2) + ', ' + k.df + ' degrees of freedom).'),
+      h('li', null, 'Exact two-tailed p = ' + pTxt(k.p) + '. Adjusted for ' + MX.modes[mst.mode].tests + ' tests at once (Benjamini–Hochberg): q = ' + pTxt(k.q) + (k.q < 0.05 ? ', which survives the correction.' : k.p < 0.05 ? ', which does not survive the correction.' : '.')),
+      h('li', null, k.partial == null ? 'Too few districts to control for residents per km².' : 'Controlling for residents per km²: ' + sym + ' = ' + sgn(k.partial, 3) + '. With this few districts this is indicative only.'),
+      h('li', null, 'The other coefficient: ' + (mst.coeff === 'spearman' ? 'Pearson r' : 'Spearman ρ') + ' = ' + sgn(c[mst.coeff === 'spearman' ? 'pearson' : 'spearman'].r, 3) + '. If the two differ a lot, one or two districts are doing the work.'),
+      h('li', null, 'Districts used: ' + c.idx.map(function (i) { return MX.districts[i]; }).join(', ') + '.' + (MX.infra[mst.ii].mapped ? ' This layer is mapped (OpenStreetMap), so a low count can mean unmapped, not absent.' : ''))));
+  }
+  function renderMatrix() {
+    var sec = D.clear(D.$('#ptMatrix')), X = MX.modes[mst.mode], k = mst.coeff;
+    sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Infrastructure and recorded crime: associations across districts, ' + MX.year),
+      D.tip('How to read this', 'Each cell compares one measure with one infrastructure layer across the Delhi Police districts that have data for both. The coefficient is a rank correlation (Spearman) or a straight-line correlation (Pearson). P-values are exact Student t tests. Because ' + X.tests + ' cells are tested at once, all p-values are adjusted together (Benjamini–Hochberg). ★ survives that adjustment; † is below 0.05 only before it.')));
+    sec.appendChild(h('div', { class: 'callout warn pl-cau' }, h('ul', { class: 'why-list' },
+      h('li', null, 'These are geographic associations across at most 15 districts. They do not establish causation, and with so many comparisons they are leads to check, not findings.'),
+      h('li', null, 'Both sides of each cell are divided by the same thing (district area, or population). That alone can create a correlation: a very small or very large district moves both numbers together. Spearman and the partial value in each cell are the checks on this; the per 100k view is the most exposed (New Delhi has about 142,000 residents).'),
+      h('li', null, 'Police posts follow crime and population rather than cause them. Mapped layers (OpenStreetMap) may be incomplete. A district\'s total includes visitors and commuters who are not in its resident count.'))));
+    var ctr = h('div', { style: 'display:flex;gap:14px;flex-wrap:wrap;margin:12px 0' },
+      h('div', { class: 'seg', role: 'group', 'aria-label': 'Correlation type' },
+        [['spearman', 'Rank (Spearman ρ)'], ['pearson', 'Straight-line (Pearson r)']].map(function (o) { return h('button', { type: 'button', 'aria-pressed': k === o[0] ? 'true' : 'false', onclick: function () { mst.coeff = o[0]; renderMatrix(); } }, o[1]); })),
+      h('div', { class: 'seg', role: 'group', 'aria-label': 'Basis' },
+        [['density', 'Per km²'], ['perCapita', 'Per 100k residents']].map(function (o) { return h('button', { type: 'button', 'aria-pressed': mst.mode === o[0] ? 'true' : 'false', onclick: function () { mst.mode = o[0]; renderMatrix(); } }, o[1]); })));
+    sec.appendChild(ctr);
+    var head = h('tr', null, h('th', { scope: 'col', style: 'text-align:left' }, 'Measure'), MX.infra.map(function (i) { return h('th', { scope: 'col' }, i.label); }));
+    var lastGroup = null, rows = [];
+    MX.metrics.forEach(function (m, mi) {
+      if (m.group !== lastGroup) { rows.push(h('tr', { class: 'cm-group' }, h('th', { scope: 'rowgroup', colspan: MX.infra.length + 1, style: 'text-align:left' }, m.group))); lastGroup = m.group; }
+      rows.push(h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, m.label), MX.infra.map(function (inf, ii) {
+        var c = X.cells[mi][ii], s = c[k];
+        if (!s) return h('td', { class: 'n' }, 'n/a');
+        var on = mst.mi === mi && mst.ii === ii, strong = Math.abs(s.r) >= 0.4;
+        return h('td', { class: 'n' }, h('button', { type: 'button', class: 'cm-cell' + (strong ? ' cm-strong' : '') + (on ? ' cm-on' : ''), 'aria-label': m.label + ' against ' + inf.label + ': ' + (k === 'spearman' ? 'rho ' : 'r ') + s.r.toFixed(2) + ', ' + c.n + ' districts, p ' + pTxt(s.p) + (s.q < 0.05 ? ', survives correction' : '') + '. Open scatterplot', onclick: function () { mst.mi = mi; mst.ii = ii; renderMatrix(); var d = D.$('#cmDetail'); if (d && d.scrollIntoView) d.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } }, sgn(s.r) + (cellBadge(s) ? ' ' + cellBadge(s) : '')));
+      })));
+    });
+    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:760px' }, h('thead', null, head), h('tbody', null, rows))));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Of ' + X.tests + ' cells, ' + X.raw[k] + ' are below p = 0.05 before adjustment (†) and ' + X.adjusted[k] + ' after it (★). Cells share districts and measures, so they are not independent tests. With 15 districts, a value between about −0.5 and +0.5 cannot be told apart from chance. Blank metrics for a district are left out, not counted as zero; the streetlight and underpass layers cover 9 of 15 districts.'));
+    var box = h('div', { id: 'cmDetail', class: 'cm-detail' });
+    sec.appendChild(box);
+    renderMatrixDetail(box);
   }
 
   // ---------- roads ----------
@@ -184,5 +249,5 @@
     }
   }
 
-  renderCrime(); renderChange(); renderDistricts(); renderRoads(); renderHelp();
+  renderCrime(); renderChange(); renderDistricts(); renderMatrix(); renderRoads(); renderHelp();
 })();

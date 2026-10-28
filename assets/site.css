@@ -486,6 +486,12 @@ body.map3d { display: flex; flex-direction: column; }
 @media (min-width: 1140px) {
   #plWork > .panel.detail { position: sticky; top: var(--pl-sticky-top, 110px); max-height: calc(100vh - var(--pl-sticky-top, 110px) - 16px); overflow-y: auto; overscroll-behavior: contain; }
 }
+.cm-cell { white-space: nowrap; font: 13px var(--mono); padding: 4px 6px; min-width: 62px; border: 1px solid transparent; border-radius: 4px; background: transparent; color: var(--ink2); cursor: pointer; }
+.cm-cell.cm-strong { background: var(--cauBg); color: var(--ink); font-weight: 700; }
+.cm-cell:hover { border-color: var(--accent); }
+.cm-cell.cm-on { outline: 3px solid var(--accent); outline-offset: 1px; }
+.cm-group th { background: var(--surface2); font-size: 12px; color: var(--ink3); text-transform: uppercase; letter-spacing: .04em; }
+.cm-detail { margin-top: 14px; padding-top: 8px; border-top: 1px solid var(--line); }
 .pt-bars { display: flex; flex-direction: column; gap: 6px; }
 .pt-row { display: grid; grid-template-columns: 130px minmax(0, 1fr) minmax(0, 220px); gap: 10px; align-items: center; font-size: 14px; }
 .pt-l { font-weight: 500; }
