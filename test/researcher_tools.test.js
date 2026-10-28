@@ -48,7 +48,7 @@ test('the matrix agrees with the data: what is available is in the repository, w
   // roads: printed 2017 to 2024, calculated 2014 and 2015, not printed 2013 and 2016, not found 2011 and 2012
   assert.deepEqual(states('road_tables').slice(0, 14), ['source_not_found', 'source_not_found', 'not_printed', P, P, 'not_printed', A, A, A, A, A, A, A, A]);
   // crime
-  assert.deepEqual(states('delhi_ut_theft').slice(0, 14), [A, A, A, A, A, 'not_extracted', 'not_extracted', 'not_extracted', 'not_extracted', 'not_extracted', A, A, A, A]);
+  assert.deepEqual(states('delhi_ut_theft').slice(0, 14), [A, A, A, A, A, A, A, A, A, A, A, A, A, A]);
   assert.deepEqual(states('ncrb_district_crime').slice(0, 5), ['staged', 'staged', 'staged', 'staged', 'staged']);
   assert.equal(row('ncrb_district_crime').cells[2016].state, P);
   assert.equal(row('ncrb_district_crime').cells[2024].state, P);

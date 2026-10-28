@@ -38,10 +38,10 @@ test('crime, Delhi as a whole: a comparable pair gets a change figure from the p
   assert.ok(bad.ranges.some(r => r.from === 2014 && r.to === 2024) && bad.ranges.some(r => r.from === 2011 && r.to === 2013), 'the ranges that can be read together are named');
 });
 
-test('blank years give no figure, never zero: theft has no value for 2016 to 2020', () => {
-  const spec = { kind: 'crime', key: 'theft', scope: c.utSeries.scopeName, values: utValues('theft') };
-  assert.ok(!(2018 in spec.values));
-  const v = cont.changeView(c, spec, 2018, 2022);
+test('blank years give no figure, never zero: crimes against women have no value for 2011 to 2013', () => {
+  const spec = { kind: 'crime', key: 'crimeAgainstWomen', scope: c.utSeries.scopeName, values: utValues('crimeAgainstWomen') };
+  assert.ok(!(2012 in spec.values));
+  const v = cont.changeView(c, spec, 2012, 2016);
   assert.equal(v.fromValue, null);
   assert.equal(v.pct, null);
   assert.equal(v.state, 'unavailable');

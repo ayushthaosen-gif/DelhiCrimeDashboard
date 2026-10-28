@@ -36,11 +36,11 @@ Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whol
 Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2013,available,Available,,
 Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2014,available,Available,,
 Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2015,available,Available,,
-Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2016,not_extracted,The source exists but the figure has not been entered,"Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",data/continuity.json
-Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2017,not_extracted,The source exists but the figure has not been entered,"Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",data/continuity.json
-Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2018,not_extracted,The source exists but the figure has not been entered,"Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",data/continuity.json
-Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2019,not_extracted,The source exists but the figure has not been entered,"Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",data/continuity.json
-Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2020,not_extracted,The source exists but the figure has not been entered,"Delhi-wide theft, robbery and burglary for 2016 to 2020 are in the head-wise State/UT tables of the Crime in India volumes and have not been extracted yet.",data/continuity.json
+Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2016,available,Available,,
+Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2017,available,Available,,
+Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2018,available,Available,,
+Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2019,available,Available,,
+Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2020,available,Available,,
 Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2021,available,Available,,
 Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2022,available,Available,,
 Crime,delhi_ut_theft,Delhi-wide theft (printed),registered cases,Delhi as a whole,2023,available,Available,,

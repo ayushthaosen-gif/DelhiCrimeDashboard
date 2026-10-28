@@ -44,6 +44,7 @@ function compareYears(c, key, from, to, district) {
   // 2. changes in definition or compilation
   c.definitionBreaks.forEach(function (b) {
     if (utScope && b.districtsOnly) return;
+    if (!utScope && b.utOnly) return;
     if (b.measures.indexOf(key) >= 0 && from <= b.between[0] && b.between[1] <= to) add(b.state, b.reason);
   });
   // 3. changes in geography, district by district when a district is named (Delhi-wide totals ignore district boundaries)
