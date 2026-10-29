@@ -392,6 +392,9 @@
     var keys = [['theft', 'theft'], ['robbery', 'robbery'], ['burglary', 'burglary'], ['totalIPC', 'all IPC'], ['crimeAgainstWomen', 'crimes against women'], ['totalSLL', 'special and local laws']];
     var missing = keys.filter(function (k) { return !availH(k[0], r.year); }).map(function (k) { return k[1]; });
     if (missing.length) items.push('Not in the source table for ' + r.year + ': ' + missing.join(', ') + '. A dash means not available, not zero.');
+    var cwv = hget(r.citywide.values, M.metric.k), all = M.terr.concat(M.other), listed = 0, complete = all.length > 0;
+    all.forEach(function (x) { if (x.v == null) complete = false; else listed += x.v; });
+    if (cwv && complete && listed !== cwv.v) items.push('The units listed here add to ' + D.n(listed) + ' for ' + M.metric.label.toLowerCase() + ', and the Delhi total is ' + D.n(cwv.v) + '. The difference (' + D.n(cwv.v - listed) + ') is not in this year\'s district table, and no unit is named for it in the source.');
     return items;
   }
   function renderHistMap(M) {
