@@ -87,3 +87,13 @@ test('the limits are stated on the page: districts differ, counts only, no cross
   assert.match(js, /no trend is drawn/);
   assert.match(js, /NCRB changed its format in 2014/);
 });
+
+test('where the listed units do not add to the printed Delhi total (2016 to 2018), the page says so; before that they add exactly', () => {
+  const js = read('assets/page-explore.js');
+  assert.match(js, /is not in this year.{1,2}s district table/);
+  for (const y of H.years) {
+    const sum = y.units.reduce((a, u) => a + (u.values.theft || 0), 0);
+    if (y.year <= 2015) assert.equal(sum, y.citywide.values.theft, String(y.year));
+    else assert.ok(sum < y.citywide.values.theft, String(y.year));
+  }
+});

@@ -1,3 +1,9 @@
+## [2026-10-29] - Claude (Anthropic) - Re-audit: Explore now explains why 2016 to 2018 districts do not add to the Delhi total
+
+- **Found:** for 2011 to 2015 the district and special units add exactly to the printed Delhi total. For 2016 to 2018 the district tables list no other units and fall short (theft: 117,155 vs 130,928; 156,796 vs 173,996; 186,633 vs 195,688), while the left panel showed the Delhi total with no explanation.
+- **Fixed:** the earlier-districts notes now state, from the data, the sum of the units listed, the Delhi total and the difference, and that the source names no unit for it. No data changed; the cause is not guessed.
+- **Checked, no change:** 289 tests, all CI builds, zero drift; 2016 to 2020 head tables equal the series; 2016 burglary day/night are null by design (combined head).
+
 ## [2026-10-28] - Claude (Anthropic) - Delhi-wide theft, robbery and burglary 2016 to 2020: independently re-read
 
 - **Result:** Codex re-read all five Table 1A.4 pages blind (its transcription was saved before it opened the staged values) and all 35 entries agree: 33 numbers and the two structural nulls (2016 day and night burglary, not printed). The five PDFs matched the recorded sizes and SHA-256. No numeric correction was needed.
