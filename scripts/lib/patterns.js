@@ -1,7 +1,7 @@
 // Figures for the "Trends and patterns" page and the planner brief, computed from committed data files. Nothing is typed in.
 //
 //   crime     Delhi-wide registered crime by year with the comparison state of every adjacent pair (data/continuity.json, Delhi UT scope)
-//   districts 2024 registered crime per lakh residents by police district, and (matrix) every district metric against every infrastructure density with exact p-values and a multiple-test correction (scripts/lib/corr_matrix.js)
+//   districts 2024 registered crime per lakh residents by police district, and (matrix) every district metric against every infrastructure density with p-values (permutation for Spearman, t for Pearson) and a multiple-test correction (scripts/lib/corr_matrix.js)
 //   roads     where the nine annual crash-prone-zone lists keep pointing: persistent places by printed road, the 2023 fatal crashes by road,
 //             and how concentrated the 2024 areas are
 //

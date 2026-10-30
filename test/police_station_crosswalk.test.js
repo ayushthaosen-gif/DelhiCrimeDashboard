@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { parseCsv, canonicalBytes, sha256 } = require('../scripts/lib/release_utils');
-const { normalize, key, match, identities } = require('../scripts/lib/police_station_logic');
+const { normalize, key, match, identities, checkReview, needsReview } = require('../scripts/lib/police_station_logic');
 const ROOT = path.resolve(__dirname, '..');
 const csv = file => parseCsv(canonicalBytes(path.join(ROOT, file)).toString()).rows;
 const json = file => JSON.parse(fs.readFileSync(path.join(ROOT, file), 'utf8'));
@@ -23,7 +23,7 @@ test('all source pairs, decisions, unresolved policy and draft manual evidence a
   const decisions = csv('data/reference/police_station_decisions.csv');
   assert.equal(rows.length, 174); assert.equal(new Set(rows.map(key)).size, rows.length);
   assert.deepEqual([...new Set(source.map(key))].sort(), rows.map(key).sort());
-  for (const row of authority) { assert.equal(row.review_status, 'draft'); assert.equal(row.reviewed_by, ''); assert.equal(row.reviewed_on, ''); }
+  for (const row of authority) checkReview(row);
   const metadata = json('data/reference/delhi_police_manual_1_2026_stations.source.json');
   assert.equal(metadata.sha256, sha256(path.join(ROOT, metadata.source)));
   assert.ok(authority.some(r => r.canonical_name === 'ANAND PARBAT' && r.printed_page === '21'));
@@ -83,4 +83,19 @@ test('crosswalk coverage includes denominators, per-district counts and source-t
       assert.equal(measure.totalSourceTableRows, chosen.length); assert.equal(measure.mappedSourceTableRows, mapped); assert.equal(measure.share, mapped / chosen.length);
     }
   }
+});
+
+test('a human review can be recorded: reviewed rows need a reviewer and an ISO date, drafts need neither, and only exact matches to reviewed rows stop needing review', () => {
+  const row = o => Object.assign({ canonical_name: 'X', review_status: 'draft', reviewed_by: '', reviewed_on: '' }, o);
+  assert.equal(checkReview(row({})), 'draft');
+  assert.equal(checkReview(row({ review_status: 'reviewed', reviewed_by: 'A. Reviewer', reviewed_on: '2026-10-30' })), 'reviewed');
+  assert.throws(() => checkReview(row({ reviewed_by: 'A. Reviewer' })), /draft row/);
+  assert.throws(() => checkReview(row({ review_status: 'reviewed' })), /reviewed row needs/);
+  assert.throws(() => checkReview(row({ review_status: 'reviewed', reviewed_by: 'A', reviewed_on: '30/10/2026' })), /reviewed row needs/);
+  assert.throws(() => checkReview(row({ review_status: 'approved' })), /draft or reviewed/);
+  const reviewed = row({ review_status: 'reviewed', reviewed_by: 'A', reviewed_on: '2026-10-30' });
+  assert.equal(needsReview('exact_normalized', reviewed), false);
+  assert.equal(needsReview('exact_normalized', row({})), true);
+  assert.equal(needsReview('documented_variant', reviewed), true);
+  assert.equal(needsReview('unmapped', null), true);
 });

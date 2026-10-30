@@ -58,11 +58,29 @@ test('the module is safe to paste into a template literal', () => {
   assert.ok(!src.includes('`') && !src.includes('$' + '{'));
 });
 
-test('the Patterns matrix uses the exact test and the adjustment, has no hand-made p curve, and says it is not causal', () => {
+test('the Patterns matrix uses permutation p-values for Spearman, the t test for Pearson and the adjustment, has no hand-made p curve, and says it is not causal', () => {
   const lib = fs.readFileSync(path.join(__dirname, '../scripts/lib/corr_matrix.js'), 'utf8');
   assert.ok(lib.includes('statsPFromR') && lib.includes('statsBH'));
   const page = fs.readFileSync(path.join(__dirname, '../assets/page-patterns.js'), 'utf8');
+  assert.ok(lib.includes('permutationP') && !/\br1\b/.test(lib), 'Spearman by permutation; rates not rounded before analysis');
+  assert.ok(!/exact/i.test(page.slice(page.indexOf('renderMatrixDetail'))), 'no claim of exact p-values');
   assert.ok(/Benjamini/.test(page));
   assert.ok(/do not establish causation/i.test(page));
   for (const f of ['scripts/lib/stats.js', 'scripts/lib/corr_matrix.js', 'assets/page-patterns.js']) assert.ok(!fs.readFileSync(path.join(__dirname, '..', f), 'utf8').includes('-0.717'), f);
+});
+
+test('matrix correlations are computed from unrounded rates, and Spearman p-values are permutation p-values near the t value for a clear case', () => {
+  const { build } = require('../scripts/lib/corr_matrix');
+  const M = build(path.join(__dirname, '..'));
+  const cells = [].concat(...M.modes.density.cells).filter(c => c.spearman);
+  assert.ok(cells.length > 100);
+  for (const c of cells) {
+    assert.equal(c.spearman.method, 'permutation');
+    assert.ok(c.spearman.p > 0 && c.spearman.p <= 1);
+    assert.ok(c.x.some(v => Math.abs(v * 10 - Math.round(v * 10)) > 1e-9), 'values must not be rounded to one decimal');
+    break;
+  }
+  // a perfectly monotone case has the smallest possible permutation p, 1 / (shuffles + 1) up to the observed arrangement
+  const strong = cells.filter(c => Math.abs(c.spearman.r) > 0.9);
+  for (const c of strong) assert.ok(c.spearman.p < 0.001);
 });
