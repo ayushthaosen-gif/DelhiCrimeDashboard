@@ -1,0 +1,40 @@
+{
+  "note": "Five saved index pages differ from the SHA-256 recorded in manifest.json when they were captured (the saved copies are smaller than the captured bytes, so they were altered after capture). manifest.json keeps the capture record unchanged; this file records the hash and size of the copy actually retained, which the integrity test checks. Re-fetch with node scripts/archive_official_sources.mjs when the network allows, then delete the entry.",
+  "files": [
+    {
+      "path": "dda/mpd_2047_portal.html",
+      "captured_sha256": "4f53489dc6853bc437c5d5a6cc8d8513a98a6d837d10bf5291631f3c27d89861",
+      "captured_bytes": 39071,
+      "retained_sha256": "b174cd6c297da3ee9451db8a0d408dbe64a29de67c35a3414600a311ac51c2bb",
+      "retained_bytes": 39067
+    },
+    {
+      "path": "delhi_police/newsletters_index_2025_2026.html",
+      "captured_sha256": "4de3aa743f00e761861e43153a9b09b9362273c0df3a7c062c209393156dad90",
+      "captured_bytes": 41304,
+      "retained_sha256": "bcf66ca35b3c937ebfe560982fdbbff1e321c10ed0e5825ce1ee46ee100bd7af",
+      "retained_bytes": 40736
+    },
+    {
+      "path": "delhi_police/gazette_index_2025_2026.html",
+      "captured_sha256": "97b6321863e1463a8a0a4418bc814c8f5940c829aa7483d462d5360a5b2fdeb6",
+      "captured_bytes": 41041,
+      "retained_sha256": "c9a1ca59b91dd77b67306d2dee220c2781f621f39bdfd5a88667a24ec393f90c",
+      "retained_bytes": 40451
+    },
+    {
+      "path": "traffic_police/crash_report_index.html",
+      "captured_sha256": "3f9b59a88d04ea37314a205c3d0a02bebc553beb6c50c6b81a2a5996a8e3cf1e",
+      "captured_bytes": 128130,
+      "retained_sha256": "a52c15461fca9dfef528d17ae8b116a0dc6ce0643ea022b3c01e2443f135e594",
+      "retained_bytes": 127152
+    },
+    {
+      "path": "wards/sec_ward_maps_241_250_index.html",
+      "captured_sha256": "70619b80e59b1defbaed5eba913930cabad3b496a1a8cad15d819bbbc2d6fa97",
+      "captured_bytes": 50024,
+      "retained_sha256": "1427e50f28eec8f9311899d7f342fa3304c7eb7f1b57f28a00798d91118cb82c",
+      "retained_bytes": 50018
+    }
+  ]
+}

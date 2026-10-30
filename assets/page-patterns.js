@@ -106,14 +106,14 @@
   }
   function renderMatrixDetail(box) {
     D.clear(box);
-    if (mst.mi == null) { box.appendChild(h('p', { class: 'muted', style: 'font-size:14px' }, 'Select a cell to see its scatterplot, the districts used and the exact p-value.')); return; }
+    if (mst.mi == null) { box.appendChild(h('p', { class: 'muted', style: 'font-size:14px' }, 'Select a cell to see its scatterplot, the districts used and the p-value.')); return; }
     var c = MX.modes[mst.mode].cells[mst.mi][mst.ii], k = c[mst.coeff], sym = mst.coeff === 'spearman' ? 'ρ' : 'r';
     var mname = MX.metrics[mst.mi].label, iname = MX.infra[mst.ii].label;
     box.appendChild(h('h3', null, mname + ' against ' + iname));
     box.appendChild(h('div', { class: 'overflow' }, scatter(c, mname, iname)));
     box.appendChild(h('ul', { class: 'why-list' },
-      h('li', null, sym + ' = ' + sgn(k.r, 3) + ' over ' + c.n + ' districts (t = ' + k.t.toFixed(2) + ', ' + k.df + ' degrees of freedom).'),
-      h('li', null, 'Exact two-tailed p = ' + pTxt(k.p) + '. Adjusted for ' + MX.modes[mst.mode].tests + ' tests at once (Benjamini–Hochberg): q = ' + pTxt(k.q) + (k.q < 0.05 ? ', which survives the correction.' : k.p < 0.05 ? ', which does not survive the correction.' : '.')),
+      h('li', null, sym + ' = ' + sgn(k.r, 3) + ' over ' + c.n + ' districts' + (k.method === 'permutation' ? '.' : ' (t = ' + k.t.toFixed(2) + ', ' + k.df + ' degrees of freedom).')),
+      h('li', null, (k.method === 'permutation' ? 'Permutation p = ' + pTxt(k.p) + ' (two-tailed, from 100,000 random reshuffles of the districts, so it is accurate to about 0.001). ' : 'Two-tailed p = ' + pTxt(k.p) + ' from the t distribution, which assumes roughly bell-shaped data. ') + 'Adjusted for ' + MX.modes[mst.mode].tests + ' tests at once (Benjamini–Hochberg): q = ' + pTxt(k.q) + (k.q < 0.05 ? ', which survives the correction.' : k.p < 0.05 ? ', which does not survive the correction.' : '.')),
       h('li', null, k.partial == null ? 'Too few districts to control for residents per km².' : 'Controlling for residents per km²: ' + sym + ' = ' + sgn(k.partial, 3) + '. With this few districts this is indicative only.'),
       h('li', null, 'The other coefficient: ' + (mst.coeff === 'spearman' ? 'Pearson r' : 'Spearman ρ') + ' = ' + sgn(c[mst.coeff === 'spearman' ? 'pearson' : 'spearman'].r, 3) + '. If the two differ a lot, one or two districts are doing the work.'),
       h('li', null, 'Districts used: ' + c.idx.map(function (i) { return MX.districts[i]; }).join(', ') + '.' + (MX.infra[mst.ii].mapped ? ' This layer is mapped (OpenStreetMap), so a low count can mean unmapped, not absent.' : ''))));
@@ -121,7 +121,7 @@
   function renderMatrix() {
     var sec = D.clear(D.$('#ptMatrix')), X = MX.modes[mst.mode], k = mst.coeff;
     sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Infrastructure and recorded crime: associations across districts, ' + MX.year),
-      D.tip('How to read this', 'Each cell compares one measure with one infrastructure layer across the Delhi Police districts that have data for both. The coefficient is a rank correlation (Spearman) or a straight-line correlation (Pearson). P-values are exact Student t tests. Because ' + X.tests + ' cells are tested at once, all p-values are adjusted together (Benjamini–Hochberg). ★ survives that adjustment; † is below 0.05 only before it.')));
+      D.tip('How to read this', 'Each cell compares one measure with one infrastructure layer across the Delhi Police districts that have data for both. The coefficient is a rank correlation (Spearman) or a straight-line correlation (Pearson). Spearman p-values come from 100,000 random reshuffles of the districts (a permutation test); Pearson p-values are Student t tests, which assume roughly bell-shaped data. Because ' + X.tests + ' cells are tested at once, all p-values are adjusted together (Benjamini–Hochberg). ★ survives that adjustment; † is below 0.05 only before it.')));
     sec.appendChild(h('div', { class: 'callout warn pl-cau' }, h('ul', { class: 'why-list' },
       h('li', null, 'These are geographic associations across at most 15 districts. They do not establish causation, and with so many comparisons they are leads to check, not findings.'),
       h('li', null, 'Both sides of each cell are divided by the same thing (district area, or population). That alone can create a correlation: a very small or very large district moves both numbers together. Spearman and the partial value in each cell are the checks on this; the per 100k view is the most exposed (New Delhi has about 142,000 residents).'),
