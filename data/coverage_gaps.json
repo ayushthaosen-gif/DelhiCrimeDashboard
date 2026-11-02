@@ -25,6 +25,6 @@
     { "row": "zone_positions", "years": [2025, 2026], "state": "not_published", "note": "No annual report yet.", "evidence": "data/series_status.json" },
     { "row": "ward_profiles", "years": [2011, 2023], "state": "not_collected", "note": "Ward profiles are built for 2024 (crash zones placed in legacy wards, OpenStreetMap snapshot 2026-08).", "evidence": "data/profiles/README.md" },
     { "row": "ward_profiles", "years": [2025, 2026], "state": "not_published", "note": "No 2025 or 2026 zone list yet.", "evidence": "data/series_status.json" },
-    { "row": "irad_district_reports", "years": [2011, 2024], "state": "not_collected", "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.", "evidence": "docs/IRAD_DISTRICT_REPORTS.md" }
+    { "row": "irad_district_reports", "years": [2011, 2021], "state": "not_collected", "note": "The iRAD district reports collected here start in 2022.", "evidence": "docs/IRAD_DISTRICT_REPORTS.md" }
   ]
 }

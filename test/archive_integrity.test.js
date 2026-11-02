@@ -1,7 +1,6 @@
-// Guards the evidence archive: every retained file must match the SHA-256 recorded when it was fetched. Five saved index pages are known
-// to differ from their recorded hash (the saved copy is smaller than what was hashed, so it was altered after capture); they are listed
-// here with their actual size so a new mismatch fails and these five cannot change silently. Re-fetch them with
-// `node scripts/archive_official_sources.mjs` when network access is available.
+// Guards the evidence archive: every retained file must match the SHA-256 recorded when it was fetched. Five saved index pages differ from
+// that capture hash (the saved copy is smaller than what was hashed); manifest.json keeps the capture record and retained_hashes.json records
+// the hash of the copy actually kept, so each file is checked against a recorded hash and none can change silently. A missing file fails.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -10,13 +9,7 @@ const crypto = require('node:crypto');
 
 const ROOT = path.join(__dirname, '..');
 const H = b => crypto.createHash('sha256').update(b).digest('hex');
-const KNOWN_DIFFERENT = {
-  'dda/mpd_2047_portal.html': 39067,
-  'delhi_police/newsletters_index_2025_2026.html': 40736,
-  'delhi_police/gazette_index_2025_2026.html': 40451,
-  'traffic_police/crash_report_index.html': 127152,
-  'wards/sec_ward_maps_241_250_index.html': 50018
-};
+const RETAINED = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/raw/source_archive/retained_hashes.json'), 'utf8')).files;
 
 function items(file) {
   const out = [];
@@ -30,22 +23,26 @@ function items(file) {
   return out;
 }
 
-test('every retained file in the official source archive matches its recorded hash, apart from five listed index pages', () => {
+test('every retained file in the official source archive matches a recorded hash: the captured one, or for five altered index pages the retained one', () => {
   const base = 'data/raw/source_archive/';
+  const retained = new Map(RETAINED.map(r => [r.path, r]));
   let checked = 0;
   for (const it of items(base + 'manifest.json')) {
     const rel = it.path || it.file, f = path.join(ROOT, base, rel);
-    if (!fs.existsSync(f)) continue;
+    assert.ok(fs.existsSync(f), rel + ' is recorded in the manifest with a hash but the file is missing');
     const raw = fs.readFileSync(f);
     checked++;
-    if (rel in KNOWN_DIFFERENT) {
-      assert.notEqual(H(raw), it.sha256, rel + ' now matches its hash: remove it from the exception list');
-      assert.equal(raw.length, KNOWN_DIFFERENT[rel], rel + ' changed again; re-fetch and re-hash it');
+    const lf = Buffer.from(raw.toString('utf8').split('\r\n').join('\n'));
+    if (retained.has(rel)) {
+      const r = retained.get(rel);
+      assert.equal(r.captured_sha256, it.sha256, rel + ': the capture record in retained_hashes.json must equal the manifest');
+      assert.notEqual(r.retained_sha256, it.sha256);
+      assert.ok([H(raw), H(lf)].includes(r.retained_sha256) && raw.length === r.retained_bytes, rel + ' does not match its retained hash; re-fetch and re-hash it');
     } else {
-      const lf = Buffer.from(raw.toString('utf8').split('\r\n').join('\n'));
       assert.ok([H(raw), H(lf)].includes(it.sha256), rel + ' does not match the hash recorded in the archive manifest');
     }
   }
+  assert.equal(retained.size, 5);
   assert.ok(checked >= 15, 'expected to check the retained files, checked ' + checked);
 });
 

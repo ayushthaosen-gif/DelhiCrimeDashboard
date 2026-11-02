@@ -1,3 +1,12 @@
+## [2026-10-30] - Claude (Anthropic) - Review fixes: unrounded correlations, permutation p-values for Spearman, iRAD coverage, archive hashes, crosswalk review state
+
+- **Correlations (P1):** rates are computed from full-precision counts and denominators; rounding to one decimal before ranking changed some results (one Spearman sign). Hand-checked cell recomputed independently: Pearson r 0.692 -> 0.682 (n=14, t=3.23). Police posts vs persons killed, per km2: Spearman +0.798, q = 0.041 (earlier note said q = 0.02).
+- **P-values (P2):** Spearman now uses a seeded permutation test (100,000 reshuffles, observed counted once); the t value was not exact for it. Pearson stays a t-test and is labelled so. "Exact" removed from the page and methodology. The matrix build is cached per process.
+- **iRAD coverage (P2):** 2022 to 2024 are staged (84, 75 and 72 monthly district rows, counted from the file); the not-collected rule now covers 2011 to 2021.
+- **Archive hashes (P2):** manifest.json keeps the capture record; data/raw/source_archive/retained_hashes.json records the hash of the five altered index pages as retained. The test checks it and fails on a missing file.
+- **Crosswalk review (P2):** review_status may be draft or reviewed (reviewer and ISO date required); only an exact match to a reviewed roster row stops needing review. All rows are still draft.
+- **Tests:** 292 pass.
+
 ## [2026-10-29] - Claude (Anthropic) - Re-audit: Explore now explains why 2016 to 2018 districts do not add to the Delhi total
 
 - **Found:** for 2011 to 2015 the district and special units add exactly to the printed Delhi total. For 2016 to 2018 the district tables list no other units and fall short (theft: 117,155 vs 130,928; 156,796 vs 173,996; 186,633 vs 195,688), while the left panel showed the Delhi total with no explanation.

@@ -150,6 +150,6 @@ test('matrix cells reproduce a hand-checked value: persons killed (zones, 2024) 
   const M = P.matrix, mi = M.metrics.findIndex(x => x.key === 'personsKilled2024'), ii = M.infra.findIndex(x => x.key === 'policeInfra');
   const c = M.modes.density.cells[mi][ii];
   assert.equal(c.n, 14);
-  assert.ok(Math.abs(c.pearson.r - 0.692) < 0.002);
-  assert.ok(Math.abs(c.pearson.p - 0.0061) < 0.0003);
+  assert.ok(Math.abs(c.pearson.r - 0.682) < 0.002);
+  assert.ok(Math.abs(c.pearson.p - 0.0072) < 0.0003);
 });

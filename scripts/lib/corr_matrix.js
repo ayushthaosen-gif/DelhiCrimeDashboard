@@ -41,21 +41,39 @@ function covered(d, inf) {
   return SURVEYED.has(d.district) && d[inf.key === 'streetlight' ? 'surveyPoints' : 'underpasses'] >= 10;
 }
 
-const r1 = v => Math.round(v * 10) / 10;
-function rate(raw, d, mode) { return raw == null ? null : mode === 'perCapita' ? r1(raw / d.population * 1e5) : r1(raw / d.areaSqKm); }
-function infraVal(d, inf, mode) {
-  const c = d[inf.count];
-  if (c == null) return null;
-  return mode === 'perCapita' ? r1(c / d.population * 1e5) : d[inf.dens];
+// Rates are calculated from the full-precision counts and denominators; rounding is for display only, because it can change ranks and signs.
+function rate(raw, d, mode) { return raw == null ? null : mode === 'perCapita' ? raw / d.population * 1e5 : raw / d.areaSqKm; }
+function infraVal(d, inf, mode) { return rate(d[inf.count], d, mode); }
+
+// Spearman p-value by permutation: the rank vector of y is shuffled PERMS times (seeded, so the build is reproducible) and the share of
+// shuffles with |rho| at least as large as observed is the p-value, with the observed arrangement counted once (Phipson and Smyth).
+const PERMS = 100000;
+function permutationP(xs, ys, seed) {
+  const n = xs.length, rx = S.statsRanks(xs), ry = S.statsRanks(ys);
+  const mx = rx.reduce((a, v) => a + v, 0) / n, my = ry.reduce((a, v) => a + v, 0) / n;
+  const cx = rx.map(v => v - mx), cy = ry.map(v => v - my);
+  const den = Math.sqrt(cx.reduce((a, v) => a + v * v, 0) * cy.reduce((a, v) => a + v * v, 0));
+  if (den === 0) return 1;
+  const dot = a => { let t = 0; for (let i = 0; i < n; i++) t += cx[i] * a[i]; return t; };
+  const obs = Math.abs(dot(cy)) / den - 1e-9;
+  let state = seed >>> 0;
+  const rnd = () => { state = (state + 0x6D2B79F5) >>> 0; let t = state; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const a = cy.slice();
+  let hit = 0;
+  for (let k = 0; k < PERMS; k++) {
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
+    if (Math.abs(dot(a)) / den >= obs) hit++;
+  }
+  return (hit + 1) / (PERMS + 1);
 }
 const rnd = (v, k) => Math.round(v * k) / k;
 
-function build(root) {
+function buildUncached(root) {
   const districts = JSON.parse(fs.readFileSync(path.join(root, 'data/dashboard_final.json'), 'utf8')).districts;
   const names = districts.map(d => d.name || d.district);
   const out = { year: 2024, districts: names, metrics: METRICS.map(({ key, label, group }) => ({ key, label, group })), infra: INFRA.map(({ key, label, mapped }) => ({ key, label, mapped })), modes: {} };
   for (const mode of ['density', 'perCapita']) {
-    const cells = METRICS.map(m => INFRA.map(inf => {
+    const cells = METRICS.map((m, mi) => INFRA.map((inf, ii) => {
       const idx = [], xs = [], ys = [];
       districts.forEach((d, i) => {
         if (!covered(d, inf) || d[m.key] == null) return;
@@ -68,7 +86,7 @@ function build(root) {
       const zs = idx.map(i => districts[i].population / districts[i].areaSqKm);
       const one = (r, ranked) => {
         const t = S.statsPFromR(r, n);
-        return { r: rnd(r, 1000), p: t.p, t: rnd(t.t, 100), df: t.df, partial: n >= 5 ? rnd(ranked ? S.statsPartial(S.statsRanks(xs), S.statsRanks(ys), S.statsRanks(zs)) : S.statsPartial(xs, ys, zs), 1000) : null };
+        return { r: rnd(r, 1000), p: ranked ? permutationP(xs, ys, 20261029 + (mode === 'perCapita' ? 1000 : 0) + mi * 20 + ii) : t.p, method: ranked ? 'permutation' : 't', t: rnd(t.t, 100), df: t.df, partial: n >= 5 ? rnd(ranked ? S.statsPartial(S.statsRanks(xs), S.statsRanks(ys), S.statsRanks(zs)) : S.statsPartial(xs, ys, zs), 1000) : null };
       };
       return { n, idx, x: xs, y: ys, pearson: one(S.statsPearson(xs, ys), false), spearman: one(S.statsSpearman(xs, ys), true) };
     }));
@@ -87,5 +105,9 @@ function build(root) {
   }
   return out;
 }
+
+// the permutation tests take a few seconds, and several builds and tests ask for the same matrix in one process
+const cache = new Map();
+function build(root) { if (!cache.has(root)) cache.set(root, buildUncached(root)); return JSON.parse(JSON.stringify(cache.get(root))); }
 
 module.exports = { build, METRICS, INFRA };

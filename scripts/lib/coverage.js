@@ -63,6 +63,12 @@ function build() {
   years.stretches = new Set([...yearsOf(read('data/releases/road_zones_roads_2011_2015/roads_2011_2012_retrospective.json'), 'reference_year'), ...yearsOf(read('data/releases/road_zones_roads_2011_2015/road_stretches_2014_retrospective.json'), 'reference_year')]);
   years.zone_positions = new Set([2023, 2024]);
   years.ward_profiles = new Set([2024]);
+  // monthly district rows of the staged iRAD collection, by year (rows and districts), counted from the file
+  const iradRows = {};
+  fs.readFileSync(path.join(ROOT, 'data/derived/irad_monthly/irad_monthly_by_district.csv'), 'utf8').trim().split(/\r?\n/).slice(1).forEach(line => {
+    const c = line.split(','), y = Number(c[1]);
+    (iradRows[y] = iradRows[y] || { rows: 0, districts: new Set() }).rows++; iradRows[y].districts.add(c[0]);
+  });
   years.irad_district_reports = new Set();
 
   const rows = [
@@ -96,7 +102,10 @@ function build() {
     for (const y of YEARS) {
       let state, note = null, evidence = null;
       const have = years[r.id].has(y);
-      if (r.id === 'irad_district_reports' && (y === 2025 || y === 2026)) {
+      if (r.id === 'irad_district_reports' && y >= 2022 && y <= 2024 && iradRows[y]) {
+        state = 'staged'; evidence = 'data/derived/irad_monthly/manifest.json';
+        note = iradRows[y].rows + ' monthly district rows from ' + iradRows[y].districts.size + ' districts for ' + y + ', from the district reports collected here; not every district and month is present, and a missing month is not a zero.';
+      } else if (r.id === 'irad_district_reports' && (y === 2025 || y === 2026)) {
         const s = status[y === 2025 ? 'irad_2025_release' : 'irad_2026_year_to_date'];
         state = y === 2025 ? 'staged' : 'provisional'; note = s.note || s.geography; evidence = s.where || null;
       } else if (have) {

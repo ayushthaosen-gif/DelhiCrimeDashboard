@@ -32,7 +32,7 @@ The tables below are a summary. The full year-by-year matrix (2011 to 2026, ever
 | Zone positions on the map | 2023, 2024 | Points | Hand-placed, 150 m to 5 km. |
 | Deaths by mode of travel | 2011 to 2024 | Delhi | Persons, not crashes. 2011 to 2018 are the older annual reports' Table 3.1 (the release also holds 2004 to 2010); 2019 to 2024 are the later series. Compare 2018 with 2019 with caution. 2001 to 2003 are printed but do not add up, so are not included. |
 | Enforcement | 2019 to 2024 | Delhi | Not split by district. |
-| iRAD district reports | 2025 and 2026 (varies by district) | Revenue districts, stations | Staged or provisional. |
+| iRAD district reports | 2022 to 2026 (monthly district rows; varies by district and month) | Revenue districts, stations | Staged or provisional. |
 | Traffic Police 2025 report | none | | Not published; monitored weekly. |
 
 ## Infrastructure and context

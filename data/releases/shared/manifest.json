@@ -161,24 +161,24 @@
       "datasetId": "coverage_gaps",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "2e8acfa0ba1baedf5113dc126d87274a36b571ebf92abb6c8dfecbd5442bf71d",
-      "bytes": 5882
+      "sha256": "d4136ab8bc2b86c0765b8484522ff8962c04c32ee789b39c91ae8b0b2962a8d5",
+      "bytes": 5862
     },
     {
       "file": "data/coverage_matrix.csv",
       "datasetId": "coverage_matrix",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "c7c34dd2d2feadf0e5855556d88417cf14fcdd6dddf99683f1581521f4ac60e2",
-      "bytes": 42590
+      "sha256": "47ec8742289c6d3b2c5362f27fb51d8c1287ecd087cca11f76e94f6cbc3295f6",
+      "bytes": 42676
     },
     {
       "file": "data/coverage_matrix.json",
       "datasetId": "coverage_matrix",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "abb69d95fe211f38addb5eb1d1ffd4018bc301e4e6a54c8a379ac3b6b5267b1a",
-      "bytes": 49109
+      "sha256": "b60702d7ac27c46165adf55c7ccd5db0780956911a2ec82e34806e2cd34b9cfa",
+      "bytes": 49180
     },
     {
       "file": "data/crash_zone_liquor_proximity_2024.geojson",

@@ -1106,73 +1106,73 @@
       "cells": {
         "2011": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2012": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2013": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2014": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2015": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2016": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2017": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2018": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2019": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2020": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2021": {
           "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
+          "note": "The iRAD district reports collected here start in 2022.",
           "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
         },
         "2022": {
-          "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
-          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+          "state": "staged",
+          "note": "84 monthly district rows from 7 districts for 2022, from the district reports collected here; not every district and month is present, and a missing month is not a zero.",
+          "evidence": "data/derived/irad_monthly/manifest.json"
         },
         "2023": {
-          "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
-          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+          "state": "staged",
+          "note": "75 monthly district rows from 7 districts for 2023, from the district reports collected here; not every district and month is present, and a missing month is not a zero.",
+          "evidence": "data/derived/irad_monthly/manifest.json"
         },
         "2024": {
-          "state": "not_collected",
-          "note": "The iRAD district reports collected here cover 2025 and 2026 (partly) only.",
-          "evidence": "docs/IRAD_DISTRICT_REPORTS.md"
+          "state": "staged",
+          "note": "72 monthly district rows from 6 districts for 2024, from the district reports collected here; not every district and month is present, and a missing month is not a zero.",
+          "evidence": "data/derived/irad_monthly/manifest.json"
         },
         "2025": {
           "state": "staged",
