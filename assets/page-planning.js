@@ -145,8 +145,8 @@
       h('div', { class: 'none' }, h('svg', { width: 22, height: 12, 'aria-hidden': 'true' }, h('rect', { width: 22, height: 12, rx: 2, style: 'fill:url(#plHatch)' })), 'No figure'));
     var s = P.schema.ward[fieldOf(l)];
     var warn = (l.k === 'met') ? 'Delhi Metro gate locations: Delhi Metro Rail Corporation, via the Delhi Transport Stack (Department of Transport, GNCTD), last updated by the publisher on 2 December 2024. Counts per ward are derived by this project and are not the original data. Provided without warranty: neither DMRC nor the Delhi Transport Stack guarantees its accuracy, and the file has defects (repeated rows, missing codes).' : (l.g === 'Crash severity') ? 'Crash-zone positions were placed by hand (accurate to 150 m up to 5 km), so a zone can belong to a neighbouring ward. Counts are within zones, not ward totals.' : (s && s[2] === 'mapped_osm') ? 'Mapped in OpenStreetMap: a low or zero value often means the area is not mapped.' : '';
-    return h('section', { class: 'panel map pl-map', 'aria-label': 'Ward map' }, h('div', { class: 'map-body' }, box, legend, warn ? h('p', { class: 'callout warn pl-cau', style: 'font-size:13.5px' }, warn) : null,
-      h('p', { class: 'pl-note' }, 'Legacy ward geography (290 wards, before the 2022 delimitation), not the current 250 MCD wards. Boundaries are simplified for display.')));
+    return h('section', { class: 'panel map pl-map', 'aria-label': 'Ward map' }, h('a', { class: 'skip skip-map', href: '#plDetail' }, 'Skip the ward map (290 wards to tab through)'), h('div', { class: 'map-body' }, box, legend, warn ? h('p', { class: 'callout warn pl-cau', style: 'font-size:13.5px' }, warn) : null,
+      h('p', { class: 'pl-note' }, 'In plain words: each ward is shaded by the measure you choose, and darker means a higher value. Legacy ward geography (290 wards, before the 2022 delimitation), not the current 250 MCD wards. Boundaries are simplified for display.')));
   }
   function setHover(no) {
     st.hover = no;
@@ -236,7 +236,7 @@
     }).then(function () { btn.textContent = 'Evidence pack downloaded'; btn.disabled = false; setTimeout(function () { btn.textContent = restore; }, 2000); }, function () { btn.textContent = restore; btn.disabled = false; });
   }
   function renderDetail() {
-    var sec = h('section', { class: 'panel detail', 'aria-label': 'Ward detail' }), body = h('div', { class: 'detail-body' });
+    var sec = h('section', { class: 'panel detail', id: 'plDetail', tabindex: -1, 'aria-label': 'Ward detail' }), body = h('div', { class: 'detail-body' });
     if (st.sel == null) {
       body.appendChild(h('div', { class: 'prompt' }, 'Select a ward on the map or in the list to see what the data shows there, how sure it is, and what it cannot tell you. Then download an evidence pack to take into a field visit.'));
       body.appendChild(h('div', { class: 'pl-note' }, 'Bulk downloads: ', h('a', { href: 'data/profiles/ward_profiles.csv' }, 'all wards (CSV)'), ' · ', h('a', { href: 'data/profiles/ward_profiles.geojson' }, 'GeoJSON'), ' · ', h('a', { href: 'data/profiles/district_profiles.csv' }, 'districts (CSV)'), ' · ', h('a', { href: 'data/profiles/schema.json' }, 'field contract'), ' · ', h('a', { href: 'data/profiles/manifest.json' }, 'provenance manifest')));
@@ -349,6 +349,7 @@
   function renderViews() {
     D.clear(views);
     views.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Where the reports keep pointing'), D.tip('About these views', 'Rules, not scores. They show where nine annual Traffic Police reports keep naming the same places, how strong that crash evidence is, how well the surroundings are mapped, and what to look at on the ground. They do not say why a place is dangerous or what to build; field verification comes first.')));
+    views.appendChild(D.plain('Places that the Traffic Police reports keep naming, grouped by simple rules. They point to where to look first. They are not scores of how dangerous a place is.'));
     views.appendChild(viewTabs());
     viewBody = h('div', { class: 'pl-view-body' });
     views.appendChild(viewBody);

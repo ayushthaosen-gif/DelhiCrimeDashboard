@@ -61,6 +61,7 @@
       h('div', { style: 'display:flex;flex-wrap:wrap;gap:10px' },
         seg([['killed', 'Persons killed'], ['fatalCrashes', 'Fatal crashes'], ['crashes', 'All crashes']], mk, function (k) { st.measure = k; keepFocus(renderTrend); }, 'measure'),
         seg([[false, 'Counts'], [true, 'Index']].map(function (o) { return [o[0], o[1]]; }), st.index, function (k) { st.index = k; keepFocus(renderTrend); }, 'scale'))));
+    sec.appendChild(D.plain('How many people were killed, how many crashes were fatal and how many crashes were recorded in Delhi each year since 2011. The totals move with traffic and reporting as well as with safety, so a rise or fall is not proof the roads got worse or better.'));
     sec.appendChild(scopeLine('Counts per year · Delhi as a whole · 2011 to 2024 · counts, not rates · highlighted: ' + st.year));
     sec.appendChild(h('div', { class: 'readout', 'aria-live': 'polite' }, h('span', { class: 'v big' }, st.index ? String(Math.round(vals[hy])) : n(hr[mk])),
       h('span', null, st.index ? hr.year + ' · index of ' + LAB[mk] + ' (2011 = 100) · ' + n(hr[mk]) + ' counted' : LAB[mk] + ' in ' + hr.year)));
@@ -109,6 +110,7 @@
       h('div', { class: 'years' }, Object.keys(V).map(Number).map(function (y) {
         return h('button', { type: 'button', 'aria-pressed': String(y === st.year), 'data-key': 'my-' + y, onclick: function () { setYear(y); } }, y);
       }))));
+    sec.appendChild(D.plain('Who the people killed in road crashes were travelling as (on foot, on a two-wheeler, in a car and so on) in the year you pick, and what share of all deaths each group makes up.'));
     sec.appendChild(scopeLine('Persons killed by mode of travel · Delhi as a whole · counts of people, with each mode\'s share of the total · ' + st.year));
     if (st.year < 2019) sec.appendChild(h('p', { class: 'callout warn', style: 'font-size:13.5px' }, h('strong', null, 'Older report series. '), 'For 2011 to 2018 the figures are Table 3.1 of the annual Traffic Police reports, with that series\' own categories ("scooter and motorcycle riders" for two-wheeler riders, and so on). From 2019 the site uses the later reports. The meaning is close, but compare 2018 with 2019 with caution. ', h('a', { href: 'data/releases/road_victims_by_mode_2004_2018/victims_by_mode.csv' }, 'Download 2004 to 2018 (CSV)'), '.'));
     sec.appendChild(h('div', { style: 'display:flex;flex-direction:column;gap:8px' }, rows.map(function (r) {
@@ -166,6 +168,7 @@
           'Drink-driving prosecutions fell from 36,065 to 3,986 in 2020, when alcometer tests were reduced because of the pandemic. The 2023 and 2024 figures are about seven times the 2022 one, and it has not been established that they are counted the same way: do not read the jump as a change in drinking and driving.',
           'Camera counts are given only for 2023 and 2024: the older reports give inconsistent installation counts.'], { right: true })),
       h('button', { type: 'button', class: 'btn', 'data-key': 'enfcsv', onclick: function () { D.download('delhi_road_enforcement_2019_2024.csv', enfCsv()); } }, 'Download CSV')));
+    sec.appendChild(D.plain('How many tickets, prosecutions and cameras the Traffic Police reported each year. More tickets can mean more checking, not worse driving.'));
     sec.appendChild(scopeLine('Counts per year · Delhi as a whole · 2019 to 2024 · ' + (EYEARS.indexOf(st.year) >= 0 ? 'year in view: ' + st.year + ' (highlighted)' : 'no figures for ' + st.year + ' (the table starts in 2019)')));
     var head = h('tr', null, h('th', { scope: 'col' }, 'Measure'), EYEARS.map(function (y) { return h('th', { scope: 'col', class: y === st.year ? 'yr-col' : null }, y); }));
     var any = false;
@@ -205,7 +208,8 @@
       var input = h('input', { type: 'search', class: 'search', placeholder: 'Search location or road', 'aria-label': 'Search crash-prone zones', oninput: function (e) { st.query = e.target.value; renderZones(); } });
       sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', { class: 'ztitle' }), h('span', { class: 'ztip' }),
         seg(YEARS_ZONES.map(function (y) { return [y, String(y)]; }), st.year, function (y) { input.value = ''; setYear(y); }, 'zy')), input));
-      sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl zone-tbl', style: 'min-width:480px' },
+      sec.appendChild(D.plain('The places the Traffic Police list as crash-prone each year, with the fatal crashes they recorded there. It is a list of locations, not every crash in Delhi.'));
+    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl zone-tbl', style: 'min-width:480px' },
         h('thead', null, h('tr', null, h('th', { scope: 'col' }, '#'), h('th', { scope: 'col' }, 'Location'), h('th', { scope: 'col' }, 'Road'), h('th', { scope: 'col', class: 'n' }, 'Fatal'), h('th', { scope: 'col', class: 'n' }, 'All crashes'))),
         h('tbody', null))));
       sec.appendChild(h('div', { class: 'row-between' }, h('span', { class: 'zcount muted', style: 'font-size:13px', 'aria-live': 'polite' }),
@@ -239,6 +243,7 @@
     sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', null, 'Roads with most zones'),
       D.tip('About this table', 'Crashes recorded within the identified zones on each road, not the road\'s full crash count. The road-wise zone table of each report (Table 10.5 in 2017, 10.6 in 2018 and 2019, 7.6 in 2020, 6.32 in 2021, 6.45 in 2022, 6.33 in 2023 and 2024), sorted by fatal crashes here; the top 12 are shown. The 2016 report prints no road table. For 2015 the groups are calculated here by exact printed road label from the zone table (Table 10.1), so spelling variants of one road stay separate.', { right: true })),
       seg(YEARS_ZONES.map(function (y) { return [y, String(y)]; }), st.year, function (y) { setYear(y); }, 'ry')));
+    sec.appendChild(D.plain('Which roads have the most crash-prone zones on them in the year you pick, with the crashes recorded inside those zones. It is not the full crash count of the road.'));
     sec.appendChild(scopeLine('Selected crash-prone zones grouped by road · ' + st.year + ' · counts within zones, not whole-road counts'));
     if (!R.roads[st.year] && st.year < 2013) { sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.year + ': no road table. '), 'No zone list was found for 2011 or 2012 (source not found), so there is nothing to group by road. The highway and ring-road stretches printed for those years are in the table below.')); return; }
     if (!R.roads[st.year] && st.year < 2016) { sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.year + ': no road table. '), 'The 2013 compilation prints no road-wise summary (not printed), so none is shown. The road printed beside each zone is in the zone table.')); return; }
@@ -256,6 +261,7 @@
     sec.appendChild(h('div', { class: 'row-between' }, h('div', { class: 'title-row' }, h('h2', null, 'Highway and ring-road stretches, 2011, 2012 and 2014'),
       D.tip('About this table', 'Thirteen printed stretches (six national highways, four Ring Road stretches, three Outer Ring Road stretches) from Table 6.5 of the Road Accidents in Delhi 2015 report, which looks back to 2011, 2012 and 2014 (2013 was not recovered). These are stretch statistics, not sums of selected zones, and not comparable with the zone tables above. Simple injury and non-injury crashes are separate columns here. The original 2011 and 2012 annual reports and zone lists were not located. Two 2014 rows do not add up in the source: the printed total is shown with the sum of its parts, and no change figure should be made from them. The same stretches may not cover identical extents in every year.')),
       seg([[2011, '2011'], [2012, '2012'], [2014, '2014']], st.year, function (y) { setYear(y); }, 'sy')));
+    sec.appendChild(D.plain('Crashes on thirteen named highway and ring-road stretches, as printed in the 2015 report for 2011, 2012 and 2014.'));
     if (!rows) {
       sec.appendChild(scopeLine('Printed highway and ring-road stretches · whole-stretch counts · year in view: ' + st.year));
       sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.year + ': no stretch table. '), 'Stretch statistics were recovered for 2011, 2012 and 2014 only (Table 6.5 of the 2015 report). Choose one of those years above to see them.'));
@@ -344,6 +350,7 @@
       h('div', { style: 'display:flex;flex-wrap:wrap;gap:8px' },
         h('button', { type: 'button', class: 'btn', 'data-key': 'hcopy', onclick: function (e) { D.copy(shareUrl(), e.currentTarget, 'Link copied', 'Copy link to view'); } }, 'Copy link to view'),
         h('button', { type: 'button', class: 'btn primary', 'data-key': 'hcsv', onclick: function () { D.download('delhi_road_' + m + '_' + y + '.csv', histCsv(m, y)); } }, 'Download CSV'))));
+    sec.appendChild(D.plain('Each year\'s crash figures for the districts the Traffic Police used that year. The districts changed between years, so the years are not joined.'));
     sec.appendChild(h('div', { style: 'display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center' },
       seg([['zones', 'Crashes within selected zones'], ['whole', 'Whole-district crashes']], m, function (k) { hs.measure = k; keepFocus(renderDistrictTables); }, 'hm'),
       h('div', { class: 'years', role: 'group', 'aria-label': 'Year' }, HYEARS.map(function (yr) {

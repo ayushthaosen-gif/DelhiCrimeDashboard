@@ -1,0 +1,14 @@
+{
+  "title": "DelhiCrimeDashboard: Delhi Urban Safety Observatory",
+  "upload_type": "software",
+  "description": "A district-level crime, road-safety and infrastructure dashboard for Delhi, India, with an interactive map and manifest-documented, checksummed yearly research releases for programmatic reuse. This repository is a compilation, not a primary source: cite the original agency report (NCRB, Delhi Traffic Police) named in each figure's manifest or in docs/DATA_SOURCES.md.",
+  "creators": [
+    { "name": "ayushthaosen-gif" }
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "keywords": ["delhi", "crime-data", "road-safety", "open-data", "urban-safety", "ncrb", "gis"],
+  "related_identifiers": [
+    { "relation": "isSupplementTo", "identifier": "https://github.com/ayushthaosen-gif/DelhiCrimeDashboard", "scheme": "url" }
+  ]
+}

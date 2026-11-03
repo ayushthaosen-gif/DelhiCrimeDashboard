@@ -42,6 +42,7 @@
       h('div', { class: 'seg', role: 'group', 'aria-label': 'Measure' }, MEASURES.map(function (m) {
         return h('button', { type: 'button', 'aria-pressed': String(st.measure === m[0]), onclick: function () { st.measure = m[0]; renderCrime(); } }, m[1]);
       }))));
+    sec.appendChild(D.plain('Registered cases per year for Delhi as a whole. A rise can mean more crime, more reporting, or a change in the law or in how cases are counted, which is why some years are drawn dashed or left as gaps.'));
     sec.appendChild(crimeChart(st.measure));
     sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, S.label + ' (counts). Solid line: comparable years. Dashed: compare with caution. Gap: not comparable or no figure.'));
     var plain = h('details', { class: 'plain' }, h('summary', null, 'Show annual counts and what each step can be compared on'),
@@ -73,6 +74,7 @@
     var sec = D.clear(D.$('#ptDistricts')), Dd = PT.districts;
     sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Where registered crime is higher, ' + Dd.year),
       D.tip('About this ranking', 'Registered IPC/BNS cases per 1 lakh residents, by Delhi Police district. ' + Dd.populationNote + ' A district with many visitors, markets or transport hubs can rank high on this measure without having more crime per person present.')));
+    sec.appendChild(D.plain('Registered cases for every 100,000 people living in each police district in 2024. Districts with many visitors, markets or stations can rank high without more crime per resident.'));
     sec.appendChild(bars(Dd.ranked, 'perLakh', 'district', function (r) { return ' per lakh · ' + D.n(r.count) + ' cases'; }));
     sec.appendChild(h('div', { class: 'callout warn pl-cau' }, h('ul', { class: 'why-list' },
       h('li', null, 'None of these lines up with the crime rate at a level that is distinguishable from chance. This data does not show that any of them drives crime.'),
@@ -122,6 +124,7 @@
     var sec = D.clear(D.$('#ptMatrix')), X = MX.modes[mst.mode], k = mst.coeff;
     sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Infrastructure and recorded crime: associations across districts, ' + MX.year),
       D.tip('How to read this', 'Each cell compares one measure with one infrastructure layer across the Delhi Police districts that have data for both. The coefficient is a rank correlation (Spearman) or a straight-line correlation (Pearson). Spearman p-values come from 100,000 random reshuffles of the districts (a permutation test); Pearson p-values are Student t tests, which assume roughly bell-shaped data. Because ' + X.tests + ' cells are tested at once, all p-values are adjusted together (Benjamini–Hochberg). ★ survives that adjustment; † is below 0.05 only before it.')));
+    sec.appendChild(D.plain('Each cell asks whether districts with more of one thing (a kind of infrastructure) also tend to have more or less of something else (a crime or crash count). It shows how the numbers line up across at most 15 districts. It does not show cause.'));
     sec.appendChild(h('div', { class: 'callout warn pl-cau' }, h('ul', { class: 'why-list' },
       h('li', null, 'These are geographic associations across at most 15 districts. They do not establish causation, and with so many comparisons they are leads to check, not findings.'),
       h('li', null, 'Both sides of each cell are divided by the same thing (district area, or population). That alone can create a correlation: a very small or very large district moves both numbers together. Spearman and the partial value in each cell are the checks on this; the per 100k view is the most exposed (New Delhi has about 142,000 residents).'),
@@ -155,6 +158,7 @@
     var sec = D.clear(D.$('#ptRoads')), Rd = PT.roads, A = Rd.areas2024;
     sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Places and roads that keep appearing in the crash reports'),
       D.tip('About these lists', 'The Traffic Police report names crash-prone zones every year, and the list changes every year. A place counts here when the same printed name appears in several of the nine lists (2016 to 2024; names matched after ignoring case and punctuation, plus 12 reviewed spelling pairs). A repeated name does not prove an identical footprint, and the lists show where crashes are counted within selected zones, not why.')));
+    sec.appendChild(D.plain('Places that the Traffic Police name as crash-prone in many different years, and the roads they are on. A place that keeps being named is worth a look on the ground.'));
     sec.appendChild(h('p', null, Rd.placesInFiveOrMoreLists + ' of ' + Rd.totalPlaces + ' named places appear in five or more of the nine lists; ' + Rd.placesInSevenOrMoreLists + ' appear in seven or more. By the road printed beside them:'));
     sec.appendChild(bars(Rd.byRoad, 'places', 'road', function () { return ' places'; }));
     sec.appendChild(h('div', { class: 'kpis', style: 'margin-top:6px' },
@@ -230,6 +234,7 @@
     var sel = function (label, value, options, fn) { return h('label', null, label, h('select', { 'data-key': 'chg-' + label, onchange: function (e) { fn(e.target.value); } }, options)); };
     sec.appendChild(h('div', { class: 'title-row' }, h('h2', null, 'Change between two years'),
       D.tip('About this view', 'A change figure is made only where the two years can be compared. Compare with caution gives the figure with the reasons beside it. Not comparable keeps both values and gives no change, because a difference could come from a change of definition, source or geography, not from what happened. The rules are the ones in data/continuity.json that the other pages use.')));
+    sec.appendChild(D.plain('How much a figure changed between two years you pick. A change is shown only where the two years can fairly be compared; otherwise both values are shown with the reason.'));
     sec.appendChild(h('div', { class: 'checker', style: 'display:flex;flex-wrap:wrap;gap:10px 16px;align-items:end' },
       sel('Series', cs.id, CAT.map(function (g) { return h('optgroup', { label: g.g }, g.items.map(function (i) { return h('option', { value: i.id, selected: i.id === cs.id }, i.label); })); }), function (val) { cs.id = val; renderChange(); }),
       sel('From', cs.a, ys.map(function (y) { return h('option', { value: y, selected: y === cs.a }, y); }), function (val) { cs.a = +val; renderChange(); }),

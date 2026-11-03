@@ -86,9 +86,42 @@ function footer(updated) {
     + '<a href="interactive_map.html">Interactive map</a>'
     + '<a href="historical_crime.html">Historical crime table, 2011–2018</a>'
     + '<a href="irad_stations.html">2025–26 road accidents (iRAD)</a>'
+    + '<a href="reading-guide.html">How to read registered crime</a>'
     + '<a href="for_reporters.html">For reporters and researchers</a>'
     + '<a href="' + GITHUB + '">Code and data on GitHub</a></div>'
     + '<span>Data version ' + esc(updated) + '. Every figure is rebuilt from the files in the repository.</span></footer>';
+}
+
+// ---------- reading guide: what registered crime does and does not measure ----------
+function readingGuide(updated) {
+  const sec = (id, h, body) => '<section id="' + id + '" class="guide-sec"><h2>' + h + '</h2>' + body + '</section>\n';
+  return '<main id="main" class="page guide">\n'
+    + '<div class="page-head"><h1>How to read registered crime</h1><p class="lead">The crime figures on this site count cases the police registered. That is useful, and it is not the same as how much crime happened. This page says what the numbers can and cannot tell you, in plain words.</p></div>\n'
+    + sec('what', 'What the number is', '<p>When a crime is reported to the police and they register it (a First Information Report, or FIR), it becomes a registered case. The National Crime Records Bureau (NCRB) collects these counts from every state and union territory and prints them in <em>Crime in India</em>. Delhi Police district figures come from the same NCRB tables. A figure on this site such as &ldquo;theft, 2024&rdquo; means: the number of theft cases registered in that year, in that area.</p>')
+    + sec('not', 'What it does not measure', '<ul class="keep-list">'
+      + '<li><strong>Crime that was never reported or never registered.</strong> The count only includes what reached a police register. People do not report every crime, and police practice on registering cases can differ from place to place and over time. A district with a higher count may be a place where more people report, or where cases are registered more readily, and not only a place with more crime.</li>'
+      + '<li><strong>People, convictions or guilt.</strong> A case is not a person, and a registered case is not a finding that anyone did it.</li>'
+      + '<li><strong>Risk to you.</strong> Nothing here measures how likely you are to be a victim. For that you would need to know how many people were exposed: who lives, works, shops or travels there.</li>'
+      + '<li><strong>Everyone present.</strong> Counts include crimes against visitors and commuters, who are not in the resident population used for rates.</li></ul>')
+    + sec('rates', 'Counts, rates and why a rate can mislead', '<p>A count is the number of cases. A rate divides the count by something, usually the number of residents (per 100,000 people) or the area (per square kilometre). Rates make big and small districts easier to set side by side, but each has a blind spot:</p>'
+      + '<ul class="keep-list"><li><strong>Per 100,000 residents</strong> overstates places with few residents and many visitors. New Delhi district has about 142,000 residents but is the centre of work, government and travel for far more people.</li>'
+      + '<li><strong>Per square kilometre</strong> favours large, sparsely built districts and penalises compact, dense ones.</li></ul>'
+      + '<p>Neither is a risk score. When the two rank districts very differently, that difference is itself worth noting.</p>')
+    + sec('years', 'Comparing places and years', '<ul class="keep-list">'
+      + '<li><strong>Districts changed.</strong> Delhi Police reported 11 districts to 2016, 14 in 2017 and 2018, and 15 from 2019. Earlier years are shown on the districts of their time and are not re-cut to today&rsquo;s 15.</li>'
+      + '<li><strong>Counting rules changed.</strong> The NCRB changed its format in 2014. The Indian Penal Code was replaced by the Bharatiya Nyaya Sanhita (BNS) on 1 July 2024, so 2024 mixes two numbering systems and may not be like-for-like with 2023. Some headings, such as burglary, were defined differently in different years.</li>'
+      + '<li><strong>The site checks for you.</strong> The <a href="data-methods.html#compare">comparison checker</a> says, for any two years, whether a change can be calculated, should be read with caution, or is left blank because the years are not comparable.</li></ul>')
+    + sec('roads', 'Road crashes are a different kind of count', '<ul class="keep-list">'
+      + '<li><strong>Zone figures are a subset.</strong> The Traffic Police name &ldquo;crash-prone zones&rdquo; each year and report crashes inside them. That is not every crash in Delhi, and the list of zones changes every year. Persons killed by district is a whole-district figure.</li>'
+      + '<li><strong>No traffic exposure.</strong> The data holds no counts of vehicles, pedestrians or speeds, so crashes cannot be turned into risk per trip or per kilometre driven.</li>'
+      + '<li><strong>Different districts.</strong> Traffic Police tables use their own districts and the iRAD reports use revenue districts; neither should be set beside police-district crime.</li></ul>')
+    + sec('words', 'Words that stay accurate', '<ul class="keep-list">'
+      + '<li>Say &ldquo;registered cases&rdquo; or &ldquo;recorded crashes&rdquo;, not &ldquo;crime levels&rdquo; or &ldquo;how dangerous it is&rdquo;.</li>'
+      + '<li>Say &ldquo;according to the NCRB&rdquo; or &ldquo;according to the Delhi Road Crash Report 2024&rdquo;, and cite the original report: this site is a compilation, not a primary source.</li>'
+      + '<li>Say &ldquo;is associated with&rdquo;, never &ldquo;causes&rdquo;, for anything on the Patterns page. Fifteen districts cannot show cause.</li>'
+      + '<li>Say &ldquo;in the area of&rdquo;, not &ldquo;at this spot&rdquo;, for crash zones: positions are estimates.</li></ul>')
+    + sec('more', 'Where to go next', '<p><a href="data-methods.html">Data &amp; methods</a> lists sources, definitions, coverage by year and downloads. <a href="for_reporters.html">For reporters and researchers</a> says how far to trust each part. <a href="' + GITHUB + '/blob/main/docs/LIMITATIONS.md">The full limitations list</a> is on GitHub.</p>')
+    + footer(updated) + '\n</main>';
 }
 
 // ---------- pages ----------
@@ -103,6 +136,7 @@ function overview(updated) {
     + '<a href="explore.html">Explore crime by police district</a>'
     + '<a href="road-safety.html">Road safety, citywide</a>'
     + '<a href="data-methods.html#compare">Can I compare these years?</a>'
+    + '<a href="reading-guide.html">How to read registered crime: what it does and does not measure</a>'
     + '<a href="for_reporters.html">Reporters &amp; researchers: what you can and cannot say</a>'
     + '<a href="' + GITHUB + '">Code and data on GitHub</a></aside>\n</section>\n'
     + '<nav class="contents" aria-label="Contents"><h2>Contents</h2><div class="row"><a href="#headline">— Headline figures</a><a href="#districts">— Districts at a glance</a><a href="#topics">— Topics</a><a href="#keep-in-mind">— What to keep in mind</a></div></nav>\n'
@@ -110,7 +144,7 @@ function overview(updated) {
     + '<section id="districts" class="section"><div><h2>Districts at a glance</h2><p class="sub">Darker districts rank higher in 2024. Select a map to open it in Explore.</p></div><div class="tiles" id="tiles"></div></section>\n'
     + '<section id="topics" class="section" style="gap:28px"><div><h2>Topics</h2><p class="sub">Citywide totals over time. Follow a topic to see it by district.</p></div><div id="topicGroups" style="display:flex;flex-direction:column;gap:28px"></div></section>\n'
     + '<section id="keep-in-mind" class="section"><h2>What to keep in mind</h2><ul class="keep">'
-    + '<li><strong>Registered cases are not crime levels.</strong><span>Counts depend on reporting and registration as well as on crime.</span></li>'
+    + '<li><strong>Registered cases are not crime levels.</strong><span>Counts depend on reporting and registration as well as on crime. <a href="reading-guide.html">Read the guide</a>.</span></li>'
     + '<li><strong>Boundaries changed.</strong><span>Older years use the districts reported at the time, drawn on schematic reference shapes that are labelled inferred or derived.</span></li>'
     + '<li><strong>A zero can mean not surveyed.</strong><span>Survey-based layers did not cover every district; OpenStreetMap layers are community-mapped.</span></li>'
     + '<li><strong>Crash data uses other districts.</strong><span>Some Traffic Police tables use 11 reporting districts, not the 15 police districts.</span></li>'
@@ -144,7 +178,7 @@ function planning() {
 
 function patternsPage() {
   return '<main id="main" class="page" style="padding-top:20px">\n'
-    + '<div class="page-head"><h1>Trends and patterns</h1><p class="lead">What the data shows about registered crime over time, where crime rates are higher, and which places and roads the road-crash reports keep naming.</p><p class="pl-sub">These are patterns in what is reported or listed. They describe; they do not explain. Where a comparison is not valid the chart leaves a gap instead of joining the dots, and every claim carries its limit. A one-page <a href="planner-brief.html">planner brief</a> summarises the road findings.</p></div>\n'
+    + '<div class="page-head"><h1>Trends and patterns</h1><p class="lead">What the data shows about registered crime over time, where crime rates are higher, and which places and roads the road-crash reports keep naming.</p><p class="pl-sub">These are patterns in what is reported or listed. They describe; they do not explain. <a href="reading-guide.html">How to read registered crime</a>. Where a comparison is not valid the chart leaves a gap instead of joining the dots, and every claim carries its limit. A one-page <a href="planner-brief.html">planner brief</a> summarises the road findings.</p></div>\n'
     + '<section id="ptCrime" class="card"></section>\n<section id="ptChange" class="card"></section>\n<section id="ptDistricts" class="card"></section>\n<section id="ptMatrix" class="card"></section>\n<section id="ptRoads" class="card"></section>\n<section id="ptHelp" class="card"></section>\n</main>';
 }
 
@@ -251,6 +285,7 @@ function render() {
   files['data/coverage_matrix.json'] = JSON.stringify(cov, null, 2) + '\n';
   files['data/coverage_matrix.csv'] = coverage.csv(cov);
   files['data/bundles/manifest.json'] = JSON.stringify(coverage.bundles(u), null, 2) + '\n';
+  files['reading-guide.html'] = shell({ file: 'reading-guide.html' }, { title: 'How to read registered crime · Delhi Urban Safety Observatory', description: 'What registered crime counts do and do not measure, why rates can mislead, and how to compare places and years.', body: readingGuide(u), updated: u });
   files['planner-brief.html'] = shell({ file: 'planner-brief.html' }, { title: 'Planner brief: where to look first · Delhi Urban Safety Observatory', description: 'One-page brief for planners from the Delhi Traffic Police crash reports.', body: patterns.briefBody(pat), scripts: [], updated: u });
   return files;
 }

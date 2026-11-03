@@ -157,6 +157,7 @@
     if (st.view === 'table') { card.appendChild(tableView(ranked, metric, unit)); return card; }
     if (st.view === 'about') { card.appendChild(aboutView()); return card; }
 
+    card.appendChild(D.plain('Each police district is shaded by how it ranks for ' + metric.label.toLowerCase() + ' in ' + st.year + ': darker means higher. ' + (st.topic === 'crime' ? 'Registered cases are what was reported and recorded, not everything that happened.' : 'Road figures count what the Traffic Police recorded.')));
     var svg = h('svg', { viewBox: VIEWBOX, role: 'group', 'aria-label': 'Map of Delhi police districts' });
     svg.appendChild(h('defs', null, h('pattern', { id: 'dsoHatch', patternUnits: 'userSpaceOnUse', width: 7, height: 7, patternTransform: 'rotate(45)' },
       h('rect', { class: 'hatch-bg', width: 7, height: 7 }), h('line', { class: 'hatch-ln', x1: 0, y1: 0, x2: 0, y2: 7 }))));
@@ -210,7 +211,7 @@
     var metric = metricOf();
     return h('div', { class: 'about-body' },
       h('div', null, h('h3', null, 'What this measures'), h('p', null, metric.note)),
-      h('div', null, h('h3', null, 'How to read it'), h('p', null, caseNote() + ' Colours group districts into five bands of three by rank within the selected year, so they can\'t be compared across years; use the Table tab for that.')),
+      h('div', null, h('h3', null, 'How to read it'), h('p', null, caseNote() + ' Colours group districts into five bands of three by rank within the selected year, so they can\'t be compared across years; use the Table tab for that. ', h('a', { href: 'reading-guide.html' }, 'What registered crime does and does not measure'), '.')),
       h('div', null, h('h3', null, 'Source'), h('p', null, sourceNote() + '. ', h('a', { href: 'data-methods.html#compare' }, 'Check which years can be compared'), '.')));
   }
 
@@ -411,6 +412,7 @@
         h('div', null, h('h3', null, 'Source'), h('p', null, sourceNote() + '. ', h('a', { href: 'historical_crime.html' }, 'Open the full historical table and downloads'), '.'))));
       return card;
     }
+    card.appendChild(D.plain('Each district that existed in ' + st.year + ' is shaded by its registered cases for ' + metric.label.toLowerCase() + ': darker means more. The shapes are schematic and the districts are not today\'s 15, so this year is not joined to the others.'));
     var svg = h('svg', { viewBox: HX.viewBox, role: 'group', 'aria-label': 'Schematic map of the Delhi police districts of ' + st.year });
     svg.appendChild(h('defs', null, h('pattern', { id: 'dsoHatch', patternUnits: 'userSpaceOnUse', width: 7, height: 7, patternTransform: 'rotate(45)' },
       h('rect', { class: 'hatch-bg', width: 7, height: 7 }), h('line', { class: 'hatch-ln', x1: 0, y1: 0, x2: 0, y2: 7 }))));
