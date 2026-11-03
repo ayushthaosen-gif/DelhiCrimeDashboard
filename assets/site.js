@@ -53,6 +53,9 @@
   D.pct = function (p) { if (p == null || !isFinite(p)) return '—'; var r = Math.round(p); return (r > 0 ? '+' : r < 0 ? '−' : '±') + Math.abs(r) + '%'; };
   D.ord = function (n) { var s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
 
+  // ---- one plain sentence under a chart or map, for readers who are not specialists ----
+  D.plain = function (text) { return D.h('p', { class: 'plain' }, D.h('strong', null, 'In plain words: '), text); };
+
   // ---- "i" tooltip: opens on hover, on focus, or on click (click toggles); Escape and outside click close it ----
   var openTip = null, tipId = 0;
   function closeTip() { if (openTip) { openTip.pop.hidden = true; openTip.btn.setAttribute('aria-expanded', 'false'); openTip = null; } }

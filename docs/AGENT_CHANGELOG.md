@@ -1,3 +1,12 @@
+## [2026-11-03] - Claude (Anthropic) - Usability and credibility: plain-language lines, reading guide, accessibility fixes, citation metadata
+
+- **Plain-language lines:** a one-sentence "In plain words" line (`D.plain`) under each chart or map on Road safety (7), Patterns (5), Planning (2) and Explore (current and earlier-districts maps). Written as text, hedged, never causal.
+- **Reading guide:** new generated page `reading-guide.html` (How to read registered crime): what the number is, what it does not measure, why rates mislead (New Delhi about 142,000 residents), comparing places and years, road-crash counts, words that stay accurate. Linked from the overview (twice), the footer, Explore About and Patterns.
+- **Accessibility audit** (automated checks on 8 pages at 1024 and 375 px, plus keyboard and colour-vision review): no unnamed controls, unlabeled inputs, heading skips, duplicate ids, positive tabindex, contrast failures or horizontal overflow. Maps already work from the keyboard (Tab, Enter, Space). Fixed: help (i) buttons 18 to 24 px; year bars on phones now 24 px pitch with page padding 16 px; selects, brand link, contents and footer links at least 24 px; a skip link past the 290-ward map (it had 290 tab stops). Left: a 13 px checkbox inside its label on Planning; inline text links (exempt).
+- **Colour-blind check:** the five-step choropleth ramp (light and dark) and the interactive-map ramp keep lightness in order and adjacent steps at deltaE 15 or more under protan, deutan and tritan simulation. Charts also use dashes, hatching, numbers and symbols, not colour alone. No change needed.
+- **Citation:** `.zenodo.json` added beside `CITATION.cff`; `docs/CITING.md` lists the owner-only steps (link the repo on Zenodo, make a GitHub release, then add the DOI). No DOI is stated, on purpose. `test/citation.test.js` keeps the two files consistent and rejects a DOI-shaped string that is not one.
+- **Tests:** `test/usability.test.js`, `test/citation.test.js`.
+
 ## [2026-11-03] - Claude (Anthropic) - Composite unsafe score: denominators, 2024 road deaths, adjustable weights and rank stability
 
 - **Denominators:** crime and road-death rates can be set per 100,000 residents (new default) or per km2; road deaths also per 100 km of main road (OSM motorway to secondary, summed from `data/road_sizes.csv` into `mainRoadKm`; lower bound). No per-vehicle rate: no district vehicle count in the project. Rates use unrounded counts.
