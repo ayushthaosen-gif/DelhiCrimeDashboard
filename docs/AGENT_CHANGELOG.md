@@ -1,3 +1,11 @@
+## [2026-11-04] - Claude (Anthropic) - New logo and favicon
+
+- **Design:** an original mark from Delhi's street plan: Connaught Place's two rings with seven uneven radial roads and one marked point on the outer ring (the thing observed). Navy, amber, ivory and rust, the site's own colours. Replaces the old amber house icon and the placeholder white square in the header.
+- **Files** (`assets/`): `favicon.svg`, `favicon-32.png`, `favicon.ico` (16/32/48, also at the repository root), `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest`, `logo-mark.svg`/`logo-mark-light.svg`/`logo-mark.png`, and the horizontal lockup `logo.svg`/`logo.png`. Generator: `scripts/make_brand.js`; notes: `docs/BRAND.md`.
+- **Wiring:** one icon-link block (SVG, PNG, ICO, apple-touch, manifest, theme colour) on every page, including the interactive map, the historical table and the static pages that had a single link. The header mark is built from `assets/logo-mark.svg` at page-build time, so it has one source.
+- **Checked:** design reviewed at 512, 192, 32 and header size; first version looked like a ship's wheel and had a gap in the ring, so the radials were made uneven and the dot given an ivory outline. All icon files load (200) in the browser.
+- **Tests:** `test/branding.test.js` (file validity and sizes, ICO structure, manifest, icon links on every page, header mark from the source file).
+
 ## [2026-11-03] - Claude (Anthropic) - Usability and credibility: plain-language lines, reading guide, accessibility fixes, citation metadata
 
 - **Plain-language lines:** a one-sentence "In plain words" line (`D.plain`) under each chart or map on Road safety (7), Patterns (5), Planning (2) and Explore (current and earlier-districts maps). Written as text, hedged, never causal.

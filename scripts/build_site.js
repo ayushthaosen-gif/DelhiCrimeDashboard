@@ -21,6 +21,11 @@ const ROOT = path.join(__dirname, '..');
 const GITHUB = 'https://github.com/ayushthaosen-gif/DelhiCrimeDashboard';
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+// Icon links, theme colour and the header mark all come from the files in assets/, so the logo is defined in one place.
+const ICON_LINKS = "<link rel=\"icon\" href=\"assets/favicon.svg\" type=\"image/svg+xml\">\n<link rel=\"icon\" href=\"assets/favicon-32.png\" type=\"image/png\" sizes=\"32x32\">\n<link rel=\"icon\" href=\"favicon.ico\" sizes=\"any\">\n<link rel=\"apple-touch-icon\" href=\"assets/apple-touch-icon.png\">\n<link rel=\"manifest\" href=\"assets/site.webmanifest\">\n<meta name=\"theme-color\" content=\"#1c2331\">\n";
+const BRAND_MARK = '<svg class="brand-mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true" focusable="false">'
+  + fs.readFileSync(path.join(__dirname, '..', 'assets', 'logo-mark.svg'), 'utf8').replace(/^[\s\S]*?<\/title>/, '').replace(/<\/svg>\s*$/, '') + '</svg>';
+
 const PAGES = [
   { file: 'index.html', nav: 'Overview' },
   { file: 'explore.html', nav: 'Explore' },
@@ -59,7 +64,7 @@ function shell(page, o) {
     + '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
     + '<title>' + esc(o.title) + '</title>\n'
     + '<meta name="description" content="' + esc(o.description) + '">\n'
-    + '<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">\n'
+    + ICON_LINKS
     + '<script>try{var t=localStorage.getItem("dso-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>\n'
     + '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
     + '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">\n'
@@ -68,7 +73,7 @@ function shell(page, o) {
     + '</head>\n<body' + (o.bodyClass ? ' class="' + o.bodyClass + '"' : '') + '>\n'
     + '<a class="skip" href="#main">Skip to content</a>\n'
     + '<header class="site-header"><div class="' + wrapClass + '">'
-    + '<a class="brand" href="index.html"><span class="brand-mark"><i></i></span><span class="brand-name">Delhi Urban Safety Observatory</span></a>'
+    + '<a class="brand" href="index.html">' + BRAND_MARK + '<span class="brand-name">Delhi Urban Safety Observatory</span></a>'
     + '<button type="button" class="theme-btn" id="themeBtn" aria-label="Switch colour theme"><i></i>Dark theme</button>'
     + '</div></header>\n'
     + '<nav class="site-nav" aria-label="Sections"><div class="' + wrapClass + '"><div class="nav-links">' + links + '</div>'
