@@ -110,3 +110,59 @@ test('computeExploratoryScore: does not infer or attach any camera/infrastructur
     assert.deepEqual(Object.keys(c).sort(), ['key', 'label', 'percentile', 'value', 'weight']);
   });
 });
+
+// ---- district "unsafe areas" composite: denominators, crash factor, weights and rank stability ----
+const unsafeSrc = [extractFn('percentileScale'), extractFn('normalizeExploratoryWeights'), extractFn('computeExploratoryScore'),
+  extractFn('unsafeRate'), extractFn('unsafeFactors'), extractFn('unsafeRankStability')].join('\n');
+const U = new Function("const SURVEYED = new Set(['A', 'B', 'C']); const UNSAFE_BASIS_LABEL = { perLakh: 'per 100,000 residents', perKm2: 'per km2', perRoadKm: 'per 100 km of main road' };\n" +
+  unsafeSrc + '\nreturn { unsafeRate, unsafeFactors, unsafeRankStability, computeExploratoryScore };')();
+
+test('unsafe score: rates are calculated unrounded from counts and the chosen denominator; missing denominators give null, not zero', () => {
+  const d = { population: 1500000, areaSqKm: 87.5, mainRoadKm: 43.3 };
+  assert.equal(U.unsafeRate(1234, d, 'perLakh'), 1234 / 1500000 * 100000);
+  assert.equal(U.unsafeRate(1234, d, 'perKm2'), 1234 / 87.5);
+  assert.equal(U.unsafeRate(12, d, 'perRoadKm'), 12 / 43.3 * 100);
+  assert.equal(U.unsafeRate(null, d, 'perKm2'), null);
+  assert.equal(U.unsafeRate(5, { population: 0, areaSqKm: 1 }, 'perLakh'), null);
+  assert.equal(U.unsafeRate(5, { population: 10, areaSqKm: 1 }, 'perRoadKm'), null);
+});
+
+test('unsafe score: the choice of denominator changes the ranking of a dense centre against a sparse, populous district', () => {
+  const items = [
+    { district: 'A', totalIPC: 500, crimeAgainstWomen: 50, personsKilled2024: 10, population: 100000, areaSqKm: 10, policeInfraDensity: 1, lightDensityPerKm2: 1 },
+    { district: 'B', totalIPC: 400, crimeAgainstWomen: 40, personsKilled2024: 8, population: 400000, areaSqKm: 40, policeInfraDensity: 1, lightDensityPerKm2: 1 },
+    { district: 'C', totalIPC: 100, crimeAgainstWomen: 10, personsKilled2024: 2, population: 50000, areaSqKm: 400, policeInfraDensity: 1, lightDensityPerKm2: 1 },
+  ];
+  const rank = cfg => {
+    const { scores } = U.computeExploratoryScore(items, U.unsafeFactors(cfg), null);
+    return items.map(i => scores.get(i).score);
+  };
+  const km2 = rank({ rate: 'perKm2', crash: 'perKm2' }), lakh = rank({ rate: 'perLakh', crash: 'perLakh' });
+  assert.notDeepEqual(km2, lakh);
+  assert.ok(km2[0] > km2[2], 'per km2: the compact district scores worse than the large one');
+  assert.ok(lakh[2] > lakh[1], 'per resident: the sparsely populated district scores worse than the populous one');
+});
+
+test('unsafe score: the road factor is persons killed in 2024 for the whole district, not zone-limited fatal crashes, and no per-vehicle rate is offered', () => {
+  const f = U.unsafeFactors({ rate: 'perLakh', crash: 'perRoadKm' });
+  assert.equal(f.length, 5);
+  const killed = f.find(x => x.key === 'killedRate');
+  assert.ok(/2024/.test(killed.label) && /main road/.test(killed.label));
+  assert.equal(killed.get({ personsKilled2024: 20, fatalCrashes2023: 999, mainRoadKm: 50 }), 40);
+  assert.ok(!/fatalCrashes2023/.test(unsafeSrc), 'the zone-limited 2023 figure is not used');
+  assert.ok(!/vehicle/i.test(f.map(x => x.label).join(' ')));
+  const page = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'build_interactive_map.js'), 'utf8');
+  assert.match(page, /no vehicle count by police district/);
+});
+
+test('unsafe score: rank stability is reproducible, a district that leads on every factor never moves, and trade-offs give a wide range', () => {
+  const dom = [{ a: 9, b: 9 }, { a: 5, b: 5 }, { a: 1, b: 1 }];
+  const factors = [{ key: 'a', label: 'A', invert: false, get: d => d.a }, { key: 'b', label: 'B', invert: false, get: d => d.b }];
+  const s1 = U.unsafeRankStability(dom, factors, 200, 7), s2 = U.unsafeRankStability(dom, factors, 200, 7);
+  assert.deepEqual(s1, s2);
+  assert.deepEqual([s1[0].min, s1[0].max, s1[2].min, s1[2].max], [1, 1, 3, 3]);
+  const trade = [{ a: 9, b: 1 }, { a: 1, b: 9 }, { a: 5, b: 5 }];
+  const s3 = U.unsafeRankStability(trade, factors, 500, 7);
+  assert.ok(s3[0].max - s3[0].min >= 1 && s3[1].max - s3[1].min >= 1, 'opposite trade-offs move across the weights');
+  s3.forEach(r => { assert.ok(r.lo >= r.min && r.hi <= r.max && r.lo <= r.median && r.median <= r.hi); });
+});
