@@ -112,6 +112,15 @@ function buildSite(continuity) {
       slowMoving: r.slow_moving_vehicles_killed, animal: r.animal_driven_vehicle_drivers_killed, other: r.other_drivers_killed, total: r.total_killed
     };
   });
+  // 2004 to 2010 from the same release: shown as a separate table on the Road safety page (the year selector and trend start in 2011),
+  // with killed and injured totals so the table stands alone.
+  const victimsEarlier = {};
+  read('data/releases/road_victims_by_mode_2004_2018/victims_by_mode.json').filter(r => r.year >= 2004 && r.year <= 2010).forEach(r => {
+    victimsEarlier[r.year] = {
+      pedestrian: r.pedestrians_killed, twoWheeler: r.scooter_motorcycle_riders_killed, cyclist: r.cyclists_killed, car: r.car_occupants_killed, bus: r.bus_passengers_killed,
+      slowMoving: r.slow_moving_vehicles_killed, animal: r.animal_driven_vehicle_drivers_killed, other: r.other_drivers_killed, total: r.total_killed, injured: r.total_injured
+    };
+  });
   const enforcement = {};
   Object.keys(extra.enforcement).forEach(y => {
     const e = extra.enforcement[y];
@@ -130,7 +139,7 @@ function buildSite(continuity) {
     measure: r.measure, year: r.reference_year, value: r.value, kind: r.value_kind, reportYear: r.report_year, pdfPage: r.source_pdf_page, printedPage: r.source_printed_page,
     url: r.source_url, sha256: r.source_sha256, review: r.review_status, note: r.note
   }));
-  return { trends, victims, victimsEarly, enforcement, enforcementHistory, series, updated: status.updated };
+  return { trends, victims, victimsEarly, victimsEarlier, enforcement, enforcementHistory, series, updated: status.updated };
 }
 
 function buildRoads() {

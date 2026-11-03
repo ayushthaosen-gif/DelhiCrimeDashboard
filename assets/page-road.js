@@ -119,6 +119,19 @@
         h('span', { class: 'v' }, n(r.v) + ' ', h('span', null, Math.round(r.v / v.total * 100) + '%')));
     })));
     sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Pedestrians are unprotected road users, which makes their share relevant to walkability. Delhi Traffic Police, 2011–2024, citywide.'));
+    sec.appendChild(earlierModes());
+  }
+
+  // ---- mode of travel, 2004 to 2010: a plain table beside the selector, which starts in 2011 ----
+  function earlierModes() {
+    var E2 = S.victimsEarlier, ys = Object.keys(E2).map(Number);
+    var cols = [['pedestrian', 'Pedestrians'], ['twoWheeler', 'Two-wheeler riders'], ['cyclist', 'Cyclists'], ['car', 'Car occupants'], ['bus', 'Bus passengers'], ['slowMoving', 'Slow-moving vehicles'], ['animal', 'Animal-drawn'], ['other', 'Other drivers'], ['total', 'All killed'], ['injured', 'All injured']];
+    return h('details', { class: 'plain' }, h('summary', null, 'Earlier years: 2004 to 2010'),
+      h('p', { class: 'muted', style: 'font-size:13px;margin-top:10px' }, 'The same Table 3.1 of the Traffic Police annual reports, with its own categories, for the years before the selector above begins. Persons, not crashes; Delhi as a whole. 2001 to 2003 are printed in the reports but their categories do not add up, so they are left out.'),
+      h('div', { class: 'overflow', style: 'margin-top:10px' }, h('table', { class: 'tbl', style: 'min-width:760px' },
+        h('caption', { class: 'sr-only' }, 'Persons killed by mode of travel and totals killed and injured, Delhi, 2004 to 2010'),
+        h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Year'), cols.map(function (c) { return h('th', { scope: 'col', class: 'num' }, c[1]); }))),
+        h('tbody', null, ys.map(function (y) { return h('tr', null, h('th', { scope: 'row' }, String(y)), cols.map(function (c) { return h('td', { class: 'num' }, n(E2[y][c[0]])); })); })))));
   }
 
   // ---- enforcement, 2019 to 2024 (citywide; 2019 to 2022 are read from the annual reports, 2023 and 2024 from the road-crash-report release) ----

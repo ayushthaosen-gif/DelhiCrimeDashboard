@@ -1,3 +1,17 @@
+## [2026-11-04] - Claude (Anthropic) - Delhi crime and road data 2001 to 2010 (staged), 2004 to 2010 deaths by mode on the Road safety page
+
+- `data/staged/delhi_ut_total_2001_2010/`: Delhi UT and Delhi (City) total IPC crime; district-wise IPC crime by 30 offence heads with each year's own reporting units (nine territorial districts to 2006, Outer from 2007, South-East from 2008); Delhi UT crime heads; units by year; citywide road counts 2008 to 2010 (archived Traffic Police page). No allocation to today's districts, as for 2011 to 2015.
+- Checks: unit rows add to the printed TOTAL in every year and column; total IPC equals the UT total read from the page images; sub-columns add inside every unit. The PDF text layer is misaligned for some rows, so totals, all of 2001 and the 2008/2009 specialised-unit cells were read from page images.
+- Limits: 2001 has only the first ten offence columns in the file NCRB serves; city crime heads not transcribed (NCRB's 2007 Table 1.8 link errors); road accident counts for 2001 to 2007 not found.
+- Road safety page: collapsed "Earlier years: 2004 to 2010" table (deaths by mode, killed and injured totals) from the existing release; the year selector and trend still start in 2011. `victimsEarlier` added to `SITE` data.
+- `tools/ncrb_2001_2010/` holds the extraction scripts; 316 tests pass.
+
+## [2026-11-04] - Claude (Anthropic) - Delhi UT total IPC crime 2001 to 2010 (staged)
+
+- New `data/staged/delhi_ut_total_2001_2010/`: NCRB Table 5 (2001) and Table 1.6 (2002 to 2010), Delhi UT row, with source URL and SHA-256 per year. Read from page images because the PDF text layer is misaligned for some rows. Each row passes incidence / population = printed rate.
+- 2005 and 2007 are both printed as 56,065 (checked on the images). Staged only: not in the coverage matrix or on the site. Delhi (City), crime heads and district tables for 2001 to 2010 are listed in the README as not yet collected.
+- `test/delhi_ut_2001_2010.test.js` added to the test script.
+
 ## [2026-11-04] - Claude (Anthropic) - New logo and favicon
 
 - **Design:** an original mark from Delhi's street plan: Connaught Place's two rings with seven uneven radial roads and one marked point on the outer ring (the thing observed). Navy, amber, ivory and rust, the site's own colours. Replaces the old amber house icon and the placeholder white square in the header.
