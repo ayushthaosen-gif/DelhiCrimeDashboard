@@ -1523,3 +1523,9 @@ Prior to the divergence, Claude's contributions (now absorbed by Antigravity's r
 - Findings: the 2015 crimes-against-women figure is 17,104 in the original-year table but 17,222 in the later IPC+SLL table (caution for 2015 to 2016); NCRB prints Delhi burglary of 2,637 for 2021 and 6,189 for 2022 under the same heading (caution, cause unknown).
 - Provenance: `data/raw/ncrb_wayback/` (xlsx tables, PDF table-page excerpts, hashes, captures). The live ncrb.gov.in certificate fails the Windows revocation check, so nothing was fetched from it; files came from Internet Archive captures. The 2018 edition could not be downloaded in full and was not used.
 - `data/continuity.json`: Delhi-wide comparisons now have figures for every year; heads unavailable 2016-2020; district-only breaks (2016 extract, 2021/2022 source change) no longer apply to Delhi-wide totals.
+
+## [2026-11-04] - Claude - Explore: 2008 to 2010 added to the earlier-districts view
+
+- Explore now offers 2008 to 2024 for crime. 2008 to 2010 come from `data/historical_reporting/counts_2001_2010.json` (NCRB Table 1.14 as printed, the same 11 district names as 2011 to 2015) and are drawn on the 2014 reference shapes, labelled inferred. No roster for those years was found, and a 2009 reorganisation of sub-divisions and stations is reported but not confirmed, so the label says stations may have moved. The Delhi total for each year is the printed Delhi UT figure (2008: theft 18,867, 2010: all IPC 51,292).
+- 2001 to 2007 print 9 or 10 districts, so the 2014 shapes do not fit and they stay off the map. Still on the Historical crime page.
+- Code: `scripts/lib/history_data.js` (`EARLY_MAP_YEARS`), `inferredEarly` wording in `scripts/lib/historical_map_shapes.js`, year list and limit notes in `assets/page-explore.js`, geography card and header in `scripts/build_site.js`; `test/explore_history.test.js` covers 2008 to 2018.

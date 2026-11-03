@@ -133,7 +133,7 @@ function readingGuide(updated) {
 function overview(updated) {
   return '<main id="main" class="page ov">\n'
     + '<section class="ov-intro">\n<div class="main">\n'
-    + '<span class="muted">Delhi Police &amp; Traffic Police district data · 2011–2024</span>\n'
+    + '<span class="muted">Delhi Police &amp; Traffic Police district data · 2008–2024</span>\n'
     + '<h1>Delhi Urban Safety Observatory</h1>\n'
     + '<p class="lead">Official crime and road-safety figures for Delhi\'s 15 police districts, set against real public infrastructure: streetlights, underpasses, pedestrian overbridges, metro gates and police posts.</p>\n'
     + '<div class="callout"><strong>Read before comparing:</strong> a zero from a survey-based layer can mean "not surveyed", and OpenStreetMap layers are community-mapped. <a href="data-methods.html#coverage">See the coverage notes</a>.</div>\n'
@@ -209,7 +209,7 @@ function dataMethods(updated) {
     + '<section id="matrix"><h2>Coverage by year</h2><p class="lead" style="font-size:14px">Which series exist for which years, and for each missing year why: not printed in the source, not yet extracted, source not found, not collected, or no official release yet. A blank is never a zero. Select a cell for its note. The same table is a <a href="data/coverage_matrix.csv">CSV</a> and <a href="data/coverage_matrix.json">JSON</a>.</p><div id="matrixBox"></div></section>\n'
     + '<section id="breaks"><h2>Why years can\'t always be compared</h2><p class="lead" style="font-size:14px">The documented breaks behind the checker above: a change of definition, geography or source between two years. Each is a reason a difference may not be a real change.</p><div id="breaksBox"></div></section>\n'
     + '<section id="geography"><h2>How the geography changed</h2><div class="geo-cards">'
-    + '<div class="geo-card"><span class="y">2011–2016</span><span class="big">11 districts</span><p>Drawn on 2014 reference shapes, labelled inferred.</p></div>'
+    + '<div class="geo-card"><span class="y">2008–2016</span><span class="big">11 districts</span><p>Drawn on 2014 reference shapes, labelled inferred. Earlier years have no map.</p></div>'
     + '<div class="geo-card"><span class="y">2017–2018</span><span class="big">14 districts</span><p>Rohini and Shahdara notified 14 Oct 2016; Dwarka 9 Nov 2017. Labelled derived.</p></div>'
     + '<div class="geo-card"><span class="y">2019 onward</span><span class="big">15 districts</span><p>Outer North began on 1 January 2019.</p></div></div>'
     + '<p class="lead" style="font-size:14px">Older counts are never divided among today\'s districts, and rates and infrastructure are not shown for them. The outlines are schematic and not to scale. <a href="historical_crime.html">Full historical table with source rows</a> · <a href="' + GITHUB + '/tree/main/data/staged/police_geography_history">Boundary evidence</a></p></section>\n'

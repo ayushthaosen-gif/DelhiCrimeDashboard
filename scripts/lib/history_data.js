@@ -7,6 +7,9 @@ const path = require('node:path');
 const shapesLib = require('./historical_map_shapes');
 
 const MAP_KEY = { inferred_reference: '2014', reference_only: '2014', derived_reference: '2017' };
+// 2008 to 2010 (data/historical_reporting/counts_2001_2010.json): NCRB prints the same 11 district names as 2011 to 2015, so these
+// years use the 2014 reference shapes, labelled inferred like 2011 to 2013. Earlier years print 9 or 10 districts and have no shapes.
+const EARLY_MAP_YEARS = [2008, 2009, 2010];
 
 // The Delhi total as NCRB prints it. The historical release carries it for 2011 to 2015; 2016 to 2018 come from the Delhi UT series.
 function citywide(y, row) {
@@ -23,20 +26,24 @@ function citywide(y, row) {
 
 function build(root) {
   const counts = JSON.parse(fs.readFileSync(path.join(root, 'data/historical_reporting/counts_2011_2018.json'), 'utf8'));
+  const early = JSON.parse(fs.readFileSync(path.join(root, 'data/historical_reporting/counts_2001_2010.json'), 'utf8'));
+  const earlyYears = early.years.filter(y => EARLY_MAP_YEARS.includes(y.year)).map(y => ({ ...y, map: { ...y.map, status: 'inferred_reference' } }));
+  const allYears = earlyYears.concat(counts.years);
   const shapes = shapesLib.buildShapes(root);
   const notes = shapesLib.notes(root);
   const ut = Object.fromEntries(JSON.parse(fs.readFileSync(path.join(root, 'data/releases/delhi_ut_series/delhi_ut_crime.json'), 'utf8')).map(r => [r.year, r]));
   const maps = {};
   for (const [key, list] of Object.entries(shapes.maps)) maps[key] = list.filter(f => f.properties.territorial).map(f => ({ name: f.properties.name, d: f.d }));
-  const years = counts.years.map(y => {
+  const years = allYears.map(y => {
     const mapKey = MAP_KEY[y.map.status];
     const names = new Set(maps[mapKey].map(m => m.name.toLowerCase()));
     const territorial = y.units.filter(u => u.territorial);
     for (const u of territorial) if (!names.has(u.label.toLowerCase())) throw new Error(y.year + ': no map shape for ' + u.label);
-    const label = y.map.status === 'derived_reference' ? notes.derived : [y.map.status === 'reference_only' ? notes.reference2014 : notes.inferred, y.year === 2015 ? notes.inferred2015 : '', y.year === 2016 ? notes.inferred2016 : ''].filter(Boolean).join(' ');
+    const isEarly = y.year < 2011;
+    const label = isEarly ? notes.inferredEarly : y.map.status === 'derived_reference' ? notes.derived : [y.map.status === 'reference_only' ? notes.reference2014 : notes.inferred, y.year === 2015 ? notes.inferred2015 : '', y.year === 2016 ? notes.inferred2016 : ''].filter(Boolean).join(' ');
     return {
       year: y.year, mapKey, mapStatus: y.map.status, mapNote: label, sourceLabel: y.sourceLabel, notes: y.notes, comparability: y.comparability || null,
-      citywide: citywide(y, ut[y.year]),
+      citywide: citywide(y, ut[y.year] || {}),
       units: y.units.map(u => ({ label: u.label, territorial: !!u.territorial, values: u.values }))
     };
   });

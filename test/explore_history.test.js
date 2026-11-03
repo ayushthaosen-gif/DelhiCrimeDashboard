@@ -1,4 +1,4 @@
-// Guards the earlier-districts view on Explore (2011 to 2018): counts as printed, drawn on the districts of each year, never joined to today's
+// Guards the earlier-districts view on Explore (2008 to 2018): counts as printed, drawn on the districts of each year, never joined to today's
 // 15 districts, with every district shaped and every Delhi total taken from the printed series.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -9,11 +9,14 @@ const { build } = require('../scripts/lib/history_data');
 const ROOT = path.join(__dirname, '..');
 const read = f => fs.readFileSync(path.join(ROOT, f), 'utf8');
 const H = build(ROOT);
-const source = JSON.parse(read('data/historical_reporting/counts_2011_2018.json'));
+const source = {
+  years: JSON.parse(read('data/historical_reporting/counts_2001_2010.json')).years.filter(y => y.year >= 2008)
+    .concat(JSON.parse(read('data/historical_reporting/counts_2011_2018.json')).years)
+};
 const ut = Object.fromEntries(JSON.parse(read('data/releases/delhi_ut_series/delhi_ut_crime.json')).map(r => [r.year, r]));
 
-test('2011 to 2018: 11 districts to 2016, 14 from 2017, each with a shape of that year; counts only', () => {
-  assert.deepEqual(H.years.map(y => y.year), [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]);
+test('2008 to 2018: 11 districts to 2016, 14 from 2017, each with a shape of that year; counts only', () => {
+  assert.deepEqual(H.years.map(y => y.year), [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]);
   assert.equal(H.policy.countsOnly, true);
   assert.equal(H.policy.currentDistrictAllocation, false);
   assert.equal(H.policy.currentInfrastructureJoin, false);
@@ -42,9 +45,10 @@ test('district values are the printed counts, untouched; nothing is turned into 
   assert.equal(H.years.find(y => y.year === 2016).units[0].values.total_ipc, null);
 });
 
-test('the Delhi total is the printed Delhi UT figure in every year, including 2016 to 2018', () => {
+test('the Delhi total is the printed Delhi UT figure in every year from 2011, including 2016 to 2018', () => {
   for (const y of H.years) {
     const c = y.citywide.values, row = ut[y.year];
+    if (!row) continue; // 2008 to 2010: the Delhi total is checked against NCRB Table 1.6 in delhi_ut_2001_2010.test.js
     assert.equal(c.theft, row.theft, y.year + ' theft');
     assert.equal(c.robbery, row.robbery, y.year + ' robbery');
     assert.equal(c.total_ipc, row.total_ipc_bns, y.year + ' total');
@@ -67,11 +71,11 @@ test('2017 and 2018 district values equal the district releases the modern Explo
   }
 });
 
-test('Explore loads the history data before its script, offers 2011 to 2024, shows counts only for the earlier years, and builds no HTML from strings', () => {
+test('Explore loads the history data before its script, offers 2008 to 2024, shows counts only for the earlier years, and builds no HTML from strings', () => {
   const html = read('explore.html');
   assert.ok(html.indexOf('assets/history-data.js') > 0 && html.indexOf('assets/history-data.js') < html.indexOf('assets/page-explore.js'));
   const js = read('assets/page-explore.js');
-  assert.match(js, /crime: HX \? \[2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019/);
+  assert.match(js, /crime: HX \? \[2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019/);
   assert.match(js, /function isHist\(\)/);
   assert.match(js, /isHist\(\) \? seg\(\[\['count', 'Count'\]\]/);
   assert.ok(!/innerHTML/.test(js));
