@@ -92,6 +92,18 @@ boundaries.features.forEach(f => {
   Object.assign(f.properties, streetlightsCombinedByDistrict[f.properties.district] || {});
 });
 
+// Length of main road (OpenStreetMap motorway, trunk, primary and secondary, with their links) per police district, summed from
+// data/road_sizes.csv. It is a lower bound on the road network, used only as an optional crash denominator.
+const mainRoadKmByDistrict = {};
+fs.readFileSync(path.join(ROOT, 'data/road_sizes.csv'), 'utf8').trim().split(/\r?\n/).slice(1).forEach(line => {
+  const c = line.split(',');
+  mainRoadKmByDistrict[c[6]] = (mainRoadKmByDistrict[c[6]] || 0) + Number(c[7]) / 1000;
+});
+boundaries.features.forEach(f => {
+  const km = mainRoadKmByDistrict[f.properties.district];
+  f.properties.mainRoadKm = km == null ? null : Math.round(km * 10) / 10;
+});
+
 // Citywide MPD-2047 vs current summary, rendered at build time so the page does no arithmetic.
 //
 // Only three categories are compared, and the panel says why the rest are not. Deliberately shown
@@ -240,6 +252,13 @@ body { display: flex; flex-direction: column; }
 .check { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; padding: 6px 0; color: var(--text); cursor: pointer; }
 .check input { margin-top: 2px; }
 .indent { margin-left: 26px; display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+.uw { display: grid; grid-template-columns: 1fr 90px 22px; gap: 6px; align-items: center; font-size: 12px; margin: 4px 0; }
+.uw input { width: 100%; }
+.usmall { font-size: 11px; color: var(--text-dim); margin: 4px 0; }
+#unsafeReset { font: inherit; font-size: 12px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: inherit; cursor: pointer; margin: 4px 0; }
+.urank { list-style: none; margin: 4px 0; padding: 0; font-size: 12px; }
+.urank li { display: grid; grid-template-columns: 1fr 34px 62px; gap: 6px; padding: 2px 0; border-bottom: 1px solid var(--border); }
+.urank .rg { color: var(--text-dim); text-align: right; }
 .adv-sub { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); font-weight: 800; margin: 14px 0 4px; padding-top: 12px; border-top: 1px solid var(--border); }
 .quick-views { display: grid; gap: 8px; }
 .guided-view { font: inherit; text-align: left; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color: var(--text); cursor: pointer; font-size: 13px; }
@@ -461,6 +480,18 @@ details.adv[open] > summary h2 { margin-bottom: 10px; }
       <label class="check"><input type="checkbox" id="chkHeatmap"> Crash-zone heatmap</label>
       <label class="check"><input type="checkbox" id="chkUnsafe"> Composite unsafe-areas score</label>
       <span id="unsafeMethodLink" style="display:none; cursor:pointer; text-decoration:underline; color:var(--text-dim); font-size:12px; margin-left:26px;">ⓘ methodology</span>
+      <div id="unsafeControls" style="display:none">
+        <label class="field"><span>Crime rates</span><select id="unsafeRateSel"><option value="perLakh">per 100,000 residents</option><option value="perKm2">per km²</option></select></label>
+        <label class="field"><span>Road deaths</span><select id="unsafeCrashSel"><option value="perLakh">per 100,000 residents</option><option value="perKm2">per km²</option><option value="perRoadKm">per 100 km of main road</option></select></label>
+        <div class="adv-sub">Weights (0 to 10)</div>
+        <div id="unsafeSliders"></div>
+        <p class="usmall" id="unsafeZeroNote" style="display:none">All weights are 0, so equal weights are used.</p>
+        <button type="button" id="unsafeReset">Reset to equal weights</button>
+        <p class="usmall" id="unsafeRateNote">Per-resident rates overstate districts with few residents and many daytime visitors, such as New Delhi (about 142,000 residents); per-km² rates penalise dense districts. Try both.</p>
+        <div class="adv-sub">Ranking and how much it can move</div>
+        <ol id="unsafeRankList" class="urank"></ol>
+        <p class="usmall">Score out of 100, then the rank range across 1,000 random weightings (1 = least safe; middle 90%). A wide range means the rank depends on the weights.</p>
+      </div>
       <div class="adv-sub">Ward level (290 legacy wards, pre-2022; not the current 250)</div>
       <label class="check"><input type="checkbox" id="chkWardBivariate"> Ward bivariate</label>
       <label class="indent" id="wardInfraWrap" style="display:none"><span>Compare</span><select id="wardInfraXSelect"></select><span>against</span><select id="wardInfraYSelect"></select></label>
@@ -499,14 +530,15 @@ details.adv[open] > summary h2 { margin-bottom: 10px; }
 <div id="methodOverlay">
   <div id="methodPanel2">
     <h3>Composite "Unsafe Areas" — methodology</h3>
-    <p>Each district's score is the plain average of five factors, each converted to a 0-1 percentile rank across the 15 districts first (so no single factor's raw scale can dominate the others). No hidden weighting — every factor counts equally.</p>
+    <p>Each district's score is the weighted average of five factors, each converted to a 0-1 percentile rank across the 15 districts first (so no single factor's raw scale can dominate the others). The weights start equal and can be changed with the sliders; the ranking list shows how far each district's rank moves when the weights are redrawn at random 1,000 times (a flat spread over all possible weightings, with a fixed seed). With only 15 districts, a percentile rank can jump a long way on a small change in a rate, so read the rank range, not the single rank.</p>
     <ul>
-      <li><b>Total IPC crime density</b> (higher rank = less safe)</li>
-      <li><b>Crime against women density</b> (higher rank = less safe)</li>
-      <li><b>Fatal crashes (2023) density</b> (higher rank = less safe)</li>
+      <li><b>Total IPC/BNS crime rate</b>, 2024 (higher rank = less safe)</li>
+      <li><b>Crime against women rate</b>, 2024 (higher rank = less safe)</li>
+      <li><b>Persons killed in road crashes, 2024</b> (whole district; higher rank = less safe). Fatal crashes were used before, but those count only crashes inside the identified crash-prone zones, so they partly measure where zones were drawn.</li>
       <li><b>Police infrastructure density</b> (rank inverted — lower coverage = less safe)</li>
       <li><b>Streetlight density</b> (rank inverted — lower coverage = less safe; districts the PAPL survey never covered are excluded from this one factor only, and flagged, rather than silently counted as "no streetlights")</li>
     </ul>
+    <p><b>Denominators.</b> Crime and road-death rates can be set per 100,000 residents or per km²; road deaths can also be set per 100 km of main road (OpenStreetMap motorway to secondary roads, a lower bound on the network). Per-km² rates penalise dense central districts; per-resident rates overstate districts with few residents and many daytime visitors, New Delhi above all. The two can rank districts very differently, which is itself a finding. No per-vehicle rate is offered: this project holds no vehicle count by police district. Police and streetlight density stay per km². Rates are calculated from the full counts, never rounded before ranking.</p>
     <p>This is one illustrative composite, not an official risk index — click any district while this mode is on to see its exact factor-by-factor breakdown in the popup.</p>
     <button id="methodCloseBtn" type="button">Close</button>
   </div>
@@ -999,7 +1031,7 @@ function renderDrawer(name) {
     const us = computeUnsafeScores()[name];
     modeHtml += '<div class="stat-row"><span>Composite unsafe score</span><span class="v">' + (us.score != null ? (us.score * 100).toFixed(0) + '/100' : '—') + '</span></div>' +
       us.contributions.map(c => '<div class="stat-row"><span>' + c.label + '</span><span class="v">' + (c.percentile != null ? (c.percentile * 100).toFixed(0) + 'pct' : 'n/a') + '</span></div>').join('') +
-      '<div class="drawer-note">Equal-weight average of percentile ranks (' + us.coveredFactors + '/' + us.totalFactors + ' factors covered).</div>';
+      '<div class="drawer-note">Weighted average of percentile ranks (' + us.coveredFactors + '/' + us.totalFactors + ' factors covered). ' + unsafeRangeText(us) + '.</div>';
   }
   if (bivariateMode) {
     const bi = currentInfra();
@@ -1076,7 +1108,7 @@ function renderLegend(m, inf, lo, hi) {
     el.innerHTML = '<b>Composite Unsafe Score</b>' +
       '<div class="leg-scale">' + Array.from({length:8}, (_,i) => '<span style="background:' + rustScale(i/7) + '"></span>').join('') + '</div>' +
       '<div style="display:flex;justify-content:space-between;"><span>Safer</span><span>Less safe</span></div>' +
-      '<div style="margin-top:4px;font-style:italic;">equal-weight avg of 5 percentile-ranked factors — click "ⓘ methodology"</div>';
+      '<div style="margin-top:4px;font-style:italic;">weighted avg of 5 percentile-ranked factors (your weights) — click "ⓘ methodology"</div>';
   } else if (bivariateMode) {
     const cells = [];
     for (let row = 2; row >= 0; row--) {
@@ -1199,6 +1231,7 @@ document.getElementById('resetMapBtn').addEventListener('click', () => {
   unsafeMode = false;
   document.getElementById('chkUnsafe').checked = false;
   document.getElementById('unsafeMethodLink').style.display = 'none';
+  document.getElementById('unsafeControls').style.display = 'none';
   wardBivariateMode = false;
   document.getElementById('chkWardBivariate').checked = false;
   document.getElementById('wardInfraWrap').style.display = 'none';
@@ -1897,32 +1930,134 @@ function computeExploratoryScore(items, factors, weights) {
 // black-box scoring — every factor and its direction is spelled out and re-derivable from the
 // same district fields already used elsewhere on this page. Uses computeExploratoryScore with no
 // explicit weights, which falls back to the same equal-weighting this always used.
-const UNSAFE_FACTORS = [
-  { key: 'totalIPCDensity', label: 'Total IPC crime density', invert: false, get: d => d.totalIPC != null ? d.totalIPC / d.areaSqKm : null },
-  { key: 'crimeAgainstWomenDensity', label: 'Crime against women density', invert: false, get: d => d.crimeAgainstWomen != null ? d.crimeAgainstWomen / d.areaSqKm : null },
-  { key: 'fatalCrashDensity', label: 'Fatal crashes (2023) density', invert: false, get: d => d.fatalCrashes2023 != null ? d.fatalCrashes2023 / d.areaSqKm : null },
-  { key: 'policeInfraDensity', label: 'Police infrastructure density', invert: true, get: d => d.policeInfraDensity },
-  { key: 'lightDensityPerKm2', label: 'Streetlight density', invert: true, get: d => (SURVEYED.has(d.district) ? d.lightDensityPerKm2 : null) },
-];
+// Denominators. Per-km² figures favour sparsely built districts and penalise dense central ones; per-resident figures do the opposite for
+// districts with few residents but many daytime visitors (New Delhi has about 142,000 residents). Neither is "right", so the page offers both.
+// Crashes can also be set against the length of main road (OpenStreetMap motorway to secondary, data/road_sizes.csv), which is a lower bound
+// on the network. There is no vehicle count by police district in this project, so no per-vehicle rate is offered.
+const UNSAFE_CFG = { rate: 'perLakh', crash: 'perLakh' };
+const UNSAFE_WEIGHTS = {};
+const UNSAFE_BASIS_LABEL = { perLakh: 'per 100,000 residents', perKm2: 'per km²', perRoadKm: 'per 100 km of main road' };
+function unsafeRate(count, d, basis) {
+  if (count == null || !Number.isFinite(count)) return null;
+  if (basis === 'perLakh') return d.population > 0 ? count / d.population * 100000 : null;
+  if (basis === 'perRoadKm') return d.mainRoadKm > 0 ? count / d.mainRoadKm * 100 : null;
+  return d.areaSqKm > 0 ? count / d.areaSqKm : null;
+}
+// Rates are calculated from the full counts and denominators; nothing is rounded before ranking.
+// Road deaths use persons killed in 2024 for the whole district. Fatal crashes (2023 or 2024) count only crashes inside the identified
+// crash-prone zones, so they would measure where zones were drawn as much as how dangerous a district is.
+function unsafeFactors(cfg) {
+  return [
+    { key: 'totalIPCRate', label: 'Total IPC/BNS crime ' + UNSAFE_BASIS_LABEL[cfg.rate], invert: false, get: d => unsafeRate(d.totalIPC, d, cfg.rate) },
+    { key: 'crimeAgainstWomenRate', label: 'Crime against women ' + UNSAFE_BASIS_LABEL[cfg.rate], invert: false, get: d => unsafeRate(d.crimeAgainstWomen, d, cfg.rate) },
+    { key: 'killedRate', label: 'Persons killed in road crashes, 2024, ' + UNSAFE_BASIS_LABEL[cfg.crash], invert: false, get: d => unsafeRate(d.personsKilled2024, d, cfg.crash) },
+    { key: 'policeInfraDensity', label: 'Police infrastructure density (per km²)', invert: true, get: d => d.policeInfraDensity },
+    { key: 'lightDensityPerKm2', label: 'Streetlight density (per km²)', invert: true, get: d => (SURVEYED.has(d.district) ? d.lightDensityPerKm2 : null) },
+  ];
+}
+function unsafeWeightMap(factors) {
+  const w = {};
+  factors.forEach(f => { w[f.key] = UNSAFE_WEIGHTS[f.key] == null ? 1 : UNSAFE_WEIGHTS[f.key]; });
+  return w;
+}
+// How much a district's rank depends on the weights. The weights are redrawn at random (a flat spread over all possible weightings, seeded so
+// the page is reproducible) and the rank is recomputed each time. 1 is the least safe. With 15 districts and percentile ranks, a rank can
+// move a lot, so the range is shown beside every rank.
+function unsafeRankStability(items, factors, draws, seed) {
+  let s = seed >>> 0;
+  const rnd = () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const ranks = items.map(() => []);
+  for (let k = 0; k < draws; k++) {
+    const w = {};
+    factors.forEach(f => { w[f.key] = -Math.log(1 - rnd()); });
+    const { scores } = computeExploratoryScore(items, factors, w);
+    const sc = items.map(it => scores.get(it).score);
+    items.forEach((it, i) => {
+      if (sc[i] == null) return;
+      ranks[i].push(1 + sc.filter(v => v != null && v > sc[i]).length);
+    });
+  }
+  return ranks.map(r => {
+    if (!r.length) return null;
+    r.sort((a, b) => a - b);
+    const q = p => r[Math.min(r.length - 1, Math.floor(p * r.length))];
+    return { min: r[0], max: r[r.length - 1], lo: q(0.05), hi: q(0.95), median: q(0.5) };
+  });
+}
+let unsafeCache = null;
 function computeUnsafeScores() {
   const allProps = BOUNDARIES.features.map(f => f.properties);
-  const { scores: scoreMap } = computeExploratoryScore(allProps, UNSAFE_FACTORS, null);
+  const factors = unsafeFactors(UNSAFE_CFG), weights = unsafeWeightMap(factors);
+  const cacheKey = JSON.stringify([UNSAFE_CFG, weights]);
+  if (unsafeCache && unsafeCache.key === cacheKey) return unsafeCache.scores;
+  const { scores: scoreMap, weights: normWeights } = computeExploratoryScore(allProps, factors, weights);
+  const stability = unsafeRankStability(allProps, factors, 1000, 20261103);
   const scores = {};
-  allProps.forEach(d => {
+  allProps.forEach((d, i) => {
     const r = scoreMap.get(d);
+    const rank = r.score == null ? null : 1 + allProps.filter(o => scoreMap.get(o).score != null && scoreMap.get(o).score > r.score).length;
     scores[d.district] = {
       score: r.score != null ? r.score / 100 : null, // kept on this page's existing 0-1 convention (popup multiplies by 100)
-      contributions: r.contributions.map(c => ({ label: c.label, value: c.value, percentile: c.percentile })),
+      contributions: r.contributions.map(c => ({ label: c.label, value: c.value, percentile: c.percentile, weight: c.weight })),
       coveredFactors: r.coveredFactors,
       totalFactors: r.totalFactors,
+      rank: rank,
+      stability: stability[i],
     };
   });
+  unsafeCache = { key: cacheKey, scores: scores, weights: normWeights };
   return scores;
 }
+function unsafeRangeText(us) {
+  if (!us || us.rank == null || !us.stability) return '';
+  const st = us.stability;
+  return 'rank ' + us.rank + ' of 15; across 1,000 random weightings: ' + st.lo + ' to ' + st.hi + ' (middle 90%), ' + st.min + ' to ' + st.max + ' at the extremes';
+}
+function renderUnsafeSliders() {
+  const box = document.getElementById('unsafeControls');
+  box.style.display = unsafeMode ? '' : 'none';
+  if (!unsafeMode) return;
+  document.getElementById('unsafeRateSel').value = UNSAFE_CFG.rate;
+  document.getElementById('unsafeCrashSel').value = UNSAFE_CFG.crash;
+  document.getElementById('unsafeSliders').innerHTML = unsafeFactors(UNSAFE_CFG).map(f => {
+    const v = UNSAFE_WEIGHTS[f.key] == null ? 1 : UNSAFE_WEIGHTS[f.key];
+    return '<label class="uw"><span>' + f.label + '</span><input type="range" min="0" max="10" step="1" value="' + v + '" data-k="' + f.key + '" aria-label="Weight: ' + f.label + '"><b>' + v + '</b></label>';
+  }).join('');
+  renderUnsafeRanking();
+}
+function renderUnsafeRanking() {
+  if (!unsafeMode) return;
+  const factors = unsafeFactors(UNSAFE_CFG);
+  const allZero = factors.every(f => (UNSAFE_WEIGHTS[f.key] == null ? 1 : UNSAFE_WEIGHTS[f.key]) === 0);
+  document.getElementById('unsafeZeroNote').style.display = allZero ? '' : 'none';
+  document.getElementById('unsafeRateNote').style.display = UNSAFE_CFG.rate === 'perLakh' || UNSAFE_CFG.crash === 'perLakh' ? '' : 'none';
+  const sc = computeUnsafeScores();
+  const rows = Object.keys(sc).filter(k => sc[k].score != null).sort((a, b) => sc[b].score - sc[a].score);
+  document.getElementById('unsafeRankList').innerHTML = rows.map(k => {
+    const st = sc[k].stability;
+    return '<li><span>' + k + '</span><span>' + (sc[k].score * 100).toFixed(0) + '</span><span class="rg">' + (st ? st.lo + ' to ' + st.hi : '') + '</span></li>';
+  }).join('');
+}
+document.getElementById('unsafeRateSel').addEventListener('change', e => { UNSAFE_CFG.rate = e.target.value; renderUnsafeSliders(); renderChoropleth(); });
+document.getElementById('unsafeCrashSel').addEventListener('change', e => { UNSAFE_CFG.crash = e.target.value; renderUnsafeSliders(); renderChoropleth(); });
+document.getElementById('unsafeSliders').addEventListener('input', e => {
+  const k = e.target.getAttribute('data-k');
+  if (!k) return;
+  UNSAFE_WEIGHTS[k] = Number(e.target.value);
+  e.target.nextElementSibling.textContent = e.target.value;
+  renderUnsafeRanking();
+  renderChoropleth();
+});
+document.getElementById('unsafeReset').addEventListener('click', () => {
+  Object.keys(UNSAFE_WEIGHTS).forEach(k => delete UNSAFE_WEIGHTS[k]);
+  renderUnsafeSliders();
+  renderChoropleth();
+});
 
 document.getElementById('chkUnsafe').addEventListener('change', (e) => {
   unsafeMode = e.target.checked;
   document.getElementById('unsafeMethodLink').style.display = unsafeMode ? '' : 'none';
+  renderUnsafeSliders();
   renderChoropleth();
 });
 document.getElementById('unsafeMethodLink').addEventListener('click', () => document.getElementById('methodOverlay').classList.add('show'));

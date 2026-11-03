@@ -1,3 +1,11 @@
+## [2026-11-03] - Claude (Anthropic) - Composite unsafe score: denominators, 2024 road deaths, adjustable weights and rank stability
+
+- **Denominators:** crime and road-death rates can be set per 100,000 residents (new default) or per km2; road deaths also per 100 km of main road (OSM motorway to secondary, summed from `data/road_sizes.csv` into `mainRoadKm`; lower bound). No per-vehicle rate: no district vehicle count in the project. Rates use unrounded counts.
+- **Road factor:** persons killed in 2024, whole district, instead of 2023 fatal crashes. 2024 fatal crashes exist but, like 2023, count only crashes inside identified crash-prone zones, so they would partly measure where zones were drawn.
+- **Weights:** five 0 to 10 sliders and a reset button (equal by default); all-zero falls back to equal and says so.
+- **Rank stability:** the ranking list and the district drawer show each rank with its range across 1,000 seeded random weightings (middle 90% and extremes). On the live data the ranking moves a lot with the denominator (per resident puts Outer North first, per km2 and per road-km puts North-West first), and ranges are wide, which the page now shows rather than hides.
+- **Tests:** four new tests in `test/exploratory_score.test.js` (rates, denominator changes ranking, factor definition, stability reproducible and bounded). Checked in the browser: no console errors, sliders keep focus while dragging.
+
 ## [2026-10-30] - Claude (Anthropic) - Review fixes: unrounded correlations, permutation p-values for Spearman, iRAD coverage, archive hashes, crosswalk review state
 
 - **Correlations (P1):** rates are computed from full-precision counts and denominators; rounding to one decimal before ranking changed some results (one Spearman sign). Hand-checked cell recomputed independently: Pearson r 0.692 -> 0.682 (n=14, t=3.23). Police posts vs persons killed, per km2: Spearman +0.798, q = 0.041 (earlier note said q = 0.02).
