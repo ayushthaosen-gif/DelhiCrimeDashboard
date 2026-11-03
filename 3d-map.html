@@ -6,15 +6,20 @@
 <title>3D ward view · Delhi Urban Safety Observatory</title>
 <meta name="description" content="A 3D map of the 290 legacy Delhi wards: crash zones, infrastructure and district crime rates.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="assets/site.webmanifest">
+<meta name="theme-color" content="#1c2331">
 <script>try{var t=localStorage.getItem("dso-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
-<link rel="stylesheet" href="assets/site.css?v=70688cf0">
+<link rel="stylesheet" href="assets/site.css?v=df16b08f">
 </head>
 <body class="map3d">
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header"><div class="wrap full"><a class="brand" href="index.html"><span class="brand-mark"><i></i></span><span class="brand-name">Delhi Urban Safety Observatory</span></a><button type="button" class="theme-btn" id="themeBtn" aria-label="Switch colour theme"><i></i>Dark theme</button></div></header>
+<header class="site-header"><div class="wrap full"><a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true" focusable="false"><g stroke="#f2f3f5" stroke-width="2.4" stroke-linecap="round"><line x1="29.82" y1="23.27" x2="24.74" y2="2.89"/><line x1="37.54" y1="24.91" x2="47.39" y2="12.3"/><line x1="40.91" y1="30.75" x2="61.71" y2="27.82"/><line x1="38.89" y1="37.79" x2="51.15" y2="48.07"/><line x1="31.06" y1="40.95" x2="28.86" y2="61.84"/><line x1="24.37" y1="36.77" x2="10.8" y2="45.25"/><line x1="23.91" y1="28.05" x2="5.04" y2="18.85"/></g><circle cx="32" cy="32" r="19" fill="none" stroke="#e3a13b" stroke-width="4.5"/><circle cx="32" cy="32" r="9" fill="#1c2331" stroke="#f2f3f5" stroke-width="3"/><circle cx="48.45" cy="22.5" r="5.2" fill="#d9654a" stroke="#f2f3f5" stroke-width="1.6"/></svg><span class="brand-name">Delhi Urban Safety Observatory</span></a><button type="button" class="theme-btn" id="themeBtn" aria-label="Switch colour theme"><i></i>Dark theme</button></div></header>
 <nav class="site-nav" aria-label="Sections"><div class="wrap full"><div class="nav-links"><a href="index.html">Overview</a><a href="explore.html">Explore</a><a href="road-safety.html">Road safety</a><a href="patterns.html">Patterns</a><a href="planning.html">Planning</a><a href="3d-map.html" aria-current="page">3D map</a><a href="data-methods.html">Data &amp; methods</a></div><span class="nav-meta"><span class="pill-data">Data</span>Official figures up to 2024 · version 2026-10-20</span></div></nav>
 <main class="m3" id="main">
 <aside class="m3-panel" aria-label="Map controls" id="m3panel"></aside>
