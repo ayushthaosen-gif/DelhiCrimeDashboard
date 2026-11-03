@@ -151,5 +151,36 @@
   "sourcesManifest": "data/staged/history_2011_2015/manifest.json",
   "existingSeriesSource": "data/delhi_crime_2016_2021_verified.json",
   "mapManifest": "data/staged/police_geography_history/manifest.json",
+  "earlierCounts": {
+    "path": "data/historical_reporting/counts_2001_2010.json",
+    "referenceYears": [
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010
+    ],
+    "geography": "Original reporting units of each year; no map, no crosswalk to current districts.",
+    "sourceInputs": [
+      {
+        "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+        "sha256": "34ae1b65b1aaa2e1696e58897a2e89be0ff9866e0ca246d2e6de06f6b287004a"
+      },
+      {
+        "path": "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json",
+        "sha256": "49c166b6dc69fafa954cb1b23d2067c71534858a3db985a6bb52b4277acea804"
+      },
+      {
+        "path": "data/staged/delhi_ut_total_2001_2010/delhi_city_total_ipc_2001_2010.json",
+        "sha256": "7e14c5c26f6e74b280359e90cac4ce4fd256e42b41b62250fb36cb82e3755516"
+      }
+    ],
+    "readme": "data/staged/delhi_ut_total_2001_2010/README.md"
+  },
   "generatedBy": "scripts/build_historical_reporting_view.js"
 }

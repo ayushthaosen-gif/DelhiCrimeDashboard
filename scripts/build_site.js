@@ -89,7 +89,7 @@ function shell(page, o) {
 function footer(updated) {
   return '<footer class="site-footer"><div class="links">'
     + '<a href="interactive_map.html">Interactive map</a>'
-    + '<a href="historical_crime.html">Historical crime table, 2011–2018</a>'
+    + '<a href="historical_crime.html">Historical crime table, 2001–2018</a>'
     + '<a href="irad_stations.html">2025–26 road accidents (iRAD)</a>'
     + '<a href="reading-guide.html">How to read registered crime</a>'
     + '<a href="for_reporters.html">For reporters and researchers</a>'

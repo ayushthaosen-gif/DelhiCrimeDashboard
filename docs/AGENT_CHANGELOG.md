@@ -1,3 +1,9 @@
+## [2026-11-04] - Claude (Anthropic) - 2001 to 2010 crime on the Historical crime page
+
+- `historical_crime.html` now offers 2001 to 2018. The 2001 to 2010 years come from the staged NCRB tables via `data/historical_reporting/counts_2001_2010.json` (new; the 2011 to 2018 file and the Explore history view are unchanged). Each year shows its own reporting units, territorial districts apart from specialised units, the Delhi UT total as printed, and no map (`boundary_unverified`).
+- Measures: murder, rape, kidnapping and abduction, plus theft, robbery, burglary and total IPC from 2002. 2001 has only the first ten offence columns, so per-unit totals are unavailable (null, not zero).
+- Nav labels now read 2001 to 2018. Manifest gains `earlierCounts`. Tests added to `test/delhi_ut_2001_2010.test.js` (318 pass).
+
 ## [2026-11-04] - Claude (Anthropic) - Delhi crime and road data 2001 to 2010 (staged), 2004 to 2010 deaths by mode on the Road safety page
 
 - `data/staged/delhi_ut_total_2001_2010/`: Delhi UT and Delhi (City) total IPC crime; district-wise IPC crime by 30 offence heads with each year's own reporting units (nine territorial districts to 2006, Outer from 2007, South-East from 2008); Delhi UT crime heads; units by year; citywide road counts 2008 to 2010 (archived Traffic Police page). No allocation to today's districts, as for 2011 to 2015.

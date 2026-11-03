@@ -101,3 +101,34 @@ test('the Road safety page carries a 2004 to 2010 deaths-by-mode table built fro
   const site = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'lib', 'site_data.js'), 'utf8');
   assert.ok(site.includes('victimsEarlier'));
 });
+
+const earlyCounts = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'historical_reporting', 'counts_2001_2010.json'), 'utf8'));
+const pageHtml = fs.readFileSync(path.join(__dirname, '..', 'historical_crime.html'), 'utf8');
+
+test('Historical crime view: 2001 to 2010 counts carry each year\'s own units, no map, no allocation, and match the staged tables', () => {
+  assert.deepEqual(earlyCounts.years.map(y => y.year), [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]);
+  assert.equal(earlyCounts.policy.currentDistrictAllocation, false);
+  for (const y of earlyCounts.years) {
+    const src = district.years[y.year];
+    assert.equal(y.map.status, 'boundary_unverified', String(y.year));
+    assert.equal(y.units.length, src.units.length, String(y.year));
+    assert.equal(y.units.filter(u => u.territorial).length, y.territorialCount, String(y.year));
+    assert.equal(y.citywide.values.total_ipc, data.rows.find(r => r.year === y.year).incidence, String(y.year));
+    for (const u of y.units) {
+      for (const e of u.evidence) assert.ok(fs.existsSync(path.join(__dirname, '..', e.path)), e.path);
+      for (const v of Object.values(u.values)) assert.ok(v === null || v >= 0);
+    }
+    const central = y.units.find(u => u.label === 'Central').values;
+    assert.equal(central.murder, src.units.find(u => u.unit === 'CENTRAL').values.murder, y.year + ' Central murder');
+  }
+  assert.equal(earlyCounts.years[0].units.find(u => u.label === 'Central').values.total_ipc, null, '2001 has no per-unit total: unavailable, not zero');
+});
+
+test('Historical crime page offers 2001 to 2018, and the manifest lists the earlier counts with hashes', () => {
+  assert.match(pageHtml, /Delhi historical crime · 2001–2018/);
+  assert.ok(pageHtml.includes('counts_2001_2010.json'));
+  assert.ok(pageHtml.includes('REPORTING.years='), 'the early years are merged into the page data');
+  const m = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'historical_reporting', 'manifest.json'), 'utf8'));
+  assert.deepEqual(m.earlierCounts.referenceYears, [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]);
+  for (const i of m.earlierCounts.sourceInputs) assert.match(i.sha256, /^[0-9a-f]{64}$/);
+});
