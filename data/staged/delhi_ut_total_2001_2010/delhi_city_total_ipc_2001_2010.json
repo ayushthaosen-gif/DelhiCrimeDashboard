@@ -1,0 +1,119 @@
+{
+ "title": "Delhi (City) total cognizable IPC crimes, 2001 to 2010, as NCRB prints them",
+ "status": "staged",
+ "scope": "The 'Delhi (City)' row of the cities part of the same NCRB table as the Delhi UT row (Table 5 in 2001, Table 1.6 from 2002). This is NCRB's mega-city series, a different geography from the Delhi UT row; the two are not interchangeable and the city is not a sum of the district table.",
+ "population_note": "NCRB uses the same population for every year (127.91 lakh, from the 2001 census) for the city, so city rates in this run are not adjusted for growth. Incidence divided by 127.91 reproduces each printed rate.",
+ "pct_note": "pct_of_all_city_total is the share of the all-city total NCRB prints in the same table.",
+ "rows": [
+  {
+   "year": 2001,
+   "table": "Table 5",
+   "incidence": 49343,
+   "pct_of_all_city_total": 17.0,
+   "population_lakh": 127.91,
+   "rate": 385.8,
+   "rank": 11,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/TABLE%205-2001.pdf",
+   "sha256": "b00083d294fbf28e66a8eab4618d63bdf37d39fd9de1eca6a67d2e2daa1f9aa6"
+  },
+  {
+   "year": 2002,
+   "table": "Table 1.6",
+   "incidence": 44158,
+   "pct_of_all_city_total": 14.8,
+   "population_lakh": 127.91,
+   "rate": 345.2,
+   "rank": 15,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/TABLE-1.6_2002.pdf",
+   "sha256": "7667e750366b1179aad0c57dbf6e7e95936099eccae6a3e963be84506fa67b71"
+  },
+  {
+   "year": 2003,
+   "table": "Table 1.6",
+   "incidence": 41961,
+   "pct_of_all_city_total": 14.4,
+   "population_lakh": 127.91,
+   "rate": 328.1,
+   "rank": 15,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.6_2003.pdf",
+   "sha256": "52a50fd394ac33e03ea75089da465cfe87351a97f26d2de3ac5ae6a28ba37e87"
+  },
+  {
+   "year": 2004,
+   "table": "Table 1.6",
+   "incidence": 48677,
+   "pct_of_all_city_total": 15.7,
+   "population_lakh": 127.91,
+   "rate": 380.6,
+   "rank": 12,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.6-2004.pdf",
+   "sha256": "897a205382e8028ca70faf18580a9324fffa126b82e6fc56fe81047bea1bacc6"
+  },
+  {
+   "year": 2005,
+   "table": "Table 1.6",
+   "incidence": 51010,
+   "pct_of_all_city_total": 16.2,
+   "population_lakh": 127.91,
+   "rate": 398.8,
+   "rank": 10,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.6_2005.pdf",
+   "sha256": "9fe36e0ae7bc2d1c18c11f5156fa878edc83ec7001643a1f64bab093606e0df5"
+  },
+  {
+   "year": 2006,
+   "table": "Table 1.6",
+   "incidence": 53007,
+   "pct_of_all_city_total": 16.2,
+   "population_lakh": 127.91,
+   "rate": 414.4,
+   "rank": 12,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.6_2006.pdf",
+   "sha256": "e2e652f9d9f843f1403b345ba2cc624be56fe7b5f38c53fa04ba129b1483f5a8"
+  },
+  {
+   "year": 2007,
+   "table": "Table 1.6",
+   "incidence": 50895,
+   "pct_of_all_city_total": 15.1,
+   "population_lakh": 127.91,
+   "rate": 397.9,
+   "rank": 12,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.6_2007.pdf",
+   "sha256": "32ce1b2fece77e0950cc299d7c62028aec7028ba6f699859ef04bc5f914b4a5a"
+  },
+  {
+   "year": 2008,
+   "table": "Table 1.6",
+   "incidence": 44573,
+   "pct_of_all_city_total": 12.8,
+   "population_lakh": 127.91,
+   "rate": 348.5,
+   "rank": 19,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.6_2008.pdf",
+   "sha256": "7716a52c9d4375324ec8e10073c7e71531e4ff7bf6800127e034bf74fd0dfa68"
+  },
+  {
+   "year": 2009,
+   "table": "Table 1.6",
+   "incidence": 45247,
+   "pct_of_all_city_total": 13.2,
+   "population_lakh": 127.91,
+   "rate": 353.7,
+   "rank": 18,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.6_2009.pdf",
+   "sha256": "b5f7cb44121bc75a0a4bfa086a2aa5483290380cbbd8b359b1d4df56cf4f3b8e"
+  },
+  {
+   "year": 2010,
+   "table": "Table 1.6",
+   "incidence": 45994,
+   "pct_of_all_city_total": 12.5,
+   "population_lakh": 127.91,
+   "rate": 359.6,
+   "rank": 18,
+   "source_url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/Table1.6_2010.pdf",
+   "sha256": "1cab52e11e6fd4165b8e923cd6fb3d9cbed969433bee37e3d8959313e6c27d93"
+  }
+ ]
+}

@@ -1,0 +1,228 @@
+{
+ "purpose": "Which reporting units NCRB printed for Delhi in each year, as printed. 'First printed' is the first year of this 2001-2010 run in which the unit appears, not a creation date.",
+ "years": {
+  "2001": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "SOUTH",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "STF"
+   ]
+  },
+  "2002": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "SOUTH",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "SPL CELL",
+    "STF"
+   ]
+  },
+  "2003": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "SOUTH",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "STF"
+   ]
+  },
+  "2004": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "SOUTH",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "STF"
+   ]
+  },
+  "2005": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "SOUTH",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "DRP",
+    "IGI AIRPORT",
+    "SPL CELL"
+   ]
+  },
+  "2006": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "SOUTH",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "STF"
+   ]
+  },
+  "2007": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "OUTER",
+    "SOUTH",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "STF"
+   ]
+  },
+  "2008": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "OUTER",
+    "SOUTH",
+    "SOUTH-EAST",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "CAW",
+    "CRIME BRANCH",
+    "EOW",
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "STF"
+   ]
+  },
+  "2009": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "OUTER",
+    "SOUTH",
+    "SOUTH-EAST",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "CAW",
+    "CRIME BRANCH",
+    "EOW",
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "STF"
+   ]
+  },
+  "2010": {
+   "territorial_districts": [
+    "CENTRAL",
+    "EAST",
+    "NEW DELHI",
+    "NORTH",
+    "NORTH-EAST",
+    "NORTH-WEST",
+    "OUTER",
+    "SOUTH",
+    "SOUTH-EAST",
+    "SOUTH-WEST",
+    "WEST"
+   ],
+   "specialised_units": [
+    "CAW",
+    "CRIME BRANCH",
+    "EOW",
+    "GRP(RLY)",
+    "IGI AIRPORT",
+    "STF"
+   ]
+  }
+ },
+ "first_printed_in_run": {
+  "CENTRAL": 2001,
+  "EAST": 2001,
+  "GRP(RLY)": 2001,
+  "IGI AIRPORT": 2001,
+  "NEW DELHI": 2001,
+  "NORTH": 2001,
+  "NORTH-EAST": 2001,
+  "NORTH-WEST": 2001,
+  "STF": 2001,
+  "SOUTH": 2001,
+  "SOUTH-WEST": 2001,
+  "WEST": 2001,
+  "SPL CELL": 2002,
+  "DRP": 2005,
+  "OUTER": 2007,
+  "CAW": 2008,
+  "CRIME BRANCH": 2008,
+  "EOW": 2008,
+  "SOUTH-EAST": 2008
+ },
+ "reading": [
+  "Nine territorial districts (Central, East, New Delhi, North, North-East, North-West, South, South-West, West) in every year 2001 to 2006.",
+  "Outer appears from 2007 and South-East from 2008, giving the eleven territorial districts that the MHA annual reports state for 2010-11 to 2014-15 (see data/staged/police_geography_history/structure_evidence_2010_2016.json).",
+  "Specialised units vary: 2005 prints DRP and Spl Cell, 2008 to 2010 print CAW, Crime Branch and EOW. Their counts are in the Delhi total but are not territorial districts."
+ ]
+}

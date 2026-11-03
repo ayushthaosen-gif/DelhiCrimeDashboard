@@ -1,0 +1,46 @@
+{
+  "title": "Delhi road accidents, citywide, 2008 to 2010, from the Delhi Traffic Police statistics page",
+  "status": "staged",
+  "scope": "Accident counts and persons killed and injured for Delhi as a whole, as the Traffic Police website printed them in its 2014 and 2015 captures (Year wise Accidents in Delhi). Counts, not rates. Not split by district.",
+  "source": {
+    "url": "https://web.archive.org/web/20140513002946id_/http://delhitrafficpolice.nic.in:80/about-us/statistics/",
+    "second_capture": "https://web.archive.org/web/20150601000000id_/https://delhitrafficpolice.nic.in/about-us/statistics/",
+    "note": "Both captures print the same 2008 to 2013 rows. 2011 to 2013 are already in the citywide road trend release; only 2008 to 2010 are new here.",
+    "sha256_first_capture": "41556ce6af7031c9484b751b03db19815e4f30a426b72bc7354f2bf358bbeebb"
+  },
+  "checks": [
+    "Each year: non-injury + simple + fatal accidents = total accidents.",
+    "Persons killed equal the Table 3.1 totals in data/releases/road_victims_by_mode_2004_2018 for 2008, 2009 and 2010.",
+    "Persons injured equal Table 3.1 for 2009 and 2010. For 2008 the web page prints 7,343 and Table 3.1 prints 7,342; both are kept as printed."
+  ],
+  "not_found": "Accident counts for 2001 to 2007 were not found in a source this project could read. The 2015 annual report's Table 3.1 prints persons killed and injured for 2001 to 2015, but the 2001 to 2003 category rows do not add up.",
+  "rows": [
+    {
+      "year": 2008,
+      "non_injury": 362,
+      "simple": 6058,
+      "fatal": 2015,
+      "total": 8435,
+      "persons_injured": 7343,
+      "persons_killed": 2093
+    },
+    {
+      "year": 2009,
+      "non_injury": 131,
+      "simple": 5113,
+      "fatal": 2272,
+      "total": 7516,
+      "persons_injured": 6936,
+      "persons_killed": 2325
+    },
+    {
+      "year": 2010,
+      "non_injury": 63,
+      "simple": 5093,
+      "fatal": 2104,
+      "total": 7260,
+      "persons_injured": 7108,
+      "persons_killed": 2153
+    }
+  ]
+}

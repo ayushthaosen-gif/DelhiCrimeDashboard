@@ -27,3 +27,77 @@ test('the yearly change stays within a plausible band, so a column slip would sh
     assert.ok(Math.abs(change) < 0.15, data.rows[i].year + ' changed by ' + (change * 100).toFixed(1) + '%');
   }
 });
+
+const dir = path.join(__dirname, '..', 'data', 'staged', 'delhi_ut_total_2001_2010');
+const readJson = f => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+const district = readJson('delhi_district_ipc_2001_2010.json');
+
+test('district tables: for every year and column, the unit rows add to the printed TOTAL row', () => {
+  assert.deepEqual(Object.keys(district.years).map(Number), [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]);
+  for (const [year, y] of Object.entries(district.years)) {
+    assert.match(y.source_url, /^https:\/\/www\.ncrb\.gov\.in\/uploads\/.*\.pdf$/, year);
+    assert.match(y.sha256, /^[0-9a-f]{64}$/, year);
+    const cols = Object.keys(y.printed_total);
+    assert.equal(cols.length, y.columns_printed, year);
+    for (const c of cols) {
+      const sum = y.units.reduce((a, u) => a + u.values[c], 0);
+      assert.equal(sum, y.printed_total[c], year + ' ' + c);
+    }
+  }
+});
+
+test('district tables: 2002 to 2010 print all 30 columns and 2001 only the first ten, and the total IPC column equals the Delhi UT total read from the page images', () => {
+  const ut = Object.fromEntries(data.rows.map(r => [r.year, r.incidence]));
+  assert.equal(district.years['2001'].columns_printed, 10);
+  for (let year = 2002; year <= 2010; year++) {
+    const y = district.years[year];
+    assert.equal(y.columns_printed, 30, String(year));
+    assert.equal(y.printed_total.total_cognizable_ipc, ut[year], String(year));
+  }
+});
+
+test('theft, rape and kidnapping sub-columns add up inside each unit and year', () => {
+  for (const [year, y] of Object.entries(district.years)) {
+    for (const u of y.units) {
+      const v = u.values;
+      assert.equal(v.rape_custodial + v.rape_other, v.rape_total, year + ' ' + u.unit + ' rape');
+      assert.equal(v.kidnapping_of_women_girls + v.kidnapping_others, v.kidnapping_abduction_total, year + ' ' + u.unit + ' kidnapping');
+      if (v.theft_total !== undefined) assert.equal(v.theft_auto + v.theft_other, v.theft_total, year + ' ' + u.unit + ' theft');
+    }
+  }
+});
+
+test('reporting units: nine territorial districts to 2006, Outer from 2007, South-East from 2008, eleven by 2010', () => {
+  const count = y => district.years[y].territorial_districts;
+  for (const y of [2001, 2002, 2003, 2004, 2005, 2006]) assert.equal(count(y), 9, String(y));
+  assert.equal(count(2007), 10);
+  for (const y of [2008, 2009, 2010]) assert.equal(count(y), 11, String(y));
+  const ru = readJson('reporting_units_by_year.json');
+  assert.equal(ru.first_printed_in_run['OUTER'], 2007);
+  assert.equal(ru.first_printed_in_run['SOUTH-EAST'], 2008);
+  for (const y of Object.keys(district.years)) assert.equal(ru.years[y].territorial_districts.length, district.years[y].territorial_districts, y);
+});
+
+test('Delhi (City): incidence over the common population reproduces each printed rate', () => {
+  const city = readJson('delhi_city_total_ipc_2001_2010.json');
+  assert.deepEqual(city.rows.map(r => r.year), [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]);
+  for (const r of city.rows) assert.ok(Math.abs(r.incidence / r.population_lakh - r.rate) <= 0.06, String(r.year));
+});
+
+test('citywide road counts 2008 to 2010 add up and match the Table 3.1 totals already held', () => {
+  const road = readJson('road_citywide_2008_2010.json');
+  const t31 = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'releases', 'road_victims_by_mode_2004_2018', 'victims_by_mode.json'), 'utf8'));
+  for (const r of road.rows) {
+    assert.equal(r.non_injury + r.simple + r.fatal, r.total, String(r.year));
+    const t = t31.find(x => x.year === r.year);
+    assert.equal(r.persons_killed, t.total_killed, r.year + ' killed');
+    if (r.year !== 2008) assert.equal(r.persons_injured, t.total_injured, r.year + ' injured');
+  }
+});
+
+test('the Road safety page carries a 2004 to 2010 deaths-by-mode table built from the release', () => {
+  const page = fs.readFileSync(path.join(__dirname, '..', 'assets', 'page-road.js'), 'utf8');
+  assert.ok(page.includes('Earlier years: 2004 to 2010') && page.includes('S.victimsEarlier'));
+  const site = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'lib', 'site_data.js'), 'utf8');
+  assert.ok(site.includes('victimsEarlier'));
+});
