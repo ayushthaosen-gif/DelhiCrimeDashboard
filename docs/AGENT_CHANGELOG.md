@@ -1,3 +1,9 @@
+## [2026-11-04] - Claude (Anthropic) - Delhi UT total IPC crime 2001 to 2010 (staged)
+
+- New `data/staged/delhi_ut_total_2001_2010/`: NCRB Table 5 (2001) and Table 1.6 (2002 to 2010), Delhi UT row, with source URL and SHA-256 per year. Read from page images because the PDF text layer is misaligned for some rows. Each row passes incidence / population = printed rate.
+- 2005 and 2007 are both printed as 56,065 (checked on the images). Staged only: not in the coverage matrix or on the site. Delhi (City), crime heads and district tables for 2001 to 2010 are listed in the README as not yet collected.
+- `test/delhi_ut_2001_2010.test.js` added to the test script.
+
 ## [2026-11-04] - Claude (Anthropic) - New logo and favicon
 
 - **Design:** an original mark from Delhi's street plan: Connaught Place's two rings with seven uneven radial roads and one marked point on the outer ring (the thing observed). Navy, amber, ivory and rust, the site's own colours. Replaces the old amber house icon and the placeholder white square in the header.
