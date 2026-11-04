@@ -53,17 +53,7 @@ function build() {
   const early = read('data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json').rows;
   const ut = early.map(r => ({ year: r.year, total_ipc_bns: r.incidence })).concat(utRows());
   const years = ut.map(r => Number(r.year));
-  // 2001 to 2010 are outside data/continuity.json (2011 to 2024): only the Delhi total of IPC cases is held, and the 2010 to 2011 step crosses to a different NCRB table.
-  const EARLY_LAST = 2010;
-  const earlyPair = (key, y) => key !== 'totalIPC'
-    ? { state: 'unavailable', reason: 'Only the Delhi total of IPC cases is held for 2001 to 2010; theft and crimes against women are blank, not zero.' }
-    : y === EARLY_LAST
-      ? { state: 'caution', reason: 'Up to 2010 the figure is the Delhi row of NCRB table 1.6 for that year (table 5 in 2001); from 2011 it is the NCRB summary table, with its own population estimate and counting rules. Read a step across 2010 and 2011 as indicative.' }
-      : { state: 'comparable', reason: null };
-  const pair = key => years.slice(0, -1).map((y, i) => {
-    if (y <= EARLY_LAST) return Object.assign({ from: y, to: years[i + 1] }, earlyPair(key, y));
-    const r = compareYears(c, key, y, years[i + 1], c.utSeries.scopeName); return { from: y, to: years[i + 1], state: r.state, reason: r.reasons[0] || null };
-  });
+  const pair = key => years.slice(0, -1).map((y, i) => { const r = compareYears(c, key, y, years[i + 1], c.utSeries.scopeName); return { from: y, to: years[i + 1], state: r.state, reason: r.reasons[0] || null }; });
   const crime = {
     years,
     series: {

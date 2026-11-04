@@ -25,6 +25,8 @@ function compareYears(c, key, from, to, district) {
     if (rd.cautionMeasures.indexOf(key) >= 0) add('caution', rd.cautionReason);
     return out;
   }
+  // Fail closed: a pair this file does not cover is never shown as comparable.
+  if (from < c.yearRange[0] || to > c.yearRange[1]) add('unavailable', c.outOfRangeReason);
   var utScope = district === c.utSeries.scopeName;
   if (utScope) {
     [from, to].forEach(function (y) {
@@ -36,6 +38,7 @@ function compareYears(c, key, from, to, district) {
   // 1. values that do not exist
   c.availability.forEach(function (a) {
     if (utScope && a.districtsOnly) return;
+    if (!utScope && a.utOnly) return;
     if (a.measures.indexOf(key) >= 0 && (inRange(from, a.years) || inRange(to, a.years))) add('unavailable', a.reason);
   });
   // 1b. a district that did not yet exist

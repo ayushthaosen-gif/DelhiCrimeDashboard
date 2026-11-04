@@ -147,5 +147,5 @@ test('comparability for the Delhi-wide series ignores district boundaries but no
   assert.equal(state('theft', 2022, 2023), 'comparable');
   assert.equal(state('theft', 2023, 2024), 'caution');
   assert.equal(state('totalSLL', 2012, 2013), 'unavailable');
-  assert.deepEqual(continuity.utSeries.printedYears, [...manifest.coverage.printedYears, ...manifest.coverage.totalsOnlyYears].sort((a, b) => a - b), 'continuity and the release must agree on which years have figures');
+  assert.deepEqual(continuity.utSeries.printedYears, [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, ...manifest.coverage.printedYears, ...manifest.coverage.totalsOnlyYears].sort((a, b) => a - b), 'continuity and the release must agree on which years have figures');
 });

@@ -1199,6 +1199,24 @@
         "totalSLL"
       ],
       "between": [
+        2010,
+        2011
+      ],
+      "state": "caution",
+      "reason": "2001 to 2010 are read from the Delhi (UT) and district tables of each year's Crime in India edition (the formats of their time, with NCRB's own population estimates, and a different burglary head). 2011 onward comes from NCRB's summary tables. The two are not tied to each other, so read a step across 2010 and 2011 as indicative.",
+      "evidence": "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+    },
+    {
+      "applies_to": "Crime: definitions and sources",
+      "measures": [
+        "theft",
+        "robbery",
+        "burglary",
+        "totalIPC",
+        "crimeAgainstWomen",
+        "totalSLL"
+      ],
+      "between": [
         2013,
         2014
       ],
@@ -1336,6 +1354,26 @@
       "state": "caution",
       "reason": "The Bharatiya Nyaya Sanhita replaced the Indian Penal Code on 1 July 2024, so the 2024 tables use BNS numbering and offence groupings follow the source table. The hurt head is named \"Hurt\" in the 2023 table and \"Hurt or Grievous Hurt\" in the 2024 table, so it is not like-for-like. Press reports give a national fall in hurt cases of 30.58% and attribute it to the change, but the mechanism is not confirmed (simple hurt was already non-cognisable under IPC section 323). In Delhi the hurt head fell from 6,045 to 2,028, about 8% of the Delhi-wide fall; theft accounts for most of it (data/derived/bns_hurt_2023_2024.json).",
       "evidence": "data/releases/2024/manifest.json"
+    },
+    {
+      "applies_to": "Crime by district",
+      "between": [
+        2006,
+        2007
+      ],
+      "state": "not_comparable",
+      "reason": "The Outer district was added on 5 September 2007 (MHA Annual Report 2008-09, para 6.14). NCRB restated the year on the new layout: North West was printed as 11,146 cases in 2006 and 5,189 in 2007 with Outer at 5,690. Which stations moved is not documented, so every older district is treated as affected. Affected: Central, East, New Delhi, North, North-East, North-West, South, South-West, West. New: Outer.",
+      "evidence": "data/staged/police_geography_history/structure_evidence_2007_2010.json"
+    },
+    {
+      "applies_to": "Crime by district",
+      "between": [
+        2007,
+        2008
+      ],
+      "state": "not_comparable",
+      "reason": "The South-East district was added on 1 October 2008 (MHA Annual Report 2008-09, para 6.14). Which stations moved is not documented, so every other district is treated as affected. Affected: Central, East, New Delhi, North, North-East, North-West, Outer, South, South-West, West. New: South-East.",
+      "evidence": "data/staged/police_geography_history/structure_evidence_2007_2010.json"
     },
     {
       "applies_to": "Crime by district",
