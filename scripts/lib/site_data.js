@@ -98,6 +98,19 @@ function buildSite(continuity) {
   const trends = trendsFile.trends.map(r => ({ year: r.year, crashes: r.crashes, fatalCrashes: r.fatalCrashes, killed: r.fatalities }));
   // 2008 to 2010: Delhi Traffic Police statistics page (archived capture), the same page that prints 2011 to 2013; kept apart from the 2011 to 2024 series.
   const trendsEarlier = read('data/staged/delhi_ut_total_2001_2010/road_citywide_2008_2010.json').rows.map(r => ({ year: r.year, crashes: r.total, fatalCrashes: r.fatal, killed: r.persons_killed }));
+  // NCRB ADSI tables 1A.2, 1A.6, 1A.7 and 1A.11, Delhi (UT) row, 2014 to 2022 (data/staged/ncrb_adsi_delhi_road/)
+  const ncrbFile = read('data/staged/ncrb_adsi_delhi_road/delhi_ut_road_time_class_place_2014_2022.json');
+  const ncrbRoad = {};
+  Object.keys(ncrbFile.years).forEach(y => {
+    const r = ncrbFile.years[y], pl = r.placeOfDeath, rc = r.roadClassification;
+    ncrbRoad[y] = {
+      cases: r.roadAccidents.cases, injured: r.roadAccidents.injured, died: r.roadAccidents.died,
+      timeBands: r.timeOfDay.bands, timeAccidents: r.timeOfDay.accidents,
+      roadClass: { nh: rc.national_highway, sh: rc.state_highway, exp: rc.expressway, other: rc.other_roads },
+      place: Object.keys(pl).reduce((o, k) => { o[k] = pl[k].total; return o; }, {}),
+      sources: { time: r.sources['1A.6'].url, road: r.sources['1A.7'].url, place: r.sources['1A.11'].url }
+    };
+  });
   const victims = {};
   trendsFile.victims.forEach(v => {
     victims[v.year] = {
@@ -141,7 +154,7 @@ function buildSite(continuity) {
     measure: r.measure, year: r.reference_year, value: r.value, kind: r.value_kind, reportYear: r.report_year, pdfPage: r.source_pdf_page, printedPage: r.source_printed_page,
     url: r.source_url, sha256: r.source_sha256, review: r.review_status, note: r.note
   }));
-  return { trends, trendsEarlier, victims, victimsEarly, victimsEarlier, enforcement, enforcementHistory, series, updated: status.updated };
+  return { trends, trendsEarlier, ncrbRoad, victims, victimsEarly, victimsEarlier, enforcement, enforcementHistory, series, updated: status.updated };
 }
 
 function buildRoads() {
