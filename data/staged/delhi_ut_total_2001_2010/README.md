@@ -1,6 +1,6 @@
 # Delhi crime and road data, 2001 to 2010 (staged)
 
-**Staged: not in the coverage matrix and not on the site, except the 2004 to 2010 deaths-by-mode table on the Road safety page.** All crime figures are from the NCRB *Crime in India* tables of each year; units are the ones NCRB printed that year and are not allocated to today's districts.
+**Shown on the site in two places only:** the district counts (murder, rape, kidnapping and, from 2002, theft, robbery, burglary and total IPC, by each year's own units) on the [Historical crime page](../../../historical_crime.html), built into [counts_2001_2010.json](../../historical_reporting/counts_2001_2010.json), and the 2004 to 2010 deaths-by-mode table on the Road safety page. Not in the coverage matrix or the Explore map. All crime figures are from the NCRB *Crime in India* tables of each year; units are the ones NCRB printed that year and are not allocated to today's districts.
 
 | File | What it holds |
 |---|---|

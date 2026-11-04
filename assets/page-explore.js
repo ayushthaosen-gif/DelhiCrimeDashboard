@@ -24,10 +24,10 @@
       { k: 'crashProneZones', label: 'Crash-prone zones', zone: true, note: 'Locations on the Traffic Police crash-prone zone (blackspot) list for that year in the report.', unit: 'crash-prone zones' }
     ]
   };
-  // 2019 onward is the current 15 districts. 2011 to 2018 (when HX is loaded) use the districts that existed then, as printed.
+  // 2019 onward is the current 15 districts. 2002 to 2018 (when HX is loaded) use the districts that existed then, as printed.
   var HX = window.DSO_HISTORY || null;
   var MYEARS = { crime: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024], road: [2022, 2023, 2024] };
-  var YEARS = { crime: HX ? [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024] : MYEARS.crime, road: MYEARS.road };
+  var YEARS = { crime: HX ? [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024] : MYEARS.crime, road: MYEARS.road };
   var HKEYS = { theft: ['theft'], robbery: ['robbery'], burglary: ['burglary', 'criminal_trespass_burglary_revised_definition', 'burglary_old_definition'], totalIPC: ['total_ipc'], crimeAgainstWomen: ['total_crimes_against_women'], totalSLL: ['total_sll'] };
   var HHEAD = { burglary_old_definition: 'Burglary, the head used up to 2013', criminal_trespass_burglary_revised_definition: 'Criminal trespass and burglary, the head revised in 2014', burglary: 'Burglary, the later definition' };
   var UNSURVEYED = ['Dwarka', 'North-East', 'North-West', 'Outer', 'Outer North', 'Rohini'];
@@ -136,7 +136,7 @@
       h('div', { class: 'group' }, h('span', { class: 'label' }, 'Year'), years,
         D.tip('About comparing years', 'Crossed-out years have no figure for this measure. A change is only shown when the year before used the same definition and districts. Rohini, Shahdara and Dwarka were created in 2016–17; Outer North in 2019.')),
       h('div', { class: 'group' }, h('span', { class: 'label' }, 'Show as'), calc,
-        D.tip('About this calculation', isHist() ? 'Only counts are shown for 2011 to 2018. The area and population of the districts of those years are not held here, and rates would need both.' : 'Per 1 lakh residents divides by an approximate district population. Per km² divides by district area. Rates help compare districts of very different size, but daytime population (commuters, markets) is not counted.')),
+        D.tip('About this calculation', isHist() ? 'Only counts are shown for 2002 to 2018. The area and population of the districts of those years are not held here, and rates would need both.' : 'Per 1 lakh residents divides by an approximate district population. Per km² divides by district area. Rates help compare districts of very different size, but daytime population (commuters, markets) is not counted.')),
       h('div', { class: 'actions' }, copy, dl)));
   }
 
@@ -359,7 +359,7 @@
       })));
   }
 
-  // ---------- earlier districts, 2011 to 2018: counts as printed, drawn on the districts of that year ----------
+  // ---------- earlier districts, 2002 to 2018: counts as printed, drawn on the districts of that year ----------
   function hyr(y) { return HX ? HX.years.filter(function (r) { return r.year === y; })[0] : null; }
   function hget(values, mk) {
     var ks = HKEYS[mk] || [];
@@ -389,6 +389,7 @@
       'These are separate annual tables, so a change from one year to the next is not calculated here. Districts, definitions and the NCRB format changed between years.'
     ];
     if (r.year >= 2014 && r.year <= 2015) items.push('Burglary is the head revised in 2014 (criminal trespass and burglary), not the earlier burglary head.');
+    if (r.year <= 2010) items.push('NCRB used its own format and burglary head in ' + r.year + ', so compare with 2011 onward only after reading the definitions. Murder, rape and kidnapping for these years are in the historical table.' + (r.year <= 2007 ? ' The map for ' + r.year + ' is weaker than for later years: see About.' : ''));
     if (r.year === 2013) items.push('NCRB changed its format in 2014, so 2013 and 2014 are not comparable.');
     var keys = [['theft', 'theft'], ['robbery', 'robbery'], ['burglary', 'burglary'], ['totalIPC', 'all IPC'], ['crimeAgainstWomen', 'crimes against women'], ['totalSLL', 'special and local laws']];
     var missing = keys.filter(function (k) { return !availH(k[0], r.year); }).map(function (k) { return k[1]; });

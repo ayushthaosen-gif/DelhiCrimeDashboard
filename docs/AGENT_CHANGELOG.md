@@ -1,3 +1,9 @@
+## [2026-11-04] - Claude (Anthropic) - 2001 to 2010 crime on the Historical crime page
+
+- `historical_crime.html` now offers 2001 to 2018. The 2001 to 2010 years come from the staged NCRB tables via `data/historical_reporting/counts_2001_2010.json` (new; the 2011 to 2018 file and the Explore history view are unchanged). Each year shows its own reporting units, territorial districts apart from specialised units, the Delhi UT total as printed, and no map (`boundary_unverified`).
+- Measures: murder, rape, kidnapping and abduction, plus theft, robbery, burglary and total IPC from 2002. 2001 has only the first ten offence columns, so per-unit totals are unavailable (null, not zero).
+- Nav labels now read 2001 to 2018. Manifest gains `earlierCounts`. Tests added to `test/delhi_ut_2001_2010.test.js` (318 pass).
+
 ## [2026-11-04] - Claude (Anthropic) - Delhi crime and road data 2001 to 2010 (staged), 2004 to 2010 deaths by mode on the Road safety page
 
 - `data/staged/delhi_ut_total_2001_2010/`: Delhi UT and Delhi (City) total IPC crime; district-wise IPC crime by 30 offence heads with each year's own reporting units (nine territorial districts to 2006, Outer from 2007, South-East from 2008); Delhi UT crime heads; units by year; citywide road counts 2008 to 2010 (archived Traffic Police page). No allocation to today's districts, as for 2011 to 2015.
@@ -1517,3 +1523,27 @@ Prior to the divergence, Claude's contributions (now absorbed by Antigravity's r
 - Findings: the 2015 crimes-against-women figure is 17,104 in the original-year table but 17,222 in the later IPC+SLL table (caution for 2015 to 2016); NCRB prints Delhi burglary of 2,637 for 2021 and 6,189 for 2022 under the same heading (caution, cause unknown).
 - Provenance: `data/raw/ncrb_wayback/` (xlsx tables, PDF table-page excerpts, hashes, captures). The live ncrb.gov.in certificate fails the Windows revocation check, so nothing was fetched from it; files came from Internet Archive captures. The 2018 edition could not be downloaded in full and was not used.
 - `data/continuity.json`: Delhi-wide comparisons now have figures for every year; heads unavailable 2016-2020; district-only breaks (2016 extract, 2021/2022 source change) no longer apply to Delhi-wide totals.
+
+## [2026-11-04] - Claude - Explore: 2008 to 2010 added to the earlier-districts view
+
+- Explore now offers 2008 to 2024 for crime. 2008 to 2010 come from `data/historical_reporting/counts_2001_2010.json` (NCRB Table 1.14 as printed, the same 11 district names as 2011 to 2015) and are drawn on the 2014 reference shapes, labelled inferred. No roster for those years was found, and a 2009 reorganisation of sub-divisions and stations is reported but not confirmed, so the label says stations may have moved. The Delhi total for each year is the printed Delhi UT figure (2008: theft 18,867, 2010: all IPC 51,292).
+- 2001 to 2007 print 9 or 10 districts, so the 2014 shapes do not fit and they stay off the map. Still on the Historical crime page.
+- Code: `scripts/lib/history_data.js` (`EARLY_MAP_YEARS`), `inferredEarly` wording in `scripts/lib/historical_map_shapes.js`, year list and limit notes in `assets/page-explore.js`, geography card and header in `scripts/build_site.js`; `test/explore_history.test.js` covers 2008 to 2018.
+
+## [2026-11-04] - Claude - Explore: 2002 to 2007 added, on 2014 shapes merged back to nine and ten districts
+
+- NCRB prints nine districts for 2002 to 2006 and ten for 2007 (Outer first appears 2007, South-East 2008). `scripts/lib/historical_map_shapes.js` now builds two more display maps from the 2014 reference shapes: `2001` (nine: Outer merged into North-West, South-East into South) and `2007` (ten: South-East merged into South). The merge follows the 2001 Census map of Delhi's nine districts, which shows North-West reaching Narela and South reaching the Yamuna. Those are revenue districts, not police districts, so these maps carry a stronger caveat than 2008 to 2016 and the page says so.
+- Explore offers 2001 to 2024. 2001 is listed but disabled: NCRB's 2001 district table has no theft, robbery, burglary or total by district, so no Explore measure exists for it. It stays on the Historical crime page.
+- Tests in `test/explore_history.test.js` cover 9, 10 and 11 districts by year, the map key per year, and Outer and South-East appearing only from 2007 and 2008.
+
+## [2026-11-04] - Claude - Police district dates found (MHA 2008-09, PIB 2009)
+
+- `data/staged/police_geography_history/structure_evidence_2007_2010.json`: the MHA Annual Report 2008-09, paragraph 6.14, gives the history of Delhi's police districts: three in 1951, six in 1978, nine in 1988, Outer added 5 September 2007 and South-East 1 October 2008, 11 in all. The PIB year-end review of 24 December 2009 says 22 new police stations and 9 sub-divisions were notified in 2009. Read from the satp.org mirror of the MHA chapter (the mha.gov.in file returns 404/403 here); SHA-256 recorded.
+- The 2002 to 2010 map labels on Explore now cite these dates in place of 'reported but not confirmed'. The shapes are unchanged: still the 2014 shapes (merged back for 2002 to 2007), still labelled inferred.
+- Not found: notification numbers, the stations or parent districts of Outer and South-East, or any station roster before 2014. A candidate roster (Rajya Sabha unstarred question 2100, 22 December 2004, with station rows under the nine districts) was suggested by another assistant but its file could not be opened from here (rsdebate.nic.in now redirects to sansad.in), so it is not used.
+
+## [2026-11-04] - Claude - 2002 to 2007 maps rebuilt from the 2004 station list
+
+- The owner supplied the Rajya Sabha debates of 22 December 2004 (`F22.12.2004.pdf`, not committed). Unstarred question 2100 prints 116 police stations under the nine police districts of 2004. `data/staged/police_geography_history/roster_2004.json` holds those names (the case counts in the text layer are misaligned and are not used), with the file's SHA-256 and the spelling aliases to the 2014 archive. 112 of the 116 match a 2014 station polygon; Dilshad Garden, Chandni Chowk, Saraswati Vihar and Sri Niwas Puri have none.
+- `scripts/lib/historical_map_shapes.js` now builds the `2001` (nine districts, used for 2002 to 2006) and `2007` (ten, Outer drawn from the 2014 Outer stations) maps by grouping station polygons with that list. The 49 stations opened since 2004 take the district of the nearest listed station within their own 2014 district. This replaces the earlier merge of the 2014 district shapes. The result closely resembles the 2001 Census map of the nine districts, which is a revenue-district map and was used only as a visual check.
+- Still inferred: the 2004 list is applied to 2002 to 2006 unchecked, and which stations Outer took in 2007 is not documented. 2008 to 2010 still use the 2014 district shapes, although the 2004 list shows Vasant Vihar, R.K. Puram, Sarojini Nagar and Vasant Kunj as South-West before 2008 and South in 2014.

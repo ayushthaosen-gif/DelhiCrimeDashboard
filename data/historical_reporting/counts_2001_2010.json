@@ -1,0 +1,3684 @@
+{
+  "schemaVersion": "1.0.0",
+  "years": [
+    {
+      "year": 2001,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 29,
+            "rape": 28,
+            "kidnapping": 62
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 56,
+            "rape": 24,
+            "kidnapping": 163
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 11,
+            "rape": 1,
+            "kidnapping": 7
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 2,
+            "rape": 0,
+            "kidnapping": 4
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 11,
+            "rape": 9,
+            "kidnapping": 27
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 28,
+            "rape": 28,
+            "kidnapping": 99
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 62,
+            "rape": 36,
+            "kidnapping": 157
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 134,
+            "rape": 103,
+            "kidnapping": 518
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 83,
+            "rape": 65,
+            "kidnapping": 265
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 61,
+            "rape": 42,
+            "kidnapping": 174
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 8 2001"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": null,
+            "robbery": null,
+            "burglary_old_definition": null,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": null,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 70,
+            "rape": 45,
+            "kidnapping": 151
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 8 2001"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 9,
+      "citywide": {
+        "values": {
+          "theft": null,
+          "robbery": null,
+          "burglary_old_definition": null,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 54384,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 547,
+          "rape": 381,
+          "kidnapping": 1627
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 5). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Only the first ten offence columns (murder to dacoity) are in the table NCRB serves for 2001, so theft, robbery, burglary and the total by unit are unavailable. The Delhi UT total comes from NCRB Table 5.",
+        "Original NCRB reporting units for 2001, as printed (Table 8): 9 territorial districts and 3 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 49,343 registered cases in 2001. It is a different geography from the Delhi UT total shown here."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2002,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1356,
+            "robbery": 39,
+            "burglary_old_definition": 143,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3578,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 23,
+            "rape": 22,
+            "kidnapping": 71
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": 1280,
+            "robbery": 12,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1407,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 2,
+            "rape": 0,
+            "kidnapping": 3
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 1440,
+            "robbery": 37,
+            "burglary_old_definition": 210,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3881,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 50,
+            "rape": 10,
+            "kidnapping": 141
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 52,
+            "robbery": 2,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 724,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 4,
+            "rape": 0,
+            "kidnapping": 1
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 1149,
+            "robbery": 20,
+            "burglary_old_definition": 54,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2406,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 6,
+            "rape": 8,
+            "kidnapping": 20
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 1183,
+            "robbery": 43,
+            "burglary_old_definition": 131,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3681,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 40,
+            "rape": 27,
+            "kidnapping": 84
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 878,
+            "robbery": 65,
+            "burglary_old_definition": 139,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2957,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 66,
+            "rape": 39,
+            "kidnapping": 156
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 2290,
+            "robbery": 112,
+            "burglary_old_definition": 487,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 9191,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 135,
+            "rape": 120,
+            "kidnapping": 430
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 3541,
+            "robbery": 74,
+            "burglary_old_definition": 518,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 9306,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 80,
+            "rape": 65,
+            "kidnapping": 163
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1531,
+            "robbery": 48,
+            "burglary_old_definition": 364,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4814,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 52,
+            "rape": 68,
+            "kidnapping": 126
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "Spl Cell",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 44,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SPL CELL · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 0,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 1.14 2002"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 1925,
+            "robbery": 50,
+            "burglary_old_definition": 313,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 7148,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 73,
+            "rape": 44,
+            "kidnapping": 128
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2002"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 9,
+      "citywide": {
+        "values": {
+          "theft": 16625,
+          "robbery": 502,
+          "burglary_old_definition": 2360,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 49137,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 531,
+          "rape": 403,
+          "kidnapping": 1323
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2002, as printed (Table 1.14): 9 territorial districts and 4 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 44,158 registered cases in 2002. It is a different geography from the Delhi UT total shown here."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2003,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1187,
+            "robbery": 14,
+            "burglary_old_definition": 102,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2998,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 29,
+            "rape": 20,
+            "kidnapping": 63
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 1757,
+            "robbery": 39,
+            "burglary_old_definition": 179,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4331,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 44,
+            "rape": 37,
+            "kidnapping": 158
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": 1015,
+            "robbery": 14,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1168,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 8,
+            "rape": 0,
+            "kidnapping": 6
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 74,
+            "robbery": 4,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 668,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 2,
+            "rape": 0,
+            "kidnapping": 2
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 863,
+            "robbery": 16,
+            "burglary_old_definition": 58,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2177,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 7,
+            "rape": 8,
+            "kidnapping": 24
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 923,
+            "robbery": 35,
+            "burglary_old_definition": 81,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3391,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 32,
+            "rape": 34,
+            "kidnapping": 63
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 796,
+            "robbery": 56,
+            "burglary_old_definition": 130,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3125,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 54,
+            "rape": 53,
+            "kidnapping": 182
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 2191,
+            "robbery": 93,
+            "burglary_old_definition": 390,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 8782,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 106,
+            "rape": 128,
+            "kidnapping": 301
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 3307,
+            "robbery": 57,
+            "burglary_old_definition": 375,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 8440,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 86,
+            "rape": 83,
+            "kidnapping": 134
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1396,
+            "robbery": 60,
+            "burglary_old_definition": 368,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5179,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 45,
+            "rape": 57,
+            "kidnapping": 118
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 68,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 1.14 2003"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 2035,
+            "robbery": 53,
+            "burglary_old_definition": 215,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 7077,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 72,
+            "rape": 70,
+            "kidnapping": 105
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2003"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 9,
+      "citywide": {
+        "values": {
+          "theft": 15544,
+          "robbery": 441,
+          "burglary_old_definition": 1898,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 47404,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 485,
+          "rape": 490,
+          "kidnapping": 1156
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2003, as printed (Table 1.14): 9 territorial districts and 3 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 41,961 registered cases in 2003. It is a different geography from the Delhi UT total shown here."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2004,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1324,
+            "robbery": 18,
+            "burglary_old_definition": 84,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3335,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 16,
+            "rape": 27,
+            "kidnapping": 57
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 2275,
+            "robbery": 52,
+            "burglary_old_definition": 137,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5528,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 52,
+            "rape": 62,
+            "kidnapping": 172
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": 1071,
+            "robbery": 6,
+            "burglary_old_definition": 4,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1235,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 6,
+            "rape": 5,
+            "kidnapping": 5
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 88,
+            "robbery": 6,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 683,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 1,
+            "rape": 1,
+            "kidnapping": 5
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 1166,
+            "robbery": 9,
+            "burglary_old_definition": 79,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2651,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 6,
+            "rape": 8,
+            "kidnapping": 20
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 1155,
+            "robbery": 30,
+            "burglary_old_definition": 99,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3418,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 25,
+            "rape": 23,
+            "kidnapping": 85
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 1033,
+            "robbery": 65,
+            "burglary_old_definition": 153,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3896,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 54,
+            "rape": 67,
+            "kidnapping": 157
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 2594,
+            "robbery": 120,
+            "burglary_old_definition": 443,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 9840,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 129,
+            "rape": 124,
+            "kidnapping": 285
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 4000,
+            "robbery": 54,
+            "burglary_old_definition": 274,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 9672,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 80,
+            "rape": 96,
+            "kidnapping": 216
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1774,
+            "robbery": 51,
+            "burglary_old_definition": 366,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5932,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 44,
+            "rape": 79,
+            "kidnapping": 97
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 2,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 90,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 1,
+            "rape": 1,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 1.14 2004"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 2512,
+            "robbery": 50,
+            "burglary_old_definition": 235,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 7343,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 67,
+            "rape": 58,
+            "kidnapping": 110
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2004"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 9,
+      "citywide": {
+        "values": {
+          "theft": 18994,
+          "robbery": 461,
+          "burglary_old_definition": 1875,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 53623,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 481,
+          "rape": 551,
+          "kidnapping": 1209
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2004, as printed (Table 1.14): 9 territorial districts and 3 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 48,677 registered cases in 2004. It is a different geography from the Delhi UT total shown here."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2005,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1192,
+            "robbery": 20,
+            "burglary_old_definition": 57,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3529,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 23,
+            "rape": 20,
+            "kidnapping": 52
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "DRP",
+          "territorial": false,
+          "values": {
+            "theft": 1053,
+            "robbery": 6,
+            "burglary_old_definition": 2,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1201,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 16,
+            "rape": 2,
+            "kidnapping": 4
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "DRP · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 2030,
+            "robbery": 58,
+            "burglary_old_definition": 187,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5453,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 31,
+            "rape": 59,
+            "kidnapping": 153
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 80,
+            "robbery": 2,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 816,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 1,
+            "rape": 1,
+            "kidnapping": 4
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 803,
+            "robbery": 13,
+            "burglary_old_definition": 42,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2295,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 10,
+            "rape": 6,
+            "kidnapping": 19
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 900,
+            "robbery": 34,
+            "burglary_old_definition": 86,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3306,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 24,
+            "rape": 22,
+            "kidnapping": 78
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 1266,
+            "robbery": 60,
+            "burglary_old_definition": 186,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4849,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 51,
+            "rape": 106,
+            "kidnapping": 212
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 2605,
+            "robbery": 124,
+            "burglary_old_definition": 543,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 11019,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 128,
+            "rape": 190,
+            "kidnapping": 572
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 4104,
+            "robbery": 93,
+            "burglary_old_definition": 287,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 10529,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 67,
+            "rape": 87,
+            "kidnapping": 231
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1551,
+            "robbery": 51,
+            "burglary_old_definition": 378,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5762,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 47,
+            "rape": 71,
+            "kidnapping": 114
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "Spl Cell",
+          "territorial": false,
+          "values": {
+            "theft": 1,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 89,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SPL CELL · NCRB Table 1.14 2005"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 2370,
+            "robbery": 49,
+            "burglary_old_definition": 325,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 7217,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 57,
+            "rape": 94,
+            "kidnapping": 151
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2005"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 9,
+      "citywide": {
+        "values": {
+          "theft": 17955,
+          "robbery": 510,
+          "burglary_old_definition": 2093,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 56065,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 455,
+          "rape": 658,
+          "kidnapping": 1590
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2005, as printed (Table 1.14): 9 territorial districts and 3 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 51,010 registered cases in 2005. It is a different geography from the Delhi UT total shown here.",
+        "Two specialised units are labelled DRP and Spl Cell as printed; the table does not expand them."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2006,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1036,
+            "robbery": 22,
+            "burglary_old_definition": 63,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3706,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 22,
+            "rape": 17,
+            "kidnapping": 73
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 2096,
+            "robbery": 66,
+            "burglary_old_definition": 168,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5573,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 39,
+            "rape": 61,
+            "kidnapping": 118
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": 945,
+            "robbery": 3,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1076,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 5,
+            "rape": 1,
+            "kidnapping": 11
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 160,
+            "robbery": 8,
+            "burglary_old_definition": 2,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 924,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 2,
+            "rape": 0,
+            "kidnapping": 8
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 754,
+            "robbery": 20,
+            "burglary_old_definition": 42,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2288,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 7,
+            "rape": 6,
+            "kidnapping": 26
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 701,
+            "robbery": 29,
+            "burglary_old_definition": 78,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3016,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 28,
+            "rape": 22,
+            "kidnapping": 41
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 1246,
+            "robbery": 82,
+            "burglary_old_definition": 173,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5389,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 61,
+            "rape": 93,
+            "kidnapping": 197
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 2690,
+            "robbery": 105,
+            "burglary_old_definition": 456,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 11146,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 128,
+            "rape": 169,
+            "kidnapping": 437
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 3820,
+            "robbery": 117,
+            "burglary_old_definition": 350,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 10854,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 66,
+            "rape": 87,
+            "kidnapping": 215
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1739,
+            "robbery": 48,
+            "burglary_old_definition": 345,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6584,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 52,
+            "rape": 79,
+            "kidnapping": 161
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 1,
+            "robbery": 2,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 39,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 1.14 2006"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 2310,
+            "robbery": 39,
+            "burglary_old_definition": 272,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 7368,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 66,
+            "rape": 88,
+            "kidnapping": 155
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2006"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 9,
+      "citywide": {
+        "values": {
+          "theft": 17498,
+          "robbery": 541,
+          "burglary_old_definition": 1950,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 57963,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 476,
+          "rape": 623,
+          "kidnapping": 1442
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2006, as printed (Table 1.14): 9 territorial districts and 3 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 53,007 registered cases in 2006. It is a different geography from the Delhi UT total shown here."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2007,
+      "units": [
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1069,
+            "robbery": 28,
+            "burglary_old_definition": 63,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3248,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 27,
+            "rape": 22,
+            "kidnapping": 70
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 2239,
+            "robbery": 102,
+            "burglary_old_definition": 196,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6016,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 34,
+            "rape": 73,
+            "kidnapping": 145
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": 795,
+            "robbery": 2,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 926,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 3,
+            "rape": 4,
+            "kidnapping": 12
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 144,
+            "robbery": 6,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 662,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 1,
+            "rape": 0,
+            "kidnapping": 3
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 698,
+            "robbery": 23,
+            "burglary_old_definition": 53,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2195,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 4,
+            "rape": 7,
+            "kidnapping": 12
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 747,
+            "robbery": 33,
+            "burglary_old_definition": 84,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3352,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 22,
+            "rape": 33,
+            "kidnapping": 64
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 1287,
+            "robbery": 55,
+            "burglary_old_definition": 206,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5121,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 66,
+            "rape": 89,
+            "kidnapping": 241
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 1841,
+            "robbery": 63,
+            "burglary_old_definition": 272,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5189,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 57,
+            "rape": 51,
+            "kidnapping": 208
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 1216,
+            "robbery": 85,
+            "burglary_old_definition": 231,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5690,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 102,
+            "rape": 121,
+            "kidnapping": 360
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "OUTER · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 3179,
+            "robbery": 75,
+            "burglary_old_definition": 412,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 10414,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 68,
+            "rape": 83,
+            "kidnapping": 256
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1802,
+            "robbery": 47,
+            "burglary_old_definition": 304,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6821,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 51,
+            "rape": 51,
+            "kidnapping": 148
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 40,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 1.14 2007"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 2020,
+            "robbery": 38,
+            "burglary_old_definition": 232,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6391,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 60,
+            "rape": 64,
+            "kidnapping": 169
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2007"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 10,
+      "citywide": {
+        "values": {
+          "theft": 17037,
+          "robbery": 557,
+          "burglary_old_definition": 2055,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 56065,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 495,
+          "rape": 598,
+          "kidnapping": 1688
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2007, as printed (Table 1.14): 10 territorial districts and 3 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 50,895 registered cases in 2007. It is a different geography from the Delhi UT total shown here.",
+        "Outer appears as a reporting district from 2007."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2008,
+      "units": [
+        {
+          "label": "CAW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 107,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CAW · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1392,
+            "robbery": 33,
+            "burglary_old_definition": 92,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3100,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 34,
+            "rape": 30,
+            "kidnapping": 84
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "Crime Branch",
+          "territorial": false,
+          "values": {
+            "theft": 1,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 30,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 1,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CRIME BRANCH · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 2471,
+            "robbery": 74,
+            "burglary_old_definition": 180,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5540,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 49,
+            "rape": 73,
+            "kidnapping": 191
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "EOW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 170,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EOW · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": 821,
+            "robbery": 2,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 951,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 6,
+            "rape": 0,
+            "kidnapping": 6
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 80,
+            "robbery": 3,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 530,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 1,
+            "rape": 0,
+            "kidnapping": 1
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 696,
+            "robbery": 14,
+            "burglary_old_definition": 46,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1859,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 9,
+            "rape": 3,
+            "kidnapping": 19
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 932,
+            "robbery": 56,
+            "burglary_old_definition": 75,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3113,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 25,
+            "rape": 20,
+            "kidnapping": 80
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 1518,
+            "robbery": 47,
+            "burglary_old_definition": 182,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4514,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 92,
+            "rape": 32,
+            "kidnapping": 210
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 1760,
+            "robbery": 85,
+            "burglary_old_definition": 250,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4204,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 54,
+            "rape": 59,
+            "kidnapping": 137
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 1871,
+            "robbery": 43,
+            "burglary_old_definition": 249,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5237,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 77,
+            "rape": 59,
+            "kidnapping": 355
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "OUTER · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 1958,
+            "robbery": 42,
+            "burglary_old_definition": 262,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4821,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 37,
+            "rape": 37,
+            "kidnapping": 70
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "South-East",
+          "territorial": true,
+          "values": {
+            "theft": 2162,
+            "robbery": 66,
+            "burglary_old_definition": 222,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5904,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 66,
+            "rape": 61,
+            "kidnapping": 182
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-EAST · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1113,
+            "robbery": 37,
+            "burglary_old_definition": 136,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3945,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 57,
+            "rape": 38,
+            "kidnapping": 87
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 39,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 1.14 2008"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 2092,
+            "robbery": 39,
+            "burglary_old_definition": 231,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5286,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 46,
+            "rape": 54,
+            "kidnapping": 145
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2008"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": 18867,
+          "robbery": 541,
+          "burglary_old_definition": 1926,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 49350,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 554,
+          "rape": 466,
+          "kidnapping": 1567
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2008, as printed (Table 1.14): 11 territorial districts and 6 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 44,573 registered cases in 2008. It is a different geography from the Delhi UT total shown here.",
+        "South-East appears as a reporting district from 2008."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2009,
+      "units": [
+        {
+          "label": "CAW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 194,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CAW · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1375,
+            "robbery": 33,
+            "burglary_old_definition": 107,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2833,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 28,
+            "rape": 28,
+            "kidnapping": 93
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "Crime Branch",
+          "territorial": false,
+          "values": {
+            "theft": 4,
+            "robbery": 1,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 91,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 1,
+            "rape": 2,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CRIME BRANCH · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 3015,
+            "robbery": 52,
+            "burglary_old_definition": 196,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6379,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 56,
+            "rape": 52,
+            "kidnapping": 299
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "EOW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 190,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EOW · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": 725,
+            "robbery": 10,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 864,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 9,
+            "rape": 4,
+            "kidnapping": 11
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 66,
+            "robbery": 1,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 569,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 1,
+            "rape": 0,
+            "kidnapping": 2
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 581,
+            "robbery": 14,
+            "burglary_old_definition": 45,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1492,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 5,
+            "rape": 6,
+            "kidnapping": 46
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 1107,
+            "robbery": 24,
+            "burglary_old_definition": 77,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2908,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 44,
+            "rape": 19,
+            "kidnapping": 140
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 2086,
+            "robbery": 53,
+            "burglary_old_definition": 117,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4720,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 74,
+            "rape": 47,
+            "kidnapping": 375
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 2159,
+            "robbery": 118,
+            "burglary_old_definition": 233,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4676,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 56,
+            "rape": 54,
+            "kidnapping": 218
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 1974,
+            "robbery": 21,
+            "burglary_old_definition": 217,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 4969,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 74,
+            "rape": 41,
+            "kidnapping": 332
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "OUTER · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 2506,
+            "robbery": 36,
+            "burglary_old_definition": 241,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5353,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 42,
+            "rape": 42,
+            "kidnapping": 133
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "South-East",
+          "territorial": true,
+          "values": {
+            "theft": 2641,
+            "robbery": 62,
+            "burglary_old_definition": 174,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6267,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 48,
+            "rape": 59,
+            "kidnapping": 318
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-EAST · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1341,
+            "robbery": 44,
+            "burglary_old_definition": 133,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3610,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 65,
+            "rape": 52,
+            "kidnapping": 241
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 25,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 1.14 2009"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 2151,
+            "robbery": 46,
+            "burglary_old_definition": 192,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5111,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 49,
+            "rape": 63,
+            "kidnapping": 328
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2009"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": 21731,
+          "robbery": 515,
+          "burglary_old_definition": 1733,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 50251,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 552,
+          "rape": 469,
+          "kidnapping": 2536
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2009, as printed (Table 1.14): 11 territorial districts and 6 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 45,247 registered cases in 2009. It is a different geography from the Delhi UT total shown here."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    },
+    {
+      "year": 2010,
+      "units": [
+        {
+          "label": "CAW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 187,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CAW · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "Central",
+          "territorial": true,
+          "values": {
+            "theft": 1350,
+            "robbery": 35,
+            "burglary_old_definition": 65,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2828,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 25,
+            "rape": 20,
+            "kidnapping": 126
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CENTRAL · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "Crime Branch",
+          "territorial": false,
+          "values": {
+            "theft": 8,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 61,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 1
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "CRIME BRANCH · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "East",
+          "territorial": true,
+          "values": {
+            "theft": 3443,
+            "robbery": 81,
+            "burglary_old_definition": 204,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 6723,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 57,
+            "rape": 47,
+            "kidnapping": 357
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EAST · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "EOW",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 150,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 0
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "EOW · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "GRP(Rly)",
+          "territorial": false,
+          "values": {
+            "theft": 647,
+            "robbery": 9,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 816,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 12,
+            "rape": 2,
+            "kidnapping": 23
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "GRP(RLY) · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "IGI Airport",
+          "territorial": false,
+          "values": {
+            "theft": 85,
+            "robbery": 0,
+            "burglary_old_definition": 1,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 703,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 13
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "IGI AIRPORT · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "New Delhi",
+          "territorial": true,
+          "values": {
+            "theft": 579,
+            "robbery": 19,
+            "burglary_old_definition": 33,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 1452,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 6,
+            "rape": 16,
+            "kidnapping": 29
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NEW DELHI · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "North",
+          "territorial": true,
+          "values": {
+            "theft": 1166,
+            "robbery": 24,
+            "burglary_old_definition": 75,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 2889,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 30,
+            "rape": 7,
+            "kidnapping": 161
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "North-East",
+          "territorial": true,
+          "values": {
+            "theft": 2544,
+            "robbery": 57,
+            "burglary_old_definition": 81,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5062,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 68,
+            "rape": 51,
+            "kidnapping": 458
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-EAST · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "North-West",
+          "territorial": true,
+          "values": {
+            "theft": 2411,
+            "robbery": 178,
+            "burglary_old_definition": 225,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5016,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 60,
+            "rape": 50,
+            "kidnapping": 260
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "NORTH-WEST · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "Outer",
+          "territorial": true,
+          "values": {
+            "theft": 2129,
+            "robbery": 39,
+            "burglary_old_definition": 234,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5495,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 98,
+            "rape": 49,
+            "kidnapping": 457
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "OUTER · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "South",
+          "territorial": true,
+          "values": {
+            "theft": 2454,
+            "robbery": 47,
+            "burglary_old_definition": 203,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5308,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 35,
+            "rape": 59,
+            "kidnapping": 240
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "South-East",
+          "territorial": true,
+          "values": {
+            "theft": 2345,
+            "robbery": 32,
+            "burglary_old_definition": 142,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5606,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 48,
+            "rape": 80,
+            "kidnapping": 369
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-EAST · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "South-West",
+          "territorial": true,
+          "values": {
+            "theft": 1339,
+            "robbery": 30,
+            "burglary_old_definition": 83,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 3503,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 63,
+            "rape": 54,
+            "kidnapping": 363
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "SOUTH-WEST · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "STF",
+          "territorial": false,
+          "values": {
+            "theft": 0,
+            "robbery": 0,
+            "burglary_old_definition": 0,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 18,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 0,
+            "rape": 0,
+            "kidnapping": 1
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "STF · NCRB Table 1.14 2010"
+            }
+          ]
+        },
+        {
+          "label": "West",
+          "territorial": true,
+          "values": {
+            "theft": 2588,
+            "robbery": 48,
+            "burglary_old_definition": 156,
+            "criminal_trespass_burglary_revised_definition": null,
+            "burglary": null,
+            "total_ipc": 5475,
+            "total_sll": null,
+            "total_crimes_against_women": null,
+            "total_crimes_in_which_women_was_victim": null,
+            "murder": 63,
+            "rape": 72,
+            "kidnapping": 350
+          },
+          "evidence": [
+            {
+              "path": "data/staged/delhi_ut_total_2001_2010/delhi_district_ipc_2001_2010.json",
+              "sourceLabel": "WEST · NCRB Table 1.14 2010"
+            }
+          ]
+        }
+      ],
+      "territorialCount": 11,
+      "citywide": {
+        "values": {
+          "theft": 23088,
+          "robbery": 599,
+          "burglary_old_definition": 1502,
+          "criminal_trespass_burglary_revised_definition": null,
+          "burglary": null,
+          "total_ipc": 51292,
+          "total_sll": null,
+          "total_crimes_against_women": null,
+          "total_crimes_in_which_women_was_victim": null,
+          "murder": 565,
+          "rape": 507,
+          "kidnapping": 3208
+        },
+        "scope": "Delhi UT total as NCRB printed it (the TOTAL row of the district table; total IPC equals the Delhi UT row of NCRB Table 1.6). Not a sum of the territorial rows shown.",
+        "evidence": [
+          "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+        ]
+      },
+      "notes": [
+        "Original NCRB reporting units for 2010, as printed (Table 1.14): 11 territorial districts and 6 specialised units (railway police, airport, special and investigating units). Specialised units are in the Delhi total but are not districts.",
+        "Offence heads, counting rules and population estimates are those of NCRB's format of the time. Compare with 2011 onward only after reading the definitions; no cross-year trend is calculated here.",
+        "Delhi (City), NCRB's separate mega-city series, recorded 45,994 registered cases in 2010. It is a different geography from the Delhi UT total shown here."
+      ],
+      "sourceLabel": "NCRB original-year district table, as printed",
+      "map": {
+        "status": "boundary_unverified",
+        "referenceYear": null,
+        "path": null
+      },
+      "comparability": "Separate annual reporting units. No cross-year district trend, growth rate or geographic allocation is inferred."
+    }
+  ],
+  "policy": {
+    "countsOnly": true,
+    "currentDistrictAllocation": false,
+    "currentInfrastructureJoin": false,
+    "annualBoundariesVerified": false,
+    "nullMeans": "Unavailable from the selected source or definition incompatible; never zero."
+  }
+}
