@@ -57,7 +57,10 @@ function build() {
   headLines.slice(1).forEach(line => { const v = line.split(','); heads[v[0]] = v; });
   const theft2001 = read('data/staged/delhi_ut_total_2001_2010/delhi_ut_crime_heads_2001_table6.json').heads.theft_total.incidence;
   const earlyTheft = y => (y === 2001 ? theft2001 : numOrNull(heads[y][headCols.indexOf('theft_total')]));
-  const ut = early.map(r => ({ year: r.year, total_ipc_bns: r.incidence, theft: earlyTheft(r.year) })).concat(utRows());
+  const head2001 = read('data/staged/delhi_ut_total_2001_2010/delhi_ut_crime_heads_2001_table6.json').heads;
+  const earlyHead = (y, col, k2001) => (y === 2001 ? head2001[k2001].incidence : numOrNull(heads[y][headCols.indexOf(col)]));
+  const ut = early.map(r => ({ year: r.year, total_ipc_bns: r.incidence, theft: earlyTheft(r.year), robbery: earlyHead(r.year, 'robbery', 'robbery'), burglary: earlyHead(r.year, 'burglary', 'burglary') }))
+    .concat(utRows().map(r => Object.assign({}, r, { burglary: [r.burglary_old_head, r.criminal_trespass_burglary_revised_head, r.burglary].find(v => v !== '' && v != null) })));
   const years = ut.map(r => Number(r.year));
   const pair = key => years.slice(0, -1).map((y, i) => { const r = compareYears(c, key, y, years[i + 1], c.utSeries.scopeName); return { from: y, to: years[i + 1], state: r.state, reason: r.reasons[0] || null }; });
   const crime = {
@@ -65,6 +68,8 @@ function build() {
     series: {
       totalIPC: { label: 'All registered IPC/BNS cases', values: ut.map(r => numOrNull(r.total_ipc_bns)), pairs: pair('totalIPC') },
       theft: { label: 'Theft', values: ut.map(r => numOrNull(r.theft)), pairs: pair('theft') },
+      robbery: { label: 'Robbery', values: ut.map(r => numOrNull(r.robbery)), pairs: pair('robbery') },
+      burglary: { label: 'Burglary (with criminal trespass from 2014)', values: ut.map(r => numOrNull(r.burglary)), pairs: pair('burglary') },
       crimeAgainstWomen: { label: 'Crimes against women', values: ut.map(r => numOrNull(r.total_crimes_against_women)), pairs: pair('crimeAgainstWomen') }
     }
   };

@@ -126,7 +126,7 @@
     }));
     var years = h('div', { class: 'years', role: 'group', 'aria-label': 'Year' }, YEARS[st.topic].map(function (y) {
       var ok = avail(metric.k, y);
-      return h('button', { type: 'button', 'aria-pressed': String(y === st.year), disabled: !ok, title: ok ? String(y) : 'No figure for ' + y, 'data-key': 'year-' + y, onclick: function () { set({ year: y }); } }, y);
+      return h('button', { type: 'button', 'aria-pressed': String(y === st.year), disabled: !ok, title: ok ? String(y) : (y === 2001 ? 'No district figure for 2001: the 2001 district table holds only murder, rape and kidnapping. See the Historical crime page.' : 'No figure for ' + y), 'data-key': 'year-' + y, onclick: function () { set({ year: y }); } }, y);
     }));
     var calc = isHist() ? seg([['count', 'Count']], 'count', function () { }, { label: 'Show as', key: 'calc' }) : seg(CALCS, st.calc, function (c) { set({ calc: c }); }, { label: 'Show as', key: 'calc' });
     var copy = h('button', { type: 'button', class: 'btn', 'data-key': 'copy', onclick: function (e) { D.copy(location.href.split('#')[0] + hashNow(), e.currentTarget, 'Link copied', 'Copy link to view'); } }, 'Copy link to view');
@@ -134,7 +134,7 @@
     D.clear(root.toolbar).appendChild(h('div', { class: 'row' }, topics, chips));
     root.toolbar.appendChild(h('div', { class: 'row two' },
       h('div', { class: 'group' }, h('span', { class: 'label' }, 'Year'), years,
-        D.tip('About comparing years', 'Crossed-out years have no figure for this measure. A change is only shown when the year before used the same definition and districts. Rohini, Shahdara and Dwarka were created in 2016–17; Outer North in 2019.')),
+        D.tip('About comparing years', 'Crossed-out years have no figure for this measure. A change is only shown when the year before used the same definition and districts. Rohini, Shahdara and Dwarka were created in 2016–17; Outer North in 2019.' + (HX ? ' 2001 is crossed out for every measure here: the 2001 district table holds only murder, rape and kidnapping (they are on the Historical crime page), and the Delhi-wide 2001 figures are on Trends and patterns.' : ''))),
       h('div', { class: 'group' }, h('span', { class: 'label' }, 'Show as'), calc,
         D.tip('About this calculation', isHist() ? 'Only counts are shown for 2002 to 2018. The area and population of the districts of those years are not held here, and rates would need both.' : 'Per 1 lakh residents divides by an approximate district population. Per km² divides by district area. Rates help compare districts of very different size, but daytime population (commuters, markets) is not counted.')),
       h('div', { class: 'actions' }, copy, dl)));
