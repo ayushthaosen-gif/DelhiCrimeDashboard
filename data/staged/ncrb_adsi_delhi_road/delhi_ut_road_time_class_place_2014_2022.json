@@ -1,0 +1,1608 @@
+{
+ "title": "Delhi (UT) road accidents by time of day, road classification and place of occurrence, NCRB Accidental Deaths and Suicides in India, 2014 to 2022",
+ "status": "staged",
+ "scope": "The DELHI (UT) row of NCRB ADSI Tables 1A.2, 1A.6, 1A.7 and 1A.11 for each year. Road accidents only. Not the Delhi (City) row, and the railway and railway-crossing columns are not read. These are NCRB counts from the returns sent to it, not the Traffic Police statistics, and the two differ in some years (see README).",
+ "how_read": "Time of day and road classification were read from the rendered page images and also taken from the PDF text by position; the two readings agree for every year. Place of occurrence was taken from the PDF text by position. Every row is checked: time bands add to the printed total, road classes add to the printed total for cases, injured and died, case totals equal the 1A.2 and the time-of-day totals, place categories add to the printed rural and urban subtotals and to the grand total, and the grand total equals the road-classification deaths. The tests repeat these checks.",
+ "definitions": {
+  "time_of_day": "Accidents (cases), by the three-hour band in which they occurred.",
+  "road_classification": "Accidents (cases), persons injured and persons died, by the class of road. An expressways column is used from 2015.",
+  "place_of_death": "Persons died, by place of occurrence, split rural and urban and by sex. Delhi reports almost all of its deaths as urban."
+ },
+ "years": {
+  "2014": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.2_2014.pdf",
+     "sha256": "0318464822d735b7f29ac6c39a51a36b5c982f72945709ec415189fabeb61ab0",
+     "bytes": 59307
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.6_2014.pdf",
+     "sha256": "dbf8305bb89e0cd82cd1b6ef14bf9718d49f2623bd6256f4ad65f937f7136c53",
+     "bytes": 285217
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.7_2014.pdf",
+     "sha256": "5a9aa4c8e2c86bf84da98d2dd6a2a13b1c9eb95aa0d9758aeae6d51116fb322d",
+     "bytes": 176011
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.11_2014.pdf",
+     "sha256": "ccffd5bccb9b52d7fe535684a76953cac3eca73f7d0bb23e25aa06ad8748f250",
+     "bytes": 520593
+    }
+   },
+   "roadAccidents": {
+    "cases": 8310,
+    "injured": 8025,
+    "died": 1630
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     757,
+     581,
+     867,
+     925,
+     909,
+     1208,
+     1502,
+     1561
+    ],
+    "total": 8310
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 898,
+     "injured": 843,
+     "died": 307
+    },
+    "state_highway": {
+     "cases": 180,
+     "injured": 163,
+     "died": 42
+    },
+    "expressway": {
+     "cases": 0,
+     "injured": 0,
+     "died": 0
+    },
+    "other_roads": {
+     "cases": 7232,
+     "injured": 7019,
+     "died": 1281
+    },
+    "total": {
+     "cases": 8310,
+     "injured": 8025,
+     "died": 1630
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 13,
+     "female": 3,
+     "transgender": 0,
+     "total": 16
+    },
+    "rural_residential": {
+     "male": 51,
+     "female": 8,
+     "transgender": 0,
+     "total": 59
+    },
+    "rural_religious": {
+     "male": 3,
+     "female": 0,
+     "transgender": 0,
+     "total": 3
+    },
+    "rural_recreation": {
+     "male": 0,
+     "female": 0,
+     "transgender": 0,
+     "total": 0
+    },
+    "rural_factory": {
+     "male": 7,
+     "female": 1,
+     "transgender": 0,
+     "total": 8
+    },
+    "rural_others": {
+     "male": 183,
+     "female": 20,
+     "transgender": 0,
+     "total": 203
+    },
+    "rural_subtotal": {
+     "male": 257,
+     "female": 32,
+     "transgender": 0,
+     "total": 289
+    },
+    "urban_school_college": {
+     "male": 65,
+     "female": 4,
+     "transgender": 0,
+     "total": 69
+    },
+    "urban_residential": {
+     "male": 121,
+     "female": 12,
+     "transgender": 0,
+     "total": 133
+    },
+    "urban_religious": {
+     "male": 25,
+     "female": 7,
+     "transgender": 0,
+     "total": 32
+    },
+    "urban_recreation": {
+     "male": 20,
+     "female": 1,
+     "transgender": 0,
+     "total": 21
+    },
+    "urban_factory_industrial": {
+     "male": 34,
+     "female": 2,
+     "transgender": 0,
+     "total": 36
+    },
+    "urban_pedestrian_crossing": {
+     "male": 122,
+     "female": 15,
+     "transgender": 0,
+     "total": 137
+    },
+    "urban_others": {
+     "male": 833,
+     "female": 80,
+     "transgender": 0,
+     "total": 913
+    },
+    "urban_subtotal": {
+     "male": 1220,
+     "female": 121,
+     "transgender": 0,
+     "total": 1341
+    },
+    "grand_total": {
+     "male": 1477,
+     "female": 153,
+     "transgender": 0,
+     "total": 1630
+    }
+   }
+  },
+  "2015": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.2_2015.pdf",
+     "sha256": "215c1af4df9765de1a9357f829c0dc34542cbca167ffc3a1aadcd7230094802f",
+     "bytes": 137715
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.6_2015.pdf",
+     "sha256": "d0ddd97d468c2e91f74537c96b75bc0e6e21198eb2bc572d8492a96123e33bd2",
+     "bytes": 286846
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.7_2015.pdf",
+     "sha256": "e2428d3c73ac67fe38d17c6058f5f201582b8109a14b324dc2288791da3c08c8",
+     "bytes": 180695
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.11_2015.pdf",
+     "sha256": "2bd2617cade818cafc9e175eb0203dc5b15b9bf812acdd1de96ec08ebda57004",
+     "bytes": 441393
+    }
+   },
+   "roadAccidents": {
+    "cases": 8085,
+    "injured": 8258,
+    "died": 1622
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     767,
+     712,
+     870,
+     920,
+     982,
+     1143,
+     1338,
+     1353
+    ],
+    "total": 8085
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 815,
+     "injured": 841,
+     "died": 251
+    },
+    "state_highway": {
+     "cases": 139,
+     "injured": 128,
+     "died": 34
+    },
+    "expressway": {
+     "cases": 28,
+     "injured": 59,
+     "died": 8
+    },
+    "other_roads": {
+     "cases": 7103,
+     "injured": 7230,
+     "died": 1329
+    },
+    "total": {
+     "cases": 8085,
+     "injured": 8258,
+     "died": 1622
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 7,
+     "female": 3,
+     "transgender": 0,
+     "total": 10
+    },
+    "rural_residential": {
+     "male": 56,
+     "female": 4,
+     "transgender": 0,
+     "total": 60
+    },
+    "rural_religious": {
+     "male": 21,
+     "female": 5,
+     "transgender": 0,
+     "total": 26
+    },
+    "rural_recreation": {
+     "male": 0,
+     "female": 0,
+     "transgender": 0,
+     "total": 0
+    },
+    "rural_factory": {
+     "male": 2,
+     "female": 0,
+     "transgender": 0,
+     "total": 2
+    },
+    "rural_others": {
+     "male": 172,
+     "female": 15,
+     "transgender": 0,
+     "total": 187
+    },
+    "rural_subtotal": {
+     "male": 258,
+     "female": 27,
+     "transgender": 0,
+     "total": 285
+    },
+    "urban_school_college": {
+     "male": 28,
+     "female": 1,
+     "transgender": 0,
+     "total": 29
+    },
+    "urban_residential": {
+     "male": 178,
+     "female": 18,
+     "transgender": 0,
+     "total": 196
+    },
+    "urban_religious": {
+     "male": 29,
+     "female": 1,
+     "transgender": 0,
+     "total": 30
+    },
+    "urban_recreation": {
+     "male": 2,
+     "female": 1,
+     "transgender": 0,
+     "total": 3
+    },
+    "urban_factory_industrial": {
+     "male": 28,
+     "female": 2,
+     "transgender": 0,
+     "total": 30
+    },
+    "urban_pedestrian_crossing": {
+     "male": 96,
+     "female": 12,
+     "transgender": 0,
+     "total": 108
+    },
+    "urban_others": {
+     "male": 868,
+     "female": 73,
+     "transgender": 0,
+     "total": 941
+    },
+    "urban_subtotal": {
+     "male": 1229,
+     "female": 108,
+     "transgender": 0,
+     "total": 1337
+    },
+    "grand_total": {
+     "male": 1487,
+     "female": 135,
+     "transgender": 0,
+     "total": 1622
+    }
+   }
+  },
+  "2016": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.2_0_2016.pdf",
+     "sha256": "ddbb7ea4b9226f6dc2f2c0ee29e8f32f2af4c2d27f8e6b01d4af3768e629f8d5",
+     "bytes": 179324
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.6_0_2016.pdf",
+     "sha256": "899883380b762242473f923d2b8740e2d0fd413df6a4bbdad156515673fe7b29",
+     "bytes": 351303
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.7_0_2016.pdf",
+     "sha256": "d5c7054e8bac3908c7a84bb6f3ea4d8ed38b119a2cafad292f7ae21eeee694f4",
+     "bytes": 213770
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.11_0_2016.pdf",
+     "sha256": "00301a9c7e345105de3afb2c648af9c451ab70769e230dd7f77b962b223744d3",
+     "bytes": 571327
+    }
+   },
+   "roadAccidents": {
+    "cases": 7375,
+    "injured": 6668,
+    "died": 1591
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     769,
+     738,
+     799,
+     881,
+     970,
+     962,
+     1123,
+     1133
+    ],
+    "total": 7375
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 809,
+     "injured": 760,
+     "died": 255
+    },
+    "state_highway": {
+     "cases": 509,
+     "injured": 537,
+     "died": 153
+    },
+    "expressway": {
+     "cases": 0,
+     "injured": 0,
+     "died": 0
+    },
+    "other_roads": {
+     "cases": 6057,
+     "injured": 5371,
+     "died": 1183
+    },
+    "total": {
+     "cases": 7375,
+     "injured": 6668,
+     "died": 1591
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 15,
+     "female": 1,
+     "transgender": 0,
+     "total": 16
+    },
+    "rural_residential": {
+     "male": 29,
+     "female": 1,
+     "transgender": 0,
+     "total": 30
+    },
+    "rural_religious": {
+     "male": 6,
+     "female": 0,
+     "transgender": 0,
+     "total": 6
+    },
+    "rural_recreation": {
+     "male": 3,
+     "female": 0,
+     "transgender": 0,
+     "total": 3
+    },
+    "rural_factory": {
+     "male": 13,
+     "female": 0,
+     "transgender": 0,
+     "total": 13
+    },
+    "rural_others": {
+     "male": 172,
+     "female": 31,
+     "transgender": 0,
+     "total": 203
+    },
+    "rural_subtotal": {
+     "male": 238,
+     "female": 33,
+     "transgender": 0,
+     "total": 271
+    },
+    "urban_school_college": {
+     "male": 80,
+     "female": 8,
+     "transgender": 0,
+     "total": 88
+    },
+    "urban_residential": {
+     "male": 132,
+     "female": 13,
+     "transgender": 0,
+     "total": 145
+    },
+    "urban_religious": {
+     "male": 51,
+     "female": 7,
+     "transgender": 0,
+     "total": 58
+    },
+    "urban_recreation": {
+     "male": 12,
+     "female": 0,
+     "transgender": 0,
+     "total": 12
+    },
+    "urban_factory_industrial": {
+     "male": 20,
+     "female": 2,
+     "transgender": 0,
+     "total": 22
+    },
+    "urban_pedestrian_crossing": {
+     "male": 102,
+     "female": 10,
+     "transgender": 0,
+     "total": 112
+    },
+    "urban_others": {
+     "male": 833,
+     "female": 50,
+     "transgender": 0,
+     "total": 883
+    },
+    "urban_subtotal": {
+     "male": 1230,
+     "female": 90,
+     "transgender": 0,
+     "total": 1320
+    },
+    "grand_total": {
+     "male": 1468,
+     "female": 123,
+     "transgender": 0,
+     "total": 1591
+    }
+   }
+  },
+  "2017": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.2_1_2017.pdf",
+     "sha256": "cb683a6b4392d65db70c9f4129e35ef953e354df56b8cb5ee518a2d61d8aab32",
+     "bytes": 158726
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.6_1_2017.pdf",
+     "sha256": "44360c42eb6f2cd0f43facadb50feeaf3c45d149f9d0f552f12c2c4d77fd3247",
+     "bytes": 354535
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.7_1_2017.pdf",
+     "sha256": "7491a700dc84404d93c1b8fdb08fbbb29388bb06c2067485262b4d7f19ed6519",
+     "bytes": 219665
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.11_1_2017.pdf",
+     "sha256": "03de2797e8417fd5b5781e50199c2dbc9fc1b259121142f6eb5935848faf33b6",
+     "bytes": 574869
+    }
+   },
+   "roadAccidents": {
+    "cases": 6672,
+    "injured": 6086,
+    "died": 1638
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     747,
+     701,
+     724,
+     730,
+     802,
+     871,
+     1037,
+     1060
+    ],
+    "total": 6672
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 857,
+     "injured": 765,
+     "died": 323
+    },
+    "state_highway": {
+     "cases": 423,
+     "injured": 392,
+     "died": 145
+    },
+    "expressway": {
+     "cases": 0,
+     "injured": 0,
+     "died": 0
+    },
+    "other_roads": {
+     "cases": 5392,
+     "injured": 4929,
+     "died": 1170
+    },
+    "total": {
+     "cases": 6672,
+     "injured": 6086,
+     "died": 1638
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 11,
+     "female": 1,
+     "transgender": 0,
+     "total": 12
+    },
+    "rural_residential": {
+     "male": 32,
+     "female": 6,
+     "transgender": 0,
+     "total": 38
+    },
+    "rural_religious": {
+     "male": 4,
+     "female": 2,
+     "transgender": 0,
+     "total": 6
+    },
+    "rural_recreation": {
+     "male": 2,
+     "female": 0,
+     "transgender": 0,
+     "total": 2
+    },
+    "rural_factory": {
+     "male": 16,
+     "female": 1,
+     "transgender": 0,
+     "total": 17
+    },
+    "rural_others": {
+     "male": 180,
+     "female": 16,
+     "transgender": 0,
+     "total": 196
+    },
+    "rural_subtotal": {
+     "male": 245,
+     "female": 26,
+     "transgender": 0,
+     "total": 271
+    },
+    "urban_school_college": {
+     "male": 87,
+     "female": 13,
+     "transgender": 0,
+     "total": 100
+    },
+    "urban_residential": {
+     "male": 335,
+     "female": 36,
+     "transgender": 0,
+     "total": 371
+    },
+    "urban_religious": {
+     "male": 21,
+     "female": 3,
+     "transgender": 0,
+     "total": 24
+    },
+    "urban_recreation": {
+     "male": 21,
+     "female": 3,
+     "transgender": 0,
+     "total": 24
+    },
+    "urban_factory_industrial": {
+     "male": 35,
+     "female": 5,
+     "transgender": 0,
+     "total": 40
+    },
+    "urban_pedestrian_crossing": {
+     "male": 50,
+     "female": 4,
+     "transgender": 0,
+     "total": 54
+    },
+    "urban_others": {
+     "male": 693,
+     "female": 61,
+     "transgender": 0,
+     "total": 754
+    },
+    "urban_subtotal": {
+     "male": 1242,
+     "female": 125,
+     "transgender": 0,
+     "total": 1367
+    },
+    "grand_total": {
+     "male": 1487,
+     "female": 151,
+     "transgender": 0,
+     "total": 1638
+    }
+   }
+  },
+  "2018": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.2_2018.pdf",
+     "sha256": "ebd12ea407cd7eb1ceb2da7865a39b4332b5bf4dce02ce70f89cc91992b63b8b",
+     "bytes": 181540
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.6_2018.pdf",
+     "sha256": "3de75f3bcb186b32b76841f0f26c8d9834e84d44e66a7d37731229c999b148dc",
+     "bytes": 354845
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.7_2018.pdf",
+     "sha256": "399e3776940673191d47e00e32a4059771743a1167e9169e1e2bde7830e2ffef",
+     "bytes": 216723
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.11_2018.pdf",
+     "sha256": "0f47a26d27580fe5ad24c6c01c4be3ba8cb0ddb93cb1e8cdaf12b8f8888b72a0",
+     "bytes": 573465
+    }
+   },
+   "roadAccidents": {
+    "cases": 6517,
+    "injured": 5640,
+    "died": 1734
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     793,
+     675,
+     738,
+     745,
+     731,
+     817,
+     1059,
+     959
+    ],
+    "total": 6517
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 815,
+     "injured": 653,
+     "died": 264
+    },
+    "state_highway": {
+     "cases": 374,
+     "injured": 325,
+     "died": 110
+    },
+    "expressway": {
+     "cases": 0,
+     "injured": 0,
+     "died": 0
+    },
+    "other_roads": {
+     "cases": 5328,
+     "injured": 4662,
+     "died": 1360
+    },
+    "total": {
+     "cases": 6517,
+     "injured": 5640,
+     "died": 1734
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 7,
+     "female": 1,
+     "transgender": 0,
+     "total": 8
+    },
+    "rural_residential": {
+     "male": 68,
+     "female": 10,
+     "transgender": 0,
+     "total": 78
+    },
+    "rural_religious": {
+     "male": 0,
+     "female": 0,
+     "transgender": 0,
+     "total": 0
+    },
+    "rural_recreation": {
+     "male": 1,
+     "female": 0,
+     "transgender": 0,
+     "total": 1
+    },
+    "rural_factory": {
+     "male": 16,
+     "female": 3,
+     "transgender": 0,
+     "total": 19
+    },
+    "rural_others": {
+     "male": 139,
+     "female": 14,
+     "transgender": 0,
+     "total": 153
+    },
+    "rural_subtotal": {
+     "male": 231,
+     "female": 28,
+     "transgender": 0,
+     "total": 259
+    },
+    "urban_school_college": {
+     "male": 55,
+     "female": 13,
+     "transgender": 0,
+     "total": 68
+    },
+    "urban_residential": {
+     "male": 440,
+     "female": 58,
+     "transgender": 0,
+     "total": 498
+    },
+    "urban_religious": {
+     "male": 45,
+     "female": 3,
+     "transgender": 0,
+     "total": 48
+    },
+    "urban_recreation": {
+     "male": 19,
+     "female": 1,
+     "transgender": 0,
+     "total": 20
+    },
+    "urban_factory_industrial": {
+     "male": 29,
+     "female": 3,
+     "transgender": 0,
+     "total": 32
+    },
+    "urban_pedestrian_crossing": {
+     "male": 53,
+     "female": 12,
+     "transgender": 0,
+     "total": 65
+    },
+    "urban_others": {
+     "male": 684,
+     "female": 60,
+     "transgender": 0,
+     "total": 744
+    },
+    "urban_subtotal": {
+     "male": 1325,
+     "female": 150,
+     "transgender": 0,
+     "total": 1475
+    },
+    "grand_total": {
+     "male": 1556,
+     "female": 178,
+     "transgender": 0,
+     "total": 1734
+    }
+   }
+  },
+  "2019": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.2_2019.pdf",
+     "sha256": "6f940d7829e93551b55945a962b519c20cab0f6afbb0550e521bfb3ae22b09cd",
+     "bytes": 163522
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.6_2019.pdf",
+     "sha256": "3884f48005eae98d33fade0236fc26463ed4c890daf0b04fc562113978893c97",
+     "bytes": 334758
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.7_2019.pdf",
+     "sha256": "6e903abf43c51e635995a1b38d78b6e712e21580f176e24f25fcf9d4f9c9b4b9",
+     "bytes": 195168
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.11_2019.pdf",
+     "sha256": "93b609adfda7ffb5834628a70d3c3d833d94b91fcc62740a0a50317ab481d74f",
+     "bytes": 529686
+    }
+   },
+   "roadAccidents": {
+    "cases": 5601,
+    "injured": 4949,
+    "died": 1508
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     521,
+     482,
+     645,
+     708,
+     669,
+     735,
+     946,
+     895
+    ],
+    "total": 5601
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 701,
+     "injured": 618,
+     "died": 271
+    },
+    "state_highway": {
+     "cases": 590,
+     "injured": 500,
+     "died": 187
+    },
+    "expressway": {
+     "cases": 0,
+     "injured": 0,
+     "died": 0
+    },
+    "other_roads": {
+     "cases": 4310,
+     "injured": 3831,
+     "died": 1050
+    },
+    "total": {
+     "cases": 5601,
+     "injured": 4949,
+     "died": 1508
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 5,
+     "female": 0,
+     "transgender": 0,
+     "total": 5
+    },
+    "rural_residential": {
+     "male": 41,
+     "female": 6,
+     "transgender": 0,
+     "total": 47
+    },
+    "rural_religious": {
+     "male": 1,
+     "female": 0,
+     "transgender": 0,
+     "total": 1
+    },
+    "rural_recreation": {
+     "male": 2,
+     "female": 0,
+     "transgender": 0,
+     "total": 2
+    },
+    "rural_factory": {
+     "male": 9,
+     "female": 0,
+     "transgender": 0,
+     "total": 9
+    },
+    "rural_others": {
+     "male": 41,
+     "female": 3,
+     "transgender": 0,
+     "total": 44
+    },
+    "rural_subtotal": {
+     "male": 99,
+     "female": 9,
+     "transgender": 0,
+     "total": 108
+    },
+    "urban_school_college": {
+     "male": 24,
+     "female": 2,
+     "transgender": 0,
+     "total": 26
+    },
+    "urban_residential": {
+     "male": 261,
+     "female": 28,
+     "transgender": 0,
+     "total": 289
+    },
+    "urban_religious": {
+     "male": 23,
+     "female": 3,
+     "transgender": 0,
+     "total": 26
+    },
+    "urban_recreation": {
+     "male": 15,
+     "female": 0,
+     "transgender": 0,
+     "total": 15
+    },
+    "urban_factory_industrial": {
+     "male": 36,
+     "female": 2,
+     "transgender": 0,
+     "total": 38
+    },
+    "urban_pedestrian_crossing": {
+     "male": 65,
+     "female": 13,
+     "transgender": 0,
+     "total": 78
+    },
+    "urban_others": {
+     "male": 839,
+     "female": 89,
+     "transgender": 0,
+     "total": 928
+    },
+    "urban_subtotal": {
+     "male": 1263,
+     "female": 137,
+     "transgender": 0,
+     "total": 1400
+    },
+    "grand_total": {
+     "male": 1362,
+     "female": 146,
+     "transgender": 0,
+     "total": 1508
+    }
+   }
+  },
+  "2020": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.2-state-ut-city_2020.pdf",
+     "sha256": "265372b24ec6c5855a2f5a0bbb1683b5e8736a35f6afab468911fdda21e26c18",
+     "bytes": 483268
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.6-state-ut-city_2020.pdf",
+     "sha256": "52496ac32f8a2f8d5c2f4b10082d73cd04ece363add3ec6ac49a58b7242c018e",
+     "bytes": 931257
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.7-state-ut-city_2020.pdf",
+     "sha256": "e17e1a8eb1672ffd1865d60835c43ff2a5da8ffd8c12297103ee37c7c35609ad",
+     "bytes": 651009
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/adsi/table-1A.11-state-ut-city_2020.pdf",
+     "sha256": "b56ebf614ec5bc60fbbba376e7148ae853da3f624ecf55e897560f1700b2aa8f",
+     "bytes": 1437430
+    }
+   },
+   "roadAccidents": {
+    "cases": 4187,
+    "injured": 3454,
+    "died": 1196
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     446,
+     340,
+     470,
+     558,
+     454,
+     533,
+     655,
+     731
+    ],
+    "total": 4187
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 659,
+     "injured": 470,
+     "died": 216
+    },
+    "state_highway": {
+     "cases": 275,
+     "injured": 267,
+     "died": 54
+    },
+    "expressway": {
+     "cases": 17,
+     "injured": 14,
+     "died": 5
+    },
+    "other_roads": {
+     "cases": 3236,
+     "injured": 2703,
+     "died": 921
+    },
+    "total": {
+     "cases": 4187,
+     "injured": 3454,
+     "died": 1196
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 7,
+     "female": 0,
+     "transgender": 0,
+     "total": 7
+    },
+    "rural_residential": {
+     "male": 13,
+     "female": 3,
+     "transgender": 0,
+     "total": 16
+    },
+    "rural_religious": {
+     "male": 3,
+     "female": 1,
+     "transgender": 0,
+     "total": 4
+    },
+    "rural_recreation": {
+     "male": 0,
+     "female": 0,
+     "transgender": 0,
+     "total": 0
+    },
+    "rural_factory": {
+     "male": 1,
+     "female": 0,
+     "transgender": 0,
+     "total": 1
+    },
+    "rural_others": {
+     "male": 12,
+     "female": 2,
+     "transgender": 0,
+     "total": 14
+    },
+    "rural_subtotal": {
+     "male": 36,
+     "female": 6,
+     "transgender": 0,
+     "total": 42
+    },
+    "urban_school_college": {
+     "male": 60,
+     "female": 3,
+     "transgender": 0,
+     "total": 63
+    },
+    "urban_residential": {
+     "male": 358,
+     "female": 27,
+     "transgender": 0,
+     "total": 385
+    },
+    "urban_religious": {
+     "male": 39,
+     "female": 3,
+     "transgender": 0,
+     "total": 42
+    },
+    "urban_recreation": {
+     "male": 14,
+     "female": 0,
+     "transgender": 0,
+     "total": 14
+    },
+    "urban_factory_industrial": {
+     "male": 42,
+     "female": 2,
+     "transgender": 0,
+     "total": 44
+    },
+    "urban_pedestrian_crossing": {
+     "male": 23,
+     "female": 0,
+     "transgender": 0,
+     "total": 23
+    },
+    "urban_others": {
+     "male": 547,
+     "female": 36,
+     "transgender": 0,
+     "total": 583
+    },
+    "urban_subtotal": {
+     "male": 1083,
+     "female": 71,
+     "transgender": 0,
+     "total": 1154
+    },
+    "grand_total": {
+     "male": 1119,
+     "female": 77,
+     "transgender": 0,
+     "total": 1196
+    }
+   }
+  },
+  "2021": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1670837870_Table%201A.2%20state-ut-city.pdf",
+     "sha256": "19b717c050ee4b54d817843bbf9c3e9a8c2d6f6f2de0ee4d2051f03f921ee28e",
+     "bytes": 483378
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1670842947_Table%201A.6%20state-ut-city.pdf",
+     "sha256": "5fbc107383cfefbadc9b404f30ca23f9626af0eefd2f9dd0b08466be6acf4854",
+     "bytes": 1037063
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1670843103_Table%201A.7%20state-ut-city.pdf",
+     "sha256": "f8b6481b8eac9d89a80de5c5f001ecb320ee1744cb110635687f366c3f417075",
+     "bytes": 651247
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1670843391_Table%201A.11%20state-ut-city.pdf",
+     "sha256": "a0abb660f08c03141929b9a8ca932b2074472fea72f73930dda6676fdac376f9",
+     "bytes": 1437642
+    }
+   },
+   "roadAccidents": {
+    "cases": 4720,
+    "injured": 3989,
+    "died": 1239
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     577,
+     371,
+     517,
+     550,
+     540,
+     661,
+     804,
+     700
+    ],
+    "total": 4720
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 565,
+     "injured": 361,
+     "died": 232
+    },
+    "state_highway": {
+     "cases": 302,
+     "injured": 198,
+     "died": 126
+    },
+    "expressway": {
+     "cases": 8,
+     "injured": 3,
+     "died": 5
+    },
+    "other_roads": {
+     "cases": 3845,
+     "injured": 3427,
+     "died": 876
+    },
+    "total": {
+     "cases": 4720,
+     "injured": 3989,
+     "died": 1239
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 6,
+     "female": 0,
+     "transgender": 0,
+     "total": 6
+    },
+    "rural_residential": {
+     "male": 32,
+     "female": 0,
+     "transgender": 0,
+     "total": 32
+    },
+    "rural_religious": {
+     "male": 3,
+     "female": 0,
+     "transgender": 0,
+     "total": 3
+    },
+    "rural_recreation": {
+     "male": 2,
+     "female": 0,
+     "transgender": 0,
+     "total": 2
+    },
+    "rural_factory": {
+     "male": 1,
+     "female": 0,
+     "transgender": 0,
+     "total": 1
+    },
+    "rural_others": {
+     "male": 23,
+     "female": 0,
+     "transgender": 0,
+     "total": 23
+    },
+    "rural_subtotal": {
+     "male": 67,
+     "female": 0,
+     "transgender": 0,
+     "total": 67
+    },
+    "urban_school_college": {
+     "male": 49,
+     "female": 5,
+     "transgender": 0,
+     "total": 54
+    },
+    "urban_residential": {
+     "male": 245,
+     "female": 25,
+     "transgender": 0,
+     "total": 270
+    },
+    "urban_religious": {
+     "male": 33,
+     "female": 3,
+     "transgender": 0,
+     "total": 36
+    },
+    "urban_recreation": {
+     "male": 5,
+     "female": 1,
+     "transgender": 0,
+     "total": 6
+    },
+    "urban_factory_industrial": {
+     "male": 117,
+     "female": 10,
+     "transgender": 0,
+     "total": 127
+    },
+    "urban_pedestrian_crossing": {
+     "male": 58,
+     "female": 5,
+     "transgender": 0,
+     "total": 63
+    },
+    "urban_others": {
+     "male": 581,
+     "female": 34,
+     "transgender": 1,
+     "total": 616
+    },
+    "urban_subtotal": {
+     "male": 1088,
+     "female": 83,
+     "transgender": 1,
+     "total": 1172
+    },
+    "grand_total": {
+     "male": 1155,
+     "female": 83,
+     "transgender": 1,
+     "total": 1239
+    }
+   }
+  },
+  "2022": {
+   "sources": {
+    "1A.2": {
+     "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1702017865Table1A2state-ut-city.pdf",
+     "sha256": "2b3c3746a98f1a732fa35775dde88b001170fc3c20005cbd5d30016ceb42bf34",
+     "bytes": 495925
+    },
+    "1A.6": {
+     "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1702018362Table1A6state-ut-city.pdf",
+     "sha256": "8332da739d6a3d98d6c9d5c9b4a5acc8117a2aecb971e5dcf40f96b91a47c231",
+     "bytes": 1024025
+    },
+    "1A.7": {
+     "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1702018483Table1A7state-ut-city.pdf",
+     "sha256": "9b32c302e9998a2f1144edad7e28286bb5876907d9f96c71b4c95cae2ef7d8a5",
+     "bytes": 655434
+    },
+    "1A.11": {
+     "url": "https://www.ncrb.gov.in/uploads/nationalcrimerecordsbureau/custom/1702019386Table1A11state-ut-city.pdf",
+     "sha256": "4af1f58d1af6f3356a71767a416f5e73414b78b7398a290b185c2a4211cb1a01",
+     "bytes": 1444844
+    }
+   },
+   "roadAccidents": {
+    "cases": 5560,
+    "injured": 4713,
+    "died": 1461
+   },
+   "timeOfDay": {
+    "bands": [
+     "0000-0300",
+     "0300-0600",
+     "0600-0900",
+     "0900-1200",
+     "1200-1500",
+     "1500-1800",
+     "1800-2100",
+     "2100-2400"
+    ],
+    "accidents": [
+     626,
+     528,
+     609,
+     667,
+     776,
+     692,
+     828,
+     834
+    ],
+    "total": 5560
+   },
+   "roadClassification": {
+    "national_highway": {
+     "cases": 517,
+     "injured": 414,
+     "died": 157
+    },
+    "state_highway": {
+     "cases": 499,
+     "injured": 396,
+     "died": 129
+    },
+    "expressway": {
+     "cases": 0,
+     "injured": 0,
+     "died": 0
+    },
+    "other_roads": {
+     "cases": 4544,
+     "injured": 3903,
+     "died": 1175
+    },
+    "total": {
+     "cases": 5560,
+     "injured": 4713,
+     "died": 1461
+    }
+   },
+   "placeOfDeath": {
+    "rural_school_college": {
+     "male": 1,
+     "female": 0,
+     "transgender": 0,
+     "total": 1
+    },
+    "rural_residential": {
+     "male": 18,
+     "female": 2,
+     "transgender": 0,
+     "total": 20
+    },
+    "rural_religious": {
+     "male": 0,
+     "female": 0,
+     "transgender": 0,
+     "total": 0
+    },
+    "rural_recreation": {
+     "male": 0,
+     "female": 0,
+     "transgender": 0,
+     "total": 0
+    },
+    "rural_factory": {
+     "male": 2,
+     "female": 0,
+     "transgender": 0,
+     "total": 2
+    },
+    "rural_others": {
+     "male": 26,
+     "female": 0,
+     "transgender": 0,
+     "total": 26
+    },
+    "rural_subtotal": {
+     "male": 47,
+     "female": 2,
+     "transgender": 0,
+     "total": 49
+    },
+    "urban_school_college": {
+     "male": 63,
+     "female": 2,
+     "transgender": 0,
+     "total": 65
+    },
+    "urban_residential": {
+     "male": 292,
+     "female": 31,
+     "transgender": 0,
+     "total": 323
+    },
+    "urban_religious": {
+     "male": 31,
+     "female": 0,
+     "transgender": 0,
+     "total": 31
+    },
+    "urban_recreation": {
+     "male": 48,
+     "female": 8,
+     "transgender": 0,
+     "total": 56
+    },
+    "urban_factory_industrial": {
+     "male": 101,
+     "female": 4,
+     "transgender": 0,
+     "total": 105
+    },
+    "urban_pedestrian_crossing": {
+     "male": 83,
+     "female": 9,
+     "transgender": 0,
+     "total": 92
+    },
+    "urban_others": {
+     "male": 695,
+     "female": 45,
+     "transgender": 0,
+     "total": 740
+    },
+    "urban_subtotal": {
+     "male": 1313,
+     "female": 99,
+     "transgender": 0,
+     "total": 1412
+    },
+    "grand_total": {
+     "male": 1360,
+     "female": 101,
+     "transgender": 0,
+     "total": 1461
+    }
+   }
+  }
+ },
+ "limits": "2014 to 2022 only: NCRB lists these tables for those years, and no ADSI traffic tables were found on its site for earlier years or for 2023 and 2024. The ADSI mode-of-transport table (1A.4) is not staged: it classifies deaths by culpability (its 2014 title reads \"Culpability vis-a-vis Fatality\"), so its pedestrian and two-wheeler rows are not the dead person's mode of travel and do not match the Traffic Police series.",
+ "downloaded": "2026-11-04"
+}

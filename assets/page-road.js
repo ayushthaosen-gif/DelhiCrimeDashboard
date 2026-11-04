@@ -1,5 +1,5 @@
 /* Road safety, citywide: headline figures, 2008-2024 trend, deaths by mode of travel, enforcement, crash-prone zones and the roads with most zones.
-   All figures are citywide counts from Delhi Traffic Police; none is split by district in the source. Reads window.DSO_DATA. */
+   The citywide counts are from Delhi Traffic Police and none is split by district in the source; the time-of-day, road-type and place section is from the National Crime Records Bureau (2014 to 2022). Reads window.DSO_DATA. */
 (function () {
   'use strict';
   var D = window.DSO, h = D.h, n = D.n;
@@ -401,6 +401,53 @@
   function syncZoneSeg() {
     D.$('#zones').querySelectorAll('[data-key^="zy-"]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-key') === 'zy-' + st.year)); });
   }
-  function renderAll() { renderYearBar(); renderTrend(); renderModes(); renderEnforcement(); renderDistrictTables(); renderZones(); syncZoneSeg(); renderRoads(); renderStretches(); }
+  // ---- when, where and on what road: NCRB ADSI tables, Delhi (UT), 2014 to 2022 ----
+  function renderNcrb() {
+    var sec = D.clear(D.$('#ncrb-detail')), N = S.ncrbRoad || {}, r = N[st.year];
+    sec.appendChild(h('div', { class: 'title-row' }, h('h2', { style: 'font-size:18px;font-weight:600' }, 'When, where and on what road'),
+      D.tip('About these figures', 'These come from the National Crime Records Bureau (Accidental Deaths and Suicides in India, tables 1A.6, 1A.7 and 1A.11), which counts what the police return to it. The totals match the Traffic Police figures in some years and differ in others; the line under each year says which.')));
+    if (!r) {
+      sec.appendChild(scopeLine('Road crashes · Delhi as a whole · National Crime Records Bureau · year in view: ' + st.year));
+      sec.appendChild(h('p', { class: 'callout warn', role: 'status' }, h('strong', null, st.year + ': no figure. '), 'The Bureau\'s time-of-day, road-type and place tables are held here for 2014 to 2022.'));
+      return;
+    }
+    sec.appendChild(D.plain('At what time of day crashes happen, on what kind of road, and in what kind of place people are killed, for the year you pick.'));
+    sec.appendChild(scopeLine('Road crashes and deaths · Delhi as a whole · counts, with shares of the year\'s total · National Crime Records Bureau · ' + st.year));
+    var tp = T.filter(function (t) { return t.year === st.year; })[0];
+    if (tp) {
+      sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, r.died === tp.killed
+        ? 'The Bureau counts ' + n(r.died) + ' people killed in ' + st.year + ', the same as the Traffic Police figure.'
+        : 'The Bureau counts ' + n(r.died) + ' people killed in ' + st.year + '; the Traffic Police figure is ' + n(tp.killed) + '. They are counted from different returns, so treat the gap as a difference in source, not a change on the road.'));
+    }
+    function bars(rows, total) {
+      var mx = Math.max.apply(null, rows.map(function (x) { return x.v; })) || 1;
+      return h('div', { style: 'display:flex;flex-direction:column;gap:8px' }, rows.map(function (x) {
+        return h('div', { class: 'mode-row' }, h('span', null, x.l),
+          h('span', { class: 'track' }, h('i', { style: 'width:' + (x.v / mx * 100) + '%' })),
+          h('span', { class: 'v' }, n(x.v) + ' ', h('span', null, Math.round(x.v / total * 100) + '%')));
+      }));
+    }
+    var BL = ['Midnight to 3am', '3am to 6am', '6am to 9am', '9am to noon', 'Noon to 3pm', '3pm to 6pm', '6pm to 9pm', '9pm to midnight'];
+    var tot = r.timeAccidents.reduce(function (a, b) { return a + b; }, 0);
+    sec.appendChild(h('h3', { style: 'font-size:15px;font-weight:600;margin-top:14px' }, 'Time of day, crashes'));
+    sec.appendChild(bars(r.timeAccidents.map(function (v, i) { return { l: BL[i], v: v }; }), tot));
+    var RC = [['nh', 'National highways'], ['sh', 'State highways'], ['exp', 'Expressways'], ['other', 'All other roads']];
+    sec.appendChild(h('h3', { style: 'font-size:15px;font-weight:600;margin-top:14px' }, 'Kind of road'));
+    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl' },
+      h('caption', { class: 'sr-only' }, 'Road crashes, persons injured and persons killed by class of road, Delhi, ' + st.year),
+      h('thead', null, h('tr', null, h('th', { scope: 'col' }, 'Road'), h('th', { scope: 'col', class: 'num' }, 'Crashes'), h('th', { scope: 'col', class: 'num' }, 'Injured'), h('th', { scope: 'col', class: 'num' }, 'Killed'), h('th', { scope: 'col', class: 'num' }, 'Share of deaths'))),
+      h('tbody', null, RC.map(function (c) {
+        var x = r.roadClass[c[0]];
+        return h('tr', null, h('th', { scope: 'row' }, c[1]), h('td', { class: 'num' }, n(x.cases)), h('td', { class: 'num' }, n(x.injured)), h('td', { class: 'num' }, n(x.died)), h('td', { class: 'num' }, Math.round(x.died / r.died * 100) + '%'));
+      })))));
+    var P = r.place;
+    var PL = [['urban_others', 'Urban, other places'], ['urban_residential', 'Urban, near homes'], ['urban_pedestrian_crossing', 'Urban, at a pedestrian crossing'], ['urban_factory_industrial', 'Urban, near a factory or industrial area'], ['urban_school_college', 'Urban, near a school or college'], ['urban_recreation', 'Urban, near a recreation place or cinema'], ['urban_religious', 'Urban, near a religious place'], ['rural_subtotal', 'Rural areas, all places']];
+    sec.appendChild(h('h3', { style: 'font-size:15px;font-weight:600;margin-top:14px' }, 'Place of occurrence, people killed'));
+    sec.appendChild(bars(PL.map(function (c) { return { l: c[1], v: P[c[0]] }; }).sort(function (a, b) { return b.v - a.v; }), P.grand_total));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'A place such as a school or religious place means the crash happened near it; it says nothing about who was killed. "Other places" is whatever the police did not place in another group. Source tables: ',
+      h('a', { href: r.sources.time }, '1A.6 time'), ', ', h('a', { href: r.sources.road }, '1A.7 road'), ', ', h('a', { href: r.sources.place }, '1A.11 place'), '. Held for 2014 to 2022.'));
+  }
+
+  function renderAll() { renderYearBar(); renderTrend(); renderModes(); renderEnforcement(); renderNcrb(); renderDistrictTables(); renderZones(); syncZoneSeg(); renderRoads(); renderStretches(); }
   renderAll();
 })();

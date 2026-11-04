@@ -169,8 +169,8 @@ function roadSafety(updated) {
     + '<section id="yearBar" class="card" aria-label="Year in view" style="gap:10px"></section>\n'
     + '<section id="trend" class="card" style="scroll-margin-top:16px"></section>\n'
     + '<div class="two-col"><section id="modes" class="card" style="flex:1 1 420px;scroll-margin-top:16px"></section><section id="enforcement" class="card" style="flex:1 1 420px"></section></div>\n'
-    + '<section id="district-tables" class="card" style="scroll-margin-top:16px"></section>\n<div class="two-col"><section id="zones" class="card" style="flex:3 1 520px"></section><section id="roads" class="card" style="flex:2 1 360px"></section></div>\n<section id="stretches" class="card" style="scroll-margin-top:16px"></section>\n'
-    + '<footer class="site-footer" style="border-top:1px solid var(--line)"><span>Sources: Delhi Traffic Police statistics and Delhi Road Crash Reports 2023 and 2024. <a href="data-methods.html#sources">Sources and caveats</a>. Data version ' + esc(updated) + '.</span></footer>\n</main>';
+    + '<section id="ncrb-detail" class="card" style="scroll-margin-top:16px"></section>\n<section id="district-tables" class="card" style="scroll-margin-top:16px"></section>\n<div class="two-col"><section id="zones" class="card" style="flex:3 1 520px"></section><section id="roads" class="card" style="flex:2 1 360px"></section></div>\n<section id="stretches" class="card" style="scroll-margin-top:16px"></section>\n'
+    + '<footer class="site-footer" style="border-top:1px solid var(--line)"><span>Sources: Delhi Traffic Police statistics and Delhi Road Crash Reports 2023 and 2024; National Crime Records Bureau for time of day, road type and place, 2014 to 2022. <a href="data-methods.html#sources">Sources and caveats</a>. Data version ' + esc(updated) + '.</span></footer>\n</main>';
 }
 
 function planning() {

@@ -1,3 +1,10 @@
+## [2026-11-04] - Claude (Anthropic) - Road safety: time of day, road type and place (NCRB), 2014 to 2022
+
+- New staged data `data/staged/ncrb_adsi_delhi_road/`: the Delhi (UT) row of NCRB ADSI tables 1A.2, 1A.6, 1A.7 and 1A.11 for 2014 to 2022, with every source URL and SHA-256. Each year's parts add to its printed totals and the four tables agree with each other; `test/ncrb_adsi_delhi_road.test.js` repeats the checks.
+- Road safety page: new section "When, where and on what road" for the year in view (time-of-day bars, road-class table, place-of-occurrence bars), with a line saying whether NCRB deaths equal the Traffic Police figure. They are equal in 2015, 2016 and 2020 to 2022 and differ by 41 to 54 in 2014 and 2017 to 2019; the page shows the gap.
+- Not staged on purpose: ADSI Table 1A.4 (mode of transport). It is classified by culpability (offender and victim), so its pedestrian and two-wheeler rows are not the dead person's mode of travel; the Traffic Police Table 3.1 series already on the page is used for that. The README says why.
+- Not found: ADSI traffic tables for years before 2014 and for 2023 and 2024 are not listed on NCRB's site.
+
 ## [2026-11-04] - Claude (Anthropic) - Road trend back to 2008
 
 - Road safety page trend and the Patterns change-between-two-years road series now start in 2008. 2008 to 2010 (total crashes, fatal crashes, persons killed) come from the staged Traffic Police statistics page capture (`road_citywide_2008_2010.json`), the same page that prints 2011 to 2013; `SITE.trendsEarlier` carries them, `SITE.trends` is unchanged (2011 to 2024). The index scale stays 2011 = 100. 2001 to 2007 accident counts were not found.
