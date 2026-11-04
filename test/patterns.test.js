@@ -18,10 +18,17 @@ const P = patterns.build();
 
 test('crime series: Delhi-wide printed values, comparison states from the continuity engine, gaps stay null', () => {
   const t = P.crime.series.totalIPC;
-  assert.equal(t.values.length, 14);
+  assert.equal(t.values.length, 24);
+  assert.equal(P.crime.years[0], 2001);
+  assert.equal(t.values[0], 54384, '2001 is the printed Delhi total (Table 5)');
+  assert.equal(t.values[P.crime.years.indexOf(2010)], 51292);
   assert.equal(t.values[P.crime.years.indexOf(2016)], 209519);
   assert.equal(t.values[P.crime.years.indexOf(2023)], 324257);
   const pair = (S, a) => S.pairs.find(p => p.from === a);
+  assert.equal(pair(t, 2005).state, 'comparable');
+  assert.equal(pair(t, 2010).state, 'caution', 'the step from the 2001 to 2010 tables to the 2011 table is read as indicative');
+  assert.equal(P.crime.series.theft.values[0], null, 'theft is not held for 2001 to 2010');
+  assert.equal(pair(P.crime.series.theft, 2004).state, 'unavailable');
   assert.equal(pair(t, 2013).state, 'not_comparable', 'the 2013 to 2014 format change breaks the line');
   assert.equal(pair(t, 2023).state, 'caution');
   assert.match(pair(t, 2023).reason, /Bharatiya Nyaya Sanhita/);
@@ -31,7 +38,7 @@ test('crime series: Delhi-wide printed values, comparison states from the contin
   assert.equal(pair(theft, 2015).state, 'caution', 'the 2015 to 2016 change of compilation is a caution');
   assert.equal(pair(theft, 2016).state, 'caution', 'the 2016 heading (Sec 379 to 382) differs from 2017 on');
   assert.equal(pair(theft, 2018).state, 'comparable');
-  assert.ok(P.crime.series.crimeAgainstWomen.values.slice(0, 3).every(v => v === null));
+  assert.ok(P.crime.series.crimeAgainstWomen.values.slice(0, 13).every(v => v === null));
   assert.equal(P.crime.facts.theftShare2023, Math.round(228537 / 324257 * 100));
 });
 
