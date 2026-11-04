@@ -35,7 +35,7 @@ test('crime, Delhi as a whole: a comparable pair gets a change figure from the p
   const caution = cont.changeView(c, spec, 2023, 2024);
   assert.equal(caution.state, 'caution');
   assert.ok(caution.pct < 0 && /Bharatiya Nyaya Sanhita/.test(caution.reasons.join(' ')), 'shown with the BNS reason beside it');
-  assert.ok(bad.ranges.some(r => r.from === 2014 && r.to === 2024) && bad.ranges.some(r => r.from === 2011 && r.to === 2013), 'the ranges that can be read together are named');
+  assert.ok(bad.ranges.some(r => r.from === 2014 && r.to === 2024) && bad.ranges.some(r => r.from === 2001 && r.to === 2013), 'the ranges that can be read together are named');
 });
 
 test('blank years give no figure, never zero: crimes against women have no value for 2011 to 2013', () => {

@@ -1,3 +1,10 @@
+## [2026-11-04] - Claude (Anthropic) - Comparison rules cover 2001 to 2010 and fail closed
+
+- `data/continuity.json` now covers 2001 to 2024 (`yearRange`). Added: Delhi total IPC listed for 2001 to 2010; a caution at 2010 to 2011 (different NCRB tables); geography breaks 2006 to 2007 (Outer, 5 Sep 2007) and 2007 to 2008 (South-East, 1 Oct 2008) with every older district treated as affected because the station moves are not documented; an inferred-district-list caution for 2001 to 2010; blank-not-zero availability rules before 2011.
+- `scripts/lib/continuity.js`: a pair outside `yearRange` is "unavailable", never comparable; `availability` entries can be `utOnly`.
+- Patterns builder no longer holds its own early-year rule; it asks the same engine as Explore. Explore's change line and trend gaps for 2002 to 2010 now follow the rules.
+- Tests: new cases for the early pairs and a coverage test that every non-comparable pair of every crime measure has a reason. Colour-scale segments for districts now start at 2008.
+
 ## [2026-11-04] - Claude (Anthropic) - 2001 to 2010 crime on the Historical crime page
 
 - `historical_crime.html` now offers 2001 to 2018. The 2001 to 2010 years come from the staged NCRB tables via `data/historical_reporting/counts_2001_2010.json` (new; the 2011 to 2018 file and the Explore history view are unchanged). Each year shows its own reporting units, territorial districts apart from specialised units, the Delhi UT total as printed, and no map (`boundary_unverified`).

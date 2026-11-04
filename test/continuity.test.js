@@ -69,7 +69,7 @@ test('every reason shown is one of the documented sentences, and a worse state h
   const all = new Set([...c.availability.map(a => a.reason), ...c.definitionBreaks.map(b => b.reason), ...c.geography.epochs.map(e => e.reason), c.roadDistrict.reason2022, c.roadDistrict.zoneReason2022, c.roadDistrict.cautionReason]);
   const r = compareYears(c, 'totalSLL', 2012, 2013);
   assert.equal(r.state, 'unavailable');
-  assert.deepEqual(r.reasons, [c.availability[0].reason]);
+  assert.deepEqual(r.reasons, [c.availability.find(a => a.years[0] === 2011 && a.measures.includes('totalSLL')).reason]);
   assert.ok(compareYears(c, 'theft', 2013, 2014).reasons.every(x => all.has(x)));
   assert.equal(compareYears(c, 'theft', 2013, 2014).reasons.length, 1, 'the not-comparable reason replaces the milder caution');
 });
@@ -87,10 +87,10 @@ test('change figures are suppressed unless a comparison is valid, and blanks are
 
 test('colour-scale segments never straddle a break', () => {
   const seg = (k, y) => segmentOf(c, k, y).join('-');
-  assert.deepEqual(['2011', '2013', '2014', '2016', '2017', '2018', '2019', '2024'].map(y => seg('theft', Number(y))), ['2011-2013', '2011-2013', '2014-2016', '2014-2016', '2017-2018', '2017-2018', '2019-2024', '2019-2024']);
+  assert.deepEqual(['2011', '2013', '2014', '2016', '2017', '2018', '2019', '2024'].map(y => seg('theft', Number(y))), ['2008-2013', '2008-2013', '2014-2016', '2014-2016', '2017-2018', '2017-2018', '2019-2024', '2019-2024']);
   assert.equal(seg('totalCrashes2023', 2024), '2023-2024');
   assert.equal(seg('fatalRoadCrashes2022', 2022), '2022-2022');
-  for (const k of c.crimeMeasures) for (let y = 2011; y < 2024; y++) {
+  for (const k of c.crimeMeasures) for (let y = c.yearRange[0] + 1; y < 2024; y++) {
     const [a, b] = segmentOf(c, k, y);
     if (a < y) assert.notEqual(state(k, y - 1, y), 'not_comparable', k + ' ' + y + ' starts a new segment');
   }
@@ -109,3 +109,30 @@ test('the source data already flags non-comparable years; the continuity rules a
   assert.ok(checked > 40, 'expected many flagged cases, checked ' + checked);
 });
 
+
+test('2001 to 2010: Delhi total joins, the district list breaks at 2007 and 2008, missing measures are blank, and a pair outside the file is never comparable', () => {
+  const UT = 'Delhi UT';
+  assert.equal(state('totalIPC', 2003, 2004, UT), 'comparable');
+  assert.equal(state('totalIPC', 2010, 2011, UT), 'caution', 'the 2001 to 2010 tables and the 2011 summary table are not tied');
+  assert.equal(state('theft', 2005, 2006, UT), 'unavailable', 'no Delhi-level theft before 2011');
+  assert.equal(state('totalSLL', 2009, 2010, UT), 'unavailable');
+  assert.equal(state('theft', 2006, 2007, 'North-West'), 'not_comparable', 'Outer was carved out and NCRB restated North West');
+  assert.equal(state('theft', 2006, 2007, 'Outer'), 'unavailable');
+  assert.equal(state('theft', 2007, 2008, 'South'), 'not_comparable', 'South-East was added');
+  assert.equal(state('theft', 2007, 2008, 'South-East'), 'unavailable');
+  assert.equal(state('theft', 2008, 2009, 'East'), 'caution', 'inferred district list');
+  assert.equal(state('theft', 2010, 2011, 'East'), 'caution');
+  assert.equal(state('crimeAgainstWomen', 2008, 2009, 'East'), 'unavailable');
+  assert.equal(state('theft', 2000, 2001, 'East'), 'unavailable', 'outside the years this file covers');
+  assert.equal(state('totalIPC', 2024, 2025, UT), 'unavailable', 'a later year is not judged comparable by default');
+  assert.equal(compareYears(c, 'theft', 2006, 2007).state, 'not_comparable', 'the all-Delhi district sum across 2007');
+});
+
+test('every adjacent year pair of every crime measure gets a reason whenever it is not comparable', () => {
+  const scopes = [undefined, 'Delhi UT', ...districts.map(d => d.name), 'Outer', 'South-East'];
+  for (const k of c.crimeMeasures) for (const sc of scopes) for (let y = c.yearRange[0]; y < c.yearRange[1]; y++) {
+    const r = compareYears(c, k, y, y + 1, sc);
+    assert.ok(r.state in c.states);
+    if (r.state !== 'comparable') assert.ok(r.reasons.length > 0 && r.reasons[0].length > 20, `${k} ${sc} ${y}-${y + 1} is ${r.state} without a reason`);
+  }
+});

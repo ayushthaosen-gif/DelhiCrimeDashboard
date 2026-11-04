@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "updated": "2026-10-20",
+  "updated": "2026-11-04",
   "purpose": "One place that says whether two years of a measure can be compared. The dashboard's comparability indicators, the suppressed change figures, the colour-scale segments and the continuity columns in downloads all read this file. Having a value for every year does not make a valid trend: a change can come from how the data was collected, defined or mapped rather than from what happened.",
   "states": {
     "comparable": "Comparable",
@@ -8,9 +8,28 @@
     "not_comparable": "Not comparable",
     "unavailable": "Unavailable"
   },
-  "yearRange": [2011, 2024],
+  "yearRange": [2001, 2024],
+  "outOfRangeReason": "This file holds comparison rules for 2001 to 2024 only. A pair outside that range is not judged here, so it is never shown as comparable.",
   "crimeMeasures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
   "availability": [
+    {
+      "measures": ["theft", "robbery", "burglary", "crimeAgainstWomen", "totalSLL"],
+      "years": [2001, 2010],
+      "utOnly": true,
+      "reason": "For 2001 to 2010 only the Delhi total of IPC cases is held at Delhi level. Theft, robbery, burglary, crimes against women and special and local laws are blank, not zero."
+    },
+    {
+      "measures": ["crimeAgainstWomen", "totalSLL"],
+      "years": [2001, 2010],
+      "districtsOnly": true,
+      "reason": "NCRB's district tables for 2001 to 2010 carry no comparable special and local laws or crimes-against-women aggregate, so those are left blank, not zero."
+    },
+    {
+      "measures": ["theft", "robbery", "burglary", "totalIPC"],
+      "years": [2001, 2001],
+      "districtsOnly": true,
+      "reason": "The 2001 district table is held for murder, rape and kidnapping only; the other measures are blank, not zero."
+    },
     {
       "measures": ["crimeAgainstWomen", "totalSLL"],
       "years": [2011, 2013],
@@ -24,6 +43,13 @@
     }
   ],
   "definitionBreaks": [
+    {
+      "between": [2010, 2011],
+      "measures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
+      "state": "caution",
+      "reason": "2001 to 2010 are read from the Delhi (UT) and district tables of each year's Crime in India edition (the formats of their time, with NCRB's own population estimates, and a different burglary head). 2011 onward comes from NCRB's summary tables. The two are not tied to each other, so read a step across 2010 and 2011 as indicative.",
+      "evidence": "data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json"
+    },
     {
       "between": [2013, 2014],
       "measures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
@@ -101,8 +127,14 @@
     }
   ],
   "geography": {
-    "firstYear": { "Dwarka": 2017, "Rohini": 2017, "Shahdara": 2017, "Outer North": 2019 },
+    "firstYear": { "Outer": 2007, "South-East": 2008, "Dwarka": 2017, "Rohini": 2017, "Shahdara": 2017, "Outer North": 2019 },
     "epochs": [
+      {
+        "years": [2001, 2010],
+        "districts": 11,
+        "state": "caution",
+        "reason": "Nine territorial districts were reported up to 2006, ten in 2007 and eleven from 2008. No station roster is held for 2005 to 2010, so which stations belonged to each district is inferred, and a station moving between districts cannot be ruled out."
+      },
       {
         "years": [2011, 2016],
         "districts": 11,
@@ -111,6 +143,22 @@
       }
     ],
     "breaks": [
+      {
+        "between": [2006, 2007],
+        "reason": "The Outer district was added on 5 September 2007 (MHA Annual Report 2008-09, para 6.14). NCRB restated the year on the new layout: North West was printed as 11,146 cases in 2006 and 5,189 in 2007 with Outer at 5,690. Which stations moved is not documented, so every older district is treated as affected.",
+        "affected": ["Central", "East", "New Delhi", "North", "North-East", "North-West", "South", "South-West", "West"],
+        "unaffected": [],
+        "newDistricts": ["Outer"],
+        "evidence": "data/staged/police_geography_history/structure_evidence_2007_2010.json"
+      },
+      {
+        "between": [2007, 2008],
+        "reason": "The South-East district was added on 1 October 2008 (MHA Annual Report 2008-09, para 6.14). Which stations moved is not documented, so every other district is treated as affected.",
+        "affected": ["Central", "East", "New Delhi", "North", "North-East", "North-West", "Outer", "South", "South-West", "West"],
+        "unaffected": [],
+        "newDistricts": ["South-East"],
+        "evidence": "data/staged/police_geography_history/structure_evidence_2007_2010.json"
+      },
       {
         "between": [2016, 2017],
         "reason": "Delhi Police districts were reorganised. Rohini and Shahdara were notified on 14 October 2016 and reported as newly created in early December 2016, and Dwarka followed on 9 November 2017. 48 of the 161 stations with archived shapes sit in a different district in the November 2017 schedule than in the December 2014 roster.",
@@ -134,7 +182,7 @@
   },
   "utSeries": {
     "scopeName": "Delhi UT",
-    "printedYears": [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+    "printedYears": [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
     "gapReason": "No Delhi-wide figure has been collected for this year, so it is left blank rather than computed from districts.",
     "note": "Delhi-wide totals do not depend on district boundaries, so geography breaks are skipped. Definition breaks and missing years still apply."
   },
