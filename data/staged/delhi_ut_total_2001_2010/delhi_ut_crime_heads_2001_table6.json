@@ -1,0 +1,45 @@
+{
+ "title": "Delhi UT 2001 crime heads (robbery, burglary, theft) as NCRB prints them, Table 6 of Crime in India 2001",
+ "status": "staged",
+ "scope": "Delhi (Union Territory) row of Table 6, Incidence and rate of cognizable crimes (IPC) under different crime heads in states, UTs and cities, 2001. Not the Delhi (City) row, not a sum of districts. The district table for 2001 holds only ten columns, so these heads come from this table instead.",
+ "source": {
+  "url": "https://www.ncrb.gov.in/uploads/2022/July/11/custom/crime-in-india/TABLE6-2001.pdf",
+  "sha256": "fa05b215f2b14cc05db06512b2a173ab35fe7a0cfee09deaec44143b649cc012",
+  "pages": "6 (preparation and assembly for dacoity, robbery, burglary) and 8 (theft, auto theft, other theft, riots), row 33 DELHI",
+  "downloaded": "2026-11-04"
+ },
+ "how_read": "Read from the PDF text layer. Each figure was checked against its printed rate: incidence divided by the 2001 Delhi population (137.83 lakh, in delhi_ut_total_ipc_2001_2010.json) reproduces the printed rate to one decimal, and total theft equals auto theft plus other theft. The text layer of these older tables can be misaligned, so the rate check is what protects the row.",
+ "population_lakh": 137.83,
+ "year": 2001,
+ "heads": {
+  "preparation_assembly_dacoity": {
+   "incidence": 74,
+   "rate": 0.5
+  },
+  "robbery": {
+   "incidence": 624,
+   "rate": 4.5
+  },
+  "burglary": {
+   "incidence": 3029,
+   "rate": 22.0
+  },
+  "theft_total": {
+   "incidence": 19276,
+   "rate": 139.9
+  },
+  "theft_auto": {
+   "incidence": 7894,
+   "rate": 57.3
+  },
+  "theft_other": {
+   "incidence": 11382,
+   "rate": 82.6
+  },
+  "riots": {
+   "incidence": 165,
+   "rate": 1.2
+  }
+ },
+ "limits": "Only these heads were read. Crimes against women and special and local laws are not read for 2001."
+}

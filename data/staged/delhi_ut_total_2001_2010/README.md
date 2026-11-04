@@ -8,6 +8,7 @@
 | [delhi_city_total_ipc_2001_2010.json](delhi_city_total_ipc_2001_2010.json) | The Delhi (City) row of the same tables. NCRB's mega-city series, a different geography from the UT row. Its population is the same 127.91 lakh in every year |
 | [delhi_district_ipc_2001_2010.json](delhi_district_ipc_2001_2010.json) / [CSV](delhi_district_ipc_2001_2010.csv) | District-wise IPC crime: each year's reporting units by 30 offence heads (10 for 2001), with the printed TOTAL row |
 | [delhi_ut_crime_heads_2001_2010.csv](delhi_ut_crime_heads_2001_2010.csv) | Delhi UT crime-head counts per year (the printed TOTAL rows) |
+| [delhi_ut_crime_heads_2001_table6.json](delhi_ut_crime_heads_2001_table6.json) | Delhi UT robbery, burglary, theft (total, auto, other), riots and dacoity preparation for 2001 from Table 6, with source URL, SHA-256 and the rate check |
 | [reporting_units_by_year.json](reporting_units_by_year.json) | Which units existed in each year, split into territorial districts and specialised units |
 | [road_citywide_2008_2010.json](road_citywide_2008_2010.json) | Citywide accidents, killed and injured for 2008 to 2010 from the Traffic Police statistics page (archived) |
 
@@ -25,7 +26,7 @@
 
 ## Limits
 
-- **2001** has only the first ten offence columns (murder to dacoity): that is all the file NCRB serves for that year contains.
+- **2001** district table has only the first ten offence columns (murder to dacoity): that is all the file NCRB serves for that year contains. Delhi-wide robbery, burglary and theft for 2001 come from Table 6 instead (`delhi_ut_crime_heads_2001_table6.json`); there is no district split of them.
 - **City crime heads** (Table 1.8) and the Delhi (City) district split were not transcribed. NCRB's 2007 link for Table 1.8 returns an error.
 - **Road**: accident counts exist here only for 2008 to 2010. 2001 to 2007 accident counts were not found; 2001 to 2003 mode-of-travel rows are printed but do not add up. The 2008 injured figure is 7,343 on the web page and 7,342 in Table 3.1.
 - Counting rules, population estimates and offence heads changed over the period; compare with 2011 onward (production series) with care. See [limitations](../../../docs/LIMITATIONS.md).

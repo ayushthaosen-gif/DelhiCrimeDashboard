@@ -114,7 +114,8 @@ test('2001 to 2010: Delhi total joins, the district list breaks at 2007 and 2008
   const UT = 'Delhi UT';
   assert.equal(state('totalIPC', 2003, 2004, UT), 'comparable');
   assert.equal(state('totalIPC', 2010, 2011, UT), 'caution', 'the 2001 to 2010 tables and the 2011 summary table are not tied');
-  assert.equal(state('theft', 2005, 2006, UT), 'unavailable', 'no Delhi-level theft before 2011');
+  assert.equal(state('theft', 2005, 2006, UT), 'comparable', 'Delhi-level theft is held from 2001');
+  assert.equal(state('crimeAgainstWomen', 2005, 2006, UT), 'unavailable', 'no Delhi-level crimes against women before 2011');
   assert.equal(state('totalSLL', 2009, 2010, UT), 'unavailable');
   assert.equal(state('theft', 2006, 2007, 'North-West'), 'not_comparable', 'Outer was carved out and NCRB restated North West');
   assert.equal(state('theft', 2006, 2007, 'Outer'), 'unavailable');

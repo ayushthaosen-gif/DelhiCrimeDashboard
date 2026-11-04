@@ -27,8 +27,12 @@ test('crime series: Delhi-wide printed values, comparison states from the contin
   const pair = (S, a) => S.pairs.find(p => p.from === a);
   assert.equal(pair(t, 2005).state, 'comparable');
   assert.equal(pair(t, 2010).state, 'caution', 'the step from the 2001 to 2010 tables to the 2011 table is read as indicative');
-  assert.equal(P.crime.series.theft.values[0], null, 'theft is not held for 2001 to 2010');
-  assert.equal(pair(P.crime.series.theft, 2004).state, 'unavailable');
+  assert.equal(P.crime.series.theft.values[0], 19276, '2001 theft is the printed Table 6 value');
+  assert.equal(P.crime.series.theft.values[P.crime.years.indexOf(2002)], 16625);
+  assert.equal(pair(P.crime.series.theft, 2004).state, 'comparable');
+  assert.equal(pair(P.crime.series.theft, 2010).state, 'caution');
+  assert.equal(P.crime.series.crimeAgainstWomen.values[0], null);
+  assert.equal(pair(P.crime.series.crimeAgainstWomen, 2004).state, 'unavailable');
   assert.equal(pair(t, 2013).state, 'not_comparable', 'the 2013 to 2014 format change breaks the line');
   assert.equal(pair(t, 2023).state, 'caution');
   assert.match(pair(t, 2023).reason, /Bharatiya Nyaya Sanhita/);

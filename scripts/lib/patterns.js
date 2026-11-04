@@ -51,7 +51,13 @@ const prettyRoad = { 'RING ROAD': 'Ring Road', 'OUTER RING ROAD': 'Outer Ring Ro
 function build() {
   const c = read('data/continuity.json');
   const early = read('data/staged/delhi_ut_total_2001_2010/delhi_ut_total_ipc_2001_2010.json').rows;
-  const ut = early.map(r => ({ year: r.year, total_ipc_bns: r.incidence })).concat(utRows());
+  const headLines = fs.readFileSync(path.join(ROOT, 'data/staged/delhi_ut_total_2001_2010/delhi_ut_crime_heads_2001_2010.csv'), 'utf8').trim().split(/\r?\n/);
+  const headCols = headLines[0].split(',');
+  const heads = {};
+  headLines.slice(1).forEach(line => { const v = line.split(','); heads[v[0]] = v; });
+  const theft2001 = read('data/staged/delhi_ut_total_2001_2010/delhi_ut_crime_heads_2001_table6.json').heads.theft_total.incidence;
+  const earlyTheft = y => (y === 2001 ? theft2001 : numOrNull(heads[y][headCols.indexOf('theft_total')]));
+  const ut = early.map(r => ({ year: r.year, total_ipc_bns: r.incidence, theft: earlyTheft(r.year) })).concat(utRows());
   const years = ut.map(r => Number(r.year));
   const pair = key => years.slice(0, -1).map((y, i) => { const r = compareYears(c, key, y, years[i + 1], c.utSeries.scopeName); return { from: y, to: years[i + 1], state: r.state, reason: r.reasons[0] || null }; });
   const crime = {

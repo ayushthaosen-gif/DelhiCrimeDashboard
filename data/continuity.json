@@ -13,10 +13,10 @@
   "crimeMeasures": ["theft", "robbery", "burglary", "totalIPC", "crimeAgainstWomen", "totalSLL"],
   "availability": [
     {
-      "measures": ["theft", "robbery", "burglary", "crimeAgainstWomen", "totalSLL"],
+      "measures": ["crimeAgainstWomen", "totalSLL"],
       "years": [2001, 2010],
       "utOnly": true,
-      "reason": "For 2001 to 2010 only the Delhi total of IPC cases is held at Delhi level. Theft, robbery, burglary, crimes against women and special and local laws are blank, not zero."
+      "reason": "Crimes against women and special and local laws are not held at Delhi level for 2001 to 2010, so they are left blank, not zero."
     },
     {
       "measures": ["crimeAgainstWomen", "totalSLL"],
