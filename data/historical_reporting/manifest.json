@@ -136,7 +136,7 @@
     },
     {
       "path": "data/staged/police_geography_history/roster_2004.json",
-      "sha256": "3f33b0436c1c31dc7311cd414928db99b7019f3346c06b74303c7f472e52f625"
+      "sha256": "e146082e5ae9db851a0efbc6eb1f006fede88accc58249a27b278bbb0273fdb8"
     },
     {
       "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
@@ -160,7 +160,7 @@
     },
     {
       "path": "data/staged/police_geography_history/structure_evidence_2007_2010.json",
-      "sha256": "e6c5ce54d6559c1718d4a7b545a696271fc44830a0ae075d01666af5dee700b7"
+      "sha256": "b431426095aa4996906c6db8cc5e67b38985cd78956bc56cd358004d2f2256dd"
     }
   ],
   "definitionPolicy": "Old burglary (2011–2013), revised criminal trespass/burglary (2014–2015), and the later burglary series remain separate. Missing aggregates remain null.",
