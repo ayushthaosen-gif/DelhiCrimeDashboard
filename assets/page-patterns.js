@@ -8,7 +8,7 @@
   var st = { measure: 'totalIPC' };
 
   // ---------- crime over time ----------
-  var MEASURES = [['totalIPC', 'All IPC/BNS'], ['theft', 'Theft'], ['crimeAgainstWomen', 'Crimes against women']];
+  var MEASURES = [['totalIPC', 'All IPC/BNS'], ['theft', 'Theft'], ['robbery', 'Robbery'], ['burglary', 'Burglary'], ['crimeAgainstWomen', 'Crimes against women']];
   function crimeChart(key) {
     var S = PT.crime.series[key], years = PT.crime.years, vals = S.values;
     var W = 640, H = 260, L = 70, R = 14, T = 14, B = 30;

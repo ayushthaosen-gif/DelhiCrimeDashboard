@@ -31,6 +31,10 @@ test('crime series: Delhi-wide printed values, comparison states from the contin
   assert.equal(P.crime.series.theft.values[P.crime.years.indexOf(2002)], 16625);
   assert.equal(pair(P.crime.series.theft, 2004).state, 'comparable');
   assert.equal(pair(P.crime.series.theft, 2010).state, 'caution');
+  assert.equal(P.crime.series.robbery.values[0], 624);
+  assert.equal(P.crime.series.burglary.values[0], 3029);
+  assert.equal(P.crime.series.burglary.values[P.crime.years.indexOf(2014)], 10309, 'the revised head from 2014');
+  assert.equal(pair(P.crime.series.burglary, 2013).state, 'not_comparable');
   assert.equal(P.crime.series.crimeAgainstWomen.values[0], null);
   assert.equal(pair(P.crime.series.crimeAgainstWomen, 2004).state, 'unavailable');
   assert.equal(pair(t, 2013).state, 'not_comparable', 'the 2013 to 2014 format change breaks the line');
