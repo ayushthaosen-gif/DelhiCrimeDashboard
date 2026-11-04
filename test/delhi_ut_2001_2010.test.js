@@ -132,3 +132,10 @@ test('Historical crime page offers 2001 to 2018, and the manifest lists the earl
   assert.deepEqual(m.earlierCounts.referenceYears, [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]);
   for (const i of m.earlierCounts.sourceInputs) assert.match(i.sha256, /^[0-9a-f]{64}$/);
 });
+
+test('2001 crime heads (Table 6): each figure reproduces its printed rate, and theft is auto plus other', () => {
+  const t = JSON.parse(fs.readFileSync(path.join(dir, 'delhi_ut_crime_heads_2001_table6.json'), 'utf8'));
+  assert.match(t.source.sha256, /^[0-9a-f]{64}$/);
+  for (const [k, h] of Object.entries(t.heads)) assert.equal(Math.round(h.incidence / t.population_lakh * 10) / 10, h.rate, k);
+  assert.equal(t.heads.theft_total.incidence, t.heads.theft_auto.incidence + t.heads.theft_other.incidence);
+});

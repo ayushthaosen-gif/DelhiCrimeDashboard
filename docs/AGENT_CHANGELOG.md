@@ -1,3 +1,8 @@
+## [2026-11-04] - Claude (Anthropic) - Delhi theft on the Patterns chart from 2001
+
+- Patterns theft series now runs 2001 to 2024: 2002 to 2010 from the printed TOTAL rows in `delhi_ut_crime_heads_2001_2010.csv`; 2001 (19,276) from NCRB Table 6 2001, new staged file `delhi_ut_crime_heads_2001_table6.json` (also robbery 624, burglary 3,029; each figure matches its printed rate).
+- `data/continuity.json`: the Delhi-level "no data" rule for 2001 to 2010 now covers crimes against women and special and local laws only.
+
 ## [2026-11-04] - Claude (Anthropic) - Comparison rules cover 2001 to 2010 and fail closed
 
 - `data/continuity.json` now covers 2001 to 2024 (`yearRange`). Added: Delhi total IPC listed for 2001 to 2010; a caution at 2010 to 2011 (different NCRB tables); geography breaks 2006 to 2007 (Outer, 5 Sep 2007) and 2007 to 2008 (South-East, 1 Oct 2008) with every older district treated as affected because the station moves are not documented; an inferred-district-list caution for 2001 to 2010; blank-not-zero availability rules before 2011.
