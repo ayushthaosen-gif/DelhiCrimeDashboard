@@ -104,3 +104,19 @@ test('where the listed units do not add to the printed Delhi total (2016 to 2018
     else assert.ok(sum < y.citywide.values.theft, String(y.year));
   }
 });
+
+test('2002 to 2007 maps come from the 2004 Rajya Sabha station list on the archived station polygons', () => {
+  const r04 = JSON.parse(read('data/staged/police_geography_history/roster_2004.json'));
+  const counts = Object.fromEntries(Object.entries(r04.districts).map(([d, l]) => [d, l.length]));
+  assert.deepEqual(counts, { East: 13, 'New Delhi': 6, 'North-East': 11, Central: 12, North: 13, 'North-West': 17, South: 18, 'South-West': 13, West: 13 });
+  assert.equal(Object.values(counts).reduce((a, b) => a + b, 0), 116);
+  assert.match(r04.source.sha256, /^[0-9a-f]{64}$/);
+  const shapes = require('../scripts/lib/historical_map_shapes');
+  const n = shapes.notes(ROOT);
+  assert.match(n.inferredNine, /112 of them are matched/);
+  assert.match(n.inferredNine, /49 stations that opened after 2004/);
+  assert.match(n.inferredNine, /5 September 2007/);
+  assert.match(n.inferredTen, /1 October 2008/);
+  const ev = JSON.parse(read('data/staged/police_geography_history/structure_evidence_2007_2010.json'));
+  assert.ok(ev.sources.some(s => /Rajya Sabha/.test(s.source)) && ev.sources.some(s => /MHA Annual Report 2008-09/.test(s.source)));
+});

@@ -127,6 +127,18 @@
       "sha256": "d6d9a99c16850d7e2650a110aeec446f0430df910f238c35331b831c0a6b671d"
     },
     {
+      "path": "data/staged/police_geography_history/raw/stations_2014.geojson",
+      "sha256": "c960becb917e9c3750511a322fa01cc7cec0a9560f7b52d186434eea57e0e56d"
+    },
+    {
+      "path": "data/staged/police_geography_history/roster_2014.json",
+      "sha256": "dcbe83102fd32768b52c951e6573345dde039333de024174fd6a43ad482dc58b"
+    },
+    {
+      "path": "data/staged/police_geography_history/roster_2004.json",
+      "sha256": "3f33b0436c1c31dc7311cd414928db99b7019f3346c06b74303c7f472e52f625"
+    },
+    {
       "path": "data/staged/police_geography_history/districts_2014_reference.geojson",
       "sha256": "df09639b17373595661470ec5bda816d978c572f2cdd2132f998f91f8d11d662"
     },
@@ -148,7 +160,7 @@
     },
     {
       "path": "data/staged/police_geography_history/structure_evidence_2007_2010.json",
-      "sha256": "422990f520b5fe81843f4c081c72dc57a8539080230ff091f1113f696740f966"
+      "sha256": "e6c5ce54d6559c1718d4a7b545a696271fc44830a0ae075d01666af5dee700b7"
     }
   ],
   "definitionPolicy": "Old burglary (2011–2013), revised criminal trespass/burglary (2014–2015), and the later burglary series remain separate. Missing aggregates remain null.",

@@ -20,27 +20,60 @@ function soften(feature) {
   return out;
 }
 
-// Earlier, coarser districts rebuilt from the 2014 reference shapes (display only). NCRB prints nine districts to 2006 and ten in 2007:
-// Outer first appears in 2007 and South-East in 2008. The 2001 Census map of Delhi's nine districts shows North-West reaching Narela and
-// South reaching the Yamuna, so Outer is drawn back into North-West and South-East back into South. Inferred, not a roster.
-function dissolve(features, parts, name) {
-  const picked = parts.map(n => features.find(f => f.properties.name === n));
-  const merged = turf.union(turf.featureCollection(picked));
-  merged.properties = { name, territorial: true };
-  return merged;
+// Earlier, coarser districts, built from the archived 2014 station polygons and the station list of each district as printed in the Rajya
+// Sabha answers of 22 December 2004 (roster_2004.json). That list holds for the nine districts of 1988 to 2006. Stations opened after 2004 are
+// not on it; each takes the district of the nearest listed station in its own 2014 district. 2007 is the same list with the 2014 Outer stations drawn as Outer, which
+// the Ministry of Home Affairs dates to 5 September 2007. Inferred for the years other than 2004; display geometry only.
+const norm = n => n.toLowerCase().replace(/[^a-z0-9]/g, '');
+const dist = (a, b) => turf.distance([a.properties.longitude, a.properties.latitude], [b.properties.longitude, b.properties.latitude]);
+
+function stationDistricts(root) {
+  const stations = load(root, GEO + 'raw/stations_2014.geojson').features;
+  const r04 = load(root, GEO + 'roster_2004.json');
+  const r14 = load(root, GEO + 'roster_2014.json');
+  const byName = new Map(stations.map(f => [norm(f.properties.PS), f]));
+  const airport = new Set(r14.airportStations.map(norm));
+  const listed = new Map();
+  for (const [district, names] of Object.entries(r04.districts)) {
+    for (const n of names) {
+      const f = byName.get(norm(r04.names_as_printed_to_archive_spelling[n] || n));
+      if (f) listed.set(f, district);
+    }
+  }
+  const district14 = new Map();
+  for (const [district, names] of Object.entries(r14.districts)) for (const n of names) district14.set(norm(n), district);
+  const nineDistricts = new Map(listed);
+  for (const f of stations) {
+    if (nineDistricts.has(f) || airport.has(norm(f.properties.PS))) continue;
+    // nearest listed station within the same 2014 district; the nearest overall if that district has none listed
+    const same = [...listed].filter(([g]) => district14.get(norm(g.properties.PS)) === district14.get(norm(f.properties.PS)));
+    let best = null, bestD = Infinity;
+    for (const [g, district] of (same.length ? same : [...listed])) { const d = dist(f, g); if (d < bestD) { bestD = d; best = district; } }
+    nineDistricts.set(f, best);
+  }
+  const outer = new Set(r14.districts.Outer.map(norm));
+  const tenDistricts = new Map([...nineDistricts].map(([f, d]) => [f, outer.has(norm(f.properties.PS)) ? 'Outer' : d]));
+  return { nine: nineDistricts, ten: tenDistricts, listedCount: listed.size, stationCount: stations.length - airport.size };
 }
-function without(features, drop) {
-  return features.filter(f => !drop.includes(f.properties.name));
+
+function dissolveBy(assign) {
+  const groups = new Map();
+  for (const [f, district] of assign) groups.set(district, (groups.get(district) || []).concat(f));
+  return [...groups].map(([name, feats]) => {
+    const merged = feats.length === 1 ? turf.feature(feats[0].geometry) : turf.union(turf.featureCollection(feats));
+    merged.properties = { name, territorial: true };
+    return merged;
+  });
 }
-function earlierMaps(f14) {
-  const ten = without(f14, ['South', 'South-East']).concat(dissolve(f14, ['South', 'South-East'], 'South'));
-  const nine = without(ten, ['North-West', 'Outer']).concat(dissolve(f14, ['North-West', 'Outer'], 'North-West'));
-  return { '2007': ten, '2001': nine };
+
+function earlierMaps(root) {
+  const sd = stationDistricts(root);
+  return { '2001': dissolveBy(sd.nine).map(soften), '2007': dissolveBy(sd.ten).map(soften), stationDistricts: sd };
 }
 
 function buildShapes(root) {
   const f14 = load(root, GEO + 'districts_2014_reference.geojson').features.map(soften);
-  const early = earlierMaps(f14);
+  const early = earlierMaps(root);
   const f17 = load(root, GEO + 'districts_2017_reference.geojson').features.map(soften);
   const coords = [...f14, ...f17].flatMap(f => f.geometry.type === 'Polygon' ? f.geometry.coordinates.flat() : f.geometry.coordinates.flat(2));
   const xs = coords.map(p => p[0]), ys = coords.map(p => p[1]);
@@ -53,6 +86,7 @@ function buildShapes(root) {
 }
 
 function notes(root) {
+  const sd = stationDistricts(root), newer = sd.stationCount - sd.listedCount;
   const quality = load(root, GEO + 'validation.json');
   const quality17 = load(root, GEO + 'validation_2017.json');
   const moved = Object.values(quality17.stationsChangingDistrictSince2014Roster).flat().length;
@@ -61,14 +95,14 @@ function notes(root) {
     derived: `Derived reference map. The official 9 November 2017 Delhi Gazette schedule (14 districts, 163 territorial stations) is applied to the May 2014 station shapes. North Avenue and South Avenue (New Delhi) have no archived polygon, so New Delhi is drawn from its other stations. ${moved} of the 161 stations that have shapes sit in a different district than in the December 2014 roster. Station boundaries may have changed after 2014; the effective date of the shapes and their reuse terms remain unresolved. The same schedule is used for 2018: NCRB reports the same 14 districts in both years, but no separate 2018 schedule was found. The outlines are schematic and not to scale: they are lightly smoothed for display, so they are not usable for measuring area or placing a point.`,
     inferred: 'Inferred, not verified. No station-by-station roster has been found for this year. The 2014 reference shapes are shown because the Ministry of Home Affairs annual reports describe the same Delhi Police structure in every year from 2010-11 to 2014-15 (11 districts, 54 sub-divisions), NCRB reports the same 11 district names, and a district-share check found no large transfer; a single station moving between districts cannot be ruled out.',
     inferredEarly: 'Inferred, not verified. NCRB prints the same 11 district names for this year as for 2011 to 2015, and the Ministry of Home Affairs dates the eleventh district (South-East) to 1 October 2008, so the 2014 reference shapes are shown. No station roster for this year has been found. The Ministry also reports that 22 police stations and 9 sub-divisions were notified in 2009, so stations may have moved between districts. The outlines are schematic and not to scale.',
-    inferredNine: 'Inferred, not verified, and weaker than later years. The Ministry of Home Affairs reports nine police districts from 1988 until Outer was added on 5 September 2007, which matches NCRB. No station roster or boundary for this year has been found. The shapes are the 2014 reference districts merged back: Outer into North-West and South-East into South, which is how the 2001 Census map of the nine Delhi districts looks. Those are revenue districts, not police districts, and stations may have moved between districts since, so the real police boundaries may differ. The outlines are schematic and not to scale.',
-    inferredTen: 'Inferred, not verified, and weaker than later years. The Ministry of Home Affairs dates Outer to 5 September 2007 and South-East to 1 October 2008. No station roster or boundary for 2007 has been found, and which districts Outer took its stations from is not documented. The shapes are the 2014 reference districts with South-East merged back into South; Outer is drawn as in 2014. The outlines are schematic and not to scale.',
+    inferredNine: `Inferred from a 2004 station list. The Rajya Sabha answers of 22 December 2004 print the police stations under each of the nine police districts (116 stations); ${sd.listedCount} of them are matched to the archived 2014 station polygons and grouped by that list. The Ministry of Home Affairs reports nine police districts from 1988 until Outer was added on 5 September 2007, which matches NCRB. ${newer} stations that opened after 2004 are given the district of the nearest listed station in their own 2014 district. The 2004 list is applied to 2002 to 2006 without a check for station moves in those years, so those years are less certain than 2004. The outlines are schematic and not to scale.`,
+    inferredTen: `Inferred from a 2004 station list. The Ministry of Home Affairs dates Outer to 5 September 2007 and South-East to 1 October 2008, so 2007 has ten districts. The shapes use the Rajya Sabha station list of 22 December 2004 (nine districts) on the archived 2014 station polygons, with the stations of the 2014 Outer district drawn as Outer. Which stations Outer actually took in 2007 is not documented, and stations opened after 2004 are given the district of the nearest listed station in their own 2014 district. The outlines are schematic and not to scale.`,
     inferred2015: 'The 2014-15 report counts 161 territorial stations and the November 2017 schedule 163, so a few stations opened after the 2014 archive was made.',
     inferred2016: 'For 2016 specifically: the NCRB 2016 table still reports 11 districts. Rohini and Shahdara were notified on 14 October 2016 but press reports describe them as newly created in early December 2016, and no other reorganisation between December 2014 and then has been found. Station moves still cannot be ruled out.'
   };
 }
 
 // Every file the shapes and their labelling are built from; builders record these paths and hashes in their manifests.
-const INPUTS = ['districts_2014_reference.geojson', 'districts_2017_reference.geojson', 'validation.json', 'validation_2017.json', 'structure_evidence_2010_2016.json', 'structure_evidence_2007_2010.json'].map(f => GEO + f);
+const INPUTS = ['raw/stations_2014.geojson', 'roster_2014.json', 'roster_2004.json', 'districts_2014_reference.geojson', 'districts_2017_reference.geojson', 'validation.json', 'validation_2017.json', 'structure_evidence_2010_2016.json', 'structure_evidence_2007_2010.json'].map(f => GEO + f);
 
 module.exports = {buildShapes, notes, VIEW_BOX, INPUTS};
