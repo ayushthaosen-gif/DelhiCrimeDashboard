@@ -20,8 +20,27 @@ function soften(feature) {
   return out;
 }
 
+// Earlier, coarser districts rebuilt from the 2014 reference shapes (display only). NCRB prints nine districts to 2006 and ten in 2007:
+// Outer first appears in 2007 and South-East in 2008. The 2001 Census map of Delhi's nine districts shows North-West reaching Narela and
+// South reaching the Yamuna, so Outer is drawn back into North-West and South-East back into South. Inferred, not a roster.
+function dissolve(features, parts, name) {
+  const picked = parts.map(n => features.find(f => f.properties.name === n));
+  const merged = turf.union(turf.featureCollection(picked));
+  merged.properties = { name, territorial: true };
+  return merged;
+}
+function without(features, drop) {
+  return features.filter(f => !drop.includes(f.properties.name));
+}
+function earlierMaps(f14) {
+  const ten = without(f14, ['South', 'South-East']).concat(dissolve(f14, ['South', 'South-East'], 'South'));
+  const nine = without(ten, ['North-West', 'Outer']).concat(dissolve(f14, ['North-West', 'Outer'], 'North-West'));
+  return { '2007': ten, '2001': nine };
+}
+
 function buildShapes(root) {
   const f14 = load(root, GEO + 'districts_2014_reference.geojson').features.map(soften);
+  const early = earlierMaps(f14);
   const f17 = load(root, GEO + 'districts_2017_reference.geojson').features.map(soften);
   const coords = [...f14, ...f17].flatMap(f => f.geometry.type === 'Polygon' ? f.geometry.coordinates.flat() : f.geometry.coordinates.flat(2));
   const xs = coords.map(p => p[0]), ys = coords.map(p => p[1]);
@@ -30,7 +49,7 @@ function buildShapes(root) {
   const shape = g => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates)
     .map(p => p.map(r => r.map((xy, i) => (i ? 'L' : 'M') + project(xy).map(n => n.toFixed(2)).join(',')).join('') + 'Z').join('')).join('');
   const withPath = fs => fs.map(f => ({properties: f.properties, d: shape(f.geometry)}));
-  return {viewBox: VIEW_BOX, maps: {'2014': withPath(f14), '2017': withPath(f17)}};
+  return {viewBox: VIEW_BOX, maps: {'2014': withPath(f14), '2017': withPath(f17), '2007': withPath(early['2007']), '2001': withPath(early['2001'])}};
 }
 
 function notes(root) {
@@ -42,6 +61,8 @@ function notes(root) {
     derived: `Derived reference map. The official 9 November 2017 Delhi Gazette schedule (14 districts, 163 territorial stations) is applied to the May 2014 station shapes. North Avenue and South Avenue (New Delhi) have no archived polygon, so New Delhi is drawn from its other stations. ${moved} of the 161 stations that have shapes sit in a different district than in the December 2014 roster. Station boundaries may have changed after 2014; the effective date of the shapes and their reuse terms remain unresolved. The same schedule is used for 2018: NCRB reports the same 14 districts in both years, but no separate 2018 schedule was found. The outlines are schematic and not to scale: they are lightly smoothed for display, so they are not usable for measuring area or placing a point.`,
     inferred: 'Inferred, not verified. No station-by-station roster has been found for this year. The 2014 reference shapes are shown because the Ministry of Home Affairs annual reports describe the same Delhi Police structure in every year from 2010-11 to 2014-15 (11 districts, 54 sub-divisions), NCRB reports the same 11 district names, and a district-share check found no large transfer; a single station moving between districts cannot be ruled out.',
     inferredEarly: 'Inferred, not verified. NCRB prints the same 11 district names for this year as for 2011 to 2015, so the 2014 reference shapes are shown. No Delhi Police station roster for this year has been found, and a reorganisation of police sub-divisions and stations in 2009 is reported but was not confirmed, so stations may have moved between districts. The outlines are schematic and not to scale.',
+    inferredNine: 'Inferred, not verified, and weaker than later years. NCRB prints nine districts for this year (Outer first appears in 2007, South-East in 2008). No Delhi Police roster or boundary for this year has been found. The shapes are the 2014 reference districts merged back: Outer into North-West and South-East into South, which is how the 2001 Census map of the nine Delhi districts looks. Those are revenue districts, not police districts, so the real police boundaries may differ. The outlines are schematic and not to scale.',
+    inferredTen: 'Inferred, not verified, and weaker than later years. NCRB prints ten districts for 2007, the first year with Outer (South-East first appears in 2008). No Delhi Police roster or boundary for this year has been found. The shapes are the 2014 reference districts with South-East merged back into South; Outer is drawn as in 2014, although it may have taken in other areas when it was created. The outlines are schematic and not to scale.',
     inferred2015: 'The 2014-15 report counts 161 territorial stations and the November 2017 schedule 163, so a few stations opened after the 2014 archive was made.',
     inferred2016: 'For 2016 specifically: the NCRB 2016 table still reports 11 districts. Rohini and Shahdara were notified on 14 October 2016 but press reports describe them as newly created in early December 2016, and no other reorganisation between December 2014 and then has been found. Station moves still cannot be ruled out.'
   };

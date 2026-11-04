@@ -17,7 +17,7 @@ The tables below are a summary. The full year-by-year matrix (2011 to 2026, ever
 |---|---|---|---|
 | NCRB district crime | 2016 to 2024 | District (as reported that year) | 2016 has theft and robbery only; other aggregates blank. |
 | Historical district counts | 2011 to 2018 | Original reporting districts | Counts only; no SLL or crimes against women for 2011 to 2013. |
-| Historical district counts, earlier | 2001 to 2010 | Original reporting units of each year | Shown on the Historical crime page; 2008 to 2010 are also on Explore, drawn on the 2014 reference shapes (inferred). 2001 to 2007 have no map. Not in the matrix. IPC offence heads; 2001 has only murder to dacoity. No SLL or women-specific totals. See [the staged README](../data/staged/delhi_ut_total_2001_2010/README.md). |
+| Historical district counts, earlier | 2001 to 2010 | Original reporting units of each year | Shown on the Historical crime page; 2002 to 2010 are also on Explore, drawn on the 2014 reference shapes (inferred; 2002 to 2007 merged back to nine or ten districts, a weaker inference). 2001 has no Explore measure. Not in the matrix. IPC offence heads; 2001 has only murder to dacoity. No SLL or women-specific totals. See [the staged README](../data/staged/delhi_ut_total_2001_2010/README.md). |
 | Delhi UT printed totals | 2011 to 2024 | Delhi as a whole | Theft, robbery, burglary for 2016 to 2020 read from Table 1A.4 page images (sums checked and independently re-read); 2016 uses different headings than 2017 on. |
 | NCRB 2025 | none | | Not published; monitored weekly. |
 
