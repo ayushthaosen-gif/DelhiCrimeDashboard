@@ -1,3 +1,7 @@
+## [2026-11-04] - Claude (Anthropic) - Road trend back to 2008
+
+- Road safety page trend and the Patterns change-between-two-years road series now start in 2008. 2008 to 2010 (total crashes, fatal crashes, persons killed) come from the staged Traffic Police statistics page capture (`road_citywide_2008_2010.json`), the same page that prints 2011 to 2013; `SITE.trendsEarlier` carries them, `SITE.trends` is unchanged (2011 to 2024). The index scale stays 2011 = 100. 2001 to 2007 accident counts were not found.
+
 ## [2026-11-04] - Claude (Anthropic) - Robbery and burglary on Patterns; Explore 2001 note
 
 - Trends and patterns: Robbery and Burglary buttons, 2001 to 2024. 2002 to 2010 from `delhi_ut_crime_heads_2001_2010.csv`, 2001 from the Table 6 staged file, 2011 on from the Delhi UT release. Burglary is the old head to 2013 and the criminal-trespass-and-burglary head from 2014; the 2013 to 2014 step is not comparable, as for the other measures.
