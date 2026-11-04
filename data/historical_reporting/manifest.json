@@ -145,6 +145,10 @@
     {
       "path": "data/staged/police_geography_history/structure_evidence_2010_2016.json",
       "sha256": "fcc7b6c5becd09c88afafd5ef75663b754b2a74f88758fdc74a928523e6d1ef5"
+    },
+    {
+      "path": "data/staged/police_geography_history/structure_evidence_2007_2010.json",
+      "sha256": "422990f520b5fe81843f4c081c72dc57a8539080230ff091f1113f696740f966"
     }
   ],
   "definitionPolicy": "Old burglary (2011–2013), revised criminal trespass/burglary (2014–2015), and the later burglary series remain separate. Missing aggregates remain null.",

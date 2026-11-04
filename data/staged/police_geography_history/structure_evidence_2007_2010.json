@@ -1,0 +1,25 @@
+{
+  "purpose": "Dated facts about the Delhi Police district structure around 2007 to 2010, read by Claude from the sources named here. Supports the map labels for 2002 to 2010. Not a station roster.",
+  "caveat": "Neither source names the stations or the parent districts of Outer and South-East. Station-to-district lists and notification numbers were not found.",
+  "retrieval": "Read 2026-11-04. The MHA PDF is mirrored at satp.org; the mha.gov.in original returned 404 or 403 from this machine. The SHA-256 identifies the exact file read.",
+  "sources": [
+    {
+      "source": "MHA Annual Report 2008-09, chapter 6, Delhi Police, paragraph 6.14",
+      "finding": "Three police districts in 1951; six after the 1978 Delhi Police Act (East and West added); nine in 1988 (North-East, North-West, South-West added); Outer added on 5 September 2007 and South-East on 1 October 2008, making 11. Paragraph 6.15: creation of 11 new police stations and two districts sanctioned.",
+      "url": "https://www.satp.org/satporgtp/countries/india/document/papers/MHA08-09/6.pdf",
+      "original": "https://www.mha.gov.in/sites/default/files/AnnualReport_08_09.pdf",
+      "sha256": "81f3e2acf203d06da27105755256df3d8e5a16bc37ee0cdfc284616e01b852c5"
+    },
+    {
+      "source": "PIB, Ministry of Home Affairs year-end review, 24 December 2009",
+      "finding": "During 2009, 22 new police stations and 9 sub-divisions of Delhi Police were notified, and sanction for 6,478 posts issued.",
+      "url": "https://www.pib.gov.in/newsite/erelcontent.aspx?lang=2&reg=48&relid=56457"
+    }
+  ],
+  "readAs": [
+    "Nine police districts from 1988 until Outer on 5 September 2007, which matches NCRB printing nine districts for 2001 to 2006 and ten for 2007.",
+    "South-East began on 1 October 2008, so NCRB's 2008 table (11 districts) re-states the whole year on the new layout.",
+    "NCRB's own figures show the re-statement: North-West total IPC fell from 11,146 (2006) to 5,189 (2007) while Outer appeared with 5,690.",
+    "22 stations and 9 sub-divisions were notified in 2009, inside the period mapped with the 2014 shapes, so station moves between districts are likely."
+  ]
+}
