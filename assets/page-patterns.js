@@ -197,7 +197,7 @@
       return { id: 'c-' + k, label: S.label, unit: 'registered cases', spec: { kind: 'crime', key: k, scope: CONT.utSeries.scopeName, values: v } };
     }) });
     G.push({ g: 'Road, Delhi as a whole', items: [['crashes', 'Road crashes'], ['fatalCrashes', 'Fatal crashes'], ['killed', 'Persons killed']].map(function (m) {
-      return { id: 't-' + m[0], label: m[1], unit: m[0] === 'killed' ? 'persons killed' : m[0] === 'fatalCrashes' ? 'fatal crashes' : 'crashes', spec: { kind: 'trend', key: m[0], values: mapOf(CD.SITE.trends, 'year', m[0]) } };
+      return { id: 't-' + m[0], label: m[1], unit: m[0] === 'killed' ? 'persons killed' : m[0] === 'fatalCrashes' ? 'fatal crashes' : 'crashes', spec: { kind: 'trend', key: m[0], values: mapOf((CD.SITE.trendsEarlier || []).concat(CD.SITE.trends), 'year', m[0]) } };
     }) });
     G.push({ g: 'Persons killed by mode of travel', items: [['pedestrian', 'Pedestrians'], ['twoWheeler', 'Two-wheeler riders'], ['cyclist', 'Cyclists'], ['car', 'Car occupants'], ['bus', 'Bus passengers'], ['slowMoving', 'Slow-moving vehicles'], ['other', 'Other'], ['total', 'All persons killed']].map(function (m) {
       var v = {}; Object.keys(VM).forEach(function (y) { if (VM[y][m[0]] != null) v[y] = VM[y][m[0]]; });

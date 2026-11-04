@@ -96,6 +96,8 @@ function buildSite(continuity) {
   const extra = read('data/road_safety_extra_2023_2024.json');
   const status = read('data/series_status.json');
   const trends = trendsFile.trends.map(r => ({ year: r.year, crashes: r.crashes, fatalCrashes: r.fatalCrashes, killed: r.fatalities }));
+  // 2008 to 2010: Delhi Traffic Police statistics page (archived capture), the same page that prints 2011 to 2013; kept apart from the 2011 to 2024 series.
+  const trendsEarlier = read('data/staged/delhi_ut_total_2001_2010/road_citywide_2008_2010.json').rows.map(r => ({ year: r.year, crashes: r.total, fatalCrashes: r.fatal, killed: r.persons_killed }));
   const victims = {};
   trendsFile.victims.forEach(v => {
     victims[v.year] = {
@@ -139,7 +141,7 @@ function buildSite(continuity) {
     measure: r.measure, year: r.reference_year, value: r.value, kind: r.value_kind, reportYear: r.report_year, pdfPage: r.source_pdf_page, printedPage: r.source_printed_page,
     url: r.source_url, sha256: r.source_sha256, review: r.review_status, note: r.note
   }));
-  return { trends, victims, victimsEarly, victimsEarlier, enforcement, enforcementHistory, series, updated: status.updated };
+  return { trends, trendsEarlier, victims, victimsEarly, victimsEarlier, enforcement, enforcementHistory, series, updated: status.updated };
 }
 
 function buildRoads() {
