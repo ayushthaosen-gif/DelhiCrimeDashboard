@@ -139,19 +139,21 @@
         h('tbody', null, ys.map(function (y) { return h('tr', null, h('th', { scope: 'row' }, String(y)), cols.map(function (c) { return h('td', { class: 'num' }, n(E2[y][c[0]])); })); })))));
   }
 
-  // ---- enforcement, 2019 to 2024 (citywide; 2019 to 2022 are read from the annual reports, 2023 and 2024 from the road-crash-report release) ----
-  var EH = S.enforcementHistory, EYEARS = [2019, 2020, 2021, 2022, 2023, 2024];
+  // ---- enforcement, 2011 to 2024 (citywide; 2011 to 2022 are read from the annual reports, 2023 and 2024 from the road-crash-report release) ----
+  var EH = S.enforcementHistory, EYEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
   function ehGet(measure, y) { return EH.filter(function (r) { return r.measure === measure && r.year === y; })[0] || null; }
   var ENF_ROWS = [
     { label: 'Hit-and-run fatal crashes', key: 'hit_and_run_fatal_crashes', modern: 'hitAndRunFatal', fmt: n },
     { label: 'Hit-and-run share of fatal crashes', key: 'hit_and_run_share_of_fatal_crashes_percent', modern: 'hitAndRunShare', fmt: function (v) { return v.toFixed(1) + '%'; } },
     { label: 'Drink-driving prosecutions', key: 'drink_driving_prosecutions', modern: 'drinkDriving', fmt: n, flag: 'drink' },
-    { label: 'Over-speeding notices', key: 'overspeed_notices', modern: 'overspeed', fmt: n },
+    { label: 'Over-speeding challans on the spot (to 2018)', key: 'overspeed_challans_on_the_spot', modern: null, fmt: n },
+    { label: 'Over-speeding notices from cameras (from 2019)', key: 'overspeed_notices', modern: 'overspeed', fmt: n },
     { label: 'Red-light cameras (junctions)', modern: 'rlvd', pair: 'rlvdJunctions' },
     { label: 'Speed cameras (locations)', modern: 'osvd', pair: 'osvdLocations' }
   ];
   function enfCell(row, y) {
     if (y >= 2023) {
+      if (!row.modern) return { text: '—', none: true };
       var e = E[y];
       if (row.pair) return { text: e[row.modern] + ' (' + e[row.pair] + ')' };
       return { text: row.fmt(e[row.modern]) };
@@ -163,7 +165,7 @@
   function enfCsv() {
     var head = ['measure', 'reference_year', 'value', 'unit', 'value_kind', 'source_report_year', 'source_pdf_page', 'source_printed_page', 'source_url', 'source_sha256', 'review_status', 'note', 'data_version'];
     var rows = [head];
-    var UNITS = { hit_and_run_fatal_crashes: 'fatal crashes', hit_and_run_share_of_fatal_crashes_percent: 'percent of fatal crashes', drink_driving_prosecutions: 'persons prosecuted', overspeed_notices: 'notices' };
+    var UNITS = { hit_and_run_fatal_crashes: 'fatal crashes', hit_and_run_share_of_fatal_crashes_percent: 'percent of fatal crashes', drink_driving_prosecutions: 'persons prosecuted', overspeed_notices: 'notices', overspeed_challans_on_the_spot: 'challans' };
     EYEARS.forEach(function (y) {
       ENF_ROWS.forEach(function (row) {
         if (row.pair) {
@@ -173,6 +175,7 @@
         }
         if (y >= 2023) { rows.push([row.key, y, E[y][row.modern], UNITS[row.key], 'printed', y, '', '', '', '', 'production release (data/road_safety_extra_2023_2024.json)', '', data.updated]); return; }
         var o = ehGet(row.key, y);
+        if (!o) return;
         rows.push([row.key, y, o ? o.value : '', UNITS[row.key], o ? o.kind : '', o ? o.reportYear : '', o ? o.pdfPage : '', o && o.printedPage != null ? o.printedPage : '', o ? o.url : '', o ? o.sha256 : '', o ? o.review : '', o ? o.note : '', data.updated]);
       });
     });
@@ -181,22 +184,23 @@
   function renderEnforcement() {
     var sec = D.clear(D.$('#enforcement'));
     sec.appendChild(h('div', { class: 'row-between' },
-      h('div', { class: 'title-row' }, h('h2', null, 'Enforcement, 2019 to 2024'),
+      h('div', { class: 'title-row' }, h('h2', null, 'Enforcement, 2011 to 2024'),
         D.tip('About these figures', ['Citywide counts from the Traffic Police annual reports, not split by district. Prosecutions and notices depend on enforcement effort and on how many cameras were working, not only on behaviour.',
           'Drink-driving prosecutions fell from 36,065 to 3,986 in 2020, when alcometer tests were reduced because of the pandemic. The 2023 and 2024 figures are about seven times the 2022 one, and it has not been established that they are counted the same way: do not read the jump as a change in drinking and driving.',
-          'Camera counts are given only for 2023 and 2024: the older reports give inconsistent installation counts.'], { right: true })),
-      h('button', { type: 'button', class: 'btn', 'data-key': 'enfcsv', onclick: function () { D.download('delhi_road_enforcement_2019_2024.csv', enfCsv()); } }, 'Download CSV')));
+          'Camera counts are given only for 2023 and 2024: the older reports give inconsistent installation counts.',
+          '2011 to 2018 come from the annual reports prosecution table (on-the-spot challans) and chapter 8 text. Over-speeding challans (to 2018) and camera notices (from 2019, about 2.5 million that year) are different things and are not joined. Drink-driving counts persons prosecuted in both periods, but the later reports were not compared line by line, so read 2018 against 2019 with caution.'], { right: true })),
+      h('button', { type: 'button', class: 'btn', 'data-key': 'enfcsv', onclick: function () { D.download('delhi_road_enforcement_2011_2024.csv', enfCsv()); } }, 'Download CSV')));
     sec.appendChild(D.plain('How many tickets, prosecutions and cameras the Traffic Police reported each year. More tickets can mean more checking, not worse driving.'));
-    sec.appendChild(scopeLine('Counts per year · Delhi as a whole · 2019 to 2024 · ' + (EYEARS.indexOf(st.year) >= 0 ? 'year in view: ' + st.year + ' (highlighted)' : 'no figures for ' + st.year + ' (the table starts in 2019)')));
+    sec.appendChild(scopeLine('Counts per year · Delhi as a whole · 2011 to 2024 · ' + (EYEARS.indexOf(st.year) >= 0 ? 'year in view: ' + st.year + ' (highlighted)' : 'no figures for ' + st.year)));
     var head = h('tr', null, h('th', { scope: 'col' }, 'Measure'), EYEARS.map(function (y) { return h('th', { scope: 'col', class: y === st.year ? 'yr-col' : null }, y); }));
     var any = false;
     var body = ENF_ROWS.map(function (row) {
       return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, row.label),
         EYEARS.map(function (y) { var c = enfCell(row, y); if (c.derived) any = true; return h('td', { class: (c.none ? 'muted' : '') + (y === st.year ? ' yr-col' : ''), title: c.o ? 'Delhi Road Crash Report ' + c.o.reportYear + ', PDF page ' + c.o.pdfPage : null }, c.text, c.derived ? h('sup', null, '†') : null); }));
     });
-    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:560px' }, h('caption', { class: 'sr-only' }, 'Enforcement figures by year, citywide'), h('thead', null, head), h('tbody', null, body))));
-    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'A dash means the report gives no figure on a consistent basis, not zero. † Computed here (668 of 1,428 fatal crashes in 2022; the report says about 47%). The 2019 over-speeding figure is the one the 2020 report prints for 2019. Sources: Delhi Road Crash Reports 2019 to 2024; pages, hashes and review status are in the CSV and the ',
-      h('a', { href: 'data/releases/road_enforcement_2019_2022/manifest.json' }, 'release manifest'), '. Not independently reviewed.'));
+    sec.appendChild(h('div', { class: 'overflow' }, h('table', { class: 'tbl', style: 'min-width:1000px' }, h('caption', { class: 'sr-only' }, 'Enforcement figures by year, citywide'), h('thead', null, head), h('tbody', null, body))));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'A dash means the report gives no figure on a consistent basis, not zero. † Computed here: 668 of 1,428 fatal crashes in 2022 (the report says about 47%), and 700 of 1,565 in 2017 (that report prints 41.8%, a repeat of 2016, but 700 of 1,565 is 44.7%). No hit-and-run count is held for 2011 to 2014; the 2014 share is printed in the 2015 report. The 2019 over-speeding figure is the one the 2020 report prints for 2019. Sources: Delhi Traffic Police annual reports 2015 to 2022 and Delhi Road Crash Reports 2023 and 2024; pages, hashes and review status are in the CSV and the ',
+      h('a', { href: 'data/releases/road_enforcement_2019_2022/manifest.json' }, 'release manifest'), ' (2019 to 2022) and the ', h('a', { href: 'data/staged/tp_enforcement_2011_2018/enforcement_2011_2018.json' }, '2011 to 2018 file'), '. Not independently reviewed.'));
   }
 
   // ---- crash-prone zones, 2016 to 2024 ----
@@ -292,11 +296,11 @@
     sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Printed in the 2015 report (Table 6.5, page 42), as a retrospective table. Counts for the stretch, not for selected zones. ' + (st.year === 2014 ? '‡ The source total does not equal the sum of its parts (printed total shown; the sum is in the tooltip); these two rows are on hold for source review. ' : ''), h('a', { href: st.year === 2014 ? 'data/releases/road_zones_roads_2011_2015/road_stretches_2014_retrospective.csv' : 'data/releases/road_zones_roads_2011_2015/roads_2011_2012_retrospective.csv' }, 'Download (CSV)'), ' · ', h('a', { href: 'data/releases/road_zones_roads_2011_2015/manifest.json' }, 'sources and checks'), '.'));
   }
 
-  // ---- district tables, 2016 to 2024: whole-district crashes and crashes within selected zones ----
+  // ---- district tables, 2011 to 2024: whole-district crashes and crashes within selected zones ----
   // Each year keeps its own printed districts (11, 12 or 15 traffic districts); nothing is allocated to other districts, and no change
   // figures are calculated here. Totals are printed separately and are never rows. A district missing from a printed table is "not in the table", not zero.
   var HIST = R.history, CH = data.CONTINUITY.roadHistory;
-  var HYEARS = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+  var HYEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
   var hs = { measure: 'zones' };
   (function () {
     var p = D.parseHash();
@@ -319,7 +323,7 @@
   function histTable(m, y) { var t = (m === 'whole' ? HIST.whole : HIST.zones)[y]; return t && !t.unavailable ? t : null; }
   function histNotes(m, y) {
     var out = [];
-    if (y === 2016) return [{ state: 'unavailable', text: 'First year in this table.' }];
+    if (y === 2011) return [{ state: 'unavailable', text: 'First year in this table.' }];
     if (!histTable(m, y - 1)) out.push({ state: 'unavailable', text: 'The previous year has no district table for this measure, so there is nothing to compare with.' });
     else {
       var b = CH.breaks.filter(function (x) { return x.between[1] === y; })[0];
@@ -330,9 +334,9 @@
     return out;
   }
   function histUnavailable(m, y) {
-    if (m === 'whole') return 'Whole-district crash counts are shown for 2016 to 2022. For ' + y + ' this dashboard holds the district tables for crashes within selected zones (choose that measure above) and persons killed by district (in Explore), not whole-district crash counts.';
+    if (m === 'whole') return 'Whole-district crash counts are shown for 2011 to 2022. For ' + y + ' this dashboard holds the district tables for crashes within selected zones (choose that measure above) and persons killed by district (in Explore), not whole-district crash counts.';
     var z = HIST.zones[y];
-    if (y < 2016) return 'The district tables start in 2016. Earlier reports are not collected here at district level (not extracted).';
+    if (y < 2017) return 'The selected-zone district tables start in 2017 (2016 prints only a citywide zone total). For 2011 to 2015 the whole-district crash counts are above (choose that measure); the named zones for 2013 to 2015 are in the zones section.';
     return z && z.unavailable ? z.unavailable : 'No district table is available for ' + y + '.';
   }
   function histSource(t) {
@@ -363,8 +367,8 @@
     var m = hs.measure, y = st.year, t = histTable(m, y), notes = histNotes(m, y);
     syncHash();
     sec.appendChild(h('div', { class: 'row-between' },
-      h('div', { class: 'title-row' }, h('h2', null, 'Districts, 2016 to 2024'),
-        D.tip('About these tables', 'Each year shows the districts printed in that year\'s Traffic Police report: 11, 12 or 15 traffic districts, with their printed names. They are not today\'s 15 police districts, so they are not drawn on the map and nothing is allocated between years. No change figures are calculated here. Fatal crashes are events, not people killed; simple crashes are the report\'s category, not injury crashes.')),
+      h('div', { class: 'title-row' }, h('h2', null, 'Districts, 2011 to 2024'),
+        D.tip('About these tables', 'Each year shows the districts printed in that year\'s Traffic Police report: 10, 11, 12 or 15 traffic districts, with their printed names (2011 to 2015 come from one table in the 2015 report). They are not today\'s 15 police districts, so they are not drawn on the map and nothing is allocated between years. No change figures are calculated here. Fatal crashes are events, not people killed; simple crashes are the report\'s category, not injury crashes.')),
       h('div', { style: 'display:flex;flex-wrap:wrap;gap:8px' },
         h('button', { type: 'button', class: 'btn', 'data-key': 'hcopy', onclick: function (e) { D.copy(shareUrl(), e.currentTarget, 'Link copied', 'Copy link to view'); } }, 'Copy link to view'),
         h('button', { type: 'button', class: 'btn primary', 'data-key': 'hcsv', onclick: function () { D.download('delhi_road_' + m + '_' + y + '.csv', histCsv(m, y)); } }, 'Download CSV'))));
@@ -392,9 +396,11 @@
         t.rows.map(function (r) { return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, r[0]), r.slice(1).map(function (v) { return h('td', null, v == null ? '—' : n(v)); })); }),
         (t.omitted || []).map(function (nm) { return h('tr', null, h('th', { scope: 'row', style: 'text-align:left;font-weight:500' }, nm), h('td', { colspan: 4, class: 'muted', style: 'text-align:left' }, 'Not in the printed table for this year (unreported, not zero)')); })),
       t.total ? h('tfoot', null, h('tr', null, h('th', { scope: 'row', style: 'text-align:left' }, 'Printed total (not a district)'), t.total.map(function (v) { return h('td', { style: 'font-weight:700' }, n(v)); }))) : null)));
+    if (t.printedInconsistencies && t.printedInconsistencies.length) sec.appendChild(h('div', { class: 'callout warn', style: 'font-size:13.5px' }, h('strong', null, 'This printed table does not add up. '), 'The figures above are shown exactly as printed. ',
+      h('ul', { style: 'margin:4px 0 0 18px;list-style:disc' }, t.printedInconsistencies.map(function (x) { return h('li', null, x); }))));
     var blocked = notes.some(function (x) { return x.state === 'not_comparable'; });
     sec.appendChild(h('div', { class: 'callout' + (blocked ? ' warn' : ''), style: 'font-size:13.5px' },
-      h('strong', null, y === 2016 ? 'Comparison' : 'Compared with ' + (y - 1) + (blocked ? ': district counts are not compared' : ': compare with caution')),
+      h('strong', null, y === 2011 ? 'Comparison' : 'Compared with ' + (y - 1) + (blocked ? ': district counts are not compared' : ': compare with caution')),
       h('ul', { style: 'margin:4px 0 0 18px;list-style:disc' }, notes.map(function (x) { return h('li', null, h('strong', null, STATE_LABEL[x.state] + '. '), x.text); }))));
     sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'Source: ' + histSource(t) + '. ' + t.source.review + (t.source.url ? ' ' : ''), t.source.url ? h('a', { href: t.source.url }, 'Report file') : null,
       '. Page, hash and review status are in the CSV. No open reuse licence has been verified for these reports.'));

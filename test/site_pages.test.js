@@ -178,13 +178,19 @@ test('the 2024 zone list is the named-zone file: 93 zones, ranked ones first, un
 
 test('historical district tables: every year has its printed geography, rows add up to the printed totals, omissions are named, nothing is zero by default', () => {
   const H = siteData.ROADS.history, trends = json('data/road_safety_trends.json').trends;
-  assert.deepEqual(Object.keys(H.whole).map(Number), [2016, 2017, 2018, 2019, 2020, 2021, 2022], 'whole-district crashes exist for 2016 to 2022 only');
-  const geo = { 2016: 11, 2017: 11, 2018: 12, 2019: 12, 2020: 12, 2021: 12, 2022: 15 };
+  assert.deepEqual(Object.keys(H.whole).map(Number), [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022], 'whole-district crashes exist for 2011 to 2022 only');
+  const geo = { 2011: 10, 2012: 10, 2013: 10, 2014: 11, 2015: 11, 2016: 11, 2017: 11, 2018: 12, 2019: 12, 2020: 12, 2021: 12, 2022: 15 };
+  // the 2015 report's printed Table 6.1 does not add up in 2011 and 2012; those years are shown as printed and the gaps are listed (see test/tp_enforcement_districts_2011.test.js)
+  const printedNoAdd = { 2011: true, 2012: true };
   for (const [y, w] of Object.entries(H.whole)) {
     assert.equal(w.rows.length, geo[y], y + ' printed districts');
     assert.equal(w.geography, geo[y] + ' traffic districts');
-    assert.ok(w.rowsAddUp, y + ': fatal + injury + non-injury = total in every row');
-    assert.ok(w.rowsMatchTotal, y + ': rows add up to the printed total');
+    if (printedNoAdd[y]) assert.ok(!w.rowsAddUp && w.printedInconsistencies.length > 0, y + ': the printed gaps are listed');
+    else {
+      assert.ok(w.rowsAddUp, y + ': fatal + injury + non-injury = total in every row');
+      assert.ok(w.rowsMatchTotal, y + ': rows add up to the printed total');
+      assert.equal(w.printedInconsistencies.length, 0, y);
+    }
     assert.ok(w.rows.every(r => !/^total$/i.test(r[0])), y + ': the printed total is not a district row');
     const t = trends.find(x => x.year === Number(y));
     assert.equal(w.total[3], t.crashes, y + ' whole-district total equals the citywide crashes');
@@ -212,7 +218,8 @@ test('enforcement history: 2019 to 2022 are the release values with their source
   const rel = 'data/releases/road_enforcement_2019_2022/';
   const obs = json(rel + 'enforcement.json'), E = siteData.SITE.enforcementHistory;
   assert.equal(obs.length, 16);
-  assert.equal(E.length, 16);
+  assert.equal(E.length, 16 + json('data/staged/tp_enforcement_2011_2018/enforcement_2011_2018.json').rows.length, 'the 2019 to 2022 release plus the staged 2011 to 2018 rows');
+  assert.deepEqual(E.filter(r => r.year >= 2019).map(r => r.measure + r.year + r.value), obs.map(r => r.measure + r.reference_year + r.value), 'the 2019 to 2022 rows are the release values, unchanged');
   const get = (m, y) => obs.find(o => o.measure === m && o.reference_year === y);
   assert.deepEqual([2019, 2020, 2021, 2022].map(y => get('hit_and_run_fatal_crashes', y).value), [674, 579, 555, 668]);
   assert.deepEqual([2019, 2020, 2021, 2022].map(y => get('drink_driving_prosecutions', y).value), [36065, 3986, 2831, 2255]);
@@ -233,7 +240,7 @@ test('enforcement history: 2019 to 2022 are the release values with their source
   assert.equal(siteData.SITE.enforcement[2023].drinkDriving, x['2023'].drinkingDrivingProsecutions);
   assert.equal(siteData.SITE.enforcement[2024].overspeed, x['2024'].overspeedNotices);
   const src = read('assets/page-road.js');
-  assert.ok(src.includes('Enforcement, 2019 to 2024') && src.includes('delhi_road_enforcement_2019_2024.csv'));
+  assert.ok(src.includes('Enforcement, 2011 to 2024') && src.includes('delhi_road_enforcement_2011_2024.csv'));
   assert.ok(src.includes('do not read the jump as a change in drinking and driving'));
   assert.ok(src.includes('not zero'), 'a dash is explained as no figure, not zero');
 });
@@ -278,6 +285,7 @@ test('named zones and roads 2016 to 2021: every year ties to its printed totals,
 test('the continuity file blocks district changes across the 2017-2018 and 2021-2022 breaks and asks for caution everywhere else', () => {
   const c = json('data/continuity.json').roadHistory;
   const state = (a, b) => (c.breaks.find(x => x.between[0] === a && x.between[1] === b) || {}).state;
+  assert.equal(state(2013, 2014), 'not_comparable', 'Outer is first tabulated in 2014');
   assert.equal(state(2017, 2018), 'not_comparable');
   assert.equal(state(2021, 2022), 'not_comparable');
   assert.equal(state(2022, 2023), 'caution');

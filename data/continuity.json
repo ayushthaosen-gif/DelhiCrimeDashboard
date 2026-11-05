@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "purpose": "One place that says whether two years of a measure can be compared. The dashboard's comparability indicators, the suppressed change figures, the colour-scale segments and the continuity columns in downloads all read this file. Having a value for every year does not make a valid trend: a change can come from how the data was collected, defined or mapped rather than from what happened.",
   "states": {
     "comparable": "Comparable",
@@ -195,6 +195,7 @@
   },
   "roadHistory": {
     "breaks": [
+      { "between": [2013, 2014], "state": "not_comparable", "reason": "The 2015 report prints OUTER as a dash for 2011 to 2013 (not tabulated) and with figures from 2014 (10 districts before, 11 after). The other districts' areas may have changed with it, so district counts across this break are not compared." },
       { "between": [2017, 2018], "state": "not_comparable", "reason": "Dwarka appears as a separate Traffic Police reporting row from 2018 (11 districts before, 12 after). District counts across this break are not compared, and no crosswalk to the earlier districts is documented." },
       { "between": [2021, 2022], "state": "not_comparable", "reason": "The Traffic Police district tables go from 12 reporting units in 2021 to 15 in 2022. District counts across this break are not compared, and no crosswalk is documented." },
       { "between": [2022, 2023], "state": "caution", "reason": "The 2022 and 2023 tables both print 15 districts under the same names, but boundary continuity has not been verified." }

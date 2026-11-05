@@ -53,9 +53,10 @@ test('the matrix agrees with the data: what is available is in the repository, w
   assert.equal(row('ncrb_district_crime').cells[2016].state, P);
   assert.equal(row('ncrb_district_crime').cells[2024].state, P);
   for (let y = 2016; y <= 2024; y++) assert.ok(fs.existsSync(path.join(ROOT, 'data/releases/' + y + '/district_crime.json')), String(y));
-  // deaths by mode: older series 2011 to 2018 qualified, later series available; enforcement only from 2019
+  // deaths by mode: older series 2011 to 2018 qualified, later series available; enforcement 2011 to 2018 staged and qualified, then the later reports
   assert.deepEqual(states('victims_by_mode').slice(0, 14), [P, P, P, P, P, P, P, P, A, A, A, A, A, A]);
-  assert.deepEqual(states('enforcement').slice(0, 14), ['not_collected', 'not_collected', 'not_collected', 'not_collected', 'not_collected', 'not_collected', 'not_collected', 'not_collected', A, A, A, A, A, A]);
+  assert.deepEqual(states('enforcement').slice(0, 14), [P, P, P, P, P, P, P, P, A, A, A, A, A, A]);
+  assert.deepEqual(states('traffic_district_tables').slice(0, 14), [P, P, P, P, P, A, A, A, A, A, A, A, A, A]);
   // stretches: 2011, 2012 and 2014 only
   assert.deepEqual(M.years.filter(y => ['available', 'partial'].includes(row('stretches').cells[y].state)), [2011, 2012, 2014]);
   // nothing for 2025 or 2026 is claimed as available

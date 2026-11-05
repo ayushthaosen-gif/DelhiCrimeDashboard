@@ -145,8 +145,8 @@
       "datasetId": "continuity",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "d8076485b268f99f1b727df10a9d70281575fa8e8e6feb8410ec1e27d5352906",
-      "bytes": 15158
+      "sha256": "b8cd7824f7049eaa3668a8dea772ebb489db27c8951352087c6ce208a897e9ae",
+      "bytes": 15473
     },
     {
       "file": "data/correlations.json",
@@ -161,24 +161,24 @@
       "datasetId": "coverage_gaps",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "d4136ab8bc2b86c0765b8484522ff8962c04c32ee789b39c91ae8b0b2962a8d5",
-      "bytes": 5862
+      "sha256": "578395c1142951b10e952276a3208805f68f5a89b0f35990426714bc877c3190",
+      "bytes": 4896
     },
     {
       "file": "data/coverage_matrix.csv",
       "datasetId": "coverage_matrix",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "47ec8742289c6d3b2c5362f27fb51d8c1287ecd087cca11f76e94f6cbc3295f6",
-      "bytes": 42676
+      "sha256": "d22766e88118ea3c146777532b08720ecc6a7bfae2290d8f23ed60d6c9afe798",
+      "bytes": 43644
     },
     {
       "file": "data/coverage_matrix.json",
       "datasetId": "coverage_matrix",
       "provenanceStatus": "derived-or-compiled-production-file",
       "documentation": "See the yearly manifests, dashboard footer, data/README.md, and generating script before reuse.",
-      "sha256": "d0e4e6f85feec2f769963d9f9383b2d29ab83c346ca5f0a38688c912b8cee15c",
-      "bytes": 51131
+      "sha256": "33bb33c37c9e173cdbaf5923416bae2d8736f6aedea4100ff21d31eb09cd7de8",
+      "bytes": 52413
     },
     {
       "file": "data/crash_zone_liquor_proximity_2024.geojson",

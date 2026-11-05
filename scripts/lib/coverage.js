@@ -48,7 +48,7 @@ function build() {
   // road
   years.citywide_road_trend = new Set(trends.trends.map(r => r.year));
   years.victims_by_mode = new Set([...read('data/releases/road_victims_by_mode_2004_2018/victims_by_mode.json').map(r => r.year), ...trends.victims.map(r => r.year)]);
-  years.enforcement = new Set([...read('data/releases/road_enforcement_2019_2022/enforcement.json').map(r => r.reference_year), ...Object.keys(extra.enforcement).map(Number)]);
+  years.enforcement = new Set([...read('data/staged/tp_enforcement_2011_2018/enforcement_2011_2018.json').rows.map(r => r.reference_year), ...read('data/releases/road_enforcement_2019_2022/enforcement.json').map(r => r.reference_year), ...Object.keys(extra.enforcement).map(Number)]);
   years.traffic_district_tables = new Set([...Object.keys(hist.whole).filter(y => hist.whole[y].rows.length), ...Object.keys(hist.zones).filter(y => hist.zones[y].rows.length)].map(Number));
   years.named_zones = new Set([
     ...yearsOf(read('data/releases/road_zones_roads_2011_2015/named_zones_2013_2015.json'), 'reference_year'),
@@ -78,7 +78,7 @@ function build() {
     { id: 'citywide_road_trend', group: 'Road safety', series: 'Citywide crashes, fatal crashes and deaths', unit: 'counts', geography: 'Delhi as a whole' },
     { id: 'victims_by_mode', group: 'Road safety', series: 'Deaths by mode of travel', unit: 'persons killed', geography: 'Delhi as a whole' },
     { id: 'enforcement', group: 'Road safety', series: 'Enforcement (hit-and-run, drink-driving, speeding)', unit: 'counts', geography: 'Delhi as a whole' },
-    { id: 'traffic_district_tables', group: 'Road safety', series: 'District crash tables', unit: 'crashes', geography: 'Traffic districts as printed (11, 12 or 15)' },
+    { id: 'traffic_district_tables', group: 'Road safety', series: 'District crash tables', unit: 'crashes', geography: 'Traffic districts as printed (10, 11, 12 or 15)' },
     { id: 'named_zones', group: 'Road safety', series: 'Named crash-prone zones', unit: 'crashes within each year\'s zones', geography: 'Named locations' },
     { id: 'road_tables', group: 'Road safety', series: 'Zones grouped by road', unit: 'crashes within zones', geography: 'Roads' },
     { id: 'stretches', group: 'Road safety', series: 'Highway and ring-road stretches', unit: 'whole-stretch crashes', geography: 'Printed stretches' },
@@ -94,8 +94,10 @@ function build() {
     road_tables: { 2014: 'Calculated here by exact printed label, not a printed table.', 2015: 'Calculated here by exact printed label, not a printed table.' }
   };
   // the 2011 to 2018 mode-of-travel years and the 2013 and 2014 zone lists carry a qualification
-  const qualified = { victims_by_mode: [2011, 2018], named_zones: [2013, 2014] };
-  const qualNote = { victims_by_mode: 'The older annual reports\' own categories (Table 3.1); compare 2018 with 2019 with caution.', named_zones: 'From a Delhi PWD compilation, not a recovered annual report; no grand total printed.' };
+  const qualified = { victims_by_mode: [2011, 2018], named_zones: [2013, 2014], enforcement: [2011, 2018], traffic_district_tables: [2011, 2015] };
+  const qualNote = { victims_by_mode: 'The older annual reports\' own categories (Table 3.1); compare 2018 with 2019 with caution.', named_zones: 'From a Delhi PWD compilation, not a recovered annual report; no grand total printed.',
+    enforcement: 'Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.',
+    traffic_district_tables: 'From one retrospective table in the 2015 report (Outer not tabulated before 2014); the printed 2011 and 2012 tables do not add up and are shown as printed.' };
 
   const out = rows.map(r => {
     const cells = {};

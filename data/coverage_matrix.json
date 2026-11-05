@@ -482,44 +482,44 @@
       "geography": "Delhi as a whole",
       "cells": {
         "2011": {
-          "state": "not_collected",
-          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
-          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+          "state": "partial",
+          "note": "Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.",
+          "evidence": null
         },
         "2012": {
-          "state": "not_collected",
-          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
-          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+          "state": "partial",
+          "note": "Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.",
+          "evidence": null
         },
         "2013": {
-          "state": "not_collected",
-          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
-          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+          "state": "partial",
+          "note": "Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.",
+          "evidence": null
         },
         "2014": {
-          "state": "not_collected",
-          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
-          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+          "state": "partial",
+          "note": "Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.",
+          "evidence": null
         },
         "2015": {
-          "state": "not_collected",
-          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
-          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+          "state": "partial",
+          "note": "Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.",
+          "evidence": null
         },
         "2016": {
-          "state": "not_collected",
-          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
-          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+          "state": "partial",
+          "note": "Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.",
+          "evidence": null
         },
         "2017": {
-          "state": "not_collected",
-          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
-          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+          "state": "partial",
+          "note": "Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.",
+          "evidence": null
         },
         "2018": {
-          "state": "not_collected",
-          "note": "Enforcement counts before 2019 have not been looked for in the earlier annual reports.",
-          "evidence": "data/releases/road_enforcement_2019_2022/README.md"
+          "state": "partial",
+          "note": "Staged figures from the annual reports: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (not the camera notices counted from 2019); hit-and-run counts only from 2015. Not independently reviewed.",
+          "evidence": null
         },
         "2019": {
           "state": "available",
@@ -568,32 +568,32 @@
       "group": "Road safety",
       "series": "District crash tables",
       "unit": "crashes",
-      "geography": "Traffic districts as printed (11, 12 or 15)",
+      "geography": "Traffic districts as printed (10, 11, 12 or 15)",
       "cells": {
         "2011": {
-          "state": "not_collected",
-          "note": "Traffic-district tables before 2016 have not been entered.",
-          "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md"
+          "state": "partial",
+          "note": "From one retrospective table in the 2015 report (Outer not tabulated before 2014); the printed 2011 and 2012 tables do not add up and are shown as printed.",
+          "evidence": null
         },
         "2012": {
-          "state": "not_collected",
-          "note": "Traffic-district tables before 2016 have not been entered.",
-          "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md"
+          "state": "partial",
+          "note": "From one retrospective table in the 2015 report (Outer not tabulated before 2014); the printed 2011 and 2012 tables do not add up and are shown as printed.",
+          "evidence": null
         },
         "2013": {
-          "state": "not_collected",
-          "note": "Traffic-district tables before 2016 have not been entered.",
-          "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md"
+          "state": "partial",
+          "note": "From one retrospective table in the 2015 report (Outer not tabulated before 2014); the printed 2011 and 2012 tables do not add up and are shown as printed.",
+          "evidence": null
         },
         "2014": {
-          "state": "staged",
-          "note": "Eleven retrospective district rows from the 2015 report (Table 6.1) are in the 2011 to 2015 release but kept off the district tables, which start in 2016.",
-          "evidence": "data/releases/road_zones_roads_2011_2015/staged_2014/"
+          "state": "partial",
+          "note": "From one retrospective table in the 2015 report (Outer not tabulated before 2014); the printed 2011 and 2012 tables do not add up and are shown as printed.",
+          "evidence": null
         },
         "2015": {
-          "state": "not_collected",
-          "note": "Not entered.",
-          "evidence": "data/staged/road_districts_2016_2020/FINDINGS.md"
+          "state": "partial",
+          "note": "From one retrospective table in the 2015 report (Outer not tabulated before 2014); the printed 2011 and 2012 tables do not add up and are shown as printed.",
+          "evidence": null
         },
         "2016": {
           "state": "available",
@@ -1394,6 +1394,16 @@
       "state": "not_comparable",
       "reason": "Outer North was created on 1 January 2019 from parts of Rohini, North-West and Outer. Affected: Rohini, North-West, Outer. New: Outer North.",
       "evidence": "https://www.business-standard.com/article/pti-stories/delhi-police-s-new-district-outer-north-to-function-from-monday-118123100961_1.html"
+    },
+    {
+      "applies_to": "Road districts",
+      "between": [
+        2013,
+        2014
+      ],
+      "state": "not_comparable",
+      "reason": "The 2015 report prints OUTER as a dash for 2011 to 2013 (not tabulated) and with figures from 2014 (10 districts before, 11 after). The other districts' areas may have changed with it, so district counts across this break are not compared.",
+      "evidence": null
     },
     {
       "applies_to": "Road districts",

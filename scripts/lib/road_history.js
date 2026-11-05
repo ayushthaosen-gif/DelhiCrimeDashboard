@@ -1,11 +1,11 @@
-// Delhi Traffic Police district road-crash tables, 2016 to 2024, in one year-indexed shape for the Road safety page.
+// Delhi Traffic Police district road-crash tables, 2011 to 2024, in one year-indexed shape for the Road safety page.
 //
 // Two scopes, never mixed:
-//   whole  whole-district crash events (fatal, injury, non-injury, total): the reports' district tables for 2016 to 2022
+//   whole  whole-district crash events (fatal, injury, non-injury, total): 2011 to 2015 from the 2015 report's retrospective Table 6.1, then the reports' own district tables for 2016 to 2022
 //   zones  crashes within the selected crash-prone zones of each district (zones, simple, fatal, total): 2017 to 2024, with 2016 explicitly unavailable
 // Reporting units keep their printed labels and the geography of their own year; nothing is allocated to other districts.
 // Printed totals are separate records and are never rows. A district missing from a printed table is listed as omitted, never as zero.
-// Sources: data/staged/road_districts_2016_2020/generated/ (2016 to 2021), data/releases/road_crash_report_2022/ (2022),
+// Sources: data/staged/history_2011_2015/generated/ (2011 to 2015, Table 6.1 of the 2015 report), data/staged/road_districts_2016_2020/generated/ (2016 to 2021), data/releases/road_crash_report_2022/ (2022),
 // data/dashboard_final.json (2023 and 2024 zone tables, adapted without changing a value).
 
 const fs = require('fs');
@@ -16,6 +16,8 @@ const read = f => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'));
 const H = 'data/staged/road_districts_2016_2020/generated/';
 const R22 = 'data/releases/road_crash_report_2022/';
 const REVIEW = 'Pages visually checked by the extracting agent; not independently reviewed.';
+const REVIEW_2015 = 'Every cell was read again from the printed page on 2026-11-05 and agrees with the transcription; not independently reviewed.';
+const SRC_2015 = { reportYear: 2015, table: '6.1', pdfPage: 1, printedPage: 38, url: 'https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-6-SPATIAL-TRENDS.pdf', sha256: 'c286cd138729c3827baf2d18724ab7b1ddac07aaae190f4277fc8844bb1c119a', review: REVIEW_2015 };
 const norm = n => String(n).toUpperCase().replace(/ DISTRICT$/, '').replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
 const sumOf = (rows, i) => rows.reduce((a, r) => a + r[i], 0);
 
@@ -40,6 +42,18 @@ function build() {
   const final = read('data/dashboard_final.json').districts;
 
   const whole = {};
+  // 2011 to 2015: one printed table (Table 6.1 of the 2015 report) lists five years by traffic district. OUTER is a dash for 2011 to 2013 (not tabulated), so it is omitted, never zero.
+  const early = read('data/staged/history_2011_2015/generated/traffic_districts_as_printed_2015_vintage.json');
+  early.reference_years.forEach((y, i) => {
+    const all = early.rows.filter(r => r.reference_year === y), present = all.filter(r => r.total_accidents != null);
+    whole[y] = {
+      geography: present.length + ' traffic districts', source: SRC_2015,
+      rows: present.map(r => [r.traffic_district_label, r.fatal_accidents, r.injury_accidents, r.non_injury_accidents, r.total_accidents]),
+      omitted: all.filter(r => r.total_accidents == null).map(r => r.traffic_district_label),
+      total: ['fatal_accidents', 'injury_accidents', 'non_injury_accidents', 'total_accidents'].map(k => early.printed_totals[k][i]),
+      totalSource: Object.assign({}, SRC_2015, { note: 'Printed total row of Table 6.1 for ' + y + '.' })
+    };
+  });
   for (let y = 2016; y <= 2020; y++) {
     const rows = annual.filter(r => r.reference_year === y);
     const t = totals.find(r => r.reference_year === y);
@@ -109,6 +123,11 @@ function build() {
     const w = whole[y], rt = [0, 1, 2, 3].map(i => sumOf(w.rows.map(r => r.slice(1)), i));
     w.rowsMatchTotal = rt.every((v, i) => v === w.total[i]);
     w.rowsAddUp = w.rows.every(r => r[1] + r[2] + r[3] === r[4]);
+    // where the printed table does not add up, say so cell by cell, as printed (no value is changed)
+    const cols = ['fatal accidents', 'injury accidents', 'non-injury accidents', 'total accidents'];
+    w.printedInconsistencies = [];
+    w.rows.forEach(r => { const sum = r[1] + r[2] + r[3]; if (sum !== r[4]) w.printedInconsistencies.push(r[0] + ': the printed total is ' + r[4] + ', but its fatal, injury and non-injury figures add to ' + sum + '. So at least one printed figure in this row is a misprint.'); });
+    rt.forEach((v, i) => { if (v !== w.total[i]) w.printedInconsistencies.push('The printed total row gives ' + w.total[i] + ' ' + cols[i] + ', but the district rows above add to ' + v + '.'); });
   }
   return { whole, zones };
 }
