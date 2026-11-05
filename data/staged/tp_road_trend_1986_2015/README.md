@@ -4,8 +4,8 @@
 
 ## What the site uses
 
-- 2001 to 2007: total accidents (the Road safety trend's "all crashes"), fatal accidents (its "fatal crashes") and road deaths (its "persons killed"). The Road safety trend now starts in 2001.
-- 1986 to 2000 and the population and vehicle columns are staged but not shown.
+- 1986 to 2007: total accidents (the Road safety trend's "all crashes"), fatal accidents (its "fatal crashes") and road deaths (its "persons killed"). The Road safety trend starts in 1986.
+- The population and vehicle columns and the printed rates are staged but not shown.
 - 2008 to 2015 are not used from this file: they were already on the site, and they equal Table 2.4 exactly (a test confirms it). That agreement is the evidence that Table 2.4 and the site's series count the same thing.
 
 ## How it was read, and what is not reliable
@@ -18,4 +18,4 @@ The table is a page image with no text layer. Every row was read from the page r
 
 ## Not covered
 
-Injured counts come only from Table 3.1 (2001 to 2018); Table 2.4 has none. The Traffic Police editions disagree about injuries in some years, which is why the Road safety trend does not chart them.
+Table 2.4 has no injured counts. The Road safety trend's "persons injured" (2001 to 2024, none earlier because Table 3.1 starts in 2001) comes from the victims tables: the 2001 to 2003 totals kept in this file, the victims-by-mode release for 2004 to 2018, and the victims series for 2019 to 2024. The 2023 report's Table 3.1 reprints the 2019 to 2023 totals and they agree (a test checks it). The National Crime Records Bureau counts fewer injured than these in 2016 to 2022 (about 200 to 500 fewer a year), and the page says so.

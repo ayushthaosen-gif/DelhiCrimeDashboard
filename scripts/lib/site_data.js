@@ -95,12 +95,17 @@ function buildSite(continuity) {
   const trendsFile = read('data/road_safety_trends.json');
   const extra = read('data/road_safety_extra_2023_2024.json');
   const status = read('data/series_status.json');
-  const trends = trendsFile.trends.map(r => ({ year: r.year, crashes: r.crashes, fatalCrashes: r.fatalCrashes, killed: r.fatalities }));
+  // Persons injured, all from the victims tables (Table 3.1) of the Traffic Police reports: 2001 to 2003 totals (staged beside Table 2.4), 2004 to 2018 the victims-by-mode release, 2019 to 2024 the victims series. None before 2001.
+  const injured = {};
+  read('data/staged/tp_road_trend_1986_2015/road_accident_trends_1986_2015.json').table_3_1_totals_2001_2003.rows.forEach(r => { injured[r.year] = r.injured; });
+  read('data/releases/road_victims_by_mode_2004_2018/victims_by_mode.json').forEach(r => { injured[r.year] = r.total_injured; });
+  trendsFile.victims.forEach(v => { injured[v.year] = v.totalInjured; });
+  const trends = trendsFile.trends.map(r => ({ year: r.year, crashes: r.crashes, fatalCrashes: r.fatalCrashes, killed: r.fatalities, injured: injured[r.year] == null ? null : injured[r.year] }));
   // 2008 to 2010: Delhi Traffic Police statistics page (archived capture), the same page that prints 2011 to 2013; kept apart from the 2011 to 2024 series.
-  // 2001 to 2007: Table 2.4 of the Traffic Police report Road Accidents in Delhi 2015 (data/staged/tp_road_trend_1986_2015/); 2004 deaths use the recorded choice, see its README.
+  // 1986 to 2007: Table 2.4 of the Traffic Police report Road Accidents in Delhi 2015 (data/staged/tp_road_trend_1986_2015/); 2004 deaths use the recorded choice, see its README.
   const t24 = read('data/staged/tp_road_trend_1986_2015/road_accident_trends_1986_2015.json');
-  const trendsEarlier = t24.rows.filter(r => r.year >= 2001 && r.year <= 2007).map(r => ({ year: r.year, crashes: r.total_accidents_all_types, fatalCrashes: r.fatal_accidents, killed: t24.site_choice[r.year] ? t24.site_choice[r.year].killed : r.road_deaths }))
-    .concat(read('data/staged/delhi_ut_total_2001_2010/road_citywide_2008_2010.json').rows.map(r => ({ year: r.year, crashes: r.total, fatalCrashes: r.fatal, killed: r.persons_killed })));
+  const trendsEarlier = t24.rows.filter(r => r.year <= 2007).map(r => ({ year: r.year, crashes: r.total_accidents_all_types, fatalCrashes: r.fatal_accidents, killed: t24.site_choice[r.year] ? t24.site_choice[r.year].killed : r.road_deaths, injured: injured[r.year] == null ? null : injured[r.year] }))
+    .concat(read('data/staged/delhi_ut_total_2001_2010/road_citywide_2008_2010.json').rows.map(r => ({ year: r.year, crashes: r.total, fatalCrashes: r.fatal, killed: r.persons_killed, injured: injured[r.year] == null ? null : injured[r.year] })));
   // NCRB ADSI tables 1A.2, 1A.6, 1A.7 and 1A.11, Delhi (UT) row, 2014 to 2022 (data/staged/ncrb_adsi_delhi_road/)
   const ncrbFile = read('data/staged/ncrb_adsi_delhi_road/delhi_ut_road_time_class_place_2014_2022.json');
   const ncrbRoad = {};

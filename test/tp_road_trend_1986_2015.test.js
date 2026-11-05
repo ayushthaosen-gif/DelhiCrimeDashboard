@@ -48,11 +48,11 @@ test('2008 to 2015 equal the Traffic Police series already on the site, so the t
   }
 });
 
-test('the site trend starts in 2001, uses Table 2.4 for 2001 to 2007, and uses the recorded choice for 2004', () => {
+test('the site trend starts in 1986, uses Table 2.4 for 1986 to 2007, and uses the recorded choice for 2004', () => {
   const E = buildAll().SITE.trendsEarlier, M = {};
   E.forEach(r => { M[r.year] = r; });
-  assert.deepEqual(E.map(r => r.year), [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010]);
-  for (let y = 2001; y <= 2007; y++) {
+  assert.deepEqual(E.map(r => r.year), Array.from({ length: 25 }, (_, i) => 1986 + i));
+  for (let y = 1986; y <= 2007; y++) {
     assert.equal(M[y].crashes, byYear[y].total_accidents_all_types, y);
     assert.equal(M[y].fatalCrashes, byYear[y].fatal_accidents, y);
     assert.equal(M[y].killed, y === 2004 ? doc.site_choice['2004'].killed : byYear[y].road_deaths, y);
@@ -64,4 +64,16 @@ test('2001 to 2003 killed totals agree with Table 2.4, and 2005 to 2007 with the
   const V = buildAll().SITE.victimsEarlier;
   for (const y of [2005, 2006, 2007]) assert.equal(V[y].total, byYear[y].road_deaths, String(y));
   assert.equal(V[2004].total, doc.site_choice['2004'].killed);
+});
+
+test('persons injured are held for 2001 to 2024 and for no earlier year, and 2019 to 2023 equal the figures the 2023 report reprints', () => {
+  const S = buildAll().SITE, all = S.trendsEarlier.concat(S.trends), M = {};
+  all.forEach(r => { M[r.year] = r; });
+  for (let y = 1986; y <= 2000; y++) assert.equal(M[y].injured, null, String(y));
+  for (let y = 2001; y <= 2024; y++) assert.ok(Number.isInteger(M[y].injured) && M[y].injured > 0, String(y));
+  // Table 3.1 of Delhi Road Crash Report 2023 (printed page 47) prints the totals for 2019 to 2023
+  const reprint = { 2019: 5152, 2020: 3662, 2021: 4273, 2022: 5201, 2023: 5470 };
+  for (const y of Object.keys(reprint)) assert.equal(M[y].injured, reprint[y], y);
+  for (const t of doc.table_3_1_totals_2001_2003.rows) assert.equal(M[t.year].injured, t.injured, String(t.year));
+  assert.equal(M[2024].injured, 5224);
 });
