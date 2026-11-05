@@ -50,7 +50,7 @@ test('every section carries a scope line: measure, unit, geography and the year 
 
 test('the share link carries year, district measure and trend choice; an old district-only link still works; the hash drops empty values', () => {
   assert.ok(src.includes("D.hashOf({ y: st.year, dm: hs.measure, tm: st.measure === 'killed' ? null : st.measure, ti: st.index ? '1' : null })"));
-  assert.ok(src.includes('var y = +(p.y || p.dy);') && src.includes("if (p.tm === 'crashes' || p.tm === 'fatalCrashes') st.measure = p.tm;") && src.includes("if (p.ti === '1') st.index = true;"));
+  assert.ok(src.includes('var y = +(p.y || p.dy);') && src.includes("if (p.tm === 'crashes' || p.tm === 'fatalCrashes' || p.tm === 'injured') st.measure = p.tm;") && src.includes("if (p.ti === '1') st.index = true;"));
   assert.ok(!/history\.replaceState\(null, '', D\.hashOf\(\{ dm: m, dy: y \}\)\)/.test(src), 'the old district-only link is gone');
   assert.equal((src.match(/syncHash\(\)/g) || []).length >= 3, true);
   const noop = () => {}, el = () => ({ setAttribute: noop, appendChild: noop, addEventListener: noop });
@@ -60,4 +60,5 @@ test('the share link carries year, district measure and trend choice; an old dis
   const D = ctx.window.DSO;
   assert.equal(D.hashOf({ y: 2024, dm: 'zones', tm: null, ti: null }), '#y=2024&dm=zones');
   assert.equal(D.hashOf({ y: 2019, dm: 'whole', tm: 'fatalCrashes', ti: '1' }), '#y=2019&dm=whole&tm=fatalCrashes&ti=1');
+  assert.equal(D.hashOf({ y: 2019, dm: 'whole', tm: 'injured', ti: null }), '#y=2019&dm=whole&tm=injured');
 });

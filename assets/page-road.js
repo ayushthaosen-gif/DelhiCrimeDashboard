@@ -1,4 +1,4 @@
-/* Road safety, citywide: headline figures, 2008-2024 trend, deaths by mode of travel, enforcement, crash-prone zones and the roads with most zones.
+/* Road safety, citywide: headline figures, 1986-2024 trend, deaths by mode of travel, enforcement, crash-prone zones and the roads with most zones.
    The citywide counts are from Delhi Traffic Police and none is split by district in the source; the time-of-day, road-type and place section is from the National Crime Records Bureau (2014 to 2022). Reads window.DSO_DATA. */
 (function () {
   'use strict';
@@ -7,7 +7,7 @@
   if (!data) return;
   var S = data.SITE, R = data.ROADS, T = S.trends, E = S.enforcement, V = Object.assign({}, S.victimsEarly, S.victims);
   var last = T[T.length - 1], prev = T[T.length - 2];
-  var ALL = (S.trendsEarlier || []).concat(T); // 2008 to 2010 from the Traffic Police statistics page, then the 2011 to 2024 series
+  var ALL = (S.trendsEarlier || []).concat(T); // 1986 to 2007 from Table 2.4 of the 2015 report, 2008 to 2010 from the statistics page, then the 2011 to 2024 series
   var YEARS_PAGE = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
   var st = { measure: 'killed', index: false, hy: null, year: 2024, query: '', allZones: false };
 
@@ -49,38 +49,41 @@
   }
 
   // ---- trend ----
-  var LAB = { crashes: 'total crashes', fatalCrashes: 'fatal crashes', killed: 'persons killed' };
+  var LAB = { crashes: 'total crashes', fatalCrashes: 'fatal crashes', killed: 'persons killed', injured: 'persons injured' };
+  function trendVals(mk, b0) { return ALL.map(function (r) { return r[mk] == null ? null : st.index ? r[mk] / b0 * 100 : r[mk]; }); }
+  function fv(r, mk) { return r[mk] == null ? 'no figure' : n(r[mk]); }
   function renderTrend() {
     var sec = D.clear(D.$('#trend'));
     var mk = st.measure, b0 = T[0][mk];
-    var vals = ALL.map(function (r) { return st.index ? r[mk] / b0 * 100 : r[mk]; });
-    var maxV = Math.max.apply(null, vals.concat(st.index ? [100] : [0])) * 1.08;
+    var vals = trendVals(mk, b0);
+    var maxV = Math.max.apply(null, vals.filter(function (v) { return v != null; }).concat(st.index ? [100] : [0])) * 1.08;
     var hy = hyIndex(), hr = ALL[hy];
     sec.appendChild(h('div', { class: 'row-between' },
-      h('div', { class: 'title-row' }, h('h2', null, 'Trend, 2008–2024'),
-        D.tip('About this trend', 'Counts, not rates: traffic and population changed over the period. Fatal crashes and persons killed are different counts. Injury figures differ by source edition and are excluded. The early reports\' 30-day fatality definition could not be confirmed.')),
+      h('div', { class: 'title-row' }, h('h2', null, 'Trend, 1986–2024'),
+        D.tip('About this trend', 'Counts, not rates: traffic and population changed over the period. Fatal crashes and persons killed are different counts. Persons injured come from the victims tables of the Traffic Police reports and start in 2001; for 2019 onward their categories changed. The National Crime Records Bureau counts fewer injured than the Traffic Police in 2016 to 2022. The early reports\' 30-day fatality definition could not be confirmed.')),
       h('div', { style: 'display:flex;flex-wrap:wrap;gap:10px' },
-        seg([['killed', 'Persons killed'], ['fatalCrashes', 'Fatal crashes'], ['crashes', 'All crashes']], mk, function (k) { st.measure = k; keepFocus(renderTrend); }, 'measure'),
+        seg([['killed', 'Persons killed'], ['injured', 'Persons injured'], ['fatalCrashes', 'Fatal crashes'], ['crashes', 'All crashes']], mk, function (k) { st.measure = k; keepFocus(renderTrend); }, 'measure'),
         seg([[false, 'Counts'], [true, 'Index']].map(function (o) { return [o[0], o[1]]; }), st.index, function (k) { st.index = k; keepFocus(renderTrend); }, 'scale'))));
-    sec.appendChild(D.plain('How many people were killed, how many crashes were fatal and how many crashes were recorded in Delhi each year since 2008. The totals move with traffic and reporting as well as with safety, so a rise or fall is not proof the roads got worse or better.'));
-    sec.appendChild(scopeLine('Counts per year · Delhi as a whole · 2008 to 2024 · counts, not rates · highlighted: ' + st.year));
-    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, '2008 to 2010 come from the Traffic Police statistics page (archived capture), which prints 2011 to 2013 as well; counts for 2001 to 2007 were not found. The mode-of-travel breakdown starts in 2011 (2004 to 2010 are in the table below it).'));
-    sec.appendChild(h('div', { class: 'readout', 'aria-live': 'polite' }, h('span', { class: 'v big' }, st.index ? String(Math.round(vals[hy])) : n(hr[mk])),
-      h('span', null, st.index ? hr.year + ' · index of ' + LAB[mk] + ' (2011 = 100) · ' + n(hr[mk]) + ' counted' : LAB[mk] + ' in ' + hr.year)));
-    var bars = h('div', { class: 'bars' });
+    sec.appendChild(D.plain('How many people were killed, how many crashes were fatal and how many crashes were recorded in Delhi each year since 1986 (injured since 2001). The totals move with traffic and reporting as well as with safety, so a rise or fall is not proof the roads got worse or better.'));
+    sec.appendChild(scopeLine('Counts per year · Delhi as a whole · 1986 to 2024 · counts, not rates · highlighted: ' + st.year));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, '1986 to 2007 come from Table 2.4 of the Traffic Police report for 2015, which agrees with this series for 2008 to 2015; its printed rates for some years before 2003 do not follow from its counts, so none are shown. 2008 to 2010 come from the Traffic Police statistics page (archived capture). For 2004 the report prints 1,832 deaths in that table but 1,977 in its victims table, and 1,929 fatal crashes; the chart uses 1,977, since deaths cannot be fewer than fatal crashes. The mode-of-travel breakdown starts in 2011 (2004 to 2010 are in the table below it).'));
+    sec.appendChild(h('div', { class: 'readout', 'aria-live': 'polite' }, h('span', { class: 'v big' }, vals[hy] == null ? 'no figure' : st.index ? String(Math.round(vals[hy])) : n(hr[mk])),
+      h('span', null, st.index ? hr.year + ' · index of ' + LAB[mk] + ' (2011 = 100) · ' + fv(hr, mk) + ' counted' : LAB[mk] + ' in ' + hr.year)));
+    var bars = h('div', { class: ALL.length > 26 ? 'bars dense' : 'bars' });
     if (st.index) bars.appendChild(h('div', { class: 'base', style: 'bottom:' + (100 / maxV * 100) + '%' }, h('span', null, '2011 = 100')));
     ALL.forEach(function (r, i) {
-      bars.appendChild(h('button', { type: 'button', 'aria-pressed': String(i === hy), 'aria-label': r.year + ': ' + n(r[mk]) + ' ' + LAB[mk],
-        onmouseenter: function () { setHy(i); }, onfocus: function () { setHy(i); } }, h('span', { class: 'b', style: 'height:' + (vals[i] / maxV * 100) + '%' })));
+      bars.appendChild(h('button', { type: 'button', 'aria-pressed': String(i === hy), 'aria-label': r.year + ': ' + fv(r, mk) + ' ' + LAB[mk],
+        onmouseenter: function () { setHy(i); }, onfocus: function () { setHy(i); } }, h('span', { class: 'b', style: 'height:' + (vals[i] == null ? 0 : vals[i] / maxV * 100) + '%' })));
     });
     bars.addEventListener('mouseleave', function () { setHy(null); });
     syncHash();
     sec.appendChild(bars);
-    sec.appendChild(h('div', { class: 'bar-labels' }, ALL.map(function (r) { return h('span', null, "'" + String(r.year).slice(2)); })));
+    sec.appendChild(h('div', { class: ALL.length > 26 ? 'bar-labels dense' : 'bar-labels' }, ALL.map(function (r, i) { return h('span', null, r.year % 5 === 0 || i === ALL.length - 1 ? "'" + String(r.year).slice(2) : ''); })));
+    if (mk === 'injured') sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, 'No injured figure is held before 2001, so the bars for 1986 to 2000 are blank.'));
     sec.appendChild(h('details', { class: 'plain' }, h('summary', null, 'Show annual counts'),
       h('div', { class: 'overflow', style: 'margin-top:10px' }, h('table', { class: 'tbl', style: 'min-width:420px' },
-        h('thead', null, h('tr', null, h('th', null, 'Year'), h('th', null, 'Total crashes'), h('th', null, 'Fatal crashes'), h('th', null, 'Persons killed'))),
-        h('tbody', null, ALL.map(function (r) { return h('tr', null, h('td', null, r.year), h('td', null, n(r.crashes)), h('td', null, n(r.fatalCrashes)), h('td', null, n(r.killed))); }))))));
+        h('thead', null, h('tr', null, h('th', null, 'Year'), h('th', null, 'Total crashes'), h('th', null, 'Fatal crashes'), h('th', null, 'Persons killed'), h('th', null, 'Persons injured'))),
+        h('tbody', null, ALL.map(function (r) { return h('tr', null, h('td', null, r.year), h('td', null, n(r.crashes)), h('td', null, n(r.fatalCrashes)), h('td', null, n(r.killed)), h('td', null, r.injured == null ? 'not held' : n(r.injured))); }))))));
   }
   function hyIndex() { if (st.hy != null) return st.hy; for (var k = 0; k < ALL.length; k++) if (ALL[k].year === st.year) return k; return ALL.length - 1; }
   // hovering a bar updates the readout and highlight without rebuilding the page
@@ -89,10 +92,10 @@
     var sec = D.$('#trend'), mk = st.measure, b0 = T[0][mk], hy = i == null ? hyIndex() : i, hr = ALL[hy];
     var btns = sec.querySelectorAll('.bars button');
     btns.forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === hy)); });
-    var vals = ALL.map(function (r) { return st.index ? r[mk] / b0 * 100 : r[mk]; });
+    var vals = trendVals(mk, b0);
     var ro = sec.querySelector('.readout');
-    ro.firstChild.textContent = st.index ? String(Math.round(vals[hy])) : n(hr[mk]);
-    ro.lastChild.textContent = st.index ? hr.year + ' · index of ' + LAB[mk] + ' (2011 = 100) · ' + n(hr[mk]) + ' counted' : LAB[mk] + ' in ' + hr.year;
+    ro.firstChild.textContent = vals[hy] == null ? 'no figure' : st.index ? String(Math.round(vals[hy])) : n(hr[mk]);
+    ro.lastChild.textContent = st.index ? hr.year + ' · index of ' + LAB[mk] + ' (2011 = 100) · ' + fv(hr, mk) + ' counted' : LAB[mk] + ' in ' + hr.year;
   }
 
   // ---- mode of travel ----
@@ -301,7 +304,7 @@
     // one year for the whole page; dy is the old district-only link parameter
     var y = +(p.y || p.dy);
     if (YEARS_PAGE.indexOf(y) >= 0) st.year = y;
-    if (p.tm === 'crashes' || p.tm === 'fatalCrashes') st.measure = p.tm;
+    if (p.tm === 'crashes' || p.tm === 'fatalCrashes' || p.tm === 'injured') st.measure = p.tm;
     if (p.ti === '1') st.index = true;
   })();
   var STATE_LABEL = { not_comparable: 'Not compared', caution: 'Compare with caution', unavailable: 'No comparison' };

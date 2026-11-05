@@ -271,6 +271,8 @@ ul, ol { padding: 0; list-style: none; }
 .bars .base span { position: absolute; right: 0; top: -18px; font: 11px var(--mono); color: var(--ink3); }
 .bar-labels { display: flex; gap: 6px; margin-top: -8px; }
 .bar-labels span { flex: 1 1 0; min-width: 0; text-align: center; font: 11px var(--mono); color: var(--ink3); }
+.bars.dense, .bar-labels.dense { gap: 2px; }
+.bar-labels.dense span { overflow: visible; white-space: nowrap; }
 details.plain { border-top: 1px solid var(--line); padding-top: 10px; }
 details.plain summary { cursor: pointer; font-size: 14px; font-weight: 600; }
 .tbl th, .tbl td { padding: 6px 8px; text-align: right; }
@@ -430,6 +432,9 @@ body.map3d { display: flex; flex-direction: column; }
   .page { padding-left: 16px; padding-right: 16px; }
   .trend, .bars { gap: 0; overflow-x: auto; }
   .trend button, .bars button { min-width: 24px; padding-left: 2px; padding-right: 2px; }
+  .bars.dense { overflow-x: visible; gap: 1px; }
+  .bars.dense button { min-width: 0; padding-left: 0; padding-right: 0; }
+  .bar-labels.dense { gap: 1px; }
   .toolbar { position: static; }
   .page-head h1, .dm h1 { font-size: 32px; }
   .m3-panel { flex: 1 1 100%; height: auto; order: 2; border-right: 0; }
