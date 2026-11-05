@@ -1,3 +1,11 @@
+## [2026-11-05] - Claude (Anthropic) - Road safety: enforcement back to 2011, district tables back to 2011
+
+- New staged data `data/staged/tp_enforcement_2011_2018/`: drink-driving prosecutions and over-speeding challans on the spot 2011 to 2018 (Table 9.3 of the 2015 and 2018 reports; the 2014 and 2015 columns agree between the two), and hit-and-run fatal crashes 2015 to 2018 and share 2014 to 2018 (chapter 8 text), each with URL and SHA-256. Over-speeding challans (to 2018) and camera notices (from 2019) are two rows, never joined. The 2017 hit-and-run share is computed (44.7%): the 2017 report prints 41.8%, a repeat of 2016.
+- Road safety page: Enforcement table now 2011 to 2024; Districts section now 2011 to 2024 (whole-district crashes from Table 6.1 of the 2015 report for 2011 to 2015, as printed; Outer omitted, not zero, before 2014).
+- The printed 2011 and 2012 district tables do not add up (e.g. North West 2011 total 1,584 against parts adding to 1,548; East, North and West in 2012). They are shown exactly as printed with the gaps listed on the page; 2013 to 2015 add up exactly and the fatal and total columns equal the citywide series for all five years.
+- `data/continuity.json`: new not-comparable break 2013 to 2014 (Outer first tabulated). `data/coverage_gaps.json` and the coverage matrix no longer list these years as gaps.
+- Tests: `test/tp_enforcement_districts_2011.test.js`; `test/site_pages.test.js` updated for 2011 to 2015 and the staged enforcement rows.
+
 ## [2026-11-05] - Claude (Anthropic) - Road trend back to 1986, with persons injured (Traffic Police Table 2.4 and victims tables)
 
 - New staged data `data/staged/tp_road_trend_1986_2015/`: Table 2.4 "Road Accident Trends" of the Traffic Police report for 2015, 1986 to 2015 (population, vehicles, fatal accidents, all accidents, road deaths), with source URL and SHA-256. 2008 to 2015 equal the series already on the site; a test checks it.

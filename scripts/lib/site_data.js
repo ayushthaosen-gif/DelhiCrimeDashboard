@@ -158,7 +158,8 @@ function buildSite(continuity) {
     status: String(s.status).replace(/_/g, ' '),
     geo: s.geography
   }));
-  const enforcementHistory = read('data/releases/road_enforcement_2019_2022/enforcement.json').map(r => ({
+  // 2011 to 2018 (data/staged/tp_enforcement_2011_2018/) and 2019 to 2022 share one shape; the page keeps the over-speed challans (to 2018) and camera notices (from 2019) as two rows.
+  const enforcementHistory = read('data/staged/tp_enforcement_2011_2018/enforcement_2011_2018.json').rows.concat(read('data/releases/road_enforcement_2019_2022/enforcement.json')).map(r => ({
     measure: r.measure, year: r.reference_year, value: r.value, kind: r.value_kind, reportYear: r.report_year, pdfPage: r.source_pdf_page, printedPage: r.source_printed_page,
     url: r.source_url, sha256: r.source_sha256, review: r.review_status, note: r.note
   }));
