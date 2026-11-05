@@ -1,3 +1,10 @@
+## [2026-11-05] - Claude (Anthropic) - Road trend back to 2001 (Traffic Police Table 2.4)
+
+- New staged data `data/staged/tp_road_trend_1986_2015/`: Table 2.4 "Road Accident Trends" of the Traffic Police report for 2015, 1986 to 2015 (population, vehicles, fatal accidents, all accidents, road deaths), with source URL and SHA-256. 2008 to 2015 equal the series already on the site; a test checks it.
+- Road safety trend and the Patterns road change view now start in 2001 (all crashes, fatal crashes, persons killed for 2001 to 2007).
+- Recorded, not hidden: the report's 2004 row conflicts with itself (1,832 deaths against 1,929 fatal accidents; its Table 3.1 prints 1,977). The site uses 1,977 and says so on the page. Six years' printed rate columns cannot be reproduced from the report's own counts; they are listed and not used.
+- 2001 to 2003 killed and injured totals from Table 3.1 are kept in the staged file; no mode-of-travel split is published for those years because the printed categories do not add to the totals.
+
 ## [2026-11-04] - Claude (Anthropic) - Road safety: time of day, road type and place (NCRB), 2014 to 2022
 
 - New staged data `data/staged/ncrb_adsi_delhi_road/`: the Delhi (UT) row of NCRB ADSI tables 1A.2, 1A.6, 1A.7 and 1A.11 for 2014 to 2022, with every source URL and SHA-256. Each year's parts add to its printed totals and the four tables agree with each other; `test/ncrb_adsi_delhi_road.test.js` repeats the checks.

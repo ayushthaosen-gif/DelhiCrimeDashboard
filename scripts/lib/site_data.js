@@ -97,7 +97,10 @@ function buildSite(continuity) {
   const status = read('data/series_status.json');
   const trends = trendsFile.trends.map(r => ({ year: r.year, crashes: r.crashes, fatalCrashes: r.fatalCrashes, killed: r.fatalities }));
   // 2008 to 2010: Delhi Traffic Police statistics page (archived capture), the same page that prints 2011 to 2013; kept apart from the 2011 to 2024 series.
-  const trendsEarlier = read('data/staged/delhi_ut_total_2001_2010/road_citywide_2008_2010.json').rows.map(r => ({ year: r.year, crashes: r.total, fatalCrashes: r.fatal, killed: r.persons_killed }));
+  // 2001 to 2007: Table 2.4 of the Traffic Police report Road Accidents in Delhi 2015 (data/staged/tp_road_trend_1986_2015/); 2004 deaths use the recorded choice, see its README.
+  const t24 = read('data/staged/tp_road_trend_1986_2015/road_accident_trends_1986_2015.json');
+  const trendsEarlier = t24.rows.filter(r => r.year >= 2001 && r.year <= 2007).map(r => ({ year: r.year, crashes: r.total_accidents_all_types, fatalCrashes: r.fatal_accidents, killed: t24.site_choice[r.year] ? t24.site_choice[r.year].killed : r.road_deaths }))
+    .concat(read('data/staged/delhi_ut_total_2001_2010/road_citywide_2008_2010.json').rows.map(r => ({ year: r.year, crashes: r.total, fatalCrashes: r.fatal, killed: r.persons_killed })));
   // NCRB ADSI tables 1A.2, 1A.6, 1A.7 and 1A.11, Delhi (UT) row, 2014 to 2022 (data/staged/ncrb_adsi_delhi_road/)
   const ncrbFile = read('data/staged/ncrb_adsi_delhi_road/delhi_ut_road_time_class_place_2014_2022.json');
   const ncrbRoad = {};

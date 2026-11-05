@@ -1,4 +1,4 @@
-/* Road safety, citywide: headline figures, 2008-2024 trend, deaths by mode of travel, enforcement, crash-prone zones and the roads with most zones.
+/* Road safety, citywide: headline figures, 2001-2024 trend, deaths by mode of travel, enforcement, crash-prone zones and the roads with most zones.
    The citywide counts are from Delhi Traffic Police and none is split by district in the source; the time-of-day, road-type and place section is from the National Crime Records Bureau (2014 to 2022). Reads window.DSO_DATA. */
 (function () {
   'use strict';
@@ -7,7 +7,7 @@
   if (!data) return;
   var S = data.SITE, R = data.ROADS, T = S.trends, E = S.enforcement, V = Object.assign({}, S.victimsEarly, S.victims);
   var last = T[T.length - 1], prev = T[T.length - 2];
-  var ALL = (S.trendsEarlier || []).concat(T); // 2008 to 2010 from the Traffic Police statistics page, then the 2011 to 2024 series
+  var ALL = (S.trendsEarlier || []).concat(T); // 2001 to 2007 from Table 2.4 of the 2015 report, 2008 to 2010 from the statistics page, then the 2011 to 2024 series
   var YEARS_PAGE = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
   var st = { measure: 'killed', index: false, hy: null, year: 2024, query: '', allZones: false };
 
@@ -57,14 +57,14 @@
     var maxV = Math.max.apply(null, vals.concat(st.index ? [100] : [0])) * 1.08;
     var hy = hyIndex(), hr = ALL[hy];
     sec.appendChild(h('div', { class: 'row-between' },
-      h('div', { class: 'title-row' }, h('h2', null, 'Trend, 2008–2024'),
+      h('div', { class: 'title-row' }, h('h2', null, 'Trend, 2001–2024'),
         D.tip('About this trend', 'Counts, not rates: traffic and population changed over the period. Fatal crashes and persons killed are different counts. Injury figures differ by source edition and are excluded. The early reports\' 30-day fatality definition could not be confirmed.')),
       h('div', { style: 'display:flex;flex-wrap:wrap;gap:10px' },
         seg([['killed', 'Persons killed'], ['fatalCrashes', 'Fatal crashes'], ['crashes', 'All crashes']], mk, function (k) { st.measure = k; keepFocus(renderTrend); }, 'measure'),
         seg([[false, 'Counts'], [true, 'Index']].map(function (o) { return [o[0], o[1]]; }), st.index, function (k) { st.index = k; keepFocus(renderTrend); }, 'scale'))));
-    sec.appendChild(D.plain('How many people were killed, how many crashes were fatal and how many crashes were recorded in Delhi each year since 2008. The totals move with traffic and reporting as well as with safety, so a rise or fall is not proof the roads got worse or better.'));
-    sec.appendChild(scopeLine('Counts per year · Delhi as a whole · 2008 to 2024 · counts, not rates · highlighted: ' + st.year));
-    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, '2008 to 2010 come from the Traffic Police statistics page (archived capture), which prints 2011 to 2013 as well; counts for 2001 to 2007 were not found. The mode-of-travel breakdown starts in 2011 (2004 to 2010 are in the table below it).'));
+    sec.appendChild(D.plain('How many people were killed, how many crashes were fatal and how many crashes were recorded in Delhi each year since 2001. The totals move with traffic and reporting as well as with safety, so a rise or fall is not proof the roads got worse or better.'));
+    sec.appendChild(scopeLine('Counts per year · Delhi as a whole · 2001 to 2024 · counts, not rates · highlighted: ' + st.year));
+    sec.appendChild(h('p', { class: 'muted', style: 'font-size:13px' }, '2001 to 2007 come from Table 2.4 of the Traffic Police report for 2015, which prints every year from 1986 and agrees with this series for 2008 to 2015. 2008 to 2010 come from the Traffic Police statistics page (archived capture). For 2004 the report prints 1,832 deaths in that table but 1,977 in its victims table, and 1,929 fatal crashes; the chart uses 1,977, since deaths cannot be fewer than fatal crashes. The mode-of-travel breakdown starts in 2011 (2004 to 2010 are in the table below it).'));
     sec.appendChild(h('div', { class: 'readout', 'aria-live': 'polite' }, h('span', { class: 'v big' }, st.index ? String(Math.round(vals[hy])) : n(hr[mk])),
       h('span', null, st.index ? hr.year + ' · index of ' + LAB[mk] + ' (2011 = 100) · ' + n(hr[mk]) + ' counted' : LAB[mk] + ' in ' + hr.year)));
     var bars = h('div', { class: 'bars' });

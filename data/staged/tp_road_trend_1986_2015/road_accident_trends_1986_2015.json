@@ -1,0 +1,420 @@
+{
+ "title": "Delhi road accident trends 1986 to 2015: Table 2.4 of the Traffic Police report Road Accidents in Delhi 2015",
+ "status": "staged",
+ "scope": "Delhi as a whole. Total accidents are all road accidents of every type; fatal accidents are crashes with a death; road deaths are persons killed. Population and motor vehicles are the figures the report prints beside them.",
+ "source": {
+  "url": "https://traffic.delhipolice.gov.in/sites/default/files/uploads/2016/12/CHAPTER-2-VEHICLE-REGISTRATION-AND-ACCIDENT-STATISTICS.pdf",
+  "sha256": "ba3093b9625ad43d5b4fe3f3ba7e891cfabab0c599cd9f76bc9bf50a34a3a3a6",
+  "bytes": 3906566,
+  "table": "Table 2.4, Road Accident Trends",
+  "printed_page": 11,
+  "downloaded": "2026-11-05"
+ },
+ "how_read": "The table is a page image with no text layer. Every row was read from the page rendered at 300 dpi, and the flagged rows were read a second time at higher zoom. Each row was then checked against the report's own printed columns: deaths per lakh population, deaths per 10,000 vehicles, and deaths per 100 accidents. Fatal accidents never exceed total accidents.",
+ "rows": [
+  {
+   "year": 1986,
+   "population": 7729000,
+   "motor_vehicles_cumulative": 1075486,
+   "fatal_accidents": 1180,
+   "total_accidents_all_types": 6547,
+   "road_deaths": 1276,
+   "printed_rate_per_lakh_population": 16.51,
+   "printed_rate_per_10000_vehicles": 11.86,
+   "printed_accident_severity": 19.48
+  },
+  {
+   "year": 1987,
+   "population": 8151000,
+   "motor_vehicles_cumulative": 1250755,
+   "fatal_accidents": 1198,
+   "total_accidents_all_types": 6238,
+   "road_deaths": 1271,
+   "printed_rate_per_lakh_population": 15.59,
+   "printed_rate_per_10000_vehicles": 10.16,
+   "printed_accident_severity": 20.37
+  },
+  {
+   "year": 1988,
+   "population": 8250000,
+   "motor_vehicles_cumulative": 1415931,
+   "fatal_accidents": 1403,
+   "total_accidents_all_types": 6716,
+   "road_deaths": 1474,
+   "printed_rate_per_lakh_population": 17.87,
+   "printed_rate_per_10000_vehicles": 10.41,
+   "printed_accident_severity": 21.94
+  },
+  {
+   "year": 1989,
+   "population": 8575000,
+   "motor_vehicles_cumulative": 1589795,
+   "fatal_accidents": 1460,
+   "total_accidents_all_types": 7192,
+   "road_deaths": 1581,
+   "printed_rate_per_lakh_population": 18.44,
+   "printed_rate_per_10000_vehicles": 9.94,
+   "printed_accident_severity": 21.98
+  },
+  {
+   "year": 1990,
+   "population": 8910000,
+   "motor_vehicles_cumulative": 1764558,
+   "fatal_accidents": 1559,
+   "total_accidents_all_types": 7689,
+   "road_deaths": 1670,
+   "printed_rate_per_lakh_population": 18.74,
+   "printed_rate_per_10000_vehicles": 9.11,
+   "printed_accident_severity": 21.71
+  },
+  {
+   "year": 1991,
+   "population": 9370000,
+   "motor_vehicles_cumulative": 1923787,
+   "fatal_accidents": 1651,
+   "total_accidents_all_types": 8065,
+   "road_deaths": 1778,
+   "printed_rate_per_lakh_population": 18.97,
+   "printed_rate_per_10000_vehicles": 8.92,
+   "printed_accident_severity": 22.04
+  },
+  {
+   "year": 1992,
+   "population": 9500000,
+   "motor_vehicles_cumulative": 2064682,
+   "fatal_accidents": 1628,
+   "total_accidents_all_types": 8519,
+   "road_deaths": 1727,
+   "printed_rate_per_lakh_population": 18.17,
+   "printed_rate_per_10000_vehicles": 8.36,
+   "printed_accident_severity": 20.27
+  },
+  {
+   "year": 1993,
+   "population": 9750000,
+   "motor_vehicles_cumulative": 2198908,
+   "fatal_accidents": 1686,
+   "total_accidents_all_types": 8503,
+   "road_deaths": 1783,
+   "printed_rate_per_lakh_population": 18.28,
+   "printed_rate_per_10000_vehicles": 8.1,
+   "printed_accident_severity": 20.96
+  },
+  {
+   "year": 1994,
+   "population": 10680900,
+   "motor_vehicles_cumulative": 2372990,
+   "fatal_accidents": 1790,
+   "total_accidents_all_types": 9050,
+   "road_deaths": 1884,
+   "printed_rate_per_lakh_population": 17.64,
+   "printed_rate_per_10000_vehicles": 7.94,
+   "printed_accident_severity": 20.81
+  },
+  {
+   "year": 1995,
+   "population": 11061700,
+   "motor_vehicles_cumulative": 2575731,
+   "fatal_accidents": 1981,
+   "total_accidents_all_types": 10138,
+   "road_deaths": 2070,
+   "printed_rate_per_lakh_population": 18.71,
+   "printed_rate_per_10000_vehicles": 8.04,
+   "printed_accident_severity": 20.41
+  },
+  {
+   "year": 1996,
+   "population": 11454800,
+   "motor_vehicles_cumulative": 2793605,
+   "fatal_accidents": 2223,
+   "total_accidents_all_types": 11315,
+   "road_deaths": 2361,
+   "printed_rate_per_lakh_population": 19.96,
+   "printed_rate_per_10000_vehicles": 8.18,
+   "printed_accident_severity": 20.86
+  },
+  {
+   "year": 1997,
+   "population": 11860900,
+   "motor_vehicles_cumulative": 3033045,
+   "fatal_accidents": 2224,
+   "total_accidents_all_types": 10957,
+   "road_deaths": 2342,
+   "printed_rate_per_lakh_population": 19.19,
+   "printed_rate_per_10000_vehicles": 7.5,
+   "printed_accident_severity": 21.37
+  },
+  {
+   "year": 1998,
+   "population": 12281400,
+   "motor_vehicles_cumulative": 3167044,
+   "fatal_accidents": 2102,
+   "total_accidents_all_types": 10211,
+   "road_deaths": 2182,
+   "printed_rate_per_lakh_population": 17.88,
+   "printed_rate_per_10000_vehicles": 6.9,
+   "printed_accident_severity": 21.36
+  },
+  {
+   "year": 1999,
+   "population": 12716800,
+   "motor_vehicles_cumulative": 3302044,
+   "fatal_accidents": 1974,
+   "total_accidents_all_types": 9909,
+   "road_deaths": 2045,
+   "printed_rate_per_lakh_population": 16.08,
+   "printed_rate_per_10000_vehicles": 6.19,
+   "printed_accident_severity": 20.63
+  },
+  {
+   "year": 2000,
+   "population": 13418756,
+   "motor_vehicles_cumulative": 3456579,
+   "fatal_accidents": 1943,
+   "total_accidents_all_types": 10245,
+   "road_deaths": 2014,
+   "printed_rate_per_lakh_population": 15.01,
+   "printed_rate_per_10000_vehicles": 5.82,
+   "printed_accident_severity": 19.65
+  },
+  {
+   "year": 2001,
+   "population": 13850507,
+   "motor_vehicles_cumulative": 3589748,
+   "fatal_accidents": 1768,
+   "total_accidents_all_types": 9344,
+   "road_deaths": 1842,
+   "printed_rate_per_lakh_population": 13.29,
+   "printed_rate_per_10000_vehicles": 5.13,
+   "printed_accident_severity": 19.71
+  },
+  {
+   "year": 2002,
+   "population": 14116436,
+   "motor_vehicles_cumulative": 3925771,
+   "fatal_accidents": 1625,
+   "total_accidents_all_types": 8699,
+   "road_deaths": 1696,
+   "printed_rate_per_lakh_population": 12.01,
+   "printed_rate_per_10000_vehicles": 4.35,
+   "printed_accident_severity": 19.49
+  },
+  {
+   "year": 2003,
+   "population": 14387472,
+   "motor_vehicles_cumulative": 4309403,
+   "fatal_accidents": 1731,
+   "total_accidents_all_types": 8864,
+   "road_deaths": 1801,
+   "printed_rate_per_lakh_population": 12.51,
+   "printed_rate_per_10000_vehicles": 4.18,
+   "printed_accident_severity": 20.31
+  },
+  {
+   "year": 2004,
+   "population": 14663711,
+   "motor_vehicles_cumulative": 4582499,
+   "fatal_accidents": 1929,
+   "total_accidents_all_types": 9092,
+   "road_deaths": 1832,
+   "printed_rate_per_lakh_population": 12.49,
+   "printed_rate_per_10000_vehicles": 4.0,
+   "printed_accident_severity": 20.14
+  },
+  {
+   "year": 2005,
+   "population": 14945255,
+   "motor_vehicles_cumulative": 4937354,
+   "fatal_accidents": 1966,
+   "total_accidents_all_types": 9374,
+   "road_deaths": 2049,
+   "printed_rate_per_lakh_population": 13.71,
+   "printed_rate_per_10000_vehicles": 4.14,
+   "printed_accident_severity": 21.85
+  },
+  {
+   "year": 2006,
+   "population": 15232203,
+   "motor_vehicles_cumulative": 5138711,
+   "fatal_accidents": 2135,
+   "total_accidents_all_types": 9294,
+   "road_deaths": 2169,
+   "printed_rate_per_lakh_population": 14.24,
+   "printed_rate_per_10000_vehicles": 4.22,
+   "printed_accident_severity": 23.33
+  },
+  {
+   "year": 2007,
+   "population": 15524662,
+   "motor_vehicles_cumulative": 5533024,
+   "fatal_accidents": 2081,
+   "total_accidents_all_types": 8620,
+   "road_deaths": 2140,
+   "printed_rate_per_lakh_population": 13.78,
+   "printed_rate_per_10000_vehicles": 3.86,
+   "printed_accident_severity": 24.82
+  },
+  {
+   "year": 2008,
+   "population": 15822735,
+   "motor_vehicles_cumulative": 5904015,
+   "fatal_accidents": 2015,
+   "total_accidents_all_types": 8435,
+   "road_deaths": 2093,
+   "printed_rate_per_lakh_population": 13.23,
+   "printed_rate_per_10000_vehicles": 3.55,
+   "printed_accident_severity": 24.81
+  },
+  {
+   "year": 2009,
+   "population": 16126532,
+   "motor_vehicles_cumulative": 6011731,
+   "fatal_accidents": 2272,
+   "total_accidents_all_types": 7516,
+   "road_deaths": 2325,
+   "printed_rate_per_lakh_population": 14.42,
+   "printed_rate_per_10000_vehicles": 3.87,
+   "printed_accident_severity": 30.93
+  },
+  {
+   "year": 2010,
+   "population": 16436161,
+   "motor_vehicles_cumulative": 6451883,
+   "fatal_accidents": 2104,
+   "total_accidents_all_types": 7260,
+   "road_deaths": 2153,
+   "printed_rate_per_lakh_population": 13.1,
+   "printed_rate_per_10000_vehicles": 3.34,
+   "printed_accident_severity": 29.65
+  },
+  {
+   "year": 2011,
+   "population": 16753235,
+   "motor_vehicles_cumulative": 6932706,
+   "fatal_accidents": 2047,
+   "total_accidents_all_types": 7280,
+   "road_deaths": 2110,
+   "printed_rate_per_lakh_population": 12.59,
+   "printed_rate_per_10000_vehicles": 3.05,
+   "printed_accident_severity": 28.98
+  },
+  {
+   "year": 2012,
+   "population": 17174897,
+   "motor_vehicles_cumulative": 7438155,
+   "fatal_accidents": 1822,
+   "total_accidents_all_types": 6937,
+   "road_deaths": 1866,
+   "printed_rate_per_lakh_population": 10.86,
+   "printed_rate_per_10000_vehicles": 2.51,
+   "printed_accident_severity": 26.89
+  },
+  {
+   "year": 2013,
+   "population": 17499502,
+   "motor_vehicles_cumulative": 7774403,
+   "fatal_accidents": 1778,
+   "total_accidents_all_types": 7566,
+   "road_deaths": 1820,
+   "printed_rate_per_lakh_population": 10.4,
+   "printed_rate_per_10000_vehicles": 2.34,
+   "printed_accident_severity": 24.05
+  },
+  {
+   "year": 2014,
+   "population": 17830242,
+   "motor_vehicles_cumulative": 8293167,
+   "fatal_accidents": 1629,
+   "total_accidents_all_types": 8623,
+   "road_deaths": 1671,
+   "printed_rate_per_lakh_population": 9.37,
+   "printed_rate_per_10000_vehicles": 2.01,
+   "printed_accident_severity": 19.37
+  },
+  {
+   "year": 2015,
+   "population": 18167233,
+   "motor_vehicles_cumulative": 8827431,
+   "fatal_accidents": 1582,
+   "total_accidents_all_types": 8085,
+   "road_deaths": 1622,
+   "printed_rate_per_lakh_population": 8.93,
+   "printed_rate_per_10000_vehicles": 1.84,
+   "printed_accident_severity": 20.06
+  }
+ ],
+ "rates_not_reproduced": [
+  {
+   "year": 1990,
+   "printed_columns_not_reproduced_from_the_counts": [
+    "rate_per_10000_vehicles"
+   ]
+  },
+  {
+   "year": 1991,
+   "printed_columns_not_reproduced_from_the_counts": [
+    "rate_per_10000_vehicles"
+   ]
+  },
+  {
+   "year": 1996,
+   "printed_columns_not_reproduced_from_the_counts": [
+    "rate_per_lakh",
+    "rate_per_10000_vehicles"
+   ]
+  },
+  {
+   "year": 1997,
+   "printed_columns_not_reproduced_from_the_counts": [
+    "rate_per_lakh",
+    "rate_per_10000_vehicles"
+   ]
+  },
+  {
+   "year": 1998,
+   "printed_columns_not_reproduced_from_the_counts": [
+    "rate_per_lakh"
+   ]
+  },
+  {
+   "year": 2002,
+   "printed_columns_not_reproduced_from_the_counts": [
+    "rate_per_10000_vehicles"
+   ]
+  }
+ ],
+ "rates_note": "In the years listed above, one or two of the report's printed rate columns cannot be reproduced from the report's own counts, although the counts themselves were read twice and agree with the chart on page 13 of the same chapter. The printed rates are kept as printed and are not used on the site.",
+ "known_conflict_2004": {
+  "table_2_4_road_deaths": 1832,
+  "table_3_1_total_killed": 1977,
+  "fatal_accidents": 1929,
+  "note": "Table 2.4 prints 1,832 deaths for 2004 but 1,929 fatal accidents, and a fatal accident cannot be fewer than one death each. Table 3.1 of the same report prints 1,977 killed, whose categories add to the total. The site uses 1,977 and records this conflict; the printed rates for 2004 follow 1,832."
+ },
+ "site_choice": {
+  "2004": {
+   "killed": 1977,
+   "reason": "Table 3.1 total, consistent with 1,929 fatal accidents"
+  }
+ },
+ "table_3_1_totals_2001_2003": {
+  "source": "Table 3.1 of the same report (chapter 3, printed page 15; file sha256 56dfff04bf27adb11e328766b6251fc16c53eaea80ea405589309778d355af85)",
+  "note": "Only the printed TOTAL columns are kept. The category columns of these three years do not add to the printed totals (killed short by 33, 18 and 16), so no category split is published for them. The killed totals agree with Table 2.4.",
+  "rows": [
+   {
+    "year": 2001,
+    "killed": 1842,
+    "injured": 8449
+   },
+   {
+    "year": 2002,
+    "killed": 1696,
+    "injured": 7929
+   },
+   {
+    "year": 2003,
+    "killed": 1801,
+    "injured": 7829
+   }
+  ]
+ }
+}
